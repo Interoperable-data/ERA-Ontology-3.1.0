@@ -13,21 +13,25 @@
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:schema="https://schema.org/"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
     <owl:Ontology rdf:about="http://data.europa.eu/949/">
         <owl:imports rdf:resource="http://www.opengis.net/ont/geosparql#"/>
         <ns1:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
-        <terms:contributor rdf:resource="_:genid-nodeid-node1hrh2pbiux1"/>
-        <terms:contributor rdf:resource="_:genid-nodeid-node1hrh2pbiux2"/>
+        <terms:contributor rdf:resource="_:genid-nodeid-node1hrj1n4vbx13"/>
+        <terms:contributor rdf:resource="_:genid-nodeid-node1hrj1n4vbx14"/>
+        <terms:contributor rdf:resource="_:genid-nodeid-node1hrj1n4vbx15"/>
+        <terms:contributor rdf:resource="_:genid-nodeid-node1hrj1n4vbx16"/>
         <terms:contributor rdf:resource="https://dylanvanassche.be/#me"/>
         <terms:contributor rdf:resource="https://julianrojas.org/#me"/>
         <terms:contributor rdf:resource="https://pietercolpaert.be/#me"/>
         <terms:contributor rdf:nodeID="genid1"/>
         <terms:contributor rdf:nodeID="genid2"/>
+        <terms:contributor rdf:nodeID="genid3"/>
+        <terms:contributor rdf:nodeID="genid4"/>
         <terms:contributor>Ivo Velitchkov</terms:contributor>
-        <terms:contributor>Marina Aguado</terms:contributor>
-        <terms:contributor>Polymnia Vasilopoulou</terms:contributor>
         <terms:contributor>Wouter Beek</terms:contributor>
         <terms:creator>Edna Ruckhaus</terms:creator>
         <terms:creator>Oscar Corcho</terms:creator>
@@ -66,12 +70,20 @@ The vocabulary also includes the routebook concepts described in appendix D2 &qu
         <owl:versionURI xml:lang="en">https://git.fpfis.eu/datateam/ERA/era-vocabulary/-/releases/v3.1.0</owl:versionURI>
     </owl:Ontology>
     <rdf:Description rdf:nodeID="genid1">
+        <foaf:name>Marina Aguado</foaf:name>
+        <org:memberOf rdf:resource="http://publications.europa.eu/resource/authority/corporate-body/ERA"/>
+    </rdf:Description>
+    <rdf:Description rdf:nodeID="genid2">
         <foaf:name>Ghislain Atemezing</foaf:name>
         <rdfs:seeAlso rdf:resource="https://orcid.org/0000-0003-1562-6922"/>
         <org:memberOf rdf:resource="http://publications.europa.eu/resource/authority/corporate-body/ERA"/>
     </rdf:Description>
-    <rdf:Description rdf:nodeID="genid2">
+    <rdf:Description rdf:nodeID="genid3">
         <foaf:name>Dragos Patru</foaf:name>
+        <org:memberOf rdf:resource="http://publications.europa.eu/resource/authority/corporate-body/ERA"/>
+    </rdf:Description>
+    <rdf:Description rdf:nodeID="genid4">
+        <foaf:name>Polymnia Vasilopoulou</foaf:name>
         <org:memberOf rdf:resource="http://publications.europa.eu/resource/authority/corporate-body/ERA"/>
     </rdf:Description>
     
@@ -93,33 +105,6 @@ The vocabulary also includes the routebook concepts described in appendix D2 &qu
 
 
     <owl:AnnotationProperty rdf:about="http://creativecommons.org/ns#license"/>
-    
-
-
-    <!-- http://data.europa.eu/949/ContactLineSystem -->
-
-
-    <owl:AnnotationProperty rdf:about="http://data.europa.eu/949/ContactLineSystem">
-        <rdfs:domain rdf:resource="http://data.europa.eu/949/EnergySubsystem"/>
-    </owl:AnnotationProperty>
-    
-
-
-    <!-- http://data.europa.eu/949/MaximumMagneticField -->
-
-
-    <owl:AnnotationProperty rdf:about="http://data.europa.eu/949/MaximumMagneticField">
-        <rdfs:domain rdf:resource="http://data.europa.eu/949/CCSSubsystem"/>
-    </owl:AnnotationProperty>
-    
-
-
-    <!-- http://data.europa.eu/949/TrainDetectionSystem -->
-
-
-    <owl:AnnotationProperty rdf:about="http://data.europa.eu/949/TrainDetectionSystem">
-        <rdfs:domain rdf:resource="http://data.europa.eu/949/CCSSubsystem"/>
-    </owl:AnnotationProperty>
     
 
 
@@ -675,7 +660,7 @@ above the local reference ellipsoid).</rdfs:comment>
         <rdfs:domain rdf:resource="http://data.europa.eu/949/OperationalPoint"/>
         <rdfs:range rdf:resource="http://data.europa.eu/949/OperationalPoint"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2023-01-20</terms:created>
-        <rdfs:comment xml:lang="en">Relates the information that each country maintains on a border point, to the operational point that represents the general information on the border point.</rdfs:comment>
+        <rdfs:comment xml:lang="en">TODO: review. Relates the information that each country maintains on a border point, to the operational point that represents the general information on the border point.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://data.europa.eu/949/"/>
         <rdfs:label xml:lang="en">Border point of</rdfs:label>
         <ns:term_status>stable</ns:term_status>
@@ -2162,7 +2147,7 @@ The reason for deprecating this property is that it is defined as &quot;Referenc
         <rdfs:domain rdf:resource="http://data.europa.eu/949/OperationalPoint"/>
         <rdfs:range rdf:resource="http://data.europa.eu/949/OperationalPoint"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2023-01-20</terms:created>
-        <rdfs:comment xml:lang="en">Relates an operational point that represents the general information of a  border point to the information that each country maintains for the border point.</rdfs:comment>
+        <rdfs:comment xml:lang="en">TODO: review, it is in use. Relates an operational point that represents the general information of a  border point to the information that each country maintains for the border point.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://data.europa.eu/949/"/>
         <rdfs:label xml:lang="en">Border point information per country</rdfs:label>
         <ns:term_status>stable</ns:term_status>
@@ -9576,7 +9561,15 @@ In https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32019R0777&amp
     <!-- http://data.europa.eu/949/ContactLineSystem -->
 
 
-    <owl:Class rdf:about="http://data.europa.eu/949/ContactLineSystem"/>
+    <owl:Class rdf:about="http://data.europa.eu/949/ContactLineSystem">
+        <rinfIndex>1.1.1.2.2</rinfIndex>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-08-04</terms:created>
+        <terms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-08-04</terms:modified>
+        <rdfs:comment xml:lang="en">System that is used to transmit electrical energy to road or rail vehicles.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://data.europa.eu/949/"/>
+        <rdfs:label xml:lang="en">Contact Line System</rdfs:label>
+        <ns:term_status>stable</ns:term_status>
+    </owl:Class>
     
 
 
@@ -9705,7 +9698,13 @@ A feature that belongs to the infrastructure can be abstracted (hasAbstraction) 
     <owl:Class rdf:about="http://data.europa.eu/949/LevelCrossing">
         <rdfs:subClassOf rdf:resource="http://data.europa.eu/949/BasicObject"/>
         <owl:disjointWith rdf:resource="http://data.europa.eu/949/PlatformEdge"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Siding"/>
         <owl:disjointWith rdf:resource="http://data.europa.eu/949/Signal"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/SignalsGrid"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/SubsidiaryLocation"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Switch"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Track"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Tunnel"/>
         <rdfs:label xml:lang="en">Level crossing</rdfs:label>
     </owl:Class>
     
@@ -9769,7 +9768,7 @@ Each track can have several load capability (structured) values, and each one ha
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/org#Organization"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2020-11-19</terms:created>
         <terms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2020-11-19</terms:modified>
-        <rdfs:comment xml:lang="en">A company or organization that manufactures vehicles.</rdfs:comment>
+        <rdfs:comment xml:lang="en">TODO: review. A company or organization that manufactures vehicles.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://data.europa.eu/949/"/>
         <rdfs:label xml:lang="en">Manufacturer</rdfs:label>
         <ns:term_status>stable</ns:term_status>
@@ -9780,7 +9779,14 @@ Each track can have several load capability (structured) values, and each one ha
     <!-- http://data.europa.eu/949/MaximumMagneticField -->
 
 
-    <owl:Class rdf:about="http://data.europa.eu/949/MaximumMagneticField"/>
+    <owl:Class rdf:about="http://data.europa.eu/949/MaximumMagneticField">
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2023-03-14</terms:created>
+        <rdfs:comment xml:lang="en">The maximum magnetic field limits allowed for axle counters (in dBÂµA/m) for a defined frequency band.
+It should be provided in 3 directions.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://data.europa.eu/949/"/>
+        <rdfs:label xml:lang="en">Maximum magnetic field</rdfs:label>
+        <ns:term_status>stable</ns:term_status>
+    </owl:Class>
     
 
 
@@ -9873,7 +9879,7 @@ Each track can have several load capability (structured) values, and each one ha
         <rdfs:subClassOf rdf:resource="http://data.europa.eu/949/TopologicalObject"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-04-01</terms:created>
         <terms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-04-01</terms:modified>
-        <rdfs:comment xml:lang="en">Base class for defining edges in the connectivity graph representing the topological network.</rdfs:comment>
+        <rdfs:comment xml:lang="en">TODO: review. Base class for defining edges in the connectivity graph representing the topological network.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://data.europa.eu/949/"/>
         <rdfs:label xml:lang="en">Net Relation</rdfs:label>
         <rdfs:seeAlso rdf:resource="https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA292.html"/>
@@ -9925,7 +9931,6 @@ Each track can have several load capability (structured) values, and each one ha
         <rdfs:comment xml:lang="en">An operational point (OP) means any location for train service operations, where train services may begin and end or change route, and where passenger or freight services may be provided; operational point also means any location at boundaries between Member States or infrastructure managers.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://data.europa.eu/949/"/>
         <rdfs:label xml:lang="en">Operational Point</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://wiki3.railml.org/DataModel/3.2/IS/EARoot/EA238.htm"/>
         <ns:term_status>stable</ns:term_status>
     </owl:Class>
     
@@ -9949,13 +9954,19 @@ Each track can have several load capability (structured) values, and each one ha
 
     <owl:Class rdf:about="http://data.europa.eu/949/PlatformEdge">
         <rdfs:subClassOf rdf:resource="http://data.europa.eu/949/BasicObject"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Siding"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Signal"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/SignalsGrid"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/SubsidiaryLocation"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Switch"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Track"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Tunnel"/>
         <rinfIndex>1.2.1.0.6</rinfIndex>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-08-02</terms:created>
         <terms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2023-11-10</terms:modified>
         <rdfs:comment xml:lang="en">Platform for the purpose of RINF is understood as a platform edge. A platform concerns only the part of the structure neighbouring to the track (interfaced with trains).</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://data.europa.eu/949/"/>
         <rdfs:label xml:lang="en">Platform edge</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://wiki3.railml.org/DataModel/3.2/IS/EARoot/EA250.htm"/>
         <ns:term_status>stable</ns:term_status>
     </owl:Class>
     
@@ -10050,6 +10061,12 @@ Each track can have several raised pantographs per train allowed (structured) va
 
     <owl:Class rdf:about="http://data.europa.eu/949/Siding">
         <rdfs:subClassOf rdf:resource="http://data.europa.eu/949/BasicObject"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Signal"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/SignalsGrid"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/SubsidiaryLocation"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Switch"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Track"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Tunnel"/>
         <rinfIndex>1.2.2</rinfIndex>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-08-10</terms:created>
         <terms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2022-10-27</terms:modified>
@@ -10068,6 +10085,11 @@ Each track can have several raised pantographs per train allowed (structured) va
 
     <owl:Class rdf:about="http://data.europa.eu/949/Signal">
         <rdfs:subClassOf rdf:resource="http://data.europa.eu/949/BasicObject"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/SignalsGrid"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/SubsidiaryLocation"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Switch"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Track"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Tunnel"/>
         <rinfIndex>1.2.1.0.8</rinfIndex>
         <dc:source rdf:resource="https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-04-01</terms:created>
@@ -10088,6 +10110,10 @@ Definition RSM: Apparatus by means of which a conventional visual or acoustic in
 
     <owl:Class rdf:about="http://data.europa.eu/949/SignalsGrid">
         <rdfs:subClassOf rdf:resource="http://data.europa.eu/949/BasicObject"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/SubsidiaryLocation"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Switch"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Track"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Tunnel"/>
         <rdfs:label xml:lang="en">Signals Grid</rdfs:label>
     </owl:Class>
     
@@ -10160,6 +10186,9 @@ Definition RSM: Apparatus by means of which a conventional visual or acoustic in
                 <owl:onClass rdf:resource="http://data.europa.eu/949/PrimaryLocation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Switch"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Track"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Tunnel"/>
         <rdfs:label xml:lang="en">Subsidiary Location</rdfs:label>
     </owl:Class>
     
@@ -10170,6 +10199,8 @@ Definition RSM: Apparatus by means of which a conventional visual or acoustic in
 
     <owl:Class rdf:about="http://data.europa.eu/949/Switch">
         <rdfs:subClassOf rdf:resource="http://data.europa.eu/949/BasicObject"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Track"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Tunnel"/>
         <rdfs:label xml:lang="en">Switch</rdfs:label>
     </owl:Class>
     
@@ -10227,6 +10258,7 @@ Definition RSM: Apparatus by means of which a conventional visual or acoustic in
 
     <owl:Class rdf:about="http://data.europa.eu/949/Track">
         <rdfs:subClassOf rdf:resource="http://data.europa.eu/949/BasicObject"/>
+        <owl:disjointWith rdf:resource="http://data.europa.eu/949/Tunnel"/>
         <rinfIndex>1.1.1</rinfIndex>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2020-07-29</terms:created>
         <terms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2022-07-07</terms:modified>
@@ -10242,7 +10274,16 @@ Definition RSM: Apparatus by means of which a conventional visual or acoustic in
     <!-- http://data.europa.eu/949/TrainDetectionSystem -->
 
 
-    <owl:Class rdf:about="http://data.europa.eu/949/TrainDetectionSystem"/>
+    <owl:Class rdf:about="http://data.europa.eu/949/TrainDetectionSystem">
+        <rinfIndex>1.1.1.3.4</rinfIndex>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-08-07</terms:created>
+        <terms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-08-07</terms:modified>
+        <rdfs:comment xml:lang="en">System used to detect the position of vehicles in the railway track.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://data.europa.eu/949/"/>
+        <rdfs:label xml:lang="en">Train Detection System</rdfs:label>
+        <rdfs:seeAlso rdf:resource="https://wiki3.railml.org/DataModel/3.2/IS/EARoot/EA402.htm"/>
+        <ns:term_status>stable</ns:term_status>
+    </owl:Class>
     
 
 
@@ -10444,65 +10485,12 @@ sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // Individuals
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-
-    
-
-
-    <!-- http://data.europa.eu/949/concepts/op-types/borderStation -->
-
-
-    <owl:NamedIndividual rdf:about="http://data.europa.eu/949/concepts/op-types/borderStation"/>
-    
-
-
-    <!-- http://data.europa.eu/949/concepts/op-types/station -->
-
-
-    <owl:NamedIndividual rdf:about="http://data.europa.eu/949/concepts/op-types/station"/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
     // Annotations
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
 
-    <rdf:Description rdf:about="http://data.europa.eu/949/ContactLineSystem">
-        <rinfIndex>1.1.1.2.2</rinfIndex>
-        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-08-04</terms:created>
-        <terms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-08-04</terms:modified>
-        <rdfs:comment xml:lang="en">System that is used to transmit electrical energy to road or rail vehicles.</rdfs:comment>
-        <rdfs:isDefinedBy rdf:resource="http://data.europa.eu/949/"/>
-        <rdfs:label xml:lang="en">Contact Line System</rdfs:label>
-        <ns:term_status>stable</ns:term_status>
-    </rdf:Description>
-    <rdf:Description rdf:about="http://data.europa.eu/949/MaximumMagneticField">
-        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2023-03-14</terms:created>
-        <rdfs:comment xml:lang="en">The maximum magnetic field limits allowed for axle counters (in dBÂµA/m) for a defined frequency band.
-It should be provided in 3 directions.</rdfs:comment>
-        <rdfs:isDefinedBy rdf:resource="http://data.europa.eu/949/"/>
-        <rdfs:label xml:lang="en">Maximum magnetic field</rdfs:label>
-        <ns:term_status>stable</ns:term_status>
-    </rdf:Description>
-    <rdf:Description rdf:about="http://data.europa.eu/949/TrainDetectionSystem">
-        <rinfIndex>1.1.1.3.4</rinfIndex>
-        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-08-07</terms:created>
-        <terms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-08-07</terms:modified>
-        <rdfs:comment xml:lang="en">System used to detect the position of vehicles in the railway track.</rdfs:comment>
-        <rdfs:isDefinedBy rdf:resource="http://data.europa.eu/949/"/>
-        <rdfs:label xml:lang="en">Train Detection System</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://wiki3.railml.org/DataModel/3.2/IS/EARoot/EA402.htm"/>
-        <ns:term_status>stable</ns:term_status>
-    </rdf:Description>
     <rdf:Description rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#">
         <dc:date>$Date: 2009/04/20 15:00:30 $</dc:date>
         <dc:description>A vocabulary for representing latitude, longitude and 
