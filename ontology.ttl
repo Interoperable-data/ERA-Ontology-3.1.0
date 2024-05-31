@@ -8332,7 +8332,8 @@ era:SignalsGrid rdf:type owl:Class ;
                                   era:Switch ,
                                   era:Track ,
                                   era:Tunnel ;
-			   rdfs:comment """SignalsGrid: (part of) an OP in which the route protection function is realized by a group of Signals belonging together from an operational standpoint. The switches' position in a SignalsGrid are controlled together by the interlocking during normal operation."""@en ;
+			   rdfs:comment """Group of switches and crossings within an Operational Point with which the route protection function is realized by a group of Signals belonging together from an operational standpoint. 
+The switches' position in a SignalsGrid are controlled together by the interlocking during normal operation and else by safety procedures."""@en ;
 			   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "Signals Grid"@en .
 				
@@ -8419,6 +8420,9 @@ era:SubsidiaryLocation rdf:type owl:Class ;
 ###  http://data.europa.eu/949/Switch
 era:Switch rdf:type owl:Class ;
            rdfs:subClassOf era:BasicObject ;
+	   rdfs:comment """A unit of track comprising two fixed rails (stock rails) and two movable rails (switch rails) used to direct vehicles from 
+one track to another track.""" ;
+	   rdfs:seeAlso "http://data.europa.eu/eli/reg/2014/1299/2019-06-16" ;
            owl:disjointWith era:Track ,
                             era:Tunnel ;
            rdfs:label "Switch"@en .
