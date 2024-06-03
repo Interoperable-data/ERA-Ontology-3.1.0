@@ -664,8 +664,13 @@ era:dataRadioCompatible rdf:type owl:ObjectProperty ;
                         era:rinfIndex "1.1.1.3.3.10" ,
                                       "1.2.1.1.2.10" ;
                         <http://purl.org/dc/terms/created> "2020-08-31"^^xsd:date ;
-                        <http://purl.org/dc/terms/modified> "2021-09-12"^^xsd:date ;
-                        rdfs:comment "Radio requirements used for demonstrating technical compatibility data."@en ;
+                        <http://purl.org/dc/terms/modified> "2021-09-12"^^xsd:date , "2024-04-18"^^xsd:date ;
+                        rdfs:comment """Radio requirements used for demonstrating technical compatibility data.
+
+Information on RSC data requirements per country:                        
+https://www.era.europa.eu/era-folder/radio-system-compatibility-rsc-voice-and-data-documents"""@en ;
+                        rdfs:requires """GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."""@en ;
+                        dcterms:source "https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf" ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "Radio system compatibility data"@en ;
                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -1209,7 +1214,7 @@ Please select ”1” or “2”, taking into account that TSI compliant trains 
 """@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                       rdfs:label "Number of active GSM-R mobiles (EDOR) or simultaneous communication session on-board for ETCS Level 2 needed to perform radio block centre handovers without having an operational disruption"@en ;
-                      rdfs:requires """GSM-R and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."""@en ;
+                      rdfs:requires """GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."""@en ;
                       dcterms:relation era:etcsLevelType ;
                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
@@ -1230,7 +1235,7 @@ era:gsmRAdditionalInfo rdf:type owl:ObjectProperty ;
                        dcterms:description """Please use this field to indicate any additional information on the GSM-R network. 
 
 The document(s) itself has(have) to be upload by the NRE via the “reference document management” functionality. The reference of the document(s) is(are) provided as (a) link(s)."""@en ;
-                       rdfs:requires "GSM-R must be installed for this parameter to be applicable"@en ;
+                       rdfs:requires "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable"@en ;
                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
                        <http://www.w3.org/2004/02/skos/core#changeNote> "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
 
@@ -1270,7 +1275,7 @@ In case there is a balise used to announce the change of the network, or if ther
 (*11) Please use this field to indicate any additional information on network characteristics, e.g.; interference level, leading to the need of additional on-board protection; areas where GPRS for ETCS can be used;
 """ @en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                          rdfs:requires "GSM-R must be installed for this parameter to be applicable"@en ;
+                          rdfs:requires "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable"@en ;
                           rdfs:label "Optional GSM-R functions"@en ;
                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
@@ -1322,12 +1327,13 @@ era:gsmrConstraintsOperateOnlyInCircuitSwitch rdf:type owl:ObjectProperty ;
                                               era:XMLName "CRG_ConstraintsCS" ;
                                               era:appendixD3Index "2.2" ;
                                               era:inSkosConceptScheme <http://data.europa.eu/949/concepts/gsmr-cs-constraints/GSMRConstraints> ;
-                                              era:rinfIndex "1.2.1.1.2.12" ;
+                                              era:rinfIndex "1.1.1.3.3.12" , "1.2.1.1.2.12" ;
                                               <http://purl.org/dc/terms/created> "2023-03-14"^^xsd:date ;
                                               <http://purl.org/dc/terms/modified> "2024-04-18"^^xsd:date ;
                                               rdfs:comment """These constraints, where applicable, are meant to manage the limited number of circuit-switched radio connections that can be handled simultaneously by a Radio Block Center."""@en ;
                                               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                              rdfs:requires "GSM-R must be installed for this parameter to be applicable"@en ;
+                                              rdfs:requires """GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable.
+Multiple values are allowed."""@en ;
                                               rdfs:label "Specific constraints imposed by the GSM-R network operator on ETCS on-board units only able to operate in circuit-switch"@en ;
                                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
@@ -1344,6 +1350,12 @@ era:gsmrNetworkCoverage rdf:type owl:ObjectProperty ;
                         <http://purl.org/dc/terms/created> "2020-08-31"^^xsd:date ;
                         <http://purl.org/dc/terms/modified> "2021-09-12"^^xsd:date ;
                         rdfs:comment "List of GSM-R networks which are covered by a roaming agreement."@en ;
+                        rdfs:requires """GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."""@en ;
+                        dcterms:description """Name of the own GSM-R network and list of GSM-R networks which are covered by a roaming agreement for CS services. 
+This list is managed by UIC. The Agency will monitor it in order to update the list of possible values when necessary. 
+For Route Compatibility purposes and simplicity, the own network needs to be declared by the IM, so the RUs can systematically check the compatibility.
+For voice services, roaming for CS is applicable.  For ETCS, as long as roaming for CS is ensured, the interoperability will be guaranteed.""" @en ;
+
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "GSM-R networks covered by a roaming agreement"@en ;
                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -3170,10 +3182,18 @@ era:voiceRadioCompatible rdf:type owl:ObjectProperty ;
                          era:rinfIndex "1.1.1.3.3.9" ,
                                        "1.2.1.1.2.9" ;
                          <http://purl.org/dc/terms/created> "2020-08-31"^^xsd:date ;
-                         <http://purl.org/dc/terms/modified> "2021-09-12"^^xsd:date ;
+                         <http://purl.org/dc/terms/modified> "2021-09-12"^^xsd:date , "2024-04-18"^^xsd:date ;
                          rdfs:comment """Radio requirements used for demonstrating technical compatibility voice.
- The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/voice-radio-system-compatibilities/VoiceRadioSystemCompatibilities. This concept scheme is temporatily non-deferenceable."""@en ;
+
+The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/voice-radio-system-compatibilities/VoiceRadioSystemCompatibilities. 
+This concept scheme is temporatily non-deferenceable.
+ 
+Information on RSC voice requirements per country:                        
+https://www.era.europa.eu/era-folder/radio-system-compatibility-rsc-voice-and-data-documents"""@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                         rdfs:requires """GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable.
+In case of RSC-EU-0 or None, no other values are allowed."""@en ;
+                         dcterms:source "https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf" ;
                          rdfs:label "Radio system compatibility voice"@en ;
                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
@@ -4306,7 +4326,8 @@ era:gprsForETCS rdf:type owl:DatatypeProperty ;
                 <http://purl.org/dc/terms/created> "2021-08-08"^^xsd:date ;
                 <http://purl.org/dc/terms/modified> "2021-09-12"^^xsd:date , "2024-04-18"^^xsd:date ;
                 rdfs:comment "Indication if GPRS can be used for ETCS."@en ;
-                rdfs:requires """GSM-R and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."""@en ;
+                rdfs:requires """GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."""@en ;
+                dcterms:relation era:etcsLevelType ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 dcterms:source "Sections of EIRENE and ETCS subsets for trackside in TSI"@en ; 
                 rdfs:label "GPRS for ETCS"@en ;
@@ -4324,8 +4345,9 @@ era:gprsImplementationArea rdf:type owl:DatatypeProperty ;
                            <http://purl.org/dc/terms/modified> "2021-09-12"^^xsd:date , "2024-04-18"^^xsd:date  ;
                            rdfs:comment "Indication of the area in which GPRS can be used for ETCS, expressed as a list of GPRS-enabled RBC's."@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                           rdfs:requires """GSM-R, ETCS L2 (parameter 1.1.1.3.2.1) and GPRS for ETCS (parameter 1.1.1.3.3.3.2) must be installed for this parameter to be applicable."""@en ;
+                           rdfs:requires """GSM-R (parameter 1.1.1.3.3.1), ETCS L2 (parameter 1.1.1.3.2.1) and GPRS for ETCS (parameter 1.1.1.3.3.3.2) must be installed for this parameter to be applicable."""@en ;
                            rdfs:label "Area of implementation of GPRS"@en ;
+                           dcterms:relation era:etcsLevelType , era:gprsForETCS ;
                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -4372,6 +4394,10 @@ era:gsmRNoCoverage rdf:type owl:DatatypeProperty ;
                    <http://purl.org/dc/terms/created> "2021-08-09"^^xsd:date ;
                    <http://purl.org/dc/terms/modified> "2021-09-12"^^xsd:date ;
                    rdfs:comment "Indication if there is no GSMR coverage."@en ;
+                   rdfs:requires "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en ;
+                   dcterms:description """If GSM-R is not installed, this parameter should not be used.
+This parameter is mainly to capture the case of Radio Hole functionality (lack of GSM-R coverage), that is foreseen in the ETCS specifications as packet 68. 
+Another possible use is the declaration of a temporary situation where, although the area is in principle covered by GSM-R, there is a long-term outage or a project for replacement of the radio (i.e. a section that will not be covered with GSM-R for half a year or longer)."""@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    rdfs:label "No GSMR coverage"@en ;
                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -4419,6 +4445,7 @@ era:gsmrForcedDeregistrationFunctionalNumber rdf:type owl:DatatypeProperty ;
                                              rdfs:comment "This feature will condition the applicable operational rules for drivers and signallers when dealing with cab radios registered under wrong numbers."@en ;
                                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                              rdfs:label "Is the GSM-R network configured to allow forced de-registration of a functional number by another driver?"@en ;
+                                             rdfs:requires """GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."""@en ;
                                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -6562,6 +6589,8 @@ era:publicNetworkRoaming rdf:type owl:DatatypeProperty ;
 In case of Y, provide the name of the public network(s) under parameter \"Details on GSM-R roaming to public networks\"."""@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Existence of GSM-R roaming to public networks"@en ;
+                         rdfs:requires """GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."""@en ;
+                         dcterms:relation era:publicNetworkRoamingDetails ;
                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -6573,11 +6602,15 @@ era:publicNetworkRoamingDetails rdf:type owl:DatatypeProperty ;
                                 era:rinfIndex "1.1.1.3.3.7" ,
                                               "1.2.1.1.2.7" ;
                                 <http://purl.org/dc/terms/created> "2021-08-09"^^xsd:date ;
-                                <http://purl.org/dc/terms/modified> "2024-01-08"^^xsd:date ;
-                                rdfs:comment """If roaming to public networks is configured, please indicate to which networks, 
-for which users and in which areas."""@en ;
+                                <http://purl.org/dc/terms/modified> "2024-01-08"^^xsd:date , "2024-04-18"^^xsd:date ;
+                                rdfs:comment """If roaming to public networks is configured, please:
+
+1. indicate to which networks, for which users and in which areas.
+2. list if any GSM-R functionality is not available when roaming to a public network (e.g. REC, Functional Addressing, Group Calls). 
+3. also add if there is any operational restriction for vehicles that cannot roam into any of the available public networks."""@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "Details on GSM-R roaming to public networks"@en ;
+                                rdfs:requires """GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."""@en ;
                                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -6647,6 +6680,7 @@ era:radioNetworkId rdf:type owl:DatatypeProperty ;
                    <http://purl.org/dc/terms/modified> "2024-04-18"^^xsd:date ;
                    rdfs:comment "Unique identification of the GSM-R network the calling mobile station has to register with, as defined in the specification referenced in Appendix A-1, index [C]."@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                   rdfs:requires """GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."""@en ;
                    rdfs:label "Radio Network ID"@en ;
                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
@@ -7593,8 +7627,10 @@ era:usesGroup555 rdf:type owl:DatatypeProperty ;
                                "1.2.1.1.2.4" ;
                  era:usedInRCCCalculations "true"^^xsd:boolean ;
                  <http://purl.org/dc/terms/created> "2020-08-31"^^xsd:date ;
-                 <http://purl.org/dc/terms/modified> "2021-09-12"^^xsd:date ;
+                 <http://purl.org/dc/terms/modified> "2021-09-12"^^xsd:date , "2024-04-18"^^xsd:date;
                  rdfs:comment "Indication if group 555 is used."@en ;
+                 rdfs:requires """GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."""@en ;
+                 dcterms:relation era:etcsLevelType ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "GSM-R use of group 555"@en ;
                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
