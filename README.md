@@ -3,10 +3,10 @@ This is a draft update of the RINF extension of the ERA Ontology.
 It defines the entities and thier relationships within the domain of railway infrastructure.
 It includes concepts such as railway lines, operational points, tracks, signals, junctions, and other various components of the railway network.
 
-For the previous version of the ERA ontology see: https://data-interop.era.europa.eu/era-vocabulary/
+The previous version of the ERA ontology is [here](https://data-interop.era.europa.eu/era-vocabulary/).
 
 # Documentation
-Current documentation at https://linkedvocabs.org/data/era-ontology/3.1.0/doc/index-en.html
+[Current documentation](https://linkedvocabs.org/data/era-ontology/3.1.0/doc/index-en.html)
 
 # Legal context
 This version of the ontology reflects the collaborative efforts undertaken by the EU Agency for Railways within a specialized workgroup for the European Register of Infrastructure, dedicated to the multi level description of interoperable railway network, aligning and making RINF compliant to the most recent text of the [Regulation (EU) 2019/777 of 16 May 2019 amended by Regulation (EU) 2023/1694 of 10 August 2023](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02019R0777-20230928).
