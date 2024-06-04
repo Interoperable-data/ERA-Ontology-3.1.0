@@ -987,7 +987,7 @@ era:etcsLevelType rdf:type owl:ObjectProperty ;
 		  dcterms:relation era:etcsBaseline ;
 		  dcterms:description """The different ERTMS / ETCS application levels are a way to express the possible operating relationships between track and train. 
 	
-Level definitions are principally related to the track side equipment used, to the way the track side information reaches the on-board units and to which functions are processed in the track side and in the on-board equipment respectively."""@en
+Level definitions are principally related to the track side equipment used, to the way the track side information reaches the on-board units and to which functions are processed in the track side and in the on-board equipment respectively."""@en ;
 		  dcterms:requires """If ETCS is on the trackside (one or more levels are selected), all other ETCS parameters (from 1.1.1.3.2.2 to 1.1.1.3.2.10) are applicable.
 	
 The ETCS value NTC is only relevant when the line is dual equipped with ETCS (i.e., balises are placed in the track) and Class B system, and both systems are in operation at the same time. 
@@ -2560,7 +2560,7 @@ era:minVehicleImpedance rdf:type owl:ObjectProperty ;
 Verification of compliance with TSI includes application of notified national rules (when they exist)."""@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         dcterms:source "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf" ;
-			dcterms:requires "The parameter minVehicleImpedance is applicable for track circuits."
+			                  dcterms:requires "The parameter minVehicleImpedance is applicable for track circuits." ;
                         rdfs:label "minimum vehicle impedance"@en ;
                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
                         <http://www.w3.org/2004/02/skos/core#altLabel> "Minimum vehicle impedance"@en .
@@ -3616,7 +3616,7 @@ era:conditionsAppliedRegenerativeBraking rdf:type owl:DatatypeProperty ;
                                          rdfs:comment "Name and/or reference of the document specifying the conditions applying in regards to regenerative braking."@en ;
                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                          rdfs:label "Conditions applying in regards to regenerative braking"@en ;
-                                         dcterms:requires "When `not electrified` is chosen in parameter 1.1.1.2.2.1.1, then this parameter is not applicable."
+                                         dcterms:requires "When `not electrified` is chosen in parameter 1.1.1.2.2.1.1, then this parameter is not applicable." ;
                                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -5116,7 +5116,7 @@ Each Section of Line may concern only one IM. """@en ;
            rdfs:comment """(deprecated) Infrastructure manager means any body or firm responsible in particular for establishing, managing and maintaining railway infrastructure, including traffic management and control-command and signalling; 
 the functions of the infrastructure manager on a network or part of a network may be allocated to different bodies or firms."""@en ;
            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-	   rdfs:seeAlso "http://data.europa.eu/eli/dir/2012/34/oj (Article 3(2))."
+	         rdfs:seeAlso "http://data.europa.eu/eli/dir/2012/34/oj (Article 3(2))." ;
            rdfs:label "Infrastructure manager (IM)'s code"@en ;
            owl:deprecated "true"^^xsd:boolean ;
            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
