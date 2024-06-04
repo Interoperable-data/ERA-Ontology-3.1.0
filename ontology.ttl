@@ -44,7 +44,7 @@ Revision 18-04-2024:
 - updated as per results of the Topical Working Group RINF-CCS (Draft report 0.2);
 - include upcoming remarks from TWG members (inclusing those as documented in Report 0.3);
 - linked with existing (updated) or new SKOS Concepts, related to the TWG RINF CCS;
-- included references and guidelines as in Table 5 of the RINF Applicatoin Guide.
+- included references and guidelines as in Table 5 of the RINF Application Guide.
 					  
 							  """@en ;
                               <http://purl.org/dc/terms/issued> "2024-04-18"^^xsd:date ;
@@ -496,13 +496,13 @@ era:borderPointOf rdf:type owl:ObjectProperty ;
 
 
 ###  http://data.europa.eu/949/cantDeficiencyBasicSSP
-era:cantDeficiencyBasicSSP rdf:type owl:ObjectProperty ;
+era:cantDeficiencyBasicSSP rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
                            rdfs:domain era:CCSSubsystem ;
                            rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
                            era:appendixD3Index "1.3" ;
                            era:inSkosConceptScheme <http://data.europa.eu/949/concepts/cant-deficiencies/CantDeficiencies> ;
                            era:XMLName "CPE_SSPUsesCantDef" ;
-		   	                   era:appendixD3Index "1.3" ;
+		   	   era:appendixD3Index "1.3" ;
                            era:rinfIndex "1.1.1.3.2.14" ,
                                          "1.2.1.1.1.14" ;
                            <http://purl.org/dc/terms/created> "2023-03-14"^^xsd:date ;
@@ -874,7 +874,7 @@ era:errorCorrectionsOnboard rdf:type owl:ObjectProperty ;
                             era:rinfIndex "1.1.1.3.1.2" ,
                                           "1.2.1.1.1.19" ;
                             <http://purl.org/dc/terms/created> "2024-04-18"^^xsd:date ;
-                            rdfs:comment "List of unacceptable errors impacting operation on the network that are required to be solved in the on-board (ETCS, GSM-R and/or ATO) according to the CCS TSI point 7.2.10.3 specification maintenance point. An additional string must document if a non-implemented CR has been accpted by the IM."@en ;
+                            rdfs:comment "List of unacceptable errors impacting the IM network that are required to be solved in the on-board according to the TSI CCS point 7.2.10.3 specification maintenance point (ETCS, GSM-R and/or ATO). An additional parameter (era:errorCorrectionsOnboardExplanation) must document if a non-implemented CR has been accepted by the IM."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Error corrections required for the on-board ETCS, GSM-R and/or ATO function"@en ;
                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -899,7 +899,7 @@ era:etcsBaseline rdf:type owl:ObjectProperty ;
                                                      "2024-04-18"^^xsd:date ;
                  rdfs:comment "ETCS baseline installed lineside - TSI CCS (Table A2)"@en ;
                  rdfs:label "ETCS baseline"@en ;
-		             dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ; 
+		 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "ETCS baseline"@en ;
                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -919,6 +919,14 @@ era:etcsDegradedSituation rdf:type owl:ObjectProperty ;
                                                               "2024-04-18"^^xsd:date ;
                           <http://purl.org/dc/terms/source> <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
                           rdfs:comment "ERTMS / ETCS application level for degraded situation related to the track side equipment."@en ;
+			  dcterms:description """System for degraded situation. See also TSI OPE 4.2.3.6. Degraded operation.
+
+In case of failure of the ETCS Level for normal operation, train movement can be supervised in another ETCS Level. 
+Example: Level 1 as a degraded mode for Level 2.
+
+If parameter 1.1.1.3.2.1 is not used (no ETCS), no degradation is possible, so only ‘none’ level is possible for degraded case."""@en ;
+	                  dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present). Degraded level must be lower than actual operating level."@en ;
+		 	  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> , <http://data.europa.eu/eli/reg_impl/2019/773/2023-09-28> ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "ETCS level for degraded situation"@en ;
                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -1005,7 +1013,7 @@ If the line is only equipped with Class B, this should be reflected in Parameter
 
 
 ###  http://data.europa.eu/949/etcsMVersion
-era:etcsMVersion rdf:type owl:ObjectProperty ;
+era:etcsMVersion rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
                  rdfs:domain era:CCSSubsystem ;
                  rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
                  era:XMLName "CPE_MVersion" ;
@@ -1016,10 +1024,11 @@ era:etcsMVersion rdf:type owl:ObjectProperty ;
                  <http://purl.org/dc/terms/created> "2021-08-08"^^xsd:date ;
                  <http://purl.org/dc/terms/modified> "2021-09-12"^^xsd:date , "2024-04-18"^^xsd:date ;
                  rdfs:comment "ETCS M_version according to SRS 7.5.1.9."@en ;
+	     	 rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "ETCS M_version"@en ;
                  dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-		             dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ; 
+		 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ; 
                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -1052,7 +1061,7 @@ The ESC Types shall only be used when published with status ‘Valid’ in the A
 
 
 ###  http://data.europa.eu/949/etcsTransmittedTrackConditions
-era:etcsTransmittedTrackConditions rdf:type owl:ObjectProperty ;
+era:etcsTransmittedTrackConditions rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
                                    rdfs:domain era:CCSSubsystem ;
                                    rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
                                    era:XMLName "CPE_TransmittedTCs" ;
@@ -1065,10 +1074,10 @@ era:etcsTransmittedTrackConditions rdf:type owl:ObjectProperty ;
                                                                        "2023-04-18"^^xsd:date ;
                                    rdfs:comment """Transmittable track conditions by the CCSSubsystem, as per CCS TSI.
 
-In https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632
-Chapter 5, section 5.18.1.1."""@en ;
+See TSI CCS (Subset-026, Chapter 5, section 5.18.1.1)"""@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "Track conditions which can be transmitted"@en ;
+		 	           rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                                    dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ; 
                                    dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" .
@@ -1163,7 +1172,7 @@ era:frequencyBandsForDetection rdf:type owl:ObjectProperty ;
                                              "1.2.1.1.3.2" ;
                                <http://purl.org/dc/terms/created> "2023-03-14"^^xsd:date ;
                                <http://purl.org/dc/terms/modified> "2024-04-18"^^xsd:date ;
-                               rdfs:comment "Bands of the frequency management of the train detection systems as defined in the TSI CCS (Annex A- Index 77), and in the specific cases or technical documents referred to in Article 13 of TSI CCS when they are available."@en ;
+                               rdfs:comment "Bands of the frequency management of the train detection systems as defined in the TSI CCS (Annex I, Appendix A, Table A.2 -Index 77), and in the specific cases or technical documents referred to in Article 13 of TSI CCS when they are available."@en ;
                                dcterms:description """Verification of compliance with TSI includes application of notified national rules (when they exist).
 
 Multiple selection from a predefined list:
@@ -1224,7 +1233,7 @@ era:gaugingTransversalDocument rdf:type owl:ObjectProperty ;
 
 
 ###  http://data.europa.eu/949/gsmRActiveMobiles
-era:gsmRActiveMobiles rdf:type owl:ObjectProperty ;
+era:gsmRActiveMobiles rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
                       rdfs:domain era:CCSSubsystem ;
                       rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
                       era:XMLName "CRG_NumActiveMob" ;
@@ -1721,7 +1730,7 @@ era:lrsMethod rdf:type owl:ObjectProperty ;
 
 
 ###  http://data.europa.eu/949/mNvcontact
-era:mNvcontact rdf:type owl:ObjectProperty ;
+era:mNvcontact rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
                rdfs:domain era:CCSSubsystem ;
                rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
                era:XMLName "CPE_MNVCONTACT" ;
@@ -1734,9 +1743,9 @@ era:mNvcontact rdf:type owl:ObjectProperty ;
                                                    "2024-04-18"^^xsd:date ;
                rdfs:comment """On-Board system reaction when T_NVCONTACT expires.
 
-In https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632
-Subset 26, chapter 7. 7.5.1.74 M_NVCONTACT."""@en ;
+See TSI CCS (Subset-026, chapter 7. 7.5.1.74 M_NVCONTACT)"""@en ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+	       rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                rdfs:label "M_NVCONTACT"@en ;
@@ -2081,7 +2090,7 @@ era:minVehicleImpedanceVoltages rdf:type owl:ObjectProperty ;
 
 
 ###  http://data.europa.eu/949/otherCantDeficiencyBasicSSP
-era:otherCantDeficiencyBasicSSP rdf:type owl:ObjectProperty ;
+era:otherCantDeficiencyBasicSSP rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
                                 rdfs:domain era:CCSSubsystem ;
                                 rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
                                 era:XMLName "CPE_OtherCantDef" ;
@@ -2121,7 +2130,7 @@ era:otherPantographHead rdf:type owl:ObjectProperty ;
 
 
 ###  http://data.europa.eu/949/otherTrainProtection
-era:otherTrainProtection rdf:type owl:ObjectProperty ;
+era:otherTrainProtection rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
                          rdfs:domain era:CCSSubsystem ;
                          rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
                          era:XMLName "CLD_OtherProtectControlWarn" ;
@@ -2133,6 +2142,10 @@ era:otherTrainProtection rdf:type owl:ObjectProperty ;
                          <http://purl.org/dc/terms/modified> "2021-09-12"^^xsd:date ,
                                                              "2024-04-18"^^xsd:date ;
                          rdfs:comment "Indication of existence of other system than ETCS for degraded situation."@en ;
+			 dcterms:description "Selected value shall answer the question whether any other system than ETCS exists on the respective track. The list is in line with ERA/TD/2011-09/INT (v1.13), Table 3."@en ;
+		 	 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> , <http://data.europa.eu/eli/reg_impl/2019/773/2023-09-28> ;
+			 rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-11/%5BK%5D%20ERA-TD-2011-09-INT-Coded%20restrictions-final.pdf> ;
+	                 dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Other train protection, control and warning systems for degraded situation"@en ;
                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -2315,7 +2328,7 @@ era:protectionLegacySystem rdf:type owl:ObjectProperty ;
 
 
 ###  http://data.europa.eu/949/qNvemrrls
-era:qNvemrrls rdf:type owl:ObjectProperty ;
+era:qNvemrrls rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
               rdfs:domain era:CCSSubsystem ;
               rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
               era:XMLName "CPE_QNVEMRRLS" ;
@@ -2369,7 +2382,7 @@ era:railInclination rdf:type owl:ObjectProperty ;
 
 
 ###  http://data.europa.eu/949/reasonsEtcsRadioBlockCenterReject
-era:reasonsEtcsRadioBlockCenterReject rdf:type owl:ObjectProperty ;
+era:reasonsEtcsRadioBlockCenterReject rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
                                       rdfs:domain era:CCSSubsystem ;
                                       rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
                                       era:XMLName "CPE_RBCRejectReasons" ;
@@ -2430,7 +2443,7 @@ Passenger train fire category in accordance with point 4.1.4 of TSI LOC&PAS."""@
 
 
 ###  http://data.europa.eu/949/safeConsistLengthInformationNecessary
-era:safeConsistLengthInformationNecessary rdf:type owl:ObjectProperty ;
+era:safeConsistLengthInformationNecessary rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
                                           rdfs:domain era:CCSSubsystem ;
                                           rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
                                           era:XMLName "CPE_SafeConsistLength" ;
@@ -2441,6 +2454,7 @@ era:safeConsistLengthInformationNecessary rdf:type owl:ObjectProperty ;
                                           <http://purl.org/dc/terms/modified> "2024-04-18"^^xsd:date ;
                                           rdfs:comment """Indication whether safe consist train length information from on-board is required to access the line for safety reasons and the required safety integrity level."""@en ;
                                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+	   				  rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                                           rdfs:label "Safe consist length information from on-board necessary for access the line and SIL"@en ;
                                           dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                           dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
@@ -2562,7 +2576,7 @@ era:minVehicleImpedance rdf:type owl:ObjectProperty ;
                         era:rinfIndex "1.1.1.3.4.2.2" ,
                                       "1.2.1.1.3.2.2" ;
                         <http://purl.org/dc/terms/created> "2024-05-30"^^xsd:date ;
-                        rdfs:comment """Per voltage: [CCCC]+[ZZZZ], with input capacitance [CCCC](Cin) and input impedance [ZZZZ](Zin) as defined in TSI CCS (Annex A- Index 77).
+                        rdfs:comment """Per voltage: [CCCC]+[ZZZZ], with input capacitance [CCCC](Cin) and input impedance [ZZZZ](Zin) as defined in TSI CCS (Annex I, Appendix A, Table A.2 -Index 77).
                         
 Verification of compliance with TSI includes application of notified national rules (when they exist)."""@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -2939,7 +2953,7 @@ era:trainDetectionSystemSpecificCheckDocument rdf:type owl:ObjectProperty ;
                                               <http://purl.org/dc/terms/modified> "2024-01-08"^^xsd:date ,
                                                                                   "2024-04-18"^^xsd:date ,
                                                                                   "2024-04-23"^^xsd:date ;
-                                              rdfs:comment "Electronic document from the IM stored by the Agency with precise values in accordance with TSI CCS (Article 13 and Annex A, Index 77), for the specific check to be performed for train detection systems identified in parameter \"\"Type of track circuits or axle counters to which specific checks are needed\"."@en ;
+                                              rdfs:comment "Electronic document from the IM stored by the Agency with precise values in accordance with TSI CCS (Article 13 and Annex I, Appendix A, Table A.2, Index 77), for the specific check to be performed for train detection systems identified in parameter \"\"Type of track circuits or axle counters to which specific checks are needed\"."@en ;
                                               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                               rdfs:label "Document with the procedure(s) related to the type of train detection systems declared in 1.1.1.3.7.1.2 or 1.2.1.1.6.1"@en ;
                                               dcterms:requires "The document itself has to be upload by the NRE via the “reference document management” functionality. The reference of the document is provided for the parameter using the characterstring format."@en ;
@@ -2965,12 +2979,9 @@ era:trainDetectionSystemType rdf:type owl:ObjectProperty ;
                              <http://purl.org/dc/terms/created> "2021-08-07"^^xsd:date ;
                              <http://purl.org/dc/terms/modified> "2021-08-07"^^xsd:date , "2024-04-18"^^xsd:date;
                              rdfs:comment "Indication of types of train detection systems installed. "@en ;
-                             dcterms:requires """Applicable: 
-- N for 1.1.1.3.7.1.1 will trigger “N” for parameters 1.1.1.3.7.1.2 to 1.1.1.3.7.23.
-- NYA for 1.1.1.3.7.1.1 will trigger NYA for parameters 1.1.1.3.7.1.2 to 1.1.1.3.7.23.
-
-If this parameter is repeated, parameters 1.1.1.3.7.2 to 1.1.1.3.7.23 shall be created also for the corresponding type. 
-These parameters are to be considered children of the current. But not all parameters are applicable to all types of train detection systems; it depends on the applicability condition."""@en ;
+			     dcterms:description """Explanation on data presentation: 
+The option of ‘wheel detector’ has to be also selected for: wheel sensor for axle counter, pedal or treadle."""@en ;
+                             dcterms:requires """Not all parameters are applicable to all types of train detection systems; it depends on the applicability condition."""@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "Type of train detection system"@en ;
                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -3472,7 +3483,7 @@ era:axleSpacing rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/bigMetalMass
-era:bigMetalMass rdf:type owl:DatatypeProperty ;
+era:bigMetalMass rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                  rdfs:domain era:CCSSubsystem ;
                  rdfs:range xsd:boolean ;
                  era:XMLName "CPE_BigMetalMass" ;
@@ -3751,7 +3762,7 @@ era:currentlyValid rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/dNvovtrp
-era:dNvovtrp rdf:type owl:DatatypeProperty ;
+era:dNvovtrp rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
              rdfs:domain era:CCSSubsystem ;
              rdfs:range xsd:number ;
              era:XMLName "CPE_DNVOVTRP" ;
@@ -3766,8 +3777,7 @@ era:dNvovtrp rdf:type owl:DatatypeProperty ;
 
 Precision: [NNNNNN.N] with N a decimal number (0÷9) 
 
-In Subset 26, chapter 7. 7.5.1.15 D_NVOVTRP.
-https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632."""@en ;
+In Subset 26, chapter 7. 7.5.1.15 D_NVOVTRP."""@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -3776,7 +3786,7 @@ https://www.era.europa.eu/domains/technical-specifications-interoperability/cont
 
 
 ###  http://data.europa.eu/949/dNvpotrp
-era:dNvpotrp rdf:type owl:DatatypeProperty ;
+era:dNvpotrp rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
              rdfs:domain era:CCSSubsystem ;
              rdfs:range xsd:number ;
              era:XMLName "CPE_DNVPOTRP" ;
@@ -3801,7 +3811,7 @@ See: TSI CCS (Subset 26, chapter 7. 7.5.1.16 D_NVPOTRP)"""@en ;
 
 
 ###  http://data.europa.eu/949/dNvroll
-era:dNvroll rdf:type owl:DatatypeProperty ;
+era:dNvroll rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
             rdfs:domain era:CCSSubsystem ;
             rdfs:range xsd:number ;
             era:XMLName "CPE_DNVROLL" ;
@@ -3816,11 +3826,11 @@ era:dNvroll rdf:type owl:DatatypeProperty ;
 
 Precision: [NNNNNN.N], with N a decimal number (0÷9).
 
-In https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632
-Subset 26, chapter 7. 7.5.1.17 D_NVROLL."""@en ;
+See: TSI CCS (Subset 26, chapter 7. 7.5.1.17 D_NVROLL)"""@en ;
             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
             dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
             dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+	    rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
             rdfs:label "D_NVROLL"@en ;
             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
@@ -4194,16 +4204,18 @@ era:etcsErrorCorrectionsOnboard rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/etcsImplementsLevelCrossingProcedure
-era:etcsImplementsLevelCrossingProcedure rdf:type owl:DatatypeProperty ;
+era:etcsImplementsLevelCrossingProcedure rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                                          rdfs:domain era:CCSSubsystem ;
                                          rdfs:range xsd:boolean ;
                                          era:XMLName "CPE_LXProcedure" ;
                                          era:appendixD3Index "1.2" ;
-                                         era:rinfIndex "1.1.1.3.2.13" , # HERE
+                                         era:rinfIndex "1.1.1.3.2.13" ,
                                                        "1.2.1.1.1.13" ;
                                          <http://purl.org/dc/terms/created> "2022-11-04"^^xsd:date ;
+                                 	 <http://purl.org/dc/terms/modified> "2024-04-18"^^xsd:date ;
                                          rdfs:comment "If the trackside does not implement any solution to cover defective LXs (which are normally protected by means of a technical system), then drivers will be required to comply with instructions received from other sources."@en ;
                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+	    				 rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                                          rdfs:label "ETCS trackside implements level crossing procedure or an equivalent solution"@en ;
                                          dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                                          dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -4303,7 +4315,7 @@ era:etcsSystemFunctionalitiesNextFiveYears rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/etcsTransmitsTrackConditions
-era:etcsTransmitsTrackConditions rdf:type owl:DatatypeProperty ;
+era:etcsTransmitsTrackConditions rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                                  rdfs:domain era:CCSSubsystem ;
                                  rdfs:range xsd:boolean ;
                                  era:XMLName "CPE_CanTransmitTCs" ;
@@ -4315,6 +4327,7 @@ era:etcsTransmitsTrackConditions rdf:type owl:DatatypeProperty ;
                                                                      "2024-04-18"^^xsd:date ;
                                  rdfs:comment """If the trackside does not provide Track Conditions, the driver will need to be informed about such conditions via alternative methods."""@en ;
                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+	     			 rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                                  rdfs:label "Is the ETCS trackside engineered to transmit Track Conditions"@en ;
                                  dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ; 
                                  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -4430,7 +4443,7 @@ era:gaugingCheckLocation rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/gprsForETCS
-era:gprsForETCS rdf:type owl:DatatypeProperty ;
+era:gprsForETCS rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                 rdfs:domain era:CCSSubsystem ;
                 rdfs:range xsd:boolean ;
                 era:XMLName "CRG_GPRSForETCS" ;
@@ -4499,7 +4512,7 @@ era:gradientProfile rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/gsmRNoCoverage
-era:gsmRNoCoverage rdf:type owl:DatatypeProperty ;
+era:gsmRNoCoverage rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                    rdfs:domain era:CCSSubsystem ;
                    rdfs:range xsd:boolean ;
                    era:XMLName "CRG_GSMRNoCoverage" ;
@@ -4546,7 +4559,7 @@ The reason for deprecation is that this parameter does not appear in the latest 
 
 
 ###  http://data.europa.eu/949/gsmrForcedDeregistrationFunctionalNumber
-era:gsmrForcedDeregistrationFunctionalNumber rdf:type owl:DatatypeProperty ;
+era:gsmrForcedDeregistrationFunctionalNumber rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                                              rdfs:domain era:CCSSubsystem ;
                                              rdfs:range xsd:boolean ;
                                              era:XMLName "CRG_ForcedDeReg" ;
@@ -4556,7 +4569,7 @@ era:gsmrForcedDeregistrationFunctionalNumber rdf:type owl:DatatypeProperty ;
                                              <http://purl.org/dc/terms/created> "2022-11-07"^^xsd:date ;
                                              <http://purl.org/dc/terms/modified> "2023-03-14"^^xsd:date ,
                                                                                  "2024-04-18"^^xsd:date ;
-                                             rdfs:comment "This feature will condition the applicable operational rules for drivers and signallers when dealing with cab radios registered under wrong numbers."@en ;
+                                             rdfs:comment "This feature will determine the applicable operational rules for drivers and signallers when dealing with cab radios registered under wrong numbers."@en ;
                                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                              rdfs:label "Is the GSM-R network configured to allow forced de-registration of a functional number by another driver?"@en ;
                                              dcterms:requires """GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."""@en ;
@@ -4918,7 +4931,7 @@ era:hasSystemSeparation rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/hasTSITrainDetection
-era:hasTSITrainDetection rdf:type owl:DatatypeProperty ;
+era:hasTSITrainDetection rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                          rdfs:domain era:CCSSubsystem ;
                          rdfs:range xsd:boolean ;
                          era:XMLName "CCD_TSITrainDetection" ;
@@ -4926,7 +4939,7 @@ era:hasTSITrainDetection rdf:type owl:DatatypeProperty ;
                                        "1.2.1.1.3.1" ;
                          <http://purl.org/dc/terms/created> "2021-08-09"^^xsd:date ;
                          <http://purl.org/dc/terms/modified> "2024-01-08"^^xsd:date ;
-                         rdfs:comment "Indication if there is any train detection system installed and fully compliant with the TSI CCS (Annex A- Index 77)."@en ;
+                         rdfs:comment "Indication if there is any train detection system installed and fully compliant with the TSI CCS (Annex I, Appendix A, Table A.2 -Index 77)."@en ;
                          dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Existence of train detection system fully compliant with the TSI"@en ;
@@ -5413,7 +5426,7 @@ era:localRulesOrRestrictions rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/mNvderun
-era:mNvderun rdf:type owl:DatatypeProperty ;
+era:mNvderun rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
              rdfs:domain era:CCSSubsystem ;
              rdfs:range xsd:boolean ;
              era:XMLName "CPE_MNVDERUN" ;
@@ -5425,10 +5438,10 @@ era:mNvderun rdf:type owl:DatatypeProperty ;
                                                  "2023-04-18"^^xsd:date ;
              rdfs:comment """Entry of Driver ID permitted while running. 
 
-In https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632
-Subset 26, chapter 7. 7.5.1.75 M_NVDERUN."""@en ;
+See: TSI CCS (Subset 26, chapter 7. 7.5.1.75 M_NVDERUN)"""@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
+	     rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
              rdfs:label "M_NVDERUN"@en ;
              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -5710,14 +5723,14 @@ era:maximumInterferenceCurrent rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/maximumInterferenceCurrentEvaluation
-era:maximumInterferenceCurrentEvaluation rdf:type owl:DatatypeProperty ;
+era:maximumInterferenceCurrentEvaluation rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
 					 rdfs:domain era:TrainDetectionSystem ;
 					 rdfs:range xsd:string ;
                 			 era:XMLName "CCD_IInterferenceMax" ;
 					 era:rinfIndex "1.1.1.3.4.2.1" ,
 					       	       "1.2.1.1.3.2.1" ;
 					 <http://purl.org/dc/terms/created> "2024-04-18"^^xsd:date ;
-					 rdfs:comment """"If the preferred frequency bands are not used, (mandatory) description of the parameters for evaluation of compliance.
+					 rdfs:comment """If the preferred frequency bands are not used, (mandatory) description of the parameters for evaluation of compliance.
 If the preferred frequency bands are used, this parameter is optional."""@en ;
 					 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 			 dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
@@ -5739,7 +5752,7 @@ era:maximumLocomotivesCoupled rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/maximumMagneticFieldDirectionX
-era:maximumMagneticFieldDirectionX rdf:type owl:DatatypeProperty ;
+era:maximumMagneticFieldDirectionX rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                                    rdfs:domain era:MaximumMagneticField ;
                                    rdfs:range xsd:integer ;
                                    era:XMLName "CCD_ACMagFieldMax" ;
@@ -5755,7 +5768,7 @@ era:maximumMagneticFieldDirectionX rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/maximumMagneticFieldDirectionY
-era:maximumMagneticFieldDirectionY rdf:type owl:DatatypeProperty ;
+era:maximumMagneticFieldDirectionY rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                                    rdfs:domain era:MaximumMagneticField ;
                                    rdfs:range xsd:integer ;
                                    era:XMLName "CCD_ACMagFieldMax" ;
@@ -5771,7 +5784,7 @@ era:maximumMagneticFieldDirectionY rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/maximumMagneticFieldDirectionZ
-era:maximumMagneticFieldDirectionZ rdf:type owl:DatatypeProperty ;
+era:maximumMagneticFieldDirectionZ rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                                    rdfs:domain era:MaximumMagneticField ;
                                    rdfs:range xsd:integer ;
                                    era:XMLName "CCD_ACMagFieldMax" ;
@@ -5787,7 +5800,7 @@ era:maximumMagneticFieldDirectionZ rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/maximumPermittedSpeed
-era:maximumPermittedSpeed rdf:type owl:DatatypeProperty ;
+era:maximumPermittedSpeed rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                           rdfs:domain era:InfraSubsystem ;
                           rdfs:range xsd:integer ;
                           era:XMLName "IPP_MaxSpeed" ;
@@ -6035,7 +6048,7 @@ era:minVehicleImpedance rdf:type owl:DatatypeProperty ;
                         <http://purl.org/dc/terms/created> "2021-09-01"^^xsd:date ;
                         <http://purl.org/dc/terms/modified> "2023-03-14"^^xsd:date ;
                         <http://purl.org/dc/terms/modified> "2024-05-30"^^xsd:date ;
-                        rdfs:comment """Impedance as defined in the TSI CCS (Annex A- Index 77).
+                        rdfs:comment """Impedance as defined in the TSI CCS (Annex I, Appendix A, Table A.2 -Index 77).
 
 Per Voltage:
 [1500]: [CCCC]+[ZZZZ], with input capacitance [CCCC](Cin) and input impedance [ZZZZ](Zin)
@@ -6283,17 +6296,17 @@ era:nationalRollingStockFireCategory rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/nationalValuesBrakeModel
-era:nationalValuesBrakeModel rdf:type owl:DatatypeProperty ;
+era:nationalValuesBrakeModel rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                              rdfs:domain era:CCSSubsystem ;
                              rdfs:range xsd:string ;
                              era:XMLName "CPE_NVBRAKEMOD" ;
-			                       era:appendixD3index "1.5.13" ;
+			     era:appendixD3index "1.5.13" ;
                              era:rinfIndex "1.1.1.3.2.16.13" ,
                                            "1.2.1.1.1.16.13" ;
                              <http://purl.org/dc/terms/created> "2023-03-14"^^xsd:date ;
                              <http://purl.org/dc/terms/modified> "2024-01-08"^^xsd:date ;
                              rdfs:comment """Set of parameters for adapting the braking curves calculated by the ETCS on-board system to match accuracy, performance and safety margins imposed by the infrastructure manager.
-It copies the content of Packet 3 or of Packet 203 as defined in the specification referenced in TSI CCS (Annex A- Subset-026)."""@en ;
+It copies the content of Packet 3 or of Packet 203 as defined in the specification referenced in TSI CCS (Annex I, Appendix A, Table A.2 -Subset-026)."""@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "National Values used for the brake model"@en ;
                              dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
@@ -6735,7 +6748,7 @@ era:prmAccessibleToilets rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/publicNetworkRoaming
-era:publicNetworkRoaming rdf:type owl:DatatypeProperty ;
+era:publicNetworkRoaming rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                          rdfs:domain era:CCSSubsystem ;
                          rdfs:range xsd:boolean ;
                          era:XMLName "CRG_RoamingPublic" ;
@@ -6753,7 +6766,7 @@ In case of Y, provide the name of the public network(s) under parameter \"Detail
 
 
 ###  http://data.europa.eu/949/publicNetworkRoamingDetails
-era:publicNetworkRoamingDetails rdf:type owl:DatatypeProperty ;
+era:publicNetworkRoamingDetails rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                                 rdfs:domain era:CCSSubsystem ;
                                 rdfs:range xsd:string ;
                                 era:XMLName "CRG_RoamingPublicDetails" ;
@@ -6773,7 +6786,7 @@ era:publicNetworkRoamingDetails rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/qNvdriverAdhes
-era:qNvdriverAdhes rdf:type owl:DatatypeProperty ;
+era:qNvdriverAdhes rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                    rdfs:domain era:CCSSubsystem ;
                    rdfs:range xsd:boolean ;
                    era:XMLName "CPE_QNVDRIVERADHES" ;
@@ -6783,17 +6796,17 @@ era:qNvdriverAdhes rdf:type owl:DatatypeProperty ;
                    <http://purl.org/dc/terms/created> "2024-04-18"^^xsd:date ;
                    rdfs:comment """Boolean determining whether the driver is allowed to modify the adhesion factor used by the ETCS on-board to calculate the braking curves. 
 
-In https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632
-Subset 26, chapter 7. 7.5.1.122 Q_NVDRIVER_ADHES."""@en ;
+See TSI CCS (Subset 26, chapter 7. 7.5.1.122 Q_NVDRIVER_ADHES)"""@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                    dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+		   rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                    rdfs:label "Q_NVDRIVER_ADHES"@en ;
                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
 ###  http://data.europa.eu/949/qNvsbtsmperm
-era:qNvsbtsmperm rdf:type owl:DatatypeProperty ;
+era:qNvsbtsmperm rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                  rdfs:domain era:CCSSubsystem ;
                  rdfs:range xsd:boolean ;
                  era:XMLName "CPE_QNVSBTSMPERM" ;
@@ -6804,9 +6817,9 @@ era:qNvsbtsmperm rdf:type owl:DatatypeProperty ;
                  <http://purl.org/dc/terms/modified> "2024-04-18"^^xsd:date ;
                  rdfs:comment """Permission to use service brake in target speed monitoring.
 
-In https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632
-Subset 26, chapter 7. 7.5.1.124 Q_NVSBTSMPERM."""@en ;
+See TSI CCS (Subset-026, chapter 7. 7.5.1.124 Q_NVSBTSMPERM)"""@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+	         rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                  dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                  rdfs:label "Q_NVSBTSMPERM"@en ;
@@ -6838,7 +6851,7 @@ era:radioNetworkId rdf:type owl:DatatypeProperty ;
                    <http://purl.org/dc/terms/modified> "2024-04-18"^^xsd:date ;
                    rdfs:comment """Unique identification of the GSM-R network the calling mobile station has to register with, as defined in the specification referenced in TSI CCS.
 
-Format: [NNNNNN] with N a decimal number (0÷9)"""@en ;
+Format: [NNNNNN] with N a decimal number (0÷9)(sh:minCount 1)."""@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    dcterms:requires """GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."""@en ;
                    dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -6938,7 +6951,7 @@ The raised pantographs distance and speed is  the indication of maximum number o
 
 
 ###  http://data.europa.eu/949/rbcID
-era:rbcID rdf:type owl:DatatypeProperty ;
+era:rbcID rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
           rdfs:domain era:RadioBlockCenter ;
           rdfs:range xsd:string ;
           era:XMLName "CPE_IDRBC" ;
@@ -6957,7 +6970,7 @@ Format: [NNNN NNNN] with N a decimal number (0÷9)"""@en ;
 
 
 ###  http://data.europa.eu/949/rbcPhone
-era:rbcPhone rdf:type owl:DatatypeProperty ;
+era:rbcPhone rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
              rdfs:domain era:RadioBlockCenter ;
              rdfs:range xsd:string ;
              era:XMLName "CPE_PHONERBC" ;
@@ -7393,7 +7406,7 @@ The system separation info is the Indication of required several information on 
 
 
 ###  http://data.europa.eu/949/tNvcontact
-era:tNvcontact rdf:type owl:DatatypeProperty ;
+era:tNvcontact rdf:type owl:DatatypeProperty, owl:FunctionalProperty ;
                rdfs:domain era:CCSSubsystem ;
                rdfs:range xsd:integer ;
                era:XMLName "CPE_TNVCONTACT" ;
@@ -7408,7 +7421,7 @@ era:tNvcontact rdf:type owl:DatatypeProperty ;
 
 Precision: [NNN], with N a decimal number (0÷9), NNN = 255 means ∞ seconds, so values cannot be higher.
 
-See TSI CCS (Subset 26, chapter 7. 7.5.1.148 T_NVCONTACT)"""@en ;
+See: TSI CCS (Subset 26, chapter 7. 7.5.1.148 T_NVCONTACT)"""@en ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -7418,7 +7431,7 @@ See TSI CCS (Subset 26, chapter 7. 7.5.1.148 T_NVCONTACT)"""@en ;
 
 
 ###  http://data.europa.eu/949/tNvovtrp
-era:tNvovtrp rdf:type owl:DatatypeProperty ;
+era:tNvovtrp rdf:type owl:DatatypeProperty, owl:FunctionalProperty ;
              rdfs:domain era:CCSSubsystem ;
              rdfs:range xsd:integer ;
              era:XMLName "CPE_TNVOVTRP" ;
@@ -7433,11 +7446,11 @@ era:tNvovtrp rdf:type owl:DatatypeProperty ;
 
 Precision: [NNN], with N a decimal number (0÷9)
 
-In https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632
-Subset 26, chapter 7. 7.5.1.149 T_NVOVTRP."""@en ;
+See TSI CCS (Subset 26, chapter 7. 7.5.1.149 T_NVOVTRP)"""@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+	     rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
              rdfs:label "T_NVOVTRP"@en ;
              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
@@ -7804,7 +7817,7 @@ era:uopid rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/usesGroup555
-era:usesGroup555 rdf:type owl:DatatypeProperty ;
+era:usesGroup555 rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                  rdfs:domain era:CCSSubsystem ;
                  rdfs:range xsd:boolean ;
                  era:XMLName "CRG_Needof555" ;
@@ -7823,7 +7836,7 @@ era:usesGroup555 rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/vNvallowovtrp
-era:vNvallowovtrp rdf:type owl:DatatypeProperty ;
+era:vNvallowovtrp rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                   rdfs:domain era:CCSSubsystem ;
                   rdfs:range xsd:integer ;
                   era:XMLName "CPE_VNVALLOWOVTRP" ;
@@ -7835,17 +7848,19 @@ era:vNvallowovtrp rdf:type owl:DatatypeProperty ;
                   <http://purl.org/dc/terms/modified> "2023-03-14"^^xsd:date ;
                   rdfs:comment """Speed limit allowing the driver to select the “override” function in km/h.
 
-In https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632
-Chapter 7. 7.5.1.161"""@en ;
+Format: [NNF], with N a decimal number (0÷9), F=(0|5), max. `600`.
+
+See: TSI CCS (Subset-026, Chapter 7. 7.5.1.161)"""@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
+	          rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                   dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                   rdfs:label "V_NVALLOWOVTRP"@en ;
                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
 ###  http://data.europa.eu/949/vNvsupovtrp
-era:vNvsupovtrp rdf:type owl:DatatypeProperty ;
+era:vNvsupovtrp rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                 rdfs:domain era:CCSSubsystem ;
                 rdfs:range xsd:integer ;
                 era:XMLName "CPE_VNVSUPOVTRP" ;
@@ -7857,9 +7872,11 @@ era:vNvsupovtrp rdf:type owl:DatatypeProperty ;
                 <http://purl.org/dc/terms/modified> "2023-03-14"^^xsd:date ;
                 rdfs:comment """Override speed limit to be supervised when the “override” function is active in km/h.
 
-In https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632
-Subset 26, chapter 7. 7.5.1.163 V_NVSUPOVTRP."""@en ;
+Format: [NNF], with N a decimal number (0÷9), F=(0|5), max. `600`.
+
+See: TSI CCS (Subset-026, chapter 7. 7.5.1.163 V_NVSUPOVTRP)"""@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+	        rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                 dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                 rdfs:label "V_NVSUPOVTRP"@en ;
@@ -8545,7 +8562,7 @@ era:MinAxleLoadVehicleCategory rdf:type owl:Class ;
 ###  http://data.europa.eu/949/MinVehicleImpedance
 era:MinVehicleImpedance rdf:type owl:Class ;
                         <http://purl.org/dc/terms/created> "2024-05-30"^^xsd:date ;
-                        rdfs:comment """Impedance as defined in the TSI CCS (Annex A- Index 77).
+                        rdfs:comment """Impedance as defined in the TSI CCS (Annex I, Appendix A, Table A.2 -Index 77).
 
 Minimum vehicle impedance (between wheels and pantograph) (only for vehicles equipped for 1500V or 3000V DC).
 
@@ -9084,7 +9101,7 @@ era:minVehicleImpedance era:eratvIndex "4.14.2.17" ;
                         rdfs:comment """
 [CCCC]+[ZZZZ], with input capacitance [CCCC](Cin) and input impedance [ZZZZ](Zin)
 """@en ,
-                                     """Impedance as defined in the TSI CCS (Annex A- Index 77).
+                                     """Impedance as defined in the TSI CCS (Annex I, Appendix A, Table A.2 -Index 77).
 
 Minimum vehicle impedance (between wheels and pantograph) (only for vehicles equipped for 1500V or 3000V DC).
 
