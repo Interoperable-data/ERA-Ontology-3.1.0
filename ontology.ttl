@@ -408,6 +408,8 @@ era:atoCommunicationSystem rdf:type owl:ObjectProperty ;
                                          "1.2.1.1.10.3" ;
                            <http://purl.org/dc/terms/created> "2023-03-14"^^xsd:date ;
                            <http://purl.org/dc/terms/modified> "2024-04-18"^^xsd:date ;
+        		               dcterms:relation era:etcsBaseline ;
+                           dcterms:requires "Parameter only applicable when ETCS Baseline > 4 MR1 and ATO is implemented" ;
                            rdfs:comment "Supported ATO communication systems from trackside."@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "ATO communication system"@en ;
@@ -426,6 +428,8 @@ era:atoGradeAutomation rdf:type owl:ObjectProperty ;
                        <http://purl.org/dc/terms/created> "2023-03-14"^^xsd:date ;
                        <http://purl.org/dc/terms/modified> "2024-04-18"^^xsd:date ;
                        rdfs:comment "ATO grade of automation installed lineside."@en ;
+    		               dcterms:relation era:etcsBaseline ;
+                       dcterms:requires "Parameter only applicable when ETCS Baseline > 4 MR1 and ATO is implemented" ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "ATO Grade of Automation"@en ;
                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -443,6 +447,8 @@ era:atoSystemVersion rdf:type owl:ObjectProperty ;
                      <http://purl.org/dc/terms/created> "2023-03-14"^^xsd:date ;
                      <http://purl.org/dc/terms/modified> "2024-04-18"^^xsd:date ;
                      rdfs:comment "ATO system version according to the specification referenced in TSI CCS (4.2.19)."@en ;
+    		             dcterms:relation era:etcsBaseline ;
+                     dcterms:requires "Parameter only applicable when ETCS Baseline > 4 MR1 and ATO is implemented" ;
                      dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "ATO System version"@en ;
@@ -897,9 +903,11 @@ era:etcsBaseline rdf:type owl:ObjectProperty ;
                  <http://purl.org/dc/terms/created> "2021-08-07"^^xsd:date ;
                  <http://purl.org/dc/terms/modified> "2021-08-31"^^xsd:date ,
                                                      "2024-04-18"^^xsd:date ;
-                 rdfs:comment "ETCS baseline installed lineside - TSI CCS (Table A2)"@en ;
+                 rdfs:comment "ETCS baseline installed lineside"@en ;
+                 dcterms:description "The ETCS baseline needs to be provided for each available ETCS Level. See: TSI CCS (Table A2)"@en ;
+                 dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                  rdfs:label "ETCS baseline"@en ;
-		 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+		             dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "ETCS baseline"@en ;
                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -919,14 +927,16 @@ era:etcsDegradedSituation rdf:type owl:ObjectProperty ;
                                                               "2024-04-18"^^xsd:date ;
                           <http://purl.org/dc/terms/source> <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
                           rdfs:comment "ERTMS / ETCS application level for degraded situation related to the track side equipment."@en ;
-			  dcterms:description """System for degraded situation. See also TSI OPE 4.2.3.6. Degraded operation.
+			  dcterms:description """System for degraded situation. 
 
 In case of failure of the ETCS Level for normal operation, train movement can be supervised in another ETCS Level. 
 Example: Level 1 as a degraded mode for Level 2.
 
-If parameter 1.1.1.3.2.1 is not used (no ETCS), no degradation is possible, so only ‘none’ level is possible for degraded case."""@en ;
+If parameter 1.1.1.3.2.1 is not used (no ETCS), no degradation is possible, so only ‘none’ level is possible for degraded case.
+
+See also TSI OPE 4.2.3.6. Degraded operation."""@en ;
 	                  dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present). Degraded level must be lower than actual operating level."@en ;
-		 	  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> , <http://data.europa.eu/eli/reg_impl/2019/773/2023-09-28> ;
+		 	              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> , <http://data.europa.eu/eli/reg_impl/2019/773/2023-09-28> ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "ETCS level for degraded situation"@en ;
                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -947,7 +957,7 @@ era:etcsEquipmentOnBoardLevel rdf:type owl:ObjectProperty ;
 
 
 ###  http://data.europa.eu/949/etcsInfill
-era:etcsInfill rdf:type owl:ObjectProperty ;
+era:etcsInfill rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
                rdfs:domain [ rdf:type owl:Class ;
                              owl:unionOf ( era:CCSSubsystem
                                            era:VehicleType
@@ -962,7 +972,8 @@ era:etcsInfill rdf:type owl:ObjectProperty ;
                <http://purl.org/dc/terms/created> "2021-08-08"^^xsd:date ;
                <http://purl.org/dc/terms/modified> "2021-09-12"^^xsd:date ,
                                                    "2024-04-18"^^xsd:date ;
-               rdfs:comment "Information about installed trackside equipment capable to transmit infill information TSI CCS (4.2.2) by loop or Global System for Mobile communications for Railways (GSM-R) for level 1 installations."@en ;
+               rdfs:comment "Information about installed trackside equipment capable of transmitting infill information by loop or Global System for Mobile communications for Railways (GSM-R) for level 1 installations."@en ;
+               dcterms:description "TSI CCS (4.2.2 & 4.3.3)" ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 		           dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ; 
                rdfs:label "ETCS infill installed line-side"@en ;
@@ -994,10 +1005,8 @@ era:etcsLevelType rdf:type owl:ObjectProperty ;
                   <http://purl.org/dc/terms/created> "2021-08-07"^^xsd:date ;
                   <http://purl.org/dc/terms/modified> "2024-01-08"^^xsd:date , "2024-04-18"^^xsd:date ;
                   rdfs:comment "European Train Control System (ETCS) application level related to the track side equipment."@en ;
-		              dcterms:relation era:etcsBaseline ;
-		              dcterms:description """See TSI CCS (Subset-026, Chapter 2, 2.6) 
-                  
-The different ERTMS / ETCS application levels are a way to express the possible operating relationships between track and train. 
+		              dcterms:relation era:etcsBaseline , era:etcsMVersion , era:etcsSystemCompatibility , era:etcsTransmittedTrackConditions , era:gsmRActiveMobiles , era:etcsDegradedSituation , era:cantDeficiencyBasicSSP , era:rbcPhone , era:rbcID ;
+		              dcterms:description """The different ERTMS / ETCS application levels are a way to express the possible operating relationships between track and train. 
 	
 Level definitions are principally related to the track side equipment used, to the way the track side information reaches the on-board units and to which functions are processed in the track side and in the on-board equipment respectively."""@en ;
 		  dcterms:requires """If ETCS is on the trackside (one or more levels are selected), all other ETCS parameters (from 1.1.1.3.2.2 to 1.1.1.3.2.10) are applicable.
@@ -1005,7 +1014,9 @@ Level definitions are principally related to the track side equipment used, to t
 The ETCS value NTC is only relevant when the line is dual equipped with ETCS (i.e., balises are placed in the track) and Class B system, and both systems are in operation at the same time. 
 In those cases, this parameter should be filled relevant ETCS Level and repeated with the value “NTC”.
 	
-If the line is only equipped with Class B, this should be reflected in Parameter 1.1.1.3.5.3, and this parameter etcsLevelType should not be used. """@en ; 
+If the line is only equipped with Class B, this should be reflected in Parameter 1.1.1.3.5.3, and this parameter etcsLevelType should not be used. 
+
+See: TSI CCS (Subset-026, Chapter 2, 2.6)"""@en ; 
 		              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ; 
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "ETCS level"@en ;
@@ -1049,12 +1060,25 @@ era:etcsSystemCompatibility rdf:type owl:ObjectProperty ;
                             <http://purl.org/dc/terms/created> "2020-08-31"^^xsd:date ;
                             <http://purl.org/dc/terms/modified> "2021-09-12"^^xsd:date ;
                             rdfs:comment "ETCS requirements used for demonstrating technical compatibility."@en ;
-                            dcterms:source <https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf> ;
-                            dcterms:definition """The Infrastructure Manager is responsible for defining the ESC type(s). All sections of the Union network which require the same set of checks for the demonstration of ESC shall have the same ESC type.
+                            dcterms:source <https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf> , 
+                                           <https://eur-lex.europa.eu/eli/reg_impl/2019/776/oj> ;
+                            dcterms:definition """The Values "Not defined" or "ESC-EU-0" should not be combined with other values.
 
-The list of ESC Types is published and maintained by the European Union Agency for Railways in the technical document ‘ESC/RSC technical document, TD/011REC1028’. See Appendix A, Table A 1, 4.2.17 a. The Agency shall assess the checks unless they have been assessed by a NoBo as required in Table 6.3 row 10. The assessment by the Agency shall be done within 2 months of receipt thereof, unless a longer period is agreed between the Agency and the Infrastructure Manager but not exceeding 4 months in total. The technical document will be updated within 10 working days after positive assessment.
+For application in CCS Onboard:
+The vehicles are considered compatible with the infrastructure for this parameter, if their parameter value matches any of the values declared on the trackside. 
+
+For application in CCS Trackside:
+The Infrastructure Manager is responsible for defining the ESC type(s). All sections of the Union network which require the same set of checks for the demonstration of ESC shall have the same ESC type.
+
+See: TSI CCS, Appendix A, Table A 1, 4.2.17 a.
+The list of ESC Types is published and maintained by the European Union Agency for Railways in the technical document ‘ESC/RSC technical document, TD/011REC1028’. 
+The Agency shall assess the checks unless they have been assessed by a NoBo as required in Table 6.3 row 10. 
+The assessment by the Agency shall be done within 2 months of receipt thereof, unless a longer period is agreed between the Agency and the Infrastructure Manager but not exceeding 4 months in total. 
+The technical document will be updated within 10 working days after positive assessment.
 
 The ESC Types shall only be used when published with status ‘Valid’ in the Agency Technical document referred above."""@en ; 
+                            rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
+                            dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "ETCS system compatibility"@en ;
                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -1074,7 +1098,7 @@ era:etcsTransmittedTrackConditions rdf:type owl:ObjectProperty , owl:FunctionalP
                                                                        "2023-04-18"^^xsd:date ;
                                    rdfs:comment """Transmittable track conditions by the CCSSubsystem, as per CCS TSI.
 
-See TSI CCS (Subset-026, Chapter 5, section 5.18.1.1)"""@en ;
+See: TSI CCS (Subset-026, Chapter 5, section 5.18.1.1)"""@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "Track conditions which can be transmitted"@en ;
 		 	           rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
@@ -1541,7 +1565,8 @@ era:legacyRadioSystem rdf:type owl:ObjectProperty ;
                       <http://purl.org/dc/terms/modified> "2021-09-12"^^xsd:date ,
                                                           "2024-04-18"^^xsd:date ;
                       <http://purl.org/dc/terms/source> <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
-                      rdfs:comment "Indication of radio legacy systems installed. The list is in line with ERA/TD/2011-09/INT (v1.13), Table 4. "@en ;
+                      rdfs:comment "Indication of radio legacy systems installed."@en ;
+                      dcterms:description "The list is in line with ERA/TD/2011-09/INT (v1.13), Table 4."@en ;
                       dcterms:source <https://www.era.europa.eu/system/files/2023-11/%5BK%5D%20ERA-TD-2011-09-INT-Coded%20restrictions-final.pdf> ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                       rdfs:label "Other radio systems installed (Radio Legacy Systems)"@en ;
@@ -1743,7 +1768,7 @@ era:mNvcontact rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
                                                    "2024-04-18"^^xsd:date ;
                rdfs:comment """On-Board system reaction when T_NVCONTACT expires.
 
-See TSI CCS (Subset-026, chapter 7. 7.5.1.74 M_NVCONTACT)"""@en ;
+See: TSI CCS (Subset-026, chapter 7. 7.5.1.74 M_NVCONTACT)"""@en ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 	       rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
@@ -2482,7 +2507,7 @@ era:siding rdf:type owl:ObjectProperty ;
 
 
 ###  http://data.europa.eu/949/signalOrientation
-era:signalOrientation rdf:type owl:ObjectProperty ;
+era:signalOrientation rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
                       rdfs:domain era:Signal ;
                       rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
                       era:XMLName "SIG_LocDir" ;
@@ -2513,7 +2538,8 @@ era:signalType rdf:type owl:ObjectProperty ;
                <http://purl.org/dc/terms/modified> "2024-01-08"^^xsd:date ,
                                                    "2024-04-18"^^xsd:date ;
                <http://purl.org/dc/terms/source> <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
-               rdfs:comment "Signalling information for Route Book compilation. Indicates what function the signal (on the track or in OP) executes in relation to the track/switches."@en ;
+               rdfs:comment "Signalling information for Route Book compilation."@en ;
+               dcterms:description "Indicates what function the signal (on the track or in OP) executes in relation to the track/switches."@en ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                rdfs:label "Type of signal"@en ;
                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" .
@@ -3605,7 +3631,7 @@ era:compositeBrakeBlockRetrofitted rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/conditionalRegenerativeBrake
-era:conditionalRegenerativeBrake rdf:type owl:DatatypeProperty ;
+era:conditionalRegenerativeBrake rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                                  rdfs:domain era:ContactLineSystem ;
                                  rdfs:range xsd:boolean ;
                                  era:XMLName "ECS_RegenerativeBraking" ;
@@ -3653,7 +3679,7 @@ era:conditionsChargingElectricEnergyStorage rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/conditionsSwitchClassBSystems
 era:conditionsSwitchClassBSystems rdf:type owl:DatatypeProperty ;
                                   rdfs:domain era:CCSSubsystem ;
-                                  rdfs:range xsd:anyURI ;
+                                  rdfs:range xsd:string ;
                                   era:XMLName "CTS_SwitchProtectAB" ;
                                   era:appendixD2Index "3.4.3" ;
                                   era:rinfIndex "1.1.1.3.8.3" ,
@@ -3671,7 +3697,7 @@ era:conditionsSwitchClassBSystems rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/conditionsSwitchTrainProtectionSystems
 era:conditionsSwitchTrainProtectionSystems rdf:type owl:DatatypeProperty ;
                                            rdfs:domain era:CCSSubsystem ;
-                                           rdfs:range xsd:anyURI ;
+                                           rdfs:range xsd:string ;
                                            era:XMLName "CTS_SwitchProtectConditions" ;
                                            era:appendixD2Index "3.4.2" ;
                                            era:rinfIndex "1.1.1.3.8.1.1" ,
@@ -4212,10 +4238,10 @@ era:etcsImplementsLevelCrossingProcedure rdf:type owl:DatatypeProperty , owl:Fun
                                          era:rinfIndex "1.1.1.3.2.13" ,
                                                        "1.2.1.1.1.13" ;
                                          <http://purl.org/dc/terms/created> "2022-11-04"^^xsd:date ;
-                                 	 <http://purl.org/dc/terms/modified> "2024-04-18"^^xsd:date ;
+                                 	       <http://purl.org/dc/terms/modified> "2024-04-18"^^xsd:date ;
                                          rdfs:comment "If the trackside does not implement any solution to cover defective LXs (which are normally protected by means of a technical system), then drivers will be required to comply with instructions received from other sources."@en ;
                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-	    				 rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
+	    				                           rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                                          rdfs:label "ETCS trackside implements level crossing procedure or an equivalent solution"@en ;
                                          dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                                          dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -4223,7 +4249,7 @@ era:etcsImplementsLevelCrossingProcedure rdf:type owl:DatatypeProperty , owl:Fun
 
 
 ###  http://data.europa.eu/949/etcsInfillLineAccess
-era:etcsInfillLineAccess rdf:type owl:DatatypeProperty ;
+era:etcsInfillLineAccess rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                          rdfs:domain era:CCSSubsystem ;
                          rdfs:range xsd:boolean ;
                          era:XMLName "CPE_Infill" ;
@@ -4232,6 +4258,11 @@ era:etcsInfillLineAccess rdf:type owl:DatatypeProperty ;
                          <http://purl.org/dc/terms/created> "2021-08-08"^^xsd:date ;
                          <http://purl.org/dc/terms/modified> "2021-09-12"^^xsd:date ;
                          rdfs:comment "Indication whether infill is required to access the line for safety reasons."@en ;
+                         dcterms:description """As indicated in CCS TSI section 7.2.9.1, an ETCS Level 1 trackside application may require that the on-board is equipped with the corresponding in-fill data transmission (Euroloop or radio) if the release speed is set to zero for safety reasons.
+                         
+See: TSI CCS 7.2.9.1 & 4.2.3 """@en ;
+                         dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
+		                     dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ; 
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "ETCS infill necessary for line access"@en ;
                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -4264,7 +4295,16 @@ era:etcsNationalPacket44 rdf:type owl:DatatypeProperty ;
                          <http://purl.org/dc/terms/created> "2021-08-08"^^xsd:date ;
                          <http://purl.org/dc/terms/modified> "2021-09-12"^^xsd:date ,
                                                              "2024-04-18"^^xsd:date ;
-                         rdfs:comment "Indication whether data for national packet 44 applications is transmitted between track and train. Value can be `false` or a link to the implemented functions."@en ;
+                         rdfs:comment "Indication whether data for national packet 44 applications is transmitted between track and train."@en ;
+                         dcterms:description """Value can be `false` or a link to the implemented functions.
+
+Packets 44 are the means to transmit data for national applications between train and track and vice versa, using the data transmission facilities included within the ETCS. 
+NID_XUSER values managed by ERA in a document about ETCS variables available on ERA website. 
+
+See: TSI CCS (7.4.3 & 6.2.4.2)""" @en ;
+                         dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
+		                     dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ; 
+	     			             rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "ETCS national packet 44 application implemented"@en ;
                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -4292,6 +4332,7 @@ era:etcsOptionalFunctions rdf:type owl:DatatypeProperty ;
                           <http://purl.org/dc/terms/modified> "2023-03-14"^^xsd:date ;
                           rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. Optional ETCS functions which might improve operation on the line."@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+		                      dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ; 
                           rdfs:label "ETCS optional functions"@en ;
                           owl:deprecated "true"^^xsd:boolean ;
                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" .
@@ -4327,7 +4368,7 @@ era:etcsTransmitsTrackConditions rdf:type owl:DatatypeProperty , owl:FunctionalP
                                                                      "2024-04-18"^^xsd:date ;
                                  rdfs:comment """If the trackside does not provide Track Conditions, the driver will need to be informed about such conditions via alternative methods."""@en ;
                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-	     			 rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
+	     			                     rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                                  rdfs:label "Is the ETCS trackside engineered to transmit Track Conditions"@en ;
                                  dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ; 
                                  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -4666,11 +4707,14 @@ era:hasETCSRestrictionsConditions rdf:type owl:DatatypeProperty ;
                                   <http://purl.org/dc/terms/created> "2021-08-08"^^xsd:date ;
                                   <http://purl.org/dc/terms/modified> "2024-01-08"^^xsd:date ,
                                                                       "2024-04-18"^^xsd:date ;
-                                  rdfs:comment """Indication whether restrictions or conditions due to partial compliance with the TSI CCS exist. If not `false`, a link to the conditions must be provided.
+                                  rdfs:comment "Indication whether restrictions or conditions due to partial compliance with the TSI CCS exist."@en ;
+                                  dcterms:description: """If not `false`, a link to the conditions must be provided. The RU has to contact the IM to be informed about these conditions.
                                   
 These conditions and restrictions of use are considered in section 6.4 of the CCS TSI. They should be described using the template available on Agency website (Certification 
-and deviations – Guidelines for using the ERA template) with the following link: https://www.era.europa.eu/system/files/2022-11/restrictions_and_added_functions_en_1.doc."""@en ;
+and deviations – Guidelines for using the ERA template) with the following link."""@en ;
+                                  rdfs:seeAlso <https://www.era.europa.eu/system/files/2022-11/restrictions_and_added_functions_en_1.doc> ;
                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                  dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                                   dcterms:source <https://www.era.europa.eu/content/certification-issues> ;
                                   rdfs:label "Existence of operating restrictions or conditions"@en ;
                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -5156,7 +5200,7 @@ the functions of the infrastructure manager on a network or part of a network ma
 ###  http://data.europa.eu/949/instructionsSwitchRadioSystems
 era:instructionsSwitchRadioSystems rdf:type owl:DatatypeProperty ;
                                    rdfs:domain era:CCSSubsystem ;
-                                   rdfs:range xsd:anyURI ;
+                                   rdfs:range xsd:string ;
                                    era:XMLName "CTS_SwitchRadioConditions" ;
                                    era:appendixD2Index "3.4.4" ;
                                    era:rinfIndex "1.1.1.3.8.2.1" ,
@@ -5259,7 +5303,7 @@ era:length rdf:type owl:DatatypeProperty ;
 - a platform (For its usable length, use era:lengthOfPlatform), 
 - a siding (For its usable length, use era:lengthOfSiding), and 
 - length of other areas such as 
-  - a non-stopping area, 
+  - a non-stopping area (accuracy +- 10m), 
   - a walkway, 
   - an evacuation and rescue point.
 
@@ -5441,7 +5485,7 @@ era:mNvderun rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
 See: TSI CCS (Subset 26, chapter 7. 7.5.1.75 M_NVDERUN)"""@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-	     rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
+	           rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
              rdfs:label "M_NVDERUN"@en ;
              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -6796,7 +6840,7 @@ era:qNvdriverAdhes rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                    <http://purl.org/dc/terms/created> "2024-04-18"^^xsd:date ;
                    rdfs:comment """Boolean determining whether the driver is allowed to modify the adhesion factor used by the ETCS on-board to calculate the braking curves. 
 
-See TSI CCS (Subset 26, chapter 7. 7.5.1.122 Q_NVDRIVER_ADHES)"""@en ;
+See: TSI CCS (Subset 26, chapter 7. 7.5.1.122 Q_NVDRIVER_ADHES)"""@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                    dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -6817,7 +6861,7 @@ era:qNvsbtsmperm rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                  <http://purl.org/dc/terms/modified> "2024-04-18"^^xsd:date ;
                  rdfs:comment """Permission to use service brake in target speed monitoring.
 
-See TSI CCS (Subset-026, chapter 7. 7.5.1.124 Q_NVSBTSMPERM)"""@en ;
+See: TSI CCS (Subset-026, chapter 7. 7.5.1.124 Q_NVSBTSMPERM)"""@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 	         rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                  dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
@@ -7019,11 +7063,13 @@ era:referencePassByNoiseLevel rdf:type owl:DatatypeProperty ;
 era:relativeDistanceDangerPoint rdf:type owl:DatatypeProperty ;
                                 rdfs:domain era:Signal ;
                                 rdfs:range xsd:integer ;
+                                era:unitOfMeasure <https://qudt.org/vocab/unit/M> ;
                                 era:appendixD2Index "2.2.3" ,
                                                     "2.3.3" ;
                                 era:rinfIndex "1.1.1.3.14.4" ,
                                               "1.2.1.0.8.4" ;
                                 <http://purl.org/dc/terms/created> "2023-03-14"^^xsd:date ;
+                                <http://purl.org/dc/terms/modified> "2024-04-18"^^xsd:date ;
                                 rdfs:comment "Distance in meters to the danger point."@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "Relative distance of the danger point"@en ;
@@ -7104,7 +7150,7 @@ era:sidingId rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/signalId
-era:signalId rdf:type owl:DatatypeProperty ;
+era:signalId rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
              rdfs:subPropertyOf <http://purl.org/dc/terms/identifier> ;
              rdfs:domain era:Signal ;
              rdfs:range xsd:string ;
@@ -7114,9 +7160,9 @@ era:signalId rdf:type owl:DatatypeProperty ;
                            "1.2.1.0.8.1" ;
              <http://purl.org/dc/terms/created> "2023-03-14"^^xsd:date ;
              <http://purl.org/dc/terms/modified> "2024-04-18"^^xsd:date ;
-             rdfs:comment "Identifier of the signal (on the track or in OP), as in the operational and maintenance provisions."@en ;
+             rdfs:comment "Operational identifier of the signal (on the track or in OP), as in the operational and maintenance provisions."@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-             rdfs:label "Operational name of signal"@en ;
+             rdfs:label "Name of signal"@en ;
              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -7446,7 +7492,7 @@ era:tNvovtrp rdf:type owl:DatatypeProperty, owl:FunctionalProperty ;
 
 Precision: [NNN], with N a decimal number (0÷9)
 
-See TSI CCS (Subset 26, chapter 7. 7.5.1.149 T_NVOVTRP)"""@en ;
+See: TSI CCS (Subset 26, chapter 7. 7.5.1.149 T_NVOVTRP)"""@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -7620,7 +7666,7 @@ era:trainDetectionSystemSpecificCheck rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/trainIntegrityOnBoardRequired
-era:trainIntegrityOnBoardRequired rdf:type owl:DatatypeProperty ;
+era:trainIntegrityOnBoardRequired rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
                                   rdfs:domain era:CCSSubsystem ;
                                   rdfs:range [ rdf:type rdfs:Datatype ;
                                                owl:oneOf [ rdf:type rdf:List ;
@@ -7643,6 +7689,7 @@ era:trainIntegrityOnBoardRequired rdf:type owl:DatatypeProperty ;
                                   <http://purl.org/dc/terms/modified> "2021-09-12"^^xsd:date ,
                                                                       "2024-04-18"^^xsd:date ;
                                   rdfs:comment "Indication whether train confirmation from on-board is required to access the line for safety reasons. In hybrid operation, the confirmation can be optional."@en ;
+                                  dcterms:requires "Parameter only applicable when ETCS Baseline > 4 MR1 with operation requiring train integrity." ;
                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                   rdfs:label "Train integrity confirmation from on-board (not from driver) necessary for line access"@en ;
                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -8668,7 +8715,7 @@ era:PrimaryLocation rdf:type owl:Class ;
 Primary locations are for example: stations, yards, halts, handover points, border points, open access terminals. 
 Primary locations are identified by single and unique Primary Location codes. Primary location code is allocated based on processes defined by national entity. Primary location codes are used in any kind of TAF/TAP communication.
 
-See Handbook 9.3.3 / page 60"""@en ;
+See: Handbook 9.3.3 / page 60"""@en ;
                     rdfs:seeAlso <http://taf-jsg.info/wp-content/uploads/2024/01/20231018-JGS-Handbook-3.4-with-XSD-3.4.0.0.pdf> .
 
 
