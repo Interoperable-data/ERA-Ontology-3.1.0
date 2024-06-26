@@ -1,22 +1,23 @@
-# ERA Ontology version 3.1.0
-This is a draft update of the RINF extension of the ERA Ontology.
-It defines the entities and thier relationships within the domain of railway infrastructure.
-It includes concepts such as railway lines, operational points, tracks, signals, junctions, and other various components of the railway network.
+# ERA Ontology version 5.0.0 and 5.1.0
+This is the ERA Vocabulary update taking into account the EVR (5.0.0) and ERATV (5.1.0) specifications as defined in the relevant legislation.
 
 The previous version of the ERA ontology is [here](https://data-interop.era.europa.eu/era-vocabulary/).
 
 # Documentation
-[Current documentation](https://linkedvocabs.org/data/era-ontology/3.1.0/doc/index-en.html)
+[Source: version 3.1.0](https://linkedvocabs.org/data/era-ontology/3.1.0/doc/index-en.html)
 
 # Legal context
-This version of the ontology reflects the collaborative efforts undertaken by the EU Agency for Railways within a specialized workgroup for the European Register of Infrastructure, dedicated to the multi level description of interoperable railway network, aligning and making RINF compliant to the most recent text of the [Regulation (EU) 2019/777 of 16 May 2019 amended by Regulation (EU) 2023/1694 of 10 August 2023](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02019R0777-20230928).
+This version of the ontology reflects the internal efforts undertaken by the EU Agency for Railways in order to accomodate instances of:
+1. Vehicle Registration (Case)s in line with 2018/1614 (Annex II, point 3: Operating Modes of EVR)
+2. Vehicles in line with 2018/1614 (Annex II, point 1: Table 'Parameters of the EVR')
+3. Existing Vehicles in line with 2018/1614 (Annex II, point 4)
 
 ## Issues
 
 We welcome issues and enhancement requests that follow these guidelines:
 
 1. Issues opened in this repository should concern the [ERA vocabulary definitions](https://github.com/Interoperable-data/ERA-Ontology-3.1.0/issues).
-2. Please label your issues using the corresponding version tag. For example, using the label "v3.1.0".
+2. Please label your issues using the corresponding version tag. For example, using the label "v5.0.0" or "5.1.0".
 
 ## Contributing
 
