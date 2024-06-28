@@ -1,16 +1,23 @@
 # ERA Ontology version 5.0.0 and 5.1.0
-This is the ERA Vocabulary update taking into account the EVR (5.0.0) and ERATV (5.1.0) specifications as defined in the relevant legislation.
+
+This is the ERA Vocabulary update taking into account the EVR (5.0.0) and ERATV (5.1.0) specifications as defined in the relevant legislation and guides.
 
 The previous version of the ERA ontology is [here](https://data-interop.era.europa.eu/era-vocabulary/).
 
-# Documentation
-[Source: version 3.1.0](https://linkedvocabs.org/data/era-ontology/3.1.0/doc/index-en.html)
+## Documentation
 
-# Legal context
-This version of the ontology reflects the internal efforts undertaken by the EU Agency for Railways in order to accomodate instances of:
+- [ERA Vocabulary - version 3.1.0](https://linkedvocabs.org/data/era-ontology/3.1.0/doc/index-en.html)
+- [ERATV Guide](https://www.era.europa.eu/system/files/2022-11/iu-eratv_application_guide_for_register_2016-797_en_0.pdf)
+- [EVR Decision](http://data.europa.eu/eli/dec_impl/2018/1614/2018-10-26)
+
+## Legal context
+
+This version of the ontology reflects the internal efforts undertaken by the EU Agency for Railways in order to accommodate instances of:
+
 1. Vehicle Registration (Case)s in line with 2018/1614 (Annex II, point 3: Operating Modes of EVR)
 2. Vehicles in line with 2018/1614 (Annex II, point 1: Table 'Parameters of the EVR')
 3. Existing Vehicles in line with 2018/1614 (Annex II, point 4)
+4. Update of VehicleType and Vehicle, in order to accommodate the above.
 
 ## Issues
 
@@ -34,6 +41,7 @@ For contributions we follow the "fork-and-pull" Git workflow:
 NOTE: Make sure to merge the latest "upstream" version before submitting a pull request.
 
 ## Validation procedure for user requests
+
 1. Any actor can request improvements to the RINF extension of the ERA Ontology.
 2. The Ontology team evaluates if the request is technically sound and its impact in the current deployment of the Ontology itself and on the RINF System.
 3. ERA evaluates its impact from the business and project management point of view and ultimately approves (or not) the request. 
