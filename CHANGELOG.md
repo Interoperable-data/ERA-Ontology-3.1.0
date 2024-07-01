@@ -29,12 +29,12 @@
   - updated `era:atoSystemVersion` to the VehicleType class, as it responds to data for ERATV parameter 4.13.3.1.
 - added `dcterms:relation` and `dcterms:requires` for dependent parameters, like 4.7.4.X.2 which depend on 4.7.4.X.1
 
-## ERATV `era:Vehicle`
+## EVR `era:Vehicle`
 
 Remaining properties of a Vehicle should be those with a reference in [Table 1 "Parameters of the EVR"](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32018D1614#d1e32-62-1), and not yet within the data for an Authorization or VehicleType.
 
 - `era:operationalRestriction` currently only refers to a SKOS-CS containing TSI NOI-related verification results. This parameter however has its EVR basis [here](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32018D1614#d1e32-74-1). The legal basis clearly states these restrictions to be originating from the APOM, and to be traced in [ERA/TD/2011-09/INT](https://www.era.europa.eu/system/files/2022-11/list_harmonised_national_restriction_codes_en.pdf). This means:
-  - this property needs to belong to `era:vehicleAuthorization`, not `era:Vehicle`
+  - this property needs to belong to `era:VehicleAuthorization(Case)`, likely not `era:Vehicle`
   - it is linked to a Vehicle instance, via its link `era:vehicleType` to the type instance, and the link of that instance to the Authorization.
   - For the parameters:
 
@@ -71,14 +71,14 @@ Remaining properties of a Vehicle should be those with a reference in [Table 1 "
     | -                |                 -                  | -                                                                              | -              |
     | 5.1              |                 ?                  | Onboard recording device: no SKOS SC available                                 | New ?p needed  |
 
-- All parameters above not clearly VehicleType: to be examined as TSI NOI *Common Characteristics* properties of `era:VehicleAuthorization(Case)`, cannot remain at `era:Vehicle`.
-- As `era:vehicleKeeper`, to be added: `era:vehicleECM.` and `era:vehicleOwner`.
+- Some parameters may better be at `era:VehicleType`: others to be examined as TSI NOI *Common Characteristics* properties of `era:VehicleAuthorization(Case)`, cannot remain at `era:Vehicle`.
+- As `era:vehicleKeeper`, to be added: `era:vehicleECM.` and `era:vehicleOwner` (respecting era:Body model).
 - `era:vehicleType` should be managed as a dynamic property
 - `era:vehicleNumber`, when managed as a dynamic property, does not require `era:previousVehicleNumber`. Further, when modelled as an EVN, the meaning must be decoded in several other commonly grouped properties.
 - `era:vehicleSeries`, could have a link with a vehicle set as considered in the authorization case preceding the registration.
 - Missing properties of `era:Vehicle` are being documented separately.
   
-## ERATV `era:VehicleAuthorization`
+## ERATV `era:VehicleAuthorization` (Sections 3-4)
 
 - Creation of the new Class
 - Migration of existing properties to `era:VehicleAuthorization`:
