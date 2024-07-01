@@ -1,6 +1,6 @@
 # Changes to 3.1.0 in regards to ERATV and EVR
 
-- spelling error in thw word `amendment`
+- spelling error `amendment`
 
 ## ERATV `era:VehicleType`
 
@@ -28,6 +28,55 @@
   - updated `era:usesGroup555` to the VehicleType class, as it responds to data for ERATV parameter 4.13.2.12.
   - updated `era:atoSystemVersion` to the VehicleType class, as it responds to data for ERATV parameter 4.13.3.1.
 - added `dcterms:relation` and `dcterms:requires` for dependent parameters, like 4.7.4.X.2 which depend on 4.7.4.X.1
+
+## ERATV `era:Vehicle`
+
+Remaining properties of a Vehicle should be those with a reference in [Table 1 "Parameters of the EVR"](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32018D1614#d1e32-62-1), and not yet within the data for an Authorization or VehicleType.
+
+- `era:operationalRestriction` currently only refers to a SKOS-CS containing TSI NOI-related verification results. This parameter however has its EVR basis [here](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32018D1614#d1e32-74-1). The legal basis clearly states these restrictions to be originating from the APOM, and to be traced in [ERA/TD/2011-09/INT](https://www.era.europa.eu/system/files/2022-11/list_harmonised_national_restriction_codes_en.pdf). This means:
+  - this property needs to belong to `era:vehicleAuthorization`, not `era:Vehicle`
+  - it is linked to a Vehicle instance, via its link `era:vehicleType` to the type instance, and the link of that instance to the Authorization.
+  - For the parameters:
+
+    | Restriction Code |           ERA Vocabulary           | Ontology implementation                                                        | Action         |
+    | :--------------- | :--------------------------------: | :----------------------------------------------------------------------------- | :------------- |
+    | 1.1.[number]     |    era:minimumHorizontalRadius     | Use existing property                                                          | Link with code |
+    | 1.2              |  era:minVehicleImpedanceVoltages,  | Use existing properties                                                        | Link with code |
+    |                  |  era:minVehicleInputCapacitance,   |                                                                                | Link with code |
+    |                  |    era:minVehicleInputImpedance    |                                                                                | Link with code |
+    | 1.3.[number]     |                 -                  | era:vehicleTypeMaximumSpeed cannot be used. The value depends                  | New ?p needed  |
+    |                  |                                    | on the Area Of Use, and must therefore be created as a                         | Link with code |
+    |                  |                                    | property of era:VehicleAuthorization.                                          | Link with code |
+    | 1.4.[number]     |   era:maximumLocomotivesCoupled    | Use existing property                                                          | Link with code |
+    | -                |                 -                  | -                                                                              | -              |
+    | 2.1              |         era:gaugingProfile         | Use existing SKOS CS `GaugingProfiles` (Kinematic gauge (coding WAG TSI))      | Link with code |
+    | 2.2.1-8          |         era:wheelSetGauge          | Use existing SKOS CS `NominalTrackGauges`                                      | Link with code |
+    | 2.3              |   era:etcsEquipmentOnBoardLevel    | Use value `era-eeobl-eratv:None` from SKOS CS `ETCSEquipmentLevels`            | Link with code |
+    | 2.4              |   era:etcsEquipmentOnBoardLevel    | Use other values from SKOS CS `ETCSEquipmentLevels`                            | Link with code |
+    | 2.4.20           |      era:voiceRadioCompatible      | Use existing property                                                          | Link with code |
+    | 2.4.21           |      era:dataRadioCompatible       | Use existing property                                                          | Link with code |
+    | 2.5.1xx          |     era:protectionLegacySystem     | Use existing property                                                          | Link with code |
+    | 2.5.2xx          |       era:legacyRadioSystem        | Use existing property                                                          | Link with code |
+    | 2.6.1xx          |                 -                  | Use value `era-tpls-eratv:SSC-BL3` from SKOS CS `TrainProtectionLegacySystems` | Link with code |
+    | 2.6.2xx          |                 -                  | Use value `era-lrs-eratv:TETRA-URCA` from SKOS CS `LegacyRadioSystems`         | Link with code |
+    | 2.7.1, 3, 5-7    |     era:operationalRestriction     | Use existing SKOS CS `era-skos-Restrictions.ttl`                               | OK             |
+    |                  |  era:quieterRoutesExemptedCountry  | Use existing SKOS values 2.7.2 & 2.7.4 in `era-skos-Restrictions.ttl`          | Check with PAD |
+    |                  | era:compositeBrakeBlockRetrofitted | Use existing SKOS value 2.7.1 in `era-skos-Restrictions.ttl`                   | Check with PAD |
+    | -                |                 -                  | -                                                                              | -              |
+    | 3.1.1-4          |        era:temperatureRange        | Use existing SKOS CS `era-tr:TemperatureRanges`                                | Link with code |
+    | -                |                 -                  | -                                                                              | -              |
+    | 4.1              |                 ?                  | Authorisation decision implies time-based restriction of use                   | New ?p needed  |
+    | 4.2              |                 ?                  | Authorisation decision mentions condition-based restriction of use             | New ?p needed  |
+    | 4.3              |                 ?                  | Authorisation decision only allows local, historical, touristic use            | New ?p needed  |
+    | -                |                 -                  | -                                                                              | -              |
+    | 5.1              |                 ?                  | Onboard recording device: no SKOS SC available                                 | New ?p needed  |
+
+- All parameters above not clearly VehicleType: to be examined as TSI NOI *Common Characteristics* properties of `era:VehicleAuthorization(Case)`, cannot remain at `era:Vehicle`.
+- As `era:vehicleKeeper`, to be added: `era:vehicleECM.` and `era:vehicleOwner`.
+- `era:vehicleType` should be managed as a dynamic property
+- `era:vehicleNumber`, when managed as a dynamic property, does not require `era:previousVehicleNumber`. Further, when modelled as an EVN, the meaning must be decoded in several other commonly grouped properties.
+- `era:vehicleSeries`, could have a link with a vehicle set as considered in the authorization case preceding the registration.
+- Missing properties of `era:Vehicle` are being documented separately.
   
 ## ERATV `era:VehicleAuthorization`
 
