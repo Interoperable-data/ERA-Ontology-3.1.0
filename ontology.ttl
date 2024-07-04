@@ -2,16 +2,18 @@
 @prefix era: <http://data.europa.eu/949/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix vp: <http://data.europa.eu/949/vpa/> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix qudt: <http://qudt.org/vocab/unit/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @base <http://data.europa.eu/949/> .
 
 <http://data.europa.eu/949/> rdf:type owl:Ontology ;
-                              owl:imports <http://www.opengis.net/ont/geosparql#> ;
+                              # owl:imports <http://www.opengis.net/ont/geosparql#> ;
                               <http://creativecommons.org/ns#license> <https://creativecommons.org/licenses/by/4.0/> ;
                               dcterms:contributor [ foaf:name "Maarten Duhoux" ;
                                                     <http://www.w3.org/ns/org#memberOf> <http://publications.europa.eu/resource/authority/corporate-body/ERA>
@@ -28,6 +30,8 @@
 Revision 26-06-2024:
 - updated as per final workshops on era:Vehicle and era:VehicleType, refining work done previously.
 - This version originally placed non-EVR related resources in comments, as to generate a dedicated Ontology page.
+- introduction of the Verified Permissions ontology, for Vehicle registration/authorisation (case)s.
+- Correction of use of dcterms:relation (range: ELI URI)
 
 Revision 05-06-2024:
 - linked with existing (updated) or new SKOS Concepts, related to the TWG RINF CCS;
@@ -237,7 +241,7 @@ dcterms:creator rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/definition
-dcterms:definition rdf:type owl:AnnotationProperty .
+dcterms:description rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/description
@@ -359,6 +363,13 @@ xsd:gYear rdf:type rdfs:Datatype .
 #    Object Properties
 #################################################################
 
+###  http://data.europa.eu/949/areaOfUse
+era:areaOfUseMemberState rdf:type owl:ObjectProperty ;
+              rdfs:domain era:AreaOfUse ;
+              rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+              rdfs:comment "Member State networks which were analysed during the (vehicle(type)) authorisation process and are allowed for operation (registered vehicles only). For border sections, use era:limitedAreaOfUse"@en ;
+              rdfs:label "area of use"@en .
+
 ###  http://data.europa.eu/949/TSIMagneticFields
 # era:TSIMagneticFields rdf:type owl:ObjectProperty ;
 #                       rdfs:domain era:CCSSubsystem ;
@@ -411,6 +422,21 @@ xsd:gYear rdf:type rdfs:Datatype .
 #                                          rdfs:label "Documents available by the IM relating to braking performance"@en ;
 #                                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
 #                                          <http://www.w3.org/2004/02/skos/core#changeNote> "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
+
+###  http://data.europa.eu/949/additionalConditionsApplicableVehicle
+era:additionalConditionsApplicableVehicle rdf:type owl:ObjectProperty ;
+                                          rdfs:domain era:RegistrationCase ;
+                                          rdfs:range skos:Concept ;
+                                          era:evrIndex "4.1" ;
+                                          era:inSkosConceptScheme <http://data.europa.eu/949/concepts/evr-applicable-agreements/EVRApplicableAgreements> ;
+                                          dcterms:created "2023-06-26"^^xsd:date ;
+                                          dcterms:relation <http://data.europa.eu/eli/dec_impl/2018/1614> ;
+                                          rdfs:comment """Identification of applicable bilateral or multilateral agreements such as RIV, RIC, TEN, TEN-CW, TEN-GE, …
+The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/evr-applicable-agreements/EVRApplicableAgreements.
+This concept scheme is currently non-deferenceable."""@en ;
+                                          rdfs:isDefinedBy era: ;
+                                          rdfs:label "Additional conditions applicable to the vehicle"@en ;
+                                          vs:term_status "unstable" .
 
 
 # ###  http://data.europa.eu/949/allocationCompany
@@ -481,10 +507,10 @@ era:atoSystemVersion rdf:type owl:ObjectProperty ;
                                    "1.2.1.1.10.2" ;
                      era:eratvIndex "4.13.3.1" ;
                      dcterms:created "2023-03-14"^^xsd:date ;
-                     dcterms:modified "2024-04-18"^^xsd:date , "2024-06-28"^^xsd:date ;
+                     dcterms:modified "2024-04-18"^^xsd:date , "2024-06-26"^^xsd:date ;
                      dcterms:relation era:etcsBaseline ;
                      dcterms:requires "CCS Trackside: Parameter only applicable when ETCS Baseline > 4 MR1 and ATO is implemented." ;
-                     dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                     dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                      rdfs:comment "ATO system version according to the specification referenced in TSI CCS (4.2.19)."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "ATO System version (trackside|onboard)"@en ;
@@ -493,13 +519,13 @@ era:atoSystemVersion rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/authorizedCountry
 era:authorizedCountry rdf:type owl:ObjectProperty ;
-                      rdfs:domain era:VehicleAuthorization ;
+                      rdfs:domain era:AuthorisationCase ;
                       rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
                       era:eratvIndex "3.1.1" ;
                       era:inSkosConceptScheme <http://publications.europa.eu/resource/authority/country> ;
                       dcterms:created "2020-09-30"^^xsd:date ;
                       dcterms:modified "2020-09-30"^^xsd:date , 
-                                      "2027-06-27"^^xsd:date ;
+                                       "2027-06-26"^^xsd:date ;
                       rdfs:comment "Member state of authorisation."@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                       rdfs:label "authorized country"@en ;
@@ -513,7 +539,7 @@ era:axleBearingConditionMonitoring rdf:type owl:ObjectProperty ;
                                    era:eratvIndex "4.9.2" ;
                                    era:inSkosConceptScheme <http://data.europa.eu/949/concepts/axle-monitoring/AxleBearingMonitoring> ;
                                    dcterms:created "2020-08-24"^^xsd:date ;
-                                   dcterms:modified "2021-08-02"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                   dcterms:modified "2021-08-02"^^xsd:date , "2024-06-26"^^xsd:date ;
                                    rdfs:comment "Axle bearing condition monitoring (hot axles box detection)"@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "axle bearing condition monitoring"@en ;
@@ -553,7 +579,7 @@ era:axleBearingConditionMonitoring rdf:type owl:ObjectProperty ;
 #                            dcterms:modified "2024-01-08"^^xsd:date ,
 #                                             "2024-04-18"^^xsd:date ;
 #                            dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#                            dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                            dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                            rdfs:comment """Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with  parameter \"Other Cant Deficiency train categories for which the ETCS trackside is configured to provide SSP\".
 
 # Subset-026 (3.11.3.2.1.1) definition:
@@ -730,7 +756,7 @@ era:dataRadioCompatible rdf:type owl:ObjectProperty ;
                         dcterms:modified "2021-09-12"^^xsd:date ,
                                          "2024-04-18"^^xsd:date ;
                         dcterms:requires "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en ;
-                        dcterms:source <https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf> ;
+                        dcterms:relation <https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf> ;
                         rdfs:comment """Radio requirements used for demonstrating technical compatibility data.
 
 Information on RSC data requirements per country:                        
@@ -774,7 +800,7 @@ https://www.era.europa.eu/era-folder/radio-system-compatibility-rsc-voice-and-da
 #                        era:usedInRCCCalculations "true"^^xsd:boolean ;
 #                        dcterms:created "2020-08-24"^^xsd:date ;
 #                        dcterms:modified "2022-09-06"^^xsd:date ;
-#                        dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                        dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                        rdfs:comment "Indication of limitations on the use of eddy current brakes."@en ,
 #                                     "This property has been modified to be a RINF parameter (its eratvIndex is deleted). It is treated as a SKOS by RINF and as a boolean by ERATV. A new ERATV datatype property has been defined, eddyCurrentBrakingFitted with boolean values."@en ;
 #                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -793,7 +819,7 @@ https://www.era.europa.eu/era-folder/radio-system-compatibility-rsc-voice-and-da
 #                                          dcterms:created "2020-08-24"^^xsd:date ;
 #                                          dcterms:modified "2021-09-10"^^xsd:date ,
 #                                                           "2024-04-23"^^xsd:date ;
-#                                          dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                                          dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                                          rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency with conditions for the use of eddy current brakes identified in 1.1.1.1.6.2."@en ;
 #                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                          rdfs:label "Document with the conditions for the use of eddy current brakes"@en ;
@@ -901,8 +927,8 @@ era:energySupplySystem rdf:type owl:ObjectProperty ;
                        era:rinfIndex "1.1.1.2.2.1.2" ;
                        era:usedInRCCCalculations "true"^^xsd:boolean ;
                        dcterms:created "2020-08-24"^^xsd:date ;
-                       dcterms:modified "2024-01-08"^^xsd:date , "2024-06-28"^^xsd:date ;
-                       dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+                       dcterms:modified "2024-01-08"^^xsd:date , "2024-06-26"^^xsd:date ;
+                       dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
                        rdfs:comment """Indication of the traction supply system (nominal voltage and frequency).
 Energy supply system (voltage and frequency)"""@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -942,9 +968,9 @@ era:etcsBaseline rdf:type owl:ObjectProperty ;
                  dcterms:created "2021-08-07"^^xsd:date ;
                  dcterms:description "The ETCS baseline needs to be provided for each available ETCS Level. See: TSI CCS (Table A2)"@en ;
                  dcterms:modified "2021-08-31"^^xsd:date ,
-                                  "2024-04-18"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                  "2024-04-18"^^xsd:date , "2024-06-26"^^xsd:date ;
                  dcterms:requires "Only applicable for tracksides when selected value for 1.1.1.3.2.1 (ETCS present). Not applicable for VehicleType (amendment (EU) 2023/1696)"@en ;
-                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                 dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                  rdfs:comment "ETCS baseline installed lineside"@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "ETCS baseline"@en ;
@@ -972,7 +998,7 @@ era:etcsBaseline rdf:type owl:ObjectProperty ;
 #                           dcterms:modified "2021-09-12"^^xsd:date ,
 #                                            "2024-04-18"^^xsd:date ;
 #                           dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present). Degraded level must be lower than actual operating level."@en ;
-#                           dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/2023-09-28> ,
+#                           dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/2023-09-28> ,
 #                                          <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
 #                                          <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                           rdfs:comment "ERTMS / ETCS application level for degraded situation related to the track side equipment."@en ;
@@ -1013,7 +1039,7 @@ era:etcsInfill rdf:type owl:ObjectProperty ,
                dcterms:description "TSI CCS (4.2.2 & 4.3.3)" ;
                dcterms:modified "2021-09-12"^^xsd:date ,
                                 "2024-04-18"^^xsd:date ;
-               dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+               dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                rdfs:comment """Information about installed trackside equipment capable of transmitting infill information by loop or Global System for Mobile communications for Railways (GSM-R) for level 1 installations.
                
                Not applicable for VehicleType (amendment (EU) 2023/1696"""@en ;
@@ -1067,7 +1093,7 @@ era:etcsInfill rdf:type owl:ObjectProperty ,
 # If the line is only equipped with Class B, this should be reflected in Parameter 1.1.1.3.5.3, and this parameter etcsLevelType should not be used. 
 
 # See: TSI CCS (Subset-026, Chapter 2, 2.6)"""@en ;
-#                   dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                   dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                   rdfs:comment "European Train Control System (ETCS) application level related to the track side equipment."@en ;
 #                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                   rdfs:label "ETCS level"@en ;
@@ -1091,9 +1117,9 @@ era:etcsMVersion rdf:type owl:ObjectProperty ,
                  era:usedInRCCCalculations "true"^^xsd:boolean ;
                  dcterms:created "2021-08-08"^^xsd:date ;
                  dcterms:modified "2021-09-12"^^xsd:date ,
-                                  "2024-04-18"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                  "2024-04-18"^^xsd:date , "2024-06-26"^^xsd:date ;
                  dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present on trackside) or VehicleType is authorized with ETCS."@en ;
-                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                 dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                  rdfs:comment "ETCS M_version according to SRS 7.5.1.9."@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "ETCS M_version"@en ;
@@ -1116,7 +1142,7 @@ era:etcsSystemCompatibility rdf:type owl:ObjectProperty ;
                                           "1.2.1.1.1.9" ;
                             era:usedInRCCCalculations "true"^^xsd:boolean ;
                             dcterms:created "2020-08-31"^^xsd:date ;
-                            dcterms:definition """The Values \"Not defined\" or \"ESC-EU-0\" should not be combined with other values.
+                            dcterms:description """The Values \"Not defined\" or \"ESC-EU-0\" should not be combined with other values.
 
 For application in CCS Onboard:
 The vehicles are considered compatible with the infrastructure for this parameter, if their parameter value matches any of the values declared on the trackside. 
@@ -1133,7 +1159,7 @@ The technical document will be updated within 10 working days after positive ass
 The ESC Types shall only be used when published with status ‘Valid’ in the Agency Technical document referred above."""@en ;
                             dcterms:modified "2021-09-12"^^xsd:date ;
                             dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-                            dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/776/oj> ,
+                            dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/776/oj> ,
                                            <https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf> ;
                             rdfs:comment "ETCS requirements used for demonstrating technical compatibility."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -1156,7 +1182,7 @@ The ESC Types shall only be used when published with status ‘Valid’ in the A
 #                                    dcterms:modified "2023-03-14"^^xsd:date ,
 #                                                     "2023-04-18"^^xsd:date ;
 #                                    dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#                                    dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                                    dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                                    rdfs:comment """Transmittable track conditions by the CCSSubsystem, as per CCS TSI.
 
 # See: TSI CCS (Subset-026, Chapter 5, section 5.18.1.1)"""@en ;
@@ -1263,7 +1289,7 @@ era:fireSafetyCategory rdf:type owl:ObjectProperty ;
 #                                dcterms:relation era:maximumInterferenceCurrent ,
 #                                                 era:minVehicleImpedance ,
 #                                                 era:tdsMaximumMagneticField ;
-#                                dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+#                                dcterms:relation <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
 #                                rdfs:comment "Bands of the frequency management of the train detection systems as defined in the TSI CCS (Annex I, Appendix A, Table A.2 -Index 77), and in the specific cases or technical documents referred to in Article 13 of TSI CCS when they are available."@en ;
 #                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                rdfs:label "frequency bands for detection"@en ;
@@ -1435,9 +1461,9 @@ era:gsmRVersion rdf:type owl:ObjectProperty ;
                               "1.2.1.1.2.1" ;
                 dcterms:created "2021-08-08"^^xsd:date ;
                 dcterms:modified "2021-09-12"^^xsd:date ,
-                                 "2024-04-18"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                 "2024-04-18"^^xsd:date , "2024-06-26"^^xsd:date ;
                 dcterms:requires "GSM-R must be installed for this parameter to be applicable. If this property is not used, all GSM-R related properties should not be used either."@en ;
-                dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                 rdfs:comment """GSM-R functional requirements specification and system requirements specification in accordance with the specification respectively referenced in TSI CCS (Annex ), version number installed lineside.
                 
 Since more than one version may be installed in different areas on the trackside, this property can have multiple values with CCSSubsystem.
@@ -1580,16 +1606,21 @@ era:hasOrganisationRole rdf:type owl:ObjectProperty ;
 
 
 # ###  http://data.europa.eu/949/inCountry
-# era:inCountry rdf:type owl:ObjectProperty ;
-#               rdfs:domain era:InfrastructureObject ;
-#               rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
-#               era:inSkosConceptScheme <http://publications.europa.eu/resource/authority/country> ;
-#               dcterms:created "2020-09-01"^^xsd:date ;
-#               dcterms:modified "2020-11-20"^^xsd:date ;
-#               rdfs:comment "TODO review: Indicates the country in which an entity resides."@en ;
-#               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-#               rdfs:label "In country"@en ;
-#               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+era:inCountry rdf:type owl:ObjectProperty ;
+              rdfs:domain [ rdf:type owl:Class ;
+                            owl:unionOf ( era:InfrastructureObject
+                                          era:RegistrationCase
+                            )
+              ] ;
+              rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+              era:inSkosConceptScheme <http://publications.europa.eu/resource/authority/country> ;
+              era:evrIndex "2.1" ;
+              dcterms:created "2020-09-01"^^xsd:date ;
+              dcterms:modified "2020-11-20"^^xsd:date , "2024-06-26"^^xsd:date ;
+              rdfs:comment "TODO review: Indicates the country in which an entity resides or a resource is valid."@en ;
+              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+              rdfs:label "In country"@en ;
+              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
 # ###  http://data.europa.eu/949/infrastructureMgr
@@ -1631,7 +1662,7 @@ era:legacyRadioSystem rdf:type owl:ObjectProperty ;
                       dcterms:description "The list is in line with ERA/TD/2011-09/INT (v1.13), Table 4."@en ;
                       dcterms:modified "2021-09-12"^^xsd:date ,
                                        "2024-04-18"^^xsd:date ;
-                      dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ,
+                      dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ,
                                      <https://www.era.europa.eu/system/files/2023-11/%5BK%5D%20ERA-TD-2011-09-INT-Coded%20restrictions-final.pdf> ;
                       rdfs:comment "Indication of radio legacy systems installed."@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -1725,7 +1756,7 @@ era:legacyRadioSystem rdf:type owl:ObjectProperty ;
 #                                          era:rinfIndex "1.1.1.0.0.3" ;
 #                                          dcterms:created "2022-10-27"^^xsd:date ;
 #                                          dcterms:modified "2023-03-14"^^xsd:date ;
-#                                          dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                                          dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                                          rdfs:comment "Indication of types of appearance of track lineside distance indications."@en ;
 #                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                          rdfs:label "Lineside distance indication appearance"@en ;
@@ -1740,7 +1771,7 @@ era:legacyRadioSystem rdf:type owl:ObjectProperty ;
 #                                           era:appendixD2Index "3.1.3" ;
 #                                           era:rinfIndex "1.1.1.0.0.3" ;
 #                                           dcterms:created "2023-03-14"^^xsd:date ;
-#                                           dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                                           dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                                           rdfs:comment "Indication of the side along the track where the lineside indication is positioned (left or right)."@en ;
 #                                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                           rdfs:label "Lineside distance indication positioning"@en ;
@@ -1834,7 +1865,7 @@ era:legacyRadioSystem rdf:type owl:ObjectProperty ;
 #                dcterms:modified "2023-03-14"^^xsd:date ,
 #                                 "2024-04-18"^^xsd:date ;
 #                dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#                dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                rdfs:comment """On-Board system reaction when T_NVCONTACT expires.
 
 # See: TSI CCS (Subset-026, chapter 7. 7.5.1.74 M_NVCONTACT)"""@en ;
@@ -1856,7 +1887,7 @@ era:legacyRadioSystem rdf:type owl:ObjectProperty ;
 #                     era:usedInRCCCalculations "true"^^xsd:boolean ;
 #                     dcterms:created "2020-08-24"^^xsd:date ;
 #                     dcterms:modified "2022-09-12"^^xsd:date ;
-#                     dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                     dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                     rdfs:comment "Indication of limitations on the use of magnetic brakes."@en ,
 #                                  "This property has been modified to be a RINF parameter (its eratvIndex is deleted). It is treated as a SKOS by RINF and as a boolean by ERATV. A new ERATV datatype property has been defined, magneticBrakingFitted with boolean values."@en ;
 #                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -1875,7 +1906,7 @@ era:legacyRadioSystem rdf:type owl:ObjectProperty ;
 #                                       dcterms:created "2020-08-24"^^xsd:date ;
 #                                       dcterms:modified "2021-09-11"^^xsd:date ,
 #                                                        "2024-04-23"^^xsd:date ;
-#                                       dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                                       dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                                       rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency with conditions for the use of magnetic brakes identified in 1.1.1.1.6.3."@en ;
 #                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                       rdfs:label "Document with the conditions for the use of magnetic brakes"@en ;
@@ -1965,7 +1996,7 @@ era:minVehicleImpedanceVoltages rdf:type owl:ObjectProperty ;
                                 era:usedInRCCCalculations "true"^^xsd:boolean ;
                                 dcterms:created "2024-05-30"^^xsd:date ;
                                 dcterms:requires "The parameter minVehicleImpedanceVoltages is applicable for track circuits. For VehicleType it is deprecated." ;
-                                dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                                dcterms:relation <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
                                 rdfs:comment "Indication of the voltage system valid for the minimal impedance value (track circuits)."@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "minimum Vehicle Impedance (Voltage applicable)"@en ;
@@ -2048,7 +2079,7 @@ era:notYetAvailable rdf:type owl:ObjectProperty ;
 #           era:rinfIndex "1.1.0.0.0.4" ;
 #           dcterms:created "2021-09-09"^^xsd:date ;
 #           dcterms:modified "2024-01-08"^^xsd:date ;
-#           dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#           dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #           rdfs:comment "Operational point at the end of section of line (kilometres increasing from start OP to the end OP)."@en ;
 #           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #           rdfs:label "Operational point at end of section of line"@en ;
@@ -2075,7 +2106,7 @@ era:notYetAvailable rdf:type owl:ObjectProperty ;
 #             era:rinfIndex "1.1.0.0.0.3" ;
 #             dcterms:created "2021-09-09"^^xsd:date ;
 #             dcterms:modified "2024-01-08"^^xsd:date ;
-#             dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#             dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #             rdfs:comment "Operational point at the start of section of line (kilometres increasing from start OP to the end OP)."@en ;
 #             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #             rdfs:label "Operational point at start of section of line"@en ;
@@ -2093,7 +2124,7 @@ era:notYetAvailable rdf:type owl:ObjectProperty ;
 #            era:rinfIndex "1.2.0.0.0.4" ;
 #            dcterms:created "2020-07-29"^^xsd:date ;
 #            dcterms:modified "2021-08-03"^^xsd:date ;
-#            dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#            dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #            rdfs:comment "Type of facility in relation to the dominating operational functions."@en ;
 #            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #            rdfs:label "Type of operational point"@en ;
@@ -2108,7 +2139,7 @@ era:notYetAvailable rdf:type owl:ObjectProperty ;
 #                                     "1.2.0.0.0.8" ;
 #                       dcterms:created "2022-10-28"^^xsd:date ;
 #                       dcterms:modified "2023-03-14"^^xsd:date ;
-#                       dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                       dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                       rdfs:comment "The language or languages used in daily operation by infrastructure manager and published in its Network Statement, for the communication of operational or safety related messages between the staff of the infrastructure manager and the railway undertaking."@en ;
 #                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                       rdfs:label "Operating language"@en ;
@@ -2122,7 +2153,7 @@ era:notYetAvailable rdf:type owl:ObjectProperty ;
 #                           era:rinfIndex "1.1.0.0.1.3" ;
 #                           dcterms:created "2022-10-27"^^xsd:date ;
 #                           dcterms:modified "2024-01-08"^^xsd:date ;
-#                           dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                           dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                           rdfs:comment "Double track type."@en ;
 #                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                           rdfs:label "Operational regime"@en ;
@@ -2131,12 +2162,15 @@ era:notYetAvailable rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/operationalRestriction
 era:operationalRestriction rdf:type owl:ObjectProperty ;
-                           rdfs:domain era:Vehicle ;
+                           rdfs:domain era:AuthorisationCase ;
                            rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
                            era:inSkosConceptScheme <http://data.europa.eu/949/concepts/restrictions/Restrictions> ;
                            dcterms:created "2020-11-23"^^xsd:date ;
-                           dcterms:modified "2021-08-03"^^xsd:date ;
-                           rdfs:comment "Indicates an operational restriction of vehicle or wagon. Parking brake type (if the vehicle is fitted with it)."@en ;
+                           dcterms:modified "2021-08-03"^^xsd:date , "2024-06-26"^^xsd:date;
+                           rdfs:comment """Indicates an operational restriction of a vehicle, as recorded in its vehicle (type) authorisation.
+
+The SKOS Concept Scheme contains some of the codes of Appendix 1 - Table 1 'Harmonised Restriction Codes' of ERA/TD/2011-09/INT."""@en ;
+                           rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-11/%5BK%5D%20ERA-TD-2011-09-INT-Coded%20restrictions-final.pdf> ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "Operational restriction"@en ;
                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -2192,7 +2226,7 @@ era:operationalRestriction rdf:type owl:ObjectProperty ;
 #                                 dcterms:modified "2024-04-18"^^xsd:date ;
 #                                 dcterms:relation era:cantDeficiencyBasicSSP ;
 #                                 dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#                                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                                 dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                                 rdfs:comment """Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with parameter \"Cant Deficiency used for the basic SSP\". 
 
 # Subset-026 (3.11.3.2.1.1) definition:
@@ -2234,7 +2268,7 @@ era:operationalRestriction rdf:type owl:ObjectProperty ;
 #                          dcterms:modified "2021-09-12"^^xsd:date ,
 #                                           "2024-04-18"^^xsd:date ;
 #                          dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#                          dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/2023-09-28> ,
+#                          dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/2023-09-28> ,
 #                                         <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                          rdfs:comment "Indication of existence of other system than ETCS for degraded situation."@en ;
 #                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -2307,7 +2341,7 @@ era:parkingBrakeType rdf:type owl:ObjectProperty ;
 #                    era:usedInRCCCalculations "true"^^xsd:boolean ;
 #                    dcterms:created "2021-08-02"^^xsd:date ;
 #                    dcterms:modified "2021-08-02"^^xsd:date ;
-#                    dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                    dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                    rdfs:comment "Distance between the upper surface of platform and running surface of the neighbouring track. It is the nominal value expressed in millimetres."@en ;
 #                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                    rdfs:label "height of platform"@en ;
@@ -2351,7 +2385,7 @@ era:previousVehicleType rdf:type owl:ObjectProperty ;
                         rdfs:domain era:VehicleType ;
                         rdfs:range era:VehicleType ;
                         dcterms:created "2022-06-15"^^xsd:date ;
-                        dcterms:modified "2022-06-15"^^xsd:date , "2024-06-28"^^xsd:date ;
+                        dcterms:modified "2022-06-15"^^xsd:date , "2024-06-26"^^xsd:date ;
                         rdfs:comment """Denotes a previous VehicleType of which the current VehicleType is a descendant through the relevant authorisation case.
                         
 Example: versions, variants."""@en ;
@@ -2414,7 +2448,7 @@ era:protectionLegacySystem rdf:type owl:ObjectProperty ;
                            dcterms:created "2020-08-31"^^xsd:date ;
                            dcterms:modified "2021-09-12"^^xsd:date ,
                                             "2024-04-18"^^xsd:date ;
-                           dcterms:source <https://www.era.europa.eu/system/files/2023-11/%5BK%5D%20ERA-TD-2011-09-INT-Coded%20restrictions-final.pdf> ;
+                           dcterms:relation <https://www.era.europa.eu/system/files/2023-11/%5BK%5D%20ERA-TD-2011-09-INT-Coded%20restrictions-final.pdf> ;
                            rdfs:comment "Indication of which class B system is installed. The list is in line with ERA/TD/2011-09/INT (v1.13), Table 3. "@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "Train protection legacy system"@en ;
@@ -2444,12 +2478,12 @@ era:protectionLegacySystem rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/quieterRoutesExemptedCountry
 era:quieterRoutesExemptedCountry rdf:type owl:ObjectProperty ;
-                                 rdfs:domain era:Vehicle ;
+                                 rdfs:domain era:AuthorisationCase ;
                                  rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
                                  era:inSkosConceptScheme <http://publications.europa.eu/resource/authority/country> ;
                                  dcterms:created "2020-11-23"^^xsd:date ;
-                                 dcterms:modified "2020-11-23"^^xsd:date ;
-                                 rdfs:comment "Country where a vehicle may operate without noise restrictions."@en ;
+                                 dcterms:modified "2020-11-23"^^xsd:date , "2024-06-26"^^xsd:date ;
+                                 rdfs:comment "Country where a vehicle may operate without noise restrictions. This conclusion is recorded at the TSI NOI verification process during authorisation."@en ;
                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                  rdfs:label "Quieter route exempted country"@en ;
                                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -2490,7 +2524,7 @@ era:railInclination rdf:type owl:ObjectProperty ;
 #                                       dcterms:modified "2023-03-14"^^xsd:date ,
 #                                                        "2024-04-18"^^xsd:date ;
 #                                       dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#                                       dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                                       dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                                       rdfs:comment """List of cases subject to system design choices made by the infrastructure manager according to the specification referenced in TSI CCS. 
 
 # See: Subset 26, Chapter 5 5.4 Procedure start of mission."""@en ;
@@ -2507,6 +2541,33 @@ era:railInclination rdf:type owl:ObjectProperty ;
 #              rdfs:range era:Referent ;
 #              rdfs:comment "Points to the referent instance on which the subject is positioned"@en ;
 #              rdfs:label "referent"@en .
+
+###  http://data.europa.eu/949/registrationStatus
+era:registrationStatus rdf:type owl:ObjectProperty ;
+                       rdfs:domain era:RegistrationCase ;
+                       rdfs:range era:RegistrationStatus ;
+                       dcterms:created "2023-06-26"^^xsd:date ;
+                       dcterms:relation <http://data.europa.eu/eli/dec_impl/2018/1614> ;
+                       rdfs:comment "Indicates the relationship between a Vehicle registration and the registration status which encompasses the registration status coding, the registration status date and the registration status reason."@en ;
+                       rdfs:isDefinedBy era: ;
+                       rdfs:label "Registration status"@en ;
+                       vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/registrationStatusCoding
+era:registrationStatusCoding rdf:type owl:ObjectProperty ;
+                             rdfs:domain era:RegistrationStatus ;
+                             rdfs:range skos:Concept ;
+                             era:evrIndex "10.1" ;
+                             era:inSkosConceptScheme <http://data.europa.eu/949/concepts/evr-registration-status-codes/EVRRegistrationStatusCodes> ;
+                             dcterms:created "2023-06-26"^^xsd:date ;
+                             dcterms:relation <http://data.europa.eu/eli/dec_impl/2018/1614> ;
+                             rdfs:comment """Registration status coding.
+The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/evr-registration-status-codes/EVRRegistrationStatusCodes.
+This concept scheme is currently non-deferenceable."""@en ;
+                             rdfs:isDefinedBy era: ;
+                             rdfs:label "Registration status coding"@en ;
+                             vs:term_status "unstable" .
 
 
 ###  http://data.europa.eu/949/role
@@ -2530,7 +2591,7 @@ era:role rdf:type owl:ObjectProperty ;
 #                              era:usedInRCCCalculations "true"^^xsd:boolean ;
 #                              dcterms:created "2020-07-29"^^xsd:date ;
 #                              dcterms:modified "2024-01-08"^^xsd:date ;
-#                              dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                              dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                              rdfs:comment """Categorisation how a passenger train with a fire on board will continue to operate for a defined time period. 
 # Passenger train fire category in accordance with point 4.1.4 of TSI LOC&PAS."""@en ;
 #                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -2553,9 +2614,9 @@ era:safeConsistLengthInformationNecessary rdf:type owl:ObjectProperty ,
                                                         "1.2.1.1.1.11" ;
                                           era:eratvIndex "4.13.1.10" ;
                                           dcterms:created "2023-03-14"^^xsd:date ;
-                                          dcterms:modified "2024-04-18"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                          dcterms:modified "2024-04-18"^^xsd:date , "2024-06-26"^^xsd:date ;
                                           dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS trackside present) or VehicleType is authorized with ETCS."@en ;
-                                          dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                                          dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                           rdfs:comment """Indication whether safe consist train length information from on-board is required to access the line for safety reasons and the required safety integrity level.
                                           
 For VehicleType: if and with what SIL level the safe consist train length information is provided to the trackside."""@en ;
@@ -2618,7 +2679,7 @@ For VehicleType: if and with what SIL level the safe consist train length inform
 #                dcterms:description "Indicates what function the signal (on the track or in OP) executes in relation to the track/switches."@en ;
 #                dcterms:modified "2024-01-08"^^xsd:date ,
 #                                 "2024-04-18"^^xsd:date ;
-#                dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                rdfs:comment "Signalling information for Route Book compilation."@en ;
 #                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                rdfs:label "Type of signal"@en ;
@@ -2631,7 +2692,7 @@ For VehicleType: if and with what SIL level the safe consist train length inform
 #                          era:appendixD2Index "3.2.7" ;
 #                          era:rinfIndex "1.1.0.0.1.3" ;
 #                          dcterms:created "2023-03-14"^^xsd:date ;
-#                          dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                          dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                          rdfs:comment """Indication of the signalling system type of the signalling system. 
 # The reason for deprecation is that this property has the same RINF index than \"operational regime\" and this property is part of the definition."""@en ;
 #                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -2696,7 +2757,7 @@ era:snowIceHailConditions rdf:type owl:ObjectProperty ;
 #                       rdfs:range era:SpecialTunnelArea ;
 #                       era:appendixD2Index "3.2.3" ;
 #                       dcterms:created "2022-10-27"^^xsd:date ;
-#                       dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                       dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                       rdfs:comment "Relates a tunnel with a special area or location."@en ;
 #                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                       rdfs:label "Special tunnel area"@en ;
@@ -2770,7 +2831,7 @@ era:subCategory rdf:type owl:ObjectProperty ;
                 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/vehicle-types/SubCategories> ;
                 dcterms:created "2020-07-29"^^xsd:date ;
                 dcterms:modified "2021-08-03"^^xsd:date ,
-                                 "2024-06-27"^^xsd:date ;
+                                 "2024-06-26"^^xsd:date ;
                 rdfs:comment "Vehicle subcategory."@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "Vehicle subcategory"@en ;
@@ -2832,7 +2893,7 @@ era:supportedPlatformHeight rdf:type owl:ObjectProperty ;
 #                                           "1.2.1.1.3.2.3" ;
 #                             dcterms:created "2023-03-14"^^xsd:date ;
 #                             dcterms:modified "2024-04-18"^^xsd:date ;
-#                             dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+#                             dcterms:relation <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
 #                             rdfs:comment """Relates the Axle Counter TrainDetectionSystem with its MaximumMagneticField in (X,Y,Z).
 
 # The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band.
@@ -2867,7 +2928,7 @@ era:temperatureRange rdf:type owl:ObjectProperty ;
                      era:rinfIndex "1.1.1.1.2.6" ;
                      era:usedInRCCCalculations "true"^^xsd:boolean ;
                      dcterms:created "2023-01-20"^^xsd:date ;
-                     dcterms:modified "2024-06-27"^^xsd:date ;
+                     dcterms:modified "2024-06-26"^^xsd:date ;
                      rdfs:comment "Temperature range for unrestricted access to the line according European standard."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "Temperature range"@en ;
@@ -2900,7 +2961,7 @@ era:thermalCapacityTSIReference rdf:type owl:ObjectProperty ;
                                 era:eratvIndex "4.7.2.1.1" ;
                                 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/thermal-capacity/ThermalCapacityTSIReferences> ;
                                 dcterms:created "2020-08-24"^^xsd:date ;
-                                dcterms:modified "2021-08-02"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                dcterms:modified "2021-08-02"^^xsd:date , "2024-06-26"^^xsd:date ;
                                 rdfs:comment "[Thermal Capacity, brake performance on steep gradients - normal payload] Reference case of TSI."@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "Thermal capacity TSI reference"@en ;
@@ -3040,7 +3101,7 @@ era:thermalCapacityTSIReference rdf:type owl:ObjectProperty ;
 #                                                                "2024-04-18"^^xsd:date ,
 #                                                                "2024-04-23"^^xsd:date ;
 #                                               dcterms:requires "The document itself has to be upload by the NRE via the “reference document management” functionality. The reference of the document is provided for the parameter using the characterstring format."@en ;
-#                                               dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+#                                               dcterms:relation <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
 #                                               rdfs:comment "Electronic document from the IM stored by the Agency with precise values in accordance with TSI CCS (Article 13 and Annex I, Appendix A, Table A.2, Index 77), for the specific check to be performed for train detection systems identified in parameter \"\"Type of track circuits or axle counters to which specific checks are needed\"."@en ;
 #                                               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                               rdfs:label "Document with the procedure(s) related to the type of train detection systems declared in 1.1.1.3.7.1.2 or 1.2.1.1.6.1"@en ;
@@ -3291,14 +3352,39 @@ The allowed values for this property belong to the SKOS Concept Scheme http://da
 
 ###  http://data.europa.eu/949/vehicleKeeper
 era:vehicleKeeper rdf:type owl:ObjectProperty ;
-                  rdfs:domain era:Vehicle ;
+                  rdfs:domain era:RegistrationCase ;
                   rdfs:range era:Body ;
+                  era:evrIndex "8" ;
                   dcterms:created "2020-11-23"^^xsd:date ;
                   dcterms:modified "2020-11-23"^^xsd:date ,
-                                   "2024-06-03"^^xsd:date ;
-                  rdfs:comment "Indicates the organization that owns/operated a vehicle or wagon."@en ;
+                                   "2024-06-26"^^xsd:date ;
+                  rdfs:comment "Indicates the natural or legal person that, being the owner of a vehicle or having the right to use it, exploits the vehicle as a means of transport and is registered as such in a vehicle register referred to in Article 47 of Directive (EU) 2016/797."@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "vehicle keeper"@en ;
+                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://data.europa.eu/949/vehicleMaintainer
+era:vehicleMaintainer rdf:type owl:ObjectProperty ;
+                  rdfs:domain era:RegistrationCase ;
+                  rdfs:range era:Body ;
+                  era:evrIndex "9" ;
+                  dcterms:created "2024-06-26"^^xsd:date ;
+                  rdfs:comment "Indicates the entity in charge of the maintenance of a vehicle, and registered as such in a vehicle register referred to in Article 47 of Directive (EU) 2016/797;."@en ;
+                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                  rdfs:label "entity in charge of maintenance"@en ;
+                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://data.europa.eu/949/vehicleKeeper
+era:vehicleOwner rdf:type owl:ObjectProperty ;
+                  rdfs:domain era:RegistrationCase ;
+                  rdfs:range era:Body ;
+                  era:evrIndex "7" ;
+                  dcterms:created "2024-06-26"^^xsd:date ;
+                  rdfs:comment "Indicates the natural or legal person which is registered by the Keeper as the Owner of a vehicle."@en ;
+                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                  rdfs:label "vehicle owner"@en ;
                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -3307,8 +3393,8 @@ era:vehicleType rdf:type owl:ObjectProperty ;
                 rdfs:domain era:Vehicle ;
                 rdfs:range era:VehicleType ;
                 dcterms:created "2020-11-22"^^xsd:date ;
-                dcterms:modified "2020-11-22"^^xsd:date ;
-                rdfs:comment "Indicates the vehicle type of a specific vehicle or wagon."@en ;
+                dcterms:modified "2020-11-22"^^xsd:date , "2024-06-26"^^xsd:date ;
+                rdfs:comment "Indicates the vehicle type of a specific vehicle, recorded at authorisation (APOM) of that vehicle. For existing vehicles, recorded at registration."@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "Vehicle type"@en ;
                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -3330,10 +3416,34 @@ era:vehicleTypeMaximumSBDistanceAndDeceleration rdf:type owl:ObjectProperty ;
                                              rdfs:domain era:VehicleType ;
                                              rdfs:range era:MaximumSBDistanceAndDeceleration ; 
                                              era:eratvIndex "4.7.7" ;
-                                             dcterms:created "2023-06-27"^^xsd:date ;
+                                             dcterms:created "2023-06-26"^^xsd:date ;
                                              rdfs:comment "Relates the vehicle type with its values of Stopping distance and Maximum deceleration At maximum service brake."@en ;
                                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                              rdfs:label "Vehicle type stopping distance and maximum deceleration at maximum service brake"@en ;
+                                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://data.europa.eu/949/verificationRST
+era:verificationRST rdf:type owl:ObjectProperty ;
+                    rdfs:domain era:AuthorisationCase ;
+                    rdfs:range era:DocumentedEvidence ;
+                    era:evrIndex "6" ;
+                    dcterms:created "2024-06-26"^^xsd:date ;
+                    rdfs:comment "Unique number for EC declarations in accordance with Commission Implementing Regulation (EU) 2019/250."@en ;
+                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                    rdfs:label "EC declaration of verification relating to compliance with the requirements from TSI RST"@en ;
+                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://data.europa.eu/949/verificationCCS
+era:verificationCCS rdf:type owl:ObjectProperty ;
+                    rdfs:domain era:AuthorisationCase ;
+                    rdfs:range era:DocumentedEvidence ;
+                    era:evrIndex "6" ;
+                    dcterms:created "2024-06-26"^^xsd:date ;
+                    rdfs:comment "Unique number for EC declarations in accordance with Commission Implementing Regulation (EU) 2019/250."@en ;
+                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                    rdfs:label "EC declaration of verification relating to compliance with the requirements from TSI CCS"@en ;
                                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -3344,7 +3454,7 @@ era:voiceGSMRNetwork rdf:type owl:ObjectProperty ;
                      era:eratvIndex "4.13.2.10" ;
                      era:inSkosConceptScheme <http://data.europa.eu/949/concepts/gsmr-networks/GSMRNetworks> ;
                      dcterms:created "2020-08-31"^^xsd:date ;
-                     dcterms:modified "2021-08-02"^^xsd:date , "2024-06-28"^^xsd:date ;
+                     dcterms:modified "2021-08-02"^^xsd:date , "2024-06-26"^^xsd:date ;
                      rdfs:comment "Voice SIM Card GSM-R Home Network."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "Voice GSM-R network"@en ;
@@ -3369,7 +3479,7 @@ era:voiceRadioCompatible rdf:type owl:ObjectProperty ;
                                           "2024-04-18"^^xsd:date ;
                          dcterms:requires """GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable.
 In case of RSC-EU-0 or None, no other values are allowed."""@en ;
-                         dcterms:source <https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf> ;
+                         dcterms:relation <https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf> ;
                          rdfs:comment """Radio requirements used for demonstrating technical compatibility voice.
 
 The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/voice-radio-system-compatibilities/VoiceRadioSystemCompatibilities. 
@@ -3490,7 +3600,7 @@ era:altitudeRange rdf:type owl:DatatypeProperty ;
                   rdfs:range xsd:string ;
                   era:eratvIndex "4.3.2" ;
                   dcterms:created "2021-08-26"^^xsd:date ;
-                  dcterms:modified "2021-08-26"^^xsd:date , "2024-06-27"^^xsd:date ;
+                  dcterms:modified "2021-08-26"^^xsd:date , "2024-06-26"^^xsd:date ;
                   rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Altitude range."@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "Altitude range"@en ;
@@ -3504,7 +3614,7 @@ era:altitudeRangeDetail rdf:type owl:DatatypeProperty ;
                         rdfs:range xsd:integer ;
                         era:eratvIndex "4.3.2.1" ;
                         dcterms:created "2021-08-26"^^xsd:date ;
-                        dcterms:modified "2021-08-26"^^xsd:date , "2024-06-27"^^xsd:date ;
+                        dcterms:modified "2021-08-26"^^xsd:date , "2024-06-26"^^xsd:date ;
                         rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Altitude range value for 'X' if value 'AX' is selected in altitude range."@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "Altitude range detail"@en ;
@@ -3596,7 +3706,7 @@ era:axleSpacing rdf:type owl:DatatypeProperty ;
 #                  dcterms:modified "2024-01-08"^^xsd:date ,
 #                                   "2024-04-18"^^xsd:date ;
 #                  dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#                  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                  dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                  rdfs:comment "Indication of existence of metal mass in the vicinity of the location, susceptible of perturbating the reading of balises by the on-board system."@en ;
 #                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                  rdfs:label "Big Metal Mass"@en ;
@@ -3609,7 +3719,7 @@ era:boardingAids rdf:type owl:DatatypeProperty ;
                  rdfs:range xsd:string ;
                  era:eratvIndex "4.12.3.2" ;
                  dcterms:created "2021-08-31"^^xsd:date ;
-                 dcterms:modified "2021-08-31"^^xsd:date , "2024-06-28"^^xsd:date ;
+                 dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
                  rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Description of any integrated boarding aids (if provided)."@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "Boarding aids"@en ;
@@ -3647,7 +3757,7 @@ era:cantDefficiency rdf:type owl:DatatypeProperty ;
                     era:eratvIndex "4.6.1" ;
                     era:unitOfMeasure qudt:MilliM ;
                     dcterms:created "2021-08-26"^^xsd:date ;
-                    dcterms:modified "2021-08-26"^^xsd:date , "2024-06-28"^^xsd:date ;
+                    dcterms:modified "2021-08-26"^^xsd:date , "2024-06-26"^^xsd:date ;
                     rdfs:comment "Cant deficiency (maximum uncompensated lateral acceleration) for which the vehicle has been assessed. For dual gauge vehicles values for each gauge have to be indicated."@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "Cant deficiency"@en ;
@@ -3677,7 +3787,7 @@ era:catenaryMaxRatedCurrent rdf:type owl:DatatypeProperty ;
                             rdfs:range xsd:double ;
                             era:eratvIndex "4.10.3" ;
                             dcterms:created "2021-08-31"^^xsd:date ;
-                            dcterms:modified "2021-08-31"^^xsd:date , "2024-06-28"^^xsd:date ;
+                            dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
                             rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Maximum rated current from the catenary (to be indicated for each electrical energy supply system the vehicle is equipped for), given in A."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Catenary max rated current"@en ;
@@ -3704,8 +3814,9 @@ era:compositeBrakeBlockRetrofitted rdf:type owl:DatatypeProperty ;
                                    rdfs:domain era:Vehicle ;
                                    rdfs:range xsd:boolean ;
                                    dcterms:created "2020-11-23"^^xsd:date ;
-                                   dcterms:modified "2020-11-23"^^xsd:date ;
-                                   rdfs:comment "Indicates if a vehicle's composite brake block is retrofitted"@en ;
+                                   dcterms:modified "2020-11-23"^^xsd:date , "2024-06-26"^^xsd:date ;
+                                   rdfs:comment "Indicates if a vehicle's composite brake block is retrofitted, as per (TSI NOI 7.2.2.1). Only for vehicles authorised before the TSI NOI amendment 2023/1694."@en ;
+                                   dcterms:source <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02014R1304-20190616> ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "Composite brake block retrofitted"@en ;
                                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -3739,7 +3850,7 @@ era:compositeBrakeBlockRetrofitted rdf:type owl:DatatypeProperty ;
 #                                          dcterms:modified "2023-03-14"^^xsd:date ,
 #                                                           "2024-04-18"^^xsd:date ;
 #                                          dcterms:requires "When `not electrified` is chosen in parameter 1.1.1.2.2.1.1, then this parameter is not applicable." ;
-#                                          dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ,
+#                                          dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ,
 #                                                         <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32019R0777&from=EN> ;
 #                                          rdfs:comment "Name and/or reference of the document specifying the conditions applying in regards to regenerative braking."@en ;
 #                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -3770,7 +3881,7 @@ era:compositeBrakeBlockRetrofitted rdf:type owl:DatatypeProperty ;
 #                                   dcterms:created "2022-10-28"^^xsd:date ;
 #                                   dcterms:modified "2023-03-14"^^xsd:date ,
 #                                                    "2024-04-18"^^xsd:date ;
-#                                   dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                                   dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                                   rdfs:comment "Name and/or reference of the document specifying the Special technical conditions required to switch over between ERTMS/ETCS and Class B systems."@en ;
 #                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                   rdfs:label "Special technical conditions required to switch over between ERTMS/ETCS and Class B systems"@en ;
@@ -3786,7 +3897,7 @@ era:compositeBrakeBlockRetrofitted rdf:type owl:DatatypeProperty ;
 #                                            era:rinfIndex "1.1.1.3.8.1.1" ,
 #                                                          "1.2.1.1.7.1.1" ;
 #                                            dcterms:created "2022-10-28"^^xsd:date ;
-#                                            dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                                            dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                                            rdfs:comment "Conditions to switch over between different class B train protection, control and warning systems."@en ;
 #                                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                            rdfs:label "Special conditions to switch over between different class B train protection, control and warning systems"@en ;
@@ -3885,7 +3996,7 @@ era:conditionsTrainFormation rdf:type owl:DatatypeProperty ;
 #              dcterms:modified "2024-01-08"^^xsd:date ,
 #                               "2024-04-18"^^xsd:date ;
 #              dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#              dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #              rdfs:comment """Maximum distance for overriding the train trip in metres.
 
 # Precision: [NNNNNN.N] with N a decimal number (0÷9) 
@@ -3910,7 +4021,7 @@ era:conditionsTrainFormation rdf:type owl:DatatypeProperty ;
 #              dcterms:modified "2023-03-14"^^xsd:date ,
 #                               "2024-04-18"^^xsd:date ;
 #              dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#              dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #              rdfs:comment """Maximum distance for reversing in Post Trip mode in metres. 
 
 # Precision: [NNNNNN.N], with N a decimal number (0÷9)
@@ -3936,7 +4047,7 @@ era:conditionsTrainFormation rdf:type owl:DatatypeProperty ;
 #             dcterms:modified "2023-03-14"^^xsd:date ,
 #                              "2024-04-18"^^xsd:date ;
 #             dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#             dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#             dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #             rdfs:comment """Parameter used by the ETCS on-board to supervise the distance allowed to be travelled under the roll-away protection and the reverse movement protection, in metres.
 
 # Precision: [NNNNNN.N], with N a decimal number (0÷9).
@@ -3954,7 +4065,7 @@ era:dangerousGoodsTankCode rdf:type owl:DatatypeProperty ;
                            rdfs:range xsd:string ;
                            era:eratvIndex "4.1.9" ;
                            dcterms:created "2021-08-25"^^xsd:date ;
-                           dcterms:modified "2021-08-25"^^xsd:date , "2024-06-27"^^xsd:date ;
+                           dcterms:modified "2021-08-25"^^xsd:date , "2024-06-26"^^xsd:date ;
                            rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Dangerous goods for which the vehicle is suitable (tank code)."@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "Dangerous goods tank code"@en ;
@@ -4015,7 +4126,7 @@ era:designMassExceptionalPayload rdf:type owl:DatatypeProperty ;
                                  era:eratvIndex "4.5.2.3" ;
                                  era:unitOfMeasure qudt:KiloGM ;
                                  dcterms:created "2020-08-24"^^xsd:date ;
-                                 dcterms:modified "2020-11-03"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                 dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                                  rdfs:comment "Design mass under exceptional payload."@en ;
                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                  rdfs:label "Design mass under exceptional payload"@en ;
@@ -4029,7 +4140,7 @@ era:designMassNormalPayload rdf:type owl:DatatypeProperty ;
                             era:eratvIndex "4.5.2.2" ;
                             era:unitOfMeasure qudt:KiloGM ;
                             dcterms:created "2020-08-24"^^xsd:date ;
-                            dcterms:modified "2020-11-03"^^xsd:date , "2024-06-28"^^xsd:date ;
+                            dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                             rdfs:comment "Design mass under normal payload."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Design mass under normal payload"@en ;
@@ -4043,7 +4154,7 @@ era:designMassWorkingOrder rdf:type owl:DatatypeProperty ;
                            era:eratvIndex "4.5.2.1" ;
                            era:unitOfMeasure qudt:KiloGM ;
                            dcterms:created "2020-08-24"^^xsd:date ;
-                           dcterms:modified "2020-11-03"^^xsd:date , "2024-06-28"^^xsd:date ;
+                           dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                            rdfs:comment "Design mass in working order."@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "Design mass in working order"@en ;
@@ -4146,7 +4257,7 @@ era:eddyCurrentBrakePrevention rdf:type owl:DatatypeProperty ;
                                rdfs:range xsd:boolean ;
                                era:eratvIndex "4.7.4.1.2" ;
                                dcterms:created "2020-08-24"^^xsd:date ;
-                               dcterms:modified "2020-11-03"^^xsd:date , "2024-06-28"^^xsd:date ;
+                               dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                                rdfs:comment "Possibility of preventing the use of the eddy current track brake"@en ;
                                dcterms:relation era:eddyCurrentBrakingFitted ;
                                dcterms:requires "Only if fitted with eddy current brake"@en ;
@@ -4161,7 +4272,7 @@ era:eddyCurrentBrakingFitted rdf:type owl:DatatypeProperty ;
                              rdfs:range xsd:boolean ;
                              era:eratvIndex "4.7.4.1.1" ;
                              dcterms:created "2022-09-06"^^xsd:date ;
-                             dcterms:modified "2024-06-27"^^xsd:date ;
+                             dcterms:modified "2024-06-26"^^xsd:date ;
                              rdfs:comment "Eddy current track brake fitted."@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "Eddy current braking fitted"@en ;
@@ -4199,7 +4310,7 @@ era:energyMeterInstalled rdf:type owl:DatatypeProperty ;
                          rdfs:range xsd:boolean ;
                          era:eratvIndex "4.10.12" ;
                          dcterms:created "2021-08-31"^^xsd:date ;
-                         dcterms:modified "2021-08-31"^^xsd:date , "2024-06-28"^^xsd:date ;
+                         dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
                          rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. TSI conform energy meter for billing purposes installed on board."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Energy meter installed"@en ;
@@ -4213,7 +4324,7 @@ era:energySupplyMaxPower rdf:type owl:DatatypeProperty ;
                          rdfs:range xsd:double ;
                          era:eratvIndex "4.10.2" ;
                          dcterms:created "2021-08-31"^^xsd:date ;
-                         dcterms:modified "2021-08-31"^^xsd:date , "2024-06-28"^^xsd:date ;
+                         dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
                          rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Maximum power (to be indicated for each energy supply system the vehicle is equipped for), given in kW."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Energy supply max power"@en ;
@@ -4269,7 +4380,7 @@ era:etcsDataCommApp rdf:type owl:DatatypeProperty ;
                     rdfs:range xsd:string ;
                     era:eratvIndex "4.13.2.9" ;
                     dcterms:created "2021-08-31"^^xsd:date ;
-                    dcterms:modified "2021-08-31"^^xsd:date , "2024-06-28"^^xsd:date ;
+                    dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
                     rdfs:comment "GSM-R Data communication application for ETCS and ATO implementation."@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "ETCS & ATO data communication application"@en ;
@@ -4303,7 +4414,7 @@ era:etcsDataCommApp rdf:type owl:DatatypeProperty ;
 #                                          dcterms:created "2022-11-04"^^xsd:date ;
 #                                          dcterms:modified "2024-04-18"^^xsd:date ;
 #                                          dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#                                          dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                                          dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                                          rdfs:comment "If the trackside does not implement any solution to cover defective LXs (which are normally protected by means of a technical system), then drivers will be required to comply with instructions received from other sources."@en ;
 #                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                          rdfs:label "ETCS trackside implements level crossing procedure or an equivalent solution"@en ;
@@ -4325,7 +4436,7 @@ era:etcsDataCommApp rdf:type owl:DatatypeProperty ;
 # See: TSI CCS 7.2.9.1 & 4.2.3 """@en ;
 #                          dcterms:modified "2021-09-12"^^xsd:date ;
 #                          dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#                          dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                          dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                          rdfs:comment "Indication whether infill is required to access the line for safety reasons."@en ;
 #                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                          rdfs:label "ETCS infill necessary for line access"@en ;
@@ -4338,7 +4449,7 @@ era:etcsNationalApplications rdf:type owl:DatatypeProperty ;
                              rdfs:range xsd:string ;
                              era:eratvIndex "4.13.1.4" ;
                              dcterms:created "2021-08-31"^^xsd:date ;
-                             dcterms:modified "2021-08-31"^^xsd:date , "2024-06-28"^^xsd:date ;
+                             dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
                              rdfs:comment "Deprecated (amendment (EU) 2023/1696). ETCS national applications implemented (NID_XUSER of Packet 44). "@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "ETCS national applications"@en ;
@@ -4367,7 +4478,7 @@ era:etcsNationalApplications rdf:type owl:DatatypeProperty ;
 #                          dcterms:modified "2021-09-12"^^xsd:date ,
 #                                           "2024-04-18"^^xsd:date ;
 #                          dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#                          dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                          dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                          rdfs:comment "Indication whether data for national packet 44 applications is transmitted between track and train."@en ;
 #                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                          rdfs:label "ETCS national packet 44 application implemented"@en ;
@@ -4395,7 +4506,7 @@ era:etcsOnBoardImplementation rdf:type owl:DatatypeProperty ;
 #                           era:rinfIndex "1.1.1.3.2.7" ;
 #                           dcterms:created "2021-08-08"^^xsd:date ;
 #                           dcterms:modified "2023-03-14"^^xsd:date ;
-#                           dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                           dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                           rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Optional ETCS functions which might improve operation on the line."@en ;
 #                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                           rdfs:label "ETCS optional functions"@en ;
@@ -4433,7 +4544,7 @@ era:etcsOnBoardImplementation rdf:type owl:DatatypeProperty ;
 #                                  dcterms:modified "2023-03-14"^^xsd:date ,
 #                                                   "2024-04-18"^^xsd:date ;
 #                                  dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#                                  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                                  dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                                  rdfs:comment "If the trackside does not provide Track Conditions, the driver will need to be informed about such conditions via alternative methods."@en ;
 #                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                  rdfs:label "Is the ETCS trackside engineered to transmit Track Conditions"@en ;
@@ -4504,7 +4615,7 @@ era:flangeLubricationFitted rdf:type owl:DatatypeProperty ;
                             rdfs:range xsd:boolean ;
                             era:eratvIndex "4.9.3.1" ;
                             dcterms:created "2021-08-31"^^xsd:date ;
-                            dcterms:modified "2021-08-31"^^xsd:date , "2024-06-28"^^xsd:date ;
+                            dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
                             rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Indicates if the vehicle type is fitted for flange lubrication."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Flange lubrication fitted"@en ;
@@ -4566,7 +4677,7 @@ era:flangeLubricationFitted rdf:type owl:DatatypeProperty ;
 #                                  "2024-04-18"^^xsd:date ;
 #                 dcterms:relation era:etcsLevelType ;
 #                 dcterms:requires "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en ;
-#                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                 dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                 rdfs:comment "Indication if GPRS can be used for ETCS."@en ;
 #                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                 rdfs:label "GPRS for ETCS"@en ;
@@ -4651,7 +4762,7 @@ era:gsmRSetsInDrivingCab rdf:type owl:DatatypeProperty ;
                          rdfs:range xsd:integer ;
                          era:eratvIndex "4.13.2.2" ;
                          dcterms:created "2021-08-31"^^xsd:date ;
-                         dcterms:modified "2021-08-31"^^xsd:date , "2024-06-28"^^xsd:date ;
+                         dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
                          rdfs:comment "(Deprecated) Number of GSM-R mobile sets in driving cab for data transmission."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "GSM-R sets in driving cab"@en ;
@@ -4749,7 +4860,7 @@ era:hasCantDefficiencyCompensation rdf:type owl:DatatypeProperty ;
                                    rdfs:range xsd:boolean ;
                                    era:eratvIndex "4.6.2" ;
                                    dcterms:created "2021-08-26"^^xsd:date ;
-                                   dcterms:modified "2021-08-26"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                   dcterms:modified "2021-08-26"^^xsd:date , "2024-06-26"^^xsd:date ;
                                    rdfs:comment "Vehicle equipped with a cant deficiency compensation system (tilting vehicle)."@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "Has cant deficiency compensation"@en ;
@@ -4763,7 +4874,7 @@ era:hasCurrentLimitation rdf:type owl:DatatypeProperty ;
                          rdfs:range xsd:boolean ;
                          era:eratvIndex "4.10.14" ;
                          dcterms:created "2020-08-24"^^xsd:date ;
-                         dcterms:modified "2020-11-03"^^xsd:date , "2024-06-28"^^xsd:date ;
+                         dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                          rdfs:comment """Electric units equipped with power or current limitation function.
                          
                          Only applicable for electrically powered vehicle types."""@en ;
@@ -4791,7 +4902,7 @@ era:hasCurrentLimitation rdf:type owl:DatatypeProperty ;
 #                                   dcterms:modified "2024-01-08"^^xsd:date ,
 #                                                    "2024-04-18"^^xsd:date ;
 #                                   dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#                                   dcterms:source <https://www.era.europa.eu/content/certification-issues> ;
+#                                   dcterms:relation <https://www.era.europa.eu/content/certification-issues> ;
 #                                   rdfs:comment "Indication whether restrictions or conditions due to partial compliance with the TSI CCS exist."@en ;
 #                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                   rdfs:label "Existence of operating restrictions or conditions"@en ;
@@ -4839,7 +4950,7 @@ era:hasCurrentLimitation rdf:type owl:DatatypeProperty ;
 #                                                "1.2.2.0.5.10" ;
 #                                  dcterms:created "2022-10-27"^^xsd:date ;
 #                                  dcterms:modified "2023-03-14"^^xsd:date ;
-#                                  dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                                  dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                                  rdfs:comment "Indication of existence of evacuation and rescue points."@en ;
 #                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                  rdfs:label "Existence of evacuation and rescue points"@en ;
@@ -4895,7 +5006,7 @@ era:hasLubricationDevicePrevention rdf:type owl:DatatypeProperty ;
                                    rdfs:range xsd:boolean ;
                                    era:eratvIndex "4.9.3.2" ;
                                    dcterms:created "2021-08-31"^^xsd:date ;
-                                   dcterms:modified "2021-08-31"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                   dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
                                    rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Possibility of preventing the use of the lubrication device (only if fitted with flange lubrication)."@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "Has lubrication device prevention"@en ;
@@ -4938,7 +5049,7 @@ era:hasParkingBrake rdf:type owl:DatatypeProperty ;
 #                          era:rinfIndex "1.2.1.0.6.8" ;
 #                          dcterms:created "2022-10-27"^^xsd:date ;
 #                          dcterms:modified "2023-03-14"^^xsd:date ;
-#                          dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                          dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                          rdfs:comment "Indication of the existence of the curvature of the platform."@en ;
 #                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                          rdfs:label "Curvature of the platform"@en ;
@@ -4965,7 +5076,7 @@ era:hasRegenerativeBrake rdf:type owl:DatatypeProperty ;
                          rdfs:range xsd:boolean ;
                          era:eratvIndex "4.7.4.3.1" ;
                          dcterms:created "2020-08-24"^^xsd:date ;
-                         dcterms:modified "2021-08-06"^^xsd:date , "2024-06-28"^^xsd:date ;
+                         dcterms:modified "2021-08-06"^^xsd:date , "2024-06-26"^^xsd:date ;
                          rdfs:comment "Regenerative braking fitted."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Regenerative braking fitted"@en ;
@@ -4992,7 +5103,7 @@ era:hasSandingPrevention rdf:type owl:DatatypeProperty ;
                          rdfs:range xsd:boolean ;
                          era:eratvIndex "4.14.2.14" ;
                          dcterms:created "2021-09-01"^^xsd:date ;
-                         dcterms:modified "2021-09-01"^^xsd:date , "2024-06-28"^^xsd:date ;
+                         dcterms:modified "2021-09-01"^^xsd:date , "2024-06-26"^^xsd:date ;
                          rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Possibility of preventing the use of sanding."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Has sanding prevention"@en ;
@@ -5034,7 +5145,7 @@ era:hasShuntingRestrictions rdf:type owl:DatatypeProperty ;
                             rdfs:range xsd:boolean ;
                             era:eratvIndex "4.8.3" ;
                             dcterms:created "2021-08-31"^^xsd:date ;
-                            dcterms:modified "2021-08-31"^^xsd:date , "2024-06-28"^^xsd:date ;
+                            dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
                             rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Indicates the presence of shunting restrictions."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Has shunting restrictions"@en ;
@@ -5066,7 +5177,7 @@ era:hasShuntingRestrictions rdf:type owl:DatatypeProperty ;
 #                                        "1.2.1.1.3.1" ;
 #                          dcterms:created "2021-08-09"^^xsd:date ;
 #                          dcterms:modified "2024-01-08"^^xsd:date ;
-#                          dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+#                          dcterms:relation <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
 #                          rdfs:comment "Indication if there is any train detection system installed and fully compliant with the TSI CCS (Annex I, Appendix A, Table A.2 -Index 77)."@en ;
 #                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                          rdfs:label "Existence of train detection system fully compliant with the TSI"@en ;
@@ -5110,7 +5221,7 @@ era:hasTrainIntegrityConfirmation rdf:type owl:DatatypeProperty ;
 #                              "1.2.2.0.5.9" ;
 #                dcterms:created "2022-10-27"^^xsd:date ;
 #                dcterms:modified "2023-03-14"^^xsd:date ;
-#                dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                rdfs:comment "Indication of existence of walkways."@en ;
 #                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                rdfs:label "Existence of walkways"@en ;
@@ -5270,7 +5381,7 @@ era:hasWheelSlideProtectionSystem rdf:type owl:DatatypeProperty ;
 #            dcterms:isReplacedBy era:organisationCode ;
 #            dcterms:modified "2024-01-08"^^xsd:date ,
 #                             "2024-06-03"^^xsd:date ;
-#            dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#            dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #            rdfs:comment """(deprecated) Infrastructure manager means any body or firm responsible in particular for establishing, managing and maintaining railway infrastructure, including traffic management and control-command and signalling; 
 # the functions of the infrastructure manager on a network or part of a network may be allocated to different bodies or firms. Definition in (Article 3(2))"""@en ;
 #            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -5291,7 +5402,7 @@ era:hasWheelSlideProtectionSystem rdf:type owl:DatatypeProperty ;
 #                                    dcterms:created "2022-10-28"^^xsd:date ;
 #                                    dcterms:modified "2023-03-14"^^xsd:date ,
 #                                                     "2024-04-18"^^xsd:date ;
-#                                    dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                                    dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                                    rdfs:comment "Name and/or reference of the document specifying the Special instructions to switch over between different radio systems."@en ;
 #                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                    rdfs:label "Special instructions to switch over between different radio systems"@en ;
@@ -5334,7 +5445,7 @@ era:hasWheelSlideProtectionSystem rdf:type owl:DatatypeProperty ;
 #                             "1.2.2.0.5.9.1" ;
 #               dcterms:created "2021-01-29"^^xsd:date ;
 #               dcterms:modified "2021-01-29"^^xsd:date ;
-#               dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#               dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #               rdfs:comment "Distance measured in kilometers from the origin of a national railway line."@en ;
 #               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #               rdfs:label "kilometer"@en ;
@@ -5383,8 +5494,8 @@ era:length rdf:type owl:DatatypeProperty ;
            era:usedInRCCCalculations "true"^^xsd:boolean ;
            dcterms:created "2021-04-01"^^xsd:date ;
            dcterms:modified "2024-01-08"^^xsd:date,
-                            "2024-06-27"^^xsd:date ;
-           dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+                            "2024-06-26"^^xsd:date ;
+           dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
            rdfs:comment """Length of an infrastructure object which can be 
 - a section of line (For operational length, use era:lengthOfSectionOfLine), 
 - a tunnel (For operational length, use era:lengthOfTunnel), 
@@ -5474,11 +5585,22 @@ era:letterMarking rdf:type owl:DatatypeProperty ;
                   rdfs:range xsd:string ;
                   era:eratvIndex "4.1.7" ;
                   dcterms:created "2021-08-25"^^xsd:date ;
-                  dcterms:modified "2021-08-25"^^xsd:date , "2024-06-27"^^xsd:date ;
+                  dcterms:modified "2021-08-25"^^xsd:date , "2024-06-26"^^xsd:date ;
                   rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Letter marking is a property of Vehicle."@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "Letter marking"@en ;
                   owl:deprecated "true"^^xsd:boolean ;
+                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+### http://data.europa.eu/949/limitedAreaOfUse
+era:limitedAreaOfUse rdf:type owl:DatatypeProperty ; 
+                     rdfs:domain era:AreaOfUse ;
+                     rdfs:range xsd:string ;
+                     dcterms:created "2024-06-26"^^xsd:date ;
+                     rdfs:comment "Limited sections within (mostly neighbouring) Member State networks which were analysed during the (vehicle(type)) authorisation process and are allowed for operation (registered vehicles only). For complete member states, use era:areaOfUseMemberState."@en ;
+                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                     rdfs:label "limited area of use" ;
                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -5503,7 +5625,7 @@ era:letterMarking rdf:type owl:DatatypeProperty ;
 #                                         era:rinfIndex "1.1.1.0.0.3" ;
 #                                         dcterms:created "2022-10-27"^^xsd:date ;
 #                                         dcterms:modified "2023-03-14"^^xsd:date ;
-#                                         dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                                         dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                                         rdfs:comment "Frequency of track lineside distance indications."@en ;
 #                                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                         rdfs:label "Lineside distance indication frequency"@en ;
@@ -5532,7 +5654,7 @@ era:loadingPlatformHeight rdf:type owl:DatatypeProperty ;
                           rdfs:range xsd:integer ;
                           era:eratvIndex "4.8.7" ;
                           dcterms:created "2021-08-31"^^xsd:date ;
-                          dcterms:modified "2021-08-31"^^xsd:date , "2024-06-28"^^xsd:date ;
+                          dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
                           rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Height of loading platform (for flat wagons and combined transport), given in mm."@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "Loading platform height"@en ;
@@ -5572,7 +5694,7 @@ era:loadingPlatformHeight rdf:type owl:DatatypeProperty ;
 #              dcterms:modified "2023-03-14"^^xsd:date ,
 #                               "2023-04-18"^^xsd:date ;
 #              dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#              dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #              rdfs:comment """Entry of Driver ID permitted while running. 
 
 # See: TSI CCS (Subset 26, chapter 7. 7.5.1.75 M_NVDERUN)"""@en ;
@@ -5588,7 +5710,7 @@ era:magneticBrakePrevention rdf:type owl:DatatypeProperty ;
                             rdfs:range xsd:boolean ;
                             era:eratvIndex "4.7.4.2.2" ;
                             dcterms:created "2020-08-24"^^xsd:date ;
-                            dcterms:modified "2021-04-13"^^xsd:date , "2024-06-28"^^xsd:date ;
+                            dcterms:modified "2021-04-13"^^xsd:date , "2024-06-26"^^xsd:date ;
                             rdfs:comment "Possibility of preventing the use of the magnetic track brake"@en ;
                             dcterms:relation era:magneticBrakingFitted ;
                             dcterms:requires "Only if fitted with magnetic brake"@en ;
@@ -5603,12 +5725,37 @@ era:magneticBrakingFitted rdf:type owl:DatatypeProperty ;
                           rdfs:range xsd:boolean ;
                           era:eratvIndex "4.7.4.2.1" ;
                           dcterms:created "2022-09-12"^^xsd:date ;
-                          dcterms:modified "2024-06-27"^^xsd:date ;
+                          dcterms:modified "2024-06-26"^^xsd:date ;
                           rdfs:comment "Magnetic track brake fitted."@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "Magnetic braking fitted"@en ;
                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
+
+###  http://data.europa.eu/949/manufacturingSerialNumber
+era:manufacturingSerialNumber rdf:type owl:DatatypeProperty ;
+                              rdfs:domain era:Vehicle ;
+                              rdfs:range xsd:string ;
+                              era:evrIndex "5.2" ;
+                              dcterms:created "2023-06-26"^^xsd:date ;
+                              dcterms:relation <http://data.europa.eu/eli/dec_impl/2018/1614> ;
+                              rdfs:comment "Manufacturing serial number as marked on the vehicle frame."@en ;
+                              rdfs:isDefinedBy era: ;
+                              rdfs:label "Manufacturing serial number"@en ;
+                              vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/manufacturingYear
+era:manufacturingYear rdf:type owl:DatatypeProperty ;
+                      rdfs:domain era:Vehicle ;
+                      rdfs:range xsd:gYear ;
+                      era:evrIndex "5.1" ;
+                      dcterms:created "2023-06-26"^^xsd:date ;
+                      dcterms:relation <http://data.europa.eu/eli/dec_impl/2018/1614> ;
+                      rdfs:comment "Year in which the vehicle left the factory."@en ;
+                      rdfs:isDefinedBy era: ;
+                      rdfs:label "Manufacturing year"@en ;
+                      vs:term_status "stable" .
 
 ###  http://data.europa.eu/949/massPerWheel
 era:massPerWheel rdf:type owl:DatatypeProperty ;
@@ -5617,7 +5764,7 @@ era:massPerWheel rdf:type owl:DatatypeProperty ;
                  era:eratvIndex "4.5.6" ;
                  era:unitOfMeasure qudt:KiloGM ;
                  dcterms:created "2021-08-26"^^xsd:date ;
-                 dcterms:modified "2021-08-26"^^xsd:date , "2024-06-28"^^xsd:date ;
+                 dcterms:modified "2021-08-26"^^xsd:date , "2024-06-26"^^xsd:date ;
                  rdfs:comment "Mass per wheel, given in kg."@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "Mass per wheel"@en ;
@@ -5640,8 +5787,8 @@ era:maxCurrentStandstillPantograph rdf:type owl:DatatypeProperty ;
                                    era:unitOfMeasure qudt:A ;
                                    era:usedInRCCCalculations "true"^^xsd:boolean ;
                                    dcterms:created "2020-08-25"^^xsd:date ;
-                                   dcterms:modified "2021-09-12"^^xsd:date , "2024-06-28"^^xsd:date ;
-                                   dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+                                   dcterms:modified "2021-09-12"^^xsd:date , "2024-06-26"^^xsd:date ;
+                                   dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
                                    rdfs:comment """Indication of the maximum allowable train current at standstill expressed in amperes.
 Maximum current at standstill per pantograph (to be indicated for each DC systems the vehicle is equipped for)
 
@@ -5777,7 +5924,7 @@ era:maximumAverageDeceleration rdf:type owl:DatatypeProperty ;
                                era:unitOfMeasure qudt:M-PER-SEC2 ;
                                era:eratvIndex "4.7.1" ;
                                dcterms:created "2021-08-26"^^xsd:date ;
-                               dcterms:modified "2021-08-26"^^xsd:date , "2024-06-27"^^xsd:date ;
+                               dcterms:modified "2021-08-26"^^xsd:date , "2024-06-26"^^xsd:date ;
                                rdfs:comment "Maximum train deceleration given in m/s²."@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "Maximum average deceleration"@en ;
@@ -5791,7 +5938,7 @@ era:maximumBrakeThermalEnergyCapacity rdf:type owl:DatatypeProperty ;
                                       era:unitOfMeasure qudt:KiloJ ;
                                       era:eratvIndex "4.7.2.1.6" ;
                                       dcterms:created "2021-08-26"^^xsd:date ;
-                                      dcterms:modified "2021-08-26"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                      dcterms:modified "2021-08-26"^^xsd:date , "2024-06-26"^^xsd:date ;
                                       rdfs:comment "[Thermal Capacity, brake performance on steep gradients - normal payload] Maximum brake thermal energy capacity given in kJ"@en ;
                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                       rdfs:label "Maximum brake thermal energy capacity"@en ;
@@ -5860,7 +6007,7 @@ era:maximumDesignSpeed rdf:type owl:DatatypeProperty ;
 #                                era:unitOfMeasure <https://qudt.org/vocab/unit/A-PER-M> ;
 #                                dcterms:created "2023-03-14"^^xsd:date ;
 #                                dcterms:modified "2024-04-18"^^xsd:date ;
-#                                dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+#                                dcterms:relation <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
 #                                rdfs:comment "Maximum interference current limits allowed for track circuits for a defined frequency band (to be expressed in A/m)."@en ;
 #                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                rdfs:label "maximum interference current"@en ;
@@ -5876,7 +6023,7 @@ era:maximumDesignSpeed rdf:type owl:DatatypeProperty ;
 #                                          era:rinfIndex "1.1.1.3.4.2.1" ,
 #                                                        "1.2.1.1.3.2.1" ;
 #                                          dcterms:created "2024-04-18"^^xsd:date ;
-#                                          dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+#                                          dcterms:relation <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
 #                                          rdfs:comment """If the preferred frequency bands are not used, (mandatory) description of the parameters for evaluation of compliance.
 # If the preferred frequency bands are used, this parameter is optional."""@en ;
 #                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -5907,7 +6054,7 @@ era:maximumLocomotivesCoupled rdf:type owl:DatatypeProperty ;
 #                                                  "1.2.1.1.3.2.3" ;
 #                                    dcterms:created "2023-03-14"^^xsd:date ;
 #                                    dcterms:requires "The maximumMagneticFieldDirectionX parameter is applicable for axle counters."@en ;
-#                                    dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+#                                    dcterms:relation <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
 #                                    rdfs:comment "The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band. Direction X."@en ;
 #                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                    rdfs:label "Maximum magnetic field direction X"@en ;
@@ -5924,7 +6071,7 @@ era:maximumLocomotivesCoupled rdf:type owl:DatatypeProperty ;
 #                                                  "1.2.1.1.3.2.3" ;
 #                                    dcterms:created "2023-03-14"^^xsd:date ;
 #                                    dcterms:requires "The maximumMagneticFieldDirectionY parameter is applicable for axle counters."@en ;
-#                                    dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+#                                    dcterms:relation <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
 #                                    rdfs:comment "The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band. Direction Y."@en ;
 #                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                    rdfs:label "Maximum magnetic field direction Y"@en ;
@@ -5941,7 +6088,7 @@ era:maximumLocomotivesCoupled rdf:type owl:DatatypeProperty ;
 #                                                  "1.2.1.1.3.2.3" ;
 #                                    dcterms:created "2023-03-14"^^xsd:date ;
 #                                    dcterms:requires "The maximumMagneticFieldDirectionZ parameter is applicable for axle counters."@en ;
-#                                    dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+#                                    dcterms:relation <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
 #                                    rdfs:comment "The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band. Direction Z."@en ;
 #                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                    rdfs:label "Maximum magnetic field direction Z"@en ;
@@ -5971,7 +6118,7 @@ era:maximumServiceBrake rdf:type owl:DatatypeProperty ;
                         rdfs:range xsd:string ;
                         era:eratvIndex "4.7.7" ;
                         dcterms:created "2021-08-26"^^xsd:date ;
-                        dcterms:modified "2021-08-26"^^xsd:date , "2024-06-28"^^xsd:date ;
+                        dcterms:modified "2021-08-26"^^xsd:date , "2024-06-26"^^xsd:date ;
                         dcterms:isReplacedBy era:MaximumSBDistanceAndDeceleration ,
                                              era:vehicleTypeMaximumSBDistance ,
                                              era:vehicleTypeMaximumSBDistanceAndDeceleration ,
@@ -6053,7 +6200,7 @@ era:meetsRequirementVehicleAuthorisation rdf:type owl:DatatypeProperty ;
                                          rdfs:range xsd:string ;
                                          era:eratvIndex "4.1.8" ;
                                          dcterms:created "2021-08-25"^^xsd:date ;
-                                         dcterms:modified "2021-08-25"^^xsd:date , "2024-06-27"^^xsd:date ;
+                                         dcterms:modified "2021-08-25"^^xsd:date , "2024-06-26"^^xsd:date ;
                                          rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Type meets the requirements necessary for validity of the vehicle authorisation granted by one Member State in other MSs."@en ;
                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                          rdfs:label "Meets requirement vehicle authorisation"@en ;
@@ -6197,7 +6344,7 @@ era:minVehicleInputCapacitance rdf:type owl:DatatypeProperty ;
                                era:usedInRCCCalculations "true"^^xsd:boolean ;
                                dcterms:created "2024-05-30"^^xsd:date ;
                                dcterms:requires "The minVehicleInputCapacitance parameter is applicable for track circuits."@en ;
-                               dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                               dcterms:relation <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
                                rdfs:comment "For the selected DC voltage: [CCCC], as input capacitance [CCCC](Cin)"@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "minimal vehicle input capacitance"@en ;
@@ -6215,7 +6362,7 @@ era:minVehicleInputImpedance rdf:type owl:DatatypeProperty ;
                              era:usedInRCCCalculations "true"^^xsd:boolean ;
                              dcterms:created "2024-05-30"^^xsd:date ;
                              dcterms:requires "The minVehicleInputImpedance parameter is applicable for track circuits."@en ;
-                             dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                             dcterms:relation <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
                              rdfs:comment "For the selected DC voltage: [ZZZZ], as input impedance [ZZZZ](Zin)"@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "minimal vehicle input impedance"@en ;
@@ -6250,7 +6397,7 @@ era:minimumConcaveVerticalRadius rdf:type owl:DatatypeProperty ;
                                  era:eratvIndex "4.8.6" ;
                                  era:unitOfMeasure qudt:M ;
                                  dcterms:created "2020-08-24"^^xsd:date ;
-                                 dcterms:modified "2020-11-03"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                 dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                                  rdfs:comment "Minimum vertical concave curve radius capability."@en ;
                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                  rdfs:label "Minimum vertical concave curve radius capability"@en ;
@@ -6271,7 +6418,7 @@ era:minimumContactWireHeight rdf:type owl:DatatypeProperty ;
                              era:unitOfMeasure qudt:M ;
                              era:usedInRCCCalculations "true"^^xsd:boolean ;
                              dcterms:created "2020-08-25"^^xsd:date ;
-                             dcterms:modified "2021-09-11"^^xsd:date , "2024-06-28"^^xsd:date ;
+                             dcterms:modified "2021-09-11"^^xsd:date , "2024-06-26"^^xsd:date ;
                              rdfs:comment """Indication of the minimum contact wire height expressed in metres.
                              
                              JIRA-990:  for VehicleType, parameter is required per DC supply system."""@en ;
@@ -6287,7 +6434,7 @@ era:minimumConvexVerticalRadius rdf:type owl:DatatypeProperty ;
                                 era:eratvIndex "4.8.5" ;
                                 era:unitOfMeasure qudt:M ;
                                 dcterms:created "2020-08-24"^^xsd:date ;
-                                dcterms:modified "2020-11-03"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                                 rdfs:comment "Minimum vertical convex curve radius capability."@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "Minimum vertical convex curve radius capability"@en ;
@@ -6309,7 +6456,7 @@ era:minimumHorizontalRadius rdf:type owl:DatatypeProperty ;
                             era:unitOfMeasure qudt:M ;
                             era:usedInRCCCalculations "true"^^xsd:boolean ;
                             dcterms:created "2020-08-24"^^xsd:date ;
-                            dcterms:modified "2021-09-10"^^xsd:date , "2024-06-28"^^xsd:date ;
+                            dcterms:modified "2021-09-10"^^xsd:date , "2024-06-26"^^xsd:date ;
                             rdfs:comment """Radius of the smallest horizontal curve of the track
 Minimum horizontal curve radius capability of the vehicle type."""@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -6397,7 +6544,7 @@ era:minimumWheelDiameter rdf:type owl:DatatypeProperty ;
                          era:unitOfMeasure qudt:MilliM ;
                          era:usedInRCCCalculations "true"^^xsd:boolean ;
                          dcterms:created "2020-08-24"^^xsd:date ;
-                         dcterms:modified "2021-09-10"^^xsd:date , "2024-06-28"^^xsd:date ;
+                         dcterms:modified "2021-09-10"^^xsd:date , "2024-06-26"^^xsd:date ;
                          rdfs:comment """Maximum unguided length of fixed obtuse crossings is based on a minimum wheel diameter in service expressed in millimetres.
 Vehicle Type: Minimum in-service wheel diameter."""@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -6472,7 +6619,7 @@ Vehicle Type: Minimum in-service wheel diameter."""@en ;
 #                              dcterms:created "2023-03-14"^^xsd:date ;
 #                              dcterms:modified "2024-01-08"^^xsd:date ;
 #                              dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#                              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                              dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                              rdfs:comment """Set of parameters for adapting the braking curves calculated by the ETCS on-board system to match accuracy, performance and safety margins imposed by the infrastructure manager.
 # It copies the content of Packet 3 or of Packet 203 as defined in the specification referenced in TSI CCS (Annex I, Appendix A, Table A.2 -Subset-026)."""@en ;
 #                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -6498,7 +6645,7 @@ era:numberElementsRakeFreightWagons rdf:type owl:DatatypeProperty ;
                                     rdfs:range xsd:integer ;
                                     era:eratvIndex "4.1.6" ;
                                     dcterms:created "2021-08-25"^^xsd:date ;
-                                    dcterms:modified "2021-08-25"^^xsd:date , "2024-06-27"^^xsd:date ;
+                                    dcterms:modified "2021-08-25"^^xsd:date , "2024-06-26"^^xsd:date ;
                                     rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Number of elements in the rake of freight wagons (only for subcategory 'rake of freight wagons')"@en ;
                                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                     rdfs:label "Number elements rake freight wagons"@en ;
@@ -6512,7 +6659,7 @@ era:numberOfPantographsInContactWithOCL rdf:type owl:DatatypeProperty ;
                                         rdfs:range xsd:integer ;
                                         era:eratvIndex "4.10.7" ;
                                         dcterms:created "2020-08-25"^^xsd:date ;
-                                        dcterms:modified "2020-11-19"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                        dcterms:modified "2020-11-19"^^xsd:date , "2024-06-26"^^xsd:date ;
                                         rdfs:comment """Number of pantographs in contact with the overhead contact line (OCL) (to be indicated for each energy supply system the vehicle is equipped for).
                                         
                                         JIRA-990: parameter is required per energy supply system."""@en ;
@@ -6541,7 +6688,7 @@ era:oclType rdf:type owl:DatatypeProperty ;
             rdfs:range xsd:string ;
             era:eratvIndex "4.10.9" ;
             dcterms:created "2020-08-25"^^xsd:date ;
-            dcterms:modified "2020-10-03"^^xsd:date , "2024-06-28"^^xsd:date ;
+            dcterms:modified "2020-10-03"^^xsd:date , "2024-06-26"^^xsd:date ;
             rdfs:comment "OCL type."@en ;
             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
             rdfs:label "Ocl type"@en ;
@@ -6568,7 +6715,7 @@ era:oclType rdf:type owl:DatatypeProperty ;
 #            era:rinfIndex "1.2.0.0.0.1" ;
 #            dcterms:created "2021-09-13"^^xsd:date ;
 #            dcterms:modified "2021-09-13"^^xsd:date ;
-#            dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#            dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #            rdfs:comment "Name normally related to the town or village or to traffic control purpose."@en ;
 #            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #            rdfs:label "Name of operational point"@en ;
@@ -6619,7 +6766,7 @@ era:parkingBrakeMandatory rdf:type owl:DatatypeProperty ;
                           rdfs:range xsd:boolean ;
                           era:eratvIndex "4.7.3.1" ;
                           dcterms:created "2021-08-26"^^xsd:date ;
-                          dcterms:modified "2021-08-26"^^xsd:date , "2024-06-28"^^xsd:date ;
+                          dcterms:modified "2021-08-26"^^xsd:date , "2024-06-26"^^xsd:date ;
                           rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. All vehicles of this type must be equipped with a parking brake (parking brake mandatory for vehicles of this type)."@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "Parking brake mandatory"@en ;
@@ -6634,7 +6781,7 @@ era:parkingBrakeMaximumGradient rdf:type owl:DatatypeProperty ;
                                 era:unitOfMeasure qudt:MilliM-PER-M ;
                                 era:eratvIndex "4.7.3.3" ;
                                 dcterms:created "2020-08-24"^^xsd:date ;
-                                dcterms:modified "2020-11-03"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                                 rdfs:comment "Maximum gradient on which the unit is kept immobilised by the parking brake alone (if the vehicle is fitted with it)."@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "Parking brake maximum gradient"@en ;
@@ -6837,7 +6984,7 @@ era:permissiblePayload rdf:type owl:DatatypeProperty ;
 #                era:rinfIndex "1.2.1.0.6.2" ;
 #                dcterms:created "2021-09-13"^^xsd:date ;
 #                dcterms:modified "2023-03-14"^^xsd:date ;
-#                dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                rdfs:comment "Unique platform identification or platform number within an Operational Point."@en ;
 #                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                rdfs:label "Identification of platform"@en ;
@@ -6850,7 +6997,7 @@ era:portableBoardingAids rdf:type owl:DatatypeProperty ;
                          rdfs:range xsd:string ;
                          era:eratvIndex "4.12.3.3" ;
                          dcterms:created "2021-08-31"^^xsd:date ;
-                         dcterms:modified "2021-08-31"^^xsd:date , "2024-06-28"^^xsd:date ;
+                         dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
                          rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Description of any portable boarding aids if considered in the design of the vehicle for meeting the PRM TSI requirements."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Portable boarding aids"@en ;
@@ -6864,7 +7011,7 @@ era:preventRegenerativeBrakeUse rdf:type owl:DatatypeProperty ;
                                 rdfs:range xsd:boolean ;
                                 era:eratvIndex "4.7.4.3.2" ;
                                 dcterms:created "2020-08-24"^^xsd:date ;
-                                dcterms:modified "2020-11-03"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                                 rdfs:comment "Possibility of preventing the use of the regenerative brake."@en ;
                                 dcterms:relation era:hasRegenerativeBrake ;
                                 dcterms:requires "Only if fitted with regenerative brake"@en ;
@@ -6903,7 +7050,7 @@ era:prioritySeats rdf:type owl:DatatypeProperty ;
                   rdfs:range xsd:string ;
                   era:eratvIndex "4.12.2.1" ;
                   dcterms:created "2021-08-31"^^xsd:date ;
-                  dcterms:modified "2021-08-31"^^xsd:date , "2024-06-28"^^xsd:date ;
+                  dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
                   rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Number of priority seats."@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "Priority seats"@en ;
@@ -6917,7 +7064,7 @@ era:prmAccessibleToilets rdf:type owl:DatatypeProperty ;
                          rdfs:range xsd:integer ;
                          era:eratvIndex "4.12.2.3" ;
                          dcterms:created "2021-08-31"^^xsd:date ;
-                         dcterms:modified "2021-08-31"^^xsd:date , "2024-06-28"^^xsd:date ;
+                         dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
                          rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Number of PRM accessible toilets."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Prm accessible toilets"@en ;
@@ -6977,7 +7124,7 @@ era:prmAccessibleToilets rdf:type owl:DatatypeProperty ;
 #                                  "1.2.1.1.1.16.11" ;
 #                    dcterms:created "2024-04-18"^^xsd:date ;
 #                    dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#                    dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                    dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                    rdfs:comment """Boolean determining whether the driver is allowed to modify the adhesion factor used by the ETCS on-board to calculate the braking curves. 
 
 # See: TSI CCS (Subset 26, chapter 7. 7.5.1.122 Q_NVDRIVER_ADHES)"""@en ;
@@ -6999,7 +7146,7 @@ era:prmAccessibleToilets rdf:type owl:DatatypeProperty ;
 #                  dcterms:created "2023-03-14"^^xsd:date ;
 #                  dcterms:modified "2024-04-18"^^xsd:date ;
 #                  dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#                  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                  dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                  rdfs:comment """Permission to use service brake in target speed monitoring.
 
 # See: TSI CCS (Subset-026, chapter 7. 7.5.1.124 Q_NVSBTSMPERM)"""@en ;
@@ -7015,7 +7162,7 @@ era:quasiStaticGuidingForce rdf:type owl:DatatypeProperty ;
                             rdfs:range xsd:double ;
                             era:eratvIndex "4.5.4" ;
                             dcterms:created "2021-08-26"^^xsd:date ;
-                            dcterms:modified "2021-08-26"^^xsd:date , "2024-06-28"^^xsd:date ;
+                            dcterms:modified "2021-08-26"^^xsd:date , "2024-06-26"^^xsd:date ;
                             rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Quasi-static guiding force (if exceeds the limit defined in TSI or not defined in the TSI), given in kN."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Quasi static guiding force"@en ;
@@ -7034,7 +7181,7 @@ era:quasiStaticGuidingForce rdf:type owl:DatatypeProperty ;
 #                    dcterms:created "2023-03-14"^^xsd:date ;
 #                    dcterms:modified "2024-04-18"^^xsd:date ;
 #                    dcterms:requires "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en ;
-#                    dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                    dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                    rdfs:comment """Unique identification of the GSM-R network the calling mobile station has to register with, as defined in the specification referenced in TSI CCS.
 
 # Format: [NNNNNN] with N a decimal number (0÷9)(sh:minCount 1)."""@en ;
@@ -7095,7 +7242,7 @@ era:radioSwitchOverSpecialConditions rdf:type owl:DatatypeProperty ;
 #                                       era:rinfIndex "1.1.1.2.3.3" ;
 #                                       dcterms:created "2020-08-25"^^xsd:date ;
 #                                       dcterms:modified "2023-04-05"^^xsd:date ;
-#                                       dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                                       dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                                       rdfs:comment """Indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed.
 # Deprecated because of replacement by a class and three integer properties The reason is that the property is composed of three values: [N] is number of pantographs; [NNN] is minimum distance between pantographs, in metres; [NNN] is the speed considered in km/h."""@en ;
 #                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -7146,7 +7293,7 @@ era:radioSwitchOverSpecialConditions rdf:type owl:DatatypeProperty ;
 #                         "1.2.1.1.1.17" ;
 #           dcterms:created "2024-04-18"^^xsd:date ;
 #           dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#           dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#           dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #           rdfs:comment """Unique RBC identification (NID_C+NID_RBC) as defined in the specification referenced in TSI CCS.
           
 # Format: [NNNN NNNN] with N a decimal number (0÷9)"""@en ;
@@ -7166,7 +7313,7 @@ era:radioSwitchOverSpecialConditions rdf:type owl:DatatypeProperty ;
 #                            "1.2.1.1.1.17" ;
 #              dcterms:created "2024-04-18"^^xsd:date ;
 #              dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#              dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #              rdfs:comment """Unique RBC calling number (NID_RADIO) as defined in the specification referenced in TSI CCS.
              
 # Format: [NNNN NNNN NNNN NNNN] with N a decimal number (0÷9)"""@en ;
@@ -7200,6 +7347,45 @@ era:referencePassByNoiseLevel rdf:type owl:DatatypeProperty ;
                               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                               rdfs:label "Reference pass-by noise level"@en ;
                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://data.europa.eu/949/registrationStatusDate
+era:registrationStatusDate rdf:type owl:DatatypeProperty ;
+                           rdfs:domain era:RegistrationStatus ;
+                           rdfs:range xsd:date ;
+                           era:evrIndex "10.2" ;
+                           dcterms:created "2023-06-26"^^xsd:date ;
+                           dcterms:relation <http://data.europa.eu/eli/dec_impl/2018/1614> ;
+                           rdfs:comment "Date from which of the status of the registration is applicable."@en ;
+                           rdfs:isDefinedBy era: ;
+                           rdfs:label "Registration status date"@en ;
+                           vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/registrationStatusReason
+era:registrationStatusReason rdf:type owl:DatatypeProperty ;
+                             rdfs:domain era:RegistrationStatus ;
+                             rdfs:range xsd:string ;
+                             era:evrIndex "10.3.1" ;
+                             dcterms:created "2023-06-26"^^xsd:date ;
+                             dcterms:relation <http://data.europa.eu/eli/dec_impl/2018/1614> ;
+                             rdfs:comment "Registration status in accordance with the list of reasons defined in point 8."@en ;
+                             rdfs:isDefinedBy era: ;
+                             rdfs:label "Registration status reason"@en ;
+                             vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/registrationStatusReasonDescription
+era:registrationStatusReasonDescription rdf:type owl:DatatypeProperty ;
+                                        rdfs:domain era:RegistrationStatus ;
+                                        rdfs:range xsd:string ;
+                                        era:evrIndex "10.3.2" ;
+                                        dcterms:created "2023-06-26"^^xsd:date ;
+                                        dcterms:relation <http://data.europa.eu/eli/dec_impl/2018/1614> ;
+                                        rdfs:comment "When applicable, description of the status reason specified by the requestor of the change in accordance with point 8."@en ;
+                                        rdfs:isDefinedBy era: ;
+                                        rdfs:label "Description of the status reason"@en ;
+                                        vs:term_status "stable"^^xsd:date .
 
 
 ###  http://data.europa.eu/949/relativeDistanceDangerPoint
@@ -7241,7 +7427,7 @@ era:referencePassByNoiseLevel rdf:type owl:DatatypeProperty ;
 #                             era:rinfIndex "1.1.1.3.7.18" ;
 #                             dcterms:created "2021-08-08"^^xsd:date ;
 #                             dcterms:modified "2023-03-14"^^xsd:date ;
-#                             dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                             dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                             rdfs:comment "Indication whether possibility to activate/deactivate sanding devices by driver, according to instructions from the Infrastructure Manager, is required or not. Deprecated according to the amendment to the Regulation (EU) 2019/777."@en ;
 #                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                             rdfs:label "Sanding override by driver required"@en ;
@@ -7267,7 +7453,7 @@ era:shortestDistanceBetweenPantographsInContactWithOCL rdf:type owl:DatatypeProp
                                                        rdfs:range xsd:string ;
                                                        era:eratvIndex "4.10.8" ;
                                                        dcterms:created "2020-08-25"^^xsd:date ;
-                                                       dcterms:modified "2021-09-15"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                                       dcterms:modified "2021-09-15"^^xsd:date , "2024-06-26"^^xsd:date ;
                                                        rdfs:comment """Shortest distance between two pantographs in contact with the OCL (to be indicated for each energy supply system the vehicle is equipped for; to be indicated for single and, if applicable, multiple operation) (only if number of raised pantographs is more than 1).
                                                        
                                                        JIRA-990:  Parameter is required per energy supply system.
@@ -7288,7 +7474,7 @@ era:shortestDistanceBetweenPantographsInContactWithOCL rdf:type owl:DatatypeProp
 #              era:rinfIndex "1.2.2.0.0.2" ;
 #              dcterms:created "2021-09-13"^^xsd:date ;
 #              dcterms:modified "2023-03-14"^^xsd:date ;
-#              dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#              dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #              rdfs:comment "Unique siding identification or number within an Operational Point."@en ;
 #              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #              rdfs:label "Identification of siding"@en ;
@@ -7319,7 +7505,7 @@ era:sleepingPlaces rdf:type owl:DatatypeProperty ;
                    rdfs:range xsd:string ;
                    era:eratvIndex "4.12.1.3" ;
                    dcterms:created "2021-08-31"^^xsd:date ;
-                   dcterms:modified "2021-09-15"^^xsd:date , "2024-06-28"^^xsd:date ;
+                   dcterms:modified "2021-09-15"^^xsd:date , "2024-06-26"^^xsd:date ;
                    rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Number of sleeping places."@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    rdfs:label "Sleeping places"@en ;
@@ -7373,7 +7559,7 @@ era:staticAxleLoadExceptionalPayload rdf:type owl:DatatypeProperty ;
                                      era:eratvIndex "4.5.3.3" ;
                                      era:unitOfMeasure qudt:KiloGM ;
                                      dcterms:created "2020-08-24"^^xsd:date ;
-                                     dcterms:modified "2020-11-03"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                     dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                                      rdfs:comment "Static axle load under exceptional payload."@en ;
                                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                      rdfs:label "Static axle load under exceptional payload"@en ;
@@ -7387,7 +7573,7 @@ era:staticAxleLoadNormalPayload rdf:type owl:DatatypeProperty ;
                                 era:eratvIndex "4.5.3.2" ;
                                 era:unitOfMeasure qudt:KiloGM ;
                                 dcterms:created "2020-08-24"^^xsd:date ;
-                                dcterms:modified "2020-11-03"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                                 rdfs:comment "Static axle load under normal payload."@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "Static axle load under normal payload"@en ;
@@ -7427,7 +7613,7 @@ era:structuralCategory rdf:type owl:DatatypeProperty ;
                        rdfs:range xsd:string ;
                        era:eratvIndex "4.1.10" ;
                        dcterms:created "2021-08-25"^^xsd:date ;
-                       dcterms:modified "2021-08-25"^^xsd:date , "2024-06-27"^^xsd:date ;
+                       dcterms:modified "2021-08-25"^^xsd:date , "2024-06-26"^^xsd:date ;
                        rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Structural category."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Structural category"@en ;
@@ -7617,7 +7803,7 @@ era:structuralCategory rdf:type owl:DatatypeProperty ;
 #                dcterms:modified "2023-03-14"^^xsd:date ,
 #                                 "2024-04-18"^^xsd:date ;
 #                dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#                dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                rdfs:comment """Maximum time without a safe message from Radio Block Center before train reacts in seconds. 
 
 # Precision: [NNN], with N a decimal number (0÷9), NNN = 255 means ∞ seconds, so values cannot be higher.
@@ -7643,7 +7829,7 @@ era:structuralCategory rdf:type owl:DatatypeProperty ;
 #              dcterms:modified "2023-03-14"^^xsd:date ,
 #                               "2024-04-18"^^xsd:date ;
 #              dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#              dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #              rdfs:comment """Maximum time for overriding the train trip in seconds.
 
 # Precision: [NNN], with N a decimal number (0÷9)
@@ -7694,7 +7880,7 @@ era:thermalCapacityDistance rdf:type owl:DatatypeProperty ;
                             era:unitOfMeasure qudt:KiloM ;
                             era:eratvIndex "4.7.2.1.4" ;
                             dcterms:created "2020-08-24"^^xsd:date ;
-                            dcterms:modified "2020-11-03"^^xsd:date , "2024-06-28"^^xsd:date ;
+                            dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                             rdfs:comment "[Thermal Capacity, brake performance on steep gradients - normal payload] Distance (If no reference case is indicated)"@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Thermal capacity distance"@en ;
@@ -7708,7 +7894,7 @@ era:thermalCapacityGradient rdf:type owl:DatatypeProperty ;
                             era:unitOfMeasure qudt:MilliM-PER-M ;
                             era:eratvIndex "4.7.2.1.3" ;
                             dcterms:created "2020-08-24"^^xsd:date ;
-                            dcterms:modified "2020-11-03"^^xsd:date , "2024-06-28"^^xsd:date ;
+                            dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                             rdfs:comment "[Thermal Capacity, brake performance on steep gradients - normal payload] Gradient (If no reference case is indicated)"@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Thermal capacity gradient"@en ;
@@ -7722,7 +7908,7 @@ era:thermalCapacitySpeed rdf:type owl:DatatypeProperty ;
                          era:unitOfMeasure qudt:KiloM-PER-HR ;
                          era:eratvIndex "4.7.2.1.2" ;
                          dcterms:created "2020-08-24"^^xsd:date ;
-                         dcterms:modified "2020-11-03"^^xsd:date , "2024-06-28"^^xsd:date ;
+                         dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                          rdfs:comment "[Thermal Capacity, brake performance on steep gradients - normal payload] Speed (if no reference case is indicated)."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Thermal capacity speed"@en ;
@@ -7736,7 +7922,7 @@ era:thermalCapacityTime rdf:type owl:DatatypeProperty ;
                         era:unitOfMeasure qudt:MIN ;
                         era:eratvIndex "4.7.2.1.5" ;
                         dcterms:created "2020-08-24"^^xsd:date ;
-                        dcterms:modified "2020-11-03"^^xsd:date , "2024-06-28"^^xsd:date ;
+                        dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                         rdfs:comment "[Thermal Capacity, brake performance on steep gradients - normal payload] Time (if distance is not indicated) (if no reference case is indicated)."@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "Thermal capacity time"@en ;
@@ -7764,7 +7950,7 @@ era:totalVehicleMass rdf:type owl:DatatypeProperty ;
                      era:eratvIndex "4.5.5" ;
                      era:unitOfMeasure qudt:KiloGM ;
                      dcterms:created "2021-08-26"^^xsd:date ;
-                     dcterms:modified "2021-08-26"^^xsd:date , "2024-06-28"^^xsd:date ;
+                     dcterms:modified "2021-08-26"^^xsd:date , "2024-06-26"^^xsd:date ;
                      rdfs:comment "Total vehicle mass (for each vehicle of the unit), given in kg."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "Total vehicle mass"@en ;
@@ -7783,7 +7969,7 @@ era:totalVehicleMass rdf:type owl:DatatypeProperty ;
 #                           "1.2.1.0.0.2" ;
 #             dcterms:created "2021-09-09"^^xsd:date ;
 #             dcterms:modified "2024-01-08"^^xsd:date ;
-#             dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#             dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #             rdfs:comment "Unique track identification or unique track number within an OP or a section of line."@en ;
 #             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #             rdfs:label "Identification of track"@en ;
@@ -7817,7 +8003,7 @@ era:trainControlSwitchOverSpecialConditions rdf:type owl:DatatypeProperty ;
 #                                                        "2024-04-18"^^xsd:date ;
 #                                       dcterms:relation era:trainDetectionSystemSpecificCheckDocument ;
 #                                       dcterms:requires "String containing the name of the TD system for which checks are mentioned in 1.1.1.3.7.1.3." ;
-#                                       dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+#                                       dcterms:relation <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
 #                                       rdfs:comment "Reference to the technical specification of train detection system."@en ;
 #                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                       rdfs:label "Type of track circuits or axle counters to which specific checks are needed. "@en ;
@@ -7862,7 +8048,7 @@ era:transportableOnFerry rdf:type owl:DatatypeProperty ;
                          rdfs:range xsd:boolean ;
                          era:eratvIndex "4.8.8" ;
                          dcterms:created "2021-08-31"^^xsd:date ;
-                         dcterms:modified "2021-08-31"^^xsd:date , "2024-06-28"^^xsd:date ;
+                         dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
                          rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Indicates the suitability for transport on ferries."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Transportable on ferry"@en ;
@@ -7890,7 +8076,7 @@ era:transportableOnFerry rdf:type owl:DatatypeProperty ;
 #                       era:rinfIndex "1.1.1.3.9.1" ,
 #                                     "1.2.1.1.8.1" ;
 #                       dcterms:created "2024-04-18"^^xsd:date ;
-#                       dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+#                       dcterms:relation <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
 #                       rdfs:comment "Indication whether rules exist and are compliant with the TSI."@en ;
 #                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                       rdfs:label "Existence and TSI compliance of rules for magnetic fields emitted by a vehicle"@en ;
@@ -7939,7 +8125,7 @@ era:transportableOnFerry rdf:type owl:DatatypeProperty ;
 #                                        "1.2.2.0.5.2" ;
 #                          dcterms:created "2021-08-03"^^xsd:date ;
 #                          dcterms:modified "2021-09-13"^^xsd:date ;
-#                          dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#                          dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #                          rdfs:comment "Unique tunnel identification or unique number within Member State."@en ;
 #                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                          rdfs:label "Tunnel identification"@en ;
@@ -7985,10 +8171,11 @@ era:typeVersionNumber rdf:type owl:DatatypeProperty ;
                       rdfs:domain era:VehicleType ;
                       rdfs:range xsd:string ;
                       dcterms:created "2020-11-22"^^xsd:date ;
-                      dcterms:modified "2020-11-22"^^xsd:date ;
-                      rdfs:comment "Serial number that identifies a vehicle type."@en ;
+                      dcterms:modified "2020-11-22"^^xsd:date , "2024-06-26"^^xsd:date ;
+                      era:eratvIndex "0.1" ;
+                      rdfs:comment "Type number that identifies a vehicle type."@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                      rdfs:label "Type version number"@en ;
+                      rdfs:label "Type  number"@en ;
                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -8018,7 +8205,7 @@ era:typeVersionNumber rdf:type owl:DatatypeProperty ;
 #           era:rinfIndex "1.2.0.0.0.2" ;
 #           dcterms:created "2020-07-29"^^xsd:date ;
 #           dcterms:modified "2024-01-08"^^xsd:date ;
-#           dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+#           dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
 #           rdfs:comment "Code composed of country code and alphanumeric operational point code."@en ;
 #           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #           rdfs:label "Unique OP ID"@en ;
@@ -8041,7 +8228,7 @@ era:usesGroup555 rdf:type owl:DatatypeProperty ,
                  era:usedInRCCCalculations "true"^^xsd:boolean ;
                  dcterms:created "2020-08-31"^^xsd:date ;
                  dcterms:modified "2021-09-12"^^xsd:date ,
-                                  "2024-04-18"^^xsd:date , "2024-06-28"^^xsd:date ;
+                                  "2024-04-18"^^xsd:date , "2024-06-26"^^xsd:date ;
                  dcterms:relation era:etcsLevelType ;
                  dcterms:requires "CCS Trackside: GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en ;
                  rdfs:comment """CCS trackside: Indication if group 555 is used.
@@ -8065,7 +8252,7 @@ VehicleType: GSM-R Voice SIM Card support of Group ID 555."""@en ;
 #                   dcterms:created "2022-11-07"^^xsd:date ;
 #                   dcterms:modified "2023-03-14"^^xsd:date ;
 #                   dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#                   dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                   dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                   rdfs:comment """Speed limit allowing the driver to select the “override” function in km/h.
 
 # Format: [NNF], with N a decimal number (0÷9), F=(0|5), max. `600`.
@@ -8090,7 +8277,7 @@ VehicleType: GSM-R Voice SIM Card support of Group ID 555."""@en ;
 #                 dcterms:created "2022-11-07"^^xsd:date ;
 #                 dcterms:modified "2023-03-14"^^xsd:date ;
 #                 dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
-#                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+#                 dcterms:relation <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
 #                 rdfs:comment """Override speed limit to be supervised when the “override” function is active in km/h.
 
 # Format: [NNF], with N a decimal number (0÷9), F=(0|5), max. `600`.
@@ -8135,7 +8322,7 @@ era:vehicleContactForce rdf:type owl:DatatypeProperty ;
                         era:eratvIndex "4.10.15" ;
                         era:unitOfMeasure qudt:N ;
                         dcterms:created "2020-08-25"^^xsd:date ;
-                        dcterms:modified "2020-11-03"^^xsd:date , "2024-06-28"^^xsd:date ;
+                        dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                         rdfs:comment "Mean contact force (Newton)."@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "Vehicle contact force"@en ;
@@ -8147,7 +8334,7 @@ era:vehicleKinematicGaugeOther rdf:type owl:DatatypeProperty ;
                                rdfs:domain era:VehicleType ;
                                rdfs:range xsd:string ;
                                era:eratvIndex "4.2.2" ;
-                               dcterms:created "2022-05-30"^^xsd:date , "2024-06-27"^^xsd:date ;
+                               dcterms:created "2022-05-30"^^xsd:date , "2024-06-26"^^xsd:date ;
                                rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Vehicle kinematic gauge  that corresponds to other gauges assessed using the kinematic method"@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "Vehicle kinematic gauge other"@en ;
@@ -8174,9 +8361,10 @@ era:vehicleNumber rdf:type owl:DatatypeProperty ;
                   rdfs:domain era:Vehicle ;
                   rdfs:range xsd:string ;
                   dcterms:created "2020-11-24"^^xsd:date ;
-                  dcterms:modified "2020-11-24"^^xsd:date , "2024-06-28"^^xsd:date ;
+                  dcterms:modified "2020-11-24"^^xsd:date , "2024-06-26"^^xsd:date ;
                   era:evrIndex "1.1" ;
                   rdfs:comment "Identification number of a vehicle or wagon."@en ;
+                  dcterms:description "European Vehicle Number. Numeric identification code as defined in Appendix 6 (part 0 of the EVR Decision)."@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "Vehicle number"@en ;
                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -8185,7 +8373,7 @@ era:vehicleNumber rdf:type owl:DatatypeProperty ;
 era:previousVehicleNumber rdf:type owl:DatatypeProperty ;
                   rdfs:domain era:Vehicle ;
                   rdfs:range xsd:string ;
-                  dcterms:created "2024-06-28"^^xsd:date ;
+                  dcterms:created "2024-06-26"^^xsd:date ;
                   era:evrIndex "1.2" ;
                   rdfs:comment "Previous identification number of a vehicle or wagon."@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -8211,7 +8399,8 @@ era:vehicleSeries rdf:type owl:DatatypeProperty ;
                   rdfs:domain era:Vehicle ;
                   rdfs:range xsd:string ;
                   dcterms:created "2020-11-22"^^xsd:date ;
-                  dcterms:modified "2020-11-22"^^xsd:date ;
+                  dcterms:modified "2020-11-22"^^xsd:date , "2024-06-26"^^xsd:date ;
+                  era:evrIndex "5.4" ;
                   rdfs:comment "Manufacturing series of a vehicle."@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "Vehicle series"@en ;
@@ -8225,7 +8414,7 @@ era:vehicleTypeMaximumCantDeficiency rdf:type owl:DatatypeProperty ;
                                      era:unitOfMeasure qudt:MilliM ;
                                      era:eratvIndex "4.6.4" ;
                                      dcterms:created "2023-04-05"^^xsd:date ;
-                                     dcterms:modified "2024-06-27"^^xsd:date ;
+                                     dcterms:modified "2024-06-26"^^xsd:date ;
                                      rdfs:comment "Part of the combination of maximum speed and maximum cant deficiency for which the vehicle was assessed. Corresponds to the maximum cant deficiency."@en ;
                                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                      rdfs:label "Vehicle type maximum cant deficiency"@en ;
@@ -8239,7 +8428,7 @@ era:vehicleTypeMaximumSpeed rdf:type owl:DatatypeProperty ;
                             era:unitOfMeasure qudt:KiloM-PER-HR ;
                             era:eratvIndex "4.6.4" ;
                             dcterms:created "2023-04-05"^^xsd:date ;
-                            dcterms:modified "2024-06-27"^^xsd:date ;
+                            dcterms:modified "2024-06-26"^^xsd:date ;
                             rdfs:comment "Part of the combination of maximum speed and maximum cant deficiency for which the vehicle was assessed. Corresponds to the maximum speed."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Vehicle type maximum speed"@en ;
@@ -8251,7 +8440,7 @@ era:vehicleTypeMaximumSBDistance rdf:type owl:DatatypeProperty ;
                             rdfs:range xsd:integer ;
                             era:eratvIndex "4.7.7" ;
                             era:unitOfMeasure qudt:M ;
-                            dcterms:created "2024-06-27"^^xsd:date ;
+                            dcterms:created "2024-06-26"^^xsd:date ;
                             rdfs:comment "At maximum service brake: Stopping distance for the load condition 'design mass under normal payload' at the design maximum speed."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Stopping distance at maximum service brake"@en ;
@@ -8263,7 +8452,7 @@ era:vehicleTypeMaximumSBDeceleration rdf:type owl:DatatypeProperty ;
                             rdfs:range xsd:float ;
                             era:eratvIndex "4.7.7" ;
                             era:unitOfMeasure qudt:M-PER-SEC2 ;
-                            dcterms:created "2024-06-27"^^xsd:date ;
+                            dcterms:created "2024-06-26"^^xsd:date ;
                             rdfs:comment "At maximum service brake: Maximum deceleration for the load condition 'design mass under normal payload' at the design maximum speed."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Maximum deceleration at maximum service brake"@en ;
@@ -8402,7 +8591,7 @@ era:wheelSetGaugeTransformationMethod rdf:type owl:DatatypeProperty ;
                                       rdfs:range xsd:string ;
                                       era:eratvIndex "4.1.3.b" ;
                                       dcterms:created "2021-08-25"^^xsd:date ;
-                                      dcterms:modified "2021-08-25"^^xsd:date , "2024-06-27"^^xsd:date ;
+                                      dcterms:modified "2021-08-25"^^xsd:date , "2024-06-26"^^xsd:date ;
                                       rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Wheel gauge transformation method. Defined if more than one wheel gauges have been selected."@en ;
                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                       rdfs:label "Wheel set gauge transformation method"@en ;
@@ -8416,7 +8605,7 @@ era:wheelchairSleepingPlaces rdf:type owl:DatatypeProperty ;
                              rdfs:range xsd:string ;
                              era:eratvIndex "4.12.2.4" ;
                              dcterms:created "2021-08-31"^^xsd:date ;
-                             dcterms:modified "2021-08-31"^^xsd:date , "2024-06-28"^^xsd:date ;
+                             dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
                              rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Number of wheelchair accessible sleeping places."@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "Wheelchair sleeping spaces"@en ;
@@ -8430,7 +8619,7 @@ era:wheelchairSpaces rdf:type owl:DatatypeProperty ;
                      rdfs:range xsd:integer ;
                      era:eratvIndex "4.12.2.2" ;
                      dcterms:created "2021-08-31"^^xsd:date ;
-                     dcterms:modified "2023-01-23"^^xsd:date , "2024-06-28"^^xsd:date ;
+                     dcterms:modified "2023-01-23"^^xsd:date , "2024-06-26"^^xsd:date ;
                      rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Number of wheelchair spaces."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "Wheelchair spaces"@en ;
@@ -8545,6 +8734,13 @@ foaf:nick rdf:type owl:DatatypeProperty ;
 #                  rdfs:label "Area Location"@en .
 
 
+###  http://data.europa.eu/949/vpa/AuthorisationTypeVersionVariant
+era:AuthorisationTypeVersionVariant rdf:type owl:Class ;
+                          rdfs:subClassOf vp:Scope ;
+                          rdfs:comment "The Vehicle Type (or Version/Variant of the Type) which is the scope of a V(T) authorisation case. Only ONE such vehicle type is allowed per VA Case."@en ;
+                          rdfs:label "Authorisation vehicle type(s), version(s) and variant(s)"@en .
+
+
 # ###  http://data.europa.eu/949/BaseLocation
 # era:BaseLocation rdf:type owl:Class ;
 #                  rdfs:subClassOf era:Feature ;
@@ -8560,16 +8756,16 @@ foaf:nick rdf:type owl:DatatypeProperty ;
 
 
 # ###  http://data.europa.eu/949/Body
-# era:Body rdf:type owl:Class ;
-#          rdfs:subClassOf [ rdf:type owl:Class ;
-#                            owl:unionOf ( <http://www.w3.org/ns/org#Organization>
-#                                          foaf:Person
-#                                        )
-#                          ] ;
-#          owl:disjointWith era:OrganisationRole ;
-#          dcterms:created "2024-06-03"^^xsd:date ;
-#          rdfs:comment "Is an organisation or a physical person"@en ;
-#          rdfs:label "Body"@en .
+era:Body rdf:type owl:Class ;
+         rdfs:subClassOf [ rdf:type owl:Class ;
+                           owl:unionOf ( <http://www.w3.org/ns/org#Organization>
+                                         foaf:Person
+                                       )
+                         ] ;
+         owl:disjointWith era:OrganisationRole ;
+         dcterms:created "2024-06-03"^^xsd:date ;
+         rdfs:comment "Is an organisation or a physical person"@en ;
+         rdfs:label "Body"@en .
 
 
 # ###  http://data.europa.eu/949/Bridge
@@ -8806,7 +9002,7 @@ era:Manufacturer rdf:type owl:Class ;
 #                                        "1.2.1.1.3.2.3" ;
 #                          dcterms:created "2023-03-14"^^xsd:date ;
 #                          dcterms:requires "The MaximumMagneticField class is applicable for axle counters."@en ;
-#                          dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+#                          dcterms:relation <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
 #                          rdfs:comment """The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band.
 # It should be provided in 3 directions."""@en ;
 #                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -8824,10 +9020,10 @@ era:MaximumSpeedAndCantDeficiency rdf:type owl:Class ;
 
 ###  http://data.europa.eu/949/MaximumSBDistanceAndDeceleration
 era:MaximumSBDistanceAndDeceleration rdf:type owl:Class ;
-                                  dcterms:created "2023-06-27"^^xsd:date ;
+                                  dcterms:created "2023-06-26"^^xsd:date ;
                                   rdfs:comment "Combination of Stopping distance and Maximum deceleration, for the load condition 'design mass under normal payload' at the design maximum speed."@en ;
                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                  rdfs:label "At maximum service brake: Stopping distance and Maximum deceleration"@en ;
+                                  rdfs:label "Stopping distance and maximum deceleration at maximum service brake"@en ;
                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -8849,7 +9045,7 @@ era:MinVehicleImpedance rdf:type owl:Class ;
                                       "1.2.1.1.3.2.2" ;
                         dcterms:created "2024-05-30"^^xsd:date ;
                         dcterms:requires "The MinVehicleImpedance class is applicable for track circuits. It is deprecated for Vehicles."@en ;
-                        dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                        dcterms:relation <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
                         rdfs:comment """Impedance as defined in the TSI CCS (Annex I, Appendix A, Table A.2 -Index 77).
 
 Minimum vehicle impedance (between wheels and pantograph) (only for vehicles equipped for 1500V or 3000V DC).
@@ -8987,6 +9183,14 @@ era:OrganisationRole rdf:type owl:Class ;
 # For example a kilometric post."""@en ;
 #              rdfs:label "Referent"@en .
 
+###  http://data.europa.eu/949/RegistrationStatus
+era:RegistrationStatus rdf:type owl:Class ;
+                       dcterms:created "2023-06-26"^^xsd:date ;
+                       rdfs:comment "This concept allows the traceability of the history of the vehicle registration with its different status and dates. The Registration status encompasses the registration status coding, the registration status date, and the registration status reason."@en ;
+                       rdfs:isDefinedBy era: ;
+                       rdfs:label "Registration status"@en ;
+                       vs:term_status "stable" .
+
 
 # ###  http://data.europa.eu/949/SectionOfLine
 # era:SectionOfLine rdf:type owl:Class ;
@@ -9028,12 +9232,12 @@ era:OrganisationRole rdf:type owl:Class ;
 #            era:rinfIndex "1.2.2" ;
 #            dcterms:created "2021-08-10"^^xsd:date ;
 #            dcterms:modified "2022-10-27"^^xsd:date ;
-#            dcterms:source "Official Journal of the European Union L 139 I/85" ;
+#            dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/2020-06-16> ;
 #            rdfs:comment "Sidings are all those tracks where running trains in service movements ends and which are not used for operational routing of a train."@en ;
+#            <http://www.w3.org/2004/02/skos/core#definition> "Siding: Any track(s) within an operational point which is not used for operational routing of a train."@en .
 #            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #            rdfs:label "Siding"@en ;
 #            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-#            <http://www.w3.org/2004/02/skos/core#definition> "Siding Any track(s) within an operational point which is not used for operational routing of a train."@en .
 
 
 # ###  http://data.europa.eu/949/Signal
@@ -9213,12 +9417,94 @@ era:OrganisationRole rdf:type owl:Class ;
 ###  http://data.europa.eu/949/Vehicle
 era:Vehicle rdf:type owl:Class ;
             dcterms:created "2020-11-22"^^xsd:date ;
-            dcterms:modified "2020-11-22"^^xsd:date ;
+            dcterms:modified "2020-11-22"^^xsd:date , "2024-06-03"^^xsd:date ;
             rdfs:comment "A specific vehicle or wagon able and allowed to operate over railway infrastructure."@en ;
             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+            dcterms:description """A railway vehicle suitable for circulation on wheels on railway lines, with or without traction; a vehicle is composed of one or more structural and functional subsystems"""@en ;
+            dcterms:relation <http://data.europa.eu/eli/dir/2016/798/2020-10-23>;
             rdfs:label "Vehicle"@en ;
             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
+
+###  http://data.europa.eu/949/vpa/VAApplication
+era:PAVAApplication rdf:type owl:Class ;
+            rdfs:subClassOf vp:Request ;
+            rdfs:comment "A Request for vehicle type authorisation and/or vehicle authorisation for placing on the market as defined in Article 1 of https://eur-lex.europa.eu/eli/reg_impl/2018/545/oj."@en ;
+            rdfs:seeAlso <https://eur-lex.europa.eu/eli/reg_impl/2018/545/oj> ;
+            rdfs:label "PAVA Application"@en .
+
+
+###  http://data.europa.eu/949/vpa/VRApplication
+era:EVRApplication rdf:type owl:Class ;
+               rdfs:subClassOf vp:Request ;
+               rdfs:comment """An application for registration of one or more vehicles through the European Vehicle Register to a Member State of its choice within the area of use of the vehicle, submitted by a Vehicle Keeper"""@en ;
+               rdfs:label "Vehicle Registration Application"@en .
+
+
+###  http://data.europa.eu/949/vpa/VehicleAuthorisation
+era:Authorisation rdf:type owl:Class ;
+                      rdfs:subClassOf vp:Permission ;
+                      rdfs:comment "The Vehicle type authorisation and/or vehicle authorisation for placing on the market as defined in Article 2 (15) and (16) of https://eur-lex.europa.eu/eli/reg_impl/2018/545/oj. The granting authority for this Authorisation (PermittingBody) is the Authorising Entity as defined in the Art. 2(1) of this legislation."@en ;
+                      rdfs:seeAlso <https://eur-lex.europa.eu/eli/reg_impl/2018/545/oj> ;
+                      rdfs:label "Vehicle(type) Authorisation"@en .
+
+###  http://data.europa.eu/949/VehicleAuthorisation
+era:VehicleAuthorisation rdf:type owl:Class ;
+            rdfs:subClassOf era:Authorisation ;
+            dcterms:created "2024-06-26"^^xsd:date ;
+            rdfs:comment "A decision leading to a vehicle being allowed to be placed on the market and used in the area of use."@en ;
+            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+            dcterms:description """The decision issued by the authorising entity based on a reasonable assurance that the applicant and the entities involved in the design, manufacture, verification and validation of the vehicle 
+            have fulfilled their respective obligations and responsibilities in order to ensure conformity with essential requirements of the applicable legislation or to ensure conformity with the authorised type enabling 
+            that the vehicle may be placed on the market and may be used safely in the area of use according to the conditions for use and other restrictions, when applicable, 
+            specified in the vehicle authorisation and in the vehicle type authorisation.
+            
+            Source: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32018R0545#d1e322-66-1"""@en ;
+            dcterms:source <http://data.europa.eu/eli/reg_impl/2018/545/2020-06-16> ;
+            rdfs:label "Vehicle Authorisation"@en ;
+            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+###  http://data.europa.eu/949/VehicleTypeAuthorisation
+era:VehicleTypeAuthorisation rdf:type owl:Class ;
+            rdfs:subClassOf era:Authorisation ;
+            dcterms:created "2024-06-26"^^xsd:date ;
+            rdfs:comment "A decision leading to vehicles manufactured according to the type's design being allowed to be placed on the market and used in the area of use of the type."@en ;
+            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+            dcterms:description """The decision issued by the authorising entity based on reasonable assurance that the applicant and the entities involved in the design, manufacture, verification and validation of the vehicle type 
+            have fulfilled their obligations and responsibilities in order to ensure conformity with the essential requirements of the applicable legislation enabling 
+            that a vehicle manufactured according to this design may be placed on the market and may be used safely in the area of use of the vehicle type according to the conditions for use of the vehicle and other restrictions, when applicable,
+            specified in the vehicle type authorisation and to be applied to all vehicle authorised in conformity to this type.
+            
+            Source: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32018R0545#d1e322-66-1"""@en ;
+            dcterms:source <http://data.europa.eu/eli/reg_impl/2018/545/2020-06-16>;
+            rdfs:label "Vehicle Authorisation"@en ;
+            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+
+###  http://data.europa.eu/949/vpa/VehicleRegistration
+era:VehicleRegistration rdf:type owl:Class ;
+        rdfs:subClassOf vp:Permission ;
+        rdfs:comment "The vehicle registration permitting further operation and maintenance of a railway vehicle. The granting authority for this Registration (PermittingBody) is the Registration Entity, as foreseen in the article 5 of https://eur-lex.europa.eu/eli/dec_impl/2018/1614/oj."@en ; 
+        # rdfs:seeAlso <https://eur-lex.europa.eu/eli/dec_impl/2018/1614/oj> ;
+        dcterms:relation <http://data.europa.eu/eli/dec_impl/2018/1614/2018-10-26> ;
+        rdfs:label "Vehicle registration"@en .
+
+
+###  http://data.europa.eu/949/vpa/RegistrationCase
+era:RegistrationCase rdf:type owl:Class ;
+        rdfs:subClassOf vp:Case ;
+        rdfs:comment "Typically a collection of the following Scopes, this Registration Case regroups: (1) one or a set of vehicles, preferably grouped as such also during authorisation, (2) the ECM maintaining them, (3) the authorisation covering them (if not in 1) and (4) the Keeper & Owner information."@en ;
+        owl:disjointWith :AuthorisationCase ;
+        rdfs:label "Vehicle Registration Case"@en .
+
+
+###  http://data.europa.eu/949/vpa/AuthorisationCase
+era:AuthorisationCase rdf:type owl:Class ;
+        rdfs:subClassOf vp:Case ;
+        vp:concerns era:VehicleType, era:AreaOfUse ;
+        rdfs:comment "The authorisation case as defined in Article 14 of https://eur-lex.europa.eu/eli/reg_impl/2018/545/oj. The scope of the case is therefore always (1) one of the 5 PermissionTypes as in the Article 14, (2) the unique vehicle type identifier and (3) the set of vehicles belonging to the Authorisation Case."@en ;
+        rdfs:seeAlso <https://eur-lex.europa.eu/eli/reg_impl/2018/545/oj> ;
+        rdfs:label "Authorisation Case (PAVA)"@en .
 
 ###  http://data.europa.eu/949/VehicleKeeper
 era:VehicleKeeper rdf:type owl:Class ;
@@ -9241,7 +9527,9 @@ era:VehicleType rdf:type owl:Class ;
                                   owl:onProperty era:manufacturer ;
                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                   owl:onClass era:Body
-                                ] ;
+                                ] , 
+                                vp:Scope ;
+                vp:definesCase era:AuthorisationCase ;
                 dcterms:created "2020-07-29"^^xsd:date ;
                 dcterms:modified "2020-07-29"^^xsd:date ,
                                  "2024-04-18"^^xsd:date ,
