@@ -45,7 +45,7 @@ Current data in ERATV is to be migrated mainly to these two classes.
 
 ### EVR `era:Vehicle`
 
-Only those properties existing in [Table 1 "Parameters of the EVR"](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32018D1614#d1e32-62-1), not yet properties for a RegistrationCase, an AuthorisationCase or VehicleType, should exist for a Vehicle. 
+Only those properties existing in [Table 1 "Parameters of the EVR"](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32018D1614#d1e32-62-1), not yet properties for a RegistrationCase, an AuthorisationCase or VehicleType, should exist for a Vehicle.
 
 > [!WARNING]
 > The reason is the amount of triple duplication, and hence also the amount of triples to delete/update if a new Registration for many vehicles is created, or a new renewal/upgrade is executed (requiring a new AuthorisationCase/VehicleType).
@@ -90,7 +90,7 @@ Current EVR data is to be migrated into these Classes.
     | -                |                  -                   | -                                                                              | -              |
     | 5.1              |                  ?                   | Onboard recording device: no SKOS SC available                                 | New ?p needed  |
 
-- [ ] Some parameters may better be at `era:VehicleType`: others to be examined as TSI NOI *Common Characteristics* properties of `era:VehicleAuthorization(Case)`, cannot remain at `era:Vehicle`.
+- [ ] Some parameters may better be at `era:VehicleType`: others to be examined as TSI NOI _Common Characteristics_ properties of `era:VehicleAuthorization(Case)`, cannot remain at `era:Vehicle`.
 - [X] Like `era:vehicleKeeper`, to be added: `era:vehicleECM.` and `era:vehicleOwner` (respecting era:Body model).
 
 > [!WARNING]
@@ -140,5 +140,17 @@ Actions in the ERA Vocabulary:
   - [ ] Provide these combinations for `era:conformityWithTSI` (Section 2.1)
   - [ ] Provide these combinations for `era:applicableSpecificCases`, together with the paragraphs 7 of the TSI (as Strings) (Section 2.3)
   - [ ] Allow for links to /ERADIS modules 1 and 2 certificates (Section 2.2).
+
   > [!TIP]
   > It is this link which allows to automatically trace the EC DoV (EC Declaration as in the EVR registration data) to which these certificates are linked.
+
+## Properties, no longer applicable after an amendment of legislation
+
+In the ERA ontology before 5.0.0, these were marked `owl:deprecated "true"^^xsd:boolean`, where a comment explained the amendment leading to the depreciation.
+
+In 5.0.0, we change this to:
+
+- [X] remove the triples with ?p `owl:deprecated`
+- [X] update the ns status to "`archaic`"
+- [X] the amending legislation is in the comment.
+- [ ] the last legislation in which the proerty exists is under `dcterms:source`.

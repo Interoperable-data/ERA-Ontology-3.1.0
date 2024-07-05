@@ -31,7 +31,7 @@ Revision 26-06-2024:
 - updated as per final workshops on era:Vehicle and era:VehicleType, refining work done previously.
 - This version originally placed non-EVR related resources in comments, as to generate a dedicated Ontology page.
 - introduction of the Verified Permissions ontology, for Vehicle registration/authorisation (case)s.
-- Correction of use of dcterms:relation (range: ELI URI)
+- Correction of use of dcterms:relation (range: ELI URI) and introduction of "archaic" (avoiding owl:deprecated for legally deprecated terms)
 
 Revision 05-06-2024:
 - linked with existing (updated) or new SKOS Concepts, related to the TWG RINF CCS;
@@ -1952,13 +1952,12 @@ era:manufacturingCountry rdf:type owl:ObjectProperty ;
 #                      era:inSkosConceptScheme <http://data.europa.eu/949/concepts/max-amount-sandings/MaxAmountSandings> ;
 #                      era:rinfIndex "1.1.1.3.7.17" ;
 #                      dcterms:created "2021-08-08"^^xsd:date ;
-#                      dcterms:modified "2023-03-14"^^xsd:date ;
+#                      dcterms:modified "2023-03-14"^^xsd:date , "2024-06-26"^^xsd:date;
 #                      rdfs:comment """Maximum amount of sand accepted on the track within value of sanding output for 30s, given in grams.
 # Deprecated according to the amendment to the Regulation (EU) 2019/777."""@en ;
 #                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                      rdfs:label "Maximum amount of sand"@en ;
-#                      owl:deprecated "true"^^xsd:boolean ;
-#                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+#                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 # ###  http://data.europa.eu/949/minAxleLoadVehicleCategory
@@ -1969,13 +1968,13 @@ era:manufacturingCountry rdf:type owl:ObjectProperty ;
 #                                era:inSkosConceptScheme <http://data.europa.eu/949/concepts/min-axle-load-vehicle-categories/MinAxleLoadVehicleCategories> ;
 #                                era:rinfIndex "1.1.1.3.7.11.1" ;
 #                                dcterms:created "2021-08-08"^^xsd:date ;
-#                                dcterms:modified "2023-03-14"^^xsd:date ;
+#                                dcterms:modified "2023-03-14"^^xsd:date , "2024-06-26"^^xsd:date ;
 #                                rdfs:comment """Represents the category of vehicle which is amended by value of minimum permitted axle load [tons] (property minAxleLoad).
+#
 # Deprecated according to the amendment to the Regulation (EU) 2019/777."""@en ;
 #                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                rdfs:label "Minimum axle load vehicle category"@en ;
-#                                owl:deprecated "true"^^xsd:boolean ;
-#                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+#                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/minVehicleImpedance
@@ -2914,8 +2913,7 @@ era:supportedPlatformHeight rdf:type owl:ObjectProperty ;
 #                                   rdfs:comment "Indication of load given in tons depending of the category of vehicle. Deprecated according to the amendment to the Regulation (EU) 2019/777."@en ;
 #                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                   rdfs:label "Train detection system min axle load vehicle category"@en ;
-#                                   owl:deprecated "true"^^xsd:boolean ;
-#                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+#                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 # ###  http://data.europa.eu/949/temperatureRange
@@ -3147,8 +3145,7 @@ The option of ‘wheel detector’ has to be also selected for: wheel sensor for
 #                                      rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. TSI compliance of rules on the use of composite brake blocks."@en ;
 #                                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                      rdfs:label "TSI compliance of rules on the use of composite brake blocks"@en ;
-#                                      owl:deprecated "true"^^xsd:boolean ;
-#                                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+#                                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 # ###  http://data.europa.eu/949/tsiCompliantFerromagneticWheel
@@ -3163,8 +3160,7 @@ The option of ‘wheel detector’ has to be also selected for: wheel sensor for
 #                                    rdfs:comment "TSI compliance of Ferromagnetic characteristics of wheel material required. Deprecated according to the amendment to the Regulation (EU) 2019/777."@en ;
 #                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                    rdfs:label "TSI compliance of Ferromagnetic characteristics of wheel material required"@en ;
-#                                    owl:deprecated "true"^^xsd:boolean ;
-#                                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+#                                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 # ###  http://data.europa.eu/949/tsiCompliantMaxDistConsecutiveAxles
@@ -3179,8 +3175,7 @@ The option of ‘wheel detector’ has to be also selected for: wheel sensor for
 #                                         rdfs:comment "Indication whether required distance between two consecutive axles is compliant with the TSI. Deprecated according to the amendment to the Regulation (EU) 2019/777."@en ;
 #                                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                         rdfs:label "TSI compliance of maximum permitted distance between two consecutive axles"@en ;
-#                                         owl:deprecated "true"^^xsd:boolean ;
-#                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+#                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 # ###  http://data.europa.eu/949/tsiCompliantMaxImpedanceWheelset
@@ -3195,8 +3190,7 @@ The option of ‘wheel detector’ has to be also selected for: wheel sensor for
 #                                      rdfs:comment "TSI compliance of maximum permitted impedance between opposite wheels of a wheelset. Deprecated according to the amendment to the Regulation (EU) 2019/777."@en ;
 #                                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                      rdfs:label "TSI compliance of maximum permitted impedance between opposite wheels of a wheelset"@en ;
-#                                      owl:deprecated "true"^^xsd:boolean ;
-#                                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+#                                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 # ###  http://data.europa.eu/949/tsiCompliantMetalConstruction
@@ -3211,8 +3205,7 @@ The option of ‘wheel detector’ has to be also selected for: wheel sensor for
 #                                   rdfs:comment "TSI compliance of rules for vehicle metal construction. Deprecated according to the amendment to the Regulation (EU) 2019/777."@en ;
 #                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                   rdfs:label "TSI compliance of rules for vehicle metal construction"@en ;
-#                                   owl:deprecated "true"^^xsd:boolean ;
-#                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+#                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 # ###  http://data.europa.eu/949/tsiCompliantMetalFreeSpace
@@ -3227,8 +3220,7 @@ The option of ‘wheel detector’ has to be also selected for: wheel sensor for
 #                                rdfs:comment "TSI compliance of rules for metal-free space around wheels. Deprecated according to the amendment to the Regulation (EU) 2019/777."@en ;
 #                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                rdfs:label "TSI compliance of rules for metal-free space around wheels"@en ;
-#                                owl:deprecated "true"^^xsd:boolean ;
-#                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+#                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 # ###  http://data.europa.eu/949/tsiCompliantRSTShuntImpedance
@@ -3243,8 +3235,7 @@ The option of ‘wheel detector’ has to be also selected for: wheel sensor for
 #                                   rdfs:comment "TSI compliance of rules on combination of RST characteristics influencing shunting impedance. Deprecated according to the amendment to the Regulation (EU) 2019/777."@en ;
 #                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                   rdfs:label "TSI compliance of rules on combination of RST characteristics influencing shunting impedance"@en ;
-#                                   owl:deprecated "true"^^xsd:boolean ;
-#                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+#                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 # ###  http://data.europa.eu/949/tsiCompliantSandCharacteristics
@@ -3259,8 +3250,7 @@ The option of ‘wheel detector’ has to be also selected for: wheel sensor for
 #                                     rdfs:comment "TSI Compliance of rules on sand characteristics. Deprecated according to the amendment to the Regulation (EU) 2019/777." ;
 #                                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                     rdfs:label "TSI Compliance of rules on sand characteristics"@en ;
-#                                     owl:deprecated "true"^^xsd:boolean ;
-#                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+#                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 # ###  http://data.europa.eu/949/tsiCompliantSanding
@@ -3270,12 +3260,13 @@ The option of ‘wheel detector’ has to be also selected for: wheel sensor for
 #                         era:inSkosConceptScheme <http://data.europa.eu/949/concepts/tsi-compliances/TSICompliances> ;
 #                         era:rinfIndex "1.1.1.3.7.16" ;
 #                         dcterms:created "2021-08-08"^^xsd:date ;
-#                         dcterms:modified "2023-03-14"^^xsd:date ;
-#                         rdfs:comment "TSI compliance of sanding rules to allow compatibility with track circuits. Too much sand brings the risk of not detecting trains in tracks equipped with track circuits. Deprecated according to the amendment to the Regulation (EU) 2019/777."@en ;
+#                         dcterms:modified "2023-03-14"^^xsd:date , "2024-06-26"^^xsd:date ;
+#                         rdfs:comment """TSI compliance of sanding rules to allow compatibility with track circuits. Too much sand brings the risk of not detecting trains in tracks equipped with track circuits. 
+
+# Deprecated according to the amendment to the Regulation (EU) 2019/777."""@en ;
 #                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                         rdfs:label "TSI compliance of sanding"@en ;
-#                         owl:deprecated "true"^^xsd:boolean ;
-#                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" .
+#                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 # ###  http://data.europa.eu/949/tsiCompliantShuntDevices
@@ -3290,8 +3281,7 @@ The option of ‘wheel detector’ has to be also selected for: wheel sensor for
 #                              rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. TSI compliance of rules on shunt assisting devices."@en ;
 #                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                              rdfs:label "TSI compliance of rules on shunt assisting devices"@en ;
-#                              owl:deprecated "true"^^xsd:boolean ;
-#                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+#                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 # ###  http://data.europa.eu/949/tsiPantographHead
@@ -3601,11 +3591,11 @@ era:altitudeRange rdf:type owl:DatatypeProperty ;
                   era:eratvIndex "4.3.2" ;
                   dcterms:created "2021-08-26"^^xsd:date ;
                   dcterms:modified "2021-08-26"^^xsd:date , "2024-06-26"^^xsd:date ;
-                  rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Altitude range."@en ;
+                  rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Altitude range."@en ;
+                  dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/776/oj> ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "Altitude range"@en ;
-                  owl:deprecated "true"^^xsd:boolean ;
-                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/altitudeRangeDetail
@@ -3615,11 +3605,10 @@ era:altitudeRangeDetail rdf:type owl:DatatypeProperty ;
                         era:eratvIndex "4.3.2.1" ;
                         dcterms:created "2021-08-26"^^xsd:date ;
                         dcterms:modified "2021-08-26"^^xsd:date , "2024-06-26"^^xsd:date ;
-                        rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Altitude range value for 'X' if value 'AX' is selected in altitude range."@en ;
+                        rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Altitude range value for 'X' if value 'AX' is selected in altitude range."@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "Altitude range detail"@en ;
-                        owl:deprecated "true"^^xsd:boolean ;
-                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/areaBoardingAid
@@ -3720,7 +3709,7 @@ era:boardingAids rdf:type owl:DatatypeProperty ;
                  era:eratvIndex "4.12.3.2" ;
                  dcterms:created "2021-08-31"^^xsd:date ;
                  dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
-                 rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Description of any integrated boarding aids (if provided)."@en ;
+                 rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Description of any integrated boarding aids (if provided)."@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "Boarding aids"@en ;
                  owl:deprecated "true"^^xsd:boolean ;
@@ -3788,7 +3777,7 @@ era:catenaryMaxRatedCurrent rdf:type owl:DatatypeProperty ;
                             era:eratvIndex "4.10.3" ;
                             dcterms:created "2021-08-31"^^xsd:date ;
                             dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
-                            rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Maximum rated current from the catenary (to be indicated for each electrical energy supply system the vehicle is equipped for), given in A."@en ;
+                            rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Maximum rated current from the catenary (to be indicated for each electrical energy supply system the vehicle is equipped for), given in A."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Catenary max rated current"@en ;
                             owl:deprecated "true"^^xsd:boolean ;
@@ -3910,12 +3899,11 @@ era:conditionsTrainFormation rdf:type owl:DatatypeProperty ;
                              rdfs:range xsd:string ;
                              era:eratvIndex "4.1.4" ;
                              dcterms:created "2021-08-25"^^xsd:date ;
-                             dcterms:modified "2021-08-25"^^xsd:date ;
-                             rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Conditions of use regarding train formation. "@en ;
+                             dcterms:modified "2021-08-25"^^xsd:date , "2024-06-26"^^xsd:date ;
+                             rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Conditions of use regarding train formation. "@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "Conditions train formation"@en ;
-                             owl:deprecated "true"^^xsd:boolean ;
-                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/contactStripMaterialMetallicContent
@@ -4066,11 +4054,10 @@ era:dangerousGoodsTankCode rdf:type owl:DatatypeProperty ;
                            era:eratvIndex "4.1.9" ;
                            dcterms:created "2021-08-25"^^xsd:date ;
                            dcterms:modified "2021-08-25"^^xsd:date , "2024-06-26"^^xsd:date ;
-                           rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Dangerous goods for which the vehicle is suitable (tank code)."@en ;
+                           rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Dangerous goods for which the vehicle is suitable (tank code)."@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "Dangerous goods tank code"@en ;
-                           owl:deprecated "true"^^xsd:boolean ;
-                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/demonstrationENE
@@ -4311,11 +4298,11 @@ era:energyMeterInstalled rdf:type owl:DatatypeProperty ;
                          era:eratvIndex "4.10.12" ;
                          dcterms:created "2021-08-31"^^xsd:date ;
                          dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
-                         rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. TSI conform energy meter for billing purposes installed on board."@en ;
+                         rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. TSI conform energy meter for billing purposes installed on board."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Energy meter installed"@en ;
                          owl:deprecated "true"^^xsd:boolean ;
-                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/energySupplyMaxPower
@@ -4325,11 +4312,11 @@ era:energySupplyMaxPower rdf:type owl:DatatypeProperty ;
                          era:eratvIndex "4.10.2" ;
                          dcterms:created "2021-08-31"^^xsd:date ;
                          dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
-                         rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Maximum power (to be indicated for each energy supply system the vehicle is equipped for), given in kW."@en ;
+                         rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Maximum power (to be indicated for each energy supply system the vehicle is equipped for), given in kW."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Energy supply max power"@en ;
                          owl:deprecated "true"^^xsd:boolean ;
-                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/energySupplySystemTSICompliant
@@ -4510,8 +4497,7 @@ era:etcsOnBoardImplementation rdf:type owl:DatatypeProperty ;
 #                           rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Optional ETCS functions which might improve operation on the line."@en ;
 #                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                           rdfs:label "ETCS optional functions"@en ;
-#                           owl:deprecated "true"^^xsd:boolean ;
-#                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" .
+#                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 # ###  http://data.europa.eu/949/etcsSystemFunctionalitiesNextFiveYears
@@ -4558,12 +4544,12 @@ era:ferromagneticWheelMaterial rdf:type owl:DatatypeProperty ;
                                rdfs:range xsd:boolean ;
                                era:eratvIndex "4.14.2.12" ;
                                dcterms:created "2021-09-01"^^xsd:date ;
-                               dcterms:modified "2021-09-01"^^xsd:date ;
-                               rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Wheel material is ferromagnetic."@en ;
+                               dcterms:modified "2021-09-01"^^xsd:date , "2024-06-26"^^xsd:date;
+                               rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Wheel material is ferromagnetic."@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "Ferromagnetic wheel material"@en ;
                                owl:deprecated "true"^^xsd:boolean ;
-                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/fixedSeats
@@ -4572,12 +4558,11 @@ era:fixedSeats rdf:type owl:DatatypeProperty ;
                rdfs:range xsd:string ;
                era:eratvIndex "4.12.1.1" ;
                dcterms:created "2021-08-31"^^xsd:date ;
-               dcterms:modified "2021-08-31"^^xsd:date ;
-               rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Number of fixed seats."@en ;
+               dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date;
+               rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Number of fixed seats."@en ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                rdfs:label "Fixed seats"@en ;
-               owl:deprecated "true"^^xsd:boolean ;
-               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/flangeLubeForbidden
@@ -4605,8 +4590,7 @@ era:fixedSeats rdf:type owl:DatatypeProperty ;
 #                     rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Indication whether rules for activation or deactivation of flange lubrication exist."@en ;
 #                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                     rdfs:label "Existence of rules on on-board flange lubrication"@en ;
-#                     owl:deprecated "true"^^xsd:boolean ;
-#                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+#                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/flangeLubricationFitted
@@ -4616,11 +4600,10 @@ era:flangeLubricationFitted rdf:type owl:DatatypeProperty ;
                             era:eratvIndex "4.9.3.1" ;
                             dcterms:created "2021-08-31"^^xsd:date ;
                             dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
-                            rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Indicates if the vehicle type is fitted for flange lubrication."@en ;
+                            rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Indicates if the vehicle type is fitted for flange lubrication."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Flange lubrication fitted"@en ;
-                            owl:deprecated "true"^^xsd:boolean ;
-                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/freightFlag
@@ -5007,11 +4990,10 @@ era:hasLubricationDevicePrevention rdf:type owl:DatatypeProperty ;
                                    era:eratvIndex "4.9.3.2" ;
                                    dcterms:created "2021-08-31"^^xsd:date ;
                                    dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
-                                   rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Possibility of preventing the use of the lubrication device (only if fitted with flange lubrication)."@en ;
+                                   rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Possibility of preventing the use of the lubrication device (only if fitted with flange lubrication)."@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "Has lubrication device prevention"@en ;
-                                   owl:deprecated "true"^^xsd:boolean ;
-                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/hasOtherTrainProtection
@@ -5024,8 +5006,7 @@ era:hasLubricationDevicePrevention rdf:type owl:DatatypeProperty ;
 #                             rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Indication if other train protection, control and warning systems in normal operation are installed lineside."@en ;
 #                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                             rdfs:label "Existence of other train protection, control and warning systems installed"@en ;
-#                             owl:deprecated "true"^^xsd:boolean ;
-#                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" .
+#                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/hasParkingBrake
@@ -5104,11 +5085,10 @@ era:hasSandingPrevention rdf:type owl:DatatypeProperty ;
                          era:eratvIndex "4.14.2.14" ;
                          dcterms:created "2021-09-01"^^xsd:date ;
                          dcterms:modified "2021-09-01"^^xsd:date , "2024-06-26"^^xsd:date ;
-                         rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Possibility of preventing the use of sanding."@en ;
+                         rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Possibility of preventing the use of sanding."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Has sanding prevention"@en ;
-                         owl:deprecated "true"^^xsd:boolean ;
-                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/hasSchematicOverviewOPDigitalForm
@@ -5146,11 +5126,10 @@ era:hasShuntingRestrictions rdf:type owl:DatatypeProperty ;
                             era:eratvIndex "4.8.3" ;
                             dcterms:created "2021-08-31"^^xsd:date ;
                             dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
-                            rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Indicates the presence of shunting restrictions."@en ;
+                            rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Indicates the presence of shunting restrictions."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Has shunting restrictions"@en ;
-                            owl:deprecated "true"^^xsd:boolean ;
-                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/hasSystemSeparation
@@ -5586,11 +5565,11 @@ era:letterMarking rdf:type owl:DatatypeProperty ;
                   era:eratvIndex "4.1.7" ;
                   dcterms:created "2021-08-25"^^xsd:date ;
                   dcterms:modified "2021-08-25"^^xsd:date , "2024-06-26"^^xsd:date ;
-                  rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Letter marking is a property of Vehicle."@en ;
+                  rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Letter marking is a property of Vehicle."@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "Letter marking"@en ;
                   owl:deprecated "true"^^xsd:boolean ;
-                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ### http://data.europa.eu/949/limitedAreaOfUse
@@ -5601,7 +5580,7 @@ era:limitedAreaOfUse rdf:type owl:DatatypeProperty ;
                      rdfs:comment "Limited sections within (mostly neighbouring) Member State networks which were analysed during the (vehicle(type)) authorisation process and are allowed for operation (registered vehicles only). For complete member states, use era:areaOfUseMemberState."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "limited area of use" ;
-                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
 ###  http://data.europa.eu/949/linearCoordinate
@@ -5655,11 +5634,11 @@ era:loadingPlatformHeight rdf:type owl:DatatypeProperty ;
                           era:eratvIndex "4.8.7" ;
                           dcterms:created "2021-08-31"^^xsd:date ;
                           dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
-                          rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Height of loading platform (for flat wagons and combined transport), given in mm."@en ;
+                          rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Height of loading platform (for flat wagons and combined transport), given in mm."@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "Loading platform height"@en ;
                           owl:deprecated "true"^^xsd:boolean ;
-                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/localRulesOrRestrictions
@@ -5811,11 +5790,13 @@ era:maxDistConsecutiveAxles rdf:type owl:DatatypeProperty ;
                             era:rinfIndex "1.1.1.3.7.2.2" ;
                             era:unitOfMeasure qudt:MilliM ;
                             dcterms:created "2021-08-08"^^xsd:date ;
-                            dcterms:modified "2023-03-14"^^xsd:date ;
-                            rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter. Indication of maximum permitted distance between two consecutive axles in case of TSI non-compliance, given in millimetres."@en ;
+                            dcterms:modified "2023-03-14"^^xsd:date , "2024-06-26"^^xsd:date ;
+                            rdfs:comment """Indication of maximum permitted distance between two consecutive axles in case of TSI non-compliance, given in millimetres.
+                            
+Deprecated according to the amendments to the Regulation (EU) 2019/777 (RINF) and 2019/776 (ERATV)."""@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Maximum permitted distance between two consecutive axles in case of TSI non-compliance"@en ;
-                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/maxDistEndTrainFirstAxle
@@ -5831,7 +5812,7 @@ era:maxDistConsecutiveAxles rdf:type owl:DatatypeProperty ;
 #                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                              rdfs:label "Maximum distance between end of train and first axle"@en ;
 #                              owl:deprecated "true"^^xsd:boolean ;
-#                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+#                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/maxFlangeHeight
@@ -5847,11 +5828,13 @@ era:maxFlangeHeight rdf:type owl:DatatypeProperty ;
                     era:rinfIndex "1.1.1.3.7.10" ;
                     era:unitOfMeasure qudt:MilliM ;
                     dcterms:created "2021-08-08"^^xsd:date ;
-                    dcterms:modified "2023-03-14"^^xsd:date ;
-                    rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter. Maximum permitted flange height, given in millimiters."@en ;
+                    dcterms:modified "2023-03-14"^^xsd:date , "2024-06-26"^^xsd:date ;
+                    rdfs:comment """Maximum permitted flange height, given in millimiters.
+                    
+Deprecated according to the amendment to the Regulation (EU) 2019/777 (RINF) and 2019/776 (ERATV)."""@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "Maximum permitted height of the flange"@en ;
-                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/maxImpedanceWheelset
@@ -5866,12 +5849,13 @@ era:maxImpedanceWheelset rdf:type owl:DatatypeProperty ;
                          era:eratvIndex "4.14.2.16" ;
                          era:rinfIndex "1.1.1.3.7.15.2" ;
                          dcterms:created "2021-08-08"^^xsd:date ;
-                         dcterms:modified "2023-03-14"^^xsd:date ;
-                         rdfs:comment "The value of maximum permitted impedance given in ohm in case of TSI non-compliance. Deprecated according to the amendment to the Regulation (EU) 2019/777."@en ;
+                         dcterms:modified "2023-03-14"^^xsd:date , "2024-06-26"^^xsd:date ;
+                         rdfs:comment """The value of maximum permitted impedance given in ohm in case of TSI non-compliance. 
+                         
+Deprecated according to the amendment to the Regulation (EU) 2019/777 (RINF) and 2019/776 (ERATV)."""@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Maximum permitted impedance between opposite wheels of a wheelset when not TSI compliant"@en ;
-                         owl:deprecated "true"^^xsd:boolean ;
-                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/maxLengthVehicleNose
@@ -6201,11 +6185,10 @@ era:meetsRequirementVehicleAuthorisation rdf:type owl:DatatypeProperty ;
                                          era:eratvIndex "4.1.8" ;
                                          dcterms:created "2021-08-25"^^xsd:date ;
                                          dcterms:modified "2021-08-25"^^xsd:date , "2024-06-26"^^xsd:date ;
-                                         rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Type meets the requirements necessary for validity of the vehicle authorisation granted by one Member State in other MSs."@en ;
+                                         rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Type meets the requirements necessary for validity of the vehicle authorisation granted by one Member State in other MSs."@en ;
                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                          rdfs:label "Meets requirement vehicle authorisation"@en ;
-                                         owl:deprecated "true"^^xsd:boolean ;
-                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/minAxleLoad
@@ -6221,12 +6204,13 @@ era:minAxleLoad rdf:type owl:DatatypeProperty ;
                 era:rinfIndex "1.1.1.3.7.11.1" ;
                 era:unitOfMeasure qudt:TONNE ;
                 dcterms:created "2021-08-08"^^xsd:date ;
-                dcterms:modified "2023-03-14"^^xsd:date ;
-                rdfs:comment "Minimum permitted axle load, given in tons."@en ,
-                             "Should be deprecated according to the amendment to the Regulation (EU) 2019/777 but remains because it is also a parameter of ERATV."@en ;
+                dcterms:modified "2023-03-14"^^xsd:date , "2024-06-26"^^xsd:date ;
+                rdfs:comment """Minimum permitted axle load, given in tons.
+
+Deprecated according to the amendment to the Regulation (EU) 2019/777 (RINF) and 2019/776 (ERATV)."""@en ;                    
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "Minimum permitted axle load"@en ;
-                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/minDistConsecutiveAxles
@@ -6242,12 +6226,13 @@ era:minDistConsecutiveAxles rdf:type owl:DatatypeProperty ;
                             era:rinfIndex "1.1.1.3.7.3" ;
                             era:unitOfMeasure qudt:MilliM ;
                             dcterms:created "2021-08-08"^^xsd:date ;
-                            dcterms:modified "2023-03-14"^^xsd:date ;
-                            rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ,
-                                         "Indication of minimum permitted distance between two consecutive axles, given in millimetres."@en ;
+                            dcterms:modified "2023-03-14"^^xsd:date , "2024-06-26"^^xsd:date ;
+                            rdfs:comment """Indication of minimum permitted distance between two consecutive axles, given in millimetres.
+
+Deprecated according to the amendment to the Regulation (EU) 2019/777 (RINF) and 2019/776 (ERATV)."""@en ;                    
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Minimum permitted distance between two consecutive axles"@en ;
-                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/minDistFirstLastAxle
@@ -6263,12 +6248,13 @@ era:minDistFirstLastAxle rdf:type owl:DatatypeProperty ;
                          era:rinfIndex "1.1.1.3.7.4" ;
                          era:unitOfMeasure qudt:MilliM ;
                          dcterms:created "2021-08-08"^^xsd:date ;
-                         dcterms:modified "2023-03-14"^^xsd:date ;
-                         rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ,
-                                      "Indication of minimum permitted distance between first and last axles, given in millimetres."@en ;
+                         dcterms:modified "2023-03-14"^^xsd:date , "2024-06-26"^^xsd:date ;
+                         rdfs:comment """Indication of minimum permitted distance between first and last axles, given in millimetres.
+                         
+Deprecated according to the amendment to the Regulation (EU) 2019/777 (RINF) and 2019/776 (ERATV)."""@en ;                    
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Minimum permitted distance between first and last axle"@en ;
-                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/minFlangeHeight
@@ -6284,12 +6270,13 @@ era:minFlangeHeight rdf:type owl:DatatypeProperty ;
                     era:rinfIndex "1.1.1.3.7.9" ;
                     era:unitOfMeasure qudt:MilliM ;
                     dcterms:created "2021-08-08"^^xsd:date ;
-                    dcterms:modified "2021-09-01"^^xsd:date ;
-                    rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ,
-                                 "Minimum permitted flange height, given in millimiters."@en ;
+                    dcterms:modified "2021-09-01"^^xsd:date , "2024-06-26"^^xsd:date ;
+                    rdfs:comment """Minimum permitted flange height, given in millimiters.
+
+Deprecated according to the amendment to the Regulation (EU) 2019/777 (RINF) and 2019/776 (ERATV)."""@en ;                    
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "Minimum permitted height of the flange"@en ;
-                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/minFlangeThickness
@@ -6305,12 +6292,13 @@ era:minFlangeThickness rdf:type owl:DatatypeProperty ;
                        era:rinfIndex "1.1.1.3.7.8" ;
                        era:unitOfMeasure qudt:MilliM ;
                        dcterms:created "2021-08-08"^^xsd:date ;
-                       dcterms:modified "2021-09-01"^^xsd:date ;
-                       rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ,
-                                    "Minimum permitted flange thickness, given in millimiters."@en ;
+                       dcterms:modified "2021-09-01"^^xsd:date , "2024-06-26"^^xsd:date ;
+                       rdfs:comment """Minimum permitted flange thickness, given in millimiters.
+                       
+Deprecated according to the amendment to the Regulation (EU) 2019/777 (RINF) and 2019/776 (ERATV)."""@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Minimum permitted thickness of the flange"@en ;
-                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/minRimWidth
@@ -6326,11 +6314,11 @@ era:minRimWidth rdf:type owl:DatatypeProperty ;
                 era:rinfIndex "1.1.1.3.7.6" ;
                 era:unitOfMeasure qudt:MilliM ;
                 dcterms:created "2021-08-08"^^xsd:date ;
-                dcterms:modified "2023-03-14"^^xsd:date ;
-                rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ;
+                dcterms:modified "2023-03-14"^^xsd:date , "2024-06-26"^^xsd:date ;
+                rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777 (RINF) and 2019/776 (ERATV)."@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "Minimum permitted width of the rim"@en ;
-                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/minVehicleInputCapacitance
@@ -6382,12 +6370,13 @@ era:minWheelDiameter rdf:type owl:DatatypeProperty ;
                      era:rinfIndex "1.1.1.3.7.7" ;
                      era:unitOfMeasure qudt:MilliM ;
                      dcterms:created "2021-08-08"^^xsd:date ;
-                     dcterms:modified "2023-03-14"^^xsd:date ;
-                     rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ,
-                                  "Minimum permitted wheel diameter, given in millimiters."@en ;
+                     dcterms:modified "2023-03-14"^^xsd:date , "2024-06-26"^^xsd:date ;
+                     rdfs:comment """Minimum permitted wheel diameter, given in millimiters.
+                     
+Deprecated according to the amendment to the Regulation (EU) 2019/777 (RINF) and 2019/776 (ERATV)."""@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "Minimum permitted wheel diameter"@en ;
-                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/minimumConcaveVerticalRadius
@@ -6491,7 +6480,9 @@ Minimum horizontal curve radius capability of the vehicle type."""@en ;
 #                                                era:minimumVerticalRadiusHollow ;
 #                           dcterms:modified "2023-04-05"^^xsd:date ;
 #                           rdfs:comment """Radius of the smallest vertical curve expressed in metres. 
-# Deprecated because of replacement by  two integer properties The reason is that the property is composed of two values: The first \"NNN\" is a value of crest, the second \"NNN\" is a value of hollow, both expressed in metres."""@en ;
+#
+# Deprecated because of replacement by two integer properties.
+# The reason is that the property is composed of two values: The first \"NNN\" is a value of crest, the second \"NNN\" is a value of hollow, both expressed in metres."""@en ;
 #                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                           rdfs:label "Minimum radius of vertical curve"@en ;
 #                           owl:deprecated "true"^^xsd:boolean ;
@@ -6562,8 +6553,7 @@ Vehicle Type: Minimum in-service wheel diameter."""@en ;
 #                                     rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Indication whether more than one train protection, control and warning system is required to be on-board and active simultaneously."@en ;
 #                                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                     rdfs:label "Need for more than one train protection, control and warning system required on board"@en ;
-#                                     owl:deprecated "true"^^xsd:boolean ;
-#                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+#                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 # ###  http://data.europa.eu/949/nationalLineId
@@ -6646,11 +6636,11 @@ era:numberElementsRakeFreightWagons rdf:type owl:DatatypeProperty ;
                                     era:eratvIndex "4.1.6" ;
                                     dcterms:created "2021-08-25"^^xsd:date ;
                                     dcterms:modified "2021-08-25"^^xsd:date , "2024-06-26"^^xsd:date ;
-                                    rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Number of elements in the rake of freight wagons (only for subcategory 'rake of freight wagons')"@en ;
+                                    rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Number of elements in the rake of freight wagons (only for subcategory 'rake of freight wagons')"@en ;
                                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                     rdfs:label "Number elements rake freight wagons"@en ;
                                     owl:deprecated "true"^^xsd:boolean ;
-                                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/numberOfPantographsInContactWithOCL
@@ -6674,12 +6664,12 @@ era:numberOfToilets rdf:type owl:DatatypeProperty ;
                     rdfs:range xsd:integer ;
                     era:eratvIndex "4.12.1.2" ;
                     dcterms:created "2021-08-31"^^xsd:date ;
-                    dcterms:modified "2021-08-31"^^xsd:date ;
-                    rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Number of toilets."@en ;
+                    dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date;
+                    rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Number of toilets."@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     owl:deprecated "true"^^xsd:boolean ;
                     rdfs:label "Number of toilets"@en ;
-                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/oclType
@@ -6767,11 +6757,11 @@ era:parkingBrakeMandatory rdf:type owl:DatatypeProperty ;
                           era:eratvIndex "4.7.3.1" ;
                           dcterms:created "2021-08-26"^^xsd:date ;
                           dcterms:modified "2021-08-26"^^xsd:date , "2024-06-26"^^xsd:date ;
-                          rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. All vehicles of this type must be equipped with a parking brake (parking brake mandatory for vehicles of this type)."@en ;
+                          rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. All vehicles of this type must be equipped with a parking brake (parking brake mandatory for vehicles of this type)."@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "Parking brake mandatory"@en ;
                           owl:deprecated "true"^^xsd:boolean ;
-                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/parkingBrakeMaximumGradient
@@ -6998,11 +6988,11 @@ era:portableBoardingAids rdf:type owl:DatatypeProperty ;
                          era:eratvIndex "4.12.3.3" ;
                          dcterms:created "2021-08-31"^^xsd:date ;
                          dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
-                         rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Description of any portable boarding aids if considered in the design of the vehicle for meeting the PRM TSI requirements."@en ;
+                         rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Description of any portable boarding aids if considered in the design of the vehicle for meeting the PRM TSI requirements."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Portable boarding aids"@en ;
                          owl:deprecated "true"^^xsd:boolean ;
-                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/preventRegenerativeBrakeUse
@@ -7051,11 +7041,10 @@ era:prioritySeats rdf:type owl:DatatypeProperty ;
                   era:eratvIndex "4.12.2.1" ;
                   dcterms:created "2021-08-31"^^xsd:date ;
                   dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
-                  rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Number of priority seats."@en ;
+                  rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Number of priority seats."@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "Priority seats"@en ;
-                  owl:deprecated "true"^^xsd:boolean ;
-                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/prmAccessibleToilets
@@ -7065,11 +7054,10 @@ era:prmAccessibleToilets rdf:type owl:DatatypeProperty ;
                          era:eratvIndex "4.12.2.3" ;
                          dcterms:created "2021-08-31"^^xsd:date ;
                          dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
-                         rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Number of PRM accessible toilets."@en ;
+                         rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Number of PRM accessible toilets."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Prm accessible toilets"@en ;
-                         owl:deprecated "true"^^xsd:boolean ;
-                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/publicNetworkRoaming
@@ -7163,11 +7151,10 @@ era:quasiStaticGuidingForce rdf:type owl:DatatypeProperty ;
                             era:eratvIndex "4.5.4" ;
                             dcterms:created "2021-08-26"^^xsd:date ;
                             dcterms:modified "2021-08-26"^^xsd:date , "2024-06-26"^^xsd:date ;
-                            rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Quasi-static guiding force (if exceeds the limit defined in TSI or not defined in the TSI), given in kN."@en ;
+                            rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Quasi-static guiding force (if exceeds the limit defined in TSI or not defined in the TSI), given in kN."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Quasi static guiding force"@en ;
-                            owl:deprecated "true"^^xsd:boolean ;
-                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/radioNetworkId
@@ -7200,8 +7187,7 @@ era:radioSwitchOverSpecialConditions rdf:type owl:DatatypeProperty ;
                                      rdfs:comment "(Deprecated) Special conditions implemented on-board to switch over between different radio systems. Given as combination of systems installed on board ('System XX'_'System YY')."@en ;
                                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                      rdfs:label "Radio switch over special conditions"@en ;
-                                     owl:deprecated "true"^^xsd:boolean ;
-                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/railSystemType
@@ -7432,7 +7418,7 @@ era:registrationStatusReasonDescription rdf:type owl:DatatypeProperty ;
 #                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                             rdfs:label "Sanding override by driver required"@en ;
 #                             owl:deprecated "true"^^xsd:boolean ;
-#                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+#                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 # ###  http://data.europa.eu/949/schematicOverviewOP
@@ -7506,11 +7492,10 @@ era:sleepingPlaces rdf:type owl:DatatypeProperty ;
                    era:eratvIndex "4.12.1.3" ;
                    dcterms:created "2021-08-31"^^xsd:date ;
                    dcterms:modified "2021-09-15"^^xsd:date , "2024-06-26"^^xsd:date ;
-                   rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Number of sleeping places."@en ;
+                   rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Number of sleeping places."@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    rdfs:label "Sleeping places"@en ;
-                   owl:deprecated "true"^^xsd:boolean ;
-                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/specificInformation
@@ -7614,11 +7599,11 @@ era:structuralCategory rdf:type owl:DatatypeProperty ;
                        era:eratvIndex "4.1.10" ;
                        dcterms:created "2021-08-25"^^xsd:date ;
                        dcterms:modified "2021-08-25"^^xsd:date , "2024-06-26"^^xsd:date ;
-                       rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Structural category."@en ;
+                       rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Structural category."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Structural category"@en ;
                        owl:deprecated "true"^^xsd:boolean ;
-                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/structureCheckLocation
@@ -7939,8 +7924,7 @@ era:thermalCapacityTime rdf:type owl:DatatypeProperty ;
 #                      rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Indication whether tilting functions are supported by ETCS."@en ;
 #                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                      rdfs:label "Indication whether tilting functions are supported by ETCS"@en ;
-#                      owl:deprecated "true"^^xsd:boolean ;
-#                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+#                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/totalVehicleMass
@@ -7982,12 +7966,11 @@ era:trainControlSwitchOverSpecialConditions rdf:type owl:DatatypeProperty ;
                                             rdfs:range xsd:string ;
                                             era:eratvIndex "4.13.1.6" ;
                                             dcterms:created "2021-08-31"^^xsd:date ;
-                                            dcterms:modified "2021-08-31"^^xsd:date ;
+                                            dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
                                             rdfs:comment "Deprecated (amendment (EU) 2023/1696). Special conditions implemented on-board to switch over between different train protection control and warning systems. Given as combination of systems installed on board ('System XX'_'System YY')."@en ;
                                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                             rdfs:label "Train control switch over special conditions"@en ;
-                                            owl:deprecated "true"^^xsd:boolean ;
-                                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/trainDetectionSystemSpecificCheck
@@ -8049,11 +8032,11 @@ era:transportableOnFerry rdf:type owl:DatatypeProperty ;
                          era:eratvIndex "4.8.8" ;
                          dcterms:created "2021-08-31"^^xsd:date ;
                          dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
-                         rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Indicates the suitability for transport on ferries."@en ;
+                         rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Indicates the suitability for transport on ferries."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Transportable on ferry"@en ;
                          owl:deprecated "true"^^xsd:boolean ;
-                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/tsiCompliant
@@ -8335,11 +8318,10 @@ era:vehicleKinematicGaugeOther rdf:type owl:DatatypeProperty ;
                                rdfs:range xsd:string ;
                                era:eratvIndex "4.2.2" ;
                                dcterms:created "2022-05-30"^^xsd:date , "2024-06-26"^^xsd:date ;
-                               rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Vehicle kinematic gauge  that corresponds to other gauges assessed using the kinematic method"@en ;
+                               rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Vehicle kinematic gauge  that corresponds to other gauges assessed using the kinematic method"@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "Vehicle kinematic gauge other"@en ;
-                               owl:deprecated "true"^^xsd:boolean ;
-                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/vehicleMaxSandingOutput
@@ -8348,12 +8330,11 @@ era:vehicleMaxSandingOutput rdf:type owl:DatatypeProperty ;
                             rdfs:range xsd:string ;
                             era:eratvIndex "4.14.2.13" ;
                             dcterms:created "2021-09-01"^^xsd:date ;
-                            dcterms:modified "2021-09-01"^^xsd:date ;
-                            rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Vehicle Maximum sanding output, given in grams per second."@en ;
+                            dcterms:modified "2021-09-01"^^xsd:date , "2024-06-26"^^xsd:date ;
+                            rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Vehicle Maximum sanding output, given in grams per second."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Vehicle max sanding output"@en ;
-                            owl:deprecated "true"^^xsd:boolean ;
-                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/vehicleNumber
@@ -8592,11 +8573,10 @@ era:wheelSetGaugeTransformationMethod rdf:type owl:DatatypeProperty ;
                                       era:eratvIndex "4.1.3.b" ;
                                       dcterms:created "2021-08-25"^^xsd:date ;
                                       dcterms:modified "2021-08-25"^^xsd:date , "2024-06-26"^^xsd:date ;
-                                      rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Wheel gauge transformation method. Defined if more than one wheel gauges have been selected."@en ;
+                                      rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Wheel gauge transformation method. Defined if more than one wheel gauges have been selected."@en ;
                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                       rdfs:label "Wheel set gauge transformation method"@en ;
-                                      owl:deprecated "true"^^xsd:boolean ;
-                                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/wheelchairSleepingPlaces
@@ -8606,11 +8586,10 @@ era:wheelchairSleepingPlaces rdf:type owl:DatatypeProperty ;
                              era:eratvIndex "4.12.2.4" ;
                              dcterms:created "2021-08-31"^^xsd:date ;
                              dcterms:modified "2021-08-31"^^xsd:date , "2024-06-26"^^xsd:date ;
-                             rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Number of wheelchair accessible sleeping places."@en ;
+                             rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Number of wheelchair accessible sleeping places."@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "Wheelchair sleeping spaces"@en ;
-                             owl:deprecated "true"^^xsd:boolean ;
-                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/wheelchairSpaces
@@ -8620,11 +8599,10 @@ era:wheelchairSpaces rdf:type owl:DatatypeProperty ;
                      era:eratvIndex "4.12.2.2" ;
                      dcterms:created "2021-08-31"^^xsd:date ;
                      dcterms:modified "2023-01-23"^^xsd:date , "2024-06-26"^^xsd:date ;
-                     rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Number of wheelchair spaces."@en ;
+                     rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/776. Number of wheelchair spaces."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "Wheelchair spaces"@en ;
-                     owl:deprecated "true"^^xsd:boolean ;
-                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://purl.org/dc/terms/identifier
@@ -8987,12 +8965,11 @@ era:Manufacturer rdf:type owl:Class ;
                  rdfs:subClassOf <http://www.w3.org/ns/org#Organization> ;
                  dcterms:created "2020-11-19"^^xsd:date ;
                  dcterms:modified "2020-11-19"^^xsd:date ,
-                                  "2024-06-03"^^xsd:date ;
+                                  "2024-06-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                  rdfs:comment "(deprecated) Replaced by the era:Body class and era:manufacturer property. A company or organization that manufactures vehicles."@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "Manufacturer"@en ;
-                 owl:deprecated "true"^^xsd:boolean ;
-                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/MaximumMagneticField
@@ -9030,12 +9007,11 @@ era:MaximumSBDistanceAndDeceleration rdf:type owl:Class ;
 # ###  http://data.europa.eu/949/MinAxleLoadVehicleCategory
 # era:MinAxleLoadVehicleCategory rdf:type owl:Class ;
 #                                dcterms:created "2023-01-25"^^xsd:date ;
-#                                dcterms:modified "2023-03-14"^^xsd:date ;
+#                                dcterms:modified "2023-03-14"^^xsd:date , "2024-06-26"^^xsd:date ;
 #                                rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Represents information that indicates the load given in tons depending of the category of vehicle. Its properties are minAxleLoadVehicleCategory and minAxleLoad."@en ;
 #                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                                rdfs:label "Min axle load vehicle category"@en ;
-#                                owl:deprecated "true"^^xsd:boolean ;
-#                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+#                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 # ###  http://data.europa.eu/949/MinVehicleImpedance
@@ -9512,13 +9488,12 @@ era:VehicleKeeper rdf:type owl:Class ;
                   dcterms:created "2020-11-23"^^xsd:date ;
                   dcterms:modified "2020-11-23"^^xsd:date ,
                                    "2024-04-18"^^xsd:date ,
-                                   "2024-06-03"^^xsd:date ;
+                                   "2024-06-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                   rdfs:comment """(deprecated) The natural or legal person that, being the owner of a vehicle or having the right to use it, 
 exploits the vehicle as a means of transport and is registered as such in a vehicle register referred to in Article 47 of (EU)2016/797."""@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "Vehicle Keeper"@en ;
-                  owl:deprecated "true"^^xsd:boolean ;
-                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/VehicleType

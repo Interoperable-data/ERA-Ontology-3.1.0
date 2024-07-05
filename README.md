@@ -2,7 +2,7 @@
 
 This is the ERA Vocabulary update taking into account the EVR (5.0.0) and ERATV (5.1.0) specifications as defined in the relevant legislation and guides.
 
-The previous version of the ERA ontology is [here](https://data-interop.era.europa.eu/era-vocabulary/).
+The current version of the ERA ontology is [here](https://data-interop.era.europa.eu/era-vocabulary/).
 
 ## Documentation
 
