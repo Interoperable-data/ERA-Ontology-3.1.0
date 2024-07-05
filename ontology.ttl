@@ -7,6 +7,7 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix qudt: <http://qudt.org/vocab/unit/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @base <http://data.europa.eu/949/> .
 
@@ -17,14 +18,36 @@
                                                     <http://www.w3.org/ns/org#memberOf> <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                                   ] ,
                                                   "Designated RINF Topical Working Groups"@en ;
-                              dcterms:creator [ foaf:name "Ghislain Atemezing" ;
-                                                rdfs:seeAlso <https://orcid.org/0000-0003-1562-6922> ;
+                              dcterms:creator [ foaf:name "Dragos Patru" ;
                                                 <http://www.w3.org/ns/org#memberOf> <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                               ] ,
-                                              [ foaf:name "Dragos Patru" ;
+                                              [ foaf:name "Ghislain Atemezing" ;
+                                                rdfs:seeAlso <https://orcid.org/0000-0003-1562-6922> ;
                                                 <http://www.w3.org/ns/org#memberOf> <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                               ] ;
-                              dcterms:description """
+                              dcterms:issued "2024-04-18"^^xsd:date ;
+                              dcterms:modified "2024-04-18"^^xsd:date ,
+                                               "2024-05-24"^^xsd:date ,
+                                               "2024-06-03"^^xsd:date ,
+                                               "2024-06-05"^^xsd:date ,
+                                               "2024-07-05"^^xsd:date ;
+                              dcterms:publisher "European Union Agency for Railways" ;
+                              dcterms:title "ERA Ontology"@en ;
+                              rdfs:comment """This is the human and machine readable Ontology governed by the European Union Agency for Railways (https://www.era.europa.eu/). It represents the concepts and relationships linked to the sectorial legal framework and the use cases under the AgencyÂ´s remit, as described in the Commission Implementing Regulation (EU) [to be updated after publication] on the common specifications for the register of railway infrastructure [to be updated after publication].
+
+Currently, this Ontology covers the European railway infrastructure and the vehicles types authorized to operate over it. It is a semantic/browsable representation of the RINF application guide (https://www.era.europa.eu/sites/default/files/registers/docs/rinf_application_guide_for_register_en.pdf) and ERATV application guide (https://www.era.europa.eu/sites/default/files/registers/docs/iu-eratv_application_guide_for_register_2016-797_en.pdf) that were built by domain experts in the RINF and ERATV working parties.
+
+The Ontology also includes the routebook concepts described in appendix D2 \"Elements the infrastructure manager has to provide to the railway undertaking for the Route Book\" as presented in the Commission Implementing Regulation (EU) [to be updated after publication] 2019/773 of 16 May 2019 on the technical specification for interoperability relating to the operation and traffic management subsystem of the rail system within the European Union and [to be updated after publication] and the Appendix D3 [to be updated after publication]."""@en ;
+                              rdfs:label "ERA Ontology"@en ;
+                              owl:priorVersion "https://github.com/Interoperable-data/ERA_vocabulary/releases/v3.0.0"^^xsd:anyURI ;
+                              owl:versionInfo "v3.1.0"@en ;
+                              owl:versionURI <https://github.com/Interoperable-data/ERA_vocabulary/releases/releases/v3.1.0> ;
+                              skos:changeNote """
+Revision 05-07-2024:
+- removed empty prefix and base
+- Changed the reference to previous version to point to release in Github 
+- changed dcterms:description with skos:changeNote.
+- removed owl:topDataProperty , owl:topObjectProperty and ^^rdfs:Literal
 
 Revision 05-06-2024:
 - linked with existing (updated) or new SKOS Concepts, related to the TWG RINF CCS;
@@ -54,23 +77,7 @@ Revision 18-04-2024:
 - linked with existing (updated) or new SKOS Concepts, related to the TWG RINF CCS;
 - included references and guidelines as in Table 5 of the RINF Application Guide.
 					  
-							  """@en ;
-                              dcterms:issued "2024-04-18"^^xsd:date ;
-                              dcterms:modified "2024-04-18"^^xsd:date ,
-                                               "2024-05-24"^^xsd:date ,
-                                               "2024-06-03"^^xsd:date ,
-                                               "2024-06-05"^^xsd:date ;
-                              dcterms:publisher "European Union Agency for Railways" ;
-                              dcterms:title "ERA Ontology"@en ;
-                              rdfs:comment """This is the human and machine readable Ontology governed by the European Union Agency for Railways (https://www.era.europa.eu/). It represents the concepts and relationships linked to the sectorial legal framework and the use cases under the AgencyÂ´s remit, as described in the Commission Implementing Regulation (EU) [to be updated after publication] on the common specifications for the register of railway infrastructure [to be updated after publication].
-
-Currently, this Ontology covers the European railway infrastructure and the vehicles types authorized to operate over it. It is a semantic/browsable representation of the RINF application guide (https://www.era.europa.eu/sites/default/files/registers/docs/rinf_application_guide_for_register_en.pdf) and ERATV application guide (https://www.era.europa.eu/sites/default/files/registers/docs/iu-eratv_application_guide_for_register_2016-797_en.pdf) that were built by domain experts in the RINF and ERATV working parties.
-
-The Ontology also includes the routebook concepts described in appendix D2 \"Elements the infrastructure manager has to provide to the railway undertaking for the Route Book\" as presented in the Commission Implementing Regulation (EU) [to be updated after publication] 2019/773 of 16 May 2019 on the technical specification for interoperability relating to the operation and traffic management subsystem of the rail system within the European Union and [to be updated after publication] and the Appendix D3 [to be updated after publication]."""@en ;
-                              rdfs:label "ERA Ontology"@en ;
-                              owl:priorVersion "https://git.fpfis.eu/datateam/ERA/era-vocabulary/-/releases/v3.0.0"@en ;
-                              owl:versionInfo "v3.1.0"@en ;
-                              owl:versionURI "https://git.fpfis.eu/datateam/ERA/era-vocabulary/-/releases/v3.1.0"@en .
+							  """@en .
 
 #################################################################
 #    Annotation properties
@@ -97,7 +104,7 @@ era:appendixD2Index rdf:type owl:AnnotationProperty ;
                     rdfs:comment "The index of a vocabulary term in Appendix D2 Elements the infrastructure manager has to provide to the railway undertaking for the Route Book from the document Commission Implementing Regulation (EU) 2019/773 of 16 May 2019 on the technical specification for interoperability relating to the operation and traffic management subsystem of the rail system within the European Union and repealing Decision 2012/757/EU."@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "Appendix D2 index"@en ;
-                    <http://www.w3.org/2004/02/skos/core#definition> "The index of a vocabulary term in Appendix D2 Elements the infrastructure manager has to provide to the railway undertaking for the Route Book from the document Commission Implementing Regulation (EU) 2019/773 of 16 May 2019 on the technical specification for interoperability relating to the operation and traffic management subsystem of the rail system within the European Union and repealing Decision 2012/757/EU."@en .
+                    skos:definition "The index of a vocabulary term in Appendix D2 Elements the infrastructure manager has to provide to the railway undertaking for the Route Book from the document Commission Implementing Regulation (EU) 2019/773 of 16 May 2019 on the technical specification for interoperability relating to the operation and traffic management subsystem of the rail system within the European Union and repealing Decision 2012/757/EU."@en .
 
 
 ###  http://data.europa.eu/949/appendixD2index
@@ -306,23 +313,23 @@ above the local reference ellipsoid).""" ;
 
 
 ###  http://www.w3.org/2004/02/skos/core#altLabel
-<http://www.w3.org/2004/02/skos/core#altLabel> rdf:type owl:AnnotationProperty .
+skos:altLabel rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#changeNote
-<http://www.w3.org/2004/02/skos/core#changeNote> rdf:type owl:AnnotationProperty .
+skos:changeNote rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#definition
-<http://www.w3.org/2004/02/skos/core#definition> rdf:type owl:AnnotationProperty .
+skos:definition rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#prefLabel
-<http://www.w3.org/2004/02/skos/core#prefLabel> rdf:type owl:AnnotationProperty .
+skos:prefLabel rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#scopeNote
-<http://www.w3.org/2004/02/skos/core#scopeNote> rdf:type owl:AnnotationProperty .
+skos:scopeNote rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/ns/org#memberOf
@@ -352,7 +359,7 @@ xsd:date rdf:type rdfs:Datatype .
 ###  http://data.europa.eu/949/TSIMagneticFields
 era:TSIMagneticFields rdf:type owl:ObjectProperty ;
                       rdfs:domain era:CCSSubsystem ;
-                      rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                      rdfs:range skos:Concept ;
                       era:XMLName "CEI_TSIMagneticFields" ;
                       era:inSkosConceptScheme <http://data.europa.eu/949/concepts/tsi-existence-and-compliances/TSIExistenceAndCompliances> ;
                       era:rinfIndex "1.1.1.3.9.1" ,
@@ -371,7 +378,7 @@ era:TSIMagneticFields rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/TSITractionHarmonics
 era:TSITractionHarmonics rdf:type owl:ObjectProperty ;
                          rdfs:domain era:CCSSubsystem ;
-                         rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                         rdfs:range skos:Concept ;
                          era:XMLName "CEI_TSITractionHarmonics" ;
                          era:inSkosConceptScheme <http://data.europa.eu/949/concepts/tsi-compliances/TSICompliances> ;
                          era:rinfIndex "1.1.1.3.9.2" ,
@@ -400,7 +407,7 @@ era:additionalBrakingInformationDocument rdf:type owl:ObjectProperty ;
                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                          rdfs:label "Documents available by the IM relating to braking performance"@en ;
                                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                                         <http://www.w3.org/2004/02/skos/core#changeNote> "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
+                                         skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
 
 
 ###  http://data.europa.eu/949/allocationCompany
@@ -421,7 +428,7 @@ era:applicability rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/atoCommunicationSystem
 era:atoCommunicationSystem rdf:type owl:ObjectProperty ;
                            rdfs:domain era:CCSSubsystem ;
-                           rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                           rdfs:range skos:Concept ;
                            era:XMLName "ATO_CommSystem" ;
                            era:appendixD2Index "3.4.9" ;
                            era:inSkosConceptScheme <http://data.europa.eu/949/concepts/ato-commsys/ATOCommSystem> ;
@@ -440,7 +447,7 @@ era:atoCommunicationSystem rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/atoGradeAutomation
 era:atoGradeAutomation rdf:type owl:ObjectProperty ;
                        rdfs:domain era:CCSSubsystem ;
-                       rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                       rdfs:range skos:Concept ;
                        era:XMLName "ATO_GradeAutomation" ;
                        era:appendixD2Index "3.4.8" ;
                        era:inSkosConceptScheme <http://data.europa.eu/949/concepts/ato-grades-automation/ATOGradeOfAutomation> ;
@@ -459,7 +466,7 @@ era:atoGradeAutomation rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/atoSystemVersion
 era:atoSystemVersion rdf:type owl:ObjectProperty ;
                      rdfs:domain era:CCSSubsystem ;
-                     rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                     rdfs:range skos:Concept ;
                      era:XMLName "ATO_GradeAutomation" ;
                      era:appendixD2Index "3.4.8" ;
                      era:inSkosConceptScheme <http://data.europa.eu/949/concepts/ato-s-versions/ATOSystemVersions> ;
@@ -479,7 +486,7 @@ era:atoSystemVersion rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/authorizedCountry
 era:authorizedCountry rdf:type owl:ObjectProperty ;
                       rdfs:domain era:VehicleType ;
-                      rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                      rdfs:range skos:Concept ;
                       era:inSkosConceptScheme <http://publications.europa.eu/resource/authority/country> ;
                       dcterms:created "2020-09-30"^^xsd:date ;
                       dcterms:modified "2020-09-30"^^xsd:date ;
@@ -492,7 +499,7 @@ era:authorizedCountry rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/axleBearingConditionMonitoring
 era:axleBearingConditionMonitoring rdf:type owl:ObjectProperty ;
                                    rdfs:domain era:VehicleType ;
-                                   rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                   rdfs:range skos:Concept ;
                                    era:eratvIndex "4.9.2" ;
                                    era:inSkosConceptScheme <http://data.europa.eu/949/concepts/axle-monitoring/AxleBearingMonitoring> ;
                                    dcterms:created "2020-08-24"^^xsd:date ;
@@ -526,7 +533,7 @@ era:borderPointOf rdf:type owl:ObjectProperty ;
 era:cantDeficiencyBasicSSP rdf:type owl:ObjectProperty ,
                                     owl:FunctionalProperty ;
                            rdfs:domain era:CCSSubsystem ;
-                           rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                           rdfs:range skos:Concept ;
                            era:XMLName "CPE_SSPUsesCantDef" ;
                            era:appendixD3Index "1.3" ;
                            era:inSkosConceptScheme <http://data.europa.eu/949/concepts/cant-deficiencies/CantDeficiencies> ;
@@ -558,7 +565,7 @@ era:carrierObject rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/category
 era:category rdf:type owl:ObjectProperty ;
              rdfs:domain era:VehicleType ;
-             rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+             rdfs:range skos:Concept ;
              era:eratvIndex 1.4 ;
              era:inSkosConceptScheme <http://data.europa.eu/949/concepts/vehicle-types/Categories> ;
              dcterms:created "2020-07-29"^^xsd:date ;
@@ -585,7 +592,7 @@ Notified Bodies, supporting the EC Declaration(s) of Verification for the subsys
 
 ###  http://data.europa.eu/949/companyCodeCategory
 era:companyCodeCategory rdf:type owl:ObjectProperty ;
-                        rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                        rdfs:range skos:Concept ;
                         era:inSkosConceptScheme <http://data.europa.eu/949/concepts/company-code-categories/CompanyCodeCategories> ;
                         dcterms:created "2023-04-04"^^xsd:date ;
                         rdfs:comment "TODO review if used or necessary: Category of a Railway company. Can be Infrastructure, Freight or Passenger."@en ;
@@ -610,7 +617,7 @@ Or
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "Document with the procedure(s) for static and dynamic route compatibility checks"@en ;
                                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                                   <http://www.w3.org/2004/02/skos/core#changeNote> "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
+                                   skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
 
 
 ###  http://data.europa.eu/949/condition
@@ -624,7 +631,7 @@ era:condition rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/conditionsUseReflectivePlates
 era:conditionsUseReflectivePlates rdf:type owl:ObjectProperty ;
                                   rdfs:domain era:InfraSubsystem ;
-                                  rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                  rdfs:range skos:Concept ;
                                   era:rinfIndex "1.1.1.1.7.12.1" ;
                                   dcterms:created "2023-03-14"^^xsd:date ;
                                   rdfs:comment "Details of any conditions for using the reflective plates on freight corridors. Specific case for Portugal and Spain until 1.1.2025 and Belgium and France until 1.1.2026."@en ;
@@ -648,7 +655,7 @@ era:contactLineSystem rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/contactLineSystemType
 era:contactLineSystemType rdf:type owl:ObjectProperty ;
                           rdfs:domain era:ContactLineSystem ;
-                          rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                          rdfs:range skos:Concept ;
                           era:XMLName "ECS_SystemType" ;
                           era:inSkosConceptScheme <http://data.europa.eu/949/concepts/contact-line-systems/ContactLineSystems> ;
                           era:rinfIndex "1.1.1.2.2.1.1" ;
@@ -668,7 +675,7 @@ era:contactStripMaterial rdf:type owl:ObjectProperty ;
                                                      era:VehicleType
                                                    )
                                      ] ;
-                         rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                         rdfs:range skos:Concept ;
                          era:XMLName "EPA_StripMaterial" ;
                          era:eratvIndex "4.10.10" ;
                          era:inSkosConceptScheme <http://data.europa.eu/949/concepts/contact-strip-materials/ContactStripMaterials> ;
@@ -685,7 +692,7 @@ era:contactStripMaterial rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/dataGSMRNetwork
 era:dataGSMRNetwork rdf:type owl:ObjectProperty ;
                     rdfs:domain era:VehicleType ;
-                    rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                    rdfs:range skos:Concept ;
                     era:eratvIndex "4.13.2.11" ;
                     era:inSkosConceptScheme <http://data.europa.eu/949/concepts/gsmr-networks/GSMRNetworks> ;
                     dcterms:created "2020-08-31"^^xsd:date ;
@@ -703,7 +710,7 @@ era:dataRadioCompatible rdf:type owl:ObjectProperty ;
                                                     era:VehicleType
                                                   )
                                     ] ;
-                        rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                        rdfs:range skos:Concept ;
                         era:XMLName "CRG_RadioCompData" ;
                         era:eratvIndex "4.13.2.8" ;
                         era:inSkosConceptScheme <http://data.europa.eu/949/concepts/radio-system-compatibilities-data/RadioSystemCompatibilitiesData> ;
@@ -738,17 +745,16 @@ era:definesSubset rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/direction
 era:direction rdf:type owl:ObjectProperty ;
-              rdfs:subPropertyOf owl:topObjectProperty ;
               rdfs:domain era:Orientation ;
-              rdfs:range <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
+              rdfs:range skos:ConceptScheme ;
               rdfs:comment "The direction of the orientation of a railway element, in relation to the carrier object"@en ;
-              <http://www.w3.org/2004/02/skos/core#definition> "direction"@en .
+              skos:definition "direction"@en .
 
 
 ###  http://data.europa.eu/949/eddyCurrentBraking
 era:eddyCurrentBraking rdf:type owl:ObjectProperty ;
                        rdfs:domain era:InfraSubsystem ;
-                       rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                       rdfs:range skos:Concept ;
                        era:XMLName "ILR_EddyCurrentBrakes" ;
                        era:appendixD2Index "3.4.5" ;
                        era:inSkosConceptScheme <http://data.europa.eu/949/concepts/eddy-current-braking/EddyCurrentBraking> ;
@@ -781,7 +787,7 @@ era:eddyCurrentBrakingConditionsDocument rdf:type owl:ObjectProperty ;
                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                          rdfs:label "Document with the conditions for the use of eddy current brakes"@en ;
                                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                                         <http://www.w3.org/2004/02/skos/core#changeNote> "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
+                                         skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
 
 
 ###  http://data.europa.eu/949/elementA
@@ -796,7 +802,7 @@ Indicates the object that corresponds to a section of line, an operational point
              rdfs:label "Element A"@en ;
              owl:deprecated "true"^^xsd:boolean ;
              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-             <http://www.w3.org/2004/02/skos/core#altLabel> "Internal connection"@en .
+             skos:altLabel "Internal connection"@en .
 
 
 ###  http://data.europa.eu/949/elementB
@@ -811,7 +817,7 @@ Indicates the object that corresponds to a section of line, an operational point
              rdfs:label "Element B"@en ;
              owl:deprecated "true"^^xsd:boolean ;
              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-             <http://www.w3.org/2004/02/skos/core#altLabel> "Internal connection"@en .
+             skos:altLabel "Internal connection"@en .
 
 
 ###  http://data.europa.eu/949/elementPart
@@ -827,7 +833,6 @@ era:elementPart rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/elementPartOf
 era:elementPartOf rdf:type owl:ObjectProperty ;
-                  rdfs:subPropertyOf owl:topObjectProperty ;
                   rdfs:domain era:TopologicalObject ;
                   rdfs:range era:TopologicalObject ;
                   rdfs:comment "References the topology object of a lower-granularity level which is part of a higher-granularity topology object."@en ;
@@ -837,7 +842,7 @@ era:elementPartOf rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/endCouplingType
 era:endCouplingType rdf:type owl:ObjectProperty ;
                     rdfs:domain era:VehicleType ;
-                    rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                    rdfs:range skos:Concept ;
                     era:eratvIndex "4.9.1" ;
                     era:inSkosConceptScheme <http://data.europa.eu/949/concepts/end-coupling-type/EndCouplingType> ;
                     dcterms:created "2021-08-31"^^xsd:date ;
@@ -876,7 +881,7 @@ era:energySupplySystem rdf:type owl:ObjectProperty ;
                                                    era:VehicleType
                                                  )
                                    ] ;
-                       rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                       rdfs:range skos:Concept ;
                        era:XMLName "ECS_VoltFreq" ;
                        era:appendixD2Index "3.3.1" ;
                        era:eratvIndex "4.10.1" ;
@@ -896,7 +901,7 @@ and frequency)."""@en ;
 ###  http://data.europa.eu/949/errorCorrectionsOnboard
 era:errorCorrectionsOnboard rdf:type owl:ObjectProperty ;
                             rdfs:domain era:CCSSubsystem ;
-                            rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                            rdfs:range skos:Concept ;
                             era:XMLName "CDE_ReqErrorCorrections" ;
                             era:inSkosConceptScheme <http://data.europa.eu/949/concepts/error-corrections/OnboardErrorCorrections> ;
                             era:rinfIndex "1.1.1.3.1.2" ,
@@ -915,7 +920,7 @@ era:etcsBaseline rdf:type owl:ObjectProperty ;
                                              era:VehicleType
                                            )
                              ] ;
-                 rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                 rdfs:range skos:Concept ;
                  era:XMLName "CPE_Baseline" ;
                  era:appendixD2Index "3.2.7" ;
                  era:eratvIndex "4.13.1.2" ;
@@ -937,7 +942,7 @@ era:etcsBaseline rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/etcsDegradedSituation
 era:etcsDegradedSituation rdf:type owl:ObjectProperty ;
                           rdfs:domain era:CCSSubsystem ;
-                          rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                          rdfs:range skos:Concept ;
                           era:XMLName "CLD_ETCSSituation" ;
                           era:appendixD2Index "3.4.1" ;
                           era:inSkosConceptScheme <http://data.europa.eu/949/concepts/etcs-situation/ETCSSituations> ;
@@ -967,7 +972,7 @@ See also TSI OPE 4.2.3.6. Degraded operation."""@en ;
 ###  http://data.europa.eu/949/etcsEquipmentOnBoardLevel
 era:etcsEquipmentOnBoardLevel rdf:type owl:ObjectProperty ;
                               rdfs:domain era:VehicleType ;
-                              rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                              rdfs:range skos:Concept ;
                               era:eratvIndex "4.13.1.1" ;
                               era:inSkosConceptScheme <http://data.europa.eu/949/concepts/etcs-equipment-on-board-level/ETCSEquipmentLevels> ;
                               dcterms:created "2021-08-31"^^xsd:date ;
@@ -986,7 +991,7 @@ era:etcsInfill rdf:type owl:ObjectProperty ,
                                            era:VehicleType
                                          )
                            ] ;
-               rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+               rdfs:range skos:Concept ;
                era:XMLName "CPE_InfillLineSide" ;
                era:eratvIndex "4.13.1.3" ;
                era:inSkosConceptScheme <http://data.europa.eu/949/concepts/etcs-infills/ETCSInfills> ;
@@ -1019,7 +1024,7 @@ era:etcsLevel rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/etcsLevelType
 era:etcsLevelType rdf:type owl:ObjectProperty ;
                   rdfs:domain era:ETCSLevel ;
-                  rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                  rdfs:range skos:Concept ;
                   era:XMLName "CPE_Level" ;
                   era:appendixD2Index "3.2.7" ;
                   era:inSkosConceptScheme <http://data.europa.eu/949/concepts/etcs-levels/ETCSLevels> ;
@@ -1059,7 +1064,7 @@ See: TSI CCS (Subset-026, Chapter 2, 2.6)"""@en ;
 era:etcsMVersion rdf:type owl:ObjectProperty ,
                           owl:FunctionalProperty ;
                  rdfs:domain era:CCSSubsystem ;
-                 rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                 rdfs:range skos:Concept ;
                  era:XMLName "CPE_MVersion" ;
                  era:inSkosConceptScheme <http://data.europa.eu/949/concepts/etcs-m-versions/ETCSMVersions> ;
                  era:rinfIndex "1.1.1.3.2.10" ,
@@ -1084,7 +1089,7 @@ era:etcsSystemCompatibility rdf:type owl:ObjectProperty ;
                                                         era:VehicleType
                                                       )
                                         ] ;
-                            rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                            rdfs:range skos:Concept ;
                             era:XMLName "CPE_SystemCompatibility" ;
                             era:eratvIndex "4.13.1.8" ;
                             era:inSkosConceptScheme <http://data.europa.eu/949/concepts/etcs-system-compatibilities/ETCSSystemCompatibilities> ;
@@ -1122,7 +1127,7 @@ The ESC Types shall only be used when published with status ‘Valid’ in the A
 era:etcsTransmittedTrackConditions rdf:type owl:ObjectProperty ,
                                             owl:FunctionalProperty ;
                                    rdfs:domain era:CCSSubsystem ;
-                                   rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                   rdfs:range skos:Concept ;
                                    era:XMLName "CPE_TransmittedTCs" ;
                                    era:appendixD3Index "1.1" ;
                                    era:inSkosConceptScheme <http://data.europa.eu/949/concepts/etcs-transmitted-tcs/TransmittedTrackConditions> ;
@@ -1145,7 +1150,7 @@ See: TSI CCS (Subset-026, Chapter 5, section 5.18.1.1)"""@en ;
 ###  http://data.europa.eu/949/fireSafetyCategory
 era:fireSafetyCategory rdf:type owl:ObjectProperty ;
                        rdfs:domain era:VehicleType ;
-                       rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                       rdfs:range skos:Concept ;
                        era:eratvIndex "4.4.1" ;
                        era:inSkosConceptScheme <http://data.europa.eu/949/concepts/rolling-stock-fire/Categories> ;
                        dcterms:created "2020-08-29"^^xsd:date ;
@@ -1159,7 +1164,7 @@ era:fireSafetyCategory rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/freightCorridor
 era:freightCorridor rdf:type owl:ObjectProperty ;
                     rdfs:domain era:InfraSubsystem ;
-                    rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                    rdfs:range skos:Concept ;
                     era:XMLName "IPP_FreightCorridor" ;
                     era:inSkosConceptScheme <http://data.europa.eu/949/concepts/freight-corridor/FreightCorridors> ;
                     era:rinfIndex "1.1.1.1.2.3" ,
@@ -1175,7 +1180,7 @@ era:freightCorridor rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/frenchTrainDetectionSystemLimitation
 era:frenchTrainDetectionSystemLimitation rdf:type owl:ObjectProperty ;
                                          rdfs:domain era:TrainDetectionSystem ;
-                                         rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                         rdfs:range skos:Concept ;
                                          era:XMLName "CTD_TCLimitation" ;
                                          era:inSkosConceptScheme <http://data.europa.eu/949/concepts/train-detection/FrenchTrainDetectionSystemLimitations> ;
                                          era:rinfIndex "1.1.1.3.7.1.4" ,
@@ -1195,7 +1200,7 @@ era:frenchTrainDetectionSystemLimitation rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/frenchTrainDetectionSystemLimitationNumber
 era:frenchTrainDetectionSystemLimitationNumber rdf:type owl:ObjectProperty ;
                                                rdfs:domain era:FrenchTrainDetectionSystemLimitation ;
-                                               rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                               rdfs:range skos:Concept ;
                                                era:XMLName "CTD_TCLimitation" ;
                                                era:inSkosConceptScheme <http://data.europa.eu/949/concepts/train-detection-numbers/FrenchTrainDetectionSystemLimitationNumbers> ;
                                                era:rinfIndex "1.1.1.3.7.1.4" ,
@@ -1224,7 +1229,7 @@ Sections with:
 ###  http://data.europa.eu/949/frequencyBandsForDetection
 era:frequencyBandsForDetection rdf:type owl:ObjectProperty ;
                                rdfs:domain era:TrainDetectionSystem ;
-                               rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                               rdfs:range skos:Concept ;
                                era:XMLName "CCD_TSIFreqBandsDet" ;
                                era:inSkosConceptScheme <http://data.europa.eu/949/concepts/train-detection/FrequencyBandsForDetection> ;
                                era:rinfIndex "1.1.1.3.4.2" ,
@@ -1261,7 +1266,7 @@ era:gaugingProfile rdf:type owl:ObjectProperty ;
                                                era:VehicleType
                                              )
                                ] ;
-                   rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                   rdfs:range skos:Concept ;
                    era:XMLName "ILL_Gauging" ;
                    era:eratvIndex "4.2.1" ;
                    era:inSkosConceptScheme <http://data.europa.eu/949/concepts/gaugings/GaugingProfiles> ;
@@ -1291,14 +1296,14 @@ era:gaugingTransversalDocument rdf:type owl:ObjectProperty ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "Document with the transversal section of the particular points requiring specific checks"@en ;
                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                               <http://www.w3.org/2004/02/skos/core#changeNote> "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
+                               skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
 
 
 ###  http://data.europa.eu/949/gsmRActiveMobiles
 era:gsmRActiveMobiles rdf:type owl:ObjectProperty ,
                                owl:FunctionalProperty ;
                       rdfs:domain era:CCSSubsystem ;
-                      rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                      rdfs:range skos:Concept ;
                       era:XMLName "CRG_NumActiveMob" ;
                       era:inSkosConceptScheme <http://data.europa.eu/949/concepts/gsmr-number-active-mobiles/NumberActiveMobiles> ;
                       era:rinfIndex "1.1.1.3.3.2" ,
@@ -1336,13 +1341,13 @@ The document(s) itself has(have) to be upload by the NRE via the “reference do
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Additional information on network characteristics"@en ;
                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                       <http://www.w3.org/2004/02/skos/core#changeNote> "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
+                       skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
 
 
 ###  http://data.europa.eu/949/gsmROptionalFunctions
 era:gsmROptionalFunctions rdf:type owl:ObjectProperty ;
                           rdfs:domain era:CCSSubsystem ;
-                          rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                          rdfs:range skos:Concept ;
                           era:XMLName "CRG_OptionalFunctions" ;
                           era:inSkosConceptScheme <http://data.europa.eu/949/concepts/gsmr-optional-functions/OptionalFunctions> ;
                           era:rinfIndex "1.1.1.3.3.3" ,
@@ -1383,7 +1388,7 @@ In case there is a balise used to announce the change of the network, or if ther
 ###  http://data.europa.eu/949/gsmRRadioDataCommunication
 era:gsmRRadioDataCommunication rdf:type owl:ObjectProperty ;
                                rdfs:domain era:VehicleType ;
-                               rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                               rdfs:range skos:Concept ;
                                era:eratvIndex "4.13.2.7" ;
                                era:inSkosConceptScheme <http://data.europa.eu/949/concepts/gsm-r-radio-data-communication/GSMRRadioDataCommunications> ;
                                dcterms:created "2021-08-31"^^xsd:date ;
@@ -1401,7 +1406,7 @@ era:gsmRVersion rdf:type owl:ObjectProperty ;
                                             era:VehicleType
                                           )
                             ] ;
-                rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                rdfs:range skos:Concept ;
                 era:XMLName "CRG_Version" ;
                 era:appendixD2Index "3.1.7" ,
                                     "3.4.4" ;
@@ -1425,7 +1430,7 @@ Since more than one version may be installed in different areas, this property c
 ###  http://data.europa.eu/949/gsmrConstraintsOperateOnlyInCircuitSwitch
 era:gsmrConstraintsOperateOnlyInCircuitSwitch rdf:type owl:ObjectProperty ;
                                               rdfs:domain era:CCSSubsystem ;
-                                              rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                              rdfs:range skos:Concept ;
                                               era:XMLName "CRG_ConstraintsCS" ;
                                               era:appendixD3Index "2.2" ;
                                               era:inSkosConceptScheme <http://data.europa.eu/949/concepts/gsmr-cs-constraints/GSMRConstraints> ;
@@ -1444,7 +1449,7 @@ Multiple values are allowed."""@en ;
 ###  http://data.europa.eu/949/gsmrNetworkCoverage
 era:gsmrNetworkCoverage rdf:type owl:ObjectProperty ;
                         rdfs:domain era:CCSSubsystem ;
-                        rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                        rdfs:range skos:Concept ;
                         era:XMLName "CRG_RoamingAgreement" ;
                         era:inSkosConceptScheme <http://data.europa.eu/949/concepts/gsmr-networks/GSMRNetworks> ;
                         era:rinfIndex "1.1.1.3.3.5" ,
@@ -1492,7 +1497,7 @@ era:hasImplementation rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/hasOrganisationRole
 era:hasOrganisationRole rdf:type owl:ObjectProperty ;
                         rdfs:domain era:OrganisationRole ;
-                        rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                        rdfs:range skos:Concept ;
                         dcterms:created "2024-06-03"^^xsd:date ;
                         rdfs:comment "The role of the body"@en ;
                         rdfs:label "has organisation role"@en .
@@ -1522,7 +1527,6 @@ era:hasSetOfParameters rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/hasTopology
 era:hasTopology rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf owl:topObjectProperty ;
                 owl:inverseOf era:topologyOf ;
                 rdfs:domain era:InfrastructureObject ;
                 rdfs:range era:TopologicalObject ;
@@ -1532,9 +1536,8 @@ era:hasTopology rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/hotAxleBoxDetectorDirection
 era:hotAxleBoxDetectorDirection rdf:type owl:ObjectProperty ;
-                                rdfs:subPropertyOf owl:topObjectProperty ;
                                 rdfs:domain era:InfraSubsystem ;
-                                rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                rdfs:range skos:Concept ;
                                 era:XMLName "IHS_HABDDirecton" ;
                                 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/hot-axle/HotAxleBoxDetectorDirections> ;
                                 era:rinfIndex "1.1.1.1.7.9" ;
@@ -1556,7 +1559,7 @@ If the direction of measurement is:
 ###  http://data.europa.eu/949/inCountry
 era:inCountry rdf:type owl:ObjectProperty ;
               rdfs:domain era:InfrastructureObject ;
-              rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+              rdfs:range skos:Concept ;
               era:inSkosConceptScheme <http://publications.europa.eu/resource/authority/country> ;
               dcterms:created "2020-09-01"^^xsd:date ;
               dcterms:modified "2020-11-20"^^xsd:date ;
@@ -1592,7 +1595,7 @@ era:legacyRadioSystem rdf:type owl:ObjectProperty ;
                                                   era:VehicleType
                                                 )
                                   ] ;
-                      rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                      rdfs:range skos:Concept ;
                       era:XMLName "CRS_Installed" ;
                       era:appendixD2Index "3.1.7" ,
                                           "3.4.4" ;
@@ -1616,7 +1619,7 @@ era:legacyRadioSystem rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/lineCategory
 era:lineCategory rdf:type owl:ObjectProperty ;
                  rdfs:domain era:InfraSubsystem ;
-                 rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                 rdfs:range skos:Concept ;
                  era:XMLName "IPP_LineCat" ;
                  era:inSkosConceptScheme <http://data.europa.eu/949/concepts/line-category/LineCategories> ;
                  era:rinfIndex "1.1.1.1.2.2" ,
@@ -1694,7 +1697,7 @@ The Start of tunnel is the Geographical coordinates in decimal degrees and km of
 ###  http://data.europa.eu/949/linesideDistanceIndicationAppearance
 era:linesideDistanceIndicationAppearance rdf:type owl:ObjectProperty ;
                                          rdfs:domain era:TechnicalCharacteristics ;
-                                         rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                         rdfs:range skos:Concept ;
                                          era:appendixD2Index "3.1.3" ;
                                          era:rinfIndex "1.1.1.0.0.3" ;
                                          dcterms:created "2022-10-27"^^xsd:date ;
@@ -1708,9 +1711,8 @@ era:linesideDistanceIndicationAppearance rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/linesideDistanceIndicationPositioning
 era:linesideDistanceIndicationPositioning rdf:type owl:ObjectProperty ;
-                                          rdfs:subPropertyOf owl:topObjectProperty ;
                                           rdfs:domain era:TechnicalCharacteristics ;
-                                          rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                          rdfs:range skos:Concept ;
                                           era:appendixD2Index "3.1.3" ;
                                           era:rinfIndex "1.1.1.0.0.3" ;
                                           dcterms:created "2023-03-14"^^xsd:date ;
@@ -1724,7 +1726,7 @@ era:linesideDistanceIndicationPositioning rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/loadCapability
 era:loadCapability rdf:type owl:ObjectProperty ;
                    rdfs:domain era:InfraSubsystem ;
-                   rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                   rdfs:range skos:Concept ;
                    era:XMLName "IPP_LoadCap" ;
                    era:inSkosConceptScheme <http://data.europa.eu/949/concepts/load-capabilities/LoadCapabilities> ;
                    era:rinfIndex "1.1.1.1.2.4" ;
@@ -1744,7 +1746,7 @@ era:loadCapability rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/loadCapabilityLineCategory
 era:loadCapabilityLineCategory rdf:type owl:ObjectProperty ;
                                rdfs:domain era:LoadCapability ;
-                               rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                               rdfs:range skos:Concept ;
                                era:XMLName "IPP_LoadCap" ;
                                era:inSkosConceptScheme <http://data.europa.eu/949/concepts/load-capability-line-categories/LoadCapabilityLineCategories> ;
                                era:rinfIndex "1.1.1.1.2.4" ;
@@ -1775,7 +1777,7 @@ era:localRulesOrRestrictionsDoc rdf:type owl:ObjectProperty ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "Documents regarding the rules or restrictions of a strictly local nature available by the IM"@en ;
                                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                                <http://www.w3.org/2004/02/skos/core#changeNote> "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
+                                skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
 
 
 ###  http://data.europa.eu/949/location
@@ -1787,9 +1789,8 @@ era:location rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/lrsMethod
 era:lrsMethod rdf:type owl:ObjectProperty ;
-              rdfs:subPropertyOf owl:topObjectProperty ;
               rdfs:domain era:Position ;
-              rdfs:range <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
+              rdfs:range skos:ConceptScheme ;
               rdfs:comment "The preferred line referencing system. TODO: provide example"@en ;
               rdfs:label "line referencing system"@en .
 
@@ -1798,7 +1799,7 @@ era:lrsMethod rdf:type owl:ObjectProperty ;
 era:mNvcontact rdf:type owl:ObjectProperty ,
                         owl:FunctionalProperty ;
                rdfs:domain era:CCSSubsystem ;
-               rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+               rdfs:range skos:Concept ;
                era:XMLName "CPE_MNVCONTACT" ;
                era:appendixD3Index "1.5.9" ;
                era:inSkosConceptScheme <http://data.europa.eu/949/concepts/etcs-reactions-contact/ETCSReactionsNVContact> ;
@@ -1821,7 +1822,7 @@ See: TSI CCS (Subset-026, chapter 7. 7.5.1.74 M_NVCONTACT)"""@en ;
 ###  http://data.europa.eu/949/magneticBraking
 era:magneticBraking rdf:type owl:ObjectProperty ;
                     rdfs:domain era:InfraSubsystem ;
-                    rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                    rdfs:range skos:Concept ;
                     era:XMLName "ILR_MagneticBrakes" ;
                     era:appendixD2Index "3.4.6" ;
                     era:inSkosConceptScheme <http://data.europa.eu/949/concepts/magnetic-braking/MagneticBraking> ;
@@ -1854,7 +1855,7 @@ era:magneticBrakingConditionsDocument rdf:type owl:ObjectProperty ;
                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                       rdfs:label "Document with the conditions for the use of magnetic brakes"@en ;
                                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                                      <http://www.w3.org/2004/02/skos/core#changeNote> "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
+                                      skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
 
 
 ###  http://data.europa.eu/949/manufacturer
@@ -1877,7 +1878,7 @@ era:manufacturingCountry rdf:type owl:ObjectProperty ;
                                                      era:VehicleType
                                                    )
                                      ] ;
-                         rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                         rdfs:range skos:Concept ;
                          era:inSkosConceptScheme <http://publications.europa.eu/resource/authority/country> ;
                          dcterms:created "2020-09-30"^^xsd:date ;
                          dcterms:modified "2020-11-22"^^xsd:date ;
@@ -1890,7 +1891,7 @@ era:manufacturingCountry rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/maxSandingOutput
 era:maxSandingOutput rdf:type owl:ObjectProperty ;
                      rdfs:domain era:TrainDetectionSystem ;
-                     rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                     rdfs:range skos:Concept ;
                      era:XMLName "CTD_MaxSandOutput" ;
                      era:inSkosConceptScheme <http://data.europa.eu/949/concepts/max-amount-sandings/MaxAmountSandings> ;
                      era:rinfIndex "1.1.1.3.7.17" ;
@@ -1907,7 +1908,7 @@ Deprecated according to the ammendment to the Regulation (EU) 2019/777."""@en ;
 ###  http://data.europa.eu/949/minAxleLoadVehicleCategory
 era:minAxleLoadVehicleCategory rdf:type owl:ObjectProperty ;
                                rdfs:domain era:MinAxleLoadVehicleCategory ;
-                               rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                               rdfs:range skos:Concept ;
                                era:XMLName "CTD_MinAxleLoadByVehicleCat" ;
                                era:inSkosConceptScheme <http://data.europa.eu/949/concepts/min-axle-load-vehicle-categories/MinAxleLoadVehicleCategories> ;
                                era:rinfIndex "1.1.1.3.7.11.1" ;
@@ -1935,7 +1936,7 @@ era:minVehicleImpedance rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/minVehicleImpedanceVoltages
 era:minVehicleImpedanceVoltages rdf:type owl:ObjectProperty ;
                                 rdfs:domain era:MinVehicleImpedance ;
-                                rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                rdfs:range skos:Concept ;
                                 era:XMLName "CCD_TCVehicleImpedance" ;
                                 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/energy-supply-systems/EnergySupplySystems> ;
                                 era:rinfIndex "1.1.1.3.4.2.2" ,
@@ -1963,7 +1964,7 @@ era:nationalLine rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/navigability
 era:navigability rdf:type owl:ObjectProperty ;
-                 rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                 rdfs:range skos:Concept ;
                  era:inSkosConceptScheme <http://data.europa.eu/949/concepts/navigabilities/Navigabilities> ;
                  era:rinfIndex "1.1.1.0.1.2" ,
                                "1.2.4.1" ;
@@ -1974,7 +1975,7 @@ era:navigability rdf:type owl:ObjectProperty ;
                  rdfs:label "Navigability"@en ;
                  owl:deprecated "true"^^xsd:boolean ;
                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                 <http://www.w3.org/2004/02/skos/core#altLabel> "Internal connection"@en .
+                 skos:altLabel "Internal connection"@en .
 
 
 ###  http://data.europa.eu/949/netElement
@@ -2011,7 +2012,6 @@ era:notYetAvailable rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/onGrid
 era:onGrid rdf:type owl:ObjectProperty ;
-           rdfs:subPropertyOf owl:topObjectProperty ;
            rdfs:domain era:Signal ;
            rdfs:range era:SignalsGrid ;
            rdfs:label "on signal grid"@en .
@@ -2063,7 +2063,7 @@ era:opStart rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/opType
 era:opType rdf:type owl:ObjectProperty ;
            rdfs:domain era:OperationalPoint ;
-           rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+           rdfs:range skos:Concept ;
            era:XMLName "OPType" ;
            era:appendixD2Index "2.2.2" ,
                                "2.3.2" ;
@@ -2080,7 +2080,7 @@ era:opType rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/operatingLanguage
 era:operatingLanguage rdf:type owl:ObjectProperty ;
-                      rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                      rdfs:range skos:Concept ;
                       era:appendixD2Index "3.5.1" ;
                       era:rinfIndex "1.1.0.0.1.2" ,
                                     "1.2.0.0.0.8" ;
@@ -2095,7 +2095,7 @@ era:operatingLanguage rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/operationalRegimeType
 era:operationalRegimeType rdf:type owl:ObjectProperty ;
-                          rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                          rdfs:range skos:Concept ;
                           era:appendixD2Index "3.2.7" ;
                           era:rinfIndex "1.1.0.0.1.3" ;
                           dcterms:created "2022-10-27"^^xsd:date ;
@@ -2110,7 +2110,7 @@ era:operationalRegimeType rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/operationalRestriction
 era:operationalRestriction rdf:type owl:ObjectProperty ;
                            rdfs:domain era:Vehicle ;
-                           rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                           rdfs:range skos:Concept ;
                            era:inSkosConceptScheme <http://data.europa.eu/949/concepts/restrictions/Restrictions> ;
                            dcterms:created "2020-11-23"^^xsd:date ;
                            dcterms:modified "2021-08-03"^^xsd:date ;
@@ -2132,9 +2132,8 @@ era:organisation rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/orientation
 era:orientation rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf owl:topObjectProperty ;
                 rdfs:domain era:Orientation ;
-                rdfs:range <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
+                rdfs:range skos:ConceptScheme ;
                 rdfs:comment "The orientation of the object in relation to the carrier object. Possible values: Normal, Opposite, Both"@en ;
                 rdfs:label "orientation"@en .
 
@@ -2146,21 +2145,21 @@ era:osmClass rdf:type owl:ObjectProperty ;
                                          era:Track
                                        )
                          ] ;
-             rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+             rdfs:range skos:Concept ;
              era:inSkosConceptScheme <http://data.europa.eu/949/concepts/osmclass/OSMClasses> ;
              rdfs:comment "(deprecated) not in use any more"@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "Open street map class"@en ;
              owl:deprecated "true"^^xsd:boolean ;
              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-             <http://www.w3.org/2004/02/skos/core#definition> "Additional concept class according to OpenStreetMap."@en .
+             skos:definition "Additional concept class according to OpenStreetMap."@en .
 
 
 ###  http://data.europa.eu/949/otherCantDeficiencyBasicSSP
 era:otherCantDeficiencyBasicSSP rdf:type owl:ObjectProperty ,
                                          owl:FunctionalProperty ;
                                 rdfs:domain era:CCSSubsystem ;
-                                rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                rdfs:range skos:Concept ;
                                 era:XMLName "CPE_OtherCantDef" ;
                                 era:appendixD3Index "1.3" ;
                                 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/cant-deficiencies/CantDeficiencies> ;
@@ -2184,7 +2183,7 @@ b) The “other specific” SSP categories: it groups all other specific SSP cat
 ###  http://data.europa.eu/949/otherPantographHead
 era:otherPantographHead rdf:type owl:ObjectProperty ;
                         rdfs:domain era:EnergySubsystem ;
-                        rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                        rdfs:range skos:Concept ;
                         era:XMLName "EPA_OtherHeads" ;
                         era:inSkosConceptScheme <http://data.europa.eu/949/concepts/other-pantograph-heads/OtherPantographHeads> ;
                         era:rinfIndex "1.1.1.2.3.2" ;
@@ -2201,7 +2200,7 @@ era:otherPantographHead rdf:type owl:ObjectProperty ;
 era:otherTrainProtection rdf:type owl:ObjectProperty ,
                                   owl:FunctionalProperty ;
                          rdfs:domain era:CCSSubsystem ;
-                         rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                         rdfs:range skos:Concept ;
                          era:XMLName "CLD_OtherProtectControlWarn" ;
                          era:appendixD2Index "3.4.1" ;
                          era:inSkosConceptScheme <http://data.europa.eu/949/concepts/other-protection-control-warning/OtherProtectionControlWarnings> ;
@@ -2237,7 +2236,7 @@ era:parameter rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/parkingBrakeType
 era:parkingBrakeType rdf:type owl:ObjectProperty ;
                      rdfs:domain era:VehicleType ;
-                     rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                     rdfs:range skos:Concept ;
                      era:eratvIndex "4.7.3.2" ;
                      era:inSkosConceptScheme <http://data.europa.eu/949/concepts/brake-parking-type/BrakeParkingType> ;
                      dcterms:created "2021-08-26"^^xsd:date ;
@@ -2277,7 +2276,7 @@ era:platformEdge rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/platformHeight
 era:platformHeight rdf:type owl:ObjectProperty ;
                    rdfs:domain era:PlatformEdge ;
-                   rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                   rdfs:range skos:Concept ;
                    era:XMLName "IPL_Height" ;
                    era:appendixD2Index "2.3.7" ;
                    era:inSkosConceptScheme <http://data.europa.eu/949/concepts/platform-heights/PlatformHeights> ;
@@ -2294,7 +2293,7 @@ era:platformHeight rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/positionOnA
 era:positionOnA rdf:type owl:ObjectProperty ;
-                rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                rdfs:range skos:Concept ;
                 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/relation-positions/RelationPositions> ;
                 era:rinfIndex "1.1.1.0.1.2" ,
                               "1.2.4.1" ;
@@ -2305,12 +2304,12 @@ era:positionOnA rdf:type owl:ObjectProperty ;
                 rdfs:label "Position on A"@en ;
                 owl:deprecated "true"^^xsd:boolean ;
                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                <http://www.w3.org/2004/02/skos/core#altLabel> "Internal connection"@en .
+                skos:altLabel "Internal connection"@en .
 
 
 ###  http://data.europa.eu/949/positionOnB
 era:positionOnB rdf:type owl:ObjectProperty ;
-                rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                rdfs:range skos:Concept ;
                 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/relation-positions/RelationPositions> ;
                 era:rinfIndex "1.1.1.0.1.2" ,
                               "1.2.4.1" ;
@@ -2321,7 +2320,7 @@ era:positionOnB rdf:type owl:ObjectProperty ;
                 rdfs:label "Position on B"@en ;
                 owl:deprecated "true"^^xsd:boolean ;
                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                <http://www.w3.org/2004/02/skos/core#altLabel> "Internal connection"@en .
+                skos:altLabel "Internal connection"@en .
 
 
 ###  http://data.europa.eu/949/previousVehicleType
@@ -2346,7 +2345,7 @@ era:primaryLocation rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/profileNumberSemiTrailers
 era:profileNumberSemiTrailers rdf:type owl:ObjectProperty ;
                               rdfs:domain era:InfraSubsystem ;
-                              rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                              rdfs:range skos:Concept ;
                               era:XMLName "ILL_ProfileNumSemiTrailers" ;
                               era:inSkosConceptScheme <http://data.europa.eu/949/concepts/profile-num-semi-trailers/ProfileNumbersSemiTrailers> ;
                               era:rinfIndex "1.1.1.1.3.5" ;
@@ -2361,7 +2360,7 @@ era:profileNumberSemiTrailers rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/profileNumberSwapBodies
 era:profileNumberSwapBodies rdf:type owl:ObjectProperty ;
                             rdfs:domain era:InfraSubsystem ;
-                            rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                            rdfs:range skos:Concept ;
                             era:XMLName "ILL_ProfileNumSwapBodies" ;
                             era:inSkosConceptScheme <http://data.europa.eu/949/concepts/profile-num-swap-bodies/ProfileNumbersSwapBodies> ;
                             era:rinfIndex "1.1.1.1.3.4" ;
@@ -2380,7 +2379,7 @@ era:protectionLegacySystem rdf:type owl:ObjectProperty ;
                                                        era:VehicleType
                                                      )
                                        ] ;
-                           rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                           rdfs:range skos:Concept ;
                            era:XMLName "CPO_LegacyTrainProtection" ;
                            era:eratvIndex "4.13.1.5" ;
                            era:inSkosConceptScheme <http://data.europa.eu/949/concepts/other-protection-control-warning/OtherProtectionControlWarnings> ;
@@ -2401,7 +2400,7 @@ era:protectionLegacySystem rdf:type owl:ObjectProperty ;
 era:qNvemrrls rdf:type owl:ObjectProperty ,
                        owl:FunctionalProperty ;
               rdfs:domain era:CCSSubsystem ;
-              rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+              rdfs:range skos:Concept ;
               era:XMLName "CPE_QNVEMRRLS" ;
               era:appendixD3Index "1.5.2" ;
               era:inSkosConceptScheme <http://data.europa.eu/949/concepts/ebr-qualifier/EBReleaseQualifier> ;
@@ -2421,7 +2420,7 @@ According to the specification referenced in TSI CCS (Subset-026, chapter 7, 7.5
 ###  http://data.europa.eu/949/quieterRoutesExemptedCountry
 era:quieterRoutesExemptedCountry rdf:type owl:ObjectProperty ;
                                  rdfs:domain era:Vehicle ;
-                                 rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                 rdfs:range skos:Concept ;
                                  era:inSkosConceptScheme <http://publications.europa.eu/resource/authority/country> ;
                                  dcterms:created "2020-11-23"^^xsd:date ;
                                  dcterms:modified "2020-11-23"^^xsd:date ;
@@ -2438,7 +2437,7 @@ era:railInclination rdf:type owl:ObjectProperty ;
                                                 era:VehicleType
                                               )
                                 ] ;
-                    rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                    rdfs:range skos:Concept ;
                     era:XMLName "ITP_RailInclination" ;
                     era:eratvIndex "4.6.5" ;
                     era:inSkosConceptScheme <http://data.europa.eu/949/concepts/rail-inclinations/RailInclinations> ;
@@ -2456,7 +2455,7 @@ era:railInclination rdf:type owl:ObjectProperty ;
 era:reasonsEtcsRadioBlockCenterReject rdf:type owl:ObjectProperty ,
                                                owl:FunctionalProperty ;
                                       rdfs:domain era:CCSSubsystem ;
-                                      rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                      rdfs:range skos:Concept ;
                                       era:XMLName "CPE_RBCRejectReasons" ;
                                       era:appendixD3Index "1.4" ;
                                       era:inSkosConceptScheme <http://data.europa.eu/949/concepts/etcs-rbc-reject-reasons/ETCSRBCRejectionReasons> ;
@@ -2478,7 +2477,6 @@ See: Subset 26, Chapter 5 5.4 Procedure start of mission."""@en ;
 
 ###  http://data.europa.eu/949/referent
 era:referent rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf owl:topObjectProperty ;
              rdfs:domain era:Position ;
              rdfs:range era:Referent ;
              rdfs:comment "Points to the referent instance on which the subject is positioned"@en ;
@@ -2496,7 +2494,7 @@ era:role rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/rollingStockFireCategory
 era:rollingStockFireCategory rdf:type owl:ObjectProperty ;
                              rdfs:domain era:InfraSubsystem ;
-                             rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                             rdfs:range skos:Concept ;
                              era:XMLName "ITU_FireCatReq" ;
                              era:appendixD2Index "3.2.3" ;
                              era:inSkosConceptScheme <http://data.europa.eu/949/concepts/rolling-stock-fire/Categories> ;
@@ -2518,7 +2516,7 @@ Passenger train fire category in accordance with point 4.1.4 of TSI LOC&PAS."""@
 era:safeConsistLengthInformationNecessary rdf:type owl:ObjectProperty ,
                                                    owl:FunctionalProperty ;
                                           rdfs:domain era:CCSSubsystem ;
-                                          rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                          rdfs:range skos:Concept ;
                                           era:XMLName "CPE_SafeConsistLength" ;
                                           era:inSkosConceptScheme <http://data.europa.eu/949/concepts/safe-consist-length/SafeConsistLengthNecessary> ;
                                           era:rinfIndex "1.1.1.3.2.11" ,
@@ -2536,9 +2534,8 @@ era:safeConsistLengthInformationNecessary rdf:type owl:ObjectProperty ,
 
 ###  http://data.europa.eu/949/side
 era:side rdf:type owl:ObjectProperty ;
-         rdfs:subPropertyOf owl:topObjectProperty ;
          rdfs:domain era:Orientation ;
-         rdfs:range <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
+         rdfs:range skos:ConceptScheme ;
          rdfs:label "on side" .
 
 
@@ -2558,7 +2555,7 @@ era:siding rdf:type owl:ObjectProperty ;
 era:signalOrientation rdf:type owl:ObjectProperty ,
                                owl:FunctionalProperty ;
                       rdfs:domain era:Signal ;
-                      rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                      rdfs:range skos:Concept ;
                       era:XMLName "SIG_LocDir" ;
                       era:appendixD2Index "2.2.3" ,
                                           "2.3.3" ;
@@ -2576,7 +2573,7 @@ era:signalOrientation rdf:type owl:ObjectProperty ,
 ###  http://data.europa.eu/949/signalType
 era:signalType rdf:type owl:ObjectProperty ;
                rdfs:domain era:Signal ;
-               rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+               rdfs:range skos:Concept ;
                era:XMLName "SIG_Type" ;
                era:appendixD2Index "2.2.3" ,
                                    "2.3.3" ;
@@ -2596,7 +2593,7 @@ era:signalType rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/signallingSystemType
 era:signallingSystemType rdf:type owl:ObjectProperty ;
-                         rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                         rdfs:range skos:Concept ;
                          era:appendixD2Index "3.2.7" ;
                          era:rinfIndex "1.1.0.0.1.3" ;
                          dcterms:created "2023-03-14"^^xsd:date ;
@@ -2612,7 +2609,7 @@ The reason for deprecation is that this property has the same RINF index than \"
 ###  http://data.europa.eu/949/snowIceHailConditions
 era:snowIceHailConditions rdf:type owl:ObjectProperty ;
                           rdfs:domain era:VehicleType ;
-                          rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                          rdfs:range skos:Concept ;
                           era:eratvIndex "4.3.3" ;
                           era:inSkosConceptScheme <http://data.europa.eu/949/concepts/ice-conditions/IceConditions> ;
                           dcterms:created "2020-08-24"^^xsd:date ;
@@ -2626,7 +2623,7 @@ era:snowIceHailConditions rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/solNature
 era:solNature rdf:type owl:ObjectProperty ;
               rdfs:domain era:SectionOfLine ;
-              rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+              rdfs:range skos:Concept ;
               era:XMLName "SOLNature" ;
               era:inSkosConceptScheme <http://data.europa.eu/949/concepts/sol-natures/SoLNatures> ;
               era:rinfIndex "1.1.0.0.0.6" ;
@@ -2641,7 +2638,7 @@ era:solNature rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/specialAreaType
 era:specialAreaType rdf:type owl:ObjectProperty ;
                     rdfs:domain era:SpecialArea ;
-                    rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                    rdfs:range skos:Concept ;
                     era:appendixD2Index "3.2.3" ,
                                         "3.2.4" ,
                                         "3.2.5" ,
@@ -2675,7 +2672,7 @@ era:specialTunnelArea rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/standardCombinedTransporRollerUnits
 era:standardCombinedTransporRollerUnits rdf:type owl:ObjectProperty ;
                                         rdfs:domain era:InfraSubsystem ;
-                                        rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                        rdfs:range skos:Concept ;
                                         era:rinfIndex "1.1.1.1.3.9" ;
                                         dcterms:created "2023-03-14"^^xsd:date ;
                                         rdfs:comment """Coding for combined transport for roller units (for all freight and mixed-traffic lines) in accordance with the specification referenced in Appendix A-1, index [B]. 
@@ -2688,7 +2685,7 @@ era:standardCombinedTransporRollerUnits rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/standardCombinedTransportContainers
 era:standardCombinedTransportContainers rdf:type owl:ObjectProperty ;
                                         rdfs:domain era:InfraSubsystem ;
-                                        rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                        rdfs:range skos:Concept ;
                                         era:rinfIndex "1.1.1.1.3.8" ;
                                         dcterms:created "2023-03-14"^^xsd:date ;
                                         rdfs:comment """Coding for combined transport for containers (for all freight and mixed-traffic lines) in accordance with the specification referenced in Appendix A-1, index [B].
@@ -2722,7 +2719,7 @@ The Start of tunnel is the Geographical coordinates in decimal degrees and km of
 ###  http://data.europa.eu/949/state
 era:state rdf:type owl:ObjectProperty ;
           rdfs:domain era:Certificate ;
-          rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+          rdfs:range skos:Concept ;
           era:inSkosConceptScheme <http://data.europa.eu/949/concepts/states/States> ;
           dcterms:created "2022-06-15"^^xsd:date ;
           dcterms:modified "2022-06-15"^^xsd:date ;
@@ -2734,7 +2731,7 @@ era:state rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/subCategory
 era:subCategory rdf:type owl:ObjectProperty ;
                 rdfs:domain era:VehicleType ;
-                rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                rdfs:range skos:Concept ;
                 era:eratvIndex 1.5 ;
                 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/vehicle-types/Categories> ;
                 dcterms:created "2020-07-29"^^xsd:date ;
@@ -2747,7 +2744,6 @@ era:subCategory rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/subsidiaryLocation
 era:subsidiaryLocation rdf:type owl:ObjectProperty ;
-                       rdfs:subPropertyOf owl:topObjectProperty ;
                        rdfs:domain era:InfrastructureObject ;
                        rdfs:range era:SubsidiaryLocation ;
                        rdfs:label "has subsidiary location"@en .
@@ -2756,14 +2752,14 @@ era:subsidiaryLocation rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/subsidiaryLocationType
 era:subsidiaryLocationType rdf:type owl:ObjectProperty ;
                            rdfs:domain era:SubsidiaryLocation ;
-                           rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                           rdfs:range skos:Concept ;
                            rdfs:label "subsidiary location type"@en .
 
 
 ###  http://data.europa.eu/949/supportedPlatformHeight
 era:supportedPlatformHeight rdf:type owl:ObjectProperty ;
                             rdfs:domain era:VehicleType ;
-                            rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                            rdfs:range skos:Concept ;
                             era:eratvIndex "4.12.3.1" ;
                             era:inSkosConceptScheme <http://data.europa.eu/949/concepts/platform-heights/PlatformHeights> ;
                             dcterms:created "2020-07-29"^^xsd:date ;
@@ -2828,7 +2824,7 @@ era:tdsMinAxleLoadVehicleCategory rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/temperatureRange
 era:temperatureRange rdf:type owl:ObjectProperty ;
                      rdfs:domain era:InfraSubsystem ;
-                     rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                     rdfs:range skos:Concept ;
                      era:XMLName "IPP_TempRange" ;
                      era:inSkosConceptScheme <http://data.europa.eu/949/concepts/temperature-ranges/TemperatureRanges> ;
                      era:rinfIndex "1.1.1.1.2.6" ;
@@ -2843,7 +2839,7 @@ era:temperatureRange rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/tenClassification
 era:tenClassification rdf:type owl:ObjectProperty ;
                       rdfs:domain era:InfraSubsystem ;
-                      rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                      rdfs:range skos:Concept ;
                       era:XMLName "IPL_TENClass" ,
                                   "IPP_TENClass" ;
                       era:inSkosConceptScheme <http://data.europa.eu/949/concepts/ten-classifications/TENClassifications> ;
@@ -2862,7 +2858,7 @@ era:tenClassification rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/thermalCapacityTSIReference
 era:thermalCapacityTSIReference rdf:type owl:ObjectProperty ;
                                 rdfs:domain era:VehicleType ;
-                                rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                rdfs:range skos:Concept ;
                                 era:eratvIndex "4.7.2.1.1" ;
                                 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/thermal-capacity/ThermalCapacityTSIReferences> ;
                                 dcterms:created "2020-08-24"^^xsd:date ;
@@ -2883,7 +2879,6 @@ era:to rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/topologyOf
 era:topologyOf rdf:type owl:ObjectProperty ;
-               rdfs:subPropertyOf owl:topObjectProperty ;
                rdfs:domain era:TopologicalObject ;
                rdfs:range era:InfrastructureObject ;
                rdfs:comment "Property linking a topological object by its physical implementation infrastructure object"@en ;
@@ -2910,7 +2905,7 @@ era:track rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/trackDirection
 era:trackDirection rdf:type owl:ObjectProperty ;
                    rdfs:domain era:Track ;
-                   rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                   rdfs:range skos:Concept ;
                    era:XMLName "SOLTrackDirection" ;
                    era:appendixD2Index "2.2.1.1" ;
                    era:inSkosConceptScheme <http://data.europa.eu/949/concepts/track-running-directions/TrackRunningDirections> ;
@@ -2928,7 +2923,6 @@ era:trackDirection rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/trackLoadCapability
 era:trackLoadCapability rdf:type owl:ObjectProperty ;
-                        rdfs:subPropertyOf owl:topObjectProperty ;
                         rdfs:domain era:InfraSubsystem ;
                         rdfs:range era:LoadCapability ;
                         era:XMLName "IPP_LoadCap" ;
@@ -3011,7 +3005,7 @@ era:trainDetectionSystemSpecificCheckDocument rdf:type owl:ObjectProperty ;
                                               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                               rdfs:label "Document with the procedure(s) related to the type of train detection systems declared in 1.1.1.3.7.1.2 or 1.2.1.1.6.1"@en ;
                                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                                              <http://www.w3.org/2004/02/skos/core#changeNote> "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
+                                              skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
 
 
 ###  http://data.europa.eu/949/trainDetectionSystemType
@@ -3021,7 +3015,7 @@ era:trainDetectionSystemType rdf:type owl:ObjectProperty ;
                                                          era:VehicleType
                                                        )
                                          ] ;
-                             rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                             rdfs:range skos:Concept ;
                              era:XMLName "CTD_DetectionSystem" ;
                              era:eratvIndex "4.14.1" ;
                              era:inSkosConceptScheme <http://data.europa.eu/949/concepts/train-detection/TrainDetectionSystems> ;
@@ -3043,7 +3037,7 @@ The option of ‘wheel detector’ has to be also selected for: wheel sensor for
 ###  http://data.europa.eu/949/tsiCompliantCompositeBrakeBlocks
 era:tsiCompliantCompositeBrakeBlocks rdf:type owl:ObjectProperty ;
                                      rdfs:domain era:TrainDetectionSystem ;
-                                     rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                     rdfs:range skos:Concept ;
                                      era:XMLName "CTD_TSICompositeBrakeBlocks" ;
                                      era:inSkosConceptScheme <http://data.europa.eu/949/concepts/tsi-compliances/TSICompliances> ;
                                      era:rinfIndex "1.1.1.3.7.21" ;
@@ -3059,7 +3053,7 @@ era:tsiCompliantCompositeBrakeBlocks rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/tsiCompliantFerromagneticWheel
 era:tsiCompliantFerromagneticWheel rdf:type owl:ObjectProperty ;
                                    rdfs:domain era:TrainDetectionSystem ;
-                                   rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                   rdfs:range skos:Concept ;
                                    era:XMLName "CTD_TSIFerroWheelMat" ;
                                    era:inSkosConceptScheme <http://data.europa.eu/949/concepts/tsi-compliances/TSICompliances> ;
                                    era:rinfIndex "1.1.1.3.7.14" ;
@@ -3075,7 +3069,7 @@ era:tsiCompliantFerromagneticWheel rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/tsiCompliantMaxDistConsecutiveAxles
 era:tsiCompliantMaxDistConsecutiveAxles rdf:type owl:ObjectProperty ;
                                         rdfs:domain era:TrainDetectionSystem ;
-                                        rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                        rdfs:range skos:Concept ;
                                         era:XMLName "CTD_TSIMaxDistConsecutiveAxles" ;
                                         era:inSkosConceptScheme <http://data.europa.eu/949/concepts/tsi-compliances/TSICompliances> ;
                                         era:rinfIndex "1.1.1.3.7.2.1" ;
@@ -3091,7 +3085,7 @@ era:tsiCompliantMaxDistConsecutiveAxles rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/tsiCompliantMaxImpedanceWheelset
 era:tsiCompliantMaxImpedanceWheelset rdf:type owl:ObjectProperty ;
                                      rdfs:domain era:TrainDetectionSystem ;
-                                     rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                     rdfs:range skos:Concept ;
                                      era:XMLName "CTD_TSIMaxImpedanceWheelset" ;
                                      era:inSkosConceptScheme <http://data.europa.eu/949/concepts/tsi-compliances/TSICompliances> ;
                                      era:rinfIndex "1.1.1.3.7.15.1" ;
@@ -3107,7 +3101,7 @@ era:tsiCompliantMaxImpedanceWheelset rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/tsiCompliantMetalConstruction
 era:tsiCompliantMetalConstruction rdf:type owl:ObjectProperty ;
                                   rdfs:domain era:TrainDetectionSystem ;
-                                  rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                  rdfs:range skos:Concept ;
                                   era:XMLName "CTD_TSIMetalConstruction" ;
                                   era:inSkosConceptScheme <http://data.europa.eu/949/concepts/tsi-compliances/TSICompliances> ;
                                   era:rinfIndex "1.1.1.3.7.13" ;
@@ -3123,7 +3117,7 @@ era:tsiCompliantMetalConstruction rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/tsiCompliantMetalFreeSpace
 era:tsiCompliantMetalFreeSpace rdf:type owl:ObjectProperty ;
                                rdfs:domain era:TrainDetectionSystem ;
-                               rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                               rdfs:range skos:Concept ;
                                era:XMLName "CTD_TSIMetalFree" ;
                                era:inSkosConceptScheme <http://data.europa.eu/949/concepts/tsi-compliances/TSICompliances> ;
                                era:rinfIndex "1.1.1.3.7.12" ;
@@ -3139,7 +3133,7 @@ era:tsiCompliantMetalFreeSpace rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/tsiCompliantRSTShuntImpedance
 era:tsiCompliantRSTShuntImpedance rdf:type owl:ObjectProperty ;
                                   rdfs:domain era:TrainDetectionSystem ;
-                                  rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                  rdfs:range skos:Concept ;
                                   era:XMLName "CTD_TSIRSTShuntImpedance" ;
                                   era:inSkosConceptScheme <http://data.europa.eu/949/concepts/tsi-compliances/TSICompliances> ;
                                   era:rinfIndex "1.1.1.3.7.23" ;
@@ -3155,7 +3149,7 @@ era:tsiCompliantRSTShuntImpedance rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/tsiCompliantSandCharacteristics
 era:tsiCompliantSandCharacteristics rdf:type owl:ObjectProperty ;
                                     rdfs:domain era:TrainDetectionSystem ;
-                                    rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                    rdfs:range skos:Concept ;
                                     era:XMLName "CTD_TSISandCharacteristics" ;
                                     era:inSkosConceptScheme <http://data.europa.eu/949/concepts/tsi-compliances/TSICompliances> ;
                                     era:rinfIndex "1.1.1.3.7.19" ;
@@ -3171,7 +3165,7 @@ era:tsiCompliantSandCharacteristics rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/tsiCompliantSanding
 era:tsiCompliantSanding rdf:type owl:ObjectProperty ;
                         rdfs:domain era:TrainDetectionSystem ;
-                        rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                        rdfs:range skos:Concept ;
                         era:inSkosConceptScheme <http://data.europa.eu/949/concepts/tsi-compliances/TSICompliances> ;
                         era:rinfIndex "1.1.1.3.7.16" ;
                         dcterms:created "2021-08-08"^^xsd:date ;
@@ -3186,7 +3180,7 @@ era:tsiCompliantSanding rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/tsiCompliantShuntDevices
 era:tsiCompliantShuntDevices rdf:type owl:ObjectProperty ;
                              rdfs:domain era:TrainDetectionSystem ;
-                             rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                             rdfs:range skos:Concept ;
                              era:XMLName "CTD_TSIShuntDevices" ;
                              era:inSkosConceptScheme <http://data.europa.eu/949/concepts/tsi-compliances/TSICompliances> ;
                              era:rinfIndex "1.1.1.3.7.22" ;
@@ -3202,7 +3196,7 @@ era:tsiCompliantShuntDevices rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/tsiPantographHead
 era:tsiPantographHead rdf:type owl:ObjectProperty ;
                       rdfs:domain era:EnergySubsystem ;
-                      rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                      rdfs:range skos:Concept ;
                       era:XMLName "EPA_TSIHeads" ;
                       era:inSkosConceptScheme <http://data.europa.eu/949/concepts/compliant-pantograph-heads/CompliantPantographHeads> ;
                       era:rinfIndex "1.1.1.2.3.1" ;
@@ -3228,13 +3222,13 @@ era:tunnelDocRef rdf:type owl:ObjectProperty ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "Document available from the IM with precise description of the tunnel"@en ;
                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                 <http://www.w3.org/2004/02/skos/core#changeNote> "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
+                 skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
 
 
 ###  http://data.europa.eu/949/typeVersionId
 era:typeVersionId rdf:type owl:ObjectProperty ;
                   rdfs:domain era:VehicleType ;
-                  rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                  rdfs:range skos:Concept ;
                   era:inSkosConceptScheme <http://data.europa.eu/949/concepts/version-ids/VehicleTypeVersionIds> ;
                   dcterms:created "2022-11-03"^^xsd:date ;
                   rdfs:comment """Indicates the registrationVersion with Ids 10, 20 and 30 indicating registration according to Directive 2008/57/EC and implementing Decision 2011/665/EU, and 40 and 50 indicating registration according to regime described in Directive 2008/57/EC.
@@ -3295,7 +3289,7 @@ era:vehicleTypeMaximumSpeedAndCantDeficiency rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/voiceGSMRNetwork
 era:voiceGSMRNetwork rdf:type owl:ObjectProperty ;
                      rdfs:domain era:VehicleType ;
-                     rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                     rdfs:range skos:Concept ;
                      era:eratvIndex "4.13.2.10" ;
                      era:inSkosConceptScheme <http://data.europa.eu/949/concepts/gsmr-networks/GSMRNetworks> ;
                      dcterms:created "2020-08-31"^^xsd:date ;
@@ -3313,7 +3307,7 @@ era:voiceRadioCompatible rdf:type owl:ObjectProperty ;
                                                      era:VehicleType
                                                    )
                                      ] ;
-                         rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                         rdfs:range skos:Concept ;
                          era:XMLName "CRG_RadioCompVoice" ;
                          era:eratvIndex "4.13.2.5" ;
                          era:inSkosConceptScheme <http://data.europa.eu/949/concepts/radio-system-compatibilities-voice/RadioSystemCompatibilitiesVoice> ;
@@ -3344,7 +3338,7 @@ era:wheelSetGauge rdf:type owl:ObjectProperty ;
                                               era:VehicleType
                                             )
                               ] ;
-                  rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                  rdfs:range skos:Concept ;
                   era:XMLName "ITP_NomGauge" ;
                   era:eratvIndex "4.1.3" ;
                   era:inSkosConceptScheme <http://data.europa.eu/949/concepts/nominal-track-gauges/NominalTrackGauges> ;
@@ -3363,7 +3357,7 @@ The allowed values for this property belong to the SKOS Concept Scheme http://da
 ###  http://data.europa.eu/949/wheelSetGaugeChangeoverFacility
 era:wheelSetGaugeChangeoverFacility rdf:type owl:ObjectProperty ;
                                     rdfs:domain era:VehicleType ;
-                                    rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                    rdfs:range skos:Concept ;
                                     era:eratvIndex "4.1.11" ;
                                     era:inSkosConceptScheme <http://data.europa.eu/949/concepts/gauge-changeover-facilities/GaugeChangeoverFacilities> ;
                                     dcterms:created "2020-09-01"^^xsd:date ;
@@ -3397,10 +3391,10 @@ era:wheelSetGaugeChangeoverFacility rdf:type owl:ObjectProperty ;
                                                    rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
                                                                     <http://www.opengis.net/spec/geosparql/1.0> ;
                                                    rdfs:label "hasGeometry"@en ;
-                                                   <http://www.w3.org/2004/02/skos/core#definition> """
+                                                   skos:definition """
       A spatial representation for a given feature.
     """@en ;
-                                                   <http://www.w3.org/2004/02/skos/core#prefLabel> "hasGeometry"@en .
+                                                   skos:prefLabel "hasGeometry"@en .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
@@ -3589,7 +3583,7 @@ era:bridge rdf:type owl:DatatypeProperty ;
            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
            rdfs:label "Is bridge"@en ;
            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-           <http://www.w3.org/2004/02/skos/core#definition> "Whether or not a track is associated with a bridge."@en .
+           skos:definition "Whether or not a track is associated with a bridge."@en .
 
 
 ###  http://data.europa.eu/949/cantDefficiency
@@ -4343,7 +4337,6 @@ era:etcsOptionalFunctions rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/etcsSystemFunctionalitiesNextFiveYears
 era:etcsSystemFunctionalitiesNextFiveYears rdf:type owl:DatatypeProperty ;
-                                           rdfs:subPropertyOf owl:topDataProperty ;
                                            rdfs:domain era:CCSSubsystem ;
                                            rdfs:range xsd:anyURI ;
                                            era:rinfIndex "1.1.1.3.2.19" ,
@@ -4460,7 +4453,7 @@ era:frenchTrainDetectionSystemLimitationApplicable rdf:type owl:DatatypeProperty
                                                    rdfs:domain era:FrenchTrainDetectionSystemLimitation ;
                                                    rdfs:range xsd:boolean ;
                                                    era:XMLName "CTD_TCLimitation" ;
-                                                   era:rinfIndex "1.2.1.1.6.3"^^rdfs:Literal ,
+                                                   era:rinfIndex "1.2.1.1.6.3" ,
                                                                  "1.1.1.3.7.1.4" ;
                                                    era:usedInRCCCalculations "true"^^xsd:boolean ;
                                                    dcterms:created "2023-04-05"^^xsd:date ;
@@ -5271,11 +5264,10 @@ era:kilometer rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/kmPostName
 era:kmPostName rdf:type owl:DatatypeProperty ;
-               rdfs:subPropertyOf owl:topDataProperty ;
                rdfs:domain era:Referent ;
                rdfs:range xsd:string ;
                rdfs:label "kilometric post name"@en ;
-               <http://www.w3.org/2004/02/skos/core#altLabel> "mileage post"@en .
+               skos:altLabel "mileage post"@en .
 
 
 ###  http://data.europa.eu/949/length
@@ -6321,9 +6313,8 @@ era:multipleTrainProtectionRequired rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/nationalLineId
-era:nationalLineId rdf:type owl:DatatypeProperty ;
-                   rdfs:subPropertyOf owl:topDataProperty ;
-                   rdf:type owl:FunctionalProperty ;
+era:nationalLineId rdf:type owl:DatatypeProperty ,
+                            owl:FunctionalProperty ;
                    rdfs:domain era:NationalRailwayLine ;
                    rdfs:range xsd:string ;
                    rdfs:label "national line identifier"@en .
@@ -6447,12 +6438,11 @@ era:oclType rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/offset
 era:offset rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf owl:topDataProperty ;
            rdfs:domain era:Position ;
            rdfs:range xsd:double ;
            rdfs:comment "Relative distance from a reference mileage post or any other reference point"@en ;
            rdfs:label "offset"@en ;
-           <http://www.w3.org/2004/02/skos/core#altLabel> "relative distance from"@en .
+           skos:altLabel "relative distance from"@en .
 
 
 ###  http://data.europa.eu/949/opName
@@ -6563,7 +6553,6 @@ era:permissiblePayload rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/permissionChargingElectricEnergyTractionStandstill
 era:permissionChargingElectricEnergyTractionStandstill rdf:type owl:DatatypeProperty ;
-                                                       rdfs:subPropertyOf owl:topDataProperty ;
                                                        rdfs:domain era:ContactLineSystem ;
                                                        rdfs:range xsd:boolean ;
                                                        era:rinfIndex "1.2.1.0.7.1" ;
@@ -7978,7 +7967,7 @@ era:validityEndDate rdf:type owl:DatatypeProperty ;
                     rdfs:label "Validity end date"@en ;
                     owl:deprecated "true"^^xsd:boolean ;
                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                    <http://www.w3.org/2004/02/skos/core#scopeNote> "To be deprecated with the introduction of temporal entity"@en .
+                    skos:scopeNote "To be deprecated with the introduction of temporal entity"@en .
 
 
 ###  http://data.europa.eu/949/validityStartDate
@@ -7991,7 +7980,7 @@ era:validityStartDate rdf:type owl:DatatypeProperty ;
                       rdfs:label "Validity start date"@en ;
                       owl:deprecated "true"^^xsd:boolean ;
                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                      <http://www.w3.org/2004/02/skos/core#scopeNote> "To be deprecated with the introduction of temporal entity"@en .
+                      skos:scopeNote "To be deprecated with the introduction of temporal entity"@en .
 
 
 ###  http://data.europa.eu/949/vehicleContactForce
@@ -8206,7 +8195,6 @@ era:voiceOperationalCommImpl rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/weight
 era:weight rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf owl:topDataProperty ;
            rdfs:domain era:LinearElementLink ;
            rdfs:range xsd:double ;
            rdfs:comment """The weight of the edge between 2 topological nodes. 
@@ -8293,10 +8281,10 @@ dcterms:identifier rdf:type owl:DatatypeProperty ;
                                              rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
                                                               <http://www.opengis.net/spec/geosparql/1.0> ;
                                              rdfs:label "asWKT"@en ;
-                                             <http://www.w3.org/2004/02/skos/core#definition> """
+                                             skos:definition """
       The WKT serialization of a geometry
     """@en ;
-                                             <http://www.w3.org/2004/02/skos/core#prefLabel> "asWKT"@en .
+                                             skos:prefLabel "asWKT"@en .
 
 
 ###  http://www.opengis.net/ont/geosparql#hasSerialization
@@ -8304,12 +8292,12 @@ dcterms:identifier rdf:type owl:DatatypeProperty ;
 
 
 ###  http://www.w3.org/2004/02/skos/core#notation
-<http://www.w3.org/2004/02/skos/core#notation> rdf:type owl:DatatypeProperty .
+skos:notation rdf:type owl:DatatypeProperty .
 
 
 ###  http://www.w3.org/ns/org#identifier
 <http://www.w3.org/ns/org#identifier> rdf:type owl:DatatypeProperty ;
-                                      rdfs:subPropertyOf <http://www.w3.org/2004/02/skos/core#notation> ;
+                                      rdfs:subPropertyOf skos:notation ;
                                       rdfs:domain <http://www.w3.org/ns/org#Organization> ;
                                       rdfs:comment "Código o identificador, como por ejemplo el CIF de una empresa, que permite identificar de forma inequívoca a una organización. Existen muchos códigos de identificación tanto nacionales como internacionales. Esta ontología no obliga al uso de ningún esquema en concreto. Los códigos de identificación utilizados en cada caso se deberían indicar mediante el uso de la propiedad “datatype” del valor del identificador. El uso de la propiedad “datatype” para especificar el esquema de notación utilizado está en consonancia con las buenas prácticas recomendadas para el uso de la propiedad `skos:notation`, de la que esta propiedad es una especialización."@es ,
                                                    "Donne un identifiant, comme par exemple le numéro d'enregistrement d'une entreprise, qui peut être utilisé comme identifiant unique pour l'Organisation. De nombreux schémas nationaux et internationaux sont disponibles. Cette ontologie reste neutre par rapport au schéma utilisé. Le schéma particulier utilisé devrait être indiqué par le `datatype` de la valeur de l'identifiant. Utiliser les datatypes pour distinguer les schémas de notation est cohérent avec les bonnes pratiques pour `skos:notation` dont cette propriété est une spécialisation."@fr ,
@@ -8503,7 +8491,7 @@ era:InfrastructureManager rdf:type owl:Class ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "Infrastructure manager"@en ;
                           owl:deprecated "true"^^xsd:boolean ;
-                          <http://www.w3.org/2004/02/skos/core#scopeNote> "See point (2) of Article 3 of Directive 2012/34/EU of the European Parliament and of the Council establishing a single European railway area."@en .
+                          skos:scopeNote "See point (2) of Article 3 of Directive 2012/34/EU of the European Parliament and of the Council establishing a single European railway area."@en .
 
 
 ###  http://data.europa.eu/949/InfrastructureObject
@@ -8554,7 +8542,7 @@ era:LineReference rdf:type owl:Class ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "Railway location"@en ;
                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                  <http://www.w3.org/2004/02/skos/core#altLabel> "Line reference" .
+                  skos:altLabel "Line reference" .
 
 
 ###  http://data.europa.eu/949/LinearElement
@@ -8845,7 +8833,7 @@ era:Siding rdf:type owl:Class ;
            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
            rdfs:label "Siding"@en ;
            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-           <http://www.w3.org/2004/02/skos/core#definition> "Siding Any track(s) within an operational point which is not used for operational routing of a train."@en .
+           skos:definition "Siding Any track(s) within an operational point which is not used for operational routing of a train."@en .
 
 
 ###  http://data.europa.eu/949/Signal
@@ -9112,20 +9100,20 @@ sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P
 
 
 ###  http://www.w3.org/2004/02/skos/core#Collection
-<http://www.w3.org/2004/02/skos/core#Collection> rdf:type owl:Class ;
-                                                 owl:disjointWith <http://www.w3.org/2004/02/skos/core#Concept> .
+skos:Collection rdf:type owl:Class ;
+                owl:disjointWith skos:Concept .
 
 
 ###  http://www.w3.org/2004/02/skos/core#Concept
-<http://www.w3.org/2004/02/skos/core#Concept> rdf:type owl:Class ;
-                                              owl:disjointWith <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
-                                              rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> ;
-                                              rdfs:label "Concept"@en ;
-                                              <http://www.w3.org/2004/02/skos/core#definition> "An idea or notion; a unit of thought."@en .
+skos:Concept rdf:type owl:Class ;
+             owl:disjointWith skos:ConceptScheme ;
+             rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> ;
+             rdfs:label "Concept"@en ;
+             skos:definition "An idea or notion; a unit of thought."@en .
 
 
 ###  http://www.w3.org/2004/02/skos/core#ConceptScheme
-<http://www.w3.org/2004/02/skos/core#ConceptScheme> rdf:type owl:Class .
+skos:ConceptScheme rdf:type owl:Class .
 
 
 ###  http://www.w3.org/2006/time#TemporalDuration
