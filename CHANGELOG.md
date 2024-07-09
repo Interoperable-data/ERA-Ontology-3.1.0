@@ -119,29 +119,32 @@ This Case-class (subClassOf `vp:Case`) makes an abstraction of whether it exists
 
 Actions in the ERA Vocabulary:
 
-- [X] Creation of the new Class `era:AuthorisationCase`
+- [X] Creation of the new Class `era:AuthorisationCase`:
+  - Instances are the `vp:case` of `era:Authorisation`
 - Migration of existing properties to `era:AuthorisationCase`:
-  - [ ] (3.1.1) `era:authorisedCountry`, which should better become `era:memberstateOfAuthorisation`
-- Added to `era:AuthorisationCase`:
-  - [ ] (3.1.2.1) Status: { Valid, Suspended, Revoked, To be renewed }
-  - [ ] (3.1.2.1 & 3.1.3.X.2) StatusChangeDate `xsd:date`, replaces the string encoding of the date in Status.
-  - [ ] (3.1.3.1.1) issueDate `xsd:date`: Date on which the type authorisation being recorded was issued (not the date of entry in ERATV)
-  - [ ] (3.1.2.2) authorisationValidity `xsd:date`
-  - [ ] (3.1.3.1) isOriginalAuthorisation `xsd:boolean` replaces a separate entry for this Authorisation. Should be false for subsequent modifications
-  - [ ] (3.1.3) previousAuthorisation `<IRI to previous Authorisation>`
+  - [X] (3.1.1) `era:authorisedCountry`, renamed to `era:memberstateOfAuthorisation`
+- Added to `era:Authorisation`:
+  - [X] Added the Class `era:AuthorisationStatus`
+    - [X] (3.1.2.1) `era:authorisationStatusCoding` for the Status: { Valid, Suspended, Revoked, To be renewed }, as extended in `era-states:States` (SKOS Concept Scheme)
+    - [X] (3.1.2.1 &   3.1.3.X.2) `era:authorisationStatusDate` (`xsd:date`), replaces the string encoding of the date in Status.
+    - [X] (3.1.2.2) `era:authorisationValidityDate` (`xsd:date`)
+    - [X] (3.1.3.1.1) `era:authorisationStatusDate` for the issueDate (`xsd:date`):
+      - Date on which the type authorisation being recorded was issued (not the date of entry in ERATV)
+  - [ ] (3.1.3.1) isOriginalAuthorisation `xsd:boolean` replaces a separate entry for this Authorisation. Should be false for subsequent modifications.
+  - [X] (3.1.3) `era:previousAuthorisation`: `<IRI to previous Authorisation>`: This previous Authorisation instance should use `dcterms:isReplacedBy`.
   - [ ] (3.1.3.1.2 & 3.1.3.X.3) `<IRI to authorisation Holder>` (/ORGS)
-  - [ ] (3.1.3.X.4) `xsd:string` - Authorisation modification document reference
-  - [ ] (3.1.3.X.5) `<IRI to EC DEC/ EC TEC certificate>` - Reference(s) of type examination or design examination type
-  - [ ] (3.1.3.X.6) `<SKOS Concept Scheme>` - Applicable national rules (if applicable) - Selection from a predefined list (multiple selection possible) based on Commission Decision 2015/2299/EU
-  - [ ] (3.1.3.X.7) `xsd:string` Comments
-  - [ ] (3.1.3.X.8) `xsd:string` Declaration by the proposer - Reference to the written declaration by the proposer referred to in Article 16 of Regulation (EU) No 402/2013 (CSM-REA)
+  - [X] (3.1.3.1.3 & 3.1.3.X.4) `era:authorisationDocumentReference` (`xsd:string`) - Authorisation (modification) document reference
+  - [X] (3.1.3.1.4 & 3.1.3.X.5) `era:certificate` (`<IRI to EC DEC/ EC TEC certificate>`) - Reference(s) of type examination or design examination type
+  - [X] (3.1.3.1.5 & 3.1.3.X.6) `era:nationalRulesAssessed` (`<http://data.europa.eu/949/concepts/national-rule-classifications/national-rule-classifications>`) - Applicable national rules (if applicable) - Selection from a predefined list (multiple selection possible) based on [Commission Decision 2015/2299/EU](http://data.europa.eu/eli/dec/2009/965/oj).
+  - [X] (3.1.3.1.6 & 3.1.3.X.7) `rdfs:comment` (`xsd:string`) Comments
+  - [X] (3.1.3.1.7 & 3.1.3.X.8) `era:proposerDocumentReference` (`xsd:string`) Declaration by the proposer - Reference to the written declaration by the proposer referred to in Article 16 of Regulation (EU) No 402/2013 (CSM-REA)
 - Conformity with TSI (of the vehicleType):
   - [ ] Combination of SKOS CS links to INF (gauge), ENE (Onboard power system), CCS (TP), in order to link them to a set of TSI references as in the /EURLEX dataset.
   - [ ] Provide these combinations for `era:conformityWithTSI` (Section 2.1)
   - [ ] Provide these combinations for `era:applicableSpecificCases`, together with the paragraphs 7 of the TSI (as Strings) (Section 2.3)
   - [ ] Allow for links to /ERADIS modules 1 and 2 certificates (Section 2.2).
 
-  > [!TIP]
+  > [!HINT]
   > It is this link which allows to automatically trace the EC DoV (EC Declaration as in the EVR registration data) to which these certificates are linked.
 
 ## Properties, no longer applicable after an amendment of legislation

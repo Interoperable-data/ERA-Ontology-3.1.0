@@ -10,6 +10,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @base <http://data.europa.eu/949/> .
 
 <http://data.europa.eu/949/> rdf:type owl:Ontology ;
@@ -370,6 +371,20 @@ era:areaOfUseMemberState rdf:type owl:ObjectProperty ;
               rdfs:comment "Member State networks which were analysed during the (vehicle(type)) authorisation process and are allowed for operation (registered vehicles only). For border sections, use era:limitedAreaOfUse"@en ;
               rdfs:label "area of use"@en .
 
+
+###  http://data.europa.eu/949/authorisationStatusCoding
+era:authorisationStatusCoding rdf:type owl:ObjectProperty ;
+                             rdfs:domain era:AuthorisationStatus ;
+                             rdfs:range skos:Concept ;
+                             era:eratvIndex "3.1.2.1" ;
+                             era:inSkosConceptScheme <http://data.europa.eu/949/concepts/states/States> ;
+                             dcterms:created "2023-06-26"^^xsd:date ;
+                             dcterms:relation <http://data.europa.eu/eli/dec_impl/2018/1614> ;
+                             rdfs:comment """Authorisation status coding. This concept scheme is currently non-deferenceable."""@en ;
+                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                             rdfs:label "Authorisation status coding"@en ;
+                             vs:term_status "stable" .
+
 ###  http://data.europa.eu/949/TSIMagneticFields
 # era:TSIMagneticFields rdf:type owl:ObjectProperty ;
 #                       rdfs:domain era:CCSSubsystem ;
@@ -517,19 +532,20 @@ era:atoSystemVersion rdf:type owl:ObjectProperty ;
                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
-###  http://data.europa.eu/949/authorizedCountry
-era:authorizedCountry rdf:type owl:ObjectProperty ;
-                      rdfs:domain era:AuthorisationCase ;
-                      rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
-                      era:eratvIndex "3.1.1" ;
-                      era:inSkosConceptScheme <http://publications.europa.eu/resource/authority/country> ;
-                      dcterms:created "2020-09-30"^^xsd:date ;
-                      dcterms:modified "2020-09-30"^^xsd:date , 
-                                       "2027-06-26"^^xsd:date ;
-                      rdfs:comment "Member state of authorisation."@en ;
-                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                      rdfs:label "authorized country"@en ;
-                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+###  http://data.europa.eu/949/authorizedCountry is gravely misleading, hence property was renamed.
+###  http://data.europa.eu/949/memberStateOfAuthorisation
+era:memberStateOfAuthorisation rdf:type owl:ObjectProperty ;
+                              rdfs:domain era:AuthorisationCase ;
+                              rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                              era:eratvIndex "3.1.1" ;
+                              era:inSkosConceptScheme <http://publications.europa.eu/resource/authority/country> ;
+                              dcterms:created "2020-09-30"^^xsd:date ;
+                              dcterms:modified "2020-09-30"^^xsd:date , 
+                                              "2024-06-26"^^xsd:date ;
+                              rdfs:comment "Member state(s), in which the authorisation took place."@en ;
+                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                              rdfs:label "member state of authorisation"@en ;
+                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
 ###  http://data.europa.eu/949/axleBearingConditionMonitoring
@@ -614,12 +630,12 @@ era:category rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/certificate
 era:certificate rdf:type owl:ObjectProperty ;
-                rdfs:domain era:VehicleType ;
+                rdfs:domain era:Authorisation ;
                 rdfs:range era:Certificate ;
                 dcterms:created "2022-06-15"^^xsd:date ;
                 dcterms:modified "2022-11-15"^^xsd:date ,
-                                 "2024-04-18"^^xsd:date ;
-                rdfs:comment """For this Vehicle Type, the type or design examination certificate described in the relevant verification module as issued by 
+                                 "2024-04-18"^^xsd:date , "2023-06-26"^^xsd:date ;
+                rdfs:comment """For this Vehicle (Type) Authorisation, the type or design examination certificate described in the relevant verification module as issued by 
 Notified Bodies, supporting the EC Declaration(s) of Verification for the subsystems in scope of the type's authorisation by an authorizing entity."""@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "Certificate"@en ;
@@ -1954,6 +1970,7 @@ era:manufacturingCountry rdf:type owl:ObjectProperty ;
 #                      dcterms:created "2021-08-08"^^xsd:date ;
 #                      dcterms:modified "2023-03-14"^^xsd:date , "2024-06-26"^^xsd:date;
 #                      rdfs:comment """Maximum amount of sand accepted on the track within value of sanding output for 30s, given in grams.
+#
 # Deprecated according to the amendment to the Regulation (EU) 2019/777."""@en ;
 #                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
 #                      rdfs:label "Maximum amount of sand"@en ;
@@ -2011,6 +2028,20 @@ era:minVehicleImpedanceVoltages rdf:type owl:ObjectProperty ;
 #                              ] ;
 #                  rdfs:range era:NationalRailwayLine ;
 #                  rdfs:label "national line"@en .
+
+###  http://data.europa.eu/949/nationalRulesAssessed
+era:nationalRulesAssessed rdf:type owl:ObjectProperty ;
+                                rdfs:domain era:Authorisation ;
+                                rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                era:inSkosConceptScheme <http://data.europa.eu/949/concepts/national-rule-classifications/NationalRuleClassifications> ;
+                                era:eratvIndex "3.1.3.1.5" , "3.1.3.2.6" , "3.1.3.3.6", "3.1.3.4.6", "3.1.3.5.6", "3.1.3.6.6", "3.1.3.7.6", "3.1.3.8.6", "3.1.3.9.6" ;
+                                era:usedInRCCCalculations "false"^^xsd:boolean ;
+                                dcterms:created "2024-06-26"^^xsd:date ;
+                                dcterms:source <http://data.europa.eu/eli/dec_impl/2015/2299/oj> ;
+                                rdfs:comment "Parameters for which conformity to applicable national rules has been assessed"@en ;
+                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                rdfs:label "applicable national rules"@en ;
+                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
 # ###  http://data.europa.eu/949/navigability
@@ -2390,6 +2421,16 @@ era:previousVehicleType rdf:type owl:ObjectProperty ;
 Example: versions, variants."""@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "Previous vehicle type"@en ;
+                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+###  http://data.europa.eu/949/previousAuthorisation
+era:previousAuthorisation rdf:type owl:ObjectProperty ;
+                        rdfs:domain era:Authorisation ;
+                        rdfs:range era:Authorisation ;
+                        dcterms:created "2024-06-26"^^xsd:date ;
+                        rdfs:comment """Denotes a previous Authorisation, which this authorisation amends, updates. This property is not present for the initial authorisation."""@en ;
+                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                        rdfs:label "Previous vehicle (type) authorisation"@en ;
                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -7060,6 +7101,19 @@ era:prmAccessibleToilets rdf:type owl:DatatypeProperty ;
                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
+###  http://data.europa.eu/949/proposerDocumentReference
+era:proposerDocumentReference rdf:type owl:DatatypeProperty ;
+                             rdfs:domain era:Authorisation ;
+                             rdfs:range xsd:string ;
+                             era:eratvIndex "3.1.3.1.7" , "3.1.3.2.8" , "3.1.3.3.8" , "3.1.3.4.8" , "3.1.3.5.8" , "3.1.3.6.8" , "3.1.3.7.8" , "3.1.3.8.8" ;
+                             dcterms:created "2023-06-26"^^xsd:date ;
+                             dcterms:relation <http://data.europa.eu/eli/dec_impl/2018/1614> ;
+                             rdfs:comment "Reference to the written declaration by the proposer referred to in Article 3(11) of Regulation (EU) No 402/2013"@en ;
+                             rdfs:isDefinedBy era: ;
+                             rdfs:label "Written declaration of proposer"@en ;
+                             vs:term_status "stable" .
+
+
 ###  http://data.europa.eu/949/publicNetworkRoaming
 # era:publicNetworkRoaming rdf:type owl:DatatypeProperty ,
 #                                   owl:FunctionalProperty ;
@@ -7372,6 +7426,69 @@ era:registrationStatusReasonDescription rdf:type owl:DatatypeProperty ;
                                         rdfs:isDefinedBy era: ;
                                         rdfs:label "Description of the status reason"@en ;
                                         vs:term_status "stable"^^xsd:date .
+
+###  http://data.europa.eu/949/authorisationDocumentReference
+era:authorisationDocumentReference rdf:type owl:DatatypeProperty ;
+                             rdfs:domain era:Authorisation ;
+                             rdfs:range xsd:string ;
+                             era:eratvIndex "3.1.2.1" , "3.1.3.2.4" , "3.1.3.3.4" , "3.1.3.4.4" , "3.1.3.5.4" , "3.1.3.6.4" , "3.1.3.7.4" , "3.1.3.8.4" ;
+                             dcterms:created "2023-06-26"^^xsd:date ;
+                             dcterms:relation <http://data.europa.eu/eli/dec_impl/2018/1614> ;
+                             rdfs:comment "Authorisation (modification) document reference: EIN number"@en ;
+                             rdfs:isDefinedBy era: ;
+                             rdfs:label "Authorisation status reason"@en ;
+                             vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/authorisationStatusDate
+era:authorisationStatusDate rdf:type owl:DatatypeProperty ;
+                           rdfs:domain era:AuthorisationStatus ;
+                           rdfs:range xsd:date ;
+                           era:eratvIndex "3.1.2.1" , "3.1.3.1.1" ;
+                           dcterms:created "2023-06-26"^^xsd:date ;
+                           dcterms:relation <http://data.europa.eu/eli/dec_impl/2018/1614> ;
+                           rdfs:comment "Date from when the status of the authorisation is applicable. Can be issue date of the Authorisation and date of all later status updates."@en ;
+                           rdfs:isDefinedBy era: ;
+                           rdfs:label "Authorisation status date"@en ;
+                           vs:term_status "stable" .
+
+###  http://data.europa.eu/949/authorisationValidityDate
+era:authorisationValidityDate rdf:type owl:DatatypeProperty ;
+                           rdfs:domain era:AuthorisationStatus ;
+                           rdfs:range xsd:date ;
+                           era:eratvIndex "3.1.2.2" ;
+                           dcterms:created "2023-06-26"^^xsd:date ;
+                           dcterms:relation <http://data.europa.eu/eli/dec_impl/2018/1614> ;
+                           rdfs:comment "Validity of authorisation (if defined)"@en ;
+                           rdfs:isDefinedBy era: ;
+                           rdfs:label "Authorisation validity date"@en ;
+                           vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/authorisationStatusReason
+era:authorisationStatusReason rdf:type owl:DatatypeProperty ;
+                             rdfs:domain era:AuthorisationStatus ;
+                             rdfs:range xsd:string ;
+                             era:eratvIndex "3.1.2.1" ;
+                             dcterms:created "2023-06-26"^^xsd:date ;
+                             dcterms:relation <http://data.europa.eu/eli/dec_impl/2018/1614> ;
+                             rdfs:comment "Authorisation status in accordance with the list."@en ;
+                             rdfs:isDefinedBy era: ;
+                             rdfs:label "Authorisation status reason"@en ;
+                             vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/authorisationStatusReasonDescription
+era:authorisationStatusReasonDescription rdf:type owl:DatatypeProperty ;
+                                        rdfs:domain era:AuthorisationStatus ;
+                                        rdfs:range xsd:string ;
+                                        era:eratvIndex "3.1.2.1" ;
+                                        dcterms:created "2023-06-26"^^xsd:date ;
+                                        dcterms:relation <http://data.europa.eu/eli/dec_impl/2018/1614> ;
+                                        rdfs:comment "When applicable, description of the status reason specified by the applicant."@en ;
+                                        rdfs:isDefinedBy era: ;
+                                        rdfs:label "Description of the status reason"@en ;
+                                        vs:term_status "stable" .
 
 
 ###  http://data.europa.eu/949/relativeDistanceDangerPoint
@@ -8711,6 +8828,18 @@ foaf:nick rdf:type owl:DatatypeProperty ;
 #                  rdfs:comment "Represents a geographical representation of a polygonal area. Example: non-stopping area,cross section area, area of implementation of GPRS etc."@en ;
 #                  rdfs:label "Area Location"@en .
 
+###  http://data.europa.eu/949/RegistrationStatus
+era:AuthorisationStatus rdf:type owl:Class ;
+                       dcterms:created "2023-06-26"^^xsd:date ;
+                       rdfs:comment """This concept allows the traceability of the history of the vehicle authorisation with its different status and dates. 
+
+The Authorisation status encompasses:
+- the authorisation status (SKOS Concept), 
+- the authorisation status date, and 
+- the authorisation status description and reason (of change)."""@en ;
+                       rdfs:isDefinedBy era: ;
+                       rdfs:label "Authorisation status"@en ;
+                       vs:term_status "stable" .
 
 ###  http://data.europa.eu/949/vpa/AuthorisationTypeVersionVariant
 era:AuthorisationTypeVersionVariant rdf:type owl:Class ;
@@ -8771,8 +8900,8 @@ era:Body rdf:type owl:Class ;
 ###  http://data.europa.eu/949/Certificate
 era:Certificate rdf:type owl:Class ;
                 dcterms:created "2022-06-15"^^xsd:date ;
-                dcterms:modified "2022-06-15"^^xsd:date ;
-                rdfs:comment "TODO review:Certificate of a vehicle type. Can be in one of the following states: Amended, New, Suspended, Withdrawn."@en ;
+                dcterms:modified "2022-06-15"^^xsd:date , "2023-06-26"^^xsd:date;
+                rdfs:comment "(Type or Design) Examination Certificate supporting a vehicle type Authorisation Case."@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "Certificate"@en ;
                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
