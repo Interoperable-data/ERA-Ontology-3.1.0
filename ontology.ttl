@@ -372,6 +372,24 @@ era:areaOfUseMemberState rdf:type owl:ObjectProperty ;
               rdfs:label "area of use"@en .
 
 
+###  http://data.europa.eu/949/authorisationStatus
+era:authorisationStatus rdf:type owl:ObjectProperty ;
+                        rdfs:domain era:Authorisation  ;
+                        rdfs:range era:AuthorisationStatus ;
+                        era:eratvIndex "3.1.2.1" ;
+                        dcterms:created "2023-06-26"^^xsd:date ;
+                        dcterms:relation <http://data.europa.eu/eli/dec_impl/2018/1614> ;
+                        rdfs:comment """Authorisation status, regrouping:
+- Status (SKOS CS)
+- Date from which a new status is applicable, or the Authorisation was issued.
+- Date until the Authorisation is applicable.
+- Reason of the status change
+- Additional description by the Applicant
+"""@en ;
+                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                        rdfs:label "Authorisation status"@en ;
+                        vs:term_status "stable" .
+
 ###  http://data.europa.eu/949/authorisationStatusCoding
 era:authorisationStatusCoding rdf:type owl:ObjectProperty ;
                              rdfs:domain era:AuthorisationStatus ;
@@ -440,7 +458,7 @@ era:authorisationStatusCoding rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/additionalConditionsApplicableVehicle
 era:additionalConditionsApplicableVehicle rdf:type owl:ObjectProperty ;
-                                          rdfs:domain era:RegistrationCase ;
+                                          rdfs:domain era:VehicleRegistration ;
                                           rdfs:range skos:Concept ;
                                           era:evrIndex "4.1" ;
                                           era:inSkosConceptScheme <http://data.europa.eu/949/concepts/evr-applicable-agreements/EVRApplicableAgreements> ;
@@ -535,7 +553,7 @@ era:atoSystemVersion rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/authorizedCountry is gravely misleading, hence property was renamed.
 ###  http://data.europa.eu/949/memberStateOfAuthorisation
 era:memberStateOfAuthorisation rdf:type owl:ObjectProperty ;
-                              rdfs:domain era:AuthorisationCase ;
+                              rdfs:domain era:Authorisation ;
                               rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
                               era:eratvIndex "3.1.1" ;
                               era:inSkosConceptScheme <http://publications.europa.eu/resource/authority/country> ;
@@ -632,6 +650,7 @@ era:category rdf:type owl:ObjectProperty ;
 era:certificate rdf:type owl:ObjectProperty ;
                 rdfs:domain era:Authorisation ;
                 rdfs:range era:Certificate ;
+                era:eratvIndex "3.1.3.2.5" ;
                 dcterms:created "2022-06-15"^^xsd:date ;
                 dcterms:modified "2022-11-15"^^xsd:date ,
                                  "2024-04-18"^^xsd:date , "2023-06-26"^^xsd:date ;
@@ -738,6 +757,26 @@ era:contactStripMaterial rdf:type owl:ObjectProperty ;
                          rdfs:comment "Indication of which contact strip materials are permitted to be used."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "permitted contact strip material"@en ;
+                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+###  http://data.europa.eu/949/currentAuthorisation
+era:currentAuthorisation rdf:type owl:ObjectProperty ;
+                        rdfs:domain era:VehicleType ;
+                        rdfs:range era:Authorisation ;
+                        dcterms:created "2024-06-26"^^xsd:date ;
+                        rdfs:comment "Relates the vehicle type with its latest authorisation."@en ;
+                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                        rdfs:label "Vehicle type's current authorisation"@en ;
+                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+###  http://data.europa.eu/949/currentAuthorisation
+era:currentRegistration rdf:type owl:ObjectProperty ;
+                        rdfs:domain era:Vehicle ;
+                        rdfs:range era:VehicleRegistration ;
+                        dcterms:created "2024-06-26"^^xsd:date ;
+                        rdfs:comment "Relates the vehicle with its latest registration."@en ;
+                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                        rdfs:label "Vehicle's current registration"@en ;
                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -1625,7 +1664,7 @@ era:hasOrganisationRole rdf:type owl:ObjectProperty ;
 era:inCountry rdf:type owl:ObjectProperty ;
               rdfs:domain [ rdf:type owl:Class ;
                             owl:unionOf ( era:InfrastructureObject
-                                          era:RegistrationCase
+                                          era:VehicleRegistration
                             )
               ] ;
               rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
@@ -2584,7 +2623,7 @@ era:railInclination rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/registrationStatus
 era:registrationStatus rdf:type owl:ObjectProperty ;
-                       rdfs:domain era:RegistrationCase ;
+                       rdfs:domain era:VehicleRegistration ;
                        rdfs:range era:RegistrationStatus ;
                        dcterms:created "2023-06-26"^^xsd:date ;
                        dcterms:relation <http://data.europa.eu/eli/dec_impl/2018/1614> ;
@@ -3381,9 +3420,22 @@ The allowed values for this property belong to the SKOS Concept Scheme http://da
 #              rdfs:label "validity"@en .
 
 
+###  http://data.europa.eu/949/vehicleAuthorisationCase
+era:vehicleAuthorisationCase rdf:type owl:ObjectProperty ;
+                           # subClassOf vp:permissionType
+                           rdfs:domain era:AuthorisationCase ;
+                           rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                           era:inSkosConceptScheme <http://data.europa.eu/949/concepts/va-authcases/VehicleAuthorisationCase> ;
+                           dcterms:created "2024-06-26"^^xsd:date;
+                           rdfs:comment """Indicates one of 5 allowed authorisation cases from 2018/545"""@en ;
+                           rdfs:seeAlso <https://eur-lex.europa.eu/eli/reg_impl/2018/545/oj> ;
+                           rdfs:isDefinedBy <http://data.europa.eu/949/vpa> ;
+                           rdfs:label "authorisation case"@en ;
+                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
 ###  http://data.europa.eu/949/vehicleKeeper
 era:vehicleKeeper rdf:type owl:ObjectProperty ;
-                  rdfs:domain era:RegistrationCase ;
+                  rdfs:domain era:VehicleRegistration ;
                   rdfs:range era:Body ;
                   era:evrIndex "8" ;
                   dcterms:created "2020-11-23"^^xsd:date ;
@@ -3397,7 +3449,7 @@ era:vehicleKeeper rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/vehicleMaintainer
 era:vehicleMaintainer rdf:type owl:ObjectProperty ;
-                  rdfs:domain era:RegistrationCase ;
+                  rdfs:domain era:VehicleRegistration ;
                   rdfs:range era:Body ;
                   era:evrIndex "9" ;
                   dcterms:created "2024-06-26"^^xsd:date ;
@@ -3409,7 +3461,7 @@ era:vehicleMaintainer rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/vehicleKeeper
 era:vehicleOwner rdf:type owl:ObjectProperty ;
-                  rdfs:domain era:RegistrationCase ;
+                  rdfs:domain era:VehicleRegistration ;
                   rdfs:range era:Body ;
                   era:evrIndex "7" ;
                   dcterms:created "2024-06-26"^^xsd:date ;
@@ -3429,6 +3481,17 @@ era:vehicleType rdf:type owl:ObjectProperty ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "Vehicle type"@en ;
                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
+###  http://data.europa.eu/949/vehicleTypeHolder
+era:vehicleTypeAuthorisationHolder rdf:type owl:ObjectProperty ;
+                                  rdfs:domain era:Authorisation ;
+                                  rdfs:range era:Body ;
+                                  era:eratvIndex "3.1.3.1.2" , "3.1.3.2.3" , "3.1.3.3.3" , "3.1.3.4.3" , "3.1.3.5.3" , "3.1.3.6.3" , "3.1.3.7.3" , "3.1.3.8.3" ;
+                                  dcterms:created "2024-06-26"^^xsd:date ;
+                                  rdfs:comment "Indicates the vehicle type authorisation holder, recorded at authorisation (APOM) of that vehicle."@en ;
+                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                  rdfs:label "Vehicle type"@en ;
+                                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
 ###  http://data.europa.eu/949/vehicleTypeMaximumSpeedAndCantDeficiency
@@ -6724,7 +6787,7 @@ era:oclType rdf:type owl:DatatypeProperty ;
             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
             rdfs:label "Ocl type"@en ;
             owl:deprecated "true"^^xsd:boolean ;
-            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "archaic" .
 
 
 ###  http://data.europa.eu/949/offset
@@ -8505,6 +8568,17 @@ era:vehicleSeries rdf:type owl:DatatypeProperty ;
                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" .
 
 
+###  http://data.europa.eu/949/vehicleTypePlatform
+era:vehicleTypePlatform rdf:type owl:DatatypeProperty ;
+                                     rdfs:domain era:VehicleType ;
+                                     rdfs:range xsd:string ;
+                                     era:eratvIndex "-" ;
+                                     dcterms:created "2024-06-26"^^xsd:date ;
+                                     rdfs:comment "Name of the platform, in principle encoded in field 2 (Family/Platform) of the type identifier."@en ;
+                                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                     rdfs:label "Vehicle type platform"@en ;
+                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
 ###  http://data.europa.eu/949/vehicleTypeMaximumCantDeficiency
 era:vehicleTypeMaximumCantDeficiency rdf:type owl:DatatypeProperty ;
                                      rdfs:domain era:MaximumSpeedAndCantDeficiency ;
@@ -8558,27 +8632,27 @@ era:vehicleTypeMaximumSBDeceleration rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/vehicleTypesCompatibleTrafficLoad
-era:vehicleTypesCompatibleTrafficLoad rdf:type owl:DatatypeProperty ;
-                                      rdfs:domain era:TechnicalCharacteristics ;
-                                      rdfs:range xsd:anyURI ;
-                                      era:rinfIndex "1.1.1.5.1" ;
-                                      dcterms:created "2023-03-14"^^xsd:date ;
-                                      rdfs:comment "TODO: review. The infrastructure managers shall provide through RINF the information to the RU regarding list of vehicle types compatible with the route for which they have already verified compatibility for parameter Traffic load and load carrying capacity of infrastructure and train detection systems, where such information is available."@en ;
-                                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                      rdfs:label "List of vehicle types already identified as compatible with Traffic load and load carrying capacity of infrastructure and train detection systems"@en ;
-                                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" .
+# era:vehicleTypesCompatibleTrafficLoad rdf:type owl:DatatypeProperty ;
+#                                       rdfs:domain era:TechnicalCharacteristics ;
+#                                       rdfs:range xsd:anyURI ;
+#                                       era:rinfIndex "1.1.1.5.1" ;
+#                                       dcterms:created "2023-03-14"^^xsd:date ;
+#                                       rdfs:comment "TODO: review. The infrastructure managers shall provide through RINF the information to the RU regarding list of vehicle types compatible with the route for which they have already verified compatibility for parameter Traffic load and load carrying capacity of infrastructure and train detection systems, where such information is available."@en ;
+#                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+#                                       rdfs:label "List of vehicle types already identified as compatible with Traffic load and load carrying capacity of infrastructure and train detection systems"@en ;
+#                                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" .
 
 
 ###  http://data.europa.eu/949/vehiclesCompatibleTrafficLoad
-era:vehiclesCompatibleTrafficLoad rdf:type owl:DatatypeProperty ;
-                                  rdfs:domain era:TechnicalCharacteristics ;
-                                  rdfs:range xsd:anyURI ;
-                                  era:rinfIndex "1.1.1.5.2" ;
-                                  dcterms:created "2023-03-14"^^xsd:date ;
-                                  rdfs:comment "TODO: review. The infrastructure managers shall provide through RINF the information or a document to the RU regarding list of vehicle(s) compatible with the route for which they have already verified compatibility for parameter Traffic load and load carrying capacity of infrastructure and train detection systems, where such information is available."@en ;
-                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                  rdfs:label "List of vehicles already identified as compatible with Traffic load and load carrying capacity of infrastructure and train detection systems"@en ;
-                                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" .
+# era:vehiclesCompatibleTrafficLoad rdf:type owl:DatatypeProperty ;
+#                                   rdfs:domain era:TechnicalCharacteristics ;
+#                                   rdfs:range xsd:anyURI ;
+#                                   era:rinfIndex "1.1.1.5.2" ;
+#                                   dcterms:created "2023-03-14"^^xsd:date ;
+#                                   rdfs:comment "TODO: review. The infrastructure managers shall provide through RINF the information or a document to the RU regarding list of vehicle(s) compatible with the route for which they have already verified compatibility for parameter Traffic load and load carrying capacity of infrastructure and train detection systems, where such information is available."@en ;
+#                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+#                                   rdfs:label "List of vehicles already identified as compatible with Traffic load and load carrying capacity of infrastructure and train detection systems"@en ;
+#                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" .
 
 
 ###  http://data.europa.eu/949/vehiclesComposingFixedFormation
@@ -8828,6 +8902,27 @@ foaf:nick rdf:type owl:DatatypeProperty ;
 #                  rdfs:comment "Represents a geographical representation of a polygonal area. Example: non-stopping area,cross section area, area of implementation of GPRS etc."@en ;
 #                  rdfs:label "Area Location"@en .
 
+
+###  http://data.europa.eu/949/vpa/AreaOfUse
+era:AreaOfUse rdf:type owl:Class ;
+        rdfs:subClassOf vp:Scope ;
+        vp:definesCase era:AuthorisationCase ;
+        rdfs:comment """A network or networks within a Member State or a group of Member States in which a vehicle is intended to be used.
+        
+For full member state networks, see: `era:areaOfUseMemberState`.
+For smaller sections of line or networks smaller than a full member state network, see `era:limitedAreaOfUse`."""@en ;
+        rdfs:seeAlso <http://data.europa.eu/eli/dir/2016/797/2020-05-28> ;
+        rdfs:label "area of use"@en .
+
+
+###  http://data.europa.eu/949/vpa/AuthorisationCase
+era:AuthorisationCase rdf:type owl:Class ;
+        rdfs:subClassOf vp:Case ;
+        vp:concerns era:VehicleType, era:AreaOfUse ;
+        rdfs:comment "The authorisation case as defined in Article 14 of https://eur-lex.europa.eu/eli/reg_impl/2018/545/oj. The scope of the case is therefore always (1) one of the 5 PermissionTypes as in the Article 14, (2) the unique vehicle type identifier and (3) the set of vehicles belonging to the Authorisation Case."@en ;
+        rdfs:seeAlso <https://eur-lex.europa.eu/eli/reg_impl/2018/545/oj> ;
+        rdfs:label "Authorisation Case (PAVA)"@en .
+
 ###  http://data.europa.eu/949/RegistrationStatus
 era:AuthorisationStatus rdf:type owl:Class ;
                        dcterms:created "2023-06-26"^^xsd:date ;
@@ -8846,6 +8941,7 @@ era:AuthorisationTypeVersionVariant rdf:type owl:Class ;
                           rdfs:subClassOf vp:Scope ;
                           rdfs:comment "The Vehicle Type (or Version/Variant of the Type) which is the scope of a V(T) authorisation case. Only ONE such vehicle type is allowed per VA Case."@en ;
                           rdfs:label "Authorisation vehicle type(s), version(s) and variant(s)"@en .
+
 
 
 # ###  http://data.europa.eu/949/BaseLocation
@@ -9601,15 +9697,6 @@ era:RegistrationCase rdf:type owl:Class ;
         rdfs:comment "Typically a collection of the following Scopes, this Registration Case regroups: (1) one or a set of vehicles, preferably grouped as such also during authorisation, (2) the ECM maintaining them, (3) the authorisation covering them (if not in 1) and (4) the Keeper & Owner information."@en ;
         owl:disjointWith :AuthorisationCase ;
         rdfs:label "Vehicle Registration Case"@en .
-
-
-###  http://data.europa.eu/949/vpa/AuthorisationCase
-era:AuthorisationCase rdf:type owl:Class ;
-        rdfs:subClassOf vp:Case ;
-        vp:concerns era:VehicleType, era:AreaOfUse ;
-        rdfs:comment "The authorisation case as defined in Article 14 of https://eur-lex.europa.eu/eli/reg_impl/2018/545/oj. The scope of the case is therefore always (1) one of the 5 PermissionTypes as in the Article 14, (2) the unique vehicle type identifier and (3) the set of vehicles belonging to the Authorisation Case."@en ;
-        rdfs:seeAlso <https://eur-lex.europa.eu/eli/reg_impl/2018/545/oj> ;
-        rdfs:label "Authorisation Case (PAVA)"@en .
 
 ###  http://data.europa.eu/949/VehicleKeeper
 era:VehicleKeeper rdf:type owl:Class ;

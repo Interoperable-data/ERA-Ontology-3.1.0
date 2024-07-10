@@ -8,12 +8,14 @@
 Data, which can be retrieved on vehicles, _evolves_ over time, due to changes:
 
 - to the individual vehicle: these changes are not recorded in a registration, nor an authorisation;
-- to the contents of its registration, not needing an authorisation
-- to the vehicle type it belongs to, and the physical update of the specific vehicle according to that change in basic design characteristics, requiring a new authorisation in most cases.
+- to the contents of its registration, not needing an authorisation. A new Registration instance is updated under `era:currentRegistration` (a `era:Vehicle` property).
+- to the vehicle type it belongs to, and the physical update of the specific vehicle according to that change in basic design characteristics, requiring a new authorisation in most cases. A new Authorisation causes:
+  - setting `era:currentAuthorisation` (a `era:VehicleType` property) to this new Authorisation instance;
+  - updating `era:previousAuthorisation` of the new Authorisation instance to the one superseded.
 
 ## Data Model
 
-### ERATV data: `era:VehicleType` (Section 1 and 4)
+### ERATV data: `era:VehicleType` (Sections 1 and 4)
 
 Current data in ERATV is to be migrated mainly to these two classes.
 
@@ -41,11 +43,18 @@ Current data in ERATV is to be migrated mainly to these two classes.
   - [X] updated `era:usesGroup555` to the VehicleType class, as it responds to data for ERATV parameter 4.13.2.12.
   - [X] updated `era:atoSystemVersion` to the VehicleType class, as it responds to data for ERATV parameter 4.13.3.1.
 - [X] added `dcterms:relation` and `dcterms:requires` for dependent parameters, like 4.7.4.X.2 which depend on 4.7.4.X.1
-- [ ] the adminstrative data of a type (Section 1) needs some extra properties.
+- For the administrative data of a type (Section 1):
+  - [X] Already in use: `era:alternativeName` (for the name: `rdfs:label`), `era:typeVersionNumber`, `era:category` & `era:subCategory`
+  - [X] For "Date of record": use `dcterms:created`.
+  - [ ] For "Registration Method": to be determined. A SKOS CS is needed.
+  - [X] For "Registered Vehicle Type": use `era:previousVehicleType`.
+  - [X] Added: `era:vehicleTypePlatform`
+  - [X] Already in use: `era:manufacturer`
+- For the Holder of the Authorisation, use `era:vehicleTypeAuthorisationHolder` (a property of Authorisation, NOT VehicleType).
 
 ### EVR `era:Vehicle`
 
-Only those properties existing in [Table 1 "Parameters of the EVR"](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32018D1614#d1e32-62-1), not yet properties for a RegistrationCase, an AuthorisationCase or VehicleType, should exist for a Vehicle.
+Only those properties existing in [Table 1 "Parameters of the EVR"](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32018D1614#d1e32-62-1), not yet properties for a VehicleRegistration, an AuthorisationCase or VehicleType, should exist for a Vehicle.
 
 > [!WARNING]
 > The reason is the amount of triple duplication, and hence also the amount of triples to delete/update if a new Registration for many vehicles is created, or a new renewal/upgrade is executed (requiring a new AuthorisationCase/VehicleType).
@@ -91,12 +100,15 @@ Current EVR data is to be migrated into these Classes.
     | 5.1              |                  ?                   | Onboard recording device: no SKOS SC available                                 | New ?p needed  |
 
 - [ ] Some parameters may better be at `era:VehicleType`: others to be examined as TSI NOI _Common Characteristics_ properties of `era:VehicleAuthorization(Case)`, cannot remain at `era:Vehicle`.
-- [X] Like `era:vehicleKeeper`, to be added: `era:vehicleECM.` and `era:vehicleOwner` (respecting era:Body model).
+- Having as its range `era:Body`:
+- [X] Added `era:vehicleKeeper`
+- [X] Added `era:vehicleMaintainer`
+- [X] Added `era:vehicleOwner`
 
 > [!WARNING]
 > The model requires `era:role` and not properties like the ones above, this needs to be corrected.
 
-- [ ] `era:vehicleType` should be removed, as it can be deduced from the last RegistrationCase, itself referring potentially to the AuthorisationCase which was its basis. It should _not_ be hard-linked to the Vehicle instance.
+- [ ] (SHACL-rule) `era:vehicleType` should be consistent with the last VehicleRegistration, itself referring potentially to the AuthorisationCase which was its basis.
 - [ ] `era:vehicleNumber`, when managed as a dynamic property, does not require `era:previousVehicleNumber`. Further, when modelled as an EVN, the meaning must be decoded in [several other commonly grouped properties](https://eur-lex.europa.eu/eli/dec_impl/2018/1614/oj#d1e32-84-1):
   - [ ] Rolling Stock Group: [SKOS CS](https://data-interop.era.europa.eu/era-vocabulary/skos/era-skos-Categories.ttl) to be **updated** for EVR Rolling Stock Groups:
     - Wagons, Hauled Passenger Vehicles, Traction Rolling Stock, Special vehicles.
@@ -111,28 +123,54 @@ Current EVR data is to be migrated into these Classes.
   
 ### ERATV `era:AuthorisationCase` and `era:Authorisation` (Sections 2-3)
 
-This Case-class (subClassOf `vp:Case`) makes an abstraction of whether it exists in a VTA or VA (subClassOf `vp:Permission`), as the data is the same:
+#### Sources of information
 
-- [ ] per Case, exactly one vehicle type;
+The `era:Authorisation` instances can be created from OSS-datasets, when the Authorisation is issued. In that case, also the `era:AuthorisationCase` can be instantiated, as the unique type, case (C2T or other) and authorised vehicles (in a set) come from that process. Internally
+
+The `era:Authorisation` instances can further be (re)created from the Sections 2 and 3 from ERATV-datasets. No AuthorisationCase data can be deduced from ERATV.
+
+#### Why `AuthorisationCase` ?
+
+This class is used only internally and should be considered 'unstable'.
+
+This class (subClassOf `vp:Case`) allows to make an abstraction of data existing in a VTA or VA (subClassOf `vp:Permission`), as this data is the same:
+
+Per AuthorisationCase, may need to be provided:
+
+- [ ] Instances created from OSS data will use `vp:case` with their `era:Authorisation`
+- [ ] exactly one vehicle type;
 - [X] Authorised AreaOfUse, as a combination of several `era:areaOfUseMemberState` and border sections+stations under `era:limitedAreaOfUse`.
-- [ ] ONE or MORE Vehicles, in the latter case preferably grouped in a `VehicleCollection`. The Vehicles instances are possibly ONLY having pre-reserved numbers, and are furtehr not detailed yet.
+- [ ] ONE or MORE Vehicles, in the latter case preferably grouped in a `VehicleCollection`. The Vehicles instances are possibly ONLY having pre-reserved numbers, and are further not detailed yet.
+- [ ] instances of vp:submittedIn are EC Certificates and EC Declarations supporting the Case.
+- [ ] the authorisationCase as in the SKOS CS `<SKOS:VehicleAuthorisatoinCases>`.
 
-Actions in the ERA Vocabulary:
+The existence of this intermediary class (OSS-based) allows competency questions on the latter authorisation evidence, based on a query regarding the EVN or the Vehicle Type.
+
+> [!WARNING]
+> For datasets from ERATV, a limited `era:AuthorisationCase` is .
+
+#### Actions in the ERA Vocabulary
 
 - [X] Creation of the new Class `era:AuthorisationCase`:
-  - Instances are the `vp:case` of `era:Authorisation`
-- Migration of existing properties to `era:AuthorisationCase`:
-  - [X] (3.1.1) `era:authorisedCountry`, renamed to `era:memberstateOfAuthorisation`
+  - Properties of `era:AuthorisationCase` (`vp:concerns`):
+    - [ ] `era:vehicleType` (update domain)
+    - [ ] `era:AreaOfUse` (update domain)
+    - For data extraction from OSS:
+    - [ ] `era:vehicleCollection`
+    - [ ] `era:vehicleAuthorisationCase` (`vp:permissionType`) to the SKOS-CS of the authorisation cases as in 2018/545.
 - Added to `era:Authorisation`:
-  - [X] Added the Class `era:AuthorisationStatus`
+  - [X] Added the Class `era:AuthorisationStatus`, with:
+    - [X] `era:authorisationStatus`
     - [X] (3.1.2.1) `era:authorisationStatusCoding` for the Status: { Valid, Suspended, Revoked, To be renewed }, as extended in `era-states:States` (SKOS Concept Scheme)
     - [X] (3.1.2.1 &   3.1.3.X.2) `era:authorisationStatusDate` (`xsd:date`), replaces the string encoding of the date in Status.
     - [X] (3.1.2.2) `era:authorisationValidityDate` (`xsd:date`)
     - [X] (3.1.3.1.1) `era:authorisationStatusDate` for the issueDate (`xsd:date`):
       - Date on which the type authorisation being recorded was issued (not the date of entry in ERATV)
+    - [ ] Reason of the status change and description by the Applicant.
+  - [X] (3.1.1) `era:authorisedCountry`, renamed to `era:memberStateOfAuthorisation`
   - [ ] (3.1.3.1) isOriginalAuthorisation `xsd:boolean` replaces a separate entry for this Authorisation. Should be false for subsequent modifications.
   - [X] (3.1.3) `era:previousAuthorisation`: `<IRI to previous Authorisation>`: This previous Authorisation instance should use `dcterms:isReplacedBy`.
-  - [ ] (3.1.3.1.2 & 3.1.3.X.3) `<IRI to authorisation Holder>` (/ORGS)
+  - [X] (3.1.3.1.2 & 3.1.3.X.3) `era:vehicleTypeAuthorisationHolder <IRI to authorisation Holder (era:Body)>` (/ORGS)
   - [X] (3.1.3.1.3 & 3.1.3.X.4) `era:authorisationDocumentReference` (`xsd:string`) - Authorisation (modification) document reference
   - [X] (3.1.3.1.4 & 3.1.3.X.5) `era:certificate` (`<IRI to EC DEC/ EC TEC certificate>`) - Reference(s) of type examination or design examination type
   - [X] (3.1.3.1.5 & 3.1.3.X.6) `era:nationalRulesAssessed` (`<http://data.europa.eu/949/concepts/national-rule-classifications/national-rule-classifications>`) - Applicable national rules (if applicable) - Selection from a predefined list (multiple selection possible) based on [Commission Decision 2015/2299/EU](http://data.europa.eu/eli/dec/2009/965/oj).
@@ -144,8 +182,8 @@ Actions in the ERA Vocabulary:
   - [ ] Provide these combinations for `era:applicableSpecificCases`, together with the paragraphs 7 of the TSI (as Strings) (Section 2.3)
   - [ ] Allow for links to /ERADIS modules 1 and 2 certificates (Section 2.2).
 
-  > [!HINT]
-  > It is this link which allows to automatically trace the EC DoV (EC Declaration as in the EVR registration data) to which these certificates are linked.
+  > [!IMPORTANT]
+  > It is **this link** which allows to automatically trace the EC DoV (EC Declaration as in the EVR registration data) to which these certificates are linked.
 
 ## Properties, no longer applicable after an amendment of legislation
 
