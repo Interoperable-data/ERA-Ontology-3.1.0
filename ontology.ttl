@@ -1,4 +1,4 @@
-@prefix : <http://data.europa.eu/949/> .
+@prefix era: <http://data.europa.eu/949/> .
 @prefix era: <http://data.europa.eu/949/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -9,20 +9,18 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@base <http://data.europa.eu/949/> .
 
 <http://data.europa.eu/949/> rdf:type owl:Ontology ;
-                              owl:imports <http://www.opengis.net/ont/geosparql#> ;
                               <http://creativecommons.org/ns#license> <https://creativecommons.org/licenses/by/4.0/> ;
                               dcterms:contributor [ foaf:name "Maarten Duhoux" ;
                                                     <http://www.w3.org/ns/org#memberOf> <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                                   ] ,
                                                   "Designated RINF Topical Working Groups"@en ;
-                              dcterms:creator [ foaf:name "Dragos Patru" ;
+                              dcterms:creator [ foaf:name "Ghislain Atemezing" ;
+                                                rdfs:seeAlso <https://orcid.org/0000-0003-1562-6922> ;
                                                 <http://www.w3.org/ns/org#memberOf> <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                               ] ,
-                                              [ foaf:name "Ghislain Atemezing" ;
-                                                rdfs:seeAlso <https://orcid.org/0000-0003-1562-6922> ;
+                                              [ foaf:name "Dragos Patru" ;
                                                 <http://www.w3.org/ns/org#memberOf> <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                               ] ;
                               dcterms:issued "2024-04-18"^^xsd:date ;
@@ -30,7 +28,8 @@
                                                "2024-05-24"^^xsd:date ,
                                                "2024-06-03"^^xsd:date ,
                                                "2024-06-05"^^xsd:date ,
-                                               "2024-07-05"^^xsd:date ;
+                                               "2024-07-05"^^xsd:date ,
+											   "2024-08-02"^^xsd:date ;
                               dcterms:publisher "European Union Agency for Railways" ;
                               dcterms:title "ERA Ontology"@en ;
                               rdfs:comment """This is the human and machine readable Ontology governed by the European Union Agency for Railways (https://www.era.europa.eu/). It represents the concepts and relationships linked to the sectorial legal framework and the use cases under the AgencyÂ´s remit, as described in the Commission Implementing Regulation (EU) [to be updated after publication] on the common specifications for the register of railway infrastructure [to be updated after publication].
@@ -43,6 +42,13 @@ The Ontology also includes the routebook concepts described in appendix D2 \"Ele
                               owl:versionInfo "v3.1.0"@en ;
                               owl:versionURI <https://github.com/Interoperable-data/ERA_vocabulary/releases/releases/v3.1.0> ;
                               skos:changeNote """
+Revision 02-08-2024:
+- removed comments from wgs ontology, keeping mininal annotations (issue #51)
+- removed owl:imports axiom (issue #73) 
+- Added annotations of time classes used (time:TemporalDuration and time:TemporalEntity)
+- Replaced dcterms:requires by skos:scopeNote per suggested in issue #58.
+- Fixed typos in the range of the properties era:side, era:orientation, era:lrsMethod and era:direction. (issue #69)
+
 Revision 05-07-2024:
 - removed empty prefix and base
 - Changed the reference to previous version to point to release in Github 
@@ -264,10 +270,6 @@ dcterms:publisher rdf:type owl:AnnotationProperty .
 dcterms:relation rdf:type owl:AnnotationProperty .
 
 
-###  http://purl.org/dc/terms/requires
-dcterms:requires rdf:type owl:AnnotationProperty .
-
-
 ###  http://purl.org/dc/terms/source
 dcterms:source rdf:type owl:AnnotationProperty .
 
@@ -437,11 +439,11 @@ era:atoCommunicationSystem rdf:type owl:ObjectProperty ;
                            dcterms:created "2023-03-14"^^xsd:date ;
                            dcterms:modified "2024-04-18"^^xsd:date ;
                            dcterms:relation era:etcsBaseline ;
-                           dcterms:requires "Parameter only applicable when ETCS Baseline > 4 MR1 and ATO is implemented" ;
                            rdfs:comment "Supported ATO communication systems from trackside."@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "ATO communication system"@en ;
-                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" .
+                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" ;
+                           skos:scopeNote "Parameter only applicable when ETCS Baseline > 4 MR1 and ATO is implemented"@en .
 
 
 ###  http://data.europa.eu/949/atoGradeAutomation
@@ -456,11 +458,11 @@ era:atoGradeAutomation rdf:type owl:ObjectProperty ;
                        dcterms:created "2023-03-14"^^xsd:date ;
                        dcterms:modified "2024-04-18"^^xsd:date ;
                        dcterms:relation era:etcsBaseline ;
-                       dcterms:requires "Parameter only applicable when ETCS Baseline > 4 MR1 and ATO is implemented" ;
                        rdfs:comment "ATO grade of automation installed lineside."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "ATO Grade of Automation"@en ;
-                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                       skos:scopeNote "Parameter only applicable when ETCS Baseline > 4 MR1 and ATO is implemented"@en .
 
 
 ###  http://data.europa.eu/949/atoSystemVersion
@@ -475,12 +477,12 @@ era:atoSystemVersion rdf:type owl:ObjectProperty ;
                      dcterms:created "2023-03-14"^^xsd:date ;
                      dcterms:modified "2024-04-18"^^xsd:date ;
                      dcterms:relation era:etcsBaseline ;
-                     dcterms:requires "Parameter only applicable when ETCS Baseline > 4 MR1 and ATO is implemented" ;
                      dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                      rdfs:comment "ATO system version according to the specification referenced in TSI CCS (4.2.19)."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "ATO System version"@en ;
-                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                     skos:scopeNote "Parameter only applicable when ETCS Baseline > 4 MR1 and ATO is implemented"@en .
 
 
 ###  http://data.europa.eu/949/authorizedCountry
@@ -542,7 +544,6 @@ era:cantDeficiencyBasicSSP rdf:type owl:ObjectProperty ,
                            dcterms:created "2023-03-14"^^xsd:date ;
                            dcterms:modified "2024-01-08"^^xsd:date ,
                                             "2024-04-18"^^xsd:date ;
-                           dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                            dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                            rdfs:comment """Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with  parameter \"Other Cant Deficiency train categories for which the ETCS trackside is configured to provide SSP\".
 
@@ -551,7 +552,8 @@ a) The “Cant Deficiency” SSP categories: the cant deficiency value assigned 
 """@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "cant deficiency used for the basic SSP"@en ;
-                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                           skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/carrierObject
@@ -719,7 +721,6 @@ era:dataRadioCompatible rdf:type owl:ObjectProperty ;
                         dcterms:created "2020-08-31"^^xsd:date ;
                         dcterms:modified "2021-09-12"^^xsd:date ,
                                          "2024-04-18"^^xsd:date ;
-                        dcterms:requires "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en ;
                         dcterms:source <https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf> ;
                         rdfs:comment """Radio requirements used for demonstrating technical compatibility data.
 
@@ -727,7 +728,8 @@ Information on RSC data requirements per country:
 https://www.era.europa.eu/era-folder/radio-system-compatibility-rsc-voice-and-data-documents"""@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "Radio system compatibility data"@en ;
-                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                        skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en .
 
 
 ###  http://data.europa.eu/949/definesSubset
@@ -746,7 +748,10 @@ era:definesSubset rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/direction
 era:direction rdf:type owl:ObjectProperty ;
               rdfs:domain era:Orientation ;
-              rdfs:range skos:ConceptScheme ;
+              rdfs:range skos:Concept;
+			  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+			  era:inSkosConceptScheme <http://data.europa.eu/949/concepts/orientations/Directions> ;
+			  dcterms:created "2024-04-23"^^xsd:date ;
               rdfs:comment "The direction of the orientation of a railway element, in relation to the carrier object"@en ;
               skos:definition "direction"@en .
 
@@ -931,12 +936,12 @@ era:etcsBaseline rdf:type owl:ObjectProperty ;
                  dcterms:description "The ETCS baseline needs to be provided for each available ETCS Level. See: TSI CCS (Table A2)"@en ;
                  dcterms:modified "2021-08-31"^^xsd:date ,
                                   "2024-04-18"^^xsd:date ;
-                 dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                  rdfs:comment "ETCS baseline installed lineside"@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "ETCS baseline"@en ;
-                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                 skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/etcsDegradedSituation
@@ -959,14 +964,14 @@ If parameter 1.1.1.3.2.1 is not used (no ETCS), no degradation is possible, so o
 See also TSI OPE 4.2.3.6. Degraded operation."""@en ;
                           dcterms:modified "2021-09-12"^^xsd:date ,
                                            "2024-04-18"^^xsd:date ;
-                          dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present). Degraded level must be lower than actual operating level."@en ;
                           dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/2023-09-28> ,
                                          <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                                          <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
                           rdfs:comment "ERTMS / ETCS application level for degraded situation related to the track side equipment."@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "ETCS level for degraded situation"@en ;
-                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                          skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present). Degraded level must be lower than actual operating level."@en .
 
 
 ###  http://data.europa.eu/949/etcsEquipmentOnBoardLevel
@@ -1045,19 +1050,19 @@ Level definitions are principally related to the track side equipment used, to t
                                    era:gsmRActiveMobiles ,
                                    era:rbcID ,
                                    era:rbcPhone ;
-                  dcterms:requires """If ETCS is on the trackside (one or more levels are selected), all other ETCS parameters (from 1.1.1.3.2.2 to 1.1.1.3.2.10) are applicable.
+                  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                  rdfs:comment "European Train Control System (ETCS) application level related to the track side equipment."@en ;
+                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                  rdfs:label "ETCS level"@en ;
+                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                  skos:scopeNote """If ETCS is on the trackside (one or more levels are selected), all other ETCS parameters (from 1.1.1.3.2.2 to 1.1.1.3.2.10) are applicable.
 	
 The ETCS value NTC is only relevant when the line is dual equipped with ETCS (i.e., balises are placed in the track) and Class B system, and both systems are in operation at the same time. 
 In those cases, this parameter should be filled relevant ETCS Level and repeated with the value “NTC”.
 	
 If the line is only equipped with Class B, this should be reflected in Parameter 1.1.1.3.5.3, and this parameter etcsLevelType should not be used. 
 
-See: TSI CCS (Subset-026, Chapter 2, 2.6)"""@en ;
-                  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                  rdfs:comment "European Train Control System (ETCS) application level related to the track side equipment."@en ;
-                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                  rdfs:label "ETCS level"@en ;
-                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+See: TSI CCS (Subset-026, Chapter 2, 2.6)"""@en .
 
 
 ###  http://data.europa.eu/949/etcsMVersion
@@ -1073,13 +1078,13 @@ era:etcsMVersion rdf:type owl:ObjectProperty ,
                  dcterms:created "2021-08-08"^^xsd:date ;
                  dcterms:modified "2021-09-12"^^xsd:date ,
                                   "2024-04-18"^^xsd:date ;
-                 dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                  rdfs:comment "ETCS M_version according to SRS 7.5.1.9."@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "ETCS M_version"@en ;
                  rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                 skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/etcsSystemCompatibility
@@ -1113,14 +1118,14 @@ The technical document will be updated within 10 working days after positive ass
 
 The ESC Types shall only be used when published with status ‘Valid’ in the Agency Technical document referred above."""@en ;
                             dcterms:modified "2021-09-12"^^xsd:date ;
-                            dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                             dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/776/oj> ,
                                            <https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf> ;
                             rdfs:comment "ETCS requirements used for demonstrating technical compatibility."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "ETCS system compatibility"@en ;
                             rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                            skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/etcsTransmittedTrackConditions
@@ -1136,7 +1141,6 @@ era:etcsTransmittedTrackConditions rdf:type owl:ObjectProperty ,
                                    dcterms:created "2022-11-16"^^xsd:date ;
                                    dcterms:modified "2023-03-14"^^xsd:date ,
                                                     "2023-04-18"^^xsd:date ;
-                                   dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                                    dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                    rdfs:comment """Transmittable track conditions by the CCSSubsystem, as per CCS TSI.
 
@@ -1144,7 +1148,8 @@ See: TSI CCS (Subset-026, Chapter 5, section 5.18.1.1)"""@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "Track conditions which can be transmitted"@en ;
                                    rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" .
+                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" ;
+                                   skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/fireSafetyCategory
@@ -1316,11 +1321,11 @@ Please select ”1” or “2”, taking into account that TSI compliant trains 
 """@en ;
                       dcterms:modified "2021-09-12"^^xsd:date ;
                       dcterms:relation era:etcsLevelType ;
-                      dcterms:requires "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en ;
                       rdfs:comment "Number of simultaneous communication session on board for ETCS level 2 required for a smooth running of the train. This relates to the radio block centre (RBC) handling of communication sessions. Not safety critical and no matter of interoperability."@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                       rdfs:label "Number of active GSM-R mobiles (EDOR) or simultaneous communication session on-board for ETCS Level 2 needed to perform radio block centre handovers without having an operational disruption"@en ;
-                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                      skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en .
 
 
 ###  http://data.europa.eu/949/gsmRAdditionalInfo
@@ -1336,12 +1341,12 @@ era:gsmRAdditionalInfo rdf:type owl:ObjectProperty ;
 The document(s) itself has(have) to be upload by the NRE via the “reference document management” functionality. The reference of the document(s) is(are) provided as (a) link(s)."""@en ;
                        dcterms:modified "2021-09-12"^^xsd:date ,
                                         "2024-04-18"^^xsd:date ;
-                       dcterms:requires "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable"@en ;
                        rdfs:comment "Any additional information on network characteristics or corresponding document available from the IM and stored by the Agency, e.g.; interference level, leading to the recommendation of additional on-board protection."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Additional information on network characteristics"@en ;
                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                       skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
+                       skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en ;
+                       skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable"@en .
 
 
 ###  http://data.europa.eu/949/gsmROptionalFunctions
@@ -1378,11 +1383,11 @@ In case there is a balise used to announce the change of the network, or if ther
 """@en ;
                           dcterms:modified "2021-09-12"^^xsd:date ,
                                            "2024-04-18"^^xsd:date ;
-                          dcterms:requires "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable"@en ;
                           rdfs:comment "Use of optional GSM-R functions which might improve operation on the line. They are for information only and not for network access criteria."@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "Optional GSM-R functions"@en ;
-                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                          skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable"@en .
 
 
 ###  http://data.europa.eu/949/gsmRRadioDataCommunication
@@ -1417,14 +1422,14 @@ era:gsmRVersion rdf:type owl:ObjectProperty ;
                 dcterms:created "2021-08-08"^^xsd:date ;
                 dcterms:modified "2021-09-12"^^xsd:date ,
                                  "2024-04-18"^^xsd:date ;
-                dcterms:requires "GSM-R must be installed for this parameter to be applicable. If this property is not used, all GSM-R related properties should not be used either."@en ;
                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                 rdfs:comment """GSM-R functional requirements specification and system requirements specification in accordance with the specification respectively referenced in TSI CCS (Annex ), version number installed lineside.
                 
 Since more than one version may be installed in different areas, this property can have multiple values."""@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "GSM-R version"@en ;
-                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                skos:scopeNote "GSM-R must be installed for this parameter to be applicable. If this property is not used, all GSM-R related properties should not be used either."@en .
 
 
 ###  http://data.europa.eu/949/gsmrConstraintsOperateOnlyInCircuitSwitch
@@ -1438,12 +1443,12 @@ era:gsmrConstraintsOperateOnlyInCircuitSwitch rdf:type owl:ObjectProperty ;
                                                             "1.2.1.1.2.12" ;
                                               dcterms:created "2023-03-14"^^xsd:date ;
                                               dcterms:modified "2024-04-18"^^xsd:date ;
-                                              dcterms:requires """GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable.
-Multiple values are allowed."""@en ;
                                               rdfs:comment "These constraints, where applicable, are meant to manage the limited number of circuit-switched radio connections that can be handled simultaneously by a Radio Block Center."@en ;
                                               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                               rdfs:label "Specific constraints imposed by the GSM-R network operator on ETCS on-board units only able to operate in circuit-switch"@en ;
-                                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                                              skos:scopeNote """GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable.
+Multiple values are allowed."""@en .
 
 
 ###  http://data.europa.eu/949/gsmrNetworkCoverage
@@ -1461,11 +1466,11 @@ This list is managed by UIC. The Agency will monitor it in order to update the l
 For Route Compatibility purposes and simplicity, the own network needs to be declared by the IM, so the RUs can systematically check the compatibility.
 For voice services, roaming for CS is applicable.  For ETCS, as long as roaming for CS is ensured, the interoperability will be guaranteed."""@en ;
                         dcterms:modified "2021-09-12"^^xsd:date ;
-                        dcterms:requires "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en ;
                         rdfs:comment "List of GSM-R networks which are covered by a roaming agreement."@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "GSM-R networks covered by a roaming agreement"@en ;
-                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                        skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en .
 
 
 ###  http://data.europa.eu/949/hasAbstraction
@@ -1790,8 +1795,10 @@ era:location rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/lrsMethod
 era:lrsMethod rdf:type owl:ObjectProperty ;
               rdfs:domain era:Position ;
-              rdfs:range skos:ConceptScheme ;
+              rdfs:range skos:Concept ;
               rdfs:comment "The preferred line referencing system. TODO: provide example"@en ;
+			  dcterms:created "2024-04-18"^^xsd:date ;
+			  era:inSkosConceptScheme <http://data.europa.eu/949/concepts/lines/ReferenceSystems> ;
               rdfs:label "line referencing system"@en .
 
 
@@ -1808,7 +1815,6 @@ era:mNvcontact rdf:type owl:ObjectProperty ,
                dcterms:created "2022-11-07"^^xsd:date ;
                dcterms:modified "2023-03-14"^^xsd:date ,
                                 "2024-04-18"^^xsd:date ;
-               dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                rdfs:comment """On-Board system reaction when T_NVCONTACT expires.
 
@@ -1816,7 +1822,8 @@ See: TSI CCS (Subset-026, chapter 7. 7.5.1.74 M_NVCONTACT)"""@en ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                rdfs:label "M_NVCONTACT"@en ;
                rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" .
+               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" ;
+               skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/magneticBraking
@@ -1943,12 +1950,12 @@ era:minVehicleImpedanceVoltages rdf:type owl:ObjectProperty ;
                                               "1.2.1.1.3.2.2" ;
                                 era:usedInRCCCalculations "true"^^xsd:boolean ;
                                 dcterms:created "2024-05-30"^^xsd:date ;
-                                dcterms:requires "The parameter minVehicleImpedanceVoltages is applicable for track circuits." ;
                                 dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
                                 rdfs:comment "Indication of the voltage system valid for the minimal impedance value (track circuits)."@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "minimum Vehicle Impedance (Voltage applicable)"@en ;
-                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                                skos:scopeNote "The parameter minVehicleImpedanceVoltages is applicable for track circuits."@en  .
 
 
 ###  http://data.europa.eu/949/nationalLine
@@ -2133,7 +2140,10 @@ era:organisation rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/orientation
 era:orientation rdf:type owl:ObjectProperty ;
                 rdfs:domain era:Orientation ;
-                rdfs:range skos:ConceptScheme ;
+                rdfs:range skos:Concept;
+				rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+				dcterms:created "2024-04-18"^^xsd:date ;
+				era:inSkosConceptScheme <http://data.europa.eu/949/concepts/orientations/Directions> ; 
                 rdfs:comment "The orientation of the object in relation to the carrier object. Possible values: Normal, Opposite, Both"@en ;
                 rdfs:label "orientation"@en .
 
@@ -2168,7 +2178,6 @@ era:otherCantDeficiencyBasicSSP rdf:type owl:ObjectProperty ,
                                 dcterms:created "2023-03-14"^^xsd:date ;
                                 dcterms:modified "2024-04-18"^^xsd:date ;
                                 dcterms:relation era:cantDeficiencyBasicSSP ;
-                                dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                 rdfs:comment """Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with parameter \"Cant Deficiency used for the basic SSP\". 
 
@@ -2177,7 +2186,8 @@ b) The “other specific” SSP categories: it groups all other specific SSP cat
 """@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "Other Cant Deficiency train categories for which the ETCS trackside is configured to provide SSP"@en ;
-                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" .
+                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" ;
+                                skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/otherPantographHead
@@ -2210,14 +2220,14 @@ era:otherTrainProtection rdf:type owl:ObjectProperty ,
                          dcterms:description "Selected value shall answer the question whether any other system than ETCS exists on the respective track. The list is in line with ERA/TD/2011-09/INT (v1.13), Table 3."@en ;
                          dcterms:modified "2021-09-12"^^xsd:date ,
                                           "2024-04-18"^^xsd:date ;
-                         dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                          dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/2023-09-28> ,
                                         <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                          rdfs:comment "Indication of existence of other system than ETCS for degraded situation."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Other train protection, control and warning systems for degraded situation"@en ;
                          rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-11/%5BK%5D%20ERA-TD-2011-09-INT-Coded%20restrictions-final.pdf> ;
-                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                         skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/parameter
@@ -2464,7 +2474,6 @@ era:reasonsEtcsRadioBlockCenterReject rdf:type owl:ObjectProperty ,
                                       dcterms:created "2022-11-07"^^xsd:date ;
                                       dcterms:modified "2023-03-14"^^xsd:date ,
                                                        "2024-04-18"^^xsd:date ;
-                                      dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                                       dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                       rdfs:comment """List of cases subject to system design choices made by the infrastructure manager according to the specification referenced in TSI CCS. 
 
@@ -2472,7 +2481,8 @@ See: Subset 26, Chapter 5 5.4 Procedure start of mission."""@en ;
                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                       rdfs:label "Reasons for which an ETCS Radio Block Center can reject a train"@en ;
                                       rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-                                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" .
+                                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" ;
+                                      skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/referent
@@ -2487,6 +2497,7 @@ era:referent rdf:type owl:ObjectProperty ;
 era:role rdf:type owl:ObjectProperty ;
          rdfs:domain era:Body ;
          rdfs:range era:OrganisationRole ;
+		 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
          dcterms:created "2024-06-03"^^xsd:date ;
          rdfs:label "role"@en .
 
@@ -2523,20 +2534,24 @@ era:safeConsistLengthInformationNecessary rdf:type owl:ObjectProperty ,
                                                         "1.2.1.1.1.11" ;
                                           dcterms:created "2023-03-14"^^xsd:date ;
                                           dcterms:modified "2024-04-18"^^xsd:date ;
-                                          dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                                           dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                           rdfs:comment "Indication whether safe consist train length information from on-board is required to access the line for safety reasons and the required safety integrity level."@en ;
                                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                           rdfs:label "Safe consist length information from on-board necessary for access the line and SIL"@en ;
                                           rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-                                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                                          skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/side
 era:side rdf:type owl:ObjectProperty ;
          rdfs:domain era:Orientation ;
-         rdfs:range skos:ConceptScheme ;
-         rdfs:label "on side" .
+         rdfs:range skos:Concept ;
+         rdfs:label "on side"@en ;
+		 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+		 dcterms:created "2024-04-18"^^xsd:date  ;
+		 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/orientations/Sides> ;
+		 .
 
 
 ###  http://data.europa.eu/949/siding
@@ -2999,13 +3014,13 @@ era:trainDetectionSystemSpecificCheckDocument rdf:type owl:ObjectProperty ;
                                               dcterms:modified "2024-01-08"^^xsd:date ,
                                                                "2024-04-18"^^xsd:date ,
                                                                "2024-04-23"^^xsd:date ;
-                                              dcterms:requires "The document itself has to be upload by the NRE via the “reference document management” functionality. The reference of the document is provided for the parameter using the characterstring format."@en ;
                                               dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
                                               rdfs:comment "Electronic document from the IM stored by the Agency with precise values in accordance with TSI CCS (Article 13 and Annex I, Appendix A, Table A.2, Index 77), for the specific check to be performed for train detection systems identified in parameter \"\"Type of track circuits or axle counters to which specific checks are needed\"."@en ;
                                               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                               rdfs:label "Document with the procedure(s) related to the type of train detection systems declared in 1.1.1.3.7.1.2 or 1.2.1.1.6.1"@en ;
                                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                                              skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
+                                              skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en ;
+                                              skos:scopeNote "The document itself has to be upload by the NRE via the “reference document management” functionality. The reference of the document is provided for the parameter using the characterstring format."@en .
 
 
 ###  http://data.europa.eu/949/trainDetectionSystemType
@@ -3027,11 +3042,11 @@ era:trainDetectionSystemType rdf:type owl:ObjectProperty ;
 The option of ‘wheel detector’ has to be also selected for: wheel sensor for axle counter, pedal or treadle."""@en ;
                              dcterms:modified "2021-08-07"^^xsd:date ,
                                               "2024-04-18"^^xsd:date ;
-                             dcterms:requires "Not all parameters are applicable to all types of train detection systems; it depends on the applicability condition."@en ;
                              rdfs:comment "Indication of types of train detection systems installed. "@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "Type of train detection system"@en ;
-                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                             skos:scopeNote "Not all parameters are applicable to all types of train detection systems; it depends on the applicability condition."@en .
 
 
 ###  http://data.europa.eu/949/tsiCompliantCompositeBrakeBlocks
@@ -3316,8 +3331,6 @@ era:voiceRadioCompatible rdf:type owl:ObjectProperty ;
                          dcterms:created "2020-08-31"^^xsd:date ;
                          dcterms:modified "2021-09-12"^^xsd:date ,
                                           "2024-04-18"^^xsd:date ;
-                         dcterms:requires """GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable.
-In case of RSC-EU-0 or None, no other values are allowed."""@en ;
                          dcterms:source <https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf> ;
                          rdfs:comment """Radio requirements used for demonstrating technical compatibility voice.
 
@@ -3328,7 +3341,9 @@ Information on RSC voice requirements per country:
 https://www.era.europa.eu/era-folder/radio-system-compatibility-rsc-voice-and-data-documents"""@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Radio system compatibility voice"@en ;
-                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                         skos:scopeNote """GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable.
+In case of RSC-EU-0 or None, no other values are allowed."""@en .
 
 
 ###  http://data.europa.eu/949/wheelSetGauge
@@ -3542,12 +3557,12 @@ era:bigMetalMass rdf:type owl:DatatypeProperty ,
                  dcterms:created "2023-03-14"^^xsd:date ;
                  dcterms:modified "2024-01-08"^^xsd:date ,
                                   "2024-04-18"^^xsd:date ;
-                 dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                  rdfs:comment "Indication of existence of metal mass in the vicinity of the location, susceptible of perturbating the reading of balises by the on-board system."@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "Big Metal Mass"@en ;
-                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                 skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/boardingAids
@@ -3681,13 +3696,13 @@ era:conditionsAppliedRegenerativeBraking rdf:type owl:DatatypeProperty ;
                                          dcterms:created "2022-11-10"^^xsd:date ;
                                          dcterms:modified "2023-03-14"^^xsd:date ,
                                                           "2024-04-18"^^xsd:date ;
-                                         dcterms:requires "When `not electrified` is chosen in parameter 1.1.1.2.2.1.1, then this parameter is not applicable." ;
                                          dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ,
                                                         <https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32019R0777&from=EN> ;
                                          rdfs:comment "Name and/or reference of the document specifying the conditions applying in regards to regenerative braking."@en ;
                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                          rdfs:label "Conditions applying in regards to regenerative braking"@en ;
-                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                                         skos:scopeNote "When `not electrified` is chosen in parameter 1.1.1.2.2.1.1, then this parameter is not applicable."@en .
 
 
 ###  http://data.europa.eu/949/conditionsChargingElectricEnergyStorage
@@ -3826,7 +3841,6 @@ era:dNvovtrp rdf:type owl:DatatypeProperty ,
              dcterms:created "2022-11-07"^^xsd:date ;
              dcterms:modified "2024-01-08"^^xsd:date ,
                               "2024-04-18"^^xsd:date ;
-             dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
              rdfs:comment """Maximum distance for overriding the train trip in metres.
 
@@ -3835,7 +3849,8 @@ Precision: [NNNNNN.N] with N a decimal number (0÷9)
 In Subset 26, chapter 7. 7.5.1.15 D_NVOVTRP."""@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "D_NVOVTRP"@en ;
-             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+             skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/dNvpotrp
@@ -3851,7 +3866,6 @@ era:dNvpotrp rdf:type owl:DatatypeProperty ,
              dcterms:created "2022-11-07"^^xsd:date ;
              dcterms:modified "2023-03-14"^^xsd:date ,
                               "2024-04-18"^^xsd:date ;
-             dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
              rdfs:comment """Maximum distance for reversing in Post Trip mode in metres. 
 
@@ -3861,7 +3875,8 @@ See: TSI CCS (Subset 26, chapter 7. 7.5.1.16 D_NVPOTRP)"""@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "D_NVPOTRP"@en ;
              rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+             skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/dNvroll
@@ -3877,7 +3892,6 @@ era:dNvroll rdf:type owl:DatatypeProperty ,
             dcterms:created "2022-11-07"^^xsd:date ;
             dcterms:modified "2023-03-14"^^xsd:date ,
                              "2024-04-18"^^xsd:date ;
-            dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
             dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
             rdfs:comment """Parameter used by the ETCS on-board to supervise the distance allowed to be travelled under the roll-away protection and the reverse movement protection, in metres.
 
@@ -3887,7 +3901,8 @@ See: TSI CCS (Subset 26, chapter 7. 7.5.1.17 D_NVROLL)"""@en ;
             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
             rdfs:label "D_NVROLL"@en ;
             rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+            skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/dangerousGoodsTankCode
@@ -4235,13 +4250,13 @@ era:etcsImplementsLevelCrossingProcedure rdf:type owl:DatatypeProperty ,
                                                        "1.2.1.1.1.13" ;
                                          dcterms:created "2022-11-04"^^xsd:date ;
                                          dcterms:modified "2024-04-18"^^xsd:date ;
-                                         dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                                          dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                          rdfs:comment "If the trackside does not implement any solution to cover defective LXs (which are normally protected by means of a technical system), then drivers will be required to comply with instructions received from other sources."@en ;
                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                          rdfs:label "ETCS trackside implements level crossing procedure or an equivalent solution"@en ;
                                          rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                                         skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/etcsInfillLineAccess
@@ -4257,12 +4272,12 @@ era:etcsInfillLineAccess rdf:type owl:DatatypeProperty ,
                          
 See: TSI CCS 7.2.9.1 & 4.2.3 """@en ;
                          dcterms:modified "2021-09-12"^^xsd:date ;
-                         dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                          dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                          rdfs:comment "Indication whether infill is required to access the line for safety reasons."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "ETCS infill necessary for line access"@en ;
-                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                         skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/etcsNationalApplications
@@ -4298,13 +4313,13 @@ NID_XUSER values managed by ERA in a document about ETCS variables available on 
 See: TSI CCS (7.4.3 & 6.2.4.2)"""@en ;
                          dcterms:modified "2021-09-12"^^xsd:date ,
                                           "2024-04-18"^^xsd:date ;
-                         dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                          dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                          rdfs:comment "Indication whether data for national packet 44 applications is transmitted between track and train."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "ETCS national packet 44 application implemented"@en ;
                          rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                         skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/etcsOnBoardImplementation
@@ -4363,13 +4378,13 @@ era:etcsTransmitsTrackConditions rdf:type owl:DatatypeProperty ,
                                  dcterms:created "2022-11-04"^^xsd:date ;
                                  dcterms:modified "2023-03-14"^^xsd:date ,
                                                   "2024-04-18"^^xsd:date ;
-                                 dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                                  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                  rdfs:comment "If the trackside does not provide Track Conditions, the driver will need to be informed about such conditions via alternative methods."@en ;
                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                  rdfs:label "Is the ETCS trackside engineered to transmit Track Conditions"@en ;
                                  rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-                                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                                 skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/ferromagneticWheelMaterial
@@ -4453,8 +4468,8 @@ era:frenchTrainDetectionSystemLimitationApplicable rdf:type owl:DatatypeProperty
                                                    rdfs:domain era:FrenchTrainDetectionSystemLimitation ;
                                                    rdfs:range xsd:boolean ;
                                                    era:XMLName "CTD_TCLimitation" ;
-                                                   era:rinfIndex "1.2.1.1.6.3" ,
-                                                                 "1.1.1.3.7.1.4" ;
+                                                   era:rinfIndex "1.1.1.3.7.1.4" ,
+                                                                 "1.2.1.1.6.3" ;
                                                    era:usedInRCCCalculations "true"^^xsd:boolean ;
                                                    dcterms:created "2023-04-05"^^xsd:date ;
                                                    dcterms:relation era:frenchTrainDetectionSystemLimitation ;
@@ -4493,12 +4508,12 @@ era:gprsForETCS rdf:type owl:DatatypeProperty ,
                 dcterms:modified "2021-09-12"^^xsd:date ,
                                  "2024-04-18"^^xsd:date ;
                 dcterms:relation era:etcsLevelType ;
-                dcterms:requires "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en ;
                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                 rdfs:comment "Indication if GPRS can be used for ETCS."@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "GPRS for ETCS"@en ;
-                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en .
 
 
 ###  http://data.europa.eu/949/gprsImplementationArea
@@ -4513,11 +4528,11 @@ era:gprsImplementationArea rdf:type owl:DatatypeProperty ;
                                             "2024-04-18"^^xsd:date ;
                            dcterms:relation era:etcsLevelType ,
                                             era:gprsForETCS ;
-                           dcterms:requires "GSM-R (parameter 1.1.1.3.3.1), ETCS L2 (parameter 1.1.1.3.2.1) and GPRS for ETCS (parameter 1.1.1.3.3.3.2) must be installed for this parameter to be applicable."@en ;
                            rdfs:comment "Indication of the area in which GPRS can be used for ETCS, expressed as a list of GPRS-enabled RBC's."@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "Area of implementation of GPRS"@en ;
-                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                           skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1), ETCS L2 (parameter 1.1.1.3.2.1) and GPRS for ETCS (parameter 1.1.1.3.3.3.2) must be installed for this parameter to be applicable."@en .
 
 
 ###  http://data.europa.eu/949/gradient
@@ -4566,11 +4581,11 @@ era:gsmRNoCoverage rdf:type owl:DatatypeProperty ,
 This parameter is mainly to capture the case of Radio Hole functionality (lack of GSM-R coverage), that is foreseen in the ETCS specifications as packet 68. 
 Another possible use is the declaration of a temporary situation where, although the area is in principle covered by GSM-R, there is a long-term outage or a project for replacement of the radio (i.e. a section that will not be covered with GSM-R for half a year or longer)."""@en ;
                    dcterms:modified "2021-09-12"^^xsd:date ;
-                   dcterms:requires "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en ;
                    rdfs:comment "Indication if there is no GSMR coverage."@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    rdfs:label "No GSMR coverage"@en ;
-                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                   skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en .
 
 
 ###  http://data.europa.eu/949/gsmRSetsInDrivingCab
@@ -4613,11 +4628,11 @@ era:gsmrForcedDeregistrationFunctionalNumber rdf:type owl:DatatypeProperty ,
                                              dcterms:created "2022-11-07"^^xsd:date ;
                                              dcterms:modified "2023-03-14"^^xsd:date ,
                                                               "2024-04-18"^^xsd:date ;
-                                             dcterms:requires "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en ;
                                              rdfs:comment "This feature will determine the applicable operational rules for drivers and signallers when dealing with cab radios registered under wrong numbers."@en ;
                                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                              rdfs:label "Is the GSM-R network configured to allow forced de-registration of a functional number by another driver?"@en ;
-                                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                                             skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en .
 
 
 ###  http://data.europa.eu/949/handoverPointFlag
@@ -4714,13 +4729,13 @@ These conditions and restrictions of use are considered in section 6.4 of the CC
 and deviations – Guidelines for using the ERA template) with the following link."""@en ;
                                   dcterms:modified "2024-01-08"^^xsd:date ,
                                                    "2024-04-18"^^xsd:date ;
-                                  dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                                   dcterms:source <https://www.era.europa.eu/content/certification-issues> ;
                                   rdfs:comment "Indication whether restrictions or conditions due to partial compliance with the TSI CCS exist."@en ;
                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                   rdfs:label "Existence of operating restrictions or conditions"@en ;
                                   rdfs:seeAlso <https://www.era.europa.eu/system/files/2022-11/restrictions_and_added_functions_en_1.doc> ;
-                                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                                  skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/hasElectricShoreSupply
@@ -5484,7 +5499,6 @@ era:mNvderun rdf:type owl:DatatypeProperty ,
              dcterms:created "2022-11-07"^^xsd:date ;
              dcterms:modified "2023-03-14"^^xsd:date ,
                               "2023-04-18"^^xsd:date ;
-             dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
              rdfs:comment """Entry of Driver ID permitted while running. 
 
@@ -5492,7 +5506,8 @@ See: TSI CCS (Subset 26, chapter 7. 7.5.1.75 M_NVDERUN)"""@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "M_NVDERUN"@en ;
              rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+             skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/magneticBrakePrevention
@@ -5808,12 +5823,12 @@ era:maximumMagneticFieldDirectionX rdf:type owl:DatatypeProperty ,
                                    era:rinfIndex "1.1.1.3.4.2.3" ,
                                                  "1.2.1.1.3.2.3" ;
                                    dcterms:created "2023-03-14"^^xsd:date ;
-                                   dcterms:requires "The maximumMagneticFieldDirectionX parameter is applicable for axle counters."@en ;
                                    dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
                                    rdfs:comment "The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band. Direction X."@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "Maximum magnetic field direction X"@en ;
-                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                                   skos:scopeNote "The maximumMagneticFieldDirectionX parameter is applicable for axle counters."@en .
 
 
 ###  http://data.europa.eu/949/maximumMagneticFieldDirectionY
@@ -5825,12 +5840,12 @@ era:maximumMagneticFieldDirectionY rdf:type owl:DatatypeProperty ,
                                    era:rinfIndex "1.1.1.3.4.2.3" ,
                                                  "1.2.1.1.3.2.3" ;
                                    dcterms:created "2023-03-14"^^xsd:date ;
-                                   dcterms:requires "The maximumMagneticFieldDirectionY parameter is applicable for axle counters."@en ;
                                    dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
                                    rdfs:comment "The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band. Direction Y."@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "Maximum magnetic field direction Y"@en ;
-                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                                   skos:scopeNote "The maximumMagneticFieldDirectionY parameter is applicable for axle counters."@en .
 
 
 ###  http://data.europa.eu/949/maximumMagneticFieldDirectionZ
@@ -5842,12 +5857,12 @@ era:maximumMagneticFieldDirectionZ rdf:type owl:DatatypeProperty ,
                                    era:rinfIndex "1.1.1.3.4.2.3" ,
                                                  "1.2.1.1.3.2.3" ;
                                    dcterms:created "2023-03-14"^^xsd:date ;
-                                   dcterms:requires "The maximumMagneticFieldDirectionZ parameter is applicable for axle counters."@en ;
                                    dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
                                    rdfs:comment "The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band. Direction Z."@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "Maximum magnetic field direction Z"@en ;
-                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                                   skos:scopeNote "The maximumMagneticFieldDirectionZ parameter is applicable for axle counters."@en .
 
 
 ###  http://data.europa.eu/949/maximumPermittedSpeed
@@ -6094,12 +6109,12 @@ era:minVehicleInputCapacitance rdf:type owl:DatatypeProperty ;
                                era:unitOfMeasure <https://qudt.org/vocab/unit/NanoFARAD> ;
                                era:usedInRCCCalculations "true"^^xsd:boolean ;
                                dcterms:created "2024-05-30"^^xsd:date ;
-                               dcterms:requires "The minVehicleInputCapacitance parameter is applicable for track circuits."@en ;
                                dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
                                rdfs:comment "For the selected DC voltage: [CCCC], as input capacitance [CCCC](Cin)"@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "minimal vehicle input capacitance"@en ;
-                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                               skos:scopeNote "The minVehicleInputCapacitance parameter is applicable for track circuits."@en .
 
 
 ###  http://data.europa.eu/949/minVehicleInputImpedance
@@ -6112,12 +6127,12 @@ era:minVehicleInputImpedance rdf:type owl:DatatypeProperty ;
                              era:unitOfMeasure <https://qudt.org/vocab/unit/MilliH> ;
                              era:usedInRCCCalculations "true"^^xsd:boolean ;
                              dcterms:created "2024-05-30"^^xsd:date ;
-                             dcterms:requires "The minVehicleInputImpedance parameter is applicable for track circuits."@en ;
                              dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
                              rdfs:comment "For the selected DC voltage: [ZZZZ], as input impedance [ZZZZ](Zin)"@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "minimal vehicle input impedance"@en ;
-                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                             skos:scopeNote "The minVehicleInputImpedance parameter is applicable for track circuits."@en .
 
 
 ###  http://data.europa.eu/949/minWheelDiameter
@@ -6363,13 +6378,13 @@ era:nationalValuesBrakeModel rdf:type owl:DatatypeProperty ,
                                            "1.2.1.1.1.16.13" ;
                              dcterms:created "2023-03-14"^^xsd:date ;
                              dcterms:modified "2024-01-08"^^xsd:date ;
-                             dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                              rdfs:comment """Set of parameters for adapting the braking curves calculated by the ETCS on-board system to match accuracy, performance and safety margins imposed by the infrastructure manager.
 It copies the content of Packet 3 or of Packet 203 as defined in the specification referenced in TSI CCS (Annex I, Appendix A, Table A.2 -Subset-026)."""@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "National Values used for the brake model"@en ;
-                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                             skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/nonCodedRestrictions
@@ -6814,12 +6829,12 @@ era:publicNetworkRoaming rdf:type owl:DatatypeProperty ,
                          dcterms:created "2021-08-09"^^xsd:date ;
                          dcterms:modified "2024-01-08"^^xsd:date ;
                          dcterms:relation era:publicNetworkRoamingDetails ;
-                         dcterms:requires "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en ;
                          rdfs:comment """Existence of roaming to a public network.
 In case of Y, provide the name of the public network(s) under parameter \"Details on GSM-R roaming to public networks\"."""@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Existence of GSM-R roaming to public networks"@en ;
-                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                         skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en .
 
 
 ###  http://data.europa.eu/949/publicNetworkRoamingDetails
@@ -6833,7 +6848,6 @@ era:publicNetworkRoamingDetails rdf:type owl:DatatypeProperty ,
                                 dcterms:created "2021-08-09"^^xsd:date ;
                                 dcterms:modified "2024-01-08"^^xsd:date ,
                                                  "2024-04-18"^^xsd:date ;
-                                dcterms:requires "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en ;
                                 rdfs:comment """If roaming to public networks is configured, please:
 
 1. indicate to which networks, for which users and in which areas.
@@ -6841,7 +6855,8 @@ era:publicNetworkRoamingDetails rdf:type owl:DatatypeProperty ,
 3. also add if there is any operational restriction for vehicles that cannot roam into any of the available public networks."""@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "Details on GSM-R roaming to public networks"@en ;
-                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                                skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en .
 
 
 ###  http://data.europa.eu/949/qNvdriverAdhes
@@ -6854,7 +6869,6 @@ era:qNvdriverAdhes rdf:type owl:DatatypeProperty ,
                    era:rinfIndex "1.1.1.3.2.16.11" ,
                                  "1.2.1.1.1.16.11" ;
                    dcterms:created "2024-04-18"^^xsd:date ;
-                   dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                    dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                    rdfs:comment """Boolean determining whether the driver is allowed to modify the adhesion factor used by the ETCS on-board to calculate the braking curves. 
 
@@ -6862,7 +6876,8 @@ See: TSI CCS (Subset 26, chapter 7. 7.5.1.122 Q_NVDRIVER_ADHES)"""@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    rdfs:label "Q_NVDRIVER_ADHES"@en ;
                    rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                   skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/qNvsbtsmperm
@@ -6876,7 +6891,6 @@ era:qNvsbtsmperm rdf:type owl:DatatypeProperty ,
                                "1.2.1.1.1.16.12" ;
                  dcterms:created "2023-03-14"^^xsd:date ;
                  dcterms:modified "2024-04-18"^^xsd:date ;
-                 dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                  rdfs:comment """Permission to use service brake in target speed monitoring.
 
@@ -6884,7 +6898,8 @@ See: TSI CCS (Subset-026, chapter 7. 7.5.1.124 Q_NVSBTSMPERM)"""@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "Q_NVSBTSMPERM"@en ;
                  rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                 skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/quasiStaticGuidingForce
@@ -6910,14 +6925,14 @@ era:radioNetworkId rdf:type owl:DatatypeProperty ;
                                  "1.2.1.1.2.13" ;
                    dcterms:created "2023-03-14"^^xsd:date ;
                    dcterms:modified "2024-04-18"^^xsd:date ;
-                   dcterms:requires "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en ;
                    dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                    rdfs:comment """Unique identification of the GSM-R network the calling mobile station has to register with, as defined in the specification referenced in TSI CCS.
 
 Format: [NNNNNN] with N a decimal number (0÷9)(sh:minCount 1)."""@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    rdfs:label "Radio Network ID"@en ;
-                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                   skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en .
 
 
 ###  http://data.europa.eu/949/radioSwitchOverSpecialConditions
@@ -7021,14 +7036,14 @@ era:rbcID rdf:type owl:DatatypeProperty ,
           era:rinfIndex "1.1.1.3.2.17" ,
                         "1.2.1.1.1.17" ;
           dcterms:created "2024-04-18"^^xsd:date ;
-          dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
           dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
           rdfs:comment """Unique RBC identification (NID_C+NID_RBC) as defined in the specification referenced in TSI CCS.
           
 Format: [NNNN NNNN] with N a decimal number (0÷9)"""@en ;
           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
           rdfs:label "ERTMS/ETCS Radio Block Center (RBC) identifier"@en ;
-          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+          skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/rbcPhone
@@ -7041,14 +7056,14 @@ era:rbcPhone rdf:type owl:DatatypeProperty ,
              era:rinfIndex "1.1.1.3.2.17" ,
                            "1.2.1.1.1.17" ;
              dcterms:created "2024-04-18"^^xsd:date ;
-             dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
              rdfs:comment """Unique RBC calling number (NID_RADIO) as defined in the specification referenced in TSI CCS.
              
 Format: [NNNN NNNN NNNN NNNN] with N a decimal number (0÷9)"""@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "ERTMS/ETCS Radio Block Center (RBC) phone number"@en ;
-             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+             skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/redLightsRequired
@@ -7484,7 +7499,6 @@ era:tNvcontact rdf:type owl:DatatypeProperty ,
                dcterms:created "2022-11-07"^^xsd:date ;
                dcterms:modified "2023-03-14"^^xsd:date ,
                                 "2024-04-18"^^xsd:date ;
-               dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                rdfs:comment """Maximum time without a safe message from Radio Block Center before train reacts in seconds. 
 
@@ -7494,7 +7508,8 @@ See: TSI CCS (Subset 26, chapter 7. 7.5.1.148 T_NVCONTACT)"""@en ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                rdfs:label "T_NVCONTACT"@en ;
                rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+               skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/tNvovtrp
@@ -7510,7 +7525,6 @@ era:tNvovtrp rdf:type owl:DatatypeProperty ,
              dcterms:created "2022-11-07"^^xsd:date ;
              dcterms:modified "2023-03-14"^^xsd:date ,
                               "2024-04-18"^^xsd:date ;
-             dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
              rdfs:comment """Maximum time for overriding the train trip in seconds.
 
@@ -7520,7 +7534,8 @@ See: TSI CCS (Subset 26, chapter 7. 7.5.1.149 T_NVOVTRP)"""@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "T_NVOVTRP"@en ;
              rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+             skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/tafTAPCode
@@ -7678,13 +7693,13 @@ era:trainDetectionSystemSpecificCheck rdf:type owl:DatatypeProperty ;
                                       dcterms:modified "2021-08-08"^^xsd:date ,
                                                        "2024-04-18"^^xsd:date ;
                                       dcterms:relation era:trainDetectionSystemSpecificCheckDocument ;
-                                      dcterms:requires "String containing the name of the TD system for which checks are mentioned in 1.1.1.3.7.1.3." ;
                                       dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
                                       rdfs:comment "Reference to the technical specification of train detection system."@en ;
                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                       rdfs:label "Type of track circuits or axle counters to which specific checks are needed. "@en ;
                                       owl:deprecated "false"^^xsd:boolean ;
-                                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                                      skos:scopeNote "String containing the name of the TD system for which checks are mentioned in 1.1.1.3.7.1.3."@en.
 
 
 ###  http://data.europa.eu/949/trainIntegrityOnBoardRequired
@@ -7711,11 +7726,11 @@ era:trainIntegrityOnBoardRequired rdf:type owl:DatatypeProperty ,
                                   dcterms:created "2020-08-31"^^xsd:date ;
                                   dcterms:modified "2021-09-12"^^xsd:date ,
                                                    "2024-04-18"^^xsd:date ;
-                                  dcterms:requires "Parameter only applicable when ETCS Baseline > 4 MR1 with operation requiring train integrity." ;
                                   rdfs:comment "Indication whether train confirmation from on-board is required to access the line for safety reasons. In hybrid operation, the confirmation can be optional."@en ;
                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                   rdfs:label "Train integrity confirmation from on-board (not from driver) necessary for line access"@en ;
-                                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                                  skos:scopeNote "Parameter only applicable when ETCS Baseline > 4 MR1 with operation requiring train integrity."@en .
 
 
 ###  http://data.europa.eu/949/transportableOnFerry
@@ -7900,11 +7915,11 @@ era:usesGroup555 rdf:type owl:DatatypeProperty ,
                  dcterms:modified "2021-09-12"^^xsd:date ,
                                   "2024-04-18"^^xsd:date ;
                  dcterms:relation era:etcsLevelType ;
-                 dcterms:requires "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en ;
                  rdfs:comment "Indication if group 555 is used."@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "GSM-R use of group 555"@en ;
-                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                 skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en .
 
 
 ###  http://data.europa.eu/949/vNvallowovtrp
@@ -7919,7 +7934,6 @@ era:vNvallowovtrp rdf:type owl:DatatypeProperty ,
                   era:unitOfMeasure qudt:KiloM-PER-HR ;
                   dcterms:created "2022-11-07"^^xsd:date ;
                   dcterms:modified "2023-03-14"^^xsd:date ;
-                  dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                   dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                   rdfs:comment """Speed limit allowing the driver to select the “override” function in km/h.
 
@@ -7929,7 +7943,8 @@ See: TSI CCS (Subset-026, Chapter 7. 7.5.1.161)"""@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "V_NVALLOWOVTRP"@en ;
                   rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                  skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/vNvsupovtrp
@@ -7944,7 +7959,6 @@ era:vNvsupovtrp rdf:type owl:DatatypeProperty ,
                 era:unitOfMeasure qudt:KiloM-PER-HR ;
                 dcterms:created "2022-11-07"^^xsd:date ;
                 dcterms:modified "2023-03-14"^^xsd:date ;
-                dcterms:requires "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ;
                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                 rdfs:comment """Override speed limit to be supervised when the “override” function is active in km/h.
 
@@ -7954,7 +7968,8 @@ See: TSI CCS (Subset-026, chapter 7. 7.5.1.163 V_NVSUPOVTRP)"""@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "V_NVSUPOVTRP"@en ;
                 rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/validityEndDate
@@ -8613,13 +8628,13 @@ era:MaximumMagneticField rdf:type owl:Class ;
                          era:rinfIndex "1.1.1.3.4.2.3" ,
                                        "1.2.1.1.3.2.3" ;
                          dcterms:created "2023-03-14"^^xsd:date ;
-                         dcterms:requires "The MaximumMagneticField class is applicable for axle counters."@en ;
                          dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
                          rdfs:comment """The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band.
 It should be provided in 3 directions."""@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Maximum magnetic field"@en ;
-                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                         skos:scopeNote "The MaximumMagneticField class is applicable for axle counters."@en .
 
 
 ###  http://data.europa.eu/949/MaximumSpeedAndCantDeficiency
@@ -8648,7 +8663,6 @@ era:MinVehicleImpedance rdf:type owl:Class ;
                         era:rinfIndex "1.1.1.3.4.2.2" ,
                                       "1.2.1.1.3.2.2" ;
                         dcterms:created "2024-05-30"^^xsd:date ;
-                        dcterms:requires "The MinVehicleImpedance class is applicable for track circuits."@en ;
                         dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
                         rdfs:comment """Impedance as defined in the TSI CCS (Annex I, Appendix A, Table A.2 -Index 77).
 
@@ -8659,7 +8673,8 @@ Per Voltage:
 [3000]: [CCCC]+[ZZZZ], idem."""@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "Minimum Vehicle Impedance"@en ;
-                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
+                        skos:scopeNote "The MinVehicleImpedance class is applicable for track circuits."@en .
 
 
 ###  http://data.europa.eu/949/NationalRailwayLine
@@ -9116,12 +9131,31 @@ skos:Concept rdf:type owl:Class ;
 skos:ConceptScheme rdf:type owl:Class .
 
 
+###  http://www.w3.org/2006/time#Instant
+<http://www.w3.org/2006/time#Instant> rdf:type owl:Class .
+
+
 ###  http://www.w3.org/2006/time#TemporalDuration
-<http://www.w3.org/2006/time#TemporalDuration> rdf:type owl:Class .
+<http://www.w3.org/2006/time#TemporalDuration> rdf:type owl:Class ;
+                                               rdfs:comment "Time extent; duration of a time interval separate from its particular start position"@en ;
+                                               rdfs:label "Temporal duration"@en ;
+                                               skos:definition "Time extent; duration of a time interval separate from its particular start position"@en .
 
 
 ###  http://www.w3.org/2006/time#TemporalEntity
-<http://www.w3.org/2006/time#TemporalEntity> rdf:type owl:Class .
+<http://www.w3.org/2006/time#TemporalEntity> rdf:type owl:Class ;
+                                             owl:equivalentClass [ rdf:type owl:Class ;
+                                                                   owl:unionOf ( <http://www.w3.org/2006/time#Instant>
+                                                                                 <http://www.w3.org/2006/time#:Interval>
+                                                                               )
+                                                                 ] ;
+                                             rdfs:comment "A temporal interval or instant."@en ;
+                                             rdfs:label "Temporal entity"@en ;
+                                             skos:definition "A temporal interval or instant."@en .
+
+
+###  http://www.w3.org/2006/time#:Interval
+<http://www.w3.org/2006/time#:Interval> rdf:type owl:Class .
 
 
 ###  http://www.w3.org/ns/org#Organization
@@ -9173,96 +9207,7 @@ foaf:Project rdf:type owl:Class .
 #    Annotations
 #################################################################
 
-<http://www.w3.org/2003/01/geo/wgs84_pos#> <http://purl.org/dc/elements/1.1/date> "$Date: 2009/04/20 15:00:30 $" ;
-                                           <http://purl.org/dc/elements/1.1/description> """A vocabulary for representing latitude, longitude and 
- altitude information in the WGS84 geodetic reference datum. 
- Version $Id: wgs84_pos.rdf,v 1.22 2009/04/20 15:00:30 timbl Exp $. See http://www.w3.org/2003/01/geo/ for more details.""" ;
-                                           <http://purl.org/dc/elements/1.1/title> "WGS84 Geo Positioning: an RDF vocabulary" ;
-                                           rdfs:comment """
-Recent changes to this namespace:
-$Log: wgs84_pos.rdf,v $
-Revision 1.22  2009/04/20 15:00:30  timbl
-Remove the time bits which have been deal with elsewhere eg in iCal.
-
-Revision 1.21  2009/04/20 12:52:47  timbl
-try again
-
-Revision 1.20  2009/04/20 12:42:11  timbl
-Add Event (edited ages ago and never checked in), and location (following discussion http://chatlogs.planetrdf.com/swig/2009-04-20#T12-36-09)
-
-Revision 1.19  2009/04/20 12:36:31  timbl
-Add Event (edited ages ago and never checked in), and location (following discussion http://chatlogs.planetrdf.com/swig/2009-04-20#T12-36-09)
-
-Revision 1.18  2006/02/01 22:01:04  danbri
-Clarified that lat and long are decimal degrees, and that alt is decimal metres about local reference ellipsoid
-
-Revision 1.17  2004/02/06 17:38:12  danbri
-Fixed a bad commit screwup
-
-Revision 1.15  2003/04/19 11:24:08  danbri
-Fixed the typo even more.
-
-Revision 1.14  2003/04/19 11:16:56  danbri
-fixed a typo
-
-Revision 1.13  2003/02/19 22:27:27  connolly
-relaxed domain constraints on lat/long/alt from Point to SpatialThing
-
-Revision 1.12  2003/01/12 01:41:41  danbri
-Trying local copy of XSLT doc.
-
-Revision 1.11  2003/01/12 01:20:18  danbri
-added a link to morten's xslt rdfs viewer.
-
-Revision 1.10  2003/01/11 18:56:49  danbri
-Removed datatype range from lat and long properties, since they would
-have required each occurance of the property to mention the datatype.
-
-Revision 1.9  2003/01/11 11:41:31  danbri
-Another typo; repaired rdfs:Property to rdf:Property x4
-
-Revision 1.8  2003/01/11 11:05:02  danbri
-Added an rdfs:range for each lat/long/alt property,
-http://www.w3.org/2001/XMLSchema#float
-
-Revision 1.7  2003/01/10 20:25:16  danbri
-Longer rdfs:comment for Point, trying to be Earth-centric and neutral about
-coordinate system(s) at the same time. Feedback welcomed.
-
-Revision 1.6  2003/01/10 20:18:30  danbri
-Added CVS log comments into the RDF/XML as an rdfs:comment property of the
-vocabulary. Note that this is not common practice (but seems both harmless
-and potentially useful).
-
-
-revision 1.5
-date: 2003/01/10 20:14:31;  author: danbri;  state: Exp;  lines: +16 -5
-Updated schema:
-Added a dc:date, added url for more info. Changed the rdfs:label of the
-namespace from gp to geo. Added a class Point, set as the rdfs:domain of
-each property. Added XML comment on the lat_long property suggesting that
-we might not need it (based on #rdfig commentary from implementors).
-
-revision 1.4
-date: 2003/01/10 20:01:07;  author: danbri;  state: Exp;  lines: +6 -5
-Fixed typo; several rdfs:about attributes are now rdf:about. Thanks to MortenF in
-#rdfig for catching this error.
-
-revision 1.3
-date: 2003/01/10 11:59:03;  author: danbri;  state: Exp;  lines: +4 -3
-fixed buglet in vocab, added more wgs links
-
-revision 1.2
-date: 2003/01/10 11:01:11;  author: danbri;  state: Exp;  lines: +4 -4
-Removed alt from the as-a-flat-string property, and switched from
-space separated to comma separated.
-
-revision 1.1
-date: 2003/01/10 10:53:23;  author: danbri;  state: Exp;
-basic geo vocab
-
-""" ;
-                                           rdfs:label "geo" .
+<http://www.w3.org/2003/01/geo/wgs84_pos#> rdfs:label "geo" .
 
 
 <http://www.w3.org/2003/01/geo/wgs84_pos#lat_long> rdfs:comment "A comma-separated representation of a latitude, longitude coordinate." ;
