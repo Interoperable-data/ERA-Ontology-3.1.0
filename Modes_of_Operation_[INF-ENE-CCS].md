@@ -1,8 +1,27 @@
-# Properties of `era:VehicleType` depending on Mode of Operation
+# Properties of `era:VehicleType` depending on Operating Mode
 
 ## Problem setting
 
-Many `ERATV` parameters have values which depend on the "mode of operation", expressed as a combination of trackside [INF, ENE, CCS] which the vehicles are able to support.
+Many of the parameters in `ERATV` have values which depend on the `operating mode`, expressed as a **combination** of trackside [INF, ENE, CCS]-characteristics or **singular** [ENE]-characteristics which the vehicles belonging to that type are able to support.
+
+The following query finds all `VehicleType` properties with range `xsd:integer` which have at least double values and concatenates them in the output for `?val`:
+
+```sql
+SERVER: https://virtuoso.ecdp.tech.ec.europa.eu/sparql
+GRAPH: http://data.europa.eu/949/graph/eratv 
+
+SELECT DISTINCT ?s ?p ?val
+WHERE {
+?s a era:VehicleType ;
+?p ?b1, ?b2
+FILTER( ?b1 != ?b2 && datatype(?b1) = xsd:integer)
+BIND (concat(str(?b1), ", ",str(?b2)) as ?val)
+} group by ?s
+```
+
+The query illustrates that [NO distinction was made](https://citnet.tech.ec.europa.eu/CITnet/jira/projects/LD4RAIL/issues/LD4RAIL-990?filter=allopenissues) for parameters of a type which are only valid per operating mode. In contrary, the values were just stacked up onto the same property, leading to erroneous conclusions.
+
+In the following sections, we analyse the operating mode dependency for Technical and Non-technical Parameters, and go over all the properties to update.
 
 ### Technical parameters (Section 4)
 
@@ -20,12 +39,9 @@ Example of a technical parameter `era:vehicleContactForce` in Section 4:
 
 In this case, the KG could limit the dependency only on ENE, as this seems a discriminatory basis.
 
-Others such parameters are:
-`4.10.14`, `4.1.2.1`, `4.1.5`, `4.5.3.4`, `4.5.5`, `4.5.6`, `4.6.4`, `4.6.5`, `4.7.2.1.6`, `4.7.5`, `4.7.6`, `4.7.7`, `4.7.8`
-
 Other parameters, like `era:contactStripMaterial`, only depend on the active ENE system:
 
-```json
+```txt
 4.10.10 Material of pantograph contact strip the vehicle may be equipped with (to be indicated for each energy supply system the vehicle is equipped for) 
 15kV-16.7Hz: Plain carbon
 DC 3kV: Carbon with additive material
@@ -36,33 +52,93 @@ Parameter 4.6.4 (Combination of maximum speed and maximum cant deficiency for wh
 
 ### Non-technical parameters
 
-Some Non-technical parameters of a `era:Authorisation` also distinguish between modes of operation:
+Some Non-technical parameters of a `era:Authorisation` also distinguish between operating modes, and must therefore have an updated domain.
 
-- (2.1 `era:conformityWithTSI` ) Conformity with TSI and Sections not complied with
-- (2.3 `era:applicableSpecificCases`) Applicable specific cases (specific cases conformity with which has been assessed)
-- (3.1.2.3 ) Coded conditions for use and other restrictions:
-  - 1.1 `era:minimumHorizontalRadius`
+Regarding the Conformity, 2.1 and 2.3 must link to paragraphs in the vp:Requirement Conformity and Specific Cases sections (these 2 SKOS CS belong in /ERALEX):
+
+- [ ] Introduce a new Class `era:TSIConformity` or reuse `era:SubsetWithCommonCharacteristics`, used in both cases:
+
+#### (2.1) Conformity with TSI and Sections not complied with
+
+- [ ] requires a new ObjectProperty `era:conformityWithTSI` or reusing `era:hasSetOfParameters`:
+  - [ ] /ERALEX requirements (`vp:Requirement`)
+  - [ ] Conformity sections: new SKOS CS, to be created by extraction per legislation (!).
+  - [ ] A flag checked `vp:isCompliant "false"^^xsd:boolean`, to clarify that the mentioned requirements are NOT complied with.
+
+#### (2.3) Applicable specific cases (specific cases conformity with which has been assessed)
+
+- [ ] Allows reusing `era:conformityWithTSI`:
+  - [ ] /ERALEX requirements (idem)
+  - [ ] SpecificCases sections: new SKOS CS  ;
+  - [ ] A flag checked `vp:isCompliant "true"^^xsd:boolean`, to clarify that the mentioned requirements ARE complied with.
+
+Note that the RINF SKOS CS <http://data.europa.eu/949/concepts/tsi-existence-and-compliances/TSIExistenceAndCompliances> cannot be used for ERATV, as the requirements are much more detailed in the VEhicle context.
+
+Regarding the Restrictions:
+
+- [X] (3.1.X.3) Coded conditions for use and other restrictions:
   - see Table in [CHANGELOG](CHANGELOG.md)
-- (3.1.2.4 `era:nonCodedRestrictions`) Non-coded conditions for use and other restrictions
-- (3.1.3.X.6 - `era:nationalRulesAssessed`) Parameters for which conformity to applicable national rules has been assessed
+- [X] (3.1.X.4 `era:nonCodedRestrictions`) Non-coded conditions for use and other restrictions: a `xsd:string` to be determined per [INF, ENE, CCS]
+- [ ] (3.1.3.X.6 - `era:nationalRulesAssessed`) Parameters for which conformity to applicable national rules has been assessed
 
-## How to tackle in the data model
+## Proposed solution
 
-### (APPLIED) Reusing the ERA 3.1.0 ontology
+### Properties remaining under 'VehicleType'
 
-For parameters that have no dependency whatsoever, their domain remains `era:VehicleType`.
+Parameters that have no dependency whatsoever, keep their domain as `era:VehicleType`. A check was executed, and it concerns:
 
-For parameters that have different values depending on their operational regime [ENE,INF,CCS]:
+- [X] 4.1.1 `era:drivingCabs`
+- [X] 4.1.11 `era:wheelSetGaugeChangeoverFacility`
 
-- [ ] the `era:SubsetWithCommonCharacteristics` if the parameter is pure Rolling Stock / Wagon and has no relation with ENE, CCS, INF.
+- [X] 4.5.2.1, 2, 3 and the new parameters 4.5.2.4, 5.
+- [X] 4.5.5 `era:totalVehicleMass`, should remain a VehicleType property as it can not depend on subsystems active.
+- [X] 4.7.1, 4.7.3(.3-4), 4.7.4.(1-3)(.1-2)
+
+- [X] 4.8.1 `era:length` (length of Vehicle)
+- [X] 4.8.2 `era:minimumWheelDiameter`
+
+- [X] 4.9.1 `era:endCouplingType`
+- [X] 4.9.2 `era:axleBearingConditionMonitoring`
+- [X] 4.10.1 `era:energySupplySystem`, which for VehicleType will regroup the systems supported: several parameters must be provided further per these values.
+
+- [X] 4.12.3.1 `era:supportedPlatformHeight`
+- [X] 4.14.1 `era:trainDetectionSystemType`
+
+### Properties dependent on `operating mode`
+
+For parameters that have different values depending on their operating mode [ENE,INF,CCS], the domain is changed from `era:VehicleType` and becomes:
+
+- [ ] the `era:SubsetWithCommonCharacteristics` if the parameter is pure Rolling Stock / Wagon and has no relation with ENE, CCS, INF:
+  - [X] 4.1.2.1 `era:maximumDesignSpeed` (See e.g. [this VehicleType](https://eratv.era.europa.eu/Eratv/Home/View/13-115-0001-9-001))
+  - [X] 4.1.5 `era:maximumLocomotivesCoupled`
+  - [X] 4.5.3.4 `era:axleSpacing`, may depend only on gauge
+  - [X] 4.6.4, stub Class for Combination of maximum speed and maximum cant deficiency
+  - [X] 4.6.5 `era:railInclination`
+  - [X] 4.7.5 stub Class `era:EBDistanceAndDeceleration`
+  - [X] 4.7.7 stub Class `era:MaximumSBDistanceAndDeceleration`
 - one of the 3 `era:TechnicalCharacteristic` classes, if the parameter clearly relates to that subsystem's authorisation:
-  - [ ] `era:CCSSubsystem`, whereby `era:etcsEquipmentOnBoardLevel` and ` era:etcsLevel` could be merged.
-  - [ ] `era:InfraSubsystem`
-  - [ ] `era:ENESubsystem`
+  - [X] `era:CCSSubsystem`, whereby `era:etcsEquipmentOnBoardLevel` and `era:etcsLevel` could be merged.
+  - [X] `era:InfraSubsystem`, with:
+    - [X] 4.1.3 `era:wheelSetGauge` defines the INF Subsystem from a VehicleType perspective ()
+    - [ ] 4.2.1 `era:gaugingProfile` defines the INF subsystem from a Trackside perspective (Vehicle kinematic gauge (interoperable gauge)).
+    - [X] `era:temperatureRange` (to be compared with the RINF parameters `era:minimumTemperature` and `era:maximumTemperature`)
+    - [X] 4.5.6 `era:massPerWheel`, can only depend on gauge (to be checked).
+    - [X] 4.7.2.1.1-6 (brake performance can be dependent of the gauge!)
+    - [X] 4.7.6 `era:brakeWeightPercentage`
+  - [X] `era:EnergySubsystem`, with:
+    - [X] 4.10.4 `era:maxCurrentStandstillPantograph`
+    - [X] 4.10.5 `era:minimumContactWireHeight` and `era:maximumContactWireHeight`
+    - [X] 4.10.6 `era:vehiclePantographHead`
+    - [X] 4.10.7 `era:numberOfPantographsInContactWithOCL`
+    - [ ] 4.10.8 `era:shortestDistanceBetweenPantographsInContactWithOCL`
+    - [X] 4.10.10 `era:contactStripMaterial`
+    - [X] 4.10.11 `era:hasAutomaticDroppingDevice` (see the original JIRA ticket!)
+    - [X] 4.10.14 `era:hasCurrentLimitation`
+    - [X] 4.10.15 `era:vehicleContactForce`
 
 Parameters **always** defining exactly one Subsystem, have that subsystem as their domain.
 
-> ![INFO]
+> ![TIP]
 > It is even to be examined whether an Authorisation as a whole is not a subClassOf this class.
 
 The following is an example of a type instance.
@@ -73,37 +149,39 @@ eravt:vt-xyz-...
     era:hasSetOfParameters  [
       // era:parameter <era:TechnicalCharacteristic>
       // 1435mm / AC 25kV-50Hz / some ETCS reference, national ATP systems...
-      a era:SubsetWithCommonCharacteristic ;
+      // a era:SubsetWithCommonCharacteristics ;
       era:parameter [
         a era:InfraSubsystem ; 
-        era:wheelsetGauge era-ntg-eratv:1435mm ;
+        era:wheelsetGauge era-ntg-eratv:1435mm ; // defines the INF
         era:gaugingProfile era-gaugings-eratv:gi2 ;
         era:temperatureRange era-tr-rinf:20 ;
       ] , [
         a era:EnergySubsystem ;
-        era:energySupplySystem era-ess-eratv:25kv-50hz ;
+        era:energySupplySystem era-ess-eratv:25kv-50hz ; // defines the ENE
         era:vehicleContactForce 70 ; // property is defined as having unit Newton.
         era:hasCurrentLimitation "true"^^xsd:boolean ; 
+        era:hasAutomaticDroppingDevice "true"^^xsd:boolean 
       ] ,
       [
         a era:CCSSubsystem ;
         era:etcsEquipmentOnBoardLevel era-eeobl-eratv:Decision_2012_696_EU_Set_1 , 
                                       era-eeobl-eratv:PZB , 
-                                      era-eeobl-ertv:RSDD-SCMT ;
+                                      era-eeobl-ertv:RSDD-SCMT ; // define the CCS
       ],
     ],
     [
       // era:parameter <era:TechnicalCharacteristic>
-      a era:SubsetWithCommonCharacteristic ;
+      // a era:SubsetWithCommonCharacteristic ;
       era:parameter  [
         a era:EnergySubsystem ;
-        era:energySupplySystem era-ess-eratv:ac-25kv-50hz ,  
-                               era-ess-eratv:dc-1-5kv-specific-case-fr ;
+        era:energySupplySystem era-ess-eratv:dc-1-5kv-specific-case-fr ;
         era:hasCurrentLimitation "true"^^xsd:boolean ;
+        era:hasAutomaticDroppingDevice "false"^^xsd:boolean 
+
       ] ,
     ],
     [
-      a era:SubsetWithCommonCharacteristic ;
+      // a era:SubsetWithCommonCharacteristic ;
       // era:parameter <era:TechnicalCharacteristic>
       era:parameter [
         a era:InfraSubsystem ; # 1435mm
@@ -132,59 +210,4 @@ SELECT * WHERE {
      era:hasSetOfParameters/era:parameter/era:etcsEquipmentOnBoardLevel ?ccs  ;
      era:hasSetOfParameters/era:parameter/era:vehicleContactForce ?force  .
 }
-```
-
-### (NOT APPLIED) Regrouping Class
-
-To regroup a set of one to three SKOS Concepts in one instance, it is possible:
-
-- [ ] to create a new, regrouping Class `era:VehicleTypeModesOfOperation`:
-  - [ ] INF (gauge), reuse `era:wheelsetGauge` ([SKOS](https://github.com/Certiman/ERA-SKOS-3.0.0-ccs/blob/main/era-skos/era-skos-NominalTrackGauges.ttl))
-  - [ ] ENE (Onboard power system), reuse `era:energySupplySystem` ([SKOS](https://github.com/Certiman/ERA-SKOS-3.0.0-ccs/blob/main/era-skos/era-skos-EnergySupplySystems.ttl))
-  - CCS (TP), reuse:
-    - [ ] For non-ETCS ATP: `era:protectionLegacySystem` ([Legacy ATP SKOS](https://github.com/Certiman/ERA-SKOS-3.0.0-ccs/blob/main/era-skos/era-skos-OtherProtectionControlWarnings.ttl))
-    - [ ] For ETCS-ATP :`era:etcsEquipmentOnBoardLevel` ([ETCS Systems SKOS](https://github.com/Certiman/ERA-SKOS-3.0.0-ccs/blob/main/era-skos/era-skos-ETCSEquipmentLevels.ttl))
-
-This class would be instantiated as follows, whereby the vehicle type can use the MoO-instance through the `era:parameter` property:
-
-> [!WARNING]
-> To be checked if `era:parameter` is available.
-
-```js
-era:mo-uuid4(a) a era:VehicleTypeModesOfOperation ;
-               era:energySupplySystem era-ess-eratv:15kv-16-7hz ;
-               era:wheelsetGauge era-ntg-eratv:1435mm ;
-               era:etcsEquipmentOnBoardLevel era-eeobl-eratv:Decision_2012_696_EU_Set_1 ;
-
-era:vt-XX-YYY-etc a era:VehicleType ;
-                  era:vehicleContactForce [ 
-                        era:parameter era:mo-uuid4(a) ;
-                        qudt:value "70"^^xsd:integer ;
-                        qudt:hasUnit qudt-unit:N .
-                   ], ...
-
-```
-
-Applications should reuse identical instances of this class `VehicleTypeModesOfOperation` by pre-checking for the three properties. For ENE only, new Concepts could be defined representing any INF/CCS subsystem implementation:
-
-```js
-era:mo-uuid4(b) a era:VehicleTypeModesOfOperation ;
-               era:energySupplySystem era-ess-eratv:15kv-16-7hz ;
-               era:wheelsetGauge era-ntg-eratv:any ;
-               era:etcsEquipmentOnBoardLevel era-eeobl-eratv:any ;
-```
-
-In some cases, when the value of the parameter is not different for any of the modes of operation, we could use a specific instance of the moO class:
-
-```js
-era:mo-anyMoO a era:VehicleTypeModesOfOperation ;
-               era:energySupplySystem era-ess-eratv:any ;
-               era:wheelsetGauge era-ntg-eratv:any ;
-               era:etcsEquipmentOnBoardLevel era-eeobl-eratv:any ;
-
-era:vt-11-075-0004-1-001-001 a era:vehicleType ; 
-          era:maximumLocomotivesCoupled [ 
-              era:parameter era:mo-anyMoO ;
-              qudt:value 1
-          ]
 ```

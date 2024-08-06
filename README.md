@@ -44,6 +44,6 @@ NOTE: Make sure to merge the latest "upstream" version before submitting a pull 
 
 1. Any actor can request improvements to the RINF extension of the ERA Ontology.
 2. The Ontology team evaluates if the request is technically sound and its impact in the current deployment of the Ontology itself and on the RINF System.
-3. ERA evaluates its impact from the business and project management point of view and ultimately approves (or not) the request. 
+3. ERA evaluates its impact from the business and project management point of view and ultimately approves (or not) the request.
 4. The actor who requested the improvements is informed on when the request will be attended, including an indication of the Ontology release number that will include the request.
 5. The request, if approved, is implemented by the Ontology team.
