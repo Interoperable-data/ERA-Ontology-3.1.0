@@ -1,0 +1,166 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+@prefix era-gsmrv: <http://data.europa.eu/949/concepts/gsmr-versions/> .
+@prefix era-gsmrv-rinf: <http://data.europa.eu/949/concepts/gsmr-versions/rinf/> .
+@prefix era-gsmrv-eratv: <http://data.europa.eu/949/concepts/gsmr-versions/eratv/> .
+
+
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+
+
+
+
+era-gsmrv:GSMRVersions a skos:ConceptScheme ; 
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "GSM-R Versions"@en ;
+    skos:prefLabel "GSM-R Versions"@en ;
+    dct:title "Concept scheme grouping GSM-R versions"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+
+
+########## GSM-R Versions ##########
+
+era-gsmrv-rinf:30 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Baseline 0 r3" .
+
+era-gsmrv-rinf:40 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Baseline 0 r4" .
+
+era-gsmrv-rinf:50 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Baseline 1" .
+
+era-gsmrv-rinf:10 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "none" .
+
+era-gsmrv-rinf:20 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "previous version to Baseline 0" .
+
+era-gsmrv-eratv:6-14 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "6/14" .
+
+era-gsmrv-eratv:7-4-0_15-4-0-Decision-2015-14_Set_2 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "Decision 2015/14 Set_2" ;
+  skos:prefLabel "7.4.0/15.4.0 (Decision 2015/14 Set_2)" .
+
+
+era-gsmrv-eratv:7-4-0_15-4-0-Decision-2015-14_Set_1 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "Decision 2015/14 Set_1" ;
+  skos:prefLabel "7.4.0/15.4.0 (Decision 2015/14 Set_1)" .
+
+
+era-gsmrv-eratv:7-3-0_15-3-0-Decision-2012-696-EU_Set_2 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+    skos:altLabel "Decision 2012/696/EU Set_2";
+  skos:prefLabel "7.3.0/15.3.0 (Decision 2012/696/EU Set_2)" .
+
+
+era-gsmrv-eratv:7-3-0_15-3-0-Decision-2012-696-EU_Set_1 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "Decision 2012/696/EU Set_1";
+  skos:prefLabel "7.3.0/15.3.0 (Decision 2012/696/EU Set_1)" .
+
+era-gsmrv-eratv:Decision-2012-88-EU_Set_1 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Decision 2012/88/EU Set_1" .
+
+era-gsmrv-eratv:Decision-2008-386-EC_Set_1 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Decision 2008/386/EC Set_1" .
+
+era-gsmrv-eratv:Decision-2006-860-EC_Set_1 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Decision 2006/860/EC Set 1" .
+
+era-gsmrv-eratv:Decision-2002-731-EC_Set_1 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Decision 2002/731/EC Set 1" .
+
+era-gsmrv-eratv:8-0-0_16-0-0-Regulation-2016-919_Set_3 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "Regulation 2016/919 Set_3" ;
+  skos:prefLabel "8.0.0/16.0.0 (Regulation 2016/919 Set_3)" .
+
+era-gsmrv-eratv:8-0-0_16-0-0-Regulation-2016-919_Set_2 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "Regulation 2016/919 Set_2" ;
+  skos:prefLabel "8.0.0/16.0.0 (Regulation 2016/919 Set_2)" .
+
+era-gsmrv-eratv:8-0-0_16-0-0-Regulation-2016-919_Set_1 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+    skos:altLabel "Regulation 2016/919 Set_1" ;
+  skos:prefLabel "8.0.0/16.0.0 (Regulation 2016/919 Set_1)" .
+
+era-gsmrv-eratv:7-15 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "7/15" .
+
+era-gsmrv-eratv:none a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "None" .
+
+era-gsmrv-eratv:Implementing_Regulation_EU_2020-420-only-german_Set_1 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Implementing Regulation (EU) 2020/420 (Only German) Set_1" .
+
+era-gsmrv-eratv:Implementing_Regulation_EU_2020-387_Set_1 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Implementing Regulation (EU) 2020/387 Set_1" .
+
+era-gsmrv-eratv:Implementing_Regulation_EU_2019-776_Set_3 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Implementing Regulation (EU) 2019/776 Set_3" .
+
+era-gsmrv-eratv:Implementing_Regulation_EU_2019-776_Set_2 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Implementing Regulation (EU) 2019/776 Set_2" .
+
+era-gsmrv-eratv:Implementing_Regulation_EU_2019-776_Set_1 a skos:Concept;
+  skos:inScheme era-gsmrv:GSMRVersions; skos:topConceptOf era-gsmrv:GSMRVersions; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Implementing Regulation (EU) 2019/776 Set_1" .  
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1119 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+@prefix era-errorcorrections: <http://data.europa.eu/949/concepts/error-corrections/> .
+@prefix era-errorcorrections-rinf: <http://data.europa.eu/949/concepts/error-corrections/rinf/> .
+
+
+#################################################################
+#
+#    Concept Schemes ;
+#
+#################################################################
+
+
+era-errorcorrections:OnboardErrorCorrections a skos:ConceptScheme ; 
+    dct:issued "2024-05-27"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Onboard Error Corrections"@en ;
+    dct:title "Concept scheme grouping ETCS, GSM-R and ATO error corrections *required* to be implemented by the Onboard."@en .
+
+
+era-errorcorrections:TypeOnboardErrorCorrections a skos:ConceptScheme ; 
+    dct:issued "2024-05-27"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Type of Onboard Error Corrections (Error or Enhancdment)"@en ;
+    dct:title "Concept scheme grouping the types of Error Corrections in the CR list."@en .
+
+    
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+########## Onboard Error Corrections Types ##########
+
+era-errorcorrections-type:Error a skos:Collection ;
+    skos:inScheme era-errorcorrections:TypeOnboardErrorCorrections; skos:topConceptOf era-errorcorrections:TypeOnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" .
+
+era-errorcorrections-type:Enhancement a skos:Collection ;
+    skos:inScheme era-errorcorrections:TypeOnboardErrorCorrections; skos:topConceptOf era-errorcorrections:TypeOnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" .
+
+
+########## Onboard Error Corrections ##########
+
+era-errorcorrections-rinf:887 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Position Report Consistency (Follow-up of CR556)";
+    rdfs:label "CR887" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:940 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Minimum Safe Rear End position and position reporting ambiguities";
+    rdfs:label "CR940" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:994 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Text message start conditions";
+    rdfs:label "CR994" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1120 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Uncertain handling of some infill information";
+    rdfs:label "CR1120" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1146 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Euroradio HDLC parameters";
+    rdfs:label "CR1146" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1166 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Ambiguities in driver acknowledgement requirements";
+    rdfs:label "CR1166" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1170 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Ambiguity about the list of traction systems accepted by a diesel engine";
+    rdfs:label "CR1170" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1171 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Messages containing shifted location reference when orientation of LRBG is unknown";
+    rdfs:label "CR1171" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1240 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "attack from unlinked balise";
+    rdfs:label "CR1240" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1251 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Use of inconsistent or incomplete terms for the cooperative MA shortening function";
+    rdfs:label "CR1251" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1252 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Ambiguities about release speed and application of A.3.4 in case a train accepts a CES";
+    rdfs:label "CR1252" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1259 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Accuracy of distances measured on-board not considered when determining Release Speed from MRSP";
+    rdfs:label "CR1259" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1263 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "MA request condition when LoA speed is above MRSP";
+    rdfs:label "CR1263" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1264 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+  skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+  skos:note "Value introduced in TWG RINF CCS 2024" ;
+  skos:definition "Exhaustiveness of the list of actions not to be reverted or executed twice";
+  rdfs:label "CR1264" ;
+  skos:member era-errorcorrections-type:Error ;
+  dct:status "Presented_to_EC" ;
+  era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1267 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Acquiring the list of available networks whilst communication session is established";
+    rdfs:label "CR1267" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1274 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Problem to compare locations in the absence of linking information";
+    rdfs:label "CR1274" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1282 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Subset-044 chapter on safety is inconsistent with Subset-026 regarding handling of EOLM info";
+    rdfs:label "CR1282" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1288 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Shortcomings due to specific locations temporarily considered as the EOA/SvL";
+    rdfs:label "CR1288" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1295 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "TSR inhibition in SB and SR modes";
+    rdfs:label "CR1295" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1296 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Wrong assumption in on-board calculation of release speed";
+    rdfs:label "CR1296" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1300 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Follow-up to CR977";
+    rdfs:label "CR1300" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1306 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Undefined sequence of actions following the filtering of trackside information as per SRS 4.8";
+    rdfs:label "CR1306" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1309 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Enhancement of HDLC to handle retransmission of SABME message";
+    rdfs:label "CR1309" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1310 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "DNS/ETCS on-board communication handling";
+    rdfs:label "CR1310" ;
+    skos:type "Error ETCS&GSM-R" ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1 & RMR B1R1" .
+
+era-errorcorrections-rinf:1311 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Inconsistency in Subset-026 regarding the relevance of Q_SLEEPSESSION for session termination orders";
+    rdfs:label "CR1311" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1312 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Undefined sequence of actions following the filtering of trackside information as per SRS 4.8 (part 2)";
+    rdfs:label "CR1312" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1318 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Ambiguity in determination of location accuracy";
+    rdfs:label "CR1318" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1319 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Support of different transmission speeds (ETCS data)";
+    rdfs:label "CR1319" ;
+    skos:type "Error ETCS&GSM-R" ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1 & RMR B1R1" .
+
+era-errorcorrections-rinf:1324 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Problems with applying SRS clauses related to the supervision of an unprotected LX";
+    rdfs:label "CR1324" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1325 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Rejection of safety relevant information due to pending acknowledgement of validated train data";
+    rdfs:label "CR1325" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1326 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Display conflict in area D of ETCS DMI";
+    rdfs:label "CR1326" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1327 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Reset of confidence interval";
+    rdfs:label "CR1327" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1332 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Release speed calculated on-board while a LTO in rear of the EOA is stored on-board";
+    rdfs:label "CR1332" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1333 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Subset-026 clause 3.12.4.4 does not cover the case of reception of a new MA without mode profile";
+    rdfs:label "CR1333" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1334 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Ambiguity regarding the mode and level end events for the display of a text message";
+    rdfs:label "CR1334" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    dct:replaces era-errorcorrections-rinf:1023 ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1335 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Train categories B3 on B2";
+    rdfs:label "CR1335" ;
+    rdfs:comment "Exceptional case of questionnaire where BCA 'Q4=Yes'." ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1338 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Issues regarding the forwarding of data to a National System";
+    rdfs:label "CR1338" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1340 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Maximum D_LRBG exceeded";
+    rdfs:label "CR1340" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1342 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Unpractical coexistence between level 2 and level 3";
+    rdfs:label "CR1342" ;
+    skos:type "Error ETCS&GSM-R" ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1 & RMR B1R1" .
+
+era-errorcorrections-rinf:1347 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Unclear specification of 'balise detection degradation' function";
+    rdfs:label "CR1347" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1348 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "No change of speed and distance monitoring supervision status";
+    rdfs:label "CR1348" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1349 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Ambiguity in display of override status";
+    rdfs:label "CR1349" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1353 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Undefined term 'the level is configured on-board'";
+    rdfs:label "CR1353" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1354 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Misleading term 'the expected balise group is found'";
+    rdfs:label "CR1354" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1358 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Missing confidence interval to supervise the SR distance";
+    rdfs:label "CR1358" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1370 a skos:Concept ;
+    skos:note "Value introduced in TWG RINF CCS 2024. Is not a mandatory CR but replaces one." ;
+    skos:definition "Relocation without linking";
+    rdfs:label "CR1370" ;
+    skos:member era-errorcorrections-type:Enhancement ;
+    dct:status "Presented_to_EC" ;
+    dct:replaces era-errorcorrections-rinf:1406 ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1372 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Uniqueness of BG IDs vs. VBC function";
+    rdfs:label "CR1372" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1376 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "List of available levels after transition announcement";
+    rdfs:label "CR1376" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1377 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Handling of an RBC transition order for a different RBC during an on-going RBC/RBC handover";
+    rdfs:label "CR1377" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1382 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Repositioning information in a BG containing infill MA";
+    rdfs:label "CR1382" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1384 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Issues when the on-board supervises an MA with release speed";
+    rdfs:label "CR1384" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1386 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Inconsistent speed and distance monitoring transition when the train speed is equal to the release or target speed";
+    rdfs:label "CR1386" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1387 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Inconsistency regarding the way to send the Train Data during SoM";
+    rdfs:label "CR1387" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1389 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Reaction when CI of the odometry is exceeding the accuracy requirement of 5m+5% (SS-41)";
+    rdfs:label "CR1389" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1396 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Resolution of the VBC validity period";
+    rdfs:label "CR1396" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1397 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Sorting speed based upon mass per unit length";
+    rdfs:label "CR1397" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1398 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Risk for deadlock in the clock offset update procedure in SUBSET-098";
+    rdfs:label "CR1398" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1408 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Train data before SoM position report";
+    rdfs:label "CR1408" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1409 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "'Infinite' information in RRI";
+    rdfs:label "CR1409" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1411 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Inconsistency section timer expires";
+    rdfs:label "CR1411" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1414 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Traction cut-off ambiguity";
+    rdfs:label "CR1414" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1415 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "KMS protocol issue";
+    rdfs:label "CR1415" ;
+    skos:type "Error ETCS&GSM-R" ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1 & RMR B1R1" .
+
+era-errorcorrections-rinf:1417 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "TCP connection loss detection";
+    rdfs:label "CR1417" ;
+    skos:type "Error ETCS&GSM-R" ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1 & RMR B1R1" .
+
+era-errorcorrections-rinf:1418 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Unclear management of MA section timers";
+    rdfs:label "CR1418" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1423 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Unacceptable risks with High Priority Data";
+    rdfs:label "CR1423" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1427 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Radio hole functionality shortcomings";
+    rdfs:label "CR1427" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1428 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Alignment of KM related variables and messages";
+    rdfs:label "CR1428" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1 & RMR B1R1" .
+
+era-errorcorrections-rinf:1431 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Unclear management of the time stamp of the SH request included in the SH Authorised message";
+    rdfs:label "CR1431" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:1432 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Wrong value of T_traction in on-board calculation of release speed";
+    rdfs:label "CR1432" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1" .
+
+era-errorcorrections-rinf:5037 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Use of High Priority call GID 200" ;
+    rdfs:label "CR5037" ;
+    skos:type "Error GSM-R" ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"RMR B1R1" .
+
+era-errorcorrections-rinf:5038 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "FN Numbers registration/deregistration" ;
+    rdfs:label "CR5038" ;
+    skos:type "Error GSM-R" ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"RMR B1R1" .
+
+era-errorcorrections-rinf:5039 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Call arbitration table for cab radios" ;
+    rdfs:label "CR5039" ;
+    skos:type "Error GSM-R" ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"RMR B1R1" .
+
+era-errorcorrections-rinf:5040 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "MI/M misalignments in the specifications" ;
+    rdfs:label "CR5040" ;
+    skos:type "Error	RMR" ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1 & RMR B1R1" .
+
+era-errorcorrections-rinf:5041 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Radio characteristics for EDOR" ;
+    rdfs:label "CR5041" ;
+    skos:type "Error GSM-R" ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"RMR B1R1" .
+
+era-errorcorrections-rinf:5042 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Handling of temporary functional numbers during cab radio power on" ;
+    rdfs:label "CR5042" ;
+    skos:type "Error GSM-R" ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"RMR B1R1" .
+
+era-errorcorrections-rinf:5049 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "PPP Activation timeout is not defined and ETCS DNS query repetition is missing";
+    rdfs:label "CR5049" ;
+    skos:type "Error ETCS&GSM-R" ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline "ETCS B4R1 & RMR B1R1" .
+
+era-errorcorrections-rinf:5050 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Errors & inconsistencies found in FFFIS for SIM card" ;
+    rdfs:label "CR5050" ;
+    skos:type "Error GSM-R" ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"RMR B1R1" .
+
+era-errorcorrections-rinf:1293 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Ambiguity about clauses to be applied to messages containing high priority data";
+    rdfs:label "CR1293" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Superseded" ;
+    dct:isReplacedBy era-errorcorrections-rinf:1423 ;
+    era:targetBaseline "Part of BCA2018 (ETCS B4)" .
+
+era-errorcorrections-rinf:1313 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Unclear management of train position status on passing unlinked BG(s)";
+    rdfs:label "CR1313" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Superseded" ;
+    dct:isReplacedBy era-errorcorrections-rinf:1370 ;
+    era:targetBaseline "Part of BCA2018 (ETCS B4)" .
+
+era-errorcorrections-rinf:1406 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Handling of location based information referred to different BGs when the information cannot be relocated to the same BG";
+    rdfs:label "CR1406" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Superseded" ;
+    dct:isReplacedBy era-errorcorrections-rinf:1370 ;
+    era:targetBaseline "Part of BCA2018 (ETCS B4)" .
+
+era-errorcorrections-rinf:1419 a skos:Concept ;
+    era:preventsService "true"^^xsd:boolean ; 
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:note "Value introduced in TWG RINF CCS 2024" ;
+    skos:definition "Undue extension of MA via a mode profile for further location";
+    rdfs:label "CR1419" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Superseded" ;
+    dct:isReplacedBy era-errorcorrections-rinf:1288 ;
+    era:targetBaseline "Part of BCA2018 (ETCS B4)" .
+
+
+
+########## Onboard Error Corrections without preventing service ##########
+
+era-errorcorrections-rinf:1021 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Brake command revocation/acknowledgement issues" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1128 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Passing Level 0 / Level NTC border in PT mode" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1130 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Contradiction between SRS 3.12.2.8 (Trip at route unsuitability) and SRS 3.13.10.2.6/7" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1162 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Functions that could use linking information in modes without linking consistency check" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1290 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "The acquisition of the train running number via the train interface is not covered by Subset-034" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1292 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "RAMS related supervision is missing in the active function table" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1304 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Missing Level 3 safety requirements" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1307 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Miscellaneous editorial findings in B3R2" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1320 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "MA request issues" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    dct:replaces era-errorcorrections-rinf:1028 ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1321 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Transition PS-SF inconsistent with other slave modes" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1322 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Unavailability of Referenced Adaptation Layer Entity Conformance Requirements" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1328 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Unclear expected on-board behaviour in case a change of mode has to be reported while the communication session with the RBC is under termination" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1329 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Issues with SRS section 3.16 “Data Consistency”" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1330 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "The permitted speed to display can be lower than the speed of the MRDT" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1331 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Inconsistent DRIVER_ID specification in the SUBSET-027" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1341 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Inconsistent use of the term 'reverse movement'" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1345 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Missing requirement for CMD function" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1371 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Missing PS IP network protocol conformance requirements" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1383 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Wrong formulation of non-leading input information from rolling stock" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1395 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Unclear on-board handling of a Packet 76 in an X=1 message" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1405 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Error in the applicability conditions of [TS 27.010]" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "GSM" ;
+   era:targetBaseline "-R	Presented_to_EC	ETCS B4R1 & RMR B1R1" .
+
+era-errorcorrections-rinf:1410 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Sending static information to a vehicle regarding area in advance of an RBC-border" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1413 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Speed limit for mode change OS, SH, LS" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1" .
+
+era-errorcorrections-rinf:1429 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Harmonisation of the FQDN" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1 & RMR B1R1" .
+
+era-errorcorrections-rinf:5036 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Support of different transmission speeds (voice)" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "R" ;
+    era:targetBaseline	"Presented_to_EC	RMR B1R1" .
+
+era-errorcorrections-rinf:5054 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "RBC number format defined on FFFIS for Euroradio needs to be aligned with Subset-054" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1 & RMR B1R1" .
+
+era-errorcorrections-rinf:5057 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Not possible to support Mobile Class A for EDOR, update of references, chapters numbering and other misalignments." ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Presented_to_EC" ;
+    era:targetBaseline	"ETCS B4R1 & RMR B1R1" .
+
+era-errorcorrections-rinf:1023 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "Conditions for start/end message" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Superseded" ;
+    dct:isReplacedBy era-errorcorrections-rinf:1334 ;
+    era:targetBaseline	"part of BCA2018 (ETCS B4)" .
+
+era-errorcorrections-rinf:1028 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "End condition for sending MA requests" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Superseded" ;
+    dct:isReplacedBy era-errorcorrections-rinf:1320 ;
+    era:targetBaseline	"part of BCA2018 (ETCS B4)" .
+
+era-errorcorrections-rinf:1317 a skos:Concept ;
+    era:preventsService "false"^^xsd:boolean ;
+    skos:inScheme era-errorcorrections:OnboardErrorCorrections; skos:topConceptOf era-era-errorcorrections:OnboardErrorCorrections ;
+    skos:definition "No explicit handling of loop message consistency error" ;
+    skos:member era-errorcorrections-type:Error ;
+    dct:status "Superseded" ;
+    dct:isReplacedBy era-errorcorrections-rinf:1329 ;
+    era:targetBaseline	"part of BCA2018 (ETCS B4)" .

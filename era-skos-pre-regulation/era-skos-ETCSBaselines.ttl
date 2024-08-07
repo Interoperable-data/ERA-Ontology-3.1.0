@@ -1,0 +1,91 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+@prefix era-etcsbaseline: <http://data.europa.eu/949/concepts/etcs-baselines/> .
+@prefix era-etcsbaseline-rinf: <http://data.europa.eu/949/concepts/etcs-baselines/rinf/> .
+@prefix era-etcsbaseline-eratv: <http://data.europa.eu/949/concepts/etcs-baselines/eratv/> .
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+era-etcsbaseline:ETCSBaselines a skos:ConceptScheme ; 
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "ETCS Baselines"@en ;
+    skos:prefLabel "ETCS Baselines"@en ;
+    dct:title "Concept scheme grouping ETCS baselines"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+
+########## ETCS Baselines ##########
+
+#ERATV
+era-etcsbaseline-eratv:2-2-2 a skos:Concept;
+  skos:inScheme era-etcsbaseline:ETCSBaselines; skos:topConceptOf era-etcsbaseline:ETCSBaselines;
+  skos:note "Value retrieved from the ERATV database";
+  skos:closeMatch era-etcsbaseline-rinf:20;
+  skos:prefLabel "(2.2.2)" .
+
+era-etcsbaseline-eratv:2-0 a skos:Concept;
+  skos:inScheme era-etcsbaseline:ETCSBaselines; skos:topConceptOf era-etcsbaseline:ETCSBaselines;
+  skos:note "Value retrieved from the ERATV database";
+  skos:closeMatch era-etcsbaseline-rinf:20;
+  skos:prefLabel "2.0" .
+
+era-etcsbaseline-eratv:3-0 a skos:Concept;
+  skos:inScheme era-etcsbaseline:ETCSBaselines; skos:topConceptOf era-etcsbaseline:ETCSBaselines;
+  skos:note "Value retrieved from the ERATV database";
+  skos:closeMatch era-etcsbaseline-rinf:30, era-etcsbaseline-rinf:40, era-etcsbaseline-rinf:50;
+  skos:prefLabel "3.0" .
+
+# RINF 
+
+era-etcsbaseline-rinf:20 a skos:Concept;
+  skos:inScheme era-etcsbaseline:ETCSBaselines; skos:topConceptOf era-etcsbaseline:ETCSBaselines;
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "baseline 2" .
+
+era-etcsbaseline-rinf:30 a skos:Concept;
+  skos:inScheme era-etcsbaseline:ETCSBaselines; skos:topConceptOf era-etcsbaseline:ETCSBaselines;
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "baseline 3" .
+
+era-etcsbaseline-rinf:40 a skos:Concept;
+  skos:inScheme era-etcsbaseline:ETCSBaselines; skos:topConceptOf era-etcsbaseline:ETCSBaselines;
+ skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "baseline 3 maintenance release 1" .
+
+era-etcsbaseline-rinf:50 a skos:Concept;
+  skos:inScheme era-etcsbaseline:ETCSBaselines; skos:topConceptOf era-etcsbaseline:ETCSBaselines;
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "baseline 3 release 2" .
+
+era-etcsbaseline-rinf:10 a skos:Concept;
+  skos:inScheme era-etcsbaseline:ETCSBaselines; skos:topConceptOf era-etcsbaseline:ETCSBaselines;
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "prebaseline 2" .
+

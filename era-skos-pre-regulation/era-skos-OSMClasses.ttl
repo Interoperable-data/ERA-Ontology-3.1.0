@@ -1,0 +1,80 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+@prefix era-osmc: <http://data.europa.eu/949/concepts/osm-classes/> .
+@prefix era-osmc-rinf: <http://data.europa.eu/949/concepts/osm-classes/rinf/> .
+
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+
+
+era-osmc:OSMClasses a skos:ConceptScheme ; 
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "OSM Classes"@en ;
+    skos:prefLabel "OSM Classes"@en ;
+    dct:title "Concept scheme grouping OSM classes"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+
+########## OSM Classes ##########
+
+era-osmc-rinf:funicular a skos:Concept;
+  skos:inScheme era-osmc:OSMClasses; skos:topConceptOf era-osmc:OSMClasses; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "funicular" .
+
+era-osmc-rinf:light-rail a skos:Concept;
+  skos:inScheme era-osmc:OSMClasses; skos:topConceptOf era-osmc:OSMClasses; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "light rail" .
+
+era-osmc-rinf:miniature-railway a skos:Concept;
+  skos:inScheme era-osmc:OSMClasses; skos:topConceptOf era-osmc:OSMClasses; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "miniature railway" .
+
+era-osmc-rinf:monorail a skos:Concept; skos:note "Value retrieved from the RINF database";
+  skos:inScheme era-osmc:OSMClasses; skos:topConceptOf era-osmc:OSMClasses;
+  skos:prefLabel "monorail" .
+
+era-osmc-rinf:narrow-gauge a skos:Concept;
+  skos:inScheme era-osmc:OSMClasses; skos:topConceptOf era-osmc:OSMClasses; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "narrow gauge" .
+
+era-osmc-rinf:rail a skos:Concept;
+  skos:inScheme era-osmc:OSMClasses; skos:topConceptOf era-osmc:OSMClasses; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "rail" .
+
+era-osmc-rinf:subway a skos:Concept;
+  skos:inScheme era-osmc:OSMClasses; skos:topConceptOf era-osmc:OSMClasses; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "subway" .
+
+era-osmc-rinf:tram a skos:Concept;
+  skos:inScheme era-osmc:OSMClasses; skos:topConceptOf era-osmc:OSMClasses; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "tram" .
+
+

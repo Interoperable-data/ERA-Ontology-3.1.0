@@ -1,0 +1,106 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+@prefix era-cantdefs: <http://data.europa.eu/949/concepts/cant-deficiencies/> .
+@prefix era-cantdefs-rinf: <http://data.europa.eu/949/concepts/cant-deficiencies/rinf/> .
+@prefix era-cantdefs-eratv: <http://data.europa.eu/949/concepts/cant-deficiencies/eratv/> .
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+era-cantdefs:CantDeficiencies a skos:ConceptScheme ; 
+    dct:issued "2024-04-18"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Cant Deficiencies - Static Speed Profile Categories (Basic and Specific, type 1)"@en ;
+    dct:title "Concept scheme grouping the “Cant Deficiency” SSP categories, defining the maximum speed, determined by suspension design, at which a particular train can traverse a curve and thus can be used to set a specific speed limit in a curve with regards to this category."@en .
+
+
+    
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+########## SSP Categories as Cant Deficiencies 80, 100, 130, 150, 165, 180, 210, 225, 245, 275, 300 ##########
+
+era-cantdefs-rinf:80 a skos:Concept;
+  skos:inScheme era-cantdefs:CantDeficiencies; skos:topConceptOf era-cantdefs:CantDeficiencies ;
+skos:note "Value (in mm) proposed by the CCS ERTMS WG";
+  rdf:value 80 ;
+  era:unitOfMeasure <http://qudt.org/vocab/unit/MilliM> ;
+  skos:prefLabel "80" .
+
+era-cantdefs-rinf:100 a skos:Concept;
+  skos:inScheme era-cantdefs:CantDeficiencies; skos:topConceptOf era-cantdefs:CantDeficiencies ; skos:note "Value (in mm) proposed by the CCS ERTMS WG";  
+  rdf:value 100 ;
+  era:unitOfMeasure <http://qudt.org/vocab/unit/MilliM> ;
+  skos:prefLabel "100" .
+
+era-cantdefs-rinf:130 a skos:Concept;
+  skos:inScheme era-cantdefs:CantDeficiencies; skos:topConceptOf era-cantdefs:CantDeficiencies ; skos:note "Value (in mm) proposed by the CCS ERTMS WG";  
+  rdf:value 130 ;
+  era:unitOfMeasure <http://qudt.org/vocab/unit/MilliM> ;
+  skos:prefLabel "130" .
+
+era-cantdefs-rinf:150 a skos:Concept;
+  skos:inScheme era-cantdefs:CantDeficiencies; skos:topConceptOf era-cantdefs:CantDeficiencies ; skos:note "Value (in mm) proposed by the CCS ERTMS WG";
+  rdf:value 150 ;
+  era:unitOfMeasure <http://qudt.org/vocab/unit/MilliM> ;
+  skos:prefLabel "150" .
+
+era-cantdefs-rinf:165 a skos:Concept;
+  skos:inScheme era-cantdefs:CantDeficiencies; skos:topConceptOf era-cantdefs:CantDeficiencies ; skos:note "Value (in mm) proposed by the CCS ERTMS WG";
+  rdf:value 165 ;
+  era:unitOfMeasure <http://qudt.org/vocab/unit/MilliM> ;
+  skos:prefLabel "165" .
+
+era-cantdefs-rinf:180 a skos:Concept;
+  skos:inScheme era-cantdefs:CantDeficiencies; skos:topConceptOf era-cantdefs:CantDeficiencies ; skos:note "Value (in mm) proposed by the CCS ERTMS WG";
+  rdf:value 180 ;
+  era:unitOfMeasure <http://qudt.org/vocab/unit/MilliM> ;
+  skos:prefLabel "180" .
+
+era-cantdefs-rinf:210 a skos:Concept;
+  skos:inScheme era-cantdefs:CantDeficiencies; skos:topConceptOf era-cantdefs:CantDeficiencies ; skos:note "Value (in mm) proposed by the CCS ERTMS WG";
+  rdf:value 210 ;
+  era:unitOfMeasure <http://qudt.org/vocab/unit/MilliM> ;
+  skos:prefLabel "210" .
+
+era-cantdefs-rinf:225 a skos:Concept;
+  skos:inScheme era-cantdefs:CantDeficiencies; skos:topConceptOf era-cantdefs:CantDeficiencies ; skos:note "Value (in mm) proposed by the CCS ERTMS WG";  
+  rdf:value 225 ;
+  era:unitOfMeasure <http://qudt.org/vocab/unit/MilliM> ;
+  skos:prefLabel "225" .
+
+era-cantdefs-rinf:245 a skos:Concept;
+  skos:inScheme era-cantdefs:CantDeficiencies; skos:topConceptOf era-cantdefs:CantDeficiencies ; skos:note "Value (in mm) proposed by the CCS ERTMS WG";
+  rdf:value 245 ;
+  era:unitOfMeasure <http://qudt.org/vocab/unit/MilliM> ;  
+  skos:prefLabel "245" .
+
+era-cantdefs-rinf:275 a skos:Concept;
+  skos:inScheme era-cantdefs:CantDeficiencies; skos:topConceptOf era-cantdefs:CantDeficiencies ; skos:note "Value (in mm) proposed by the CCS ERTMS WG";
+  rdf:value 275 ;
+  era:unitOfMeasure <http://qudt.org/vocab/unit/MilliM> ;
+  skos:prefLabel "275" .
+
+era-cantdefs-rinf:300 a skos:Concept;
+  skos:inScheme era-cantdefs:CantDeficiencies; skos:topConceptOf era-cantdefs:CantDeficiencies ; skos:note "Value (in mm) proposed by the CCS ERTMS WG";  
+  rdf:value 300 ;
+  era:unitOfMeasure <http://qudt.org/vocab/unit/MilliM> ;
+  skos:prefLabel "300" .

@@ -1,0 +1,44 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+@prefix era-specialareatypes: <http://data.europa.eu/949/concepts/special-area-types/> .
+@prefix era-specialareatypes-rinf: <http://data.europa.eu/949/concepts/special-area-types/rinf/> .
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+era-specialareatypes:SpecialAreaTypes a skos:ConceptScheme ; 
+    dct:issued "2024-04-18"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Types of Special Areas"@en ;
+    dct:title "Concept scheme grouping the types of Special Areas"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+########## Types Of Special Areas ##########
+
+era-specialareatypes-rinf:NonStoppingArea a skos:Concept;
+  skos:topConceptOf era-specialareatypes:SpecialAreaTypes ;
+  skos:inScheme era-specialareatypes:SpecialAreaTypes; skos:note "Value added for RINF-parameter 1.1.1.3.14.5";
+  rdfs:comment "Non-stopping Area" ;
+  skos:prefLabel "NSA" .

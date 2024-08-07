@@ -1,0 +1,60 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+
+
+@prefix era-rbc-react: <http://data.europa.eu/949/concepts/etcs-rbc-reject-reasons/> .
+@prefix era-rbc-react-rinf: <http://data.europa.eu/949/concepts/etcs-rbc-reject-reasons/rinf/> .
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+
+
+era-rbc-react:ETCSRBCRejectionReasons a skos:ConceptScheme ; 
+    dct:issued "2024-04-18"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "ETCS Reasons RBC can reject a train"@en ;
+    dct:title "Concept scheme grouping ETCS Reject Reasons"@en .
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+########## ETCS RBC Reasons of rejection ##########
+
+era-rbc-react-rinf:00 a skos:Concept; 
+  skos:inScheme era-rbc-react:ETCSRBCRejectionReasons;  skos:topConceptOf era-rbc-react:ETCSRBCRejectionReasons ; 
+  skos:note "Value added by TWG RINF CCS";
+  skos:prefLabel "N/A - no usage of Message 40 (Train rejected)" .
+
+era-rbc-react-rinf:01 a skos:Concept;
+  skos:inScheme era-rbc-react:ETCSRBCRejectionReasons;  skos:topConceptOf era-rbc-react:ETCSRBCRejectionReasons ;  skos:note "Value added by TWG RINF CCS";
+  skos:prefLabel "Invalid ETCS-key" .
+
+era-rbc-react-rinf:02 a skos:Concept;
+  skos:inScheme era-rbc-react:ETCSRBCRejectionReasons;  skos:topConceptOf era-rbc-react:ETCSRBCRejectionReasons ;  skos:note "Value added by TWG RINF CCS";
+  skos:prefLabel "Non-matching ETCS-ID" .
+
+era-rbc-react-rinf:03 a skos:Concept;
+  skos:inScheme era-rbc-react:ETCSRBCRejectionReasons;  skos:topConceptOf era-rbc-react:ETCSRBCRejectionReasons ;  skos:note "Value added by TWG RINF CCS";
+  skos:prefLabel "Incompatible baseline" .

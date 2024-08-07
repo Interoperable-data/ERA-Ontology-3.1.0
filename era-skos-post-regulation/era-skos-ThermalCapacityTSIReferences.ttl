@@ -1,0 +1,61 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+@prefix era-tc: <http://data.europa.eu/949/concepts/thermal-capacity/> .
+@prefix era-tc-eratv: <http://data.europa.eu/949/concepts/thermal-capacity/eratv/> .
+
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+era-tc:ThermalCapacityTSIReferences a skos:ConceptScheme ; 
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Thermal Capacity TSI References"@en ;
+    skos:prefLabel "Thermal Capacity TSI References"@en ;
+    dct:title "Concept scheme grouping reference cases of TSI thermal capacities"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+########## Thermal capacities ##########
+
+era-tc-eratv:Reference_case_60_km_h_21_mm_m_45_min a skos:Concept;
+  skos:inScheme era-tc:ThermalCapacityTSIReferences; skos:topConceptOf era-tc:ThermalCapacityTSIReferences; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Reference case (60 km/h, 21‰ (mm/m), 45 min)" .
+
+era-tc-eratv:Reference_case_70_km_h_21_mm_m_40_km a skos:Concept;
+  skos:inScheme era-tc:ThermalCapacityTSIReferences; skos:topConceptOf era-tc:ThermalCapacityTSIReferences; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Reference case (70 km/h, 21‰ (mm/m), 40 km)" .
+
+era-tc-eratv:Reference_case_90_of_design_speed_Category_1_of_HS_INF_TSI_Dec_2008_217_EC
+  a skos:Concept;
+  skos:inScheme era-tc:ThermalCapacityTSIReferences; skos:topConceptOf era-tc:ThermalCapacityTSIReferences; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Reference case (90% of design speed, Category 1 of HS INF TSI Dec 2008/217/EC)" .
+
+era-tc-eratv:Reference_case_of_80_km_h_21_mm_m_46_km a skos:Concept;
+  skos:inScheme era-tc:ThermalCapacityTSIReferences; skos:topConceptOf era-tc:ThermalCapacityTSIReferences; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Reference case of (80 km/h, 21‰ (mm/m), 46 km)" .
+

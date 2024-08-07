@@ -1,0 +1,154 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+@prefix era-am: <http://data.europa.eu/949/concepts/axle-monitoring/> .
+@prefix era-am-eratv: <http://data.europa.eu/949/concepts/axle-monitoring/eratv/> .
+
+
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+
+era-am:AxleBearingMonitoring a skos:ConceptScheme ;
+    rdfs:label "Axle Bearing Condition Monitoring"@en ;
+    skos:prefLabel "Axle Bearing Condition Monitoring"@en ;
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    dct:title "Concept scheme grouping axle bearing condition monitoring setups"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+########## Axle monitoring ##########
+
+era-am-eratv:50-120 a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "-50, +120" .
+
+era-am-eratv:0 a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "0" .
+
+era-am-eratv:ATMS a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "ATMS" .
+
+era-am-eratv:According_to_HABD a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "According to HABD" .
+
+era-am-eratv:Coussinets a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Coussinets" .
+
+era-am-eratv:Detectable_by_line_side a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Detectable by line side" .
+
+era-am-eratv:False a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "FALSE";
+  skos:prefLabel "False" .
+
+era-am-eratv:Manual a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Manual" .
+
+era-am-eratv:Manually_detected_with_specific_procedure a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Manually detected with specific procedure" .
+
+era-am-eratv:Max_speed_60kmh-Not_Applicable a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Max speed 60kmh - Not Applicable" .
+
+era-am-eratv:N a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "No", "None", "none"; 
+  skos:prefLabel "N" .
+
+era-am-eratv:N-A a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "N/a", "NO APLICA", "No applicable", "Not applicable", "non-applicable" ;
+  skos:prefLabel "N/A" .
+
+era-am-eratv:Not_applicable_due_to_low_travelling_speed_acc_to_iDeBo_Assessment a
+    skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Not applicable due to low travelling speed (acc. to iDeBo-Assessment)" .
+
+era-am-eratv:On_board_HABD_is_not_fitted a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "On board HABD is not fitted" .
+
+era-am-eratv:On_track_monitoring a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "On track monitoring" .
+
+era-am-eratv:Onboard_equipped_-OP a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Onboard equipped (OP)" .
+
+era-am-eratv:PT_100_on_10_first_cars_rest_detectable_by_line_side a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "PT 100 on 10 first cars; rest detectable by line side" .
+
+era-am-eratv:Specific_case_SE a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Specific case SE" .
+
+era-am-eratv:inner-wheel-bearings a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "inner wheel bearings" .
+
+era-am-eratv:keine-heiblauferortung-vorgesehen-weder-fahrzeug-noch-streckenseitig
+  a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "keine Heißläuferortung vorgesehen, weder fahrzeug- noch streckenseitig" .
+
+era-am-eratv:not_detectable a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "None detection";
+  skos:prefLabel "not detectable" .
+
+era-am-eratv:onboard_equipped_active_in_B_NL_line_side_detection_acc_TSI_not_given
+  a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "onboard equipped, active in B, NL     line side detection acc. TSI not given" .
+
+era-am-eratv:onboard_equipped_active_in_NL_line_side_detection_acc_TSI_not_given
+  a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "onboard equipped, active in NL     line side detection acc. TSI not given" .
+
+era-am-eratv:procedure_exsisting_for_manual_monitoring_by_operators_onboard a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "procedure exsisting for manual monitoring by operators onboard" .
+
+era-am-eratv:with_Skf_procedure a skos:Concept;
+  skos:inScheme era-am:AxleBearingMonitoring; skos:topConceptOf era-am:AxleBearingMonitoring; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "with Skf procedure" .
+

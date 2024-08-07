@@ -1,0 +1,127 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+@prefix era-op-types: <http://data.europa.eu/949/concepts/op-types/> .
+@prefix era-op-types-rinf: <http://data.europa.eu/949/concepts/op-types/rinf/> .
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+era-op-types:OperationalPointTypes a skos:ConceptScheme ;
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Operational Point Types"@en ;
+    skos:prefLabel "Operational Point Types"@en ;
+    dct:title "Concept scheme grouping the different existing types of Operational Points"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+########## Operational Point types ##########
+
+era-op-types-rinf:90 a skos:Concept ;
+  skos:inScheme era-op-types:OperationalPointTypes; skos:topConceptOf era-op-types:OperationalPointTypes;
+  skos:note "Value retrieved from the RINF database";
+  skos:definition "Located exactly in the point where a border between Member States meets a railway line."@en;
+  skos:prefLabel "border point"@en, "punto de frontera"@es .
+
+era-op-types-rinf:50 a skos:Concept ;
+  skos:inScheme era-op-types:OperationalPointTypes; skos:topConceptOf era-op-types:OperationalPointTypes;
+  skos:note "Value retrieved from the RINF database";
+  skos:definition "Operational Point which is a group of tracks used by depot or workshop for rolling stock maintenance"@en;
+  skos:prefLabel "depot or workshop"@en, "depósito o taller"@es .
+
+era-op-types-rinf:140 a skos:Concept ;
+  skos:inScheme era-op-types:OperationalPointTypes; skos:topConceptOf era-op-types:OperationalPointTypes;
+  skos:note "Value retrieved from the RINF database";
+  skos:definition "Located exactly in the point where networks of different Infrastructure Managers are connected in a Member State"@en;
+  skos:prefLabel "domestic border point"@en,"punto de frontera doméstico"@es .
+
+era-op-types-rinf:40 a skos:Concept ;
+  skos:inScheme era-op-types:OperationalPointTypes; skos:topConceptOf era-op-types:OperationalPointTypes;
+  skos:note "Value retrieved from the RINF database";
+  skos:definition "Operational Point with dominating functions related to loading and unloading of freight trains"@en;
+  skos:prefLabel "freight terminal"@en, "terminal de carga"@es .
+
+era-op-types-rinf:80 a skos:Concept ;
+  skos:inScheme era-op-types:OperationalPointTypes; skos:topConceptOf era-op-types:OperationalPointTypes;
+  skos:note "Value retrieved from the RINF database";
+  skos:definition "Operational Point consisting of at least one turnout, normally used mostly for changing direction of trains, with reduced or not existing other functions"@en;
+  skos:prefLabel "junction"@en, "cruce"@es .
+
+era-op-types-rinf:70 a skos:Concept ;
+  skos:inScheme era-op-types:OperationalPointTypes; skos:topConceptOf era-op-types:OperationalPointTypes;
+  skos:note "Value retrieved from the RINF database";
+  skos:definition "Small Operational Point consisting of at least one platform, normally serving mostly for local passenger services"@en;
+  skos:prefLabel "passenger stop"@en, "parada de pasajeros"@es .
+
+era-op-types-rinf:30 a skos:Concept ;
+  skos:inScheme era-op-types:OperationalPointTypes; skos:topConceptOf era-op-types:OperationalPointTypes;
+  skos:note "Value retrieved from the RINF database";
+  skos:definition "Operational Point with dominating function of service for passenger traffic"@en;
+  skos:prefLabel "passenger terminal"@en, "terminal de pasajeros"@es .
+
+era-op-types-rinf:130 a skos:Concept ;
+  skos:inScheme era-op-types:OperationalPointTypes; skos:topConceptOf era-op-types:OperationalPointTypes;
+  skos:note "Value retrieved from the RINF database";
+  skos:definition "Operational Point allowing to provide more information on the private siding and on the way its is linked to the main network. Its use is left to the discretion of each Member State."@en;
+  skos:prefLabel "private siding"@en, "vía lateral privada"@es .
+
+era-op-types-rinf:100 a skos:Concept ;
+  skos:inScheme era-op-types:OperationalPointTypes; skos:topConceptOf era-op-types:OperationalPointTypes;
+  skos:note "Value retrieved from the RINF database";
+  skos:definition "Group of tracks used for shunting trains, mostly related to freight trains"@en;
+  skos:prefLabel "shunting yard"@en, "patio de maniobras"@es .
+
+era-op-types-rinf:20 a skos:Concept ;
+  skos:inScheme era-op-types:OperationalPointTypes; skos:topConceptOf era-op-types:OperationalPointTypes;
+  skos:note "Value retrieved from the RINF database";
+  skos:definition "Multifunctional Operational Point not so big and not so important like station"@en;
+  skos:prefLabel "small station"@en, "estación pequeña"@es .
+
+era-op-types-rinf:10 a skos:Concept ;
+  skos:inScheme era-op-types:OperationalPointTypes; skos:topConceptOf era-op-types:OperationalPointTypes;
+  skos:note "Value retrieved from the RINF database";
+  skos:definition "Big or huge station with several functions, important for international traffic, basic for national railway system"@en;
+  skos:prefLabel "station"@en, "estación"@es .
+
+era-op-types-rinf:120 a skos:Concept ;
+  skos:inScheme era-op-types:OperationalPointTypes; skos:topConceptOf era-op-types:OperationalPointTypes;
+  skos:note "Value retrieved from the RINF database";
+  skos:definition "Operational Point consisting of only one switch. It describes a single switch without any extension contrary to a junction that has a real spatial extension and is generally delimited by entry signals"@en;
+  skos:prefLabel "switch"@en, "intercambio"@es .
+
+era-op-types-rinf:110 a skos:Concept ;
+  skos:inScheme era-op-types:OperationalPointTypes; skos:topConceptOf era-op-types:OperationalPointTypes;
+  skos:note "Value retrieved from the RINF database";
+  skos:definition "To describe a change on CCS or a type of contact line or gauge changeover facility – fixed installation allowing a train to travel across a break of gauge where two railway networks with different track gauges meet."@en;
+  skos:prefLabel "technical change"@en, "cambio técnico"@es .
+
+era-op-types-rinf:60 a skos:Concept ;
+  skos:inScheme era-op-types:OperationalPointTypes; skos:topConceptOf era-op-types:OperationalPointTypes;
+  skos:note "Value retrieved from the RINF database";
+  skos:definition "Operational Point which is a group of tracks for servicing trains (parking, cleaning, washing, current revisions, etc.)"@en;
+  skos:prefLabel "train technical services"@en, "servicios técnicos para trenes"@es .
+
+era-op-types-rinf:150 a skos:Concept ;
+  skos:inScheme era-op-types:OperationalPointTypes; skos:topConceptOf era-op-types:OperationalPointTypes;
+  skos:note "Value retrieved from the RINF database";
+  skos:definition "An over crossing describes a crossing, where something crosses over the railway line. From constructional point of view an over crossing can be a bridge or a tunnel."@en;
+  skos:prefLabel "over crossing"@en.

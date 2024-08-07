@@ -1,0 +1,87 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+@prefix era-rc: <http://data.europa.eu/949/concepts/restrictions/> .
+@prefix era-rc-eratv: <http://data.europa.eu/949/concepts/restrictions/eratv/> .
+
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+
+
+era-rc:Restrictions a skos:ConceptScheme ;
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Restrictions"@en ;
+    skos:prefLabel "Restrictions"@en ;
+    dct:title "Concept scheme grouping harmonized restrictions. The structure of a restriction code is a combination of [Category].[Type].[Value or specification]."@en .
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+
+########## Restriction codes ##########
+
+era-rc-eratv:2-7-1 a skos:Concept;
+  skos:inScheme era-rc:Restrictions; skos:topConceptOf era-rc:Restrictions; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Silent (retrofitted without testing)"@en; 
+  skos:altLabel "2.7.1";
+  skos:definition "Can be used in all quieter routes – TSI Noise compliant – Silent (retrofitted without testing)"@en.
+
+era-rc-eratv:2-7-2 a skos:Concept;
+  skos:inScheme era-rc:Restrictions; skos:topConceptOf era-rc:Restrictions; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Silent (tested against a TSI NOI)"@en;
+  skos:altLabel "2.7.2";
+  skos:definition "Can be used in all quieter routes – TSI Noise compliant – Silent (tested against a TSI NOI)"@en.
+
+era-rc-eratv:2-7-3 a skos:Concept;
+  skos:inScheme era-rc:Restrictions; skos:topConceptOf era-rc:Restrictions; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Very quiet (tested against a TSI NOI)"@en;
+  skos:altLabel "2.7.3";
+  skos:definition "Can be used in all quieter routes – TSI Noise compliant – Very quiet (tested against a TSI NOI)"@en.
+
+era-rc-eratv:2-7-4 a skos:Concept;
+  skos:inScheme era-rc:Restrictions; skos:topConceptOf era-rc:Restrictions; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Exempted in accordance with TSI Noise"@en;
+  skos:altLabel "2.7.4";
+  skos:definition "Can be used in all quieter routes – TSI Noise not compliant – Exempted in accordance with TSI Noise"@en.
+
+era-rc-eratv:2-7-5 a skos:Concept;
+  skos:inScheme era-rc:Restrictions; skos:topConceptOf era-rc:Restrictions; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Covered by specific case"@en;
+  skos:altLabel "2.7.5";
+  skos:definition "Can be used in quieter routes only in this MS – Covered by specific case"@en.
+
+era-rc-eratv:2-7-6 a skos:Concept;
+  skos:inScheme era-rc:Restrictions; skos:topConceptOf era-rc:Restrictions; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Fitted with 'historic' CBBs"@en;
+  skos:altLabel "2.7.6";
+  skos:definition "Can be used in quieter routes only in this MS – Fitted with 'historic' CBBs"@en.
+
+era-rc-eratv:2-7-7 a skos:Concept; 
+  skos:inScheme era-rc:Restrictions; skos:topConceptOf era-rc:Restrictions;  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Can't be used in quieter routes"@en;
+  skos:altLabel "2.7.7";
+  skos:definition "Can't be used in quieter routes"@en.
