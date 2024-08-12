@@ -29,7 +29,8 @@
                                                "2024-06-03"^^xsd:date ,
                                                "2024-06-05"^^xsd:date ,
                                                "2024-07-05"^^xsd:date ,
-											   "2024-08-02"^^xsd:date ;
+											   "2024-08-02"^^xsd:date ,
+											   "2024-08-12"^^xsd:date ;
                               dcterms:publisher "European Union Agency for Railways" ;
                               dcterms:title "ERA Ontology"@en ;
                               rdfs:comment """This is the human and machine readable Ontology governed by the European Union Agency for Railways (https://www.era.europa.eu/). It represents the concepts and relationships linked to the sectorial legal framework and the use cases under the AgencyÂ´s remit, as described in the Commission Implementing Regulation (EU) [to be updated after publication] on the common specifications for the register of railway infrastructure [to be updated after publication].
@@ -42,6 +43,10 @@ The Ontology also includes the routebook concepts described in appendix D2 \"Ele
                               owl:versionInfo "v3.1.0"@en ;
                               owl:versionURI <https://github.com/Interoperable-data/ERA_vocabulary/releases/releases/v3.1.0> ;
                               skos:changeNote """
+Revision 12-08-2024:
+- removed owl:incompatibleWith in a property as per issue #71.
+- Reduced some long labels + split off notes from definition (see issue #45)
+
 Revision 02-08-2024:
 - removed comments from wgs ontology, keeping mininal annotations (issue #51)
 - removed owl:imports axiom (issue #73) 
@@ -416,8 +421,8 @@ era:additionalBrakingInformationDocument rdf:type owl:ObjectProperty ;
 era:allocationCompany rdf:type owl:ObjectProperty ;
                       rdfs:domain era:SubsidiaryLocation ;
                       rdfs:range era:Body ;
-                      rdfs:label "allocation company"@en ,
-                                 "the organisation in charge to allocate the code for the subsidiary location"@en .
+                      rdfs:label "allocation company"@en ;
+                      rdfs:comment "the organisation in charge to allocate the code for the subsidiary location"@en .
 
 
 ###  http://data.europa.eu/949/applicability
@@ -769,8 +774,8 @@ era:eddyCurrentBraking rdf:type owl:ObjectProperty ;
                        dcterms:created "2020-08-24"^^xsd:date ;
                        dcterms:modified "2022-09-06"^^xsd:date ;
                        dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
-                       rdfs:comment "Indication of limitations on the use of eddy current brakes."@en ,
-                                    "This property has been modified to be a RINF parameter (its eratvIndex is deleted). It is treated as a SKOS by RINF and as a boolean by ERATV. A new ERATV datatype property has been defined, eddyCurrentBrakingFitted with boolean values."@en ;
+                       rdfs:comment "Indication of limitations on the use of eddy current brakes."@en ;
+                       skos:editorialNote "This property has been modified to be a RINF parameter (its eratvIndex is deleted). It is treated as a SKOS by RINF and as a boolean by ERATV. A new ERATV datatype property has been defined, eddyCurrentBrakingFitted with boolean values."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Use of eddy current brakes"@en ;
                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -1839,8 +1844,8 @@ era:magneticBraking rdf:type owl:ObjectProperty ;
                     dcterms:created "2020-08-24"^^xsd:date ;
                     dcterms:modified "2022-09-12"^^xsd:date ;
                     dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
-                    rdfs:comment "Indication of limitations on the use of magnetic brakes."@en ,
-                                 "This property has been modified to be a RINF parameter (its eratvIndex is deleted). It is treated as a SKOS by RINF and as a boolean by ERATV. A new ERATV datatype property has been defined, magneticBrakingFitted with boolean values."@en ;
+                    rdfs:comment "Indication of limitations on the use of magnetic brakes."@en ;
+                    skos:scopeNote "This property has been modified to be a RINF parameter (its eratvIndex is deleted). It is treated as a SKOS by RINF and as a boolean by ERATV. A new ERATV datatype property has been defined, magneticBrakingFitted with boolean values."@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "Use of magnetic brakes"@en ;
                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -2179,13 +2184,11 @@ era:otherCantDeficiencyBasicSSP rdf:type owl:ObjectProperty ,
                                 dcterms:modified "2024-04-18"^^xsd:date ;
                                 dcterms:relation era:cantDeficiencyBasicSSP ;
                                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                                rdfs:comment """Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with parameter \"Cant Deficiency used for the basic SSP\". 
-
-Subset-026 (3.11.3.2.1.1) definition:
-b) The “other specific” SSP categories: it groups all other specific SSP categories corresponding to the other international train categories.
-"""@en ;
+                                rdfs:comment """Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with parameter \"Cant Deficiency used for the basic SSP\""".  
+								 Subset-026 (3.11.3.2.1.1) definition: b) The “other specific” SSP categories: it groups all other specific 
+								SSP categories corresponding to the other international train categories. """@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                rdfs:label "Other Cant Deficiency train categories for which the ETCS trackside is configured to provide SSP"@en ;
+                                rdfs:label "Other Cant Deficiency train categories basic  SSP"@en ;
                                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "unstable" ;
                                 skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -5173,7 +5176,7 @@ era:idPhoneErtmsRadioBlockCenter rdf:type owl:DatatypeProperty ;
                                  dcterms:modified "2024-04-18"^^xsd:date ;
                                  rdfs:comment "Unique RBC identification (NID_C+NID_RBC) and calling number (NID_RADIO) as defined in the specification referenced in TSI CCS."@en ;
                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                 rdfs:label "ID [NNNN NNNN] and phone number [NNNN NNNN NNNN NNNN] of ERTMS/ETCS Radio Block Center"@en ;
+                                 rdfs:label "ID  and phone number of ERTMS/ETCS Radio Block Center"@en ;
                                  owl:deprecated "true"^^xsd:boolean ;
                                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
@@ -5315,7 +5318,8 @@ era:length rdf:type owl:DatatypeProperty ;
            dcterms:created "2021-04-01"^^xsd:date ;
            dcterms:modified "2024-01-08"^^xsd:date ;
            dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
-           rdfs:comment """Length of an infrastructure object which can be 
+           rdfs:comment """Length of an infrastructure object"""@en ;
+           skos:scopeNote """The length can be 
 - a section of line (For operational length, use era:lengthOfSectionOfLine), 
 - a tunnel (For operational length, use era:lengthOfTunnel), 
 - a platform (For its usable length, use era:lengthOfPlatform), 
@@ -5324,8 +5328,7 @@ era:length rdf:type owl:DatatypeProperty ;
   - a non-stopping area (accuracy +- 10m), 
   - a walkway, 
   - an evacuation and rescue point.
-
-Vehicle length."""@en ;
+- a vehicle length."""@en ;
            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
            rdfs:label "Length"@en ;
            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -5416,8 +5419,9 @@ era:linearCoordinate rdf:type owl:DatatypeProperty ;
                      rdfs:range xsd:double ;
                      dcterms:created "2021-04-01"^^xsd:date ;
                      dcterms:modified "2023-11-10"^^xsd:date ;
-                     rdfs:comment """Indicates the position of an object within a linear positioning system. For example, relative to a national railway line.
-The reason for deprecation is that this property is not specified in the latest legal text nor the RINF application guide. Also, no data has been provided for this property."""@en ;
+                     rdfs:comment """Indicates the position of an object within a linear positioning system. For example, relative to a national railway line"""@en ; 
+                     skos:editorialNote """"The reason for deprecation is that this property is not specified in the latest
+					 legal text nor the RINF application guide. Also, no data has been provided for this property."""@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "Linear coordinate"@en ;
                      owl:deprecated "true"^^xsd:boolean ;
@@ -5448,8 +5452,10 @@ era:loadCapabilitySpeed rdf:type owl:DatatypeProperty ;
                         era:unitOfMeasure qudt:KiloM-PER-HR ;
                         era:usedInRCCCalculations "true"^^xsd:boolean ;
                         dcterms:created "2023-01-20"^^xsd:date ;
-                        rdfs:comment """Part of the load capability of a track that corresponds to the speed of the load model. 
-The load capability is a value selected from the list of load models representing: line category which is amended by value of speed [km/h] permitted for a specific load model. The list of values may also be Route Availability which is amended by value of speed [miles/h] permitted for a specific load model."""@en ;
+                        rdfs:comment """Part of the load capability of a track that corresponds to the speed of the load model"""@en ;  
+                        skos:scopeNote """ The load capability is a value selected from the list of load models representing: 
+						line category which is amended by value of speed [km/h] permitted for a specific load model. 
+						The list of values may also be Route Availability which is amended by value of speed [miles/h] permitted for a specific load model."""@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "Load capability speed"@en ;
                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -5988,8 +5994,8 @@ era:minAxleLoad rdf:type owl:DatatypeProperty ;
                 era:unitOfMeasure qudt:TONNE ;
                 dcterms:created "2021-08-08"^^xsd:date ;
                 dcterms:modified "2023-03-14"^^xsd:date ;
-                rdfs:comment "Minimum permitted axle load, given in tons."@en ,
-                             "Should be deprecated according to the ammendment to the Regulation (EU) 2019/777 but remains because it is also a parameter of ERATV."@en ;
+                rdfs:comment "Minimum permitted axle load, given in tons."@en ;
+                skos:scopeNote "Should be deprecated according to the ammendment to the Regulation (EU) 2019/777 but remains because it is also a parameter of ERATV."@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "Minimum permitted axle load"@en ;
                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -6009,8 +6015,8 @@ era:minDistConsecutiveAxles rdf:type owl:DatatypeProperty ;
                             era:unitOfMeasure qudt:MilliM ;
                             dcterms:created "2021-08-08"^^xsd:date ;
                             dcterms:modified "2023-03-14"^^xsd:date ;
-                            rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ,
-                                         "Indication of minimum permitted distance between two consecutive axles, given in millimetres."@en ;
+                            rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ;
+                            skos:scopeNote  "Indication of minimum permitted distance between two consecutive axles, given in millimetres."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Minimum permitted distance between two consecutive axles"@en ;
                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -6030,8 +6036,8 @@ era:minDistFirstLastAxle rdf:type owl:DatatypeProperty ;
                          era:unitOfMeasure qudt:MilliM ;
                          dcterms:created "2021-08-08"^^xsd:date ;
                          dcterms:modified "2023-03-14"^^xsd:date ;
-                         rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ,
-                                      "Indication of minimum permitted distance between first and last axles, given in millimetres."@en ;
+                         rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ;
+                         skos:scopeNote "Indication of minimum permitted distance between first and last axles, given in millimetres."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Minimum permitted distance between first and last axle"@en ;
                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -6051,8 +6057,8 @@ era:minFlangeHeight rdf:type owl:DatatypeProperty ;
                     era:unitOfMeasure qudt:MilliM ;
                     dcterms:created "2021-08-08"^^xsd:date ;
                     dcterms:modified "2021-09-01"^^xsd:date ;
-                    rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ,
-                                 "Minimum permitted flange height, given in millimiters."@en ;
+                    rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ;
+                    skos:scopeNote "Minimum permitted flange height, given in millimiters."@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "Minimum permitted height of the flange"@en ;
                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -6072,8 +6078,8 @@ era:minFlangeThickness rdf:type owl:DatatypeProperty ;
                        era:unitOfMeasure qudt:MilliM ;
                        dcterms:created "2021-08-08"^^xsd:date ;
                        dcterms:modified "2021-09-01"^^xsd:date ;
-                       rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ,
-                                    "Minimum permitted flange thickness, given in millimiters."@en ;
+                       rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ;
+                       skos:scopeNote "Minimum permitted flange thickness, given in millimiters."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Minimum permitted thickness of the flange"@en ;
                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -6149,8 +6155,8 @@ era:minWheelDiameter rdf:type owl:DatatypeProperty ;
                      era:unitOfMeasure qudt:MilliM ;
                      dcterms:created "2021-08-08"^^xsd:date ;
                      dcterms:modified "2023-03-14"^^xsd:date ;
-                     rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ,
-                                  "Minimum permitted wheel diameter, given in millimiters."@en ;
+                     rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ;
+                     skos:scopeNote "Minimum permitted wheel diameter, given in millimiters."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "Minimum permitted wheel diameter"@en ;
                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -6252,8 +6258,8 @@ era:minimumVerticalRadius rdf:type owl:DatatypeProperty ;
                           dcterms:isReplacedBy era:minimumVerticalRadiusCrest ,
                                                era:minimumVerticalRadiusHollow ;
                           dcterms:modified "2023-04-05"^^xsd:date ;
-                          rdfs:comment """Radius of the smallest vertical curve expressed in metres. 
-Deprecated because of replacement by  two integer properties The reason is that the property is composed of two values: The first \"NNN\" is a value of crest, the second \"NNN\" is a value of hollow, both expressed in metres."""@en ;
+                          rdfs:comment """Radius of the smallest vertical curve expressed in metres."""@en ; 
+                          skos:editorialNote """Deprecated because of replacement by  two integer properties The reason is that the property is composed of two values: The first \"NNN\" is a value of crest, the second \"NNN\" is a value of hollow, both expressed in metres."""@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "Minimum radius of vertical curve"@en ;
                           owl:deprecated "true"^^xsd:boolean ;
@@ -6269,8 +6275,8 @@ era:minimumVerticalRadiusCrest rdf:type owl:DatatypeProperty ;
                                era:unitOfMeasure qudt:M ;
                                era:usedInRCCCalculations "true"^^xsd:boolean ;
                                dcterms:created "2023-04-05"^^xsd:date ;
-                               rdfs:comment """Part of the minimum radius of vertical curve that indicates the crest. 
-The minimum radius of vertical curve is the radius of the smallest vertical curve expressed in metres."""@en ;
+                               rdfs:comment """Part of the minimum radius of vertical curve that indicates the crest"""@en ;  
+                               skos:scopeNote """ The minimum radius of vertical curve is the radius of the smallest vertical curve expressed in metres."""@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "Minimum radius of vertical curve crest"@en ;
                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -6285,8 +6291,8 @@ era:minimumVerticalRadiusHollow rdf:type owl:DatatypeProperty ;
                                 era:unitOfMeasure qudt:M ;
                                 era:usedInRCCCalculations "true"^^xsd:boolean ;
                                 dcterms:created "2023-04-05"^^xsd:date ;
-                                rdfs:comment """Part of the minimum radius of vertical curve that indicates the hollow. 
-The minimum radius of vertical curve is the radius of the smallest vertical curve expressed in metres."""@en ;
+                                rdfs:comment """Part of the minimum radius of vertical curve that indicates the hollow"""@en ;  
+                                skos:scopeNote """The minimum radius of vertical curve is the radius of the smallest vertical curve expressed in metres."""@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "Minimum radius of vertical curve hollow"@en ;
                                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -6620,8 +6626,9 @@ era:phaseInfo rdf:type owl:DatatypeProperty ;
                                    "http://data.europa.eu/949/phaseInfoKm" ,
                                    "http://data.europa.eu/949/trackPhaseInfo" ;
               dcterms:modified "2023-04-05"^^xsd:date ;
-              rdfs:comment """Indication of required several information on phase separation. 
-Deprecated because of replacement by three properties. The reason is that the property is composed of three values: length [NNN] - the length of the phase separation in metres; switch off breaker [Y/N], single selection of â€˜Y=yesâ€™ or â€˜N=noâ€™ to show whether the breaker has to be switched off; and lower pantograph [Y/N]â€™, single selection of â€˜Y=yesâ€™ or â€˜N=noâ€™ to show whether the pantograph has to be lowered,  Km [NNN.NNN] - the location from the start of the line where the new value is valid."""@en ;
+              rdfs:comment """Indication of required several information on phase separation"""@en ;  
+              skos:editorialNote """ Deprecated because of replacement by three properties. The reason is that the property is composed of three values: length [NNN] - the length of the phase separation in metres; switch off breaker [Y/N], single selection of 'yes' or 'no' to show whether the breaker has to be switched off; and lower pantograph [Y/N], single selection of 'yes' or 'no' to show whether the pantograph has to be lowered,  
+			             Km [NNN.NNN] - the location from the start of the line where the new value is valid."""@en ;
               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
               rdfs:label "Information on phase separation"@en ;
               owl:deprecated "true"^^xsd:boolean ;
@@ -6635,8 +6642,8 @@ era:phaseInfoChangeSupplySystem rdf:type owl:DatatypeProperty ;
                                 era:XMLName "EOS_InfoPhase" ;
                                 era:rinfIndex "1.1.1.2.4.1.2" ;
                                 dcterms:created "2024-02-05"^^xsd:date ;
-                                rdfs:comment """Part of the phase info of a track that corresponds to the single selection of Y=yes or N=no to show if the energy supply system changes.
-The phase info is the indication of required several information on phase separation."""@en ;
+                                rdfs:comment """Part of the phase info of a track that corresponds to the single selection of Y=yes or N=no to show if the energy supply system changes"""@en ; 
+                                skos:scopeNote """ The phase info is the indication of required several information on phase separation."""@en ;
                                 rdfs:label "Phase info change supply system"@en ;
                                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
@@ -6648,8 +6655,8 @@ era:phaseInfoDistanceType rdf:type owl:DatatypeProperty ;
                           era:XMLName "EOS_InfoPhase" ;
                           era:rinfIndex "1.1.1.2.4.1.2" ;
                           dcterms:created "2024-02-05"^^xsd:date ;
-                          rdfs:comment """Part of the phase info of a track that corresponds to the single selection of 'MIN=minimum' or 'MAX=maximum' to show whether the length is a minimum distance between the inner contact strips of the pantographs or a maximum distance between the outer contact strips of the pantographs. Multiple strings for this parameter are accepted.
-The phase info is the indication of required several information on phase separation."""@en ;
+                          rdfs:comment """Part of the phase info of a track that corresponds to the single selection of 'MIN=minimum' or 'MAX=maximum' to show whether the length is a minimum distance between the inner contact strips of the pantographs or a maximum distance between the outer contact strips of the pantographs. Multiple strings for this parameter are accepted."""@en ; 
+                          skos:scopeNote """ The phase info is the indication of required several information on phase separation."""@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "Phase info distance type"@en ;
                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -6662,8 +6669,8 @@ era:phaseInfoKm rdf:type owl:DatatypeProperty ;
                 era:XMLName "EOS_InfoPhase" ;
                 era:rinfIndex "1.1.1.2.4.1.2" ;
                 dcterms:creator "2023-04-05"^^xsd:date ;
-                rdfs:comment """Part of the phase info of a track that indicates the location from the start of the line where the new value is valid.
-The phase info is the indication of required several information on phase separation."""@en ;
+                rdfs:comment """Part of the phase info of a track that indicates the location from the start of the line where the new value is valid."""@en ; 
+                skos:scopeNote """ The phase info is the indication of required several information on phase separation."""@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "Phase info Km"@en ;
                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -6677,8 +6684,8 @@ era:phaseInfoLength rdf:type owl:DatatypeProperty ;
                     era:rinfIndex "1.1.1.2.4.1.2" ;
                     era:unitOfMeasure <https://qudt.org/vocab/unit/M> ;
                     dcterms:created "2023-04-05"^^xsd:date ;
-                    rdfs:comment """Part of the phase info of a track that corresponds to the length of the phase separation in metres. 
-The phase info is the indication of required several information on phase separation."""@en ;
+                    rdfs:comment """Part of the phase info of a track that corresponds to the length of the phase separation in metres."""@en ;  
+                    skos:scopeNote """The phase info is the indication of required several information on phase separation."""@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "Phase info length"@en ;
                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -6691,8 +6698,8 @@ era:phaseInfoPantographLowered rdf:type owl:DatatypeProperty ;
                                era:XMLName "EOS_InfoPhase" ;
                                era:rinfIndex "1.1.1.2.4.1.2" ;
                                dcterms:created "2023-04-05"^^xsd:date ;
-                               rdfs:comment """Part of the phase info of a track that shows whether a pantograph has to be lowered.
-The phase info is the indication of required several information on phase separation."""@en ;
+                               rdfs:comment """Part of the phase info of a track that shows whether a pantograph has to be lowered."""@en ; 
+                               skos:scopeNote """ The phase info is the indication of required several information on phase separation."""@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "Phase info pantograph lowered"@en ;
                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -6705,8 +6712,8 @@ era:phaseInfoSwitchOffBreaker rdf:type owl:DatatypeProperty ;
                               era:XMLName "EOS_InfoPhase" ;
                               era:rinfIndex "1.1.1.2.4.1.2" ;
                               dcterms:created "2023-04-05"^^xsd:date ;
-                              rdfs:comment """Part of the phase info of a track that shows whether the breaker has to be switched off.
-The phase info is the indication of required several information on phase separation."""@en ;
+                              rdfs:comment """Part of the phase info of a track that shows whether the breaker has to be switched off."""@en ; 
+                              skos:scopeNote """ The phase info is the indication of required several information on phase separation."""@en ;
                               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                               rdfs:label "Phase info switch off breaker"@en ;
                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -6780,7 +6787,7 @@ era:primaryLocationCode rdf:type owl:DatatypeProperty ;
                         rdfs:comment "Primary location code developed for information exchange in accordance with the TSIs relating to the telematics applications subsystem."@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "primary location code"@en ;
-                        owl:incompatibleWith era:tafTAPCode ;
+                        dcterms:replaces era:tafTAPCode ; 
                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -6970,8 +6977,8 @@ era:raisedPantographsDistance rdf:type owl:DatatypeProperty ;
                               era:unitOfMeasure qudt:M ;
                               era:usedInRCCCalculations "true"^^xsd:boolean ;
                               dcterms:created "2023-04-05"^^xsd:date ;
-                              rdfs:comment """Part of the raised pantographs dustance and speed of a track that corresponds to the minimum distance between pantographs, in metres.
-The raised pantographs distance and speed is  the indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed."""@en ;
+                              rdfs:comment """Part of the raised pantographs dustance and speed of a track that corresponds to the minimum distance between pantographs, in metres."""@en ; 
+                              skos:scopeNote """ The raised pantographs distance and speed is  the indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed."""@en ;
                               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                               rdfs:label "Raised pantographs distance"@en ;
                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -6987,10 +6994,10 @@ era:raisedPantographsDistanceAndSpeed rdf:type owl:DatatypeProperty ;
                                       dcterms:created "2020-08-25"^^xsd:date ;
                                       dcterms:modified "2023-04-05"^^xsd:date ;
                                       dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
-                                      rdfs:comment """Indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed.
-Deprecated because of replacement by a class and three integer properties The reason is that the property is composed of three values: [N] is number of pantographs; [NNN] is minimum distance between pantographs, in metres; [NNN] is the speed considered in km/h."""@en ;
+                                      rdfs:comment """Indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed."""@en ; 
+                                      skos:editorialNote """ Deprecated because of replacement by a class and three integer properties The reason is that the property is composed of three values: [N] is number of pantographs; [NNN] is minimum distance between pantographs, in metres; [NNN] is the speed considered in km/h."""@en ;
                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                      rdfs:label "Requirements for number of raised pantographs and spacing between them, at the given speed"@en ;
+                                      rdfs:label "raised pantographs and spacing between them, at the given speed"@en ;
                                       owl:deprecated "true"^^xsd:boolean ;
                                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
@@ -7003,8 +7010,8 @@ era:raisedPantographsNumber rdf:type owl:DatatypeProperty ;
                             era:rinfIndex "1.1.1.2.3.3" ;
                             era:usedInRCCCalculations "true"^^xsd:boolean ;
                             dcterms:created "2023-04-05"^^xsd:date ;
-                            rdfs:comment """Part of the raised pantographs distance and speed of a track that corresponds to the number of pantographs. 
-The raised pantographs distance and speed is  the indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed."""@en ;
+                            rdfs:comment """Part of the raised pantographs distance and speed of a track that corresponds to the number of pantographs."""@en ;  
+                            skos:scopeNote """ The raised pantographs distance and speed is  the indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed."""@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Number of pantographs."@en ;
                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -7019,8 +7026,8 @@ era:raisedPantographsSpeed rdf:type owl:DatatypeProperty ;
                            era:unitOfMeasure <https://qudt.org/vocab/unit/KiloM-PER-HR> ;
                            era:usedInRCCCalculations "true"^^xsd:boolean ;
                            dcterms:created "2023-04-05"^^xsd:date ;
-                           rdfs:comment """Part of the raised pantographs distance and speed of a track that corresponds to the speed considered in km/h. 
-The raised pantographs distance and speed is  the indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed"""@en ;
+                           rdfs:comment """Part of the raised pantographs distance and speed of a track that corresponds to the speed considered in km/h."""@en ;  
+                           skos:scopeNote """ The raised pantographs distance and speed is  the indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed"""@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "Raised pantographs speed"@en ;
                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
@@ -7115,8 +7122,8 @@ era:relativePosition rdf:type owl:DatatypeProperty ;
                      rdfs:range xsd:double ;
                      dcterms:created "2021-04-01"^^xsd:date ;
                      dcterms:modified "2023-11-10"^^xsd:date ;
-                     rdfs:comment """Indicates the position of an object relative to the linear coordinates of the associated topological object.
-The reason for deprecation is that this property is not specified in the latest legal text nor the RINF application guide. Also, no data has been provided for this property."""@en ;
+                     rdfs:comment """Indicates the position of an object relative to the linear coordinates of the associated topological object."""@en ; 
+                     skos:editorialNote """ The reason for deprecation is that this property is not specified in the latest legal text nor the RINF application guide. Also, no data has been provided for this property."""@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "Relative position"@en ;
                      owl:deprecated "true"^^xsd:boolean ;
@@ -7553,6 +7560,7 @@ era:tafTAPCode rdf:type owl:DatatypeProperty ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                rdfs:label "OP primary location code"@en ;
                owl:deprecated "true"^^xsd:boolean ;
+			   dcterms:isReplacedBy era:primaryLocationCode ; 
                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
@@ -7848,8 +7856,8 @@ era:tunnelKilometerStart rdf:type owl:DatatypeProperty ;
                          dcterms:created "2023-03-29"^^xsd:date ;
                          dcterms:isReplacedBy era:lineReferenceTunnelStart ;
                          dcterms:modified "2024-02-05" ;
-                         rdfs:comment """Part of the Start of tunnel that indicates the km of the line at the beginning of a tunnel.
-The Start of tunnel is the Geographical coordinates in decimal degrees and km of the line at the beginning of a tunnel. The reason for deprecation is that the property is now a subproperty of lineReference in order to represent the kilometer in relation to a national railway line"""@en ;
+                         rdfs:comment """Part of the Start of tunnel that indicates the km of the line at the beginning of a tunnel."""@en ; 
+                         skos:scopeNote """ The Start of tunnel is the Geographical coordinates in decimal degrees and km of the line at the beginning of a tunnel. The reason for deprecation is that the property is now a subproperty of lineReference in order to represent the kilometer in relation to a national railway line"""@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Start of tunnel kilometer"@en ;
                          owl:deprecated "true"^^xsd:boolean ;
@@ -7982,7 +7990,7 @@ era:validityEndDate rdf:type owl:DatatypeProperty ;
                     rdfs:label "Validity end date"@en ;
                     owl:deprecated "true"^^xsd:boolean ;
                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                    skos:scopeNote "To be deprecated with the introduction of temporal entity"@en .
+                    skos:editorialNote "To be deprecated with the introduction of temporal entity"@en .
 
 
 ###  http://data.europa.eu/949/validityStartDate
@@ -7995,7 +8003,7 @@ era:validityStartDate rdf:type owl:DatatypeProperty ;
                       rdfs:label "Validity start date"@en ;
                       owl:deprecated "true"^^xsd:boolean ;
                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" ;
-                      skos:scopeNote "To be deprecated with the introduction of temporal entity"@en .
+                      skos:editorialNote "To be deprecated with the introduction of temporal entity"@en .
 
 
 ###  http://data.europa.eu/949/vehicleContactForce
@@ -8212,13 +8220,13 @@ era:voiceOperationalCommImpl rdf:type owl:DatatypeProperty ;
 era:weight rdf:type owl:DatatypeProperty ;
            rdfs:domain era:LinearElementLink ;
            rdfs:range xsd:double ;
-           rdfs:comment """The weight of the edge between 2 topological nodes. 
-The value of the weight is represented by the length of the functional representation of the linear element defined by the property era:from of the era:LinearElementLink.
-For example: 
-:x rdf:type eraLinearElementLink;
- era:from :le1;
- era:to :le2;
- era:weight \"1.234\"^^xsd:double; #length of the track topologically represented as :le1"""@en ;
+           rdfs:comment """The weight of the edge between 2 topological nodes."""@en ;		   
+           skos:scopeNote """The value of the weight is represented by the length of the functional representation of the linear element defined by the property era:from of the era:LinearElementLink."""@en ; 
+           skos:example """ For example: 
+					:x rdf:type eraLinearElementLink;
+					 era:from :le1;
+					 era:to :le2;
+					 era:weight \"1.234\"^^xsd:double; #length of the track topologically represented as :le1"""@en ;
            rdfs:label "weight"@en .
 
 
