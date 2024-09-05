@@ -11,7 +11,7 @@
 
 
 @prefix era-contact-react: <http://data.europa.eu/949/concepts/etcs-reactions-contact/> .
-@prefix era-contact-react-rinf: <http://data.europa.eu/949/concepts/etcs-reactions-contact/rinf/> .
+
 
 
 
@@ -26,9 +26,13 @@
 
 era-contact-react:ETCSReactionsNVContact a skos:ConceptScheme ; 
     dct:issued "2024-04-18"^^xsd:date ;
+    dct:modified "2024-09-04"^^xsd:date ;
     cc:license <https://creativecommons.org/licenses/by/4.0/> ;
     rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    era:rinfIndex "1.1.1.3.2.16.9";
+    era:rinfIndex "1.2.1.1.1.16.9"; 
     rdfs:label "ETCS Reactions after expired T_NVCONTACT"@en ;
+    skos:prefLabel "ETCS Reactions after expired T_NVCONTACT"@en ;
     dct:title "Concept scheme grouping ETCS Reactions (T_NVCONTACT)"@en .
 
 
@@ -42,22 +46,26 @@ era-contact-react:ETCSReactionsNVContact a skos:ConceptScheme ;
 
 ########## ETCS T_NVCONTACT Reactions ##########
 
-era-contact-react-rinf:00 a skos:Concept;
+era-contact-react:00 a skos:Concept;
   skos:topConceptOf era-contact-react:ETCSReactionsNVContact;
   skos:inScheme era-contact-react:ETCSReactionsNVContact;  skos:note "Value added by TWG RINF CCS";
-  skos:prefLabel "00 - Train Trip" .
+  skos:notation "00"^^xsd:string ;
+  skos:prefLabel "Train Trip"@en .
 
-era-contact-react-rinf:01 a skos:Concept;
+era-contact-react:01 a skos:Concept;
   skos:topConceptOf era-contact-react:ETCSReactionsNVContact;
   skos:inScheme era-contact-react:ETCSReactionsNVContact;  skos:note "Value added by TWG RINF CCS";
-  skos:prefLabel "01 - Apply Service Brake" .
+  skos:notation "01"^^xsd:string ;
+  skos:prefLabel "Apply Service Brake"@en .
 
-era-contact-react-rinf:10 a skos:Concept;
+era-contact-react:10 a skos:Concept;
   skos:topConceptOf era-contact-react:ETCSReactionsNVContact;
   skos:inScheme era-contact-react:ETCSReactionsNVContact;  skos:note "Value added by TWG RINF CCS";
-  skos:prefLabel "10 - No reaction" .
+  skos:notation "10"^^xsd:string ;
+  skos:prefLabel "No reaction"@en .
 
-era-contact-react-rinf:11 a skos:Concept;
+era-contact-react:11 a skos:Concept;
   skos:topConceptOf era-contact-react:ETCSReactionsNVContact;
   skos:inScheme era-contact-react:ETCSReactionsNVContact;  skos:note "Value added by TWG RINF CCS";
-  skos:prefLabel "11 - Reserved spare" .
+  skos:notation "11"^^xsd:string ;
+  skos:prefLabel "Reserved spare"@en .

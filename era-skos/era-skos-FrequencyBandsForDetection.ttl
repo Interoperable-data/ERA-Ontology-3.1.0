@@ -9,7 +9,6 @@
 @prefix era-skos: <http://data.europa.eu/949/concepts/> .
 
 @prefix era-tds: <http://data.europa.eu/949/concepts/train-detection/> .
-@prefix era-tds-rinf: <http://data.europa.eu/949/concepts/train-detection/rinf/> .
 
 
 
@@ -24,9 +23,13 @@
 
 era-tds:FrequencyBandsForDetection a skos:ConceptScheme ; 
     dct:issued "2024-04-18"^^xsd:date ;
+    dct:modified "2024-09-04"^^xsd:date ;
     cc:license <https://creativecommons.org/licenses/by/4.0/> ;
     rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    era:rinfIndex "1.1.1.3.4.2"; 
+    era:rinfIndex "1.2.1.1.3.2"; 
     rdfs:label "Frequency bands for detection, one collection for axle counters, one for track circuits."@en ;
+    skos:prefLabel "Frequency bands for detection, one collection for axle counters, one for track circuits."@en ;
     dct:title "Concept scheme grouping frequency bands for detection"@en .
 
 
@@ -39,23 +42,25 @@ era-tds:FrequencyBandsForDetection a skos:ConceptScheme ;
 
 era-tds:FrequencyBandsForDetectionWithAxleCounters a skos:Collection ;
     dct:issued "2024-04-18"^^xsd:date ;
-    skos:prefLabel "Frequency Bands for Axle Counters" ;
-    skos:member era-tds-rinf:A1_AC ;
-    skos:member era-tds-rinf:A2_AC ;
-    skos:member era-tds-rinf:A3_AC .
+    skos:prefLabel "Frequency Bands for Axle Counters"@en ;
+    skos:notation "Frequency Bands for Axle Counters"^^xsd:string ;
+    skos:member era-tds:A1_AC ;
+    skos:member era-tds:A2_AC ;
+    skos:member era-tds:A3_AC .
 
 era-tds:FrequencyBandsForDetectionWithTrackCircuits a skos:Collection ;
     dct:issued "2024-04-18"^^xsd:date ;
-    skos:prefLabel "Frequency Bands for Track Circuits" ;
-    skos:member era-tds-rinf:A0_TC ;
-    skos:member era-tds-rinf:A1_TC ;
-    skos:member era-tds-rinf:A2_TC ;
-    skos:member era-tds-rinf:A3_TC ;
-    skos:member era-tds-rinf:A4_TC ;
-    skos:member era-tds-rinf:A5_TC ;
-    skos:member era-tds-rinf:A6_TC ;
-    skos:member era-tds-rinf:A7_TC ;
-    skos:member era-tds-rinf:A8_TC .
+    skos:prefLabel "Frequency Bands for Track Circuits"@en ;
+    skos:notation "Frequency Bands for Track Circuits"^^xsd:string ;
+    skos:member era-tds:A0_TC ;
+    skos:member era-tds:A1_TC ;
+    skos:member era-tds:A2_TC ;
+    skos:member era-tds:A3_TC ;
+    skos:member era-tds:A4_TC ;
+    skos:member era-tds:A5_TC ;
+    skos:member era-tds:A6_TC ;
+    skos:member era-tds:A7_TC ;
+    skos:member era-tds:A8_TC .
 
 
 #################################################################
@@ -68,63 +73,63 @@ era-tds:FrequencyBandsForDetectionWithTrackCircuits a skos:Collection ;
 
 ########## frequency bands for detection ###########
 
-era-tds-rinf:A1_AC a skos:Concept;
+era-tds:A1_AC a skos:Concept;
   era:tsiCompliant true; 
-  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ;
+  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:notation "Band A1 for Axle Counters"^^xsd:string ;
 skos:note "Value decided in TWG CCS 2024";
-  skos:prefLabel "Band A1 for Axle Counters" .
+  skos:prefLabel "Band A1 for Axle Counters"@en .
 
-era-tds-rinf:A2_AC a skos:Concept;
+era-tds:A2_AC a skos:Concept;
   era:tsiCompliant true;
-  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:note "Value decided in TWG CCS 2024";
-  skos:prefLabel "Band A2 for Axle Counters" .
+  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:notation "Band A2 for Axle Counters"^^xsd:string ; skos:note "Value decided in TWG CCS 2024";
+  skos:prefLabel "Band A2 for Axle Counters"@en .
 
-era-tds-rinf:A3_AC a skos:Concept;
+era-tds:A3_AC a skos:Concept;
   era:tsiCompliant true;
-  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:note "Value decided in TWG CCS 2024";
-  skos:prefLabel "Band A3 for Axle Counters" .
+  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:notation "Band A3 for Axle Counters"^^xsd:string ; skos:note "Value decided in TWG CCS 2024";
+  skos:prefLabel "Band A3 for Axle Counters"@en .
 
-era-tds-rinf:A0_TC a skos:Concept;
+era-tds:A0_TC a skos:Concept;
   era:tsiCompliant true;
-  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:note "Value decided in TWG CCS 2024";
-  skos:prefLabel "DC-operated Track Circuits" .
+  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:notation "DC-operated Track Circuits"^^xsd:string ; skos:note "Value decided in TWG CCS 2024";
+  skos:prefLabel "DC-operated Track Circuits"@en .
 
-era-tds-rinf:A1_TC a skos:Concept;
+era-tds:A1_TC a skos:Concept;
   era:tsiCompliant true;
-  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:note "Value decided in TWG CCS 2024";
-  skos:prefLabel "Band A1 for Track Circuits" .
+  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:notation "Band A1 for Track Circuits"^^xsd:string ; skos:note "Value decided in TWG CCS 2024";
+  skos:prefLabel "Band A1 for Track Circuits"@en .
 
-era-tds-rinf:A2_TC a skos:Concept;
+era-tds:A2_TC a skos:Concept;
   era:tsiCompliant true;
-  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:note "Value decided in TWG CCS 2024";
-  skos:prefLabel "Band A2 for Track Circuits" .
+  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:notation "Band A2 for Track Circuits"^^xsd:string ; skos:note "Value decided in TWG CCS 2024";
+  skos:prefLabel "Band A2 for Track Circuits"@en .
 
-era-tds-rinf:A3_TC a skos:Concept;
+era-tds:A3_TC a skos:Concept;
   era:tsiCompliant true;
-  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:note "Value decided in TWG CCS 2024";
-  skos:prefLabel "Band A3 for Track Circuits" .
+  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:notation "Band A3 for Track Circuits"^^xsd:string ; skos:note "Value decided in TWG CCS 2024";
+  skos:prefLabel "Band A3 for Track Circuits"@en .
 
-era-tds-rinf:A4_TC a skos:Concept;
+era-tds:A4_TC a skos:Concept;
   era:tsiCompliant true;
-  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:note "Value decided in TWG CCS 2024";
-  skos:prefLabel "Band A4 for Track Circuits" .
+  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:notation "Band A4 for Track Circuits"^^xsd:string ; skos:note "Value decided in TWG CCS 2024";
+  skos:prefLabel "Band A4 for Track Circuits"@en .
 
-era-tds-rinf:A5_TC a skos:Concept;
+era-tds:A5_TC a skos:Concept;
   era:tsiCompliant true;
-  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:note "Value decided in TWG CCS 2024";
-  skos:prefLabel "Band A5 for Track Circuits" .
+  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:notation "Band A5 for Track Circuits"^^xsd:string ; skos:note "Value decided in TWG CCS 2024";
+  skos:prefLabel "Band A5 for Track Circuits"@en .
 
-era-tds-rinf:A6_TC a skos:Concept;
+era-tds:A6_TC a skos:Concept;
   era:tsiCompliant true;
-  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:note "Value decided in TWG CCS 2024";
-  skos:prefLabel "Band A6 for Track Circuits" .
+  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:notation "Band A6 for Track Circuit"^^xsd:string ; skos:note "Value decided in TWG CCS 2024";
+  skos:prefLabel "Band A6 for Track Circuits"@en .
 
-era-tds-rinf:A7_TC a skos:Concept;
+era-tds:A7_TC a skos:Concept;
   era:tsiCompliant true;
-  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:note "Value decided in TWG CCS 2024";
-  skos:prefLabel "Band A7 for Track Circuits" .
+  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:notation "Band A7 for Track Circuits"^^xsd:string ; skos:note "Value decided in TWG CCS 2024";
+  skos:prefLabel "Band A7 for Track Circuits"@en .
 
-era-tds-rinf:A8_TC a skos:Concept;
+era-tds:A8_TC a skos:Concept;
   era:tsiCompliant true;
-  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:note "Value decided in TWG CCS 2024";
-  skos:prefLabel "Band A8 for Track Circuits" .
+  skos:inScheme era-tds:FrequencyBandsForDetection; skos:topConceptOf era-tds:FrequencyBandsForDetection ; skos:notation "Band A8 for Track Circuits"^^xsd:string ; skos:note "Value decided in TWG CCS 2024";
+  skos:prefLabel "Band A8 for Track Circuits"@en .

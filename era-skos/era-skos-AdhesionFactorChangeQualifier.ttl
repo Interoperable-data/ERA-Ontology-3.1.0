@@ -11,8 +11,6 @@
 
 # The SKOS Concept is only used when more options than Allowed / Non-allowed are needed.
 @prefix era-adhf-qualifier: <http://data.europa.eu/949/concepts/adhf-qualifier/> .
-@prefix era-adhf-qualifier-rinf: <http://data.europa.eu/949/concepts/adhf-qualifier/rinf/> .
-
 
 
 #################################################################
@@ -29,7 +27,10 @@ era-adhf-qualifier:AdhesionFactorChange a skos:ConceptScheme ;
     dct:modified "2024-09-04"^^xsd:date ;
     cc:license <https://creativecommons.org/licenses/by/4.0/> ;
     rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    era:rinfIndex "1.1.1.3.2.16.11"; 
+    era:rinfIndex "1.2.1.1.1.16.11"; 
     rdfs:label "Driver allowed to change adhesion factor Qualifiers"@en ;
+    skos:prefLabel "Driver allowed to change adhesion factor Qualifiers"@en ;
     dct:title "Concept scheme grouping the Qualifiers for Driver being allowed to change adhesion factor"@en .
 
 
@@ -43,15 +44,17 @@ era-adhf-qualifier:AdhesionFactorChange a skos:ConceptScheme ;
 
 ########## Driver may change Adhesion factor - Qualifiers ##########
 
-era-adhf-qualifier-rinf:0 a skos:Concept;
+era-adhf-qualifier:0 a skos:Concept;
   skos:inScheme era-adhf-qualifier:AdhesionFactorChange;  skos:topConceptOf era-adhf-qualifier:AdhesionFactorChange ; 
   skos:note "Value introduced in TWG RINF 2024";
-  skos:prefLabel "Not allowed" ;
+  skos:prefLabel "Not allowed"@en ;
+  skos:notation "0"^^xsd:string ;
   skos:altLabel "0" .
 
-era-adhf-qualifier-rinf:1 a skos:Concept;
+era-adhf-qualifier:1 a skos:Concept;
   skos:inScheme era-adhf-qualifier:AdhesionFactorChange;  
   skos:topConceptOf era-adhf-qualifier:AdhesionFactorChange ; 
   skos:note "Value introduced in TWG RINF 2024";
-  skos:prefLabel "Allowed";
+  skos:prefLabel "Allowed"@en;
+  skos:notation "1"^^xsd:string ;
   skos:altLabel "1".

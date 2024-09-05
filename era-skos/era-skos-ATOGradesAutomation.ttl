@@ -10,8 +10,6 @@
 
 
 @prefix era-ato-grades: <http://data.europa.eu/949/concepts/ato-grades-automation/> .
-@prefix era-ato-grades-rinf: <http://data.europa.eu/949/concepts/ato-grades-automation/rinf/> .
-
 
 
 #################################################################
@@ -28,9 +26,13 @@
 
 era-ato-grades:ATOGradeOfAutomation a skos:ConceptScheme ; 
     dct:issued "2024-04-18"^^xsd:date ;
+    dct:modified "2024-09-04"^^xsd:date ;
     cc:license <https://creativecommons.org/licenses/by/4.0/> ;
     rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    era:rinfIndex "1.1.1.3.13.1"; 
+    era:rinfIndex "1.2.1.1.10.1"; 
     rdfs:label "ATO Grade of Automation"@en ;
+    skos:prefLabel "ATO Grade of Automation"@en ;
     skos:title "Concept scheme for ATO Grade of Automation"@en .
 
 
@@ -44,18 +46,21 @@ era-ato-grades:ATOGradeOfAutomation a skos:ConceptScheme ;
 
 ########## ATO Grade of Automation ##########
 
-era-ato-grades-rinf:0 a skos:Concept; 
+era-ato-grades:0 a skos:Concept; 
   skos:inScheme era-ato-grades:ATOGradeOfAutomation; skos:note "Value introduced in TWG RINF 2024";
   skos:topConceptOf era-ato-grades:ATOGradeOfAutomation ;
+  skos:notation "0"^^xsd:string ;
   skos:prefLabel "0" .
 
-era-ato-grades-rinf:1 a skos:Concept;
+era-ato-grades:1 a skos:Concept;
   skos:inScheme era-ato-grades:ATOGradeOfAutomation; skos:note "Value introduced in TWG RINF 2024";
   skos:topConceptOf era-ato-grades:ATOGradeOfAutomation ;
-  skos:prefLabel "1" .
+  skos:notation "1"^^xsd:string ;
+  skos:prefLabel "1"@en .
 
-era-ato-grades-rinf:2 a skos:Concept;
+era-ato-grades:2 a skos:Concept;
   skos:inScheme era-ato-grades:ATOGradeOfAutomation; skos:note "Value introduced in TWG RINF 2024";
   skos:topConceptOf era-ato-grades:ATOGradeOfAutomation ;
-  skos:prefLabel "2" .
+  skos:notation "2"^^xsd:string ;
+  skos:prefLabel "2"@en .
 

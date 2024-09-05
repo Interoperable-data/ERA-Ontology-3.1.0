@@ -3,6 +3,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
 @prefix cc: <http://creativecommons.org/ns#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix era-organisation-roles: <http://data.europa.eu/949/concepts/organisation-roles/> .
@@ -11,6 +12,7 @@
 
 era-organisation-roles:OrgRoles a skos:ConceptScheme ;
 	dcterms:issued "2024-07-31"^^xsd:date ;
+    dct:modified "2024-09-04"^^xsd:date ;
    	cc:license <https://creativecommons.org/licenses/by/4.0/> ;
     rdfs:comment "Organisation roles used in different domains at ERA"@en ;
     rdfs:label "Organisation roles"@en ;
@@ -26,6 +28,7 @@ era-organisation-roles:IM a skos:Concept ;
         skos:inScheme era-organisation-roles:OrgRoles ;
 		skos:prefLabel "Infrastructure Manager"@en;
 		skos:altLabel "IM"@en ; 
+        skos:notation "IM"^^xsd:string ;
 		skos:topConceptOf era-organisation-roles:OrgRoles ; 
 		skos:definition """ A body or firm responsible for the operation, maintenance and renewal of railway infrastructure on a network, as well as responsible for participating in its development as determined by the Member State within the framework of its general policy on development and financing of infrastructure"""@en ;
 		dcterms:source <http://data.europa.eu/eli/dir/2012/34/2019-01-01> ; 
@@ -35,6 +38,7 @@ era-organisation-roles:IM a skos:Concept ;
 era-organisation-roles:RU a skos:Concept ;
 		skos:prefLabel "Railway Undertaking"@en ;
 		skos:altLabel "RU"@en ;
+        skos:notation "RU"^^xsd:string ;
 		skos:inScheme era-organisation-roles:OrgRoles ;
 		skos:topConceptOf era-organisation-roles:OrgRoles ;
 		skos:definition """ 
@@ -47,6 +51,7 @@ era-organisation-roles:Owner a skos:Concept;
 		skos:prefLabel "Railway Vehicle Owner"@en ; 
 		skos:inScheme era-organisation-roles:OrgRoles ;
 		skos:altLabel "Owner"@en;
+        skos:notation "Owner"^^xsd:string ;
 		skos:topConceptOf era-organisation-roles:OrgRoles ;
 		skos:definition "The natural or legal person being the owner of a vehicle exploited as a means of transport and is registered as such in a vehicle register referred to in Article 47";
         dcterms:references <http://data.europa.eu/eli/dir/2016/797/oj>, <http://data.europa.eu/eli/dir/2016/797/2020-05-28>;
@@ -58,6 +63,7 @@ era-organisation-roles:Keeper   a skos:Concept;
 			skos:topConceptOf era-organisation-roles:OrgRoles ;
 			skos:definition "The natural or legal person that, being the owner of a vehicle or having the right to use it, exploits the vehicle as a means of transport and is registered as such in a vehicle register"@en ;
 			dcterms:references <http://data.europa.eu/eli/dir/2016/797/oj>,  <http://data.europa.eu/eli/dir/2016/797/2020-05-28>;
+            skos:notation "Keeper"^^xsd:string ;
 			skos:altLabel "Keeper"@en;
 			.
 
@@ -65,6 +71,7 @@ era-organisation-roles:Applicant a skos:Concept;
 			skos:inScheme era-organisation-roles:OrgRoles ;
 			skos:topConceptOf era-organisation-roles:OrgRoles ;
 			skos:prefLabel "Applicant"@en;
+            skos:notation "Applicant"^^xsd:string ;
 			skos:definition """ A natural or legal person requesting an authorisation, be it a railway undertaking, an infrastructure manager or any other person or legal entity, such as a manufacturer, an owner or a keeper """@en, 
 			   """ a natural or legal person requesting the Agency's decision for the approval of the technical solutions envisaged for the ERTMS track-side equipment projects """@en ;
 			
@@ -77,10 +84,12 @@ era-organisation-roles:ECM a skos:Concept;
 			  skos:topConceptOf era-organisation-roles:OrgRoles ;
 			  skos:definition """An entity in charge of the maintenance of a vehicle,  and registered as such in a vehicle register referred to in Article 47 of Directive (EU) 2016/797"""@en ;
 			  dcterms:references <http://data.europa.eu/eli/dir/2016/797/oj>, <http://data.europa.eu/eli/dir/2016/797/2020-05-28>;
+              skos:notation "ECM"^^xsd:string ;
 			  skos:altLabel "ECM"@en .
 
 era-organisation-roles:Manufacturer   a skos:Concept ; 
 			skos:inScheme era-organisation-roles:OrgRoles ;
+            skos:notation "Manufacturer"^^xsd:string ;
 			skos:prefLabel "Manufacturer"@en; 
 			skos:topConceptOf era-organisation-roles:OrgRoles ;
 			skos:definition """
@@ -100,6 +109,7 @@ era-organisation-roles:NSA   a skos:Concept;
 			agreement in accordance with an empowerment granted by the Union to that effect;
 		         """@en ;
 		skos:prefLabel "National safety authority"@en ;
+        skos:notation "NSA"^^xsd:string ;
 		skos:altLabel "NSA"@en ;
 		dcterms:source <http://data.europa.eu/eli/dir/2016/798/2020-10-23> ;
 		.

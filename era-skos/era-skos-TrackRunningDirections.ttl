@@ -9,7 +9,7 @@
 @prefix era-skos: <http://data.europa.eu/949/concepts/> .
 
 @prefix era-trd: <http://data.europa.eu/949/concepts/track-running-directions/> .
-@prefix era-trd-rinf: <http://data.europa.eu/949/concepts/track-running-directions/rinf/> .
+
 
 
 #################################################################
@@ -24,9 +24,12 @@ era-trd:TrackRunningDirections a skos:ConceptScheme ;
     dct:issued "2020-09-01"^^xsd:date ;
     dct:modified "2022-09-09"^^xsd:date ;
     dct:modified "2024-04-18"^^xsd:date ;
+    dct:modified "2024-09-04"^^xsd:date ;
     cc:license <https://creativecommons.org/licenses/by/4.0/> ;
     rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    era:rinfIndex "1.1.1.0.0.2"; 
     rdfs:label "Track Running Directions"@en ;
+    skos:prefLabel "Track Running Directions"@en ;
     dct:title "Concept scheme grouping track running directions"@en .
 
 #################################################################
@@ -38,20 +41,23 @@ era-trd:TrackRunningDirections a skos:ConceptScheme ;
 
 ########## Track running directions ##########
 
-era-trd-rinf:10 a skos:Concept;
+era-trd:10 a skos:Concept;
   skos:inScheme era-trd:TrackRunningDirections;
   skos:topConceptOf era-trd:TrackRunningDirections ;
-  skos:prefLabel "N" ; skos:note "Value retrieved from the RINF database";
-  skos:definition "The normal running direction is the same as the direction defined by the start and end of the Section of Line." .
+  skos:notation "N"^^xsd:string ;
+  skos:prefLabel "N"@en ; 
+  skos:definition "The normal running direction is the same as the direction defined by the start and end of the Section of Line."@en .
 
-era-trd-rinf:20 a skos:Concept;
+era-trd:20 a skos:Concept;
   skos:inScheme era-trd:TrackRunningDirections;
   skos:topConceptOf era-trd:TrackRunningDirections ;
-  skos:prefLabel "O", "R" ; skos:note "Value retrieved from the RINF database";
-  skos:definition "The normal running direction is the opposite/reverse as the direction defined by the start and end of the Section of Line." .
+  skos:notation "O"^^xsd:string ;
+  skos:prefLabel "O"@en, "R"@en ; 
+  skos:definition "The normal running direction is the opposite/reverse as the direction defined by the start and end of the Section of Line."@en .
 
-era-trd-rinf:30 a skos:Concept;
+era-trd:30 a skos:Concept;
   skos:inScheme era-trd:TrackRunningDirections;
   skos:topConceptOf era-trd:TrackRunningDirections ;
-  skos:prefLabel "B" ; skos:note "Value retrieved from the RINF database";
-  skos:definition "The normal running direction is both directions defined by the Section of Line." .
+  skos:notation "B"^^xsd:string ;
+  skos:prefLabel "B"@en ; 
+  skos:definition "The normal running direction is both directions defined by the Section of Line."@en .

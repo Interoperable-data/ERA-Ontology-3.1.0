@@ -9,7 +9,7 @@
 @prefix era-skos: <http://data.europa.eu/949/concepts/> .
 
 @prefix era-ecb: <http://data.europa.eu/949/concepts/eddy-current-braking/> .
-@prefix era-ecb-rinf: <http://data.europa.eu/949/concepts/eddy-current-braking/rinf/> .
+
 
 
 
@@ -26,8 +26,11 @@
 era-ecb:EddyCurrentBraking a skos:ConceptScheme ;
     dct:issued "2020-09-01"^^xsd:date ;
     dct:modified "2022-09-09"^^xsd:date ;
+    dct:modified "2024-09-04"^^xsd:date ;
     cc:license <https://creativecommons.org/licenses/by/4.0/> ;
     rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    era:rinfIndex "1.1.1.1.6.2"; 
+    era:rinfIndex "1.2.1.0.4.2"; 
     rdfs:label "Eddy Current Braking"@en ;
     skos:prefLabel "Eddy Current Braking"@en ;
     dct:title "Concept scheme grouping eddy current braking"@en .
@@ -43,24 +46,29 @@ era-ecb:EddyCurrentBraking a skos:ConceptScheme ;
 
 ########## Eddy current braking ##########
 
-era-ecb-rinf:10 a skos:Concept;
-  skos:inScheme era-ecb:EddyCurrentBraking; skos:topConceptOf era-ecb:EddyCurrentBraking; skos:note "Value retrieved from the RINF database"; 
-  skos:prefLabel "allowed" .
+era-ecb:10 a skos:Concept;
+  skos:inScheme era-ecb:EddyCurrentBraking; skos:topConceptOf era-ecb:EddyCurrentBraking; 
+  skos:notation "allowed"^^xsd:string ;
+  skos:prefLabel "allowed"@en .
 
-era-ecb-rinf:30 a skos:Concept;
-  skos:inScheme era-ecb:EddyCurrentBraking; skos:topConceptOf era-ecb:EddyCurrentBraking; skos:note "Value retrieved from the RINF database"; 
-  skos:prefLabel "allowed only for emergency brake" .
+era-ecb:30 a skos:Concept;
+  skos:inScheme era-ecb:EddyCurrentBraking; skos:topConceptOf era-ecb:EddyCurrentBraking; 
+  skos:notation "allowed only for emergency brake"^^xsd:string ;
+  skos:prefLabel "allowed only for emergency brake"@en .
 
-era-ecb-rinf:50 a skos:Concept;
-  skos:inScheme era-ecb:EddyCurrentBraking; skos:topConceptOf era-ecb:EddyCurrentBraking; skos:note "Value retrieved from the RINF database"; 
-  skos:prefLabel "not allowed" .
+era-ecb:50 a skos:Concept;
+  skos:inScheme era-ecb:EddyCurrentBraking; skos:topConceptOf era-ecb:EddyCurrentBraking;
+  skos:notation "not allowed"^^xsd:string ;
+  skos:prefLabel "not allowed"@en .
 
-era-ecb-rinf:20 a skos:Concept;
-  skos:inScheme era-ecb:EddyCurrentBraking; skos:topConceptOf era-ecb:EddyCurrentBraking; skos:note "Value retrieved from the RINF database"; 
-  skos:prefLabel "allowed under conditions" .
+era-ecb:20 a skos:Concept;
+  skos:inScheme era-ecb:EddyCurrentBraking; skos:topConceptOf era-ecb:EddyCurrentBraking; 
+  skos:notation "allowed under conditions"^^xsd:string ;
+  skos:prefLabel "allowed under conditions"@en .
 
 #added according to lookup table
-era-ecb-rinf:40 a skos:Concept;
-  skos:inScheme era-ecb:EddyCurrentBraking; skos:topConceptOf era-ecb:EddyCurrentBraking; skos:note "Value retrieved from the RINF database"; 
-  skos:prefLabel "allowed under conditions only for emergency brake" .
+era-ecb:40 a skos:Concept;
+  skos:inScheme era-ecb:EddyCurrentBraking; skos:topConceptOf era-ecb:EddyCurrentBraking; 
+  skos:notation "allowed under conditions only for emergency brake"^^xsd:string ;
+  skos:prefLabel "allowed under conditions only for emergency brake"@en .
 
