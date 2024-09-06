@@ -1,3 +1,9 @@
+# About this fork (A. Magnien, UIC)
+Purpose is to make progress on the topology: representation of navigabilities.
+
+The rationale is expressed in the SemanticRSM repository and its associated Wiki.
+
+
 # ERA Ontology version 3.1.0
 This is a draft update of the RINF extension of the ERA Ontology.
 It defines the entities and thier relationships within the domain of railway infrastructure.
