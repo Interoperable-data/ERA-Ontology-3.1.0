@@ -1,0 +1,96 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+@prefix era-op-types: <http://data.europa.eu/949/concepts/op-types/> .
+@prefix era-vehicle-types: <http://data.europa.eu/949/concepts/vehicle-types/> .
+
+@prefix era-gcf: <http://data.europa.eu/949/concepts/gauge-changeover-facilities/> .
+@prefix era-gcf-eratv: <http://data.europa.eu/949/concepts/gauge-changeover-facilities/eratv/> .
+
+
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+
+era-gcf:GaugeChangeoverFacilities a skos:ConceptScheme ; 
+dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Gauge Changeover Facilities"@en ;
+    skos:prefLabel "Gauge Changeover Facilities"@en ;
+    rdfs:comment "Concept scheme grouping gauge changeover facilities"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+########## Gauge changeover facilities ##########
+
+era-gcf-eratv:1-435mm_1-668mm a skos:Concept;
+  skos:inScheme era-gcf:GaugeChangeoverFacilities; skos:topConceptOf era-gcf:GaugeChangeoverFacilities; skos:note "Value retrieved from the ERATV database"; 
+  skos:prefLabel "1.435mm / 1.668mm" .
+
+era-gcf-eratv:1435_1668mm_bogie_axle_change a skos:Concept;
+  skos:inScheme era-gcf:GaugeChangeoverFacilities; skos:topConceptOf era-gcf:GaugeChangeoverFacilities; skos:note "Value retrieved from the ERATV database"; 
+  skos:prefLabel "1435/1668mm bogie/axle change" .
+
+era-gcf-eratv:Bogie_axle_change a skos:Concept;
+  skos:inScheme era-gcf:GaugeChangeoverFacilities; skos:topConceptOf era-gcf:GaugeChangeoverFacilities; skos:note "Value retrieved from the ERATV database"; 
+  skos:altLabel "Bogie / axle change";
+  skos:prefLabel "Bogie/axle change" .
+
+
+
+era-gcf-eratv:Exchange_of_the_wheelset a skos:Concept;
+  skos:inScheme era-gcf:GaugeChangeoverFacilities; skos:topConceptOf era-gcf:GaugeChangeoverFacilities; skos:note "Value retrieved from the ERATV database"; 
+  skos:altLabel "Exchange of the wheelsets";
+  skos:prefLabel "Exchange of the wheelset" .
+
+
+era-gcf-eratv:Manual_change_of_wheelsets a skos:Concept;
+  skos:inScheme era-gcf:GaugeChangeoverFacilities; skos:topConceptOf era-gcf:GaugeChangeoverFacilities; skos:note "Value retrieved from the ERATV database"; 
+  skos:altlabel "MANUAL ", "manual", "Cambio de ancho de forma manual";
+  skos:prefLabel "Manual change of wheelsets" .
+
+era-gcf-eratv:NA a skos:Concept;
+  skos:inScheme era-gcf:GaugeChangeoverFacilities; skos:topConceptOf era-gcf:GaugeChangeoverFacilities; skos:note "Value retrieved from the ERATV database"; 
+  skos:prefLabel "N/A" .
+
+era-gcf-eratv:SEMIAUTOMATICO a skos:Concept;
+  skos:inScheme era-gcf:GaugeChangeoverFacilities; skos:topConceptOf era-gcf:GaugeChangeoverFacilities; skos:note "Value retrieved from the ERATV database"; 
+  skos:prefLabel "SEMIAUTOMATICO" .
+
+era-gcf-eratv:TSI_WAG_7_1_2_c_The_unit_must_not_be_equipped_with_variable_gauge_wheelsets
+  a skos:Concept;
+  skos:inScheme era-gcf:GaugeChangeoverFacilities; skos:topConceptOf era-gcf:GaugeChangeoverFacilities; skos:note "Value retrieved from the ERATV database"; 
+  skos:prefLabel "TSI WAG, 7.1.2 (c) The unit must not be equipped with variable gauge wheelsets" .
+
+era-gcf-eratv:change_of_wheelsets_at_the_border_line a skos:Concept;
+  skos:inScheme era-gcf:GaugeChangeoverFacilities; skos:topConceptOf era-gcf:GaugeChangeoverFacilities; skos:note "Value retrieved from the ERATV database"; 
+  skos:prefLabel "change of wheelsets at the border line" .
+
+era-gcf-eratv:exchange_of_bogie_1-435mm_1-668mm_incl_CFCB a skos:Concept;
+  skos:inScheme era-gcf:GaugeChangeoverFacilities; skos:topConceptOf era-gcf:GaugeChangeoverFacilities; skos:note "Value retrieved from the ERATV database"; 
+  skos:prefLabel "exchange of bogie 1.435mm / 1.668mm (incl. CFCB)" .
+
+

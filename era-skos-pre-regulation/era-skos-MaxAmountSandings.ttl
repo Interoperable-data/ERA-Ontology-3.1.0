@@ -1,0 +1,61 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+@prefix era-mas: <http://data.europa.eu/949/concepts/max-amount-sandings/> .
+@prefix era-mas-rinf: <http://data.europa.eu/949/concepts/max-amount-sandings/rinf/> .
+
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+era-mas:MaxAmountSandings a skos:ConceptScheme ; 
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Maximum Amounts of Sanding Outputs"@en ;
+    skos:prefLabel "Maximum Amounts of Sanding Outputs"@en ;
+    dct:title "Concept scheme grouping maximum amount of sanding outputs"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+
+########## Maximum amount sanding outpus ##########
+
+era-mas-rinf:40 a skos:Concept;
+  skos:inScheme era-mas:MaxAmountSandings; skos:topConceptOf era-mas:MaxAmountSandings; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Not TSI compliant when speed higher than 140km/h" .
+
+era-mas-rinf:20 a skos:Concept;
+  skos:inScheme era-mas:MaxAmountSandings; skos:topConceptOf era-mas:MaxAmountSandings; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Not TSI compliant when speed lower than 140km/h" .
+
+era-mas-rinf:30 a skos:Concept;
+  skos:inScheme era-mas:MaxAmountSandings; skos:topConceptOf era-mas:MaxAmountSandings; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "TSI compliant when speed higher than 140km/h" .
+
+era-mas-rinf:10 a skos:Concept;
+  skos:inScheme era-mas:MaxAmountSandings; skos:topConceptOf era-mas:MaxAmountSandings; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "TSI compliant when speed lower than 140km/h" .
+

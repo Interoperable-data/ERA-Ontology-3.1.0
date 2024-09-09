@@ -1,0 +1,60 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+
+
+@prefix era-ebr-qualifier: <http://data.europa.eu/949/concepts/ebr-qualifier/> .
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+
+
+era-ebr-qualifier:EBReleaseQualifier a skos:ConceptScheme ; 
+    dct:issued "2024-04-18"^^xsd:date ;
+    dct:modified "2024-09-04"^^xsd:date ;
+    era:rinfIndex "1.1.1.3.2.16.2"; 
+    era:rinfIndex "1.2.1.1.1.16.2"; 
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Emergency Brake Release Command Qualifiers"@en ;
+    skos:prefLabel "Emergency Brake Release Command Qualifiers"@en ;
+    dct:title "Concept scheme grouping the Qualifiers for Emergency Brake Release Command"@en .
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+########## Emergency Brake Release Command - Qualifiers ##########
+
+era-ebr-qualifier:0 a skos:Concept;
+  skos:inScheme era-ebr-qualifier:EBReleaseQualifier;  skos:note "Value introduced in TWG RINF 2024"@en;
+  skos:topConceptOf  era-ebr-qualifier:EBReleaseQualifier ;
+  skos:prefLabel "Revoke emergency brake command at standstill"@en ;
+  skos:notation "0"^^xsd:string ;
+  skos:altLabel "0".
+
+era-ebr-qualifier:1 a skos:Concept;
+  skos:inScheme era-ebr-qualifier:EBReleaseQualifier;  skos:note "Value introduced in TWG RINF 2024"@en;
+  skos:topConceptOf  era-ebr-qualifier:EBReleaseQualifier ;
+  skos:prefLabel "Revoke emergency brake command when permitted speed supervision limit is no longer exceeded"@en ;
+  skos:notation "1"^^xsd:string ;
+  skos:altLabel "1".

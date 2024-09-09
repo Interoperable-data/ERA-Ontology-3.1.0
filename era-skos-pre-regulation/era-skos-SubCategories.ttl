@@ -1,0 +1,113 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+@prefix era-vehicle-types: <http://data.europa.eu/949/concepts/vehicle-types/> .
+@prefix era-vehicle-types-eratv: <http://data.europa.eu/949/concepts/vehicle-types/eratv/> .
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+era-vehicle-types:SubCategories a skos:ConceptScheme ;
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Vehicle Sub Categories"@en ;
+    skos:prefLabel "Vehicle Sub Categories"@en ;
+    dct:title "Concept scheme grouping vehicle sub categories"@en .
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+########## Vehicle subcategories ##########
+
+era-vehicle-types-eratv:locomotive a skos:Concept ;
+    skos:inScheme era-vehicle-types:SubCategories ; skos:topConceptOf  era-vehicle-types:SubCategories ;  skos:note "Value retrieved from the ERATV database";
+    skos:broader era-vehicle-types-eratv:tractionVehicles ;
+    skos:prefLabel "Locomotive"@en .
+
+era-vehicle-types-eratv:passengerTrainset a skos:Concept ;
+    skos:inScheme era-vehicle-types:SubCategories ; skos:topConceptOf  era-vehicle-types:SubCategories ;  skos:note "Value retrieved from the ERATV database";
+    skos:broader era-vehicle-types-eratv:tractionVehicles ;
+    skos:prefLabel "Self-propelled passenger trainset (incl. railbusses)"@en .
+
+era-vehicle-types-eratv:freightTrainset a skos:Concept ;
+    skos:inScheme era-vehicle-types:SubCategories ; skos:topConceptOf  era-vehicle-types:SubCategories ;  skos:note "Value retrieved from the ERATV database";
+    skos:broader era-vehicle-types-eratv:tractionVehicles ;
+    skos:prefLabel "Self-propelled freight trainset"@en .
+
+era-vehicle-types-eratv:shunter a skos:Concept ;
+    skos:inScheme era-vehicle-types:SubCategories ; skos:topConceptOf  era-vehicle-types:SubCategories ;  skos:note "Value retrieved from the ERATV database";
+    skos:broader era-vehicle-types-eratv:tractionVehicles ;
+    skos:prefLabel "Shunter"@en .
+
+era-vehicle-types-eratv:otherTractionVehicles a skos:Concept ;
+    skos:inScheme era-vehicle-types:SubCategories ; skos:topConceptOf  era-vehicle-types:SubCategories ;  skos:note "Value retrieved from the ERATV database";
+    skos:broader era-vehicle-types-eratv:tractionVehicles ;
+    skos:prefLabel "Other (tramways, light rail vehicles, etc)"@en .
+
+era-vehicle-types-eratv:passengerCoach a skos:Concept ;
+    skos:inScheme era-vehicle-types:SubCategories ; skos:topConceptOf  era-vehicle-types:SubCategories ;  skos:note "Value retrieved from the ERATV database";
+    skos:broader era-vehicle-types-eratv:hauledPassenger ;
+    skos:prefLabel "Passenger Coach (incl. sleeping cars, restaurant, etc.)"@en .
+
+era-vehicle-types-eratv:van a skos:Concept ;
+    skos:inScheme era-vehicle-types:SubCategories ; skos:topConceptOf  era-vehicle-types:SubCategories ;  skos:note "Value retrieved from the ERATV database";
+    skos:broader era-vehicle-types-eratv:hauledPassenger ;
+    skos:prefLabel "Van"@en .
+
+era-vehicle-types-eratv:carCarrier a skos:Concept ;
+    skos:inScheme era-vehicle-types:SubCategories ; skos:topConceptOf  era-vehicle-types:SubCategories ;  skos:note "Value retrieved from the ERATV database";
+    skos:broader era-vehicle-types-eratv:hauledPassenger ;
+    skos:prefLabel "Car Carrier"@en .
+
+era-vehicle-types-eratv:serviceVehicle a skos:Concept ;
+    skos:inScheme era-vehicle-types:SubCategories ; skos:topConceptOf  era-vehicle-types:SubCategories ;  skos:note "Value retrieved from the ERATV database";
+    skos:broader era-vehicle-types-eratv:hauledPassenger ;
+    skos:prefLabel "Vehicle for services (e.g. kitchen)"@en .
+
+era-vehicle-types-eratv:coachesRake a skos:Concept ;
+    skos:inScheme era-vehicle-types:SubCategories ; skos:topConceptOf  era-vehicle-types:SubCategories ;  skos:note "Value retrieved from the ERATV database";
+    skos:broader era-vehicle-types-eratv:hauledPassenger ;
+    skos:prefLabel "Fixed rake of coaches"@en .
+
+era-vehicle-types-eratv:otherHauledPassenger a skos:Concept ;
+    skos:inScheme era-vehicle-types:SubCategories ; skos:topConceptOf  era-vehicle-types:SubCategories ;  skos:note "Value retrieved from the ERATV database";
+    skos:broader era-vehicle-types-eratv:hauledPassenger ;
+    skos:prefLabel "Other hauled passenger vehicles"@en .
+
+era-vehicle-types-eratv:freightWagon a skos:Concept ;
+    skos:inScheme era-vehicle-types:SubCategories ; skos:topConceptOf  era-vehicle-types:SubCategories ;  skos:note "Value retrieved from the ERATV database";
+    skos:broader era-vehicle-types-eratv:freightWagons ;
+    skos:prefLabel "Freight wagon"@en .
+
+era-vehicle-types-eratv:freightWagonsRake a skos:Concept ;
+    skos:inScheme era-vehicle-types:SubCategories ; skos:topConceptOf  era-vehicle-types:SubCategories ;  skos:note "Value retrieved from the ERATV database";
+    skos:broader era-vehicle-types-eratv:freightWagons ;
+    skos:prefLabel "Fixed rake of freight wagons"@en .
+
+era-vehicle-types-eratv:selfPropelledSpecialVehicle a skos:Concept ;
+    skos:inScheme era-vehicle-types:SubCategories ; skos:topConceptOf  era-vehicle-types:SubCategories ;  skos:note "Value retrieved from the ERATV database";
+    skos:broader era-vehicle-types-eratv:specialVehicles ;
+    skos:prefLabel "Self-propelled special vehicle"@en .
+
+era-vehicle-types-eratv:hauledSpecialVehicle a skos:Concept ;
+    skos:inScheme era-vehicle-types:SubCategories ; skos:topConceptOf  era-vehicle-types:SubCategories ;  skos:note "Value retrieved from the ERATV database";
+    skos:broader era-vehicle-types-eratv:specialVehicles ;
+    skos:prefLabel "Hauled special vehicle"@en .

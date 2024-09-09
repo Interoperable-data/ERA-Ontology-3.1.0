@@ -1,0 +1,66 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+
+@prefix era-nv: <http://data.europa.eu/949/concepts/navigabilities/> .
+@prefix era-nv-rinf: <http://data.europa.eu/949/concepts/navigabilities/rinf/> .
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+
+
+era-nv:Navigabilities a skos:ConceptScheme ;
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Navigabilities"@en ;
+    skos:prefLabel "Navigabilities"@en ;
+    dct:title "Concept scheme grouping types of navigability"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+########## Navigabilities ##########
+
+era-nv-rinf:AB a skos:Concept;
+  skos:inScheme era-nv:Navigabilities; skos:topConceptOf era-nv:Navigabilities;
+  skos:prefLabel "AB"@en; skos:note "Value retrieved from the RINF database";
+  skos:definition "Navigation is only possible from element A to element B"@en.
+
+era-nv-rinf:BA a skos:Concept;
+  skos:inScheme era-nv:Navigabilities; skos:topConceptOf era-nv:Navigabilities;
+  skos:prefLabel "BA"@en;skos:note "Value retrieved from the RINF database";
+  skos:definition "Navigation is only possible from element B to element A"@en.
+
+era-nv-rinf:Both a skos:Concept;
+  skos:inScheme era-nv:Navigabilities; skos:topConceptOf era-nv:Navigabilities;
+  skos:prefLabel "Both"@en; skos:note "Value retrieved from the RINF database";
+  skos:definition "Navigation between elements A and B is possible in both directions"@en.
+
+era-nv-rinf:None a skos:Concept;
+  skos:inScheme era-nv:Navigabilities; skos:topConceptOf era-nv:Navigabilities;
+  skos:prefLabel "None"@en; skos:note "Value retrieved from the RINF database";
+  skos:definition "No navigation possible between elements A and B"@en.
+

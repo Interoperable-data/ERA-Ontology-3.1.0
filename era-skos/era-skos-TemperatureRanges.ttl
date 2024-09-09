@@ -1,0 +1,71 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+@prefix era-tr: <http://data.europa.eu/949/concepts/temperature-ranges/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+
+
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+
+era-tr:TemperatureRanges a skos:ConceptScheme ; 
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2023-01-20"^^xsd:date ;
+    dct:modified "2024-09-04"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    era:rinfIndex "1.1.1.1.2.6"; 
+    rdfs:label "Temperature ranges"@en ;
+    skos:prefLabel "Temperature ranges"@en ;
+    dct:title "Concept scheme grouping temperature ranges according to EN 50125-1 (1999) 4.3"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+########## Temperature ranges ##########
+
+era-tr:10 a skos:Concept;
+  skos:inScheme era-tr:TemperatureRanges; skos:topConceptOf era-tr:TemperatureRanges; 
+  skos:notation "T1"^^xsd:string ;
+  skos:prefLabel "T1"@en ;
+  skos:altLabel "T1 (-25 to +40)"@en .
+
+era-tr:20 a skos:Concept;
+  skos:inScheme era-tr:TemperatureRanges; skos:topConceptOf era-tr:TemperatureRanges; 
+  skos:notation "T2"^^xsd:string ;
+  skos:prefLabel "T2"@en ;
+  skos:altLabel "T2 (-40 to +35)"@en .
+
+era-tr:30 a skos:Concept;
+  skos:inScheme era-tr:TemperatureRanges; skos:topConceptOf era-tr:TemperatureRanges; 
+  skos:notation "T3"^^xsd:string ;
+  skos:prefLabel "T3"@en ;
+  skos:altLabel "T3 (-25 to +45)"@en .
+
+
+era-tr:40 a skos:Concept;
+  skos:inScheme era-tr:TemperatureRanges; skos:topConceptOf era-tr:TemperatureRanges; 
+  skos:notation "Tx"^^xsd:string ;
+  skos:prefLabel "Tx"@en ;
+  skos:altLabel "Tx (-40 to +50)"@en .

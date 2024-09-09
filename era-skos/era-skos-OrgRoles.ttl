@@ -1,0 +1,179 @@
+@prefix time: <http://www.w3.org/2006/time#>.
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix era-organisation-roles: <http://data.europa.eu/949/concepts/organisation-roles/> .
+
+## ORG roles concept scheme ## 
+
+era-organisation-roles:OrgRoles a skos:ConceptScheme ;
+	dct:issued "2024-07-31"^^xsd:date ;
+    dct:modified "2024-09-04"^^xsd:date ;
+   	cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Organisation roles used in different domains at ERA"@en ;
+    rdfs:label "Organisation roles"@en ;
+    skos:prefLabel "Organisation roles"@en ;
+    dct:title "Concept scheme grouping roles held by organisations"@en ;
+	skos:hasTopConcept era-organisation-roles:IM, era-organisation-roles:RU , era-organisation-roles:Owner,
+	era-organisation-roles:Keeper, era-organisation-roles:Applicant, era-organisation-roles:ECM, era-organisation-roles:Manufacturer,
+    era-organisation-roles:NSA ;	
+		.
+
+
+era-organisation-roles:IM a skos:Concept ;
+        skos:inScheme era-organisation-roles:OrgRoles ;
+		skos:prefLabel "Infrastructure Manager"@en;
+		skos:altLabel "IM"@en ; 
+        skos:notation "IM"^^xsd:string ;
+		skos:topConceptOf era-organisation-roles:OrgRoles ; 
+		skos:definition """ A body or firm responsible for the operation, maintenance and renewal of railway infrastructure on a network, as well as responsible for participating in its development as determined by the Member State within the framework of its general policy on development and financing of infrastructure"""@en ;
+		dct:source <http://data.europa.eu/eli/dir/2012/34/2019-01-01> ; 
+		.
+		
+
+era-organisation-roles:RU a skos:Concept ;
+		skos:prefLabel "Railway Undertaking"@en ;
+		skos:altLabel "RU"@en ;
+        skos:notation "RU"^^xsd:string ;
+		skos:inScheme era-organisation-roles:OrgRoles ;
+		skos:topConceptOf era-organisation-roles:OrgRoles ;
+		skos:definition """ 
+		 Any public or private undertaking licensed according to this Directive, the principal business of which is to provide services for the transport of goods and/or passengers by rail with a requirement that the undertaking ensure traction; this also includes undertakings which provide traction only
+		 """@en ;
+		dct:source <http://data.europa.eu/eli/dir/2012/34/2019-01-01> ;
+		.
+		
+era-organisation-roles:Owner a skos:Concept; 
+		skos:prefLabel "Railway Vehicle Owner"@en ; 
+		skos:inScheme era-organisation-roles:OrgRoles ;
+		skos:altLabel "Owner"@en;
+        skos:notation "Owner"^^xsd:string ;
+		skos:topConceptOf era-organisation-roles:OrgRoles ;
+		skos:definition "The natural or legal person being the owner of a vehicle exploited as a means of transport and is registered as such in a vehicle register referred to in Article 47"@en;
+        dct:references <http://data.europa.eu/eli/dir/2016/797/oj>, <http://data.europa.eu/eli/dir/2016/797/2020-05-28>;
+  		.
+
+era-organisation-roles:Keeper   a skos:Concept; 
+			skos:inScheme era-organisation-roles:OrgRoles ;
+			skos:prefLabel "Railway Vehicle Keeper"@en; 
+			skos:topConceptOf era-organisation-roles:OrgRoles ;
+			skos:definition "The natural or legal person that, being the owner of a vehicle or having the right to use it, exploits the vehicle as a means of transport and is registered as such in a vehicle register"@en ;
+			dct:references <http://data.europa.eu/eli/dir/2016/797/oj>,  <http://data.europa.eu/eli/dir/2016/797/2020-05-28>;
+            skos:notation "Keeper"^^xsd:string ;
+			skos:altLabel "Keeper"@en;
+			.
+
+era-organisation-roles:Applicant a skos:Concept; 
+			skos:inScheme era-organisation-roles:OrgRoles ;
+			skos:topConceptOf era-organisation-roles:OrgRoles ;
+			skos:prefLabel "Applicant"@en;
+            skos:notation "Applicant"^^xsd:string ;
+			skos:definition """ A natural or legal person requesting an authorisation, be it a railway undertaking, an infrastructure manager or any other person or legal entity, such as a manufacturer, an owner or a keeper """@en, 
+			   """ a natural or legal person requesting the Agency's decision for the approval of the technical solutions envisaged for the ERTMS track-side equipment projects """@en ;
+			
+			dct:references <http://data.europa.eu/eli/dir/2016/797/oj>,  <http://data.europa.eu/eli/dir/2016/797/2020-05-28> ;
+			.
+
+era-organisation-roles:ECM a skos:Concept;
+			  skos:inScheme era-organisation-roles:OrgRoles ; 
+			  skos:prefLabel "Entity in charge of maintenance"@en ; 
+			  skos:topConceptOf era-organisation-roles:OrgRoles ;
+			  skos:definition """An entity in charge of the maintenance of a vehicle,  and registered as such in a vehicle register referred to in Article 47 of Directive (EU) 2016/797"""@en ;
+              skos:scopeNote """ As defined in Article 3, point (20) of Directive (EU) 2016/798 and certified in accordance with Article 3 of Implementing Regulation (EU) 2019/779 """@en ; 
+			  skos:narrower era-organisation-roles:ECM-b , era-organisation-roles:ECM-c, era-organisation-roles:ECM-d ; 
+			  dct:references <http://data.europa.eu/eli/dir/2016/797/oj>, <http://data.europa.eu/eli/dir/2016/797/2020-05-28>;
+              skos:notation "ECM"^^xsd:string ;
+			  skos:altLabel "ECM"@en .
+
+era-organisation-roles:ECM-b  a skos:Concept ;
+		skos:prefLabel "ECM outsourcing the function provided for in Article 14(3), point (b) of Directive (EU) 2016/798 "@en ;
+		skos:scopeNote """ ECM outsourcing the function provided for in Article 14(3), point (b) of Directive (EU) 2016/798 in accordance with Article 9 of Implementing Regulation (EU) 2019/779 """@en ;
+        skos:notation "ECM-b"^^xsd:string ;
+		skos:broader era-organisation-roles:ECM ;  
+		skos:inScheme era-organisation-roles:OrgRoles ; 
+        .
+		
+era-organisation-roles:ECM-c  a skos:Concept ;
+		skos:prefLabel "ECM outsourcing the function defined in Article 14(3), point (c) of Directive (EU) 2016/798 "@en ;
+		skos:scopeNote """ ECM outsourcing the function defined in Article 14(3), point (c) of Directive (EU) 2016/798 in accordance with Article 9 of Implementing Regulation (EU) 2019/779 """@en ;
+        skos:notation "ECM-c"^^xsd:string ;
+		skos:broader era-organisation-roles:ECM ;  
+		skos:inScheme era-organisation-roles:OrgRoles ; 
+        .
+	
+era-organisation-roles:ECM-d  a skos:Concept ;
+		skos:prefLabel "ECM outsourcing the function defined in Article 14(3), point (d) of Directive (EU) 2016/798  "@en ;
+		skos:scopeNote """ ECM outsourcing the function defined in Article 14(3), point (d) of Directive (EU) 2016/798 in accordance with Article 9 of Implementing Regulation (EU) 2019/779 """@en ;
+        skos:notation "ECM-d"^^xsd:string ;
+		skos:broader era-organisation-roles:ECM ;  
+		skos:inScheme era-organisation-roles:OrgRoles ; 
+        .
+
+
+era-organisation-roles:MWS a skos:Concept;
+			  skos:inScheme era-organisation-roles:OrgRoles ; 
+			  skos:prefLabel "Maintenance workshop"@en ; 
+			  skos:scopeNote """ MWS performing the functions defined in Article 14(3), points (b), (c) and (d) of Directive (EU) 2016/798 in accordance with Article 9 of Implementing Regulation (EU) 2019/779 """@en ; 
+              skos:notation "MWS"^^xsd:string ;
+			  skos:narrower era-organisation-roles:MWS-b , era-organisation-roles:MSW-c, era-organisation-roles:MSW-d ; 
+			  skos:topConceptOf era-organisation-roles:OrgRoles;
+			  skos:definition """An entity in charge of the maintenance of a vehicle,  and registered as such in a vehicle register referred to in Article 47 of Directive (EU) 2016/797"""@en ;
+			  dct:references <http://data.europa.eu/eli/dir/2016/798/oj>, <http://data.europa.eu/eli/reg_impl/2019/779/oj>; 
+			  skos:altLabel "MWS"@en .
+
+
+era-organisation-roles:MWS-b a skos:Concept;
+			  skos:inScheme era-organisation-roles:OrgRoles;
+			  skos:prefLabel "MWS performing the function defined in Article 14(3), points (b) of Directive (EU) 2016/798"@en ; 
+              skos:notation "MWS-b"^^xsd:string ;
+			  skos:broader era-organisation-roles:MWS ;
+			  skos:scopeNote """ MWS performing the function defined in Article 14(3), points (b) of Directive (EU) 2016/798, in accordance with Article 9 of Implementing Regulation (EU) 2019/779 """@en ;
+			  .
+
+era-organisation-roles:MWS-c a skos:Concept;
+			  skos:inScheme era-organisation-roles:OrgRoles;
+			  skos:prefLabel "MWS performing the function defined in Article 14(3), points (c) of Directive (EU) 2016/798"@en ; 
+              skos:notation "MWS-c"^^xsd:string ;
+			  skos:broader era-organisation-roles:MWS ;
+			  skos:scopeNote """ MWS performing the function defined in Article 14(3), points (c) of Directive (EU) 2016/798, in accordance with Article 9 of Implementing Regulation (EU) 2019/779 """@en ;
+			  .
+
+
+era-organisation-roles:MWS-d a skos:Concept;
+			  skos:inScheme era-organisation-roles:OrgRoles;
+			  skos:prefLabel "MWS performing the function defined in Article 14(3), points (d) of Directive (EU) 2016/798"@en ; 
+              skos:notation "MWS-d"^^xsd:string ;
+			  skos:broader era-organisation-roles:MWS ;
+			  skos:scopeNote """ MWS performing the function defined in Article 14(3), points (d) of Directive (EU) 2016/798, in accordance with Article 9 of Implementing Regulation (EU) 2019/779 """@en .
+
+era-organisation-roles:Manufacturer   a skos:Concept ; 
+			skos:inScheme era-organisation-roles:OrgRoles ;
+            skos:notation "Manufacturer"^^xsd:string ;
+			skos:prefLabel "Manufacturer"@en; 
+			skos:topConceptOf era-organisation-roles:OrgRoles ;
+			skos:definition """
+				Any natural or legal person who manufactures a product in the form of interoperability constituents, subsystems or vehicles, or has it designed or manufactured, and markets it under his name or trademark
+			"""@en ;
+			
+			dct:references <http://data.europa.eu/eli/dir/2016/797/2020-05-28> ; 
+		    .
+
+era-organisation-roles:NSA   a skos:Concept;
+		skos:inScheme era-organisation-roles:OrgRoles ;
+		skos:topConceptOf era-organisation-roles:OrgRoles ;
+        skos:definition """ 
+		 		(a) the national body entrusted with the tasks regarding railway safety in accordance with this Directive;
+				(b) any body entrusted by several Member States with the tasks referred to in point (a) in order to ensure a unified safety regime;
+				(c) any body entrusted by a Member State and a third country with the tasks referred to in point (a) in order to ensure a unified safety regime, provided that the Union has concluded an agreement to this effect with the third country concerned or that that Member State has concluded such 
+			agreement in accordance with an empowerment granted by the Union to that effect;
+		         """@en ;
+		skos:prefLabel "National safety authority"@en ;
+        skos:notation "NSA"^^xsd:string ;
+		skos:altLabel "NSA"@en ;
+        skos:scopeNote " National safety authority, as defined in Article 3, point (7) of Directive (EU) 2016/798"@en ;
+		dct:source <http://data.europa.eu/eli/dir/2016/798/2020-10-23> ;
+		.
+		

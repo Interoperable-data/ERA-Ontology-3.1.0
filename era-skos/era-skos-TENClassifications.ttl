@@ -1,0 +1,75 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+
+@prefix era-tenclass: <http://data.europa.eu/949/concepts/ten-classifications/> .
+
+
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+
+  
+era-tenclass:TENClassifications a skos:ConceptScheme ; dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    dct:modified "2024-09-04"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    era:rinfIndex "1.1.1.1.2.1"; 
+    era:rinfIndex "1.2.1.0.2.1"; 
+    era:rinfIndex "1.2.1.0.6.3"; 
+    era:rinfIndex "1.2.2.0.0.3"; 
+    rdfs:isDefinedBy era-skos: ;
+    rdfs:label "TEN Classifications"@en ;
+    skos:prefLabel "TEN Classifications"@en ;
+    dct:title "Concept scheme grouping TEN (trans-European Network) classifications"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+########## TEN Classifications ##########
+
+era-tenclass:40 a skos:Concept;
+  skos:inScheme era-tenclass:TENClassifications; skos:topConceptOf era-tenclass:TENClassifications;  skos:notation "40"^^xsd:string ;
+  skos:prefLabel "Off TEN"@en .
+
+era-tenclass:10 a skos:Concept;
+  skos:inScheme era-tenclass:TENClassifications; skos:topConceptOf era-tenclass:TENClassifications;  skos:notation "10"^^xsd:string ;
+  skos:prefLabel "Part of the TEN-T Comprehensive Network"@en .
+
+era-tenclass:20 a skos:Concept;
+  skos:inScheme era-tenclass:TENClassifications; skos:topConceptOf era-tenclass:TENClassifications;  skos:notation "20"^^xsd:string ;
+  skos:prefLabel "Part of the TEN-T Core Freight Network"@en .
+
+era-tenclass:30 a skos:Concept;
+  skos:inScheme era-tenclass:TENClassifications; skos:topConceptOf era-tenclass:TENClassifications;  skos:notation "30"^^xsd:string ;
+  skos:prefLabel "Part of the TEN-T Core Passenger Network"@en .
+
+era-tenclass:50 a skos:Concept;
+  skos:inScheme era-tenclass:TENClassifications; skos:topConceptOf era-tenclass:TENClassifications;  skos:notation "50"^^xsd:string ;
+  skos:prefLabel "Part of the TEN-T Extended Core Freight Network"@en .
+
+era-tenclass:60 a skos:Concept;
+  skos:inScheme era-tenclass:TENClassifications; skos:topConceptOf era-tenclass:TENClassifications;  skos:notation "60"^^xsd:string ;
+  skos:prefLabel "Part of the TEN-T Extended Core Passenger Network"@en .

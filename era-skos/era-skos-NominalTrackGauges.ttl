@@ -1,0 +1,106 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+@prefix era-ntg: <http://data.europa.eu/949/concepts/nominal-track-gauges/> .
+@prefix era-ntg-rinf: <http://data.europa.eu/949/concepts/nominal-track-gauges/rinf/> .
+@prefix era-ntg-eratv: <http://data.europa.eu/949/concepts/nominal-track-gauges/eratv/> .
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+
+era-ntg:NominalTrackGauges a skos:ConceptScheme ; 
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Nominal Track Gauges"@en ;
+    skos:prefLabel "Nominal Track Gauges"@en ;
+    dct:title "Concept scheme grouping nominal track gauges"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+########## Nominal track gauges ##########
+# RINF values #
+era-ntg-rinf:20 a skos:Concept;
+  skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "1000" .
+
+era-ntg-rinf:30 a skos:Concept;
+  skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "1435" .
+
+era-ntg-rinf:40 a skos:Concept;
+  skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "1520" .
+
+era-ntg-rinf:50 a skos:Concept;
+  skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "1524" .
+
+era-ntg-rinf:60 a skos:Concept;
+  skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "1600" .
+
+era-ntg-rinf:70 a skos:Concept;
+  skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "1668" .
+
+era-ntg-rinf:10 a skos:Concept;
+  skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "750" .
+
+era-ntg-rinf:80 a skos:Concept;
+  skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "other" .
+
+# ERATV values #
+era-ntg-eratv:1000mm a skos:Concept;
+  skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; skos:note "Value retrieved from the ERATV database";
+  skos:exactMatch era-ntg-rinf:20;
+  skos:prefLabel "1000mm" .
+
+era-ntg-eratv:1435mm a skos:Concept;
+  skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; skos:note "Value retrieved from the ERATV database";
+  skos:exactMatch era-ntg-rinf:30;
+  skos:prefLabel "1435mm" .
+
+era-ntg-eratv:1520mm a skos:Concept;
+  skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; skos:note "Value retrieved from the ERATV database";
+  skos:exactMatch era-ntg-rinf:40;
+  skos:prefLabel "1520mm" .
+
+era-ntg-eratv:1524mm a skos:Concept;
+  skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; skos:note "Value retrieved from the ERATV database";
+  skos:exactMatch era-ntg-rinf:50;
+  skos:prefLabel "1524mm" .
+
+era-ntg-eratv:1600mm a skos:Concept;
+  skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; skos:note "Value retrieved from the ERATV database";
+  skos:exactMatch era-ntg-rinf:60;
+  skos:prefLabel "1600mm" .
+
+era-ntg-eratv:1668mm a skos:Concept;
+  skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; skos:note "Value retrieved from the ERATV database";
+  skos:exactMatch era-ntg-rinf:70;
+  skos:prefLabel "1668mm" .

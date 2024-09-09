@@ -1,0 +1,59 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+
+
+@prefix era-ato-commsys: <http://data.europa.eu/949/concepts/ato-commsys/> .
+
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+
+
+era-ato-commsys:ATOCommSystem a skos:ConceptScheme ; 
+    dct:issued "2024-04-18"^^xsd:date ;
+    dct:modified "2024-09-04"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    era:rinfIndex "1.1.1.3.13.3"; 
+    era:rinfIndex "1.2.1.1.10.3"; 
+    rdfs:label "ATO Communication System"@en ;
+    skos:prefLabel "ATO Communication System"@en ;
+    dct:title "Concept scheme grouping ATO Communication System"@en .
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+########## ATO Communication System ##########
+
+era-ato-commsys:public a skos:Concept;
+  skos:inScheme era-ato-commsys:ATOCommSystem;  skos:topConceptOf era-ato-commsys:ATOCommSystem;
+  skos:note "Value introduced in TWG RINF 2024"@en;
+  skos:notation "Public Network"^^xsd:string;
+  skos:prefLabel "public"@en .
+
+era-ato-commsys:gsmr a skos:Concept; skos:topConceptOf era-ato-commsys:ATOCommSystem;
+  skos:inScheme era-ato-commsys:ATOCommSystem;  skos:note "Value introduced in TWG RINF 2024"@en;
+  skos:notation "GSM-R"^^xsd:string;
+  skos:prefLabel "gsmr"@en .
+

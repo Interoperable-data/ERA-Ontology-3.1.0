@@ -1,0 +1,63 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+@prefix era-bpt: <http://data.europa.eu/949/concepts/brake-parking-type/> .
+@prefix era-bpt-eratv: <http://data.europa.eu/949/concepts/brake-parking-type/eratv/> .
+
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+
+
+era-bpt:BrakeParkingType a skos:ConceptScheme ; 
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Brake Parking Type"@en ;
+    skos:prefLabel "Brake Parking Type"@en ;
+    dct:title "Concept scheme grouping brake parking types"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+
+########## Brake parking types ##########
+
+era-bpt-eratv:Automatic a skos:Concept;
+  skos:inScheme era-bpt:BrakeParkingType;  skos:topConceptOf era-bpt:BrakeParkingType; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Automatic" .
+
+era-bpt-eratv:Manual_operated_from_the_ground a skos:Concept;
+  skos:inScheme era-bpt:BrakeParkingType;  skos:topConceptOf era-bpt:BrakeParkingType; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Manual operated from the ground" .
+
+era-bpt-eratv:Manual_operated_from_the_vehicle a skos:Concept;
+  skos:inScheme era-bpt:BrakeParkingType;  skos:topConceptOf era-bpt:BrakeParkingType; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Manual operated from the vehicle" .
+
+era-bpt-eratv:None a skos:Concept;
+  skos:inScheme era-bpt:BrakeParkingType;  skos:topConceptOf era-bpt:BrakeParkingType; skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "None" .
+
