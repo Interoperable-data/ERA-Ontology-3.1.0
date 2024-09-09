@@ -1,0 +1,62 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+@prefix era-va-authcase: <http://data.europa.eu/949/concepts/va-authcases/> .
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+era-va-authcase:VehicleAuthorisationCase a skos:ConceptScheme ;
+    dct:issued "2024-05-22"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways (see https://www.era.europa.eu/domains/applicants/applications-vehicle-type-authorisations_en)."@en ;
+    rdfs:label "Identification of the relevant authorisation cases (Art.14)"@en ;
+    dct:title "Concept scheme grouping the vehicle authorisation cases"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+########## Vehicle authorisation cases ##########
+
+era-va-authcase:FA a skos:Concept ;
+    skos:topConceptOf era-va-authcase:VehicleAuthorisationCase ;
+    skos:inScheme era-va-authcase:VehicleAuthorisationCase ; skos:definition "The vehicle type authorisation and/or the vehicle authorisation for placing on the market issued by the authorising entity for a new vehicle type, including its variants and/or versions if any, and, where applicable, the first vehicle of a type, pursuant to Article 21(1) of Directive (EU) 2016/797.";
+    skos:prefLabel "Commission Implementing Regulation (EU) 2018/545 - First Authorisation"@en .
+
+era-va-authcase:RENEW a skos:Concept ;
+    skos:topConceptOf era-va-authcase:VehicleAuthorisationCase ;
+    skos:inScheme era-va-authcase:VehicleAuthorisationCase ; skos:definition "The renewal of a vehicle type authorisation pursuant to Article 24(3) of Directive (EU) 2016/797 which does not require a change in design of the vehicle type.";
+    skos:prefLabel "Commission Implementing Regulation (EU) 2018/545 - Renewed vehicle type authorisation"@en .
+
+era-va-authcase:EXT a skos:Concept ;
+    skos:topConceptOf era-va-authcase:VehicleAuthorisationCase ;
+    skos:inScheme era-va-authcase:VehicleAuthorisationCase ; skos:definition "The vehicle type authorisation and/or the vehicle authorisation for placing on the market issued by the relevant authorising entity for an already authorised vehicle type and/or vehicle in order to extend the area of use without a change of the design, pursuant to Article 21(13) of Directive (EU) 2016/797.";
+    skos:prefLabel "Commission Implementing Regulation (EU) 2018/545 - Extended area of use"@en .
+
+era-va-authcase:NEW a skos:Concept ;
+    skos:topConceptOf era-va-authcase:VehicleAuthorisationCase ;
+    skos:inScheme era-va-authcase:VehicleAuthorisationCase ; skos:definition "The vehicle type authorisation and/or vehicle authorisation for placing on the market issued by the authorising entity after a change of an already authorised vehicle and/or vehicle type, pursuant to Articles 21(12) or 24(3) of Directive (EU) 2016/797.";
+    skos:prefLabel "Commission Implementing Regulation (EU) 2018/545 - New Authorisation"@en .
+
+era-va-authcase:C2T a skos:Concept ;
+    skos:topConceptOf era-va-authcase:VehicleAuthorisationCase ;
+    skos:inScheme era-va-authcase:VehicleAuthorisationCase ; skos:definition "The vehicle authorisation for placing on the market for a vehicle or a series of vehicles that conform to an already authorised and valid vehicle type on the basis of a declaration of conformity to that type, pursuant to Article 25(1) of Directive (EU) 2016/797. Where applicable, there shall be a clear identification of the vehicle type version and/or the vehicle type variant to which the vehicle or series of vehicles is conform.";
+    skos:prefLabel "Commission Implementing Regulation (EU) 2018/545 - Authorisation in conformity to type"@en .
+

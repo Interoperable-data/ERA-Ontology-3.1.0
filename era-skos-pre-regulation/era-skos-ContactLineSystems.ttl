@@ -1,0 +1,62 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+@prefix era-op-types: <http://data.europa.eu/949/concepts/op-types/> .
+
+@prefix era-cls: <http://data.europa.eu/949/concepts/contact-line-systems/> .
+@prefix era-cls-rinf: <http://data.europa.eu/949/concepts/contact-line-systems/rinf/> .
+
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+
+era-cls:ContactLineSystems a skos:ConceptScheme ; 
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Contact Line Systems"@en ;
+    skos:prefLabel "Contact Line Systems"@en ;
+    dct:title "Concept scheme grouping contact line systems"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+########## Contact line systems ##########
+
+era-cls-rinf:40 a skos:Concept;
+  skos:inScheme era-cls:ContactLineSystems;  skos:topConceptOf era-cls:ContactLineSystems; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Not electrified" .
+
+era-cls-rinf:10 a skos:Concept;
+  skos:inScheme era-cls:ContactLineSystems;  skos:topConceptOf era-cls:ContactLineSystems; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Overhead contact line (OCL)" .
+
+era-cls-rinf:20 a skos:Concept;
+  skos:inScheme era-cls:ContactLineSystems;  skos:topConceptOf era-cls:ContactLineSystems; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Third Rail" .
+
+# Added, concept in lookup table
+era-cls-rinf:30 a skos:Concept;
+  skos:inScheme era-cls:ContactLineSystems;  skos:topConceptOf era-cls:ContactLineSystems; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Fourth Rail" .

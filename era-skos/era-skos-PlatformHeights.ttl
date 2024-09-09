@@ -1,0 +1,440 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+@prefix era-ph: <http://data.europa.eu/949/concepts/platform-heights/> .
+@prefix era-ph-rinf: <http://data.europa.eu/949/concepts/platform-heights/rinf/> .
+@prefix era-ph-eratv: <http://data.europa.eu/949/concepts/platform-heights/eratv/> .
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+era-ph:PlatformHeights a skos:ConceptScheme ; 
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date, "2024-09-07"^^xsd:date;
+    era:rinfIndex "1.2.1.0.6.5"; 
+	era:eratvIndex "4.12.3.1 ";  
+	era:unitOfMeasure <http://qudt.org/vocab/unit/MilliM> ; 
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Platform Heights"@en ;
+    skos:prefLabel "Platform Heights"@en ;
+    skos:changeNote """
+            Revision 
+            - harmonized values in RINF and ERATV
+            - removed other, platform height == 0
+            - added annotation skos:notation ; language tag @en
+            - removed values not really part of platform height: locomotive, N/D, "not relevant for lokomotives", "Spe", "Freight locomotive",
+        """ ; 
+    dct:title "Concept scheme grouping predefined platform heights"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+########## Platform heights ##########
+
+# values RINF #
+
+
+era-ph-rinf:160 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights; 
+  skos:notation "1100"^^xsd:string;
+  skos:prefLabel "1100"@en .
+
+era-ph-rinf:60 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  
+  era-ph:PlatformHeights;  
+  skos:prefLabel "200"@en ;
+  skos:altLabel "200 mm"@en ;
+  skos:notation "200"^^xsd:string .
+
+era-ph-rinf:10 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "250"@en ;
+  skos:altLabel "250 mm"@en, "250mm"@en;
+  skos:notation "250"^^xsd:string .
+
+era-ph-rinf:20 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "280"@en ;
+  skos:altLabel "280 mm"@en, "280mm"@en ;
+  skos:notation "280"^^xsd:string .
+  
+
+era-ph-rinf:70 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "580"@en;
+  skos:notation "580"^^xsd:string .
+
+
+era-ph-rinf:50 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "300-380"@en;
+  skos:altLabel "380 mm (with dual movable step)"@en ;
+  skos:notation "300-380"^^xsd:string .
+
+era-ph-rinf:40 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "760"@en ;
+  skos:altLabel "760 mm"@en ;
+  skos:notation "760"^^xsd:string .
+
+era-ph-rinf:30 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "550"@en;
+  skos:notation "550"^^xsd:string .
+
+era-ph-rinf:150 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "960"@en ;
+  skos:altLabel "960 mm"@en ;
+  skos:notation "960"^^xsd:string .
+
+era-ph-rinf:140 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "920"@en ;
+  skos:altLabel "920 mm"@en ;
+  skos:notation "920"^^xsd:string .
+
+era-ph-rinf:130 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "915"@en ;
+  skos:aaltLabel "915mm (UK specific case)"@en ;
+  skos:notation "915"^^xsd:string .
+
+era-ph-rinf:120 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "900"@en;
+  skos:notation "900"^^xsd:string .
+
+era-ph-rinf:110 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "840"@en;
+  skos:altLabel "840 mm"@en;
+  skos:notation "840"^^xsd:string .
+
+era-ph-rinf:100 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "730"@en ;
+  skos:notation "730"^^xsd:string .
+
+era-ph-rinf:90 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "685"@en ;
+  skos:notation "685"^^xsd:string .
+
+era-ph-rinf:80 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "680"@en ;
+  skos:altLabel "680 mm"@en ;
+  skos:notation "680"^^xsd:string .
+
+
+# values from ERATV register #
+# removed platform height == 0 
+
+era-ph-eratv:270 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights; 
+  skos:prefLabel "270 mm"@en;
+  skos:notation "270"^^xsd:string. 
+
+  era-ph-eratv:380 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:altLabel "380 mm"@en ;
+  skos:prefLabel "380"@en ;
+  skos:notation "380"^^xsd:string.
+
+
+era-ph-eratv:1-47m a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights; 
+  skos:notation "1470"^^xsd:string ;
+  skos:prefLabel "1,47m"@en ;
+  skos:altLabel "1470 mm"@en .
+
+
+era-ph-eratv:1190_mm a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "1190 mm"@en ;
+  skos:notation "1190"^^xsd:string .
+
+
+era-ph-eratv:200-550 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "200-550"@en ;
+  skos:altLabel "200-550 mm"@en ; 
+  skos:notation "200-500"^^xsd:string .
+
+
+era-ph-eratv:500 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights; 
+  skos:notation "500"^^xsd:string ;
+  skos:prefLabel "500 mm"@en .
+
+era-ph-eratv:380_550 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "380-550"@en;
+  skos:notation "380-550"^^xsd:string .
+
+
+era-ph-eratv:250-350 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:altLabel "250 - 350 mm"@en ;
+  skos:prefLabel "250 - 350"@en ;
+  skos:notation "250-350"^^xsd:string  .
+
+era-ph-eratv:250-550_mm a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:altLabel "from 250 mm to 550 mm"@en ;
+  skos:prefLabel "250 - 550 mm"@en ;
+  skos:notation "250-550"^^xsd:string .
+
+era-ph-eratv:300_to_1000_mm a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "300 to 1000 mm"@en ;
+  skos:notation "300-1000"^^xsd:string .
+
+era-ph-eratv:from_300_to_1000_mm a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:altLabel "from 300 to 1 000 mm";
+  skos:prefLabel "from 300 to 1000 mm"@en ;
+  skos:notation "300-1000"^^xsd:string .
+
+era-ph-eratv:from_300_to_900_mm a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "from 300 to 900 mm"@en ;
+  skos:notation "300-900"^^xsd:string .
+
+
+era-ph-eratv:250_300 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "250 - 300"@en;
+  skos:notation "250-300"^^xsd:string .
+
+era-ph-eratv:265 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:altLabel "265 mm"@en ;
+  skos:prefLabel "265"@en ;
+  skos:notation "265"^^xsd:string .
+
+
+era-ph-eratv:360 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "360 mm"@en;
+  skos:notation "360"^^xsd:string .
+
+
+era-ph-eratv:290 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "290 mm"@en ;
+  skos:notation "290"^^xsd:string .
+
+era-ph-eratv:300 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:altLabel "300 mm"@en, "300mm"@en, "300 mm (with dual moveable step)"@en ;
+  skos:prefLabel "300"@en ;
+  skos:notation "300"^^xsd:string .
+
+era-ph-eratv:300-1000 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "300-1000 mm"@en ;
+  skos:notation "300-1000"^^xsd:string .
+
+
+era-ph-eratv:300-900mm a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "300-900mm"@en ;
+  skos:notation "300-900"^^xsd:string .
+
+
+era-ph-eratv:Over_than_900mm_until_1150mm a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "Over than 900mm until 1150mm"@en ;
+  skos:notation "900-1150"^^xsd:string .
+
+era-ph-eratv:1_060 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "1 060 mm"@en ;
+  skos:notation "1060"^^xsd:string .
+
+
+era-ph-eratv:790 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "790"@en ;
+  skos:notation "790"^^xsd:string .
+
+era-ph-eratv:800 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "800 mm"@en ;
+  skos:notation "800"^^xsd:string .
+
+
+era-ph-eratv:860 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "860 mm"@en ;
+  skos:altLabel "motrice : 860 mm"@en ;
+  skos:notation "860"^^xsd:string .
+
+
+era-ph-eratv:220 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights; 
+  skos:prefLabel "220 mm"@en ;
+  skos:notation "220"^^xsd:string .
+
+era-ph-eratv:320 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "320 mm"@en ;
+  skos:notation "320"^^xsd:string  .
+
+era-ph-eratv:350_550 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "350-550"@en ;
+  skos:notation "350-550"^^xsd:string .
+
+era-ph-eratv:350_mm a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:altLabel "350mm"@en ;
+  skos:prefLabel "350 mm"@en ;
+  skos:notation "350"^^xsd:string .
+
+era-ph-eratv:350_mm_to_760_mm a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "350 mm to 760 mm"@en ;
+  skos:notation "350-760"^^xsd:string .
+
+era-ph-eratv:915_to_1100mm a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights; 
+  skos:prefLabel "915-1100"@en;
+  skos:altLabel "915 to 1100mm standard UK platform height as per GE/RT8029 Appendix C"@en ;
+  skos:notation "915-1100"^^xsd:string .
+
+
+era-ph-eratv:385 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "385"@en ;
+  skos:notation "385"^^xsd:string .
+
+era-ph-eratv:385-750 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:altLabel "385 - 750"@en ;
+  skos:prefLabel "385-750"@en ;
+  skos:notation "385-750"^^xsd:string .
+
+
+era-ph-eratv:385-760 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "385 - 760"@en ;
+  skos:notation "385-760"^^xsd:string .
+
+era-ph-eratv:600 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "600"@en ;
+  skos:notation "600"^^xsd:string .
+
+era-ph-eratv:650 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "650 mm"@en ;
+  skos:notation "650"^^xsd:string .
+
+era-ph-eratv:700 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "700"@en ;
+  skos:notation "700"^^xsd:string  .
+
+era-ph-eratv:750 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "750"@en ;
+  skos:notation "750"^^xsd:string .
+
+era-ph-eratv:830 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "830 mm"@en ;
+  skos:notation "830"^^xsd:string .
+
+era-ph-eratv:1080 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "1080 mm"@en ;
+  skos:notation "1080"^^xsd:string . 
+
+
+era-ph-eratv:540_760 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "540 mm to 760 mm"@en ;
+  skos:notation "540-760"^^xsd:string .
+
+
+era-ph-eratv:70_550 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "70-550 mm (specific case Germany)"@en ;
+  skos:notation "70-550"^^xsd:string .
+
+
+era-ph-eratv:760_840 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:altLabel "760 tot 840"@en, "760 tot 840 mm"@en ;
+  skos:altLabel "Platform height 760 tot 840 +BS mm "@en ;
+  skos:prefLabel "760 mm - 840 mm "@en ;
+  skos:notation "760-840"^^xsd:string .
+
+era-ph-eratv:530 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "530 mm"@en ;
+  skos:notation "530"^^xsd:string .
+
+
+era-ph-eratv:915_1100 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "915 mm to 1100 mm"@en ;
+  skos:altLabel "915mm to 1100mm"@en ; 
+  skos:notation "915-1100"^^xsd:string .
+
+
+era-ph-eratv:1030 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:prefLabel "1030 mm"@en ;
+  skos:notaiton "1030"^^xsd:string .
+
+era-ph-eratv:550_1150 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:altLabel "from 550 to 1150 mm (on RFN part)"@en ;
+  skos:prefLabel "550-1150"@en ; 
+  skos:notation "550-1150"^^xsd:string .
+
+
+era-ph-eratv:1070_1150 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:altLabel "From 1070 to 1150 mm (RER/RATP) "@en ;
+  skos:prefLabel "1070-1150"@en ; 
+  skos:notation "1070-1150"^^xsd:string .
+
+
+
+era-ph-eratv:550_760 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:altLabel "from 550 to 760 mm"@en ;
+  skos:prefLabel "550 - 760"@en ;
+  skos:notation "550-760"^^xsd:string .
+
+#
+
+era-ph-eratv:585 a skos:Concept;
+  skos:inScheme era-ph:PlatformHeights;  skos:topConceptOf  era-ph:PlatformHeights;  
+  skos:altLabel "remorque : 585 mm"@en ;
+  skos:prefLabel "585"@en ;
+  skos:notation "585"^^xsd:string .
+

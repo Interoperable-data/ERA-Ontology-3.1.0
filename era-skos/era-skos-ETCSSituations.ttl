@@ -1,0 +1,84 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+@prefix era-etcssituation: <http://data.europa.eu/949/concepts/etcs-situation/> .
+
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+
+era-etcssituation:ETCSSituations a skos:ConceptScheme ; 
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    dct:modified "2024-04-18"^^xsd:date ;
+    dct:modified "2024-09-04"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    era:rinfIndex "1.1.1.3.10.1"; 
+    era:rinfIndex "1.2.1.1.9.1"; 
+    rdfs:label "ETCS Level for Degraded Situations"@en ;
+    skos:prefLabel "ETCS Level for Degraded Situations"@en ;
+    dct:title "Concept scheme grouping ETCS levels for degraded situations"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+
+########## ETCS Level for Degraded Situations ##########
+
+era-etcssituation:11 a skos:Concept;
+  skos:topConceptOf era-etcssituation:ETCSSituations ; skos:notation "0"^^xsd:string ;
+  skos:inScheme era-etcssituation:ETCSSituations; 
+  skos:prefLabel "0" .
+
+era-etcssituation:20 a skos:Concept;
+  skos:topConceptOf era-etcssituation:ETCSSituations ; skos:notation "1"^^xsd:string ;
+  skos:inScheme era-etcssituation:ETCSSituations; 
+  skos:prefLabel "1" .
+
+era-etcssituation:30 a skos:Concept;
+  skos:topConceptOf era-etcssituation:ETCSSituations ; skos:notation "2"^^xsd:string ;
+  skos:inScheme era-etcssituation:ETCSSituations; 
+  skos:prefLabel "2" ;
+  owl:deprecated "true"^^xsd:boolean ;
+  rdfs:comment "Value removed by TWG RINF 2024" .
+
+era-etcssituation:40 a skos:Concept;
+  skos:topConceptOf era-etcssituation:ETCSSituations ; skos:notation "3"^^xsd:string ;
+  skos:inScheme era-etcssituation:ETCSSituations; 
+  skos:prefLabel "3" ;
+  owl:deprecated "true"^^xsd:boolean ;
+  rdfs:comment "Value removed by TWG RINF 2024" .
+
+era-etcssituation:10 a skos:Concept;
+  skos:topConceptOf era-etcssituation:ETCSSituations ; skos:notation "none"^^xsd:string ;
+  skos:inScheme era-etcssituation:ETCSSituations; 
+  skos:prefLabel "none" .
+
+# added according to lookup table ##
+era-etcssituation:50 a skos:Concept;
+  skos:topConceptOf era-etcssituation:ETCSSituations ; skos:notation "NTC"^^xsd:string ;
+  skos:inScheme era-etcssituation:ETCSSituations; 
+  skos:prefLabel "NTC" .
+

@@ -1,0 +1,125 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+
+
+@prefix era-gsmroptfunc: <http://data.europa.eu/949/concepts/gsmr-optional-functions/> .
+@prefix era-gsmroptfunc-rinf: <http://data.europa.eu/949/concepts/gsmr-optional-functions/rinf/> .
+
+
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+
+era-gsmroptfunc:OptionalFunctions a skos:ConceptScheme ; 
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Optional GSM-R functions"@en ;
+    skos:prefLabel "Optional GSM-R functions"@en ;
+    dct:title "Concept scheme grouping optional GSM-R functions"@en .
+  
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+
+########## Optional GSM-R Functions ##########
+
+era-gsmroptfunc-rinf:80 a skos:Concept;
+  skos:inScheme era-gsmroptfunc:OptionalFunctions; skos:topConceptOf era-gsmroptfunc:OptionalFunctions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Automatically forward of incoming call if no reply (*5)" .
+
+era-gsmroptfunc-rinf:90
+  a skos:Concept;
+  skos:inScheme era-gsmroptfunc:OptionalFunctions; skos:topConceptOf era-gsmroptfunc:OptionalFunctions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Automatically forward of incoming call if not reachable (*5)" .
+
+era-gsmroptfunc-rinf:50 a skos:Concept;
+  skos:inScheme era-gsmroptfunc:OptionalFunctions; skos:topConceptOf era-gsmroptfunc:OptionalFunctions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Broadcast calls (VBS) used (*3)" .
+
+era-gsmroptfunc-rinf:170 a skos:Concept;
+  skos:inScheme era-gsmroptfunc:OptionalFunctions; skos:topConceptOf era-gsmroptfunc:OptionalFunctions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Data recorded in case of Shunting Emergency Call (*8)" .
+
+era-gsmroptfunc-rinf:140
+  a skos:Concept;
+  skos:inScheme era-gsmroptfunc:OptionalFunctions; skos:topConceptOf era-gsmroptfunc:OptionalFunctions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Display at the controller terminal of the location of the mobile initiating a REC (Railway Emergency Call) (*8)" .
+
+era-gsmroptfunc-rinf:130
+  a skos:Concept;
+  skos:inScheme era-gsmroptfunc:OptionalFunctions; skos:topConceptOf era-gsmroptfunc:OptionalFunctions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "ETCS RBC or other devices alerted when initiating a REC (Railway Emergency Call) (*8)" .
+
+era-gsmroptfunc-rinf:160 a skos:Concept;
+  skos:inScheme era-gsmroptfunc:OptionalFunctions; skos:topConceptOf era-gsmroptfunc:OptionalFunctions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "GSM-R shunting used (*8)" .
+
+era-gsmroptfunc-rinf:110 a skos:Concept;
+  skos:inScheme era-gsmroptfunc:OptionalFunctions; skos:topConceptOf era-gsmroptfunc:OptionalFunctions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "General data applications (*7)" .
+
+era-gsmroptfunc-rinf:30 a skos:Concept;
+  skos:inScheme era-gsmroptfunc:OptionalFunctions; skos:topConceptOf era-gsmroptfunc:OptionalFunctions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Network selection automatic (*1)" .
+
+era-gsmroptfunc-rinf:10 a skos:Concept;
+  skos:inScheme era-gsmroptfunc:OptionalFunctions; skos:topConceptOf era-gsmroptfunc:OptionalFunctions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Network selection manual (*1)" .
+
+era-gsmroptfunc-rinf:20 a skos:Concept;
+  skos:inScheme era-gsmroptfunc:OptionalFunctions; skos:topConceptOf era-gsmroptfunc:OptionalFunctions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Network selection via balise (*1)" .
+
+era-gsmroptfunc-rinf:200 a skos:Concept;
+  skos:inScheme era-gsmroptfunc:OptionalFunctions; skos:topConceptOf era-gsmroptfunc:OptionalFunctions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Other" .
+
+era-gsmroptfunc-rinf:40 a skos:Concept;
+  skos:inScheme era-gsmroptfunc:OptionalFunctions; skos:topConceptOf era-gsmroptfunc:OptionalFunctions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Public emergency (112) available (*2)" .
+
+era-gsmroptfunc-rinf:70 a skos:Concept;
+  skos:inScheme era-gsmroptfunc:OptionalFunctions; skos:topConceptOf era-gsmroptfunc:OptionalFunctions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Restriction of display of called/calling user (*5)" .
+
+era-gsmroptfunc-rinf:60 a skos:Concept;
+  skos:inScheme era-gsmroptfunc:OptionalFunctions; skos:topConceptOf era-gsmroptfunc:OptionalFunctions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Text message service used (SMS) (*4)" .
+
+era-gsmroptfunc-rinf:150 a skos:Concept;
+  skos:inScheme era-gsmroptfunc:OptionalFunctions; skos:topConceptOf era-gsmroptfunc:OptionalFunctions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Use of enhanced Railway Emergency Call (eREC) (*8)" .
+
+## added according to lookupo table ##
+era-gsmroptfunc-rinf:180 a skos:Concept;
+  skos:inScheme era-gsmroptfunc:OptionalFunctions; skos:topConceptOf era-gsmroptfunc:OptionalFunctions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Extended frequency bands used (*9)" .
+
+era-gsmroptfunc-rinf:100 a skos:Concept;
+  skos:inScheme era-gsmroptfunc:OptionalFunctions; skos:topConceptOf era-gsmroptfunc:OptionalFunctions; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "Use of chargeable Network Services (*6)" .
+
+

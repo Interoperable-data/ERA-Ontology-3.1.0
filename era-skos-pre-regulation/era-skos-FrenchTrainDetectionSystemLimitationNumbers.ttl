@@ -1,0 +1,75 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+@prefix era-tdsn: <http://data.europa.eu/949/concepts/train-detection-numbers/> .
+@prefix era-tdsn-rinf: <http://data.europa.eu/949/concepts/train-detection-numbers/rinf/> .
+
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+
+era-tdsn:FrenchTrainDetectionSystemLimitationNumbers a skos:ConceptScheme ;
+   dct:issued "2023-04-05"^^xsd:date ;
+    dct:modified "2023-04-05"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "French Train Detection System Limitation Numbers"@en ;
+    skos:prefLabel "French Train Detection System Limitation Numbers"@en ;
+    dct:title "Concept scheme grouping french train detection systems limitation numbers"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+########## French train detection system limitations ##########
+
+era-tdsn-rinf:1 a skos:Concept ;
+    skos:inScheme era-tdsn:FrenchTrainDetectionSystemLimitationNumbers ; skos:topConceptOf era-tdsn:FrenchTrainDetectionSystemLimitationNumbers ; skos:note "Value retrieved from the RINF database"; 
+    skos:prefLabel "Sections with tonnage circulated per track is inferior to 15000 tons/day/track" .
+
+era-tdsn-rinf:2 a skos:Concept ;
+    skos:inScheme era-tdsn:FrenchTrainDetectionSystemLimitationNumbers ; skos:topConceptOf era-tdsn:FrenchTrainDetectionSystemLimitationNumbers ; skos:note "Value retrieved from the RINF database"; 
+    skos:prefLabel "Sections with directional Interlocking" .
+
+era-tdsn-rinf:3 a skos:Concept ;
+    skos:inScheme era-tdsn:FrenchTrainDetectionSystemLimitationNumbers ; skos:topConceptOf era-tdsn:FrenchTrainDetectionSystemLimitationNumbers ; skos:note "Value retrieved from the RINF database"; 
+    skos:prefLabel "Sections with 45-second delay for directional interlocking" .
+
+era-tdsn-rinf:4 a skos:Concept ;
+    skos:inScheme era-tdsn:FrenchTrainDetectionSystemLimitationNumbers ; skos:topConceptOf era-tdsn:FrenchTrainDetectionSystemLimitationNumbers ; skos:note "Value retrieved from the RINF database"; 
+    skos:prefLabel "Sections with Installation with track circuit announcement" .
+
+era-tdsn-rinf:5 a skos:Concept ;
+    skos:inScheme era-tdsn:FrenchTrainDetectionSystemLimitationNumbers ; skos:topConceptOf era-tdsn:FrenchTrainDetectionSystemLimitationNumbers ; skos:note "Value retrieved from the RINF database"; 
+    skos:prefLabel "Sections with absence of a shunting assistance pedal in the normal direction of circulation for non-reversible double track lines" .
+
+era-tdsn-rinf:6 a skos:Concept ;
+    skos:inScheme era-tdsn:FrenchTrainDetectionSystemLimitationNumbers ; skos:topConceptOf era-tdsn:FrenchTrainDetectionSystemLimitationNumbers ; skos:note "Value retrieved from the RINF database"; 
+    skos:definition "Sections with absence of a shunting assistance pedal regardless of the direction of traffic for single track lines and tracks for two way working" .
+
+era-tdsn-rinf:7 a skos:Concept ;
+    skos:inScheme era-tdsn:FrenchTrainDetectionSystemLimitationNumbers ; skos:topConceptOf era-tdsn:FrenchTrainDetectionSystemLimitationNumbers ; skos:note "Value retrieved from the RINF database"; 
+    skos:prefLabel "Sections with absence of a pedal announcement mechanism" .
+
+era-tdsn-rinf:8 a skos:Concept ;
+    skos:inScheme era-tdsn:FrenchTrainDetectionSystemLimitationNumbers ; skos:topConceptOf era-tdsn:FrenchTrainDetectionSystemLimitationNumbers ; skos:note "Value retrieved from the RINF database"; 
+    skos:prefLabel "Sections with 45-second delay for specific announcement reset devices" .

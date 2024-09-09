@@ -1,0 +1,390 @@
+@prefix era-csm-rinf: <http://data.europa.eu/949/concepts/contact-strip-materials/rinf/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era-csm-eratv: <http://data.europa.eu/949/concepts/contact-strip-materials/eratv/> .
+@prefix era-csm-rinf: <http://data.europa.eu/949/concepts/contact-strip-materials/rinf/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dct:<http://purl.org/dc/terms/> .
+@prefix xsd:<http://www.w3.org/2001/XMLSchema#>.
+@prefix cc:<http://creativecommons.org/ns#>.
+@prefix era-csm: <http://data.europa.eu/949/concepts/contact-strip-materials/> .
+@prefix era-csm-rinf: <http://data.europa.eu/949/concepts/contact-strip-materials/rinf/> .
+@prefix era-csm-eratv: <http://data.europa.eu/949/concepts/contact-strip-materials/eratv/> .
+
+era-csm:ContactLineSystems a skos:ConceptScheme ; 
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Contact strip materials"@en ;
+    skos:prefLabel "Contact strip materials"@en ;
+    dct:title "Concept scheme grouping contact strip materials"@en .
+
+
+era-csm:ContactStripMaterials a skos:ConceptScheme;
+  rdfs:comment "Concept scheme grouping contact strip materials";
+  rdfs:label "Contact strip materials" .
+
+era-csm-eratv:carbon-and-steel a skos:Concept;
+  skos:closeMatch era-csm-rinf:20, era-csm-rinf:30;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Carbon and Steel" .
+
+era-csm-rinf:10 a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "copper" .
+
+
+
+era-csm-rinf:20 a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "plain carbon" .
+
+era-csm-eratv:carbon-with-additive-material a skos:Concept;
+  skos:exactMatch era-csm-rinf:60;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "carbon with addtitve material";
+  skos:prefLabel "Carbon with additive material" .
+
+era-csm-rinf:30 a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "copper steel" .
+
+era-csm-eratv:carbon-with-cladded-cooper a skos:Concept;
+  skos:exactMatch era-csm-rinf:70;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Carbon with cladded cooper" .
+
+era-csm-rinf:40 a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "copper alloy" .
+
+
+era-csm-eratv:if-permitted-by-rinf-impregnated-carbon-with-cladded-copper-are-allowed
+  a skos:Concept;
+  skos:closeMatch era-csm-rinf:70;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "If permitted by RINF: impregnated carbon with cladded copper are allowed" .
+
+era-csm-rinf:50 a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "impregnated  carbon (% of metallic content)" .
+
+era-csm-rinf:60 a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "carbon with additive material" .
+
+era-csm-eratv:impregnated-carbon-with-additive-material a skos:Concept;
+  skos:closeMatch era-csm-rinf:60;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Impregnated carbon with additive material" .
+
+era-csm-rinf:70 a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "carbon with cladded copper" .
+
+era-csm-eratv:1950-mm-sk-carbon-with-additive-material-1450-mm-it-si-carbon-with-additive-material-and-coated-with-copper
+  a skos:Concept;
+  skos:closeMatch era-csm-rinf:60, era-csm-rinf:70;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "1950 mm (SK): Carbon with additive material / 1450 mm (IT/SI): Carbon with additive material and coated with copper" .
+
+era-csm-rinf:80 a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "sintered copper" .
+
+era-csm-rinf:90 a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "other" .
+
+era-csm-eratv:1950-mm-sk-carbon-with-additive-material-1450-mm-si-carbon-with-additive-material-and-coated-with-copper
+  a skos:Concept;
+  skos:closeMatch era-csm-rinf:60, era-csm-rinf:70;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "1950 mm (SK): Carbon with additive material / 1450 mm (SI): Carbon with additive material and coated with copper" .
+
+era-csm-eratv:carbon-with-additive-material-and-coated-with-copper a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "Cabon with additive material and coated with copper";
+  skos:altLabel "Cabon with additive material an coated with copper";
+  skos:altLabel "Cabon with additive material an dcoated with copper";
+  skos:prefLabel "Carbon with additive material and coated with copper" .
+
+era-csm-eratv:carbon a skos:Concept;
+  skos:closeMatch era-csm-rinf:20;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Carbon" .
+
+era-csm-eratv:carbon-and-copper-kasperowsy-type a skos:Concept;
+  skos:closeMatch era-csm-rinf:70;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Carbon and copper (Kasperowsy type)" .
+
+era-csm-eratv:carbon-bh424c a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "CARBÓN BH424C";
+  skos:prefLabel "CARBON BH424C" .
+
+era-csm-eratv:carbon-with-cladded-cooper-steel-winter a skos:Concept;
+  skos:closeMatch era-csm-rinf:70;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Carbon with cladded cooper, Steel (winter)" .
+
+era-csm-eratv:carbone-con-inserti-in-rame a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Carbone con inserti in rame" .
+
+era-csm-eratv:composite-carbon a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Composite Carbon" .
+
+era-csm-eratv:copper-steel a skos:Concept, skos:Concept;
+  skos:exactMatch era-csm-rinf:30;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "Steel and copper";
+  skos:prefLabel "copper - steel" .
+
+
+era-csm-eratv:copper-the-locomotive-shall-be-equipped-with-carbon-contact-strips-before-13-06-2021
+  a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:closeMatch era-csm-rinf:10;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Copper. The locomotive shall be equipped with carbon contact strips before 13/06/2021" .
+
+era-csm-eratv:gemetalliseerd-kool a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Gemetalliseerd kool" .
+
+era-csm-eratv:metallized-carbon a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Metallized carbon" .
+
+
+era-csm-eratv:plain-carbon a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:exactMatch era-csm-rinf:20;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Plain carbon" .
+
+
+era-csm-eratv:sk85acu a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "SK85ACu" .
+
+
+era-csm-eratv:spheroidal-graphite-cast-iron a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "spheroidal graphite cast iron" .
+
+
+era-csm-eratv:and-coated-with-copper a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "and coated with copper" .
+
+era-csm-eratv:carbon a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:closeMatch era-csm-rinf:20;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "carbon" .
+
+era-csm-eratv:carbon-loaded-copper-called-high-intensity
+  a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:closeMatch era-csm-rinf:70;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Carbon loaded copper called \"high intensity\"" .
+
+era-csm-eratv:carbon-sk-85-cu a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Carbón SK 85 Cu" .
+
+
+era-csm-eratv:carbon-with-additive-material-and-coated-with-copper a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:closeMatch era-csm-rinf:60;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Carbon with addidive material and coated with copper" .
+
+
+era-csm-eratv:carbon-with-additive-material-sk01acu a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:closeMatch era-csm-rinf:60;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "carbon with additive material SK01ACu" .
+
+
+era-csm-eratv:carbon-with-cladded-copper a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:exactMatch era-csm-rinf:70;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Carbon with cladded copper" .
+
+era-csm-eratv:carbon-with-cladded-copper-kasperowski-type- a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:closeMatch era-csm-rinf:70;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Carbon with cladded copper ( Kasperowski type)" .
+
+
+era-csm-eratv:carbon-with-copper-inserts a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:closeMatch era-csm-rinf:70;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Carbon with copper inserts" .
+
+era-csm-eratv:carbon-with-metal a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Carbon with metal" .
+
+
+era-csm-eratv:carbon-steel-grease a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "carbon, steel, grease" .
+
+era-csm-eratv:copper a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:exactMatch era-csm-rinf:10;
+  skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "Cooper";
+  skos:prefLabel "Copper" .
+
+
+era-csm-eratv:copper-with-additive-material a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Copper with additive material" .
+
+era-csm-eratv:en-gjl-200 a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "EN-GJL-200" .
+
+
+era-csm-eratv:gemetalliseerd-kool a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Gemetalliseerd kool" .
+
+
+era-csm-eratv:graphite a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "graphite";
+  skos:prefLabel "Graphite" .
+
+era-csm-eratv:graphite-carbon a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "graphite carbon" .
+
+era-csm-eratv:metalized-carbon a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "metalized carbon" .
+
+
+era-csm-eratv:metalized-carbon a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database" .
+
+
+era-csm-eratv:metallised-carbon-sk85-cu a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "metallised carbon SK85 Cu" .
+
+era-csm-eratv:mixed-material-kasperosky-type- a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Mixed material (Kasperosky type)" .
+
+
+era-csm-eratv:n-a-shoegear a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "N/A - shoegear" .
+
+era-csm-eratv:n-a-third-rail-shoegear a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "N/A Third Rail shoegear" .
+
+
+era-csm-eratv:none a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "None" .
+
+
+era-csm-eratv:not-applicable a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Not applicable" .
+
+era-csm-eratv:rh85m6 a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "RH85M6" .
+
+era-csm-eratv:sk85acu a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "SK85ACu" .
+
+era-csm-eratv:steel-winter- a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Steel (winter)" .
+
+
+era-csm-eratv:plain-carbon a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Plain carbon" .
+
+era-csm-eratv:cooper-and-steel a skos:Concept;
+  skos:inScheme era-csm:ContactStripMaterials; skos:topConceptOf era-csm:ContactStripMaterials;
+  skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "Cooper with steel";
+  skos:altLabel "Cooper/Steel";
+  skos:altLabel "Cooper-steel";
+  skos:altLabel "copper & steel";
+  skos:altLabel "copper and steel";
+  skos:altLabel "copper, steel";
+  skos:prefLabel "Cooper and steel" .

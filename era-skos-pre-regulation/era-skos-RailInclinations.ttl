@@ -1,0 +1,164 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+@prefix era-ri: <http://data.europa.eu/949/concepts/rail-inclinations/> .
+@prefix era-ri-eratv: <http://data.europa.eu/949/concepts/rail-inclinations/eratv/> .
+@prefix era-ri-rinf: <http://data.europa.eu/949/concepts/rail-inclinations/rinf/> .
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+
+era-ri:RailInclinations a skos:ConceptScheme ; 
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Rail Inclinations"@en ;
+    skos:prefLabel "Rail Inclinations"@en ;
+    dct:title "Concept scheme grouping rail inclinations"@en .
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+########## Rail inclinations ##########
+
+era-ri-eratv:0 a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "0" .
+
+era-ri-eratv:1-10 a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:exactMatch era-ri-rinf:10;
+  skos:prefLabel "1/10" .
+
+era-ri-eratv:1-20 a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:exactMatch era-ri-rinf:20;
+  skos:prefLabel "1/20" .
+
+era-ri-eratv:1-20-1-40 a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:closeMatch era-ri-rinf:20, era-ri-rinf:40;
+  skos:altLabel "1/20, 1/40", "1/20: 1/40", "1/20; 1/40", "1/20; 1/40", "1/20. 1/40", "1/20 & 1/40", "1/20 - 1/40", "1/20 and 1/40", "1/40, 1/20", "1/40 and 1/20", "1:20, 1:40", "1:20 & 1:40", "1:20 , 1:40";
+  skos:prefLabel "1/20,1/40" .
+
+era-ri-eratv:1-20-1-30-1-40 a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:closeMatch era-ri-rinf:20, era-ri-rinf:30, era-ri-rinf:40;
+  skos:altLabel  "1/20, 1/30, 1/40 ", "1/20, 1/30. 1/40", "1/20; 1/30; 1/40", "1/20   1/30   1/40", "1:20, 1:30, 1:40", "1:20 and 1:40";
+  skos:prefLabel "1/20, 1/30, 1/40" .
+
+
+era-ri-eratv:1-25 a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "1/25" .
+
+era-ri-eratv:1-30 a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:exactMatch era-ri-rinf:30;
+  skos:prefLabel "1/30" .
+
+era-ri-eratv:1-40 a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:exactMatch era-ri-rinf:40;
+  skos:altLabel "1:40";
+  skos:prefLabel "1/40" .
+
+era-ri-eratv:1-40_Ligne_CFF_Geneve_La_Plaine_1-20_reseau_ferre_Francais
+  a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:closeMatch era-ri-rinf:40, era-ri-rinf:20;
+  skos:altLabel "1/40  (Ligne CFF   Genève  La Plaine)  ou  1/20  (réseau ferré français)";
+  skos:prefLabel "1/40 (Ligne CFF Genève La Plaine) 1/20  (réseau ferré Français)" .
+
+era-ri-eratv:1-80 a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:exactMatch era-ri-rinf:80;
+  skos:prefLabel "1/80" .
+
+
+era-ri-eratv:All a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "All" .
+
+era-ri-eratv:All_assessment_against_EN14363-2005 a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "All (assessment against EN14363:2005)" .
+
+era-ri-eratv:Combination_not_provided a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Combination not provided" .
+
+era-ri-eratv:N-A a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "NA", "Sans objet";
+  skos:prefLabel "N/A" .
+
+era-ri-eratv:None a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "NINGUNO";
+  skos:prefLabel "None" .
+
+era-ri-eratv:RIV a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "RIV" .
+
+era-ri-eratv:Tutte a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Tutte" .
+
+era-ri-eratv:Undetermined a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Undetermined" .
+
+era-ri-eratv:all_rail_inclination a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the ERATV database";
+  skos:altLabel "all rail inclinations";
+  skos:prefLabel "all rail inclination" .
+
+era-ri-rinf:10 a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "1/10" .
+
+era-ri-rinf:20 a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "1/20" .
+
+era-ri-rinf:30 a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "1/30" .
+
+era-ri-rinf:40 a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "1/40" .
+
+era-ri-rinf:80 a skos:Concept;
+  skos:inScheme era-ri:RailInclinations; skos:topConceptOf era-ri:RailInclinations;  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "1/80" .
+
+
+
+
+
+
+

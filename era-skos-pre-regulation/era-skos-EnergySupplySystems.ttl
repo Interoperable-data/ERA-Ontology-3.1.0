@@ -1,0 +1,268 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+@prefix era-op-types: <http://data.europa.eu/949/concepts/op-types/> .
+
+@prefix era-ess:<http://data.europa.eu/949/concepts/energy-supply-systems/>.
+@prefix era-ess-rinf: <http://data.europa.eu/949/concepts/energy-supply-systems/rinf/> .
+@prefix era-ess-eratv: <http://data.europa.eu/949/concepts/energy-supply-systems/eratv/> .
+
+
+
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+era-ess:EnergySupplySystems a skos:ConceptScheme ;
+    dct:issued "2020-09-01"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "Energy Supply Systems"@en ;
+    skos:prefLabel "Energy Supply Systems"@en ;
+    dct:title "Concept scheme grouping energy supply systems"@en .
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+########## Energy supply systems ##########
+## ERATV values ##
+
+era-ess-eratv:others
+    skos:inScheme era-ess:EnergySupplySystems ; skos:topConceptOf era-ess:EnergySupplySystems ;
+    skos:note "Value retrieved from the ERATV database";
+    skos:altLabel "Others (specify nominal voltage and frequency and ranges)";
+    skos:altLabel "Others (The User must also specify nominal voltage, frequency, ranges and current type AC or DC)" ;
+    skos:altLabel "others";
+    skos:prefLabel "Others".
+     
+era-ess-eratv:1-2kv a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "1.2kV" .
+
+
+era-ess-eratv:1-5kv-specific-case-ie a skos:Concept;
+ skos:inScheme era-ess:EnergySupplySystems;
+ skos:note "Value retrieved from the ERATV database";
+ skos:altLabel "1.5kV Specific Case IE";
+ skos:closeMatch era-ess-rinf:DC40;
+ skos:prefLabel "1.5kV (Specific Case IE)" .
+
+
+era-ess-eratv:1000v-ac-50hz
+  a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "1000V AC 50Hz" .
+
+era-ess-eratv:1000V-ac-16-2-3hz
+  a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "1000V AC 16 2/3Hz" .
+
+era-ess-eratv:1500v-ac-50hz
+  a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "1500V AC 50Hz" .
+
+
+era-ess-eratv:3000v-dc
+  a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the ERATV database";
+  skos:closeMatch era-ess-rinf:DC30;
+  skos:prefLabel "3000V DC" .
+
+era-ess-eratv:3x400v-50hz
+  a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "3x400V 50Hz" .
+
+
+
+era-ess-eratv:1500 a skos:Concept;
+   skos:inScheme era-ess:EnergySupplySystems;
+   skos:note "Value retrieved from the ERATV database";
+   skos:closeMatch era-ess-rinf:DC40;
+   skos:prefLabel "1500" .
+
+era-ess-eratv:15kv-16-7hz a skos:Concept;
+   skos:inScheme era-ess:EnergySupplySystems;
+   skos:note "Value retrieved from the ERATV database";
+   skos:closeMatch era-ess-rinf:AC20;
+   skos:prefLabel "15kV-16,7Hz" .
+
+era-ess-eratv:15kv-16-2-3hz-2646-kw-1kv-16-2-3-hz-or-50-hz a skos:Concept;
+   skos:inScheme era-ess:EnergySupplySystems;
+   skos:note "Value retrieved from the ERATV database";
+   skos:closeMatch era-ess-rinf:AC20;
+   skos:altLabel "15kV-16 2/3Hz : 2646 kW , 1kV-16 2/3 Hz or 50 Hz".
+
+era-ess-eratv:3x400-v-50-hz a skos:Concept;
+   skos:inScheme era-ess:EnergySupplySystems;
+   skos:note "Value retrieved from the ERATV database";
+   skos:prefLabel "3X400 V, 50 Hz" .
+
+era-ess-eratv:3kv-pl-cz-sk a skos:Concept;
+   skos:inScheme era-ess:EnergySupplySystems;
+   skos:note "Value retrieved from the ERATV database";
+   skos:closeMatch era-ess-rinf:DC30;
+   skos:prefLabel "3kV (PL, CZ, SK)" .
+
+era-ess-eratv:750v a skos:Concept;
+   skos:inScheme era-ess:EnergySupplySystems;
+   skos:note "Value retrieved from the ERATV database";
+   skos:closeMatch era-ess-rinf:DC60;
+   skos:prefLabel "750V" .
+
+era-ess-eratv:autonomous a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "Autonomous" .
+
+era-ess-eratv:dc-1-5kv-specific-case-fr a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the ERATV database";
+  skos:closeMatch era-ess-rinf:DC50;
+  skos:prefLabel "DC 1.5kV (Specific Case FR)" .
+
+era-ess-eratv:dc-1-5kv a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the ERATV database";
+  skos:exactMatch era-ess-rinf:DC40;
+  skos:prefLabel "DC 1.5kV" .
+
+era-ess-eratv:dc-750v a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the ERATV database";
+  skos:exactMatch era-ess-rinf:DC60;
+  skos:prefLabel "DC 750V" .
+
+era-ess-eratv:dc-750v-third-rail a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the ERATV database";
+  skos:closeMatch era-ess-rinf:DC60;
+  skos:prefLabel "DC 750V third rail" .
+
+era-ess-eratv:none-for-hauled-passenger-vehicles-and-special-vehicles a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "None (for hauled passenger vehicles and special vehicles)" .
+
+
+era-ess-eratv:three-phase-alternator-28v-100a-2-accumulators-in-series-connection-24v-vehicle-electrical-system-voltage
+   a skos:Concept;
+   skos:inScheme era-ess:EnergySupplySystems;
+   skos:note "Value retrieved from the ERATV database";
+   skos:prefLabel "Three-phase alternator 28V 100A, 2 Accumulators in series connection, 24V Vehicle electrical system voltage" .
+
+
+era-ess-eratv:via-urbana-e-interurbana-750-vdc a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the ERATV database";
+  skos:closeMatch era-ess-rinf:DC60;
+  skos:prefLabel "Vía Urbana e Interurbana 750 Vdc" .
+
+
+ era-ess-eratv:hybrid a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the ERATV database";
+  skos:prefLabel "hybrid" .
+
+era-ess-eratv:ac-15kv-16-7hz a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the ERATV database";
+  skos:exactMatch era-ess-rinf:AC20;
+  skos:prefLabel "AC 15kV-16.7Hz" .
+
+era-ess-eratv:ac-25kv-50hz a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the ERATV database";
+skos:exactMatch era-ess-rinf:AC10;
+  skos:prefLabel "AC 25kV-50Hz" .
+
+era-ess-eratv:dc-3kv a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the ERATV database";
+  skos:exactMatch era-ess-rinf:DC30;
+  skos:prefLabel "DC 3kV" .
+
+## RINF values ##
+era-ess-rinf:DC80 a skos:Concept ; 
+    skos:inScheme era-ess:EnergySupplySystems ; skos:topConceptOf era-ess:EnergySupplySystems ;
+    skos:note "Value retrieved from the RINF database";
+    skos:prefLabel "DC 600 V" .
+
+era-ess-rinf:AC20 a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems; 
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "AC 15kV-16.7Hz" .
+
+era-ess-rinf:AC10 a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems; 
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "AC 25kV-50Hz" .
+
+era-ess-rinf:DC60 a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems; 
+  skos:note "Value retrieved from the RINF database";
+  skos:altLabel "DC750V";
+  skos:prefLabel "DC 750V" .
+
+era-ess-rinf:DC40 a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems; 
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "DC 1.5kV" .
+
+#added from value in RINF lookup table
+era-ess-rinf:DC50 a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "DC (Specific Case FR)" .
+
+#added from value in RINF lookup table
+era-ess-rinf:90 a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems; 
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "other" .
+
+#added from value in RINF lookup table
+era-ess-rinf:DC90 a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "DC 850V" .
+
+era-ess-rinf:DC30 a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems;
+  skos:prefLabel "DC 3kV" .
+
+era-ess-rinf:DC70 a skos:Concept;
+  skos:inScheme era-ess:EnergySupplySystems; 
+  skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "DC 650V" .
+
+
+
+
+

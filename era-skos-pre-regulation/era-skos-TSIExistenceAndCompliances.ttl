@@ -1,0 +1,60 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-skos: <http://data.europa.eu/949/concepts/> .
+
+
+
+@prefix era-tsiex: <http://data.europa.eu/949/concepts/tsi-existence-and-compliances/> .
+@prefix era-tsiex-rinf: <http://data.europa.eu/949/concepts/tsi-existence-and-compliances/rinf/> .
+
+
+
+
+
+#################################################################
+#
+#    Concept Schemes
+#
+#################################################################
+
+
+era-tsiex:TSIExistenceAndCompliances a skos:ConceptScheme ;
+    dct:issued "2024-04-25"^^xsd:date ;
+    dct:modified "2024-04-25"^^xsd:date ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
+    rdfs:label "TSI existence and compliances"@en ;
+    skos:prefLabel "TSI existence and compliances"@en ;
+    dct:title "Concept scheme grouping TSI existence and compliance status"@en .
+
+
+
+#################################################################
+#
+#    Concept instances
+#
+#################################################################
+
+
+
+
+########## TSI compliances ##########
+
+era-tsiex-rinf:20 a skos:Concept;
+  skos:inScheme era-tsiex:TSIExistenceAndCompliances; skos:topConceptOf era-tsiex:TSIExistenceAndCompliances; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "TSI compliant" .
+
+era-tsiex-rinf:30 a skos:Concept;
+  skos:inScheme era-tsiex:TSIExistenceAndCompliances; skos:topConceptOf era-tsiex:TSIExistenceAndCompliances; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "not TSI compliant" .
+
+era-tsiex-rinf:10 a skos:Concept;
+  skos:inScheme era-tsiex:TSIExistenceAndCompliances; skos:topConceptOf era-tsiex:TSIExistenceAndCompliances; skos:note "Value retrieved from the RINF database";
+  skos:prefLabel "none" .
+
