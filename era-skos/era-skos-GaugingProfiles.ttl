@@ -17,633 +17,484 @@
 ########## Concept Scheme ###########
 era-gaugings:GaugingProfiles a skos:ConceptScheme ; 
     dct:issued "2020-09-01"^^xsd:date ;
-    dct:modified "2022-09-09"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date, "2024-09-09"^^xsd:date ;
     cc:license <https://creativecommons.org/licenses/by/4.0/> ;
     rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
     rdfs:label "Gauging Profiles"@en ;
     skos:prefLabel "Gauging Profiles"@en ;
+    era:rinfIndex "1.1.1.1.3.1.1", "1.2.1.0.3.4" ;
+    era:eratvIndex "4.2.1" ; 
+    skos:changeNote """ 
+        Revision - 2024-09-09:
+           - removed value from RINF/ERATV in skos:note 
+           - added skos:notation 
+           - added language tag @en 
+           - Harmonized URIs by removing exactMatch relationships
+           - removed ""Other (specify)"" , "Not applicable", in ERATV concepts list
+
+     """ ; 
     dct:title "Concept scheme grouping gauging profiles"@en .
 
 ########## Gauging profiles ###########
 
-## Values ERATV
-
-era-gaugings-eratv:3-3-french-network a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:120, era-gaugings-rinf:30;
-  skos:altLabel "FR-3.3";
-  skos:prefLabel "3.3 (French network)" .
-
-era-gaugings-eratv:be1-belgian-network a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:90;
-  skos:altLabel "BE1";
-  skos:prefLabel "BE1 (Belgian network)" .
-
-era-gaugings-eratv:be2-belgian-network a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:100;
-  skos:altLabel "BE2";
-  skos:prefLabel "BE2 (Belgian network)" .
-
-era-gaugings-eratv:de2-german-network a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:200;
-  skos:prefLabel "DE2 (German network)" .
-
-era-gaugings-eratv:de3-german-network
-a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:50;
-  skos:prefLabel "DE3 (German network)" .
-
-era-gaugings-eratv:nl1-dutch-network a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:400;
-  skos:altLabel "NL1 (Specific case the Netherlands)";
-  skos:prefLabel "NL1 (Dutch  network)" .
-
-
-era-gaugings-eratv:nl-dutch-network a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:prefLabel "NL (Dutch  network)" .
-
-era-gaugings-eratv:n01 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:prefLabel "NO1" .
-
-era-gaugings-eratv:not-applicable a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:prefLabel "Not applicable" .
-
-era-gaugings-eratv:sea-specific-case-sweden a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:prefLabel "SEa (Specific case Sweden)" ;
-  skos:exactMatch era-gaugings-rinf:170, era-gaugings-rinf:40, era-gaugings-rinf:10, era-gaugings-rinf:20;
-  skos:altLabel "Sea", "SEa";
-  skos:altLabel "SEa (Swedish network)".
-
-era-gaugings-eratv:uic-505-1 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:prefLabel "UIC 505-1" .
-
-era-gaugings-eratv:uk1-uk-network a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:220;
-  skos:prefLabel "UK1 (UK network)" .
-
-era-gaugings-eratv:w6a-uk-network a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:prefLabel "W6a (UK network)" .
-
-
-era-gaugings-eratv:dk1 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:prefLabel "DK1" .
-
-
-era-gaugings-eratv:gi1 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:340;
-  skos:prefLabel "GI1" .
-
-era-gaugings-eratv:g1 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:40, era-gaugings-rinf:10, era-gaugings-rinf:20, era-gaugings-rinf:70, era-gaugings-rinf:80, era-gaugings-rinf:30, era-gaugings-rinf:120;
-  skos:prefLabel "G1" .
-
-era-gaugings-eratv:g2 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:60;
-  skos:prefLabel "G2" .
-
-era-gaugings-eratv:ga a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:10, era-gaugings-rinf:20, era-gaugings-rinf:70, era-gaugings-rinf:80, era-gaugings-rinf:30;
-  skos:prefLabel "GA" .
-
-era-gaugings-eratv:gb a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:20,  era-gaugings-rinf:70, era-gaugings-rinf:80, era-gaugings-rinf:30;
-  skos:prefLabel "GB" .
-
-era-gaugings-eratv:gc a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:30;
-  skos:prefLabel "GC" .
-
-era-gaugings-eratv:gi2 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:350;
-  skos:prefLabel "GI2" .
-
-era-gaugings-eratv:gi3 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:360;
-  skos:prefLabel "GI3" .
-
-era-gaugings-eratv:metrique-ba a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:415;
-  skos:prefLabel "Métrique BA" .
-
-
-era-gaugings-eratv:ptc a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:150;
-  skos:prefLabel "PTc" .
-
-era-gaugings-eratv:s a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:prefLabel "S" .
-
-era-gaugings-eratv:gb-m6 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:closeMatch era-gaugings-rinf:20;
-  skos:prefLabel "GB-M6" .
-
-era-gaugings-eratv:ghe16-specific-case-spain-upper-parts a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:closeMatch era-gaugings-rinf:270;
-  skos:prefLabel "GHE16 (Specific case Spain – upper parts)" .
-
-
-era-gaugings-eratv:fin1-specific-case-finland a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:160;
-  skos:altLabel "FIN1";
-  skos:prefLabel "FIN1 (Specific case Finland)" .
-
-era-gaugings-eratv:g1-gi1 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:closeMatch era-gaugings-rinf:340, era-gaugings-rinf:40;
-  skos:prefLabel "G1+GI1" .
-
-era-gaugings-eratv:g1-gl1 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:closeMatch era-gaugings-rinf:40;
-  skos:prefLabel "G1/Gl1" .
-
-era-gaugings-eratv:g1-gi2 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:closeMatch era-gaugings-rinf:40, era-gaugings-rinf:350;
-  skos:prefLabel "G1/GI2" .
-
-era-gaugings-eratv:g1-with-gic2-upper-parts a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:closeMatch era-gaugings-rinf:40;
-  skos:prefLabel "G1 with GIC2 upper parts" .
-
-era-gaugings-eratv:g1-up-and-gi2-down a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:closeMatch era-gaugings-rinf:40, era-gaugings-rinf:350;
-  skos:prefLabel "G1 up and GI2 down" .
-
-era-gaugings-eratv:de3-lower-parts-gi2 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:closeMatch era-gaugings-rinf:50, era-gaugings-rinf:350;
-  skos:prefLabel "DE3 (Lower parts GI2)" .
-
-era-gaugings-eratv:csn-28-0312 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:prefLabel "ČSN 28 0312" .
-
-era-gaugings-eratv:gl1 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:prefLabel "Gl1" .
-
-era-gaugings-eratv:gi2-according-en-15273-2 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:closeMatch era-gaugings-rinf:350;
-  skos:prefLabel "GI2 according EN 15273-2" .
-
-era-gaugings-eratv:gi2-lower-parts a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:altLabel "GI2 (lower part)";
-  skos:closeMatch era-gaugings-rinf:350;
-  skos:prefLabel "GI2 - lower parts" .
-
-era-gaugings-eratv:gee10 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:370;
-  skos:prefLabel "GEE10" .
-
-era-gaugings-eratv:ged10-specific-case-spain-metric-upper-parts a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:closeMatch era-gaugings-rinf:380;
-  skos:prefLabel "GED10 (Specific case Spain - METRIC - upper parts)" .
-
-era-gaugings-eratv:gee10-specific-case-spain-metric-lower-parts a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:closeMatch era-gaugings-rinf:370;
-  skos:prefLabel "GEE10 (Specific case Spain - METRIC - lower parts)" .
-
-
-era-gaugings-eratv:gc-gl1 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:closeMatch era-gaugings-rinf:30;
-  skos:prefLabel "GC/Gl1" .
-
-era-gaugings-eratv:g2-gl1-with-timber-casette-20-feet a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:closeMatch era-gaugings-rinf:60;
-  skos:prefLabel "G2/Gl1 (with timber cassette 20 feet)" .
-
-
-era-gaugings-eratv:gb-gi2 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:closeMatch era-gaugings-rinf:20, era-gaugings-rinf:350;
-  skos:prefLabel "GB/GI2" .
-
-era-gaugings-eratv:galibo-renfe-01-10-86 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:prefLabel "Galibo Renfe 01/10/86" .
-
-era-gaugings-eratv:other-specify a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:prefLabel "Other (specify)" .
-
-era-gaugings-eratv:w6a-upper-lower-sectors-uk-network a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:prefLabel "W6a upper and lower sectors (UK network)" .
-
-era-gaugings-eratv:uic-505-1-excluding-doorsteps a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:prefLabel "UIC 505-1 excluding the doorsteps." .
-
-era-gaugings-eratv:IRL2 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch "320";
-  skos:prefLabel "IRL2" .
-
-
-
-
-era-gaugings-eratv:per-altesse-less-3250-mm-rispetta-uic-505-1 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:prefLabel "Per altezze <= a 3250 mm rispetta la fiche UIC 505-1". 
-
-era-gaugings-eratv:per-altesse-greater-3250-mm-previsto-505-1 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:prefLabel "per altezze > a 3250 mm eccede il profilo max di costruzione previsto dalla fiche 505-1" .
-
-era-gaugings-eratv:ocf-02 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:prefLabel "OCF-02" .
-
-era-gaugings-eratv:nntr-bek-1465-bilag-3 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:prefLabel "NNTR BEK 1465 Bilag 3" .
-
-era-gaugings-eratv:gi1-specific-case-spain-lower-parts a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:closeMatch era-gaugings-rinf:340;
-  skos:prefLabel "GI1 (Specific case Spain – lower parts)" .
-
-era-gaugings-eratv:gi2-specific-case-spain-lower-parts a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:closeMatch era-gaugings-rinf:350;
-  skos:prefLabel "GI2 (Specific case Spain – lower parts)" .
-
-era-gaugings-eratv:gauge-3-3 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:closeMatch era-gaugings-rinf:120;
-  skos:prefLabel "Gauge 3.3" .
-
-era-gaugings-eratv:gb1 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:70, era-gaugings-rinf:80, era-gaugings-rinf:30;
-  skos:prefLabel "GB1" .
-
-era-gaugings-eratv:gb2 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:80,  era-gaugings-rinf:30;
-  skos:prefLabel "GB2" .
-
-era-gaugings-eratv:de3 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:50;
-  skos:prefLabel "DE3" .
-
-era-gaugings-eratv:be3 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:110;
-  skos:prefLabel "BE3" .
-
-era-gaugings-eratv:ptb a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:130;
-  skos:prefLabel "PTb" .
-
-era-gaugings-eratv:ptb-plus a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:140;
-  skos:prefLabel "PTb+" .
-
-era-gaugings-eratv:sec a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the ERATV database";
-  skos:exactMatch era-gaugings-rinf:180;
-  skos:altLabel "Sec";
-  skos:prefLabel "SEc" .
-
-
-
-
-
-
 ## RINF values
 
 era-gaugings-rinf:70 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GB1" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  
+  skos:notation "70"^^xsd:string ;
+  skos:prefLabel "GB1"@en .
 
 era-gaugings-rinf:340 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GI1" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GI1"@en ;
+  skos:notation "GI1"^^xsd:string ; 
+  skos:altLabel "GI1 (Specific case Spain – lower parts)"@en  .
 
 era-gaugings-rinf:389 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "AFG" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "AFG"@en .
 
 era-gaugings-rinf:390 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "AFM 423" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "AFM 423"@en .
 
 era-gaugings-rinf:425 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "AFM 425" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "AFM 425"@en .
 
 era-gaugings-rinf:427 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "AFM 427" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "AFM 427"@en .
 
 era-gaugings-rinf:90 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "BE1" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "BE1"@en ;
+  skos:notation "90"@en ;
+  skos:altLabel "BE1 (Belgian network)"@en .
 
 era-gaugings-rinf:100 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "BE2" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "BE2"@en ; 
+  skos:notation "100"^^xsd:string ; 
+  skos:altLabel "BE2 (Belgian network)"@en  .
 
 era-gaugings-rinf:110 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "BE3" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "BE3"@en .
 
 era-gaugings-rinf:190 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "DE1" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "DE1"@en .
 
 era-gaugings-rinf:200 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "DE2" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "DE2"@en ;
+  skos:altLabel "DE2 (German network)"@en .
 
 era-gaugings-rinf:50 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "DE3" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "DE3"@en ;
+  skos:notation "50"^^xsd:string ; 
+  skos:altLabel "DE3 (German network)"@en .
 
 era-gaugings-rinf:160 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "FIN1" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "FIN1"@en ;
+  skos:altLabel "FIN1 (Specific case Finland)"@en .
 
 era-gaugings-rinf:120 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "FR-3.3" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "FR-3.3"@en ;
+  skos:notation "120"^^xsd:string ;
+  skos:altLabel "Gauge 3.3"@en ;
+  skos:altLabel "3.3 (French network)"@en .
+
 
 era-gaugings-rinf:341 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "FR-3.4.1" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "FR-3.4.1"@en .
 
 era-gaugings-rinf:342 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "FR-3.4.2" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "FR-3.4.2"@en .
 
 era-gaugings-rinf:250 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "FS" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "FS"@en .
 
 era-gaugings-rinf:420 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GČD" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GČD"@en .
 
 era-gaugings-rinf:40 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "G1" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "G1"@en .
 
 era-gaugings-rinf:60 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "G2" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "G2"@en .
 
 era-gaugings-rinf:10 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GA" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GA"@en .
 
 era-gaugings-rinf:20 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GB" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GB"@en .
 
 era-gaugings-rinf:418 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GB:GČD" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GB:GČD"@en .
 
 era-gaugings-rinf:80 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GB2" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GB2"@en .
 
 era-gaugings-rinf:30 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GC" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GC"@en ;
+  skos:notation "30"^^xsd:string .
 
 era-gaugings-rinf:419 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GCZ3" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GCZ3"@en .
 
 era-gaugings-rinf:280 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GEA16" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GEA16"@en .
 
 era-gaugings-rinf:290 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GEB16" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GEB16"@en .
 
 era-gaugings-rinf:300 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GEC16" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GEC16"@en .
 
 era-gaugings-rinf:380 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:exactMatch era-gaugings-rinf:380;
-  skos:prefLabel "GED10" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  
+  skos:prefLabel "GED10"@en ;
+  skos:notation "380"^^xsd:string ; 
+  skos:altLabel "GED10 (Specific case Spain - METRIC - upper parts)"@en .
 
 era-gaugings-rinf:370 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GEE10" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GEE10"@en ;
+  skos:notation "370"^^xsd:string ; 
+  skos:altLabel "GEE10 (Specific case Spain - METRIC - lower parts)"@en.
 
 era-gaugings-rinf:421 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GEI1" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GEI1"@en .
 
 era-gaugings-rinf:424 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:exactMatch era-gaugings-rinf:424;
-  skos:prefLabel "GEI14" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GEI14"@en .
 
 era-gaugings-rinf:422 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GEI2" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GEI2"@en .
 
 era-gaugings-rinf:423 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GEI3" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GEI3"@en .
 
 era-gaugings-rinf:270 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GHE16" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GHE16"@en; 
+  skos:notation "270"^^xsd:string ; 
+  skos:altLabel "GHE16 (Specific case Spain – upper parts)"@en .
 
 
 era-gaugings-rinf:350 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GI2" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GI2"@en ;
+  skos:notation "350"^^xsd:string ; 
+  skos:altLabel "GI2 according EN 15273-2"@en, "GI2 (lower part)"@en ;
+  skos:altLabel "GI2 - lower parts"@en ;
+  skos:altLabel "GI2 (Specific case Spain – lower parts)"@en .
 
 era-gaugings-rinf:360 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "GI3" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GI3"@en .
 
 era-gaugings-rinf:310 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "IRL1" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "IRL1"@en .
 
 era-gaugings-rinf:320 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "IRL2" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "IRL2"@en .
 
 era-gaugings-rinf:330 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "IRL3" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "IRL3"@en .
 
 era-gaugings-rinf:415 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "Métrique BA" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "Métrique BA"@en .
 
 era-gaugings-rinf:417 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "Métrique Cerd." .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "Métrique Cerd."@en .
 
 era-gaugings-rinf:416 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "Métrique SGV" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "Métrique SGV"@en .
 
 era-gaugings-rinf:411 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "M30" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "M30"@en .
 
 era-gaugings-rinf:412 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "M80" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "M80"@en .
 
 era-gaugings-rinf:400 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "NL1" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "NL1"@en ;
+  skos:notation "400"^^xsd:string ; 
+  skos:altLabel "NL1 (Specific case the Netherlands)"@en ;
+  skos:altLabel "NL1 (Dutch  network)"@en .
 
 era-gaugings-rinf:410 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "NL2" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "NL2"@en .
 
 era-gaugings-rinf:130 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "PTb" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "PTb"@en .
 
 era-gaugings-rinf:140 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "PTb+" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "PTb+"@en .
 
 era-gaugings-rinf:150 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "PTc" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "PTc"@en ;
+  skos:notation "150"^^xsd:string  .
 
 era-gaugings-rinf:260 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "S" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "S"@en ;
+  skos:notation "260"^^xsd:string .
 
 era-gaugings-rinf:170 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "SEa" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "SEa"@en ;
+  skos:altLabel "SEa (Specific case Sweden)" ;
+  skos:altLabel "Sea"@en ;
+  skos:notation "170"^^xsd:string ; 
+  skos:altLabel "SEa (Swedish network)"@en .
 
 era-gaugings-rinf:180 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "SEc" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "SEc"@en ;
+  skos:altLabel "Sec"@en ;
+  skos:notation "180"^^xsd:string .
 
 era-gaugings-rinf:413 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "Tram-train 2.40" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "Tram-train 2.40"@en .
 
 era-gaugings-rinf:414 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "Tram-train 2.65" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "Tram-train 2.65"@en .
 
 era-gaugings-rinf:220 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "UK1" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "UK1"@en ;
+  skos:notation "220"^^xsd:string ; 
+  skos:altLabel "UK1 (UK network)"@en.
 
 era-gaugings-rinf:230 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "UK1[D]" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "UK1[D]"@en .
 
 era-gaugings-rinf:240 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "W6" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "W6"@en .
 
 era-gaugings-rinf:210 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "Z-GCD" .
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "Z-GCD"@en .
 
 era-gaugings-rinf:500 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "other" .  
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "other"@en .  
 
 era-gaugings-rinf:426 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "EBV2_reduziert" .  
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "EBV2_reduziert"@en .  
 
 era-gaugings-rinf:428 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "EBV3_reduziert" .  
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "EBV3_reduziert"@en .  
 
 era-gaugings-rinf:429 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "EBV3" .  
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "EBV3"@en .  
 
 era-gaugings-rinf:430 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "EBV4" .  
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "EBV4"@en .  
 
 era-gaugings-rinf:431 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "EBV1" . 
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "EBV1"@en . 
 
 era-gaugings-rinf:432 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "EBV2" .  
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "EBV2"@en .  
 
 era-gaugings-rinf:433 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "AF4.0 – EP" .  
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "AF4.0 – EP"@en .  
 
 era-gaugings-rinf:434 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "AF4.1 – EP" . 
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "AF4.1 – EP"@en . 
 
 era-gaugings-rinf:435 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "AF4.2 – EP" . 
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "AF4.2 – EP"@en . 
 
 era-gaugings-rinf:436 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "AF4.0 – IP" . 
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "AF4.0 – IP"@en . 
 
 era-gaugings-rinf:437 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "AF4.1 – IP" . 
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "AF4.1 – IP"@en . 
 
 era-gaugings-rinf:438 a skos:Concept;
-  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  skos:note "Value retrieved from the RINF database";
-  skos:prefLabel "AF4.2 – IP" . 
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "AF4.2 – IP"@en . 
+
+## Values ERATV
+
+
+
+
+era-gaugings-eratv:nl-dutch-network a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "NL (Dutch  network)"@en .
+
+era-gaugings-eratv:n01 a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "NO1"@en .
+
+
+era-gaugings-eratv:uic-505-1 a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "UIC 505-1"@en .
+
+
+era-gaugings-eratv:w6a-uk-network a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  
+  skos:prefLabel "W6a (UK network)"@en .
+
+
+era-gaugings-eratv:dk1 a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "DK1"@en .
+
+
+
+era-gaugings-eratv:gb-m6 a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:notation "GB-M6"^^xsd:string ; 
+  skos:prefLabel "GB-M6"@en .
+
+
+
+era-gaugings-eratv:g1-gi1 a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "G1+GI1"@en .
+
+era-gaugings-eratv:g1-gl1 a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  
+  skos:prefLabel "G1/Gl1"@en .
+
+era-gaugings-eratv:g1-gi2 a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "G1/GI2"@en .
+
+era-gaugings-eratv:g1-with-gic2-upper-parts a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "G1 with GIC2 upper parts"@en .
+
+era-gaugings-eratv:g1-up-and-gi2-down a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "G1 up and GI2 down"@en .
+
+era-gaugings-eratv:de3-lower-parts-gi2 a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  
+  skos:prefLabel "DE3 (Lower parts GI2)"@en .
+
+era-gaugings-eratv:csn-28-0312 a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "ČSN 28 0312"@en .
+
+era-gaugings-eratv:gl1 a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "Gl1"@en .
+
+
+era-gaugings-eratv:gc-gl1 a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  
+  skos:prefLabel "GC/Gl1"@en .
+
+era-gaugings-eratv:g2-gl1-with-timber-casette-20-feet a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;  
+  skos:prefLabel "G2/Gl1 (with timber cassette 20 feet)"@en .
+
+
+era-gaugings-eratv:gb-gi2 a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "GB/GI2"@en .
+
+era-gaugings-eratv:galibo-renfe-01-10-86 a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "Galibo Renfe 01/10/86"@en .
+
+
+era-gaugings-eratv:w6a-upper-lower-sectors-uk-network a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "W6a upper and lower sectors (UK network)"@en .
+
+era-gaugings-eratv:uic-505-1-excluding-doorsteps a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "UIC 505-1 excluding the doorsteps."@en .
+
+
+era-gaugings-eratv:per-altesse-less-3250-mm-rispetta-uic-505-1 a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "Per altezze <= a 3250 mm rispetta la fiche UIC 505-1"@en . 
+
+era-gaugings-eratv:per-altesse-greater-3250-mm-previsto-505-1 a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "per altezze > a 3250 mm eccede il profilo max di costruzione previsto dalla fiche 505-1"@en .
+
+era-gaugings-eratv:ocf-02 a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "OCF-02"@en .
+
+era-gaugings-eratv:nntr-bek-1465-bilag-3 a skos:Concept;
+  skos:inScheme era-gaugings:GaugingProfiles;  skos:topConceptOf era-gaugings:GaugingProfiles;   
+  skos:prefLabel "NNTR BEK 1465 Bilag 3"@en .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
