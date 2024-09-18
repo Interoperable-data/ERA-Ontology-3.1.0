@@ -1,0 +1,305 @@
+@prefix : <http://cdm.ovh/ERA_310_topology_fork/example#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://cdm.ovh/ERA_310_topology_fork/example#> .
+
+<http://cdm.ovh/ERA_310_topology_fork/example> rdf:type owl:Ontology ;
+                                                owl:imports <http://cdm.ovh/ERA_310_topology_fork/ontology> ;
+                                                rdfs:comment """In this version, we assume:
+- the crossing is a double slip crossing
+- the switch for accessing the loop is a sprung switch"""@en ;
+                                                rdfs:label "Modelling a small station, including switches, a crossing, and a loop."@en .
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#A
+:A rdf:type owl:NamedIndividual ,
+            <http://data.europa.eu/949/LinearElement> ;
+   <http://data.europa.eu/949/hasPort> :A0 ,
+                                       :A1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#A0
+:A0 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#A1
+:A1 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/connectedWith> :B0 ,
+                                              :K0 ;
+    <http://data.europa.eu/949/navigableTo> :B1 ;
+    <http://data.europa.eu/949/nonNavigableTo> :K0 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#B
+:B rdf:type owl:NamedIndividual ,
+            <http://data.europa.eu/949/LinearElement> ;
+   <http://data.europa.eu/949/hasPort> :B0 ,
+                                       :B1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#B0
+:B0 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/navigableTo> :A0 ,
+                                            :K0 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#B1
+:B1 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/connectedWith> :C0 ,
+                                              :H0 ;
+    <http://data.europa.eu/949/navigableTo> :C1 ,
+                                            :H1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#C
+:C rdf:type owl:NamedIndividual ,
+            <http://data.europa.eu/949/LinearElement> ;
+   <http://data.europa.eu/949/hasPort> :C0 ,
+                                       :C1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#C0
+:C0 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/navigableTo> :B0 ;
+    <http://data.europa.eu/949/nonNavigableTo> :H1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#C1
+:C1 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/connectedWith> :D0 ,
+                                              :L0 ;
+    <http://data.europa.eu/949/navigableTo> :D1 ,
+                                            :L1 ;
+    <http://data.europa.eu/949/nonNavigableTo> :J0 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#D
+:D rdf:type owl:NamedIndividual ,
+            <http://data.europa.eu/949/LinearElement> ;
+   <http://data.europa.eu/949/hasPort> :D0 ,
+                                       :D1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#D0
+:D0 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/navigableTo> :C0 ,
+                                            :J0 ;
+    <http://data.europa.eu/949/nonNavigableTo> :L1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#D1
+:D1 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#E
+:E rdf:type owl:NamedIndividual ,
+            <http://data.europa.eu/949/LinearElement> ;
+   <http://data.europa.eu/949/hasPort> :E0 ,
+                                       :E1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#E0
+:E0 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#E1
+:E1 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/connectedWith> :F0 ,
+                                              :K0 ;
+    <http://data.europa.eu/949/navigableTo> :F1 ,
+                                            :K1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#F
+:F rdf:type owl:NamedIndividual ,
+            <http://data.europa.eu/949/LinearElement> ;
+   <http://data.europa.eu/949/hasPort> :F0 ,
+                                       :F1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#F0
+:F0 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/navigableTo> :E0 ;
+    <http://data.europa.eu/949/nonNavigableTo> :K1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#F1
+:F1 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/connectedWith> :G0 ,
+                                              :L1 ;
+    <http://data.europa.eu/949/navigableTo> :G1 ;
+    <http://data.europa.eu/949/nonNavigableTo> :L0 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#G
+:G rdf:type owl:NamedIndividual ,
+            <http://data.europa.eu/949/LinearElement> ;
+   <http://data.europa.eu/949/hasPort> :G0 ,
+                                       :G1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#G0
+:G0 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/navigableTo> :F0 ,
+                                            :L0 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#G1
+:G1 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#H
+:H rdf:type owl:NamedIndividual ,
+            <http://data.europa.eu/949/LinearElement> ;
+   <http://data.europa.eu/949/hasPort> :H0 ,
+                                       :H1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#H0
+:H0 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/navigableTo> :B0 ;
+    <http://data.europa.eu/949/nonNavigableTo> :C1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#H1
+:H1 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/connectedWith> :I0 ,
+                                              :J0 ;
+    <http://data.europa.eu/949/navigableTo> :I1 ,
+                                            :J1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#I
+:I rdf:type owl:NamedIndividual ,
+            <http://data.europa.eu/949/LinearElement> ;
+   <http://data.europa.eu/949/hasPort> :I0 ,
+                                       :I1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#I0
+:I0 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/navigableTo> :H0 ;
+    <http://data.europa.eu/949/nonNavigableTo> :J1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#I1
+:I1 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/connectedWith> :Z0 ,
+                                              :Z1 ;
+    <http://data.europa.eu/949/navigableTo> :Z1 ;
+    <http://data.europa.eu/949/nonNavigableTo> :Z0 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#J
+:J rdf:type owl:NamedIndividual ,
+            <http://data.europa.eu/949/LinearElement> ;
+   <http://data.europa.eu/949/hasPort> :J0 ,
+                                       :J1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#J0
+:J0 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/navigableTo> :H0 ;
+    <http://data.europa.eu/949/nonNavigableTo> :I1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#J1
+:J1 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/connectedWith> :C1 ,
+                                              :D0 ,
+                                              :L0 ;
+    <http://data.europa.eu/949/navigableTo> :D1 ,
+                                            :L1 ;
+    <http://data.europa.eu/949/nonNavigableTo> :C0 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#K
+:K rdf:type owl:NamedIndividual ,
+            <http://data.europa.eu/949/LinearElement> ;
+   <http://data.europa.eu/949/hasPort> :K0 ,
+                                       :K1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#K0
+:K0 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/navigableTo> :E0 ;
+    <http://data.europa.eu/949/nonNavigableTo> :F1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#K1
+:K1 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/navigableTo> :B1 ;
+    <http://data.europa.eu/949/nonNavigableTo> :A0 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#L
+:L rdf:type owl:NamedIndividual ,
+            <http://data.europa.eu/949/LinearElement> ;
+   <http://data.europa.eu/949/hasPort> :L0 ,
+                                       :L1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#L0
+:L0 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/navigableTo> :C0 ,
+                                            :J0 ;
+    <http://data.europa.eu/949/nonNavigableTo> :D1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#L1
+:L1 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/connectedWith> :G0 ;
+    <http://data.europa.eu/949/navigableTo> :G1 ;
+    <http://data.europa.eu/949/nonNavigableTo> :F0 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#Z
+:Z rdf:type owl:NamedIndividual ,
+            <http://data.europa.eu/949/LinearElement> ;
+   <http://data.europa.eu/949/hasPort> :Z0 ,
+                                       :Z1 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#Z0
+:Z0 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/nonNavigableTo> :I0 .
+
+
+###  http://cdm.ovh/ERA_310_topology_fork/example#Z1
+:Z1 rdf:type owl:NamedIndividual ,
+             <http://data.europa.eu/949/Port> ;
+    <http://data.europa.eu/949/navigableTo> :I0 .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
