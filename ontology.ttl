@@ -269,7 +269,7 @@ dcterms:creator rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/definition
-dcterms:definition rdf:type owl:AnnotationProperty .
+dcterms:description rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/description
@@ -657,12 +657,13 @@ era:compatibilityProcedureDocument rdf:type owl:ObjectProperty ;
                                    era:rinfIndex "1.1.1.1.2.4.4" ;
                                    era:usedInRCCCalculations "true"^^xsd:boolean ;
                                    dcterms:created "2023-03-14"^^xsd:date ;
-                                   dcterms:modified "2024-04-23"^^xsd:date ;
+                                   dcterms:modified "2024-04-23"^^xsd:date , "2024-09-19"^^xsd:date ;
                                    rdfs:comment """Electronic document available in two EU languages from the IM stored by the Agency with:
 - precise procedures for the static and dynamic route compatibility checks;
 Or
 - relevant information for carrying out the checks for specific structures."""@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                   dcterms:description "The document itself has to be upload by the NRE via the “reference document management” functionality. The reference of the document is provided for the parameter using the characterstring format."@en ;
                                    rdfs:label "Document with the procedure(s) for static and dynamic route compatibility checks"@en ;
                                    vs:term_status "stable" ;
                                    skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
@@ -1003,11 +1004,11 @@ era:etcsDegradedSituation rdf:type owl:ObjectProperty ;
                           dcterms:description """System for degraded situation. 
 
 In case of failure of the ETCS Level for normal operation, train movement can be supervised in another ETCS Level. 
-Example: Level 1 as a degraded mode for Level 2.
 
 If parameter 1.1.1.3.2.1 is not used (no ETCS), no degradation is possible, so only ‘none’ level is possible for degraded case.
 
 See also TSI OPE 4.2.3.6. Degraded operation."""@en ;
+                          skos:example "Example: Level 1 as a degraded mode for Level 2."@en ;
                           dcterms:modified "2021-09-12"^^xsd:date ,
                                            "2024-04-18"^^xsd:date ;
                           dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/2023-09-28> ,
@@ -1151,7 +1152,7 @@ era:etcsSystemCompatibility rdf:type owl:ObjectProperty ;
                                           "1.2.1.1.1.9" ;
                             era:usedInRCCCalculations "true"^^xsd:boolean ;
                             dcterms:created "2020-08-31"^^xsd:date ;
-                            dcterms:definition """The Values \"Not defined\" or \"ESC-EU-0\" should not be combined with other values.
+                            dcterms:description """The Values \"Not defined\" or \"ESC-EU-0\" should not be combined with other values.
 
 For application in CCS Onboard:
 The vehicles are considered compatible with the infrastructure for this parameter, if their parameter value matches any of the values declared on the trackside. 
@@ -1224,8 +1225,9 @@ era:freightCorridor rdf:type owl:ObjectProperty ;
                     era:rinfIndex "1.1.1.1.2.3" ,
                                   "1.2.1.0.2.3" ;
                     dcterms:created "2021-08-03"^^xsd:date ;
-                    dcterms:modified "2024-01-08"^^xsd:date ;
+                    dcterms:modified "2024-01-08"^^xsd:date , "2024-09-19"^^xsd:date ;
                     rdfs:comment "Indication whether the line is designated to a Railway Freight Corridor."@en ;
+                    dcterms:relation <http://data.europa.eu/eli/reg/2010/913/2024-07-18> ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "Part of a Railway Freight Corridor"@en ;
                     vs:term_status "stable" .
@@ -1322,15 +1324,18 @@ era:gaugingProfile rdf:type owl:ObjectProperty ;
                                ] ;
                    rdfs:range skos:Concept ;
                    era:XMLName "ILL_Gauging" ;
-                   era:eratvIndex "4.2.1" ;
+                   era:eratvIndex "4.2.1" , "3.1.2.3" ;
+                   era:harmonisedRestrictionCode "2.1" ;
                    era:inSkosConceptScheme <http://data.europa.eu/949/concepts/gaugings/GaugingProfiles> ;
                    era:rinfIndex "1.1.1.1.3.1.1" ,
                                  "1.2.1.0.3.4" ;
                    era:usedInRCCCalculations "true"^^xsd:boolean ;
                    dcterms:created "2020-07-29"^^xsd:date ;
-                   dcterms:modified "2023-03-14"^^xsd:date ;
+                   dcterms:modified "2023-03-14"^^xsd:date , "2024-06-26"^^xsd:date , "2024-09-19"^^xsd:date ;
                    rdfs:comment """Gauges as defined in European standard or other local gauges, including lower or upper part.
 In accordance with point 7.3.2.2 of LOC&PAS TSI, sections of lines of the United Kingdom of Great Britain network may not have gauge reference profile."""@en ;
+                   dcterms:relation "EN15273-3:2013+A1:2016: Annex C and Annex D, INF TSI: 4.2.3.1" ;
+                   dcterms:relation <https://www.era.europa.eu/system/files/2022-11/list_harmonised_national_restriction_codes_en.pdf> ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    rdfs:label "gauging"@en ;
                    vs:term_status "stable" .
@@ -1345,9 +1350,14 @@ era:gaugingTransversalDocument rdf:type owl:ObjectProperty ;
                                              "1.2.1.0.3.6" ;
                                era:usedInRCCCalculations "true"^^xsd:boolean ;
                                dcterms:created "2020-08-24"^^xsd:date ;
-                               dcterms:modified "2024-04-23"^^xsd:date ;
+                               dcterms:modified "2024-04-23"^^xsd:date , "2024-09-19"^^xsd:date;
                                rdfs:comment "Electronic document available from the IM stored by the Agency with the transversal section of the particular points requiring specific checks due to deviations from gauging referred to in parameter \"Gauging\". Where relevant, guidance for the check with the particular point may be attached to the document with the transversal section."@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                               dcterms:description """Only the reference of the document must be provided. The parameter must need to be repeated for each document to be referred.
+
+The document itself has to be upload by the NRE via the “reference document management” functionality. The reference of the document is provided for the parameter using the characterstring format.
+
+The parameter has to be repeated for providing the 2 different translations."""@en ;
                                rdfs:label "Document with the transversal section of the particular points requiring specific checks"@en ;
                                vs:term_status "stable" ;
                                skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en .
@@ -1368,7 +1378,7 @@ In case there is ETCS Level 2 in the line, the minimum number of EDOR required o
 In case ETCS baseline 3 release 2 or baseline 4 is selected, select “2”.
 Please select ”1” or “2”, taking into account that TSI compliant trains may only be fitted with 1 EDOR.
 """@en ;
-                      dcterms:modified "2021-09-12"^^xsd:date ;
+                      dcterms:modified "2021-09-12"^^xsd:date , "2024-04-18"^^xsd:date ;
                       dcterms:relation era:etcsLevelType ;
                       rdfs:comment "Number of simultaneous communication session on board for ETCS level 2 required for a smooth running of the train. This relates to the radio block centre (RBC) handling of communication sessions. Not safety critical and no matter of interoperability."@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -1681,9 +1691,13 @@ era:lineCategory rdf:type owl:ObjectProperty ;
                  era:rinfIndex "1.1.1.1.2.2" ,
                                "1.2.1.0.2.2" ;
                  dcterms:created "2021-08-02"^^xsd:date ;
-                 dcterms:modified "2024-01-08"^^xsd:date ;
+                 dcterms:modified "2024-01-08"^^xsd:date , "2024-09-19"^^xsd:date ;
                  rdfs:comment "Classification of a line according to the TSI INF."@en ;
+                 dcterms:description """INF TSI (4.2.1) classifies lines based on the type of traffic (traffic code).
+
+TSI categories of line shall be used for the classification of existing lines to define a target system so that the relevant performance parameters will be met."""@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                 dcterms:relation <https://eur-lex.europa.eu/eli/reg/2014/1299/2023-09-28#tocId30> ;
                  rdfs:label "category of line"@en ;
                  vs:term_status "stable" .
 
@@ -1700,7 +1714,10 @@ era:lineNationalId rdf:type owl:ObjectProperty ;
                    era:appendixD2Index "2.2.1.1" ;
                    era:rinfIndex "1.1.0.0.0.2" ;
                    dcterms:created "2020-09-30"^^xsd:date ;
-                   dcterms:modified "2023-03-14"^^xsd:date ;
+                   dcterms:modified "2023-03-14"^^xsd:date , "2024-09-19"^^xsd:date ;
+                   dcterms:description """Each SoL can belong to only one national line.
+
+In case when SoL is the track connecting between OPs within big node (resulting from division of big station into several smaller) the line can be identified using the name of this track."""@en ;
                    rdfs:comment "Unique line identification or unique line number within Member State."@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    rdfs:label "National line identification"@en ;
@@ -1791,8 +1808,20 @@ era:loadCapability rdf:type owl:ObjectProperty ;
                                         era:loadCapabilityLineCategory ,
                                         era:loadCapabilitySpeed ,
                                         era:trackLoadCapability ;
-                   dcterms:modified "2023-01-20"^^xsd:date ;
+                   dcterms:modified "2023-01-20"^^xsd:date , "2024-09-19"^^xsd:date;
                    rdfs:comment "A combination of the line category and speed at the weakest point of the track.The reason for deprecation is that the load capability property 1.1.1.1.2.4 was defined incorrectly as a SKOS property. It is composed of two values: (1)  line category, and (2) speed. Only line category is a list of predefined values (SKOS), whereas speed is an integer (according to the RINF application guide)."@en ;
+                   dcterms:description """At this step, RINF does not allow to enter additional data referred to additional speed regulations and operating requirements relating to locomotives (e.g., locomotive classes and associated maximum speed) or traffic types (e.g., maximum speed of freight traffic or passenger traffic).
+
+The load capability describes the weakest point of this track within this section of line (which is normally a bridge or other sub-track structure). It is expressed as a combination of the line category and speed permitted for trains exerting loads defined for this line category. The result of the classification process is set out in EN 15528:2021 (Annex A) and referred to in that standard as “Line Category”. 
+
+It represents the ability of the infrastructure to withstand the vertical loads imposed by vehicles on the track for regular service as a combination of Line Category with a permitted speed according to EN 15528:2021
+
+More than one combination may be published for the same track if applicable, but it has to be done by repetition of the parameter with one value selected only – that is why ‘Y’ is given in line ‘Can be repeated’
+
+For the following cases, it is not possible to use EN 15528:20021categories of line classification:
+- TSI categories of line P1520 and F1520 (passenger traffic or freight traffic at any speed)
+- TSI categories of line P1600 and F1600 (passenger traffic or freight traffic at any speed)
+"""@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    rdfs:label "Load Capability"@en ;
                    owl:deprecated "true"^^xsd:boolean ;
@@ -2898,10 +2927,15 @@ era:temperatureRange rdf:type owl:ObjectProperty ;
                      rdfs:range skos:Concept ;
                      era:XMLName "IPP_TempRange" ;
                      era:inSkosConceptScheme <http://data.europa.eu/949/concepts/temperature-ranges/TemperatureRanges> ;
+                     era:eratvIndex "4.3.1" ;
+                     era:harmonisedRestrictionCode "4.1." ;
                      era:rinfIndex "1.1.1.1.2.6" ;
                      era:usedInRCCCalculations "true"^^xsd:boolean ;
                      dcterms:created "2023-01-20"^^xsd:date ;
+                     dcterms:modified "2024-06-26"^^xsd:date , "2024-09-19"^^xsd:date ;
+
                      rdfs:comment "Temperature range for unrestricted access to the line according European standard."@en ;
+                     dcterms:description "Temperature range according EN 50125-1:2014 4.3 "@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "Temperature range"@en ;
                      vs:term_status "stable" .
@@ -2919,8 +2953,10 @@ era:tenClassification rdf:type owl:ObjectProperty ;
                                     "1.2.1.0.6.3" ,
                                     "1.2.2.0.0.3" ;
                       dcterms:created "2021-08-02"^^xsd:date ;
-                      dcterms:modified "2024-01-08"^^xsd:date ;
+                      dcterms:modified "2024-01-08"^^xsd:date , "2024-09-19"^^xsd:date;
                       rdfs:comment "Indicates the part of the trans-European network the (track, platform, siding) belongs to."@en ;
+                      dcterms:relation <http://data.europa.eu/eli/reg/2013/1315/2024-03-18> ;
+                      dcterms:description """Article 39 2. freight lines of the core network as indicated in Annex I: at least 22,5 t axle load, 100 km/h line speed and the possibility of running trains with a length of 740 m."""@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                       rdfs:label "Trans-European Network (TEN) classification"@en ;
                       vs:term_status "stable" .
@@ -3662,8 +3698,10 @@ era:cantDefficiency rdf:type owl:DatatypeProperty ;
                     rdfs:domain era:VehicleType ;
                     rdfs:range xsd:integer ;
                     era:eratvIndex "4.6.1" ;
+                    era:unitOfMeasure unit:MilliM ;
+
                     dcterms:created "2021-08-26"^^xsd:date ;
-                    dcterms:modified "2021-08-26"^^xsd:date ;
+                    dcterms:modified "2021-08-26"^^xsd:date  , "2024-06-26"^^xsd:date;
                     rdfs:comment "Cant deficiency (maximum uncompensated lateral acceleration) for which the vehicle has been assessed. For dual gauge vehicles values for each gauge have to be indicated."@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "Cant defficiency"@en ;
@@ -3982,9 +4020,10 @@ era:demonstrationENE rdf:type owl:DatatypeProperty ;
                      era:XMLName "EDE_EIDemonstration" ;
                      era:rinfIndex "1.1.1.2.1.2" ;
                      dcterms:created "2021-08-08"^^xsd:date ;
-                     dcterms:modified "2024-01-08"^^xsd:date ;
+                     dcterms:modified "2024-01-08"^^xsd:date , "2024-09-19"^^xsd:date;
                      rdfs:comment "Unique number for EI declarations following the same format requirements as specified for EC declarations in Annex VII of Commission Implementing Regulation (EU) 2019/250." ;
                      rdfs:label "EI declaration of demonstration (as defined Recommendation 2014/881/EU) for track relating to compliance with the requirements from TSIs applicable to energy subsystem"@en ;
+                     dcterms:relation <http://data.europa.eu/eli/reco/2014/881/oj> ;
                      vs:term_status "stable" .
 
 
@@ -3997,9 +4036,12 @@ era:demonstrationINF rdf:type owl:DatatypeProperty ;
                                    "1.2.1.0.1.2" ,
                                    "1.2.2.0.1.2" ;
                      dcterms:created "2021-08-03"^^xsd:date ;
-                     dcterms:modified "2024-01-08"^^xsd:date ;
-                     rdfs:comment """Unique number for EI declarations following the same format requirements as specified for EC declarations in Annex VII of Commission Implementing Regulation (EU) 2019/250.
-In https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32019R0777&from=EN"""@en ;
+                     dcterms:modified "2024-01-08"^^xsd:date , "2024-09-19"^^xsd:date ;
+                     rdfs:comment """Unique number for EI declarations following the same format requirements as specified for EC declarations in Annex VII of Commission Implementing Regulation (EU) 2019/250."""@en ;
+                     dcterms:description """It may happen that several EI declarations were issued – then parameter has to be repeated as many times as many declarations were issued.
+
+The procedure for demonstration that existing network fits to requirements of the TSIs is executed on voluntary basis, so when EI declaration do not exist then the parameter is optional. If EI declaration was not issued, then field shall be left empty. """@en ;
+                     dcterms:relation <http://data.europa.eu/eli/reg_impl/2019/777/2023-09-28> , <http://data.europa.eu/eli/reco/2014/881/oj> ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "EI declaration of demonstration (as defined Commission 2014/881/EU) for track relating to compliance with the requirements from TSIs applicable to infrastructure subsystem"@en ;
                      vs:term_status "stable" .
@@ -4014,10 +4056,11 @@ era:demonstrationSRT rdf:type owl:DatatypeProperty ;
                                    "1.2.1.0.5.4" ,
                                    "1.2.2.0.5.4" ;
                      dcterms:created "2021-08-03"^^xsd:date ;
-                     dcterms:modified "2024-01-08"^^xsd:date ;
+                     dcterms:modified "2024-01-08"^^xsd:date , "2024-06-26"^^xsd:date , "2024-09-19"^^xsd:date;
                      rdfs:comment "Unique number for EI declarations following the same format requirements as specified for EC declarations in Annex VII of Commission Implementing Regulation (EU) 2019/250."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "EI declaration of demonstration (as defined in Recommendation 2014/881/EU) relating to compliance with the requirements from TSIs applicable to railway tunnel"@en ;
+                     dcterms:relation <http://data.europa.eu/eli/reco/2014/881/oj> ;
                      vs:term_status "stable" .
 
 
@@ -4026,8 +4069,9 @@ era:designMassExceptionalPayload rdf:type owl:DatatypeProperty ;
                                  rdfs:domain era:VehicleType ;
                                  rdfs:range xsd:integer ;
                                  era:eratvIndex "4.5.2.3" ;
+                                 era:unitOfMeasure unit:KiloGM ;
                                  dcterms:created "2020-08-24"^^xsd:date ;
-                                 dcterms:modified "2020-11-03"^^xsd:date ;
+                                 dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                                  rdfs:comment "Design mass under exceptional payload."@en ;
                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                  rdfs:label "Design mass under exceptional payload"@en ;
@@ -4039,8 +4083,9 @@ era:designMassNormalPayload rdf:type owl:DatatypeProperty ;
                             rdfs:domain era:VehicleType ;
                             rdfs:range xsd:integer ;
                             era:eratvIndex "4.5.2.2" ;
+                            era:unitOfMeasure unit:KiloGM ;
                             dcterms:created "2020-08-24"^^xsd:date ;
-                            dcterms:modified "2020-11-03"^^xsd:date ;
+                            dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                             rdfs:comment "Design mass under normal payload."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Design mass under normal payload"@en ;
@@ -4052,8 +4097,10 @@ era:designMassWorkingOrder rdf:type owl:DatatypeProperty ;
                            rdfs:domain era:VehicleType ;
                            rdfs:range xsd:integer ;
                            era:eratvIndex "4.5.2.1" ;
+                           era:unitOfMeasure unit:KiloGM ;
+
                            dcterms:created "2020-08-24"^^xsd:date ;
-                           dcterms:modified "2020-11-03"^^xsd:date ;
+                           dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                            rdfs:comment "Design mass in working order."@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "Design mass in working order"@en ;
@@ -4546,8 +4593,15 @@ era:gaugingCheckLocation rdf:type owl:DatatypeProperty ;
                                        "1.2.1.0.3.5" ;
                          era:usedInRCCCalculations "true"^^xsd:boolean ;
                          dcterms:created "2020-07-29"^^xsd:date ;
-                         dcterms:modified "2024-01-08"^^xsd:date ;
+                         dcterms:modified "2024-01-08"^^xsd:date , "2024-09-19"^^xsd:date , "2024-09-19"^^xsd:date;
                          rdfs:comment "Location of particular points requiring specific checks due to deviations from gauging referred to in parameter \"Gauging\"."@en ;
+                         skos:scopeNote """This parameter is applicable when the conditions for the application of the gauge are not fulfilled (for example when the radius is 125 m and the minimum radius admitted for the gauge GC is 150 m). It can also be applicable when the IM wants to highlight also on a particular point and provide info via parameter 1.1.1.1.3.1.3
+
+This parameter could be also applicable when the gauge is infringed. This means that the obstacles are inside the infrastructure gauge. This case could happen for example for platforms where the platform does not fulfill the gauge."""@en ;                          
+                         dcterms:description """The railway location identifies the location of the structure in the system of reference of the line to which the track belongs.
+
+The location (generally the distance from the origin of the line to the centre) on a line is given in kilometres with decimals (precision of 0.001).  Contrary to the regulation, the reference to the line is not needed: the parameter is still attached to the track of the line."""@en ;
+                         
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Railway location of particular points requiring specific checks"@en ;
                          vs:term_status "stable" .
@@ -4619,8 +4673,21 @@ era:gradientProfile rdf:type owl:DatatypeProperty ;
                     era:rinfIndex "1.1.1.1.3.6" ;
                     era:usedInRCCCalculations "true"^^xsd:boolean ;
                     dcterms:created "2020-08-24"^^xsd:date ;
-                    dcterms:modified "2021-09-10"^^xsd:date ;
+                    dcterms:modified "2021-09-10"^^xsd:date , "2024-09-19"^^xsd:date ;
                     rdfs:comment "Sequence of gradient values and locations of change in gradient."@en ;
+                    dcterms:description """Data on the values of gradient along a SoL is given as a chain of information:
+
+Gradient (location) The first location corresponding to the start of the first value of the gradient is the centre point of start OP. If there are different values of the gradient, the parameter will be repeated. The last location will correspond to the point where the last value of the gradient starts.  This value will be available until the centre point of the end OP. If gradient has only one value along the track, then only [+/-NN.N] is required.
+
+Gradient is expressed in mm/m; location is expressed in km of the line.
+
+Positive gradient (uphill) is marked with ‘+’ and negative gradient (downhill) is marked by ‘-‘.
+
+The order in the sequence shall be determined by the normal running direction on the specific track. If it is ‘B’ (see 1.1.1.0.0.2) then sequence shall follow the increasing kilometres of the line.
+
+Changes in gradient shall be registered only as far as necessary for train running calculations (minimum length of constant gradient shall be 500 m, the minimum change of gradient value shall be 0,5 mm/m).
+
+The required precision for gradient value is 0,5 mm/m, the required precision of location of the points of change of gradient is 10 m. The points of change of gradient are the points of vertical intersection of each vertical curve."""@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "Gradient profile"@en ;
                     vs:term_status "stable" .
@@ -4635,6 +4702,8 @@ era:gsmRNoCoverage rdf:type owl:DatatypeProperty ,
                    era:rinfIndex "1.1.1.3.3.8" ,
                                  "1.2.1.1.2.8" ;
                    dcterms:created "2021-08-09"^^xsd:date ;
+                   dcterms:modified "2024-09-19"^^xsd:date ;
+
                    dcterms:description """If GSM-R is not installed, this parameter should not be used.
 This parameter is mainly to capture the case of Radio Hole functionality (lack of GSM-R coverage), that is foreseen in the ETCS specifications as packet 68. 
 Another possible use is the declaration of a temporary situation where, although the area is in principle covered by GSM-R, there is a long-term outage or a project for replacement of the radio (i.e. a section that will not be covered with GSM-R for half a year or longer)."""@en ;
@@ -5016,8 +5085,15 @@ era:hasSevereWeatherConditions rdf:type owl:DatatypeProperty ;
                                era:rinfIndex "1.1.1.1.2.8" ;
                                era:usedInRCCCalculations "true"^^xsd:boolean ;
                                dcterms:created "2020-08-24"^^xsd:date ;
-                               dcterms:modified "2021-09-10"^^xsd:date ;
+                               dcterms:modified "2021-09-10"^^xsd:date , "2024-09-19"^^xsd:date ;
                                rdfs:comment "Climatic conditions on the line are severe according to European standard."@en ;
+                               dcterms:description """Value 'true' shall be selected in case there are possible severe climatic conditions to be expected, i.e. a significant amount of snow or ice is to be expected during winter and vehicle should be designed accordingly to be able to run in such conditions. (compliance to 4.2.6.1.2(3),(4) of TSI Loc&Pas required). ‘N’ to be selected otherwise.
+
+Nominal and severe conditions are defined at TSI Loc&Pas level, section 4.2.6.1.2, which requires that the applicant declares to which snow conditions a vehicle complies with : either “nominal” or “severe” conditions. This technical aspect is reflected in the parameter 4.3.3 “Snow, ice and hail conditions” of ERATV , which will provide the two possible values:
+-	Nominal conditions correspond to compliance with clause 4.7 of EN 50125 as referred in the §4.2.6.1.2 (1) of TSI Loc&Pas.
+To be noted: It is not required to precise the categorisation S1, S2 or S3 as mentioned in the EN 50125.
+
+-	Severe conditions correspond to compliance with §4.2.6.1.2 (3) and (4) : the applicant designs and tests its vehicle according to the different scenarios mentioned in the TSI §4.2.6.1.2 (3) (snowdrift, powder snow, temperature gradient, etc.) and set the related provisions to achieve this as required by §4.2.6.1.2 (4) (obstacle deflector of sufficient size, effect of ice and snow on running gear and brake function, etc.)."""@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "Existence of severe climatic conditions"@en ;
                                vs:term_status "stable" .
@@ -5146,9 +5222,11 @@ era:highSpeedLoadModelCompliance rdf:type owl:DatatypeProperty ;
                                  era:rinfIndex "1.1.1.1.2.4.2" ;
                                  era:usedInRCCCalculations "true"^^xsd:boolean ;
                                  dcterms:created "2020-08-24"^^xsd:date ;
-                                 dcterms:modified "2024-01-08"^^xsd:date ;
+                                 dcterms:modified "2024-01-08"^^xsd:date , "2024-09-19"^^xsd:date ;
                                  rdfs:comment """For sections of line with a maximum permitted speed of 200 km/h or more.
 Information regarding the procedure to be used to perform the dynamic compatibility check."""@en ;
+                                 skos:scopeNote "(TSI INF 4.2.7.1.2(2)) Applicable if the maximum permitted speed of the running track is more than 200km/h and the structures within the section of line are all compatible with the High Speed Load Model (HSLM); information regarding the procedure to be used to perform the dynamic compatibility check shall be provided as well."@en ;
+                                 dcterms:relation <https://eur-lex.europa.eu/eli/reg/2014/1299/2023-09-28#tocId30> ;
                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                  rdfs:label "Compliance of structures with the High Speed Load Model (HSLM)"@en ;
                                  vs:term_status "stable" .
@@ -5263,8 +5341,8 @@ era:imCode rdf:type owl:DatatypeProperty ;
 Each Section of Line may concern only one IM. """@en ;
            dcterms:isReplacedBy era:organisationCode ;
            dcterms:modified "2024-01-08"^^xsd:date ,
-                            "2024-06-03"^^xsd:date ;
-           dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+                            "2024-06-03"^^xsd:date , "2024-09-19"^^xsd:date ;
+           dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> , <https://eur-lex.europa.eu/eli/dir/2012/34/oj#d1e885-32-1> , <http://data.europa.eu/eli/dec_impl/2018/1614>;
            rdfs:comment """(deprecated) Infrastructure manager means any body or firm responsible in particular for establishing, managing and maintaining railway infrastructure, including traffic management and control-command and signalling; 
 the functions of the infrastructure manager on a network or part of a network may be allocated to different bodies or firms. Definition in (Article 3(2))"""@en ;
            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -5745,8 +5823,11 @@ era:maximumAltitude rdf:type owl:DatatypeProperty ;
                     era:rinfIndex "1.1.1.1.2.7" ;
                     era:unitOfMeasure unit:M ;
                     dcterms:created "2021-08-03"^^xsd:date ;
-                    dcterms:modified "2022-10-20"^^xsd:date ;
+                    dcterms:modified "2022-10-20"^^xsd:date , "2024-09-19"^^xsd:date;
                     rdfs:comment "Highest point of the section of line above sea level in reference to Normal Amsterdam's Peil (NAP)."@en ;
+                    dcterms:description """Normaal Amsterdams Peil (NAP), called also Amsterdam Ordnance Datum, it is a vertical datum commonly in use in Europe as reference level for the description of the height of objects in relation to the sea level.
+
+The value of the parameter shall be given in metres, with tolerance of +/-100m."""@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "Maximum altitude"@en ;
                     vs:term_status "stable" .
@@ -5756,9 +5837,10 @@ era:maximumAltitude rdf:type owl:DatatypeProperty ;
 era:maximumAverageDeceleration rdf:type owl:DatatypeProperty ;
                                rdfs:domain era:VehicleType ;
                                rdfs:range xsd:double ;
+                               era:unitOfMeasure unit:M-PER-SEC2 ;
                                era:eratvIndex "4.7.1" ;
                                dcterms:created "2021-08-26"^^xsd:date ;
-                               dcterms:modified "2021-08-26"^^xsd:date ;
+                               dcterms:modified "2021-08-26"^^xsd:date , "2024-06-26"^^xsd:date ;
                                rdfs:comment "Maximum train deceleration given in m/s²."@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "Maximum average deceleration"@en ;
@@ -5769,9 +5851,11 @@ era:maximumAverageDeceleration rdf:type owl:DatatypeProperty ;
 era:maximumBrakeThermalEnergyCapacity rdf:type owl:DatatypeProperty ;
                                       rdfs:domain era:VehicleType ;
                                       rdfs:range xsd:integer ;
+                                      era:unitOfMeasure unit:KiloJ ;
+
                                       era:eratvIndex "4.7.2.1.6" ;
                                       dcterms:created "2021-08-26"^^xsd:date ;
-                                      dcterms:modified "2021-08-26"^^xsd:date ;
+                                      dcterms:modified "2021-08-26"^^xsd:date , "2024-06-26"^^xsd:date;
                                       rdfs:comment "Maximum brake thermal energy capacity given in kJ"@en ;
                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                       rdfs:label "Maximum brake thermal energy capacity"@en ;
@@ -5787,7 +5871,7 @@ era:maximumBrakingDistance rdf:type owl:DatatypeProperty ;
                            era:unitOfMeasure unit:M ;
                            era:usedInRCCCalculations "true"^^xsd:boolean ;
                            dcterms:created "2020-08-24"^^xsd:date ;
-                           dcterms:modified "2021-09-12"^^xsd:date ;
+                           dcterms:modified "2021-09-12"^^xsd:date , "2024-06-26"^^xsd:date;
                            rdfs:comment "The maximum value of the braking distance [in meters] of a train shall be given for the maximum line speed."@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "Maximum braking distance requested"@en ;
@@ -5820,8 +5904,9 @@ era:maximumDesignSpeed rdf:type owl:DatatypeProperty ;
                        rdfs:domain era:VehicleType ;
                        rdfs:range xsd:integer ;
                        era:eratvIndex "4.1.2.1" ;
+                       era:unitOfMeasure unit:KiloM-PER-HR ;
                        dcterms:created "2020-08-24"^^xsd:date ;
-                       dcterms:modified "2020-11-03"^^xsd:date ;
+                       dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date;
                        rdfs:comment "Maximum design speed."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Maximum design speed"@en ;
@@ -5937,8 +6022,13 @@ era:maximumPermittedSpeed rdf:type owl:DatatypeProperty ,
                           era:unitOfMeasure unit:KiloM-PER-HR ;
                           era:usedInRCCCalculations "true"^^xsd:boolean ;
                           dcterms:created "2020-08-24"^^xsd:date ;
-                          dcterms:modified "2023-03-14"^^xsd:date ;
+                          dcterms:modified "2023-03-14"^^xsd:date , "2024-09-19"^^xsd:date;
                           rdfs:comment "Nominal maximum operational speed on the line as a result of infrastructure, energy and control, command and signalling subsystem characteristics expressed in kilometres/hour."@en ;
+                          dcterms:description """‘Speed on the line’ shall be understood as speed on the track of the section of line in question. """@en ;
+                          skos:example """Example
+
+When INF allows 160 km/h, ENE allows 100 km/h and CCS allows 120 km/h, the max permitted speed on this track of this section of line is 100 km/h.
+When for freight trains operation the maximum permitted speed is 100 km/h, and for passenger trains it is 160 km/h, as the value of maximum permitted speed shall be presented 160 km/h only."""@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "Maximum permitted speed"@en ;
                           vs:term_status "stable" .
@@ -6404,8 +6494,9 @@ era:nationalLoadCapability rdf:type owl:DatatypeProperty ;
                            era:rinfIndex "1.1.1.1.2.4.1" ;
                            era:usedInRCCCalculations "true"^^xsd:boolean ;
                            dcterms:created "2020-08-24"^^xsd:date ;
-                           dcterms:modified "2021-09-10"^^xsd:date ;
+                           dcterms:modified "2021-09-10"^^xsd:date , "2024-09-19"^^xsd:date ;
                            rdfs:comment "National classification for load capability."@en ;
+                           dcterms:description "Some Networks are using National classification for load capability (instead of parameter 1.1.1.1.2.4 Load capability that provide load capability in accordance with EN 15528) (e.g. the French IM SNCF reseau is using the concept of “groupe Demeaux” with the following definition is “Groupe de classification de la voie tenant compte de la résistance de son armement en flexion verticale »."@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "National classification for load capability"@en ;
                            vs:term_status "stable" .
@@ -7285,6 +7376,7 @@ era:specificInformation rdf:type owl:DatatypeProperty ;
                         dcterms:created "2021-08-03"^^xsd:date ;
                         dcterms:modified "2021-09-10"^^xsd:date ;
                         rdfs:comment "Any relevant information from the IM relating to the line layout."@en ;
+                        dcterms:description "This parameter allows the IM to provide plain text with specific information about the track"@en ;                        
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "Specific information"@en ;
                         vs:term_status "stable" .
@@ -7388,8 +7480,15 @@ era:structureCheckLocation rdf:type owl:DatatypeProperty ;
                            era:rinfIndex "1.1.1.1.2.4.3" ;
                            era:usedInRCCCalculations "true"^^xsd:boolean ;
                            dcterms:created "2020-08-24"^^xsd:date ;
-                           dcterms:modified "2023-03-14"^^xsd:date ;
+                           dcterms:modified "2023-03-14"^^xsd:date , "2024-09-19"^^xsd:date ;
                            rdfs:comment "Localisation of structures requiring specific checks."@en ;
+                           dcterms:description """The railway location identifies the location of the structure in the system of reference of the line to which the track belongs."""@en ;
+                           skos:example """Example
+                           
+The IM A knows that its bridge X might have problems with combination of speed and load above a certain limit values Z, and for that the IM A has a specific procedure W for the check to be done; if the vehicle operation is intended to be within this case (above the limit Z), then RU shall proceed in accordance to the procedure W; therefore the bridge X shall be referred to in the parameter of the RINF:  1.1.1.1.2.4.3 / Railway location of structures requiring specific checks.
+Please Note that this is a hypothetic example, as the Agency doesn’t know the specific procedures of the IMs.
+It could be those bridges that have not been designed according to the HSLM dynamic load model."""@en ;
+                           dcterms:relation era:compatibilityProcedureDocument ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "Railway location of structures requiring specific checks"@en ;
                            vs:term_status "stable" .
@@ -7626,8 +7725,12 @@ era:tenGISId rdf:type owl:DatatypeProperty ;
              era:XMLName "IPP_TENGISID" ;
              era:rinfIndex "1.1.1.1.2.1.2" ;
              dcterms:created "2021-08-03"^^xsd:date ;
-             dcterms:modified "2024-01-08"^^xsd:date ;
+             dcterms:modified "2024-01-08"^^xsd:date , "2024-09-19"^^xsd:date ;
              rdfs:comment "Indication of the GIS identity (GIS ID) of the section of TEN-T database to which the track belongs."@en ;
+             dcterms:description """TENtec is the European Commission's information system to coordinate and support the Trans-European Transport Network Policy (TEN-T). For more details about the system and the legal background please follow the link to the TENtec Public Portal.
+
+Τhe list of sections of the TEN network with their GIS IDs can be requested via MOVE-TENTEC-PUBLIC@ec.europa.eu"""@en ;
+             rdfs:seeAlso <http://ec.europa.eu/transport/infrastructure/tentec/tentec-portal/> ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "TEN geographic information system identity (GIS ID)"@en ;
              vs:term_status "stable" .
@@ -7637,9 +7740,10 @@ era:tenGISId rdf:type owl:DatatypeProperty ;
 era:thermalCapacityDistance rdf:type owl:DatatypeProperty ;
                             rdfs:domain era:VehicleType ;
                             rdfs:range xsd:double ;
+                            era:unitOfMeasure unit:KiloM ;
                             era:eratvIndex "4.7.2.1.4" ;
                             dcterms:created "2020-08-24"^^xsd:date ;
-                            dcterms:modified "2020-11-03"^^xsd:date ;
+                            dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date;
                             rdfs:comment "Thermal capacity distance. If no reference case is indicated."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Thermal capacity distance"@en ;
@@ -7723,8 +7827,10 @@ era:trackId rdf:type owl:DatatypeProperty ;
             era:rinfIndex "1.1.1.0.0.1" ,
                           "1.2.1.0.0.2" ;
             dcterms:created "2021-09-09"^^xsd:date ;
-            dcterms:modified "2024-01-08"^^xsd:date ;
+            dcterms:modified "2024-01-08"^^xsd:date , "2024-09-19"^^xsd:date;
             dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+            dcterms:description "Each track shall have unique identification or number within the SoL. This number cannot be used for naming any other track in the same SoL."@en ;
+            skos:scopeNote "The check regarding the uniqueness of the ID within the SoL has to be done on national level (preferably by IM)."@en ;
             rdfs:comment "Unique track identification or unique track number within an OP or a section of line."@en ;
             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
             rdfs:label "Identification of track"@en ;
@@ -8277,11 +8383,12 @@ era:weight rdf:type owl:DatatypeProperty ;
            rdfs:range xsd:double ;
            rdfs:comment "The weight of the edge between 2 topological nodes."@en ;
            rdfs:label "weight"@en ;
-           skos:example """ For example: 
-					:x rdf:type eraLinearElementLink;
-					 era:from :le1;
-					 era:to :le2;
-					 era:weight \"1.234\"^^xsd:double; #length of the track topologically represented as :le1"""@en ;
+           skos:example """Example
+
+:x rdf:type eraLinearElementLink;
+    era:from :le1;
+	  era:to :le2;
+		era:weight \"1.234\"^^xsd:double; #length of the track topologically represented as :le1"""@en ;
            skos:scopeNote "The value of the weight is represented by the length of the functional representation of the linear element defined by the property era:from of the era:LinearElementLink."@en .
 
 
@@ -8327,7 +8434,8 @@ era:wheelchairSpaces rdf:type owl:DatatypeProperty ;
 ###  http://purl.org/dc/terms/identifier
 dcterms:identifier rdf:type owl:DatatypeProperty ;
                    rdfs:range rdfs:Literal ;
-                   dcterms:description "Recommended practice is to identify the resource by means of a string conforming to an identification system. Examples include International Standard Book Number (ISBN), Digital Object Identifier (DOI), and Uniform Resource Name (URN).  Persistent identifiers should be provided as HTTP URIs."@en ;
+                   dcterms:description "Recommended practice is to identify the resource by means of a string conforming to an identification system. Persistent identifiers should be provided as HTTP URIs."@en ;
+                   skos:example "Examples include International Standard Book Number (ISBN), Digital Object Identifier (DOI), and Uniform Resource Name (URN)." ;
                    rdfs:comment "An unambiguous reference to the resource within a given context."@en ;
                    rdfs:isDefinedBy dcterms: ;
                    rdfs:label "Identifier"@en .
@@ -8414,7 +8522,8 @@ foaf:nick rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/AggregatedObject
 era:AggregatedObject rdf:type owl:Class ;
                      rdfs:subClassOf era:InfrastructureObject ;
-                     rdfs:comment "An aggregated object is an infrastructure object defined at a higher level of granularity, containing at least one basic object. Example: in one operational point we can find several tracks, switches, signals, etc."@en ;
+                     rdfs:comment "An aggregated object is an infrastructure object defined at a higher level of granularity, containing at least one basic object."@en ;
+                     skos:example "Example: in one operational point we can find several tracks, switches, signals, etc."@en ;
                      rdfs:label "Aggregated Object"@en .
 
 
@@ -8427,7 +8536,8 @@ era:Applicability rdf:type owl:Class ;
 ###  http://data.europa.eu/949/AreaLocation
 era:AreaLocation rdf:type owl:Class ;
                  rdfs:subClassOf era:BaseLocation ;
-                 rdfs:comment "Represents a geographical representation of a polygonal area. Example: non-stopping area,cross section area, area of implementation of GPRS etc."@en ;
+                 rdfs:comment "Represents a geographical representation of a polygonal area."@en ;
+                 skos:example "Example: non-stopping area,cross section area, area of implementation of GPRS etc."@en ;
                  rdfs:label "Area Location"@en .
 
 
@@ -8441,7 +8551,8 @@ era:BaseLocation rdf:type owl:Class ;
 ###  http://data.europa.eu/949/BasicObject
 era:BasicObject rdf:type owl:Class ;
                 rdfs:subClassOf era:InfrastructureObject ;
-                rdfs:comment "A basic object is the minimal representation of an infrastructure object. Examples: junctions, tracks, switches, tunnels, etc."@en ;
+                rdfs:comment "A basic object is the minimal representation of an infrastructure object."@en ;
+                skos:example "Examples: junctions, tracks, switches, tunnels, etc."@en ;
                 rdfs:label "Basic Object"@en .
 
 
@@ -8657,16 +8768,29 @@ era:LinearElementLinkCondition rdf:type owl:Class ;
 ###  http://data.europa.eu/949/LinearLocation
 era:LinearLocation rdf:type owl:Class ;
                    rdfs:subClassOf era:BaseLocation ;
-                   rdfs:comment "Geographical representation of a curvi-linear topology element. Example: tracks, tunnels, bridges, platform edges etc."@en ;
+                   rdfs:comment "Geographical representation of a curvi-linear topology element."@en ;
+                   skos:example "Example: tracks, tunnels, bridges, platform edges etc."@en ;
                    rdfs:label "Linear Location"@en .
 
 
 ###  http://data.europa.eu/949/LoadCapability
 era:LoadCapability rdf:type owl:Class ;
                    dcterms:created "2023-03-14"^^xsd:date ;
+                   dcterms:modified "2024-09-19"^^xsd:date ;
                    rdfs:comment """A combination of the line category and speed at the weakest point of the track. 
 Each track can have several load capability (structured) values, and each one has values for load model line category and load model speed."""@en ,
                                 "This class together with properties loadCapabilityLineCategory and loadCapabilitySpeed replaces the previous loadCapability SKOS property."@en ;
+                   dcterms:description """At this step, RINF does not allow to enter additional data referred to additional speed regulations and operating requirements relating to locomotives (e.g., locomotive classes and associated maximum speed) or traffic types (e.g., maximum speed of freight traffic or passenger traffic).
+
+The load capability describes the weakest point of this track within this section of line (which is normally a bridge or other sub-track structure). It is expressed as a combination of the line category and speed permitted for trains exerting loads defined for this line category. The result of the classification process is set out in EN 15528:2021 (Annex A) and referred to in that standard as “Line Category”. 
+
+It represents the ability of the infrastructure to withstand the vertical loads imposed by vehicles on the track for regular service as a combination of Line Category with a permitted speed according to EN 15528:2021
+
+More than one combination may be published for the same track if applicable, but it has to be done by repetition of the parameter with one value selected only – that is why ‘Y’ is given in line ‘Can be repeated’
+
+For the following cases, it is not possible to use EN 15528:20021categories of line classification:
+- TSI categories of line P1520 and F1520 (passenger traffic or freight traffic at any speed)
+- TSI categories of line P1600 and F1600 (passenger traffic or freight traffic at any speed)"""@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    rdfs:label "Load capability"@en ;
                    vs:term_status "stable" .
@@ -8828,10 +8952,11 @@ era:PrimaryLocation rdf:type owl:Class ;
                     rdfs:subClassOf era:AggregatedObject ;
                     owl:disjointWith era:RadioBlockCenter ;
                     rdfs:comment """Primary Location is a place used by IM to define a path for a train in TAF/TAP TSI framework/messages. This location is a rail point inside the rail network where train starts, ends, stops, or runs through or change line. This location must be managed by an Infrastructure Manager (IM) identified by company code.
-Primary locations are for example: stations, yards, halts, handover points, border points, open access terminals. 
+
 Primary locations are identified by single and unique Primary Location codes. Primary location code is allocated based on processes defined by national entity. Primary location codes are used in any kind of TAF/TAP communication.
 
 See: Handbook 9.3.3 / page 60"""@en ;
+                    skos:example "Primary locations are for example: stations, yards, halts, handover points, border points, open access terminals. "@en ;
                     rdfs:label "Primary Location"@en ;
                     rdfs:seeAlso <http://taf-jsg.info/wp-content/uploads/2024/01/20231018-JGS-Handbook-3.4-with-XSD-3.4.0.0.pdf> .
 
@@ -8886,11 +9011,13 @@ era:SectionOfLine rdf:type owl:Class ;
                                     owl:onClass era:OperationalPoint
                                   ] ;
                   era:appendixD2Index "2.1.1" ;
-                  era:rinfIndex 1.1 ;
+                  era:rinfIndex "1.1" ;
                   dc:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
                   dcterms:created "2021-04-02"^^xsd:date ;
-                  dcterms:modified "2022-07-07"^^xsd:date ;
+                  dcterms:modified "2022-07-07"^^xsd:date , "2024-09-19"^^xsd:date;
                   rdfs:comment "A section of line means the part of line between adjacent operational points and may consist of several tracks."@en ;
+                  dcterms:description "Each network shall be described using as many SoLs as necessary. Each SoL   is generated and identified by OP IDs at start and at end. A SoL only belongs to one Line."@en ; 
+
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "Section Of Line"@en ;
                   vs:term_status "stable" .
@@ -8907,7 +9034,7 @@ era:Siding rdf:type owl:Class ;
            era:rinfIndex "1.2.2" ;
            dcterms:created "2021-08-10"^^xsd:date ;
            dcterms:modified "2022-10-27"^^xsd:date ;
-           dcterms:source "Official Journal of the European Union L 139 I/85" ;
+           dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/2020-06-16> ;
            rdfs:comment "Sidings are all those tracks where running trains in service movements ends and which are not used for operational routing of a train."@en ;
            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
            rdfs:label "Siding"@en ;
@@ -9058,8 +9185,9 @@ era:Track rdf:type owl:Class ;
           owl:disjointWith era:Tunnel ;
           era:rinfIndex "1.1.1" ;
           dcterms:created "2020-07-29"^^xsd:date ;
-          dcterms:modified "2022-07-07"^^xsd:date ;
+          dcterms:modified "2022-07-07"^^xsd:date  , "2024-09-19"^^xsd:date ;
           rdfs:comment "A running track means any track used for train service movements; passing loops and meeting loops on plain line or track connections only required for train operation are not published"@en ;
+          dcterms:description "There might be more than one track within the Section of Line, so then the whole set of data for track has to be repeated for each track within the SoL."@en ;
           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
           rdfs:label "Running track"@en ;
           vs:term_status "stable" .
@@ -9285,7 +9413,7 @@ wgs:location era:rinfIndex "1.1.0.0.1.1" ,
                            "1.2.1.0.8.5" ;
              era:usedInRCCCalculations "true"^^xsd:boolean ;
              rdfs:comment """The relation between something and the point, 
- or other geometrical thing in space, where it is.  For example, the realtionship between
+ or other geometrical thing in space, where it is.  For example, the relationship between
  a radio tower and a Point with a given lat and long.
  Or a relationship between a park and its outline as a closed arc of points, or a road and
  its location as a arc (a sequence of points).
