@@ -1,3 +1,4 @@
+@prefix : <http://data.europa.eu/949/> .
 @prefix cc: <http://creativecommons.org/ns#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
@@ -15,6 +16,7 @@
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@base <http://data.europa.eu/949/> .
 
 <http://data.europa.eu/949/> rdf:type owl:Ontology ;
                               cc:license <https://creativecommons.org/licenses/by/4.0/> ;
@@ -37,7 +39,8 @@
                                                "2024-07-05"^^xsd:date ,
                                                "2024-08-02"^^xsd:date ,
                                                "2024-08-12"^^xsd:date ,
-                                               "2024-08-13"^^xsd:date ;
+                                               "2024-08-13"^^xsd:date ,
+                                               "2024-09-20"^^xsd:date ;
                               dcterms:publisher "European Union Agency for Railways" ;
                               dcterms:title "ERA Ontology"@en ;
                               rdfs:comment """This is the human and machine readable Ontology governed by the European Union Agency for Railways (https://www.era.europa.eu/). It represents the concepts and relationships linked to the sectorial legal framework and the use cases under the AgencyÂ´s remit, as described in the Commission Implementing Regulation (EU) [to be updated after publication] on the common specifications for the register of railway infrastructure [to be updated after publication].
@@ -49,7 +52,11 @@ The Ontology also includes the routebook concepts described in appendix D2 \"Ele
                               owl:priorVersion "https://github.com/Interoperable-data/ERA_vocabulary/releases/v3.0.0"^^xsd:anyURI ;
                               owl:versionInfo "v3.1.0"@en ;
                               owl:versionURI <https://github.com/Interoperable-data/ERA_vocabulary/releases/releases/v3.1.0> ;
-                              skos:changeNote """
+                              skos:changeNote """Revision 20-08-2024
+- Change era:qNvdriverAdhes to an object property that points to a SKOS concept scheme   (currently a boolean data property)
+- Add era:inSkosConceptScheme for  era:hasOrganisationRole
+- Add era:inSkosConceptScheme for era:operatingLanguage: http://publications.europa.eu/resource/authority/language
+
 Revision 13-08-2024:
 - clarified the comment and label for ORG pattern as per issue #74.
 - renamed prefix qudt: to unit: to avoid confusion as per issue #47. 
@@ -100,9 +107,7 @@ Revision 18-04-2024:
 - updated as per results of the Topical Working Group RINF-CCS (Draft report 0.2);
 - include upcoming remarks from TWG members (inclusing those as documented in Report 0.3);
 - linked with existing (updated) or new SKOS Concepts, related to the TWG RINF CCS;
-- included references and guidelines as in Table 5 of the RINF Application Guide.
-					  
-							  """@en .
+- included references and guidelines as in Table 5 of the RINF Application Guide."""@en .
 
 #################################################################
 #    Annotation properties
@@ -133,6 +138,9 @@ era:appendixD2Index rdf:type owl:AnnotationProperty ;
                     rdfs:range xsd:string .
 
 
+###  http://data.europa.eu/949/appendixD2index
+era:appendixD2index rdf:type owl:AnnotationProperty .
+
 
 ###  http://data.europa.eu/949/appendixD3Index
 era:appendixD3Index rdf:type owl:AnnotationProperty ;
@@ -145,6 +153,8 @@ era:appendixD3Index rdf:type owl:AnnotationProperty ;
                     rdfs:range xsd:string .
 
 
+###  http://data.europa.eu/949/appendixD3index
+era:appendixD3index rdf:type owl:AnnotationProperty .
 
 
 ###  http://data.europa.eu/949/canonicalURI
@@ -1553,6 +1563,7 @@ era:hasOrganisationRole rdf:type owl:ObjectProperty ,
                                  owl:FunctionalProperty ;
                         rdfs:domain era:OrganisationRole ;
                         rdfs:range skos:Concept ;
+                        era:inSkosConceptScheme <http://data.europa.eu/949/concepts/organisation-roles/OrgRoles> ;
                         dcterms:created "2024-06-03"^^xsd:date ;
                         rdfs:comment "The role plays in an n-ary relationship between a Body and a specific concept in the concept scheme of organisation roles"@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -2144,6 +2155,7 @@ era:opType rdf:type owl:ObjectProperty ;
 era:operatingLanguage rdf:type owl:ObjectProperty ;
                       rdfs:range skos:Concept ;
                       era:appendixD2Index "3.5.1" ;
+                      era:inSkosConceptScheme <http://publications.europa.eu/resource/authority/language> ;
                       era:rinfIndex "1.1.0.0.1.2" ,
                                     "1.2.0.0.0.8" ;
                       dcterms:created "2022-10-28"^^xsd:date ;
@@ -2457,6 +2469,29 @@ era:protectionLegacySystem rdf:type owl:ObjectProperty ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "Train protection legacy system"@en ;
                            vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/qNvdriverAdhes
+era:qNvdriverAdhes rdf:type owl:ObjectProperty ,
+                            owl:FunctionalProperty ;
+                   rdfs:domain era:CCSSubsystem ;
+                   rdfs:range skos:Concept ;
+                   era:XMLName "CPE_QNVDRIVERADHES" ;
+                   era:appendixD3Index "1.5.11" ;
+                   era:inSkosConceptScheme <http://data.europa.eu/949/concepts/adhf-qualifier/AdhesionFactorChange> ;
+                   era:rinfIndex "1.1.1.3.2.16.11" ,
+                                 "1.2.1.1.1.16.11" ;
+                   dcterms:created "2024-04-18"^^xsd:date ;
+                   dcterms:modified "2024-09-20"^^xsd:date ;
+                   dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                   rdfs:comment """Qualifier determining whether the driver is allowed to modify the adhesion factor used by the ETCS on-board to calculate the braking curves. 
+
+See: TSI CCS (Subset 26, chapter 7. 7.5.1.122 Q_NVDRIVER_ADHES)"""@en ;
+                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                   rdfs:label "Q_NVDRIVER_ADHES"@en ;
+                   rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
+                   vs:term_status "stable" ;
+                   skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/qNvemrrls
@@ -6921,27 +6956,6 @@ era:publicNetworkRoamingDetails rdf:type owl:DatatypeProperty ,
                                 skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en .
 
 
-###  http://data.europa.eu/949/qNvdriverAdhes
-era:qNvdriverAdhes rdf:type owl:DatatypeProperty ,
-                            owl:FunctionalProperty ;
-                   rdfs:domain era:CCSSubsystem ;
-                   rdfs:range xsd:boolean ;
-                   era:XMLName "CPE_QNVDRIVERADHES" ;
-                   era:appendixD3Index "1.5.11" ;
-                   era:rinfIndex "1.1.1.3.2.16.11" ,
-                                 "1.2.1.1.1.16.11" ;
-                   dcterms:created "2024-04-18"^^xsd:date ;
-                   dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                   rdfs:comment """Boolean determining whether the driver is allowed to modify the adhesion factor used by the ETCS on-board to calculate the braking curves. 
-
-See: TSI CCS (Subset 26, chapter 7. 7.5.1.122 Q_NVDRIVER_ADHES)"""@en ;
-                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                   rdfs:label "Q_NVDRIVER_ADHES"@en ;
-                   rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-                   vs:term_status "stable" ;
-                   skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
-
-
 ###  http://data.europa.eu/949/qNvsbtsmperm
 era:qNvsbtsmperm rdf:type owl:DatatypeProperty ,
                           owl:FunctionalProperty ;
@@ -9199,6 +9213,10 @@ skos:ConceptScheme rdf:type owl:Class .
 time:Instant rdf:type owl:Class .
 
 
+###  http://www.w3.org/2006/time#Interval
+time:Interval rdf:type owl:Class .
+
+
 ###  http://www.w3.org/2006/time#TemporalDuration
 time:TemporalDuration rdf:type owl:Class ;
                       rdfs:comment "Time extent; duration of a time interval separate from its particular start position"@en ;
@@ -9218,8 +9236,8 @@ time:TemporalEntity rdf:type owl:Class ;
                     skos:definition "A temporal interval or instant."@en .
 
 
-###  http://www.w3.org/2006/time#Interval
-<http://www.w3.org/2006/time#Interval> rdf:type owl:Class .
+###  http://www.w3.org/2006/time#:Interval
+<http://www.w3.org/2006/time#:Interval> rdf:type owl:Class .
 
 
 ###  http://www.w3.org/ns/org#Organization
@@ -9267,6 +9285,19 @@ foaf:Person rdf:type owl:Class ;
 foaf:Project rdf:type owl:Class .
 
 
+[ foaf:name "Ghislain Atemezing" ;
+  rdfs:seeAlso <https://orcid.org/0000-0003-1562-6922> ;
+  org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+] .
+
+[ foaf:name "Dragos Patru" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Maarten Duhoux" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
 #################################################################
 #    Annotations
 #################################################################
@@ -9278,12 +9309,7 @@ wgs:lat_long rdfs:comment "A comma-separated representation of a latitude, longi
              rdfs:label "Lat/long" .
 
 
-wgs:location era:rinfIndex "1.1.0.0.1.1" ,
-                           "1.1.1.0.1.1" ,
-                           "1.1.1.3.14.5" ,
-                           "1.2.0.0.0.5" ,
-                           "1.2.1.0.8.5" ;
-             era:usedInRCCCalculations "true"^^xsd:boolean ;
+wgs:location rdfs:label "Location" ;
              rdfs:comment """The relation between something and the point, 
  or other geometrical thing in space, where it is.  For example, the realtionship between
  a radio tower and a Point with a given lat and long.
@@ -9292,7 +9318,12 @@ wgs:location era:rinfIndex "1.1.0.0.1.1" ,
  Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
  an accuracy appropriate for the size of the object and uses such as mapping .
  """ ;
-             rdfs:label "Location" .
+             era:rinfIndex "1.1.0.0.1.1" ,
+                           "1.1.1.3.14.5" ,
+                           "1.2.1.0.8.5" ,
+                           "1.2.0.0.0.5" ;
+             era:usedInRCCCalculations "true"^^xsd:boolean ;
+             era:rinfIndex "1.1.1.0.1.1" .
 
 
 #################################################################
@@ -9315,4 +9346,4 @@ wgs:location era:rinfIndex "1.1.0.0.1.1" ,
 ] .
 
 
-###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
