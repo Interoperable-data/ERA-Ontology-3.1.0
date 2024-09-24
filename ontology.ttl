@@ -20,39 +20,43 @@
 
 <http://data.europa.eu/949/> rdf:type owl:Ontology ;
                               cc:license <https://creativecommons.org/licenses/by/4.0/> ;
-                              dcterms:contributor [ foaf:name "Maarten Duhoux" ;
-                                                    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
-                                                  ] ,
-                                                  "Designated RINF Topical Working Groups"@en ;
-                              dcterms:creator [ foaf:name "Ghislain Atemezing" ;
-                                                rdfs:seeAlso <https://orcid.org/0000-0003-1562-6922> ;
-                                                org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
-                                              ] ,
-                                              [ foaf:name "Dragos Patru" ;
-                                                org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
-                                              ] ;
-                              dcterms:issued "2024-04-18"^^xsd:date ;
-                              dcterms:modified "2024-04-18"^^xsd:date ,
-                                               "2024-05-24"^^xsd:date ,
-                                               "2024-06-03"^^xsd:date ,
-                                               "2024-06-05"^^xsd:date ,
-                                               "2024-07-05"^^xsd:date ,
-                                               "2024-08-02"^^xsd:date ,
-                                               "2024-08-12"^^xsd:date ,
-                                               "2024-08-13"^^xsd:date ,
-                                               "2024-09-20"^^xsd:date ;
-                              dcterms:publisher "European Union Agency for Railways" ;
-                              dcterms:title "ERA Ontology"@en ;
-                              rdfs:comment """This is the human and machine readable Ontology governed by the European Union Agency for Railways (https://www.era.europa.eu/). It represents the concepts and relationships linked to the sectorial legal framework and the use cases under the AgencyÂ´s remit, as described in the Commission Implementing Regulation (EU) [to be updated after publication] on the common specifications for the register of railway infrastructure [to be updated after publication].
+                              dcterms:contributor [ ] ,
+"Designated RINF Topical Working Groups"@en ;
+dcterms:creator [ ] ,
+[ ] ;
+dcterms:issued "2024-04-18"^^xsd:date ;
+dcterms:modified "2024-04-18"^^xsd:date ,
+                 "2024-05-24"^^xsd:date ,
+                 "2024-06-03"^^xsd:date ,
+                 "2024-06-05"^^xsd:date ,
+                 "2024-07-05"^^xsd:date ,
+                 "2024-08-02"^^xsd:date ,
+                 "2024-08-12"^^xsd:date ,
+                 "2024-08-13"^^xsd:date ,
+                 "2024-09-20"^^xsd:date ,
+                 "2024-09-24"^^xsd:date ;
+dcterms:publisher "European Union Agency for Railways" ;
+dcterms:title "ERA Ontology"@en ;
+rdfs:comment """This is the human and machine readable Ontology governed by the European Union Agency for Railways (https://www.era.europa.eu/). It represents the concepts and relationships linked to the sectorial legal framework and the use cases under the AgencyÂ´s remit, as described in the Commission Implementing Regulation (EU) [to be updated after publication] on the common specifications for the register of railway infrastructure [to be updated after publication].
 
 Currently, this Ontology covers the European railway infrastructure and the vehicles types authorized to operate over it. It is a semantic/browsable representation of the RINF application guide (https://www.era.europa.eu/sites/default/files/registers/docs/rinf_application_guide_for_register_en.pdf) and ERATV application guide (https://www.era.europa.eu/sites/default/files/registers/docs/iu-eratv_application_guide_for_register_2016-797_en.pdf) that were built by domain experts in the RINF and ERATV working parties.
 
 The Ontology also includes the routebook concepts described in appendix D2 \"Elements the infrastructure manager has to provide to the railway undertaking for the Route Book\" as presented in the Commission Implementing Regulation (EU) [to be updated after publication] 2019/773 of 16 May 2019 on the technical specification for interoperability relating to the operation and traffic management subsystem of the rail system within the European Union and [to be updated after publication] and the Appendix D3 [to be updated after publication]."""@en ;
-                              rdfs:label "ERA Ontology"@en ;
-                              owl:priorVersion "https://github.com/Interoperable-data/ERA_vocabulary/releases/v3.0.0"^^xsd:anyURI ;
-                              owl:versionInfo "v3.1.0"@en ;
-                              owl:versionURI <https://github.com/Interoperable-data/ERA_vocabulary/releases/releases/v3.1.0> ;
-                              skos:changeNote """Revision 20-08-2024
+rdfs:label "ERA Ontology"@en ;
+owl:priorVersion "https://github.com/Interoperable-data/ERA_vocabulary/releases/v3.0.0"^^xsd:anyURI ;
+owl:versionInfo "v3.1.0"@en ;
+owl:versionURI <https://github.com/Interoperable-data/ERA_vocabulary/releases/releases/v3.1.0> ;
+skos:changeNote """Revision 24-09-2024
+- Add annotation in SKOSConceptScheme to era:operationalRegimeType (currently a concept scheme with placeholder, to be developed)
+- Add annotation in SKOSConceptScheme to era:subsidiaryLocationType (currently a concept scheme with placeholder, to be developed)
+- Add annotation in SKOSConceptScheme to era:conditionsUseReflectivePlates (currently a concept scheme with placeholder, to be developed)
+- Add annotation in SKOSConceptScheme to era:standardCombinedTransportRollerUnits (currently a concept scheme with placeholder, to be developed)
+- Add annotation in SKOSConceptScheme to era:linesideDistanceIndicationAppearance (currently a concept scheme with placeholder, to be developed)
+- Deleted foaf:Project, no Usage in ontology and the concept is not part of the domain.
+- Fix bug era:direction, change skos:definition to rdfs:label
+
+
+Revision 20-09-2024
 - Change era:qNvdriverAdhes to an object property that points to a SKOS concept scheme   (currently a boolean data property)
 - Add era:inSkosConceptScheme for  era:hasOrganisationRole
 - Add era:inSkosConceptScheme for era:operatingLanguage: http://publications.europa.eu/resource/authority/language
@@ -690,8 +694,10 @@ era:condition rdf:type owl:ObjectProperty ;
 era:conditionsUseReflectivePlates rdf:type owl:ObjectProperty ;
                                   rdfs:domain era:InfraSubsystem ;
                                   rdfs:range skos:Concept ;
+                                  era:inSkosConceptScheme <http://data.europa.eu/949/concepts/conditions-use-reflective-plates/ConditionsUseReflectivePlates> ;
                                   era:rinfIndex "1.1.1.1.7.12.1" ;
                                   dcterms:created "2023-03-14"^^xsd:date ;
+                                  dcterms:modified "2024-09-24"^^xsd:date ;
                                   rdfs:comment "Details of any conditions for using the reflective plates on freight corridors. Specific case for Portugal and Spain until 1.1.2025 and Belgium and France until 1.1.2026."@en ;
                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                   rdfs:label "conditions for use of reflective plates"@en ;
@@ -1766,9 +1772,11 @@ era:linesideDistanceIndicationAppearance rdf:type owl:ObjectProperty ;
                                          rdfs:domain era:TechnicalCharacteristics ;
                                          rdfs:range skos:Concept ;
                                          era:appendixD2Index "3.1.3" ;
+                                         era:inSkosConceptScheme <http://data.europa.eu/949/concepts/lineside-distance-indication-appearance/LinesideDistanceIndicationAppearance> ;
                                          era:rinfIndex "1.1.1.0.0.3" ;
                                          dcterms:created "2022-10-27"^^xsd:date ;
-                                         dcterms:modified "2023-03-14"^^xsd:date ;
+                                         dcterms:modified "2023-03-14"^^xsd:date ,
+                                                          "2024-09-24"^^xsd:date ;
                                          dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
                                          rdfs:comment "Indication of types of appearance of track lineside distance indications."@en ;
                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -2171,9 +2179,10 @@ era:operatingLanguage rdf:type owl:ObjectProperty ;
 era:operationalRegimeType rdf:type owl:ObjectProperty ;
                           rdfs:range skos:Concept ;
                           era:appendixD2Index "3.2.7" ;
+                          era:inSkosConceptScheme <http://data.europa.eu/949/concepts/operational-regime-types/OperationalRegimeTypes> ;
                           era:rinfIndex "1.1.0.0.1.3" ;
                           dcterms:created "2022-10-27"^^xsd:date ;
-                          dcterms:modified "2024-01-08"^^xsd:date ;
+                          dcterms:modified "2024-09-24"^^xsd:date ;
                           dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
                           rdfs:comment "Double track type."@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -2772,19 +2781,6 @@ era:specialTunnelArea rdf:type owl:ObjectProperty ;
                       vs:term_status "stable" .
 
 
-###  http://data.europa.eu/949/standardCombinedTransporRollerUnits
-era:standardCombinedTransporRollerUnits rdf:type owl:ObjectProperty ;
-                                        rdfs:domain era:InfraSubsystem ;
-                                        rdfs:range skos:Concept ;
-                                        era:rinfIndex "1.1.1.1.3.9" ;
-                                        dcterms:created "2023-03-14"^^xsd:date ;
-                                        rdfs:comment """Coding for combined transport for roller units (for all freight and mixed-traffic lines) in accordance with the specification referenced in Appendix A-1, index [B]. 
-"""@en ;
-                                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                        rdfs:label "Standard combined transport profile number for roller units"@en ;
-                                        vs:term_status "unstable" .
-
-
 ###  http://data.europa.eu/949/standardCombinedTransportContainers
 era:standardCombinedTransportContainers rdf:type owl:ObjectProperty ;
                                         rdfs:domain era:InfraSubsystem ;
@@ -2796,6 +2792,20 @@ era:standardCombinedTransportContainers rdf:type owl:ObjectProperty ;
                                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                         rdfs:label "Standard combined transport profile number for containers"@en ;
                                         vs:term_status "unstable" .
+
+
+###  http://data.europa.eu/949/standardCombinedTransportRollerUnits
+era:standardCombinedTransportRollerUnits rdf:type owl:ObjectProperty ;
+                                         rdfs:domain era:InfraSubsystem ;
+                                         rdfs:range skos:Concept ;
+                                         era:inSkosConceptScheme <http://data.europa.eu/949/concepts/standard-combined-transport-roller-units/StandardCombinedTransportRollerUnits> ;
+                                         era:rinfIndex "1.1.1.1.3.9" ;
+                                         dcterms:created "2023-03-14"^^xsd:date ;
+                                         rdfs:comment """Coding for combined transport for roller units (for all freight and mixed-traffic lines) in accordance with the specification referenced in Appendix A-1, index [B]. 
+"""@en ;
+                                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                         rdfs:label "Standard combined transport profile number for roller units"@en ;
+                                         vs:term_status "unstable" .
 
 
 ###  http://data.europa.eu/949/startLocation
@@ -2857,6 +2867,7 @@ era:subsidiaryLocation rdf:type owl:ObjectProperty ;
 era:subsidiaryLocationType rdf:type owl:ObjectProperty ;
                            rdfs:domain era:SubsidiaryLocation ;
                            rdfs:range skos:Concept ;
+                           era:inSkosConceptScheme <http://data.europa.eu/949/concepts/subsidiary-location-types/SubsidiaryLocationTypes> ;
                            dcterms:created "2024-05-24"^^xsd:date ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "subsidiary location type"@en .
@@ -9261,8 +9272,7 @@ foaf:Agent rdf:type owl:Class .
 
 ###  http://xmlns.com/foaf/0.1/Document
 foaf:Document rdf:type owl:Class ;
-              owl:disjointWith foaf:Organization ,
-                               foaf:Project ;
+              owl:disjointWith foaf:Organization ;
               rdfs:comment "A document." ;
               rdfs:isDefinedBy foaf: ;
               rdfs:label "Document" ;
@@ -9281,20 +9291,29 @@ foaf:Person rdf:type owl:Class ;
             vs:term_status "stable" .
 
 
-###  http://xmlns.com/foaf/0.1/Project
-foaf:Project rdf:type owl:Class .
-
-
-[ foaf:name "Ghislain Atemezing" ;
-  rdfs:seeAlso <https://orcid.org/0000-0003-1562-6922> ;
+[ foaf:name "Dragos Patru" ;
   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
 ] .
+
+[ foaf:name "Maarten Duhoux" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
 
 [ foaf:name "Dragos Patru" ;
    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
  ] .
 
 [ foaf:name "Maarten Duhoux" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Ghislain Atemezing" ;
+   rdfs:seeAlso <https://orcid.org/0000-0003-1562-6922> ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Ghislain Atemezing" ;
+   rdfs:seeAlso <https://orcid.org/0000-0003-1562-6922> ;
    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
  ] .
 
