@@ -383,7 +383,7 @@ era:areaOfUseMemberState rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/authorisationStatus
 era:authorisationStatus rdf:type owl:ObjectProperty ;
-                        rdfs:domain era:Authorisation  ;
+                        rdfs:domain era:VVTAuthorisation  ;
                         rdfs:range era:AuthorisationStatus ;
                         era:eratvIndex "3.1.2.1" ;
                         dcterms:created "2023-06-26"^^xsd:date ;
@@ -558,7 +558,7 @@ era:atoSystemVersion rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/authorizedCountry is gravely misleading, hence property was renamed.
 ###  http://data.europa.eu/949/memberStateOfAuthorisation
 era:memberStateOfAuthorisation rdf:type owl:ObjectProperty ;
-                              rdfs:domain era:Authorisation ;
+                              rdfs:domain era:VVTAuthorisation ;
                               rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
                               era:eratvIndex "3.1.1" ;
                               era:inSkosConceptScheme <http://publications.europa.eu/resource/authority/country> ;
@@ -653,7 +653,7 @@ era:category rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/certificate
 era:certificate rdf:type owl:ObjectProperty ;
-                rdfs:domain era:Authorisation ;
+                rdfs:domain era:VVTAuthorisation ;
                 rdfs:range era:ECCertificate ;
                 era:eratvIndex "3.1.3.2.5" ;
                 dcterms:created "2022-06-15"^^xsd:date ;
@@ -775,7 +775,7 @@ era:contactStripMaterial rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/currentAuthorisation
 era:currentAuthorisation rdf:type owl:ObjectProperty ;
                         rdfs:domain era:VehicleType ;
-                        rdfs:range era:Authorisation ;
+                        rdfs:range era:VVTAuthorisation ;
                         dcterms:created "2024-06-26"^^xsd:date ;
                         rdfs:comment "Relates the vehicle type with its latest authorisation."@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -2104,7 +2104,7 @@ era:minVehicleImpedanceVoltages rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/nationalRulesAssessed
 era:nationalRulesAssessed rdf:type owl:ObjectProperty ;
-                                rdfs:domain era:Authorisation ;
+                                rdfs:domain era:VVTAuthorisation ;
                                 rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
                                 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/national-rule-classifications/NationalRuleClassifications> ;
                                 era:eratvIndex "3.1.3.1.5" , "3.1.3.2.6" , "3.1.3.3.6", "3.1.3.4.6", "3.1.3.5.6", "3.1.3.6.6", "3.1.3.7.6", "3.1.3.8.6", "3.1.3.9.6" ;
@@ -2502,8 +2502,8 @@ Example: versions, variants."""@en ;
 
 ###  http://data.europa.eu/949/previousAuthorisation
 era:previousAuthorisation rdf:type owl:ObjectProperty ;
-                        rdfs:domain era:Authorisation ;
-                        rdfs:range era:Authorisation ;
+                        rdfs:domain era:VVTAuthorisation ;
+                        rdfs:range era:VVTAuthorisation ;
                         dcterms:created "2024-06-26"^^xsd:date ;
                         rdfs:comment """Denotes a previous Authorisation, which this authorisation amends, updates. This property is not present for the initial authorisation."""@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -3466,7 +3466,7 @@ The allowed values for this property belong to the SKOS Concept Scheme http://da
 ###  http://data.europa.eu/949/vehicleAuthorisationCase
 era:vehicleAuthorisationCase rdf:type owl:ObjectProperty ;
                            # subClassOf vp:permissionType
-                           rdfs:domain era:AuthorisationCase ;
+                           rdfs:domain era:VVTAuthorisationCase ;
                            rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
                            era:inSkosConceptScheme <http://data.europa.eu/949/concepts/va-authcases/VehicleAuthorisationCase> ;
                            dcterms:created "2024-06-26"^^xsd:date;
@@ -3527,7 +3527,7 @@ era:vehicleType rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/vehicleTypeHolder
 era:vehicleTypeAuthorisationHolder rdf:type owl:ObjectProperty ;
-                                  rdfs:domain era:Authorisation ;
+                                  rdfs:domain era:VVTAuthorisation ;
                                   rdfs:range era:Body ;
                                   era:eratvIndex "3.1.3.1.2" , "3.1.3.2.3" , "3.1.3.3.3" , "3.1.3.4.3" , "3.1.3.5.3" , "3.1.3.6.3" , "3.1.3.7.3" , "3.1.3.8.3" , "3.1.3.9.3" ;
                                   dcterms:created "2024-06-26"^^xsd:date ;
@@ -3595,7 +3595,7 @@ era:vehicleTypeMaximumSBDistanceAndDeceleration rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/verificationRST
 era:verificationRST rdf:type owl:ObjectProperty ;
-                    rdfs:domain era:AuthorisationCase ;
+                    rdfs:domain era:VVTAuthorisationCase ;
                     rdfs:range era:DocumentedEvidence ;
                     era:evrIndex "6" ;
                     dcterms:created "2024-06-26"^^xsd:date ;
@@ -3607,7 +3607,7 @@ era:verificationRST rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/verificationCCS
 era:verificationCCS rdf:type owl:ObjectProperty ;
-                    rdfs:domain era:AuthorisationCase ;
+                    rdfs:domain era:VVTAuthorisationCase ;
                     rdfs:range era:DocumentedEvidence ;
                     era:evrIndex "6" ;
                     dcterms:created "2024-06-26"^^xsd:date ;
@@ -7341,7 +7341,7 @@ era:prmAccessibleToilets rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/proposerDocumentReference
 era:proposerDocumentReference rdf:type owl:DatatypeProperty ;
-                             rdfs:domain era:Authorisation ;
+                             rdfs:domain era:VVTAuthorisation ;
                              rdfs:range xsd:string ;
                              era:eratvIndex "3.1.3.1.7" , "3.1.3.2.8" , "3.1.3.3.8" , "3.1.3.4.8" , "3.1.3.5.8" , "3.1.3.6.8" , "3.1.3.7.8" , "3.1.3.8.8" ;
                              dcterms:created "2023-06-26"^^xsd:date ;
@@ -7667,7 +7667,7 @@ era:registrationStatusReasonDescription rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/authorisationDocumentReference
 era:authorisationDocumentReference rdf:type owl:DatatypeProperty ;
-                             rdfs:domain era:Authorisation ;
+                             rdfs:domain era:VVTAuthorisation ;
                              rdfs:range xsd:string ;
                              era:eratvIndex "3.1.2.1" , "3.1.3.2.4" , "3.1.3.3.4" , "3.1.3.4.4" , "3.1.3.5.4" , "3.1.3.6.4" , "3.1.3.7.4" , "3.1.3.8.4" ;
                              dcterms:created "2023-06-26"^^xsd:date ;
@@ -9122,7 +9122,7 @@ foaf:nick rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/vpa/AreaOfUse
 era:AreaOfUse rdf:type owl:Class ;
         rdfs:subClassOf vp:Scope ;
-        vp:definesCase era:AuthorisationCase ;
+        vp:definesCase era:VVTAuthorisationCase ;
         rdfs:comment """A network or networks within a Member State or a group of Member States in which a vehicle is intended to be used.
         
 For full member state networks, see: `era:areaOfUseMemberState`.
@@ -9132,7 +9132,7 @@ For smaller sections of line or networks smaller than a full member state networ
 
 
 ###  http://data.europa.eu/949/vpa/AuthorisationCase
-era:AuthorisationCase rdf:type owl:Class ;
+era:VVTAuthorisationCase rdf:type owl:Class ;
         rdfs:subClassOf vp:Case ;
         vp:concerns era:VehicleType, era:AreaOfUse ;
         rdfs:comment "The authorisation case as defined in Article 14 of https://eur-lex.europa.eu/eli/reg_impl/2018/545/oj. The scope of the case is therefore always (1) one of the 5 PermissionTypes as in the Article 14, (2) the unique vehicle type identifier and (3) the set of vehicles belonging to the Authorisation Case."@en ;
@@ -9868,32 +9868,45 @@ era:Vehicle rdf:type owl:Class ;
             rdfs:label "Vehicle"@en ;
             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
+###  http://data.europa.eu/949/VehicleCollection
+era:VehicleCollection rdf:type owl:Class ;
+            dcterms:created "2024-06-03"^^xsd:date ;
+            rdfs:comment "A set of specific vehicles or wagons able and allowed to operate over railway infrastructure, which are considered together as part of a registration, authorisation or other process."@en ;
+            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+            dcterms:description """Several business processes regarding railway vehicles group them together for common treatment. As such, this class allows to link vehicles together and trace back how they were
+authorised, registered, etc."""@en ;
+            rdfs:label "Vehicle Set/Collection"@en ;
+            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
+
 
 ###  http://data.europa.eu/949/vpa/VAApplication
-era:PAVAApplication rdf:type owl:Class ;
+era:VVTAApplication rdf:type owl:Class ;
             rdfs:subClassOf vp:Request ;
+            dcterms:created "2024-06-03"^^xsd:date ;
             rdfs:comment "A Request for vehicle type authorisation and/or vehicle authorisation for placing on the market as defined in Article 1 of https://eur-lex.europa.eu/eli/reg_impl/2018/545/oj."@en ;
             rdfs:seeAlso <https://eur-lex.europa.eu/eli/reg_impl/2018/545/oj> ;
-            rdfs:label "PAVA Application"@en .
+            rdfs:label "V(T)A Application"@en .
 
 
 ###  http://data.europa.eu/949/vpa/VRApplication
-era:EVRApplication rdf:type owl:Class ;
+era:VRApplication rdf:type owl:Class ;
                rdfs:subClassOf vp:Request ;
+               dcterms:created "2024-06-03"^^xsd:date ;
                rdfs:comment """An application for registration of one or more vehicles through the European Vehicle Register to a Member State of its choice within the area of use of the vehicle, submitted by a Vehicle Keeper"""@en ;
                rdfs:label "Vehicle Registration Application"@en .
 
 
 ###  http://data.europa.eu/949/vpa/VehicleAuthorisation
-era:Authorisation rdf:type owl:Class ;
+era:VVTAuthorisation rdf:type owl:Class ;
                       rdfs:subClassOf vp:Permission ;
+            	      dcterms:created "2024-06-03"^^xsd:date ;
                       rdfs:comment "The Vehicle type authorisation and/or vehicle authorisation for placing on the market as defined in Article 2 (15) and (16) of https://eur-lex.europa.eu/eli/reg_impl/2018/545/oj. The granting authority for this Authorisation (PermittingBody) is the Authorising Entity as defined in the Art. 2(1) of this legislation."@en ;
                       rdfs:seeAlso <https://eur-lex.europa.eu/eli/reg_impl/2018/545/oj> ;
                       rdfs:label "Vehicle(type) Authorisation"@en .
 
 ###  http://data.europa.eu/949/VehicleAuthorisation
 era:VehicleAuthorisation rdf:type owl:Class ;
-            rdfs:subClassOf era:Authorisation ;
+            rdfs:subClassOf era:VVTAuthorisation ;
             dcterms:created "2024-06-26"^^xsd:date ;
             rdfs:comment "A decision leading to a vehicle being allowed to be placed on the market and used in the area of use."@en ;
             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -9909,7 +9922,7 @@ era:VehicleAuthorisation rdf:type owl:Class ;
 
 ###  http://data.europa.eu/949/VehicleTypeAuthorisation
 era:VehicleTypeAuthorisation rdf:type owl:Class ;
-            rdfs:subClassOf era:Authorisation ;
+            rdfs:subClassOf era:VVTAuthorisation ;
             dcterms:created "2024-06-26"^^xsd:date ;
             rdfs:comment "A decision leading to vehicles manufactured according to the type's design being allowed to be placed on the market and used in the area of use of the type."@en ;
             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -9920,13 +9933,14 @@ era:VehicleTypeAuthorisation rdf:type owl:Class ;
             
             Source: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32018R0545#d1e322-66-1"""@en ;
             dcterms:source <http://data.europa.eu/eli/reg_impl/2018/545/2020-06-16>;
-            rdfs:label "Vehicle Authorisation"@en ;
+            rdfs:label "Vehicle Type Authorisation"@en ;
             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "stable" .
 
 
 ###  http://data.europa.eu/949/vpa/VehicleRegistration
 era:VehicleRegistration rdf:type owl:Class ;
         rdfs:subClassOf vp:Permission ;
+        dcterms:created "2024-06-26"^^xsd:date ;
         rdfs:comment "The vehicle registration permitting further operation and maintenance of a railway vehicle. The granting authority for this Registration (PermittingBody) is the Registration Entity, as foreseen in the article 5 of https://eur-lex.europa.eu/eli/dec_impl/2018/1614/oj."@en ; 
         # rdfs:seeAlso <https://eur-lex.europa.eu/eli/dec_impl/2018/1614/oj> ;
         dcterms:source <http://data.europa.eu/eli/dec_impl/2018/1614/2018-10-26> ;
@@ -9934,8 +9948,9 @@ era:VehicleRegistration rdf:type owl:Class ;
 
 
 ###  http://data.europa.eu/949/vpa/RegistrationCase
-era:RegistrationCase rdf:type owl:Class ;
+era:VRegistrationCase rdf:type owl:Class ;
         rdfs:subClassOf vp:Case ;
+        dcterms:created "2024-06-26"^^xsd:date ;
         rdfs:comment "Typically a collection of the following Scopes, this Registration Case regroups: (1) one or a set of vehicles, preferably grouped as such also during authorisation, (2) the ECM maintaining them, (3) the authorisation covering them (if not in 1) and (4) the Keeper & Owner information."@en ;
         owl:disjointWith :AuthorisationCase ;
         rdfs:label "Vehicle Registration Case"@en .
@@ -9962,7 +9977,7 @@ era:VehicleType rdf:type owl:Class ;
                                   owl:onClass era:Body
                                 ] , 
                                 vp:Scope ;
-                vp:definesCase era:AuthorisationCase ;
+                vp:definesCase era:VVTAuthorisationCase ;
                 dcterms:created "2020-07-29"^^xsd:date ;
                 dcterms:modified "2020-07-29"^^xsd:date ,
                                  "2024-04-18"^^xsd:date ,
