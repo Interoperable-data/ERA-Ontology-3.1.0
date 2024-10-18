@@ -152,7 +152,7 @@ eravt:vt-xyz-...
       // a era:SubsetWithCommonCharacteristics ;
       era:parameter [
         a era:InfraSubsystem ; 
-        era:wheelsetGauge era-ntg-eratv:1435mm ; // defines the INF
+        era:wheelSetGauge era-ntg-eratv:1435mm ; // defines the INF
         era:gaugingProfile era-gaugings-eratv:gi2 ;
         era:temperatureRange era-tr-rinf:20 ;
       ] , [
@@ -185,7 +185,7 @@ eravt:vt-xyz-...
       // era:parameter <era:TechnicalCharacteristic>
       era:parameter [
         a era:InfraSubsystem ; # 1435mm
-        era:wheelsetGauge era-ntg-eratv:1435mm ;
+        era:wheelSetGauge era-ntg-eratv:1435mm ;
       ] , [
         a era:EnergySubsystem ;
         era:energySupplySystem era-ess-eratv:3KVDC ;
