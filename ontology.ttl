@@ -47,7 +47,7 @@
                                                "2024-09-25"^^xsd:date ;
                               dcterms:publisher "European Union Agency for Railways" ;
                               dcterms:title "ERA Ontology"@en ;
-                              rdfs:seeAlso <https://www.era.europa.eu/sites/default/files/registers/docs/rinf_application_guide_for_register_en.pdf>, <https://www.era.europa.eu/sites/default/files/registers/docs/iu-eratv_application_guide_for_register_2016-797_en.pdf>;
+                              rdfs:seeAlso "https://www.era.europa.eu/sites/default/files/registers/docs/rinf_application_guide_for_register_en.pdf"^^xsd:anyURI, "https://www.era.europa.eu/sites/default/files/registers/docs/iu-eratv_application_guide_for_register_2016-797_en.pdf"^^xsd:anyURI;
                               rdfs:comment """This is the human and machine readable Ontology governed by the European Union Agency for Railways (https://www.era.europa.eu/). It represents the concepts and relationships linked to the sectorial legal framework and the use cases under the AgencyÂ´s remit, as described in the Commission Implementing Regulation (EU) [to be updated after publication] on the common specifications for the register of railway infrastructure [to be updated after publication].
 
 
@@ -86,6 +86,7 @@ Revision 20-09-2024
 Revision 19-09-2024:
 - Added annotations for use of ontology as the RINF AG technical annex;
 - `dcterms:source` refers to ELI URI of the applicable reference legislation (TSI's, regulations)
+- Fixed anyURI for links using skos:seeAlso 
 
 
 Revision 13-08-2024:
@@ -786,7 +787,7 @@ era:dataRadioCompatible rdf:type owl:ObjectProperty ;
                         rdfs:comment """Radio requirements used for demonstrating technical compatibility data.
 
 Information on RSC data requirements per country"""@en ;
-                        rdfs:seeAlso <https://www.era.europa.eu/era-folder/radio-system-compatibility-rsc-voice-and-data-documents> , <https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf> ;
+                        rdfs:seeAlso "https://www.era.europa.eu/era-folder/radio-system-compatibility-rsc-voice-and-data-documents"^^xssd:anyURI , "https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf"^^xsd:anyURI ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "Radio system compatibility data"@en ;
                         vs:term_status "stable" ;
@@ -1030,9 +1031,9 @@ See also TSI OPE 4.2.3.6. Degraded operation."""@en ;
                           skos:example "Example: Level 1 as a degraded mode for Level 2."@en ;
                           dcterms:modified "2021-09-12"^^xsd:date ,
                                            "2024-04-18"^^xsd:date , "2024-09-19"^^xsd:date  ;
-                          dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/2023-09-28> ,
-                                         <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                          rdfs:seeAlso <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+                          dcterms:source <https://data.europa.eu/eli/reg_impl/2019/773/2023-09-28> ,
+                                         <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                          rdfs:seeAlso "https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj"^^xsd:anyURI ;
                           rdfs:comment "ERTMS / ETCS application level for degraded situation related to the track side equipment."@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "ETCS level for degraded situation"@en ;
@@ -1318,7 +1319,7 @@ Multiple selection from a predefined list:
                                dcterms:relation era:maximumInterferenceCurrent ,
                                                 era:minVehicleImpedance ,
                                                 era:tdsMaximumMagneticField ;
-                               rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                               rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                                rdfs:comment "Bands of the frequency management of the train detection systems as defined in the TSI CCS (Annex I, Appendix A, Table A.2 -Index 77), and in the specific cases or technical documents referred to in Article 13 of TSI CCS when they are available."@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "frequency bands for detection"@en ;
@@ -1350,9 +1351,10 @@ era:gaugingProfile rdf:type owl:ObjectProperty ;
                    dcterms:created "2020-07-29"^^xsd:date ;
                    dcterms:modified "2023-03-14"^^xsd:date , "2024-06-26"^^xsd:date , "2024-09-19"^^xsd:date ;
                    rdfs:comment """Gauges as defined in European standard or other local gauges, including lower or upper part."""@en ;
-                   dcterms:source <http://data.europa.eu/eli/reg/2014/1299/2023-09-28> , <http://data.europa.eu/eli/reg/2014/1302/2023-09-28>;
-                   rdfs:seeAlso "EN15273-3:2013+A1:2016: Annex C and Annex D, INF TSI: 4.2.3.1" , <https://www.era.europa.eu/system/files/2022-11/list_harmonised_national_restriction_codes_en.pdf> ;
+                   dcterms:source <https://data.europa.eu/eli/reg/2014/1299/2023-09-28> , <https://data.europa.eu/eli/reg/2014/1302/2023-09-28>;
+                   rdfs:seeAlso "https://www.era.europa.eu/system/files/2022-11/list_harmonised_national_restriction_codes_en.pdf"^^xsd:anyURI ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                   skos:note "EN15273-3:2013+A1:2016: Annex C and Annex D, INF TSI: 4.2.3.1" ;
                    rdfs:label "gauging"@en ;
                    vs:term_status "stable" .
 
@@ -1691,7 +1693,7 @@ era:legacyRadioSystem rdf:type owl:ObjectProperty ;
                       dcterms:modified "2021-09-12"^^xsd:date ,
                                        "2024-04-18"^^xsd:date , "2024-09-19"^^xsd:date  ;
                       dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
-                      rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-11/%5BK%5D%20ERA-TD-2011-09-INT-Coded%20restrictions-final.pdf> ;
+                      rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-11/%5BK%5D%20ERA-TD-2011-09-INT-Coded%20restrictions-final.pdf"^^xsd:anyURI;
                       rdfs:comment "Indication of radio legacy systems installed."@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                       rdfs:label "Other radio systems installed (Radio Legacy Systems)"@en ;
@@ -2060,7 +2062,7 @@ era:minVehicleImpedanceVoltages rdf:type owl:ObjectProperty ;
                                 era:usedInRCCCalculations "true"^^xsd:boolean ;
                                 dcterms:created "2024-05-30"^^xsd:date ;
                                 dcterms:modified "2024-09-19"^^xsd:date ;
-                                rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                                rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                                 rdfs:comment "Indication of the voltage system valid for the minimal impedance value (track circuits)."@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "minimum Vehicle Impedance (Voltage applicable)"@en ;
@@ -2223,7 +2225,7 @@ era:operationalRegimeType rdf:type owl:ObjectProperty ;
                           dcterms:modified "2024-01-08"^^xsd:date , "2024-09-19"^^xsd:date;
                           dcterms:source <https://data.europa.eu/eli/reg_impl/2019/773/oj> ;
                           dcterms:modified "2024-09-24"^^xsd:date ;
-                          rdfs:seeAlso <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
+                          
                           rdfs:comment "Double track type."@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "Operational regime"@en ;
@@ -2512,7 +2514,7 @@ era:protectionLegacySystem rdf:type owl:ObjectProperty ;
                            dcterms:created "2020-08-31"^^xsd:date ;
                            dcterms:modified "2021-09-12"^^xsd:date ,
                                             "2024-04-18"^^xsd:date , "2024-09-19"^^xsd:date;
-                           rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-11/%5BK%5D%20ERA-TD-2011-09-INT-Coded%20restrictions-final.pdf> ;
+                           rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-11/%5BK%5D%20ERA-TD-2011-09-INT-Coded%20restrictions-final.pdf"^^xsd:anyURI ;
                            rdfs:comment "Indication of which class B system is installed. The list is in line with ERA/TD/2011-09/INT (v1.13), Table 3. "@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "Train protection legacy system"@en ;
@@ -2976,7 +2978,7 @@ era:tdsMaximumMagneticField rdf:type owl:ObjectProperty ;
                                           "1.2.1.1.3.2.3" ;
                             dcterms:created "2023-03-14"^^xsd:date ;
                             dcterms:modified "2024-04-18"^^xsd:date, "2024-09-19"^^xsd:date ;
-                            rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                            rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                             rdfs:comment """Relates the Axle Counter TrainDetectionSystem with its MaximumMagneticField in (X,Y,Z).
 
 The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band.
@@ -3210,7 +3212,7 @@ era:trainDetectionSystemSpecificCheckDocument rdf:type owl:ObjectProperty ;
                                                                "2024-04-18"^^xsd:date ,
                                                                "2024-04-23"^^xsd:date , 
                                                                "2024-09-19"^^xsd:date;
-                                              rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                                              rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                                               dcterms:relation era:trainDetectionSystemType ;
                                               rdfs:comment "Electronic document from the IM stored by the Agency with precise values in accordance with TSI CCS (Article 13 and Annex I, Appendix A, Table A.2, Index 77), for the specific check to be performed for train detection systems identified in parameter \"\"Type of track circuits or axle counters to which specific checks are needed\"."@en ;
                                               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -3531,13 +3533,13 @@ era:voiceRadioCompatible rdf:type owl:ObjectProperty ;
                          dcterms:modified "2021-09-12"^^xsd:date ,
                                           "2024-04-18"^^xsd:date , 
                                           "2024-09-19"^^xsd:date ;
-                         rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf> ;
+                         rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf"^xsd:anyURI, "https://www.era.europa.eu/era-folder/radio-system-compatibility-rsc-voice-and-data-documents"^^xsd:anyURI;
                          rdfs:comment """Radio requirements used for demonstrating technical compatibility voice.
 
 The allowed values for this property belong to a SKOS Concept Scheme. This concept scheme is temporarily non-deferenceable.
  
 Information on RSC voice requirements per country is given in the refered document."""@en ;
-                         rdfs:seeAlso <https://www.era.europa.eu/era-folder/radio-system-compatibility-rsc-voice-and-data-documents> ;
+                         
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Radio system compatibility voice"@en ;
                          vs:term_status "stable" ;
@@ -5287,7 +5289,7 @@ era:hasTSITrainDetection rdf:type owl:DatatypeProperty ,
                                        "1.2.1.1.3.1" ;
                          dcterms:created "2021-08-09"^^xsd:date ;
                          dcterms:modified "2024-01-08"^^xsd:date ;
-                         rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                         rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                          rdfs:comment "Indication if there is any train detection system installed and fully compliant with the TSI CCS (Annex I, Appendix A, Table A.2 -Index 77)."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Existence of train detection system fully compliant with the TSI"@en ;
@@ -6084,7 +6086,7 @@ era:maximumInterferenceCurrent rdf:type owl:DatatypeProperty ;
                                era:unitOfMeasure <https://qudt.org/vocab/unit/A-PER-M> ;
                                dcterms:created "2023-03-14"^^xsd:date ;
                                dcterms:modified "2024-04-18"^^xsd:date ;
-                               rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                               rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                                rdfs:comment "Maximum interference current limits allowed for track circuits for a defined frequency band (to be expressed in A/m)."@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "maximum interference current"@en ;
@@ -6100,7 +6102,7 @@ era:maximumInterferenceCurrentEvaluation rdf:type owl:DatatypeProperty ,
                                          era:rinfIndex "1.1.1.3.4.2.1" ,
                                                        "1.2.1.1.3.2.1" ;
                                          dcterms:created "2024-04-18"^^xsd:date ;
-                                         rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                                         rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                                          rdfs:comment """If the preferred frequency bands are not used, (mandatory) description of the parameters for evaluation of compliance.
 If the preferred frequency bands are used, this parameter is optional."""@en ;
                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -6130,7 +6132,7 @@ era:maximumMagneticFieldDirectionX rdf:type owl:DatatypeProperty ,
                                    era:rinfIndex "1.1.1.3.4.2.3" ,
                                                  "1.2.1.1.3.2.3" ;
                                    dcterms:created "2023-03-14"^^xsd:date ;
-                                   rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                                   rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsdd:anyURI ;
                                    rdfs:comment "The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band. Direction X."@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "Maximum magnetic field direction X"@en ;
@@ -6147,7 +6149,7 @@ era:maximumMagneticFieldDirectionY rdf:type owl:DatatypeProperty ,
                                    era:rinfIndex "1.1.1.3.4.2.3" ,
                                                  "1.2.1.1.3.2.3" ;
                                    dcterms:created "2023-03-14"^^xsd:date ;
-                                   rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                                   rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                                    rdfs:comment "The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band. Direction Y."@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "Maximum magnetic field direction Y"@en ;
@@ -6164,7 +6166,7 @@ era:maximumMagneticFieldDirectionZ rdf:type owl:DatatypeProperty ,
                                    era:rinfIndex "1.1.1.3.4.2.3" ,
                                                  "1.2.1.1.3.2.3" ;
                                    dcterms:created "2023-03-14"^^xsd:date ;
-                                   rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                                   rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                                    rdfs:comment "The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band. Direction Z."@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "Maximum magnetic field direction Z"@en ;
@@ -6425,7 +6427,7 @@ era:minVehicleInputCapacitance rdf:type owl:DatatypeProperty ;
                                era:unitOfMeasure <https://qudt.org/vocab/unit/NanoFARAD> ;
                                era:usedInRCCCalculations "true"^^xsd:boolean ;
                                dcterms:created "2024-05-30"^^xsd:date ;
-                               rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                               rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                                rdfs:comment "For the selected DC voltage: [CCCC], as input capacitance [CCCC](Cin)"@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "minimal vehicle input capacitance"@en ;
@@ -6443,7 +6445,7 @@ era:minVehicleInputImpedance rdf:type owl:DatatypeProperty ;
                              era:unitOfMeasure <https://qudt.org/vocab/unit/MilliH> ;
                              era:usedInRCCCalculations "true"^^xsd:boolean ;
                              dcterms:created "2024-05-30"^^xsd:date ;
-                             rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                             rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                              rdfs:comment "For the selected DC voltage: [ZZZZ], as input impedance [ZZZZ](Zin)"@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "minimal vehicle input impedance"@en ;
@@ -7905,7 +7907,7 @@ era:tenGISId rdf:type owl:DatatypeProperty ;
              dcterms:description """TENtec is the European Commission's information system to coordinate and support the Trans-European Transport Network Policy (TEN-T). For more details about the system and the legal background please follow the link to the TENtec Public Portal.
 
 Τhe list of sections of the TEN network with their GIS IDs can be requested via MOVE-TENTEC-PUBLIC@ec.europa.eu"""@en ;
-             rdfs:seeAlso <http://ec.europa.eu/transport/infrastructure/tentec/tentec-portal/> ;
+             rdfs:seeAlso "http://ec.europa.eu/transport/infrastructure/tentec/tentec-portal/"^^xsd:anyURI ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "TEN geographic information system identity (GIS ID)"@en ;
              vs:term_status "stable" .
@@ -8113,7 +8115,7 @@ era:tsiMagneticFields rdf:type owl:DatatypeProperty ;
                       era:rinfIndex "1.1.1.3.9.1" ,
                                     "1.2.1.1.8.1" ;
                       dcterms:created "2024-04-18"^^xsd:date , "2024-09-19"^^xsd:date;
-                      rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                      rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                       rdfs:comment "Indication whether rules exist and are compliant with the TSI."@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                       rdfs:label "Existence and TSI compliance of rules for magnetic fields emitted by a vehicle"@en ;
@@ -9005,7 +9007,7 @@ era:MaximumMagneticField rdf:type owl:Class ;
                          era:rinfIndex "1.1.1.3.4.2.3" ,
                                        "1.2.1.1.3.2.3" ;
                          dcterms:created "2023-03-14"^^xsd:date ;
-                         rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                         rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                          rdfs:comment """The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band.
 It should be provided in 3 directions."""@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -9040,7 +9042,7 @@ era:MinVehicleImpedance rdf:type owl:Class ;
                         era:rinfIndex "1.1.1.3.4.2.2" ,
                                       "1.2.1.1.3.2.2" ;
                         dcterms:created "2024-05-30"^^xsd:date ;
-                        rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                        rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                         rdfs:comment """Impedance as defined in the TSI CCS (Annex I, Appendix A, Table A.2 -Index 77).
 
 Minimum vehicle impedance (between wheels and pantograph) (only for vehicles equipped for 1500V or 3000V DC).
@@ -9249,7 +9251,7 @@ era:Signal rdf:type owl:Class ;
            rdfs:comment "A railway signal is a visual display device (next to the tracks or via a DMI in the cabin) that conveys instructions or provides advance warning of instructions regarding the driver’s authority to proceed."@en ;
            skos:definition "Apparatus by means of which a conventional visual or acoustic indication is given, generally concerning the movements/movement authorities of railway vehicles."@en ;
            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-           rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index003_-_SUBSET-023_v400.pdf> ;
+           rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index003_-_SUBSET-023_v400.pdf"^^xsd:anyURI ;
            rdfs:label "Signal"@en ;
            vs:term_status "stable" .
 
