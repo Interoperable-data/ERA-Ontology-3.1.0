@@ -1,5 +1,4 @@
 @prefix cc: <http://creativecommons.org/ns#> .
-@prefix dcelems: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix era: <http://data.europa.eu/949/> .
@@ -16,12 +15,16 @@
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix unit: <http://qudt.org/vocab/unit/> .
 
+
 <http://data.europa.eu/949/> rdf:type owl:Ontology ;
                               cc:license <https://creativecommons.org/licenses/by/4.0/> ;
                               dcterms:contributor [ foaf:name "Maarten Duhoux" ;
                                                     org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                                   ] ,
-                                                  "Designated RINF Topical Working Groups"@en ;
+                                                  [ 
+                                                  foaf:name "Designated RINF Topical Working Groups"@en 
+                                                  ] ;
+                                                   
                               dcterms:creator [ foaf:name "Ghislain Atemezing" ;
                                                 rdfs:seeAlso <https://orcid.org/0000-0003-1562-6922> ;
                                                 org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
@@ -38,23 +41,52 @@
                                                "2024-08-02"^^xsd:date ,
                                                "2024-08-12"^^xsd:date ,
                                                "2024-08-13"^^xsd:date , 
-                                               "2024-09-19"^^xsd:date;
+                                               "2024-09-19"^^xsd:date,
+                                               "2024-09-20"^^xsd:date ,
+                                               "2024-09-24"^^xsd:date ,
+                                               "2024-09-25"^^xsd:date ;
                               dcterms:publisher "European Union Agency for Railways" ;
                               dcterms:title "ERA Ontology"@en ;
                               rdfs:seeAlso <https://www.era.europa.eu/sites/default/files/registers/docs/rinf_application_guide_for_register_en.pdf>, <https://www.era.europa.eu/sites/default/files/registers/docs/iu-eratv_application_guide_for_register_2016-797_en.pdf>;
                               rdfs:comment """This is the human and machine readable Ontology governed by the European Union Agency for Railways (https://www.era.europa.eu/). It represents the concepts and relationships linked to the sectorial legal framework and the use cases under the AgencyÂ´s remit, as described in the Commission Implementing Regulation (EU) [to be updated after publication] on the common specifications for the register of railway infrastructure [to be updated after publication].
 
+
 Currently, this Ontology covers the European railway infrastructure and the vehicles types authorized to operate over it. It is a semantic/browsable representation of the RINF application guide (1) and ERATV application guide (2) that were built by domain experts in the RINF and ERATV working parties.
 
 The Ontology also includes the routebook concepts described in appendix D2 \"Elements the infrastructure manager has to provide to the railway undertaking for the Route Book\" as presented in the Commission Implementing Regulation (EU) [to be updated after publication] 2019/773 of 16 May 2019 on the technical specification for interoperability relating to the operation and traffic management subsystem of the rail system within the European Union and [to be updated after publication] and the Appendix D3 [to be updated after publication]."""@en ;
-                              rdfs:label "ERA Ontology"@en ;
-                              owl:priorVersion "https://github.com/Interoperable-data/ERA_vocabulary/releases/v3.0.0"^^xsd:anyURI ;
-                              owl:versionInfo "v3.1.0"@en ;
-                              owl:versionURI <https://github.com/Interoperable-data/ERA_vocabulary/releases/releases/v3.1.0> ;
-                              skos:changeNote """
+
+rdfs:label "ERA Ontology"@en ;
+owl:priorVersion "https://github.com/Interoperable-data/ERA_vocabulary/releases/v3.0.0"^^xsd:anyURI ;
+owl:versionInfo "v3.1.0" ;
+owl:versionURI <https://github.com/Interoperable-data/ERA_vocabulary/releases/releases/v3.1.0> ;
+skos:changeNote """Revision 25-09-2024
+- Deprecated minimumTemperature and maximumTemperature as both RINF and ERATV define a temprature range with a list of predefined values.
+- Changed era:trainDetectionSystemSpecificChecks from a data property to an object property (It is a list of predefined values). Added the pointer to its SKOS Concept Scheme. 
+- Fixed annotation inSKOSConceptScheme for property era:osmClass 
+- Deleted from definitions (rdfs:comment) URIs referring to the source and  added them as dcterms:source annotations. Replaced all rdfs:seeAlso to dcterms:source for consistency in the annotations.
+- Removed duplicate properties appendixD2Index and appendixD3Index, fixed references to point to remaining properties.
+- Fixed 1.2.1.1.2.12 Specific constraints imposed by the GSM-R network, deleted  1.1... RINF index. Fixed 1.1.1.3.3.12 & 1.2.1.1.2.13 as the correct RINF indexes  of \"Radio Network ID\".
+- Added isReplacedBy annotations to deprecated classes era:Manufacturer and era.VehicleKeeper.
+- Fixed typo ammendment for amendment.
+- Added annotation dcterms:isReplacedBy era:errorCorrectionsOnBoard for era:gsmrErrorCorrectionsOnBoard, era:etcsErrorCorrectionsOnBoard, era:ertmsErrorCorrectionsOnBoard.
+
+Revision 24-09-2024
+- Add annotation in SKOSConceptScheme to era:operationalRegimeType, era:subsidiaryLocationType, era:conditionsUseReflectivePlates, era:standardCombinedTransportRollerUnit, era:linesideDistanceIndicationAppearance  (currently placeholder concept schemes to be developed)
+- Deleted foaf:Project, no Usage in ontology and the concept is not part of the domain.
+- Fix bug era:direction, change skos:definition to rdfs:label
+- Fix Typo definition NationalRailwayLine, Network
+- According to conceptual design import gsp:SpatialObject  sf:LineString, sf:MultiPolygon, sf:Point and also other superclasses in the hierarchy of these classes.
+
+
+Revision 20-09-2024
+- Change era:qNvdriverAdhes to an object property that points to a SKOS concept scheme   (currently a boolean data property)
+- Add era:inSkosConceptScheme for  era:hasOrganisationRole
+- Add era:inSkosConceptScheme for era:operatingLanguage: http://publications.europa.eu/resource/authority/language
+
 Revision 19-09-2024:
 - Added annotations for use of ontology as the RINF AG technical annex;
 - `dcterms:source` refers to ELI URI of the applicable reference legislation (TSI's, regulations)
+
 
 Revision 13-08-2024:
 - clarified the comment and label for ORG pattern as per issue #74.
@@ -106,9 +138,7 @@ Revision 18-04-2024:
 - updated as per results of the Topical Working Group RINF-CCS (Draft report 0.2);
 - include upcoming remarks from TWG members (inclusing those as documented in Report 0.3);
 - linked with existing (updated) or new SKOS Concepts, related to the TWG RINF CCS;
-- included references and guidelines as in Table 5 of the RINF Application Guide.
-					  
-							  """@en .
+- included references and guidelines as in Table 5 of the RINF Application Guide."""@en .
 
 #################################################################
 #    Annotation properties
@@ -140,7 +170,6 @@ era:appendixD2Index rdf:type owl:AnnotationProperty ;
                     rdfs:range xsd:string .
 
 
-
 ###  http://data.europa.eu/949/appendixD3Index
 era:appendixD3Index rdf:type owl:AnnotationProperty ;
                     dcterms:created "2022-11-04"^^xsd:date ;
@@ -150,8 +179,6 @@ era:appendixD3Index rdf:type owl:AnnotationProperty ;
                     rdfs:label "Appendix D3 index"@en ;
                     vs:term_status "stable" ;
                     rdfs:range xsd:string .
-
-
 
 
 ###  http://data.europa.eu/949/canonicalURI
@@ -228,35 +255,14 @@ era:unitOfMeasure rdf:type owl:AnnotationProperty ;
 ###  http://data.europa.eu/949/usedInRCCCalculations
 era:usedInRCCCalculations rdf:type owl:AnnotationProperty ;
                           dcterms:created "2023-04-12"^^xsd:date ;
-                          rdfs:comment """Indicates whether a RINF parameter is used in Route Compatibility Check calculations according to Commission Implementing Regulation (EU) 2019/773 of 16 May 2019 on the technical specification for interoperability relating to the operation and traffic management subsystem of the rail system within the European Union and repealing Decision.
-https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj#:~:text=Commission%20Implementing%20Regulation."""@en ;
+                          dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj#:~:text=Commission%20Implementing%20Regulation> ;
+                          rdfs:comment "Indicates whether a RINF parameter is used in Route Compatibility Check calculations according to Commission Implementing Regulation (EU) 2019/773 of 16 May 2019 on the technical specification for interoperability relating to the operation and traffic management subsystem of the rail system within the European Union and repealing Decision."@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "Parameter is used in Route Compatibility Check (RCC) calculations"@en ;
                           rdfs:range xsd:boolean .
 
 
-###  http://purl.org/dc/elements/1.1/contributor
-dcelems:contributor rdf:type owl:AnnotationProperty .
 
-
-###  http://purl.org/dc/elements/1.1/creator
-dcelems:creator rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/elements/1.1/date
-dcelems:date rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/elements/1.1/description
-dcelems:description rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/elements/1.1/source
-dcelems:source rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/elements/1.1/title
-dcelems:title rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/author
@@ -466,7 +472,7 @@ era:allocationCompany rdf:type owl:ObjectProperty ;
                       rdfs:domain era:SubsidiaryLocation ;
                       rdfs:range era:Body ;
                       dcterms:created "2024-05-24"^^xsd:date ;
-                      rdfs:comment "the organisation in charge to allocate the code for the subsidiary location"@en ;
+                      rdfs:comment "The organisation in charge to allocate the code for the subsidiary location."@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                       rdfs:label "allocation company"@en .
 
@@ -688,8 +694,10 @@ era:condition rdf:type owl:ObjectProperty ;
 era:conditionsUseReflectivePlates rdf:type owl:ObjectProperty ;
                                   rdfs:domain era:InfraSubsystem ;
                                   rdfs:range skos:Concept ;
+                                  era:inSkosConceptScheme <http://data.europa.eu/949/concepts/conditions-use-reflective-plates/ConditionsUseReflectivePlates> ;
                                   era:rinfIndex "1.1.1.1.7.12.1" ;
                                   dcterms:created "2023-03-14"^^xsd:date ;
+                                  dcterms:modified "2024-09-24"^^xsd:date ;
                                   rdfs:comment "Details of any conditions for using the reflective plates on freight corridors. Specific case for Portugal and Spain until 1.1.2025 and Belgium and France until 1.1.2026."@en ;
                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                   rdfs:label "conditions for use of reflective plates"@en ;
@@ -1139,11 +1147,11 @@ era:etcsMVersion rdf:type owl:ObjectProperty ,
                  dcterms:created "2021-08-08"^^xsd:date ;
                  dcterms:modified "2021-09-12"^^xsd:date ,
                                   "2024-04-18"^^xsd:date ;
-                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
+                                <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                  rdfs:comment "ETCS M_version according to SRS 7.5.1.9."@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "ETCS M_version"@en ;
-                 rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                  vs:term_status "stable" ;
                  skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -1183,7 +1191,7 @@ The ESC Types shall only be used when published with status ‘Valid’ in the A
                             rdfs:comment "ETCS requirements used for demonstrating technical compatibility."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "ETCS system compatibility"@en ;
-                            rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> , <https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf> ;
+                            rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI , "https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf"^^xsd:anyURI ;
                             vs:term_status "stable" ;
                             skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -1201,13 +1209,13 @@ era:etcsTransmittedTrackConditions rdf:type owl:ObjectProperty ,
                                    dcterms:created "2022-11-16"^^xsd:date ;
                                    dcterms:modified "2023-03-14"^^xsd:date ,
                                                     "2023-04-18"^^xsd:date ;
-                                   dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                                   dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
+                                                  <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                                    rdfs:comment """Transmittable track conditions by the CCSSubsystem, as per CCS TSI.
 
 See: TSI CCS (Subset-026, Chapter 5, section 5.18.1.1)"""@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "Track conditions which can be transmitted"@en ;
-                                   rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                                    vs:term_status "unstable" ;
                                    skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -1506,8 +1514,7 @@ era:gsmrConstraintsOperateOnlyInCircuitSwitch rdf:type owl:ObjectProperty ;
                                               era:XMLName "CRG_ConstraintsCS" ;
                                               era:appendixD3Index "2.2" ;
                                               era:inSkosConceptScheme <http://data.europa.eu/949/concepts/gsmr-cs-constraints/GSMRConstraints> ;
-                                              era:rinfIndex "1.1.1.3.3.12" ,
-                                                            "1.2.1.1.2.12" ;
+                                              era:rinfIndex "1.2.1.1.2.12" ;
                                               dcterms:created "2023-03-14"^^xsd:date ;
                                               dcterms:modified "2024-04-18"^^xsd:date ;
                                               rdfs:comment "These constraints, where applicable, are meant to manage the limited number of circuit-switched radio connections that can be handled simultaneously by a Radio Block Center."@en ;
@@ -1571,6 +1578,7 @@ era:hasOrganisationRole rdf:type owl:ObjectProperty ,
                                  owl:FunctionalProperty ;
                         rdfs:domain era:OrganisationRole ;
                         rdfs:range skos:Concept ;
+                        era:inSkosConceptScheme <http://data.europa.eu/949/concepts/organisation-roles/OrgRoles> ;
                         dcterms:created "2024-06-03"^^xsd:date ;
                         rdfs:comment "The role plays in an n-ary relationship between a Body and a specific concept in the concept scheme of organisation roles"@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -1786,10 +1794,14 @@ era:linesideDistanceIndicationAppearance rdf:type owl:ObjectProperty ;
                                          rdfs:domain era:TechnicalCharacteristics ;
                                          rdfs:range skos:Concept ;
                                          era:appendixD2Index "3.1.3" ;
+                                         era:inSkosConceptScheme <http://data.europa.eu/949/concepts/lineside-distance-indication-appearance/LinesideDistanceIndicationAppearance> ;
                                          era:rinfIndex "1.1.1.0.0.3" ;
                                          dcterms:created "2022-10-27"^^xsd:date ;
-                                         dcterms:modified "2023-03-14"^^xsd:date , "2024-09-19"^^xsd:date;
-                                         dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
+                                         dcterms:modified "2024-09-19"^^xsd:date;
+                                         dcterms:source <https://data.europa.eu/eli/reg_impl/2019/773/oj> ;
+                                         dcterms:modified "2023-03-14"^^xsd:date ,
+                                                          "2024-09-24"^^xsd:date ;
+                                        
                                          rdfs:comment "Indication of types of appearance of track lineside distance indications."@en ;
                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                          rdfs:label "Lineside distance indication appearance"@en ;
@@ -1910,15 +1922,14 @@ era:mNvcontact rdf:type owl:ObjectProperty ,
                              "1.2.1.1.1.16.9" ;
                dcterms:created "2022-11-07"^^xsd:date ;
                dcterms:modified "2023-03-14"^^xsd:date ,
-                                "2024-04-18"^^xsd:date , 
-                                "2024-09-19"^^xsd:date;
-               dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                                "2024-04-18"^^xsd:date ;
+               dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
+                              <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                rdfs:comment """On-Board system reaction when T_NVCONTACT expires.
 
 See: TSI CCS (Subset-026, chapter 7. 7.5.1.74 M_NVCONTACT)"""@en ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                rdfs:label "M_NVCONTACT"@en ;
-               rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                vs:term_status "unstable" ;
                skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -2003,7 +2014,7 @@ era:maxSandingOutput rdf:type owl:ObjectProperty ;
                      dcterms:created "2021-08-08"^^xsd:date ;
                      dcterms:modified "2023-03-14"^^xsd:date ;
                      rdfs:comment """Maximum amount of sand accepted on the track within value of sanding output for 30s, given in grams.
-Deprecated according to the ammendment to the Regulation (EU) 2019/777."""@en ;
+Deprecated according to the amendment to the Regulation (EU) 2019/777."""@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "Maximum amount of sand"@en ;
                      owl:deprecated "true"^^xsd:boolean ;
@@ -2020,7 +2031,7 @@ era:minAxleLoadVehicleCategory rdf:type owl:ObjectProperty ;
                                dcterms:created "2021-08-08"^^xsd:date ;
                                dcterms:modified "2023-03-14"^^xsd:date ;
                                rdfs:comment """Represents the category of vehicle which is amended by value of minimum permitted axle load [tons] (property minAxleLoad).
-Deprecated according to the ammendment to the Regulation (EU) 2019/777."""@en ;
+Deprecated according to the amendment to the Regulation (EU) 2019/777."""@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "Minimum axle load vehicle category"@en ;
                                owl:deprecated "true"^^xsd:boolean ;
@@ -2190,6 +2201,7 @@ era:opType rdf:type owl:ObjectProperty ;
 era:operatingLanguage rdf:type owl:ObjectProperty ;
                       rdfs:range skos:Concept ;
                       era:appendixD2Index "3.5.1" ;
+                      era:inSkosConceptScheme <http://publications.europa.eu/resource/authority/language> ;
                       era:rinfIndex "1.1.0.0.1.2" ,
                                     "1.2.0.0.0.8" ;
                       dcterms:created "2022-10-28"^^xsd:date ;
@@ -2205,10 +2217,13 @@ era:operatingLanguage rdf:type owl:ObjectProperty ;
 era:operationalRegimeType rdf:type owl:ObjectProperty ;
                           rdfs:range skos:Concept ;
                           era:appendixD2Index "3.2.7" ;
+                          era:inSkosConceptScheme <http://data.europa.eu/949/concepts/operational-regime-types/OperationalRegimeTypes> ;
                           era:rinfIndex "1.1.0.0.1.3" ;
                           dcterms:created "2022-10-27"^^xsd:date ;
                           dcterms:modified "2024-01-08"^^xsd:date , "2024-09-19"^^xsd:date;
-                          dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
+                          dcterms:source <https://data.europa.eu/eli/reg_impl/2019/773/oj> ;
+                          dcterms:modified "2024-09-24"^^xsd:date ;
+                          rdfs:seeAlso <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
                           rdfs:comment "Double track type."@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "Operational regime"@en ;
@@ -2257,7 +2272,7 @@ era:osmClass rdf:type owl:ObjectProperty ;
                                        )
                          ] ;
              rdfs:range skos:Concept ;
-             era:inSkosConceptScheme <http://data.europa.eu/949/concepts/osmclass/OSMClasses> ;
+             era:inSkosConceptScheme <http://data.europa.eu/949/concepts/osm-classes/OSMClasses> ;
              rdfs:comment "(deprecated) not in use any more"@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "Open street map class"@en ;
@@ -2318,11 +2333,12 @@ era:otherTrainProtection rdf:type owl:ObjectProperty ,
                          dcterms:description "Selected value shall answer the question whether any other system than ETCS exists on the respective track. The list is in line with ERA/TD/2011-09/INT (v1.13), Table 3."@en ;
                          dcterms:modified "2021-09-12"^^xsd:date ,
                                           "2024-04-18"^^xsd:date, "2024-09-19"^^xsd:date ;
-                         dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/2023-09-28> , <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                         dcterms:source <https://data.europa.eu/eli/reg_impl/2019/773/2023-09-28> , <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                          
+                         rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-11/%5BK%5D%20ERA-TD-2011-09-INT-Coded%20restrictions-final.pdf"^^xsd:anyURI ;
                          rdfs:comment "Indication of existence of other system than ETCS for degraded situation."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Other train protection, control and warning systems for degraded situation"@en ;
-                         rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-11/%5BK%5D%20ERA-TD-2011-09-INT-Coded%20restrictions-final.pdf> ;
                          vs:term_status "stable" ;
                          skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -2503,6 +2519,29 @@ era:protectionLegacySystem rdf:type owl:ObjectProperty ;
                            vs:term_status "stable" .
 
 
+###  http://data.europa.eu/949/qNvdriverAdhes
+era:qNvdriverAdhes rdf:type owl:ObjectProperty ,
+                            owl:FunctionalProperty ;
+                   rdfs:domain era:CCSSubsystem ;
+                   rdfs:range skos:Concept ;
+                   era:XMLName "CPE_QNVDRIVERADHES" ;
+                   era:appendixD3Index "1.5.11" ;
+                   era:inSkosConceptScheme <http://data.europa.eu/949/concepts/adhf-qualifier/AdhesionFactorChange> ;
+                   era:rinfIndex "1.1.1.3.2.16.11" ,
+                                 "1.2.1.1.1.16.11" ;
+                   dcterms:created "2024-04-18"^^xsd:date ;
+                   dcterms:modified "2024-09-20"^^xsd:date ;
+                   dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
+                                  <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
+                   rdfs:comment """Qualifier determining whether the driver is allowed to modify the adhesion factor used by the ETCS on-board to calculate the braking curves. 
+
+See: TSI CCS (Subset 26, chapter 7. 7.5.1.122 Q_NVDRIVER_ADHES)"""@en ;
+                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                   rdfs:label "Q_NVDRIVER_ADHES"@en ;
+                   vs:term_status "stable" ;
+                   skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
+
+
 ###  http://data.europa.eu/949/qNvemrrls
 era:qNvemrrls rdf:type owl:ObjectProperty ,
                        owl:FunctionalProperty ;
@@ -2572,13 +2611,13 @@ era:reasonsEtcsRadioBlockCenterReject rdf:type owl:ObjectProperty ,
                                       dcterms:created "2022-11-07"^^xsd:date ;
                                       dcterms:modified "2023-03-14"^^xsd:date ,
                                                        "2024-04-18"^^xsd:date, "2024-09-19"^^xsd:date ;
-                                      dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                                      rdfs:comment """List of cases subject to system design choices made by the infrastructure manager according to the specification referenced in TSI CCS. 
+                                      dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                                                
+                                      dfs:comment """List of cases subject to system design choices made by the infrastructure manager according to the specification referenced in TSI CCS. 
 
 See: Subset 26, Chapter 5 5.4 Procedure start of mission."""@en ;
                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                       rdfs:label "Reasons for which an ETCS Radio Block Center can reject a train"@en ;
-                                      rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                                       vs:term_status "unstable" ;
                                       skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -2641,11 +2680,11 @@ era:safeConsistLengthInformationNecessary rdf:type owl:ObjectProperty ,
                                                         "1.2.1.1.1.11" ;
                                           dcterms:created "2023-03-14"^^xsd:date ;
                                           dcterms:modified "2024-04-18"^^xsd:date, "2024-09-19"^^xsd:date ;
-                                          dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                                          dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                                        
                                           rdfs:comment "Indication whether safe consist train length information from on-board is required to access the line for safety reasons and the required safety integrity level."@en ;
                                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                           rdfs:label "Safe consist length information from on-board necessary for access the line and SIL"@en ;
-                                          rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                                           vs:term_status "stable" ;
                                           skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -2818,6 +2857,20 @@ era:standardCombinedTransportContainers rdf:type owl:ObjectProperty ;
                                         vs:term_status "unstable" .
 
 
+###  http://data.europa.eu/949/standardCombinedTransportRollerUnits
+era:standardCombinedTransportRollerUnits rdf:type owl:ObjectProperty ;
+                                         rdfs:domain era:InfraSubsystem ;
+                                         rdfs:range skos:Concept ;
+                                         era:inSkosConceptScheme <http://data.europa.eu/949/concepts/standard-combined-transport-roller-units/StandardCombinedTransportRollerUnits> ;
+                                         era:rinfIndex "1.1.1.1.3.9" ;
+                                         dcterms:created "2023-03-14"^^xsd:date ;
+                                         rdfs:comment """Coding for combined transport for roller units (for all freight and mixed-traffic lines) in accordance with the specification referenced in Appendix A-1, index [B]. 
+"""@en ;
+                                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                         rdfs:label "Standard combined transport profile number for roller units"@en ;
+                                         vs:term_status "unstable" .
+
+
 ###  http://data.europa.eu/949/startLocation
 era:startLocation rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf geo:hasGeometry ,
@@ -2877,6 +2930,7 @@ era:subsidiaryLocation rdf:type owl:ObjectProperty ;
 era:subsidiaryLocationType rdf:type owl:ObjectProperty ;
                            rdfs:domain era:SubsidiaryLocation ;
                            rdfs:range skos:Concept ;
+                           era:inSkosConceptScheme <http://data.europa.eu/949/concepts/subsidiary-location-types/SubsidiaryLocationTypes> ;
                            dcterms:created "2024-05-24"^^xsd:date ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "subsidiary location type"@en .
@@ -2940,7 +2994,7 @@ era:tdsMinAxleLoadVehicleCategory rdf:type owl:ObjectProperty ;
                                   era:rinfIndex "1.1.1.3.7.11.1" ;
                                   dcterms:created "2023-01-25"^^xsd:date ;
                                   dcterms:modified "2023-03-14"^^xsd:date ;
-                                  rdfs:comment "Indication of load given in tons depending of the category of vehicle. Deprecated according to the ammendment to the Regulation (EU) 2019/777."@en ;
+                                  rdfs:comment "Indication of load given in tons depending of the category of vehicle. Deprecated according to the amendment to the Regulation (EU) 2019/777."@en ;
                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                   rdfs:label "Train detection system min axle load vehicle category"@en ;
                                   owl:deprecated "true"^^xsd:boolean ;
@@ -2952,6 +3006,7 @@ era:temperatureRange rdf:type owl:ObjectProperty ;
                      rdfs:domain era:InfraSubsystem ;
                      rdfs:range skos:Concept ;
                      era:XMLName "IPP_TempRange" ;
+                     era:eratvIndex "4.3.1" ;
                      era:inSkosConceptScheme <http://data.europa.eu/949/concepts/temperature-ranges/TemperatureRanges> ;
                      era:eratvIndex "4.3.1" ;
                      era:rinfIndex "1.1.1.1.2.6" ;
@@ -3119,6 +3174,29 @@ era:trainDetectionSystem rdf:type owl:ObjectProperty ;
                          vs:term_status "stable" .
 
 
+###  http://data.europa.eu/949/trainDetectionSystemSpecificCheck
+era:trainDetectionSystemSpecificCheck rdf:type owl:ObjectProperty ;
+                                      rdfs:domain era:TrainDetectionSystem ;
+                                      rdfs:range skos:Concept ;
+                                      era:XMLName "CTD_TCCheck" ;
+                                      era:inSkosConceptScheme <http://data.europa.eu/949/concepts/train-detection-specific-checks/TrainDetectionSystemsSpecificChecks> ;
+                                      era:rinfIndex "1.1.1.3.7.1.2" ,
+                                                    "1.2.1.1.6.1" ;
+                                      era:usedInRCCCalculations "false"^^xsd:boolean ;
+                                      dcterms:created "2020-08-24"^^xsd:date ;
+                                      dcterms:modified "2021-08-08"^^xsd:date ,
+                                                       "2024-04-18"^^xsd:date ,
+                                                       "2024-09-25"^^xsd:date ;
+                                      dcterms:relation era:trainDetectionSystemSpecificCheckDocument ;
+                                      dcterms:source <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                                      rdfs:comment "Reference to the technical specification of train detection system."@en ;
+                                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                      rdfs:label "Type of track circuits or axle counters to which specific checks are needed. "@en ;
+                                      
+                                      vs:term_status "stable" ;
+                                      skos:scopeNote "String containing the name of the TD system for which checks are mentioned in 1.1.1.3.7.1.3."@en .
+
+
 ###  http://data.europa.eu/949/trainDetectionSystemSpecificCheckDocument
 era:trainDetectionSystemSpecificCheckDocument rdf:type owl:ObjectProperty ;
                                               rdfs:domain era:TrainDetectionSystem ;
@@ -3177,7 +3255,7 @@ era:tsiCompliantCompositeBrakeBlocks rdf:type owl:ObjectProperty ;
                                      era:rinfIndex "1.1.1.3.7.21" ;
                                      dcterms:created "2021-08-08"^^xsd:date ;
                                      dcterms:modified "2023-03-14"^^xsd:date ;
-                                     rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. TSI compliance of rules on the use of composite brake blocks."@en ;
+                                     rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. TSI compliance of rules on the use of composite brake blocks."@en ;
                                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                      rdfs:label "TSI compliance of rules on the use of composite brake blocks"@en ;
                                      owl:deprecated "true"^^xsd:boolean ;
@@ -3193,7 +3271,7 @@ era:tsiCompliantFerromagneticWheel rdf:type owl:ObjectProperty ;
                                    era:rinfIndex "1.1.1.3.7.14" ;
                                    dcterms:created "2021-08-08"^^xsd:date ;
                                    dcterms:modified "2023-03-14"^^xsd:date ;
-                                   rdfs:comment "TSI compliance of Ferromagnetic characteristics of wheel material required. Deprecated according to the ammendment to the Regulation (EU) 2019/777."@en ;
+                                   rdfs:comment "TSI compliance of Ferromagnetic characteristics of wheel material required. Deprecated according to the amendment to the Regulation (EU) 2019/777."@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "TSI compliance of Ferromagnetic characteristics of wheel material required"@en ;
                                    owl:deprecated "true"^^xsd:boolean ;
@@ -3209,7 +3287,7 @@ era:tsiCompliantMaxDistConsecutiveAxles rdf:type owl:ObjectProperty ;
                                         era:rinfIndex "1.1.1.3.7.2.1" ;
                                         dcterms:created "2021-08-07"^^xsd:date ;
                                         dcterms:modified "2023-03-14"^^xsd:date ;
-                                        rdfs:comment "Indication whether required distance between two consecutive axles is compliant with the TSI. Deprecated according to the ammendment to the Regulation (EU) 2019/777."@en ;
+                                        rdfs:comment "Indication whether required distance between two consecutive axles is compliant with the TSI. Deprecated according to the amendment to the Regulation (EU) 2019/777."@en ;
                                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                         rdfs:label "TSI compliance of maximum permitted distance between two consecutive axles"@en ;
                                         owl:deprecated "true"^^xsd:boolean ;
@@ -3225,7 +3303,7 @@ era:tsiCompliantMaxImpedanceWheelset rdf:type owl:ObjectProperty ;
                                      era:rinfIndex "1.1.1.3.7.15.1" ;
                                      dcterms:created "2021-08-08"^^xsd:date ;
                                      dcterms:modified "2023-03-14"^^xsd:date ;
-                                     rdfs:comment "TSI compliance of maximum permitted impedance between opposite wheels of a wheelset. Deprecated according to the ammendment to the Regulation (EU) 2019/777."@en ;
+                                     rdfs:comment "TSI compliance of maximum permitted impedance between opposite wheels of a wheelset. Deprecated according to the amendment to the Regulation (EU) 2019/777."@en ;
                                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                      rdfs:label "TSI compliance of maximum permitted impedance between opposite wheels of a wheelset"@en ;
                                      owl:deprecated "true"^^xsd:boolean ;
@@ -3241,7 +3319,7 @@ era:tsiCompliantMetalConstruction rdf:type owl:ObjectProperty ;
                                   era:rinfIndex "1.1.1.3.7.13" ;
                                   dcterms:created "2021-08-08"^^xsd:date ;
                                   dcterms:modified "2023-03-14"^^xsd:date ;
-                                  rdfs:comment "TSI compliance of rules for vehicle metal construction. Deprecated according to the ammendment to the Regulation (EU) 2019/777."@en ;
+                                  rdfs:comment "TSI compliance of rules for vehicle metal construction. Deprecated according to the amendment to the Regulation (EU) 2019/777."@en ;
                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                   rdfs:label "TSI compliance of rules for vehicle metal construction"@en ;
                                   owl:deprecated "true"^^xsd:boolean ;
@@ -3257,7 +3335,7 @@ era:tsiCompliantMetalFreeSpace rdf:type owl:ObjectProperty ;
                                era:rinfIndex "1.1.1.3.7.12" ;
                                dcterms:created "2021-08-08"^^xsd:date ;
                                dcterms:modified "2023-03-14"^^xsd:date ;
-                               rdfs:comment "TSI compliance of rules for metal-free space around wheels. Deprecated according to the ammendment to the Regulation (EU) 2019/777."@en ;
+                               rdfs:comment "TSI compliance of rules for metal-free space around wheels. Deprecated according to the amendment to the Regulation (EU) 2019/777."@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "TSI compliance of rules for metal-free space around wheels"@en ;
                                owl:deprecated "true"^^xsd:boolean ;
@@ -3273,7 +3351,7 @@ era:tsiCompliantRSTShuntImpedance rdf:type owl:ObjectProperty ;
                                   era:rinfIndex "1.1.1.3.7.23" ;
                                   dcterms:created "2021-08-08"^^xsd:date ;
                                   dcterms:modified "2023-03-14"^^xsd:date ;
-                                  rdfs:comment "TSI compliance of rules on combination of RST characteristics influencing shunting impedance. Deprecated according to the ammendment to the Regulation (EU) 2019/777."@en ;
+                                  rdfs:comment "TSI compliance of rules on combination of RST characteristics influencing shunting impedance. Deprecated according to the amendment to the Regulation (EU) 2019/777."@en ;
                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                   rdfs:label "TSI compliance of rules on combination of RST characteristics influencing shunting impedance"@en ;
                                   owl:deprecated "true"^^xsd:boolean ;
@@ -3289,7 +3367,7 @@ era:tsiCompliantSandCharacteristics rdf:type owl:ObjectProperty ;
                                     era:rinfIndex "1.1.1.3.7.19" ;
                                     dcterms:created "2021-08-08"^^xsd:date ;
                                     dcterms:modified "2023-03-14"^^xsd:date ;
-                                    rdfs:comment "TSI Compliance of rules on sand characteristics. Deprecated according to the ammendment to the Regulation (EU) 2019/777." ;
+                                    rdfs:comment "TSI Compliance of rules on sand characteristics. Deprecated according to the amendment to the Regulation (EU) 2019/777." ;
                                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                     rdfs:label "TSI Compliance of rules on sand characteristics"@en ;
                                     owl:deprecated "true"^^xsd:boolean ;
@@ -3304,7 +3382,7 @@ era:tsiCompliantSanding rdf:type owl:ObjectProperty ;
                         era:rinfIndex "1.1.1.3.7.16" ;
                         dcterms:created "2021-08-08"^^xsd:date ;
                         dcterms:modified "2023-03-14"^^xsd:date ;
-                        rdfs:comment "TSI compliance of sanding rules to allow compatibility with track circuits. Too much sand brings the risk of not detecting trains in tracks equipped with track circuits. Deprecated according to the ammendment to the Regulation (EU) 2019/777."@en ;
+                        rdfs:comment "TSI compliance of sanding rules to allow compatibility with track circuits. Too much sand brings the risk of not detecting trains in tracks equipped with track circuits. Deprecated according to the amendment to the Regulation (EU) 2019/777."@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "TSI compliance of sanding"@en ;
                         owl:deprecated "true"^^xsd:boolean ;
@@ -3320,7 +3398,7 @@ era:tsiCompliantShuntDevices rdf:type owl:ObjectProperty ;
                              era:rinfIndex "1.1.1.3.7.22" ;
                              dcterms:created "2021-08-08"^^xsd:date ;
                              dcterms:modified "2023-03-14"^^xsd:date ;
-                             rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. TSI compliance of rules on shunt assisting devices."@en ;
+                             rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. TSI compliance of rules on shunt assisting devices."@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "TSI compliance of rules on shunt assisting devices"@en ;
                              owl:deprecated "true"^^xsd:boolean ;
@@ -4002,7 +4080,8 @@ era:dNvpotrp rdf:type owl:DatatypeProperty ,
              dcterms:created "2022-11-07"^^xsd:date ;
              dcterms:modified "2023-03-14"^^xsd:date ,
                               "2024-04-18"^^xsd:date ;
-             dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+             dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
+                            <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
              rdfs:comment """Maximum distance for reversing in Post Trip mode in metres. 
 
 Precision: [NNNNNN.N], with N a decimal number (0÷9)
@@ -4010,7 +4089,6 @@ Precision: [NNNNNN.N], with N a decimal number (0÷9)
 See: TSI CCS (Subset 26, chapter 7. 7.5.1.16 D_NVPOTRP)"""@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "D_NVPOTRP"@en ;
-             rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
              vs:term_status "stable" ;
              skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -4028,7 +4106,8 @@ era:dNvroll rdf:type owl:DatatypeProperty ,
             dcterms:created "2022-11-07"^^xsd:date ;
             dcterms:modified "2023-03-14"^^xsd:date ,
                              "2024-04-18"^^xsd:date ;
-            dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+            dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
+                           <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
             rdfs:comment """Parameter used by the ETCS on-board to supervise the distance allowed to be travelled under the roll-away protection and the reverse movement protection, in metres.
 
 Precision: [NNNNNN.N], with N a decimal number (0÷9).
@@ -4036,7 +4115,6 @@ Precision: [NNNNNN.N], with N a decimal number (0÷9).
 See: TSI CCS (Subset 26, chapter 7. 7.5.1.17 D_NVROLL)"""@en ;
             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
             rdfs:label "D_NVROLL"@en ;
-            rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
             vs:term_status "stable" ;
             skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -4082,9 +4160,10 @@ era:demonstrationINF rdf:type owl:DatatypeProperty ;
                      dcterms:description """It may happen that several EI declarations were issued – then parameter has to be repeated as many times as many declarations were issued.
 
 The procedure for demonstration that existing network fits to requirements of the TSIs is executed on voluntary basis, so when EI declaration do not exist then the parameter is optional. If EI declaration was not issued, then field shall be left empty. """@en ;
-                     dcterms:source <http://data.europa.eu/eli/reg_impl/2019/777/2023-09-28> , <http://data.europa.eu/eli/reco/2014/881/oj> ;
-                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                     rdfs:label "EI declaration of demonstration (as defined Commission 2014/881/EU) for track relating to compliance with the requirements from TSIs applicable to infrastructure subsystem"@en ;
+                     dcterms:source <https://data.europa.eu/eli/reg_impl/2019/777/2023-09-28> , <https://data.europa.eu/eli/reco/2014/881/oj> ;
+                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                    skos:scopeNote "EI declaration of demonstration (as defined Commission 2014/881/EU) for track relating to compliance with the requirements from TSIs applicable to infrastructure subsystem"@en ;
+                     rdfs:label "demonstration INF"@en ;
                      vs:term_status "stable" .
 
 
@@ -4150,7 +4229,6 @@ era:designMassWorkingOrder rdf:type owl:DatatypeProperty ;
                            rdfs:range xsd:integer ;
                            era:eratvIndex "4.5.2.1" ;
                            era:unitOfMeasure unit:KiloGM ;
-
                            dcterms:created "2020-08-24"^^xsd:date ;
                            dcterms:modified "2020-11-03"^^xsd:date , "2024-06-26"^^xsd:date ;
                            rdfs:comment "Design mass in working order."@en ;
@@ -4359,10 +4437,11 @@ era:ertmsErrorCorrectionsOnBoard rdf:type owl:DatatypeProperty ;
                                  rdfs:domain era:CCSSubsystem ;
                                  rdfs:range xsd:anyURI ;
                                  dcterms:created "2024-01-08"^^xsd:date ;
+                                 dcterms:isReplacedBy era:errorCorrectionsOnboard ;
                                  dcterms:modified "2024-04-18"^^xsd:date ;
                                  rdfs:comment "List of unacceptable errors impacting the IM network that are required to be solved in the on-board according to the TSI CCS (point 7.2.10.3 - specification maintenance point)."@en ;
                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                 rdfs:label "(Deprecated) ERTMS error corrections required for the on-board. Use: errorCorrectionsOnboard"@en ;
+                                 rdfs:label "(Deprecated) ERTMS error corrections required for the on-board."@en ;
                                  owl:deprecated "true"^^xsd:boolean ;
                                  vs:term_status "stable" .
 
@@ -4386,11 +4465,12 @@ era:etcsErrorCorrectionsOnboard rdf:type owl:DatatypeProperty ;
                                 rdfs:range xsd:anyURI ;
                                 era:rinfIndex "1.2.1.1.1.19" ;
                                 dcterms:created "2023-03-14"^^xsd:date ;
+                                dcterms:isReplacedBy era:errorCorrectionsOnboard ;
                                 dcterms:modified "2024-01-08"^^xsd:date ,
                                                  "2024-04-18"^^xsd:date ;
                                 rdfs:comment "List of unacceptable errors impacting the IM network that are required to be solved in the on-board ETCS according to the CCS TSI point 7.2.10.3 specification maintenance point."@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                rdfs:label "(Deprecated) ETCS error corrections required for the on-board. Use: errorCorrectionsOnboard"@en ;
+                                rdfs:label "(Deprecated) ETCS error corrections required for the on-board."@en ;
                                 owl:deprecated "true"^^xsd:boolean ;
                                 vs:term_status "stable" .
 
@@ -4406,11 +4486,11 @@ era:etcsImplementsLevelCrossingProcedure rdf:type owl:DatatypeProperty ,
                                                        "1.2.1.1.1.13" ;
                                          dcterms:created "2022-11-04"^^xsd:date ;
                                          dcterms:modified "2024-04-18"^^xsd:date ;
-                                         dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                                         dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
+                                                        <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                                          rdfs:comment "If the trackside does not implement any solution to cover defective LXs (which are normally protected by means of a technical system), then drivers will be required to comply with instructions received from other sources."@en ;
                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                          rdfs:label "ETCS trackside implements level crossing procedure or an equivalent solution"@en ;
-                                         rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                                          vs:term_status "stable" ;
                                          skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -4469,11 +4549,11 @@ NID_XUSER values managed by ERA in a document about ETCS variables available on 
 See: TSI CCS (7.4.3 & 6.2.4.2)"""@en ;
                          dcterms:modified "2021-09-12"^^xsd:date ,
                                           "2024-04-18"^^xsd:date ;
-                         dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                         dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
+                                        <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                          rdfs:comment "Indication whether data for national packet 44 applications is transmitted between track and train."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "ETCS national packet 44 application implemented"@en ;
-                         rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                          vs:term_status "stable" ;
                          skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -4499,7 +4579,7 @@ era:etcsOptionalFunctions rdf:type owl:DatatypeProperty ;
                           dcterms:created "2021-08-08"^^xsd:date ;
                           dcterms:modified "2023-03-14"^^xsd:date ;
                           dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                          rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. Optional ETCS functions which might improve operation on the line."@en ;
+                          rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Optional ETCS functions which might improve operation on the line."@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "ETCS optional functions"@en ;
                           owl:deprecated "true"^^xsd:boolean ;
@@ -4534,11 +4614,11 @@ era:etcsTransmitsTrackConditions rdf:type owl:DatatypeProperty ,
                                  dcterms:created "2022-11-04"^^xsd:date ;
                                  dcterms:modified "2023-03-14"^^xsd:date ,
                                                   "2024-04-18"^^xsd:date ;
-                                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
+                                                <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                                  rdfs:comment "If the trackside does not provide Track Conditions, the driver will need to be informed about such conditions via alternative methods."@en ;
                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                  rdfs:label "Is the ETCS trackside engineered to transmit Track Conditions"@en ;
-                                 rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                                  vs:term_status "stable" ;
                                  skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -4591,7 +4671,7 @@ era:flangeLubeRules rdf:type owl:DatatypeProperty ;
                     era:rinfIndex "1.1.1.3.7.20" ;
                     dcterms:created "2021-08-08"^^xsd:date ;
                     dcterms:modified "2023-03-14"^^xsd:date ;
-                    rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. Indication whether rules for activation or deactivation of flange lubrication exist."@en ;
+                    rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Indication whether rules for activation or deactivation of flange lubrication exist."@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "Existence of rules on on-board flange lubrication"@en ;
                     owl:deprecated "true"^^xsd:boolean ;
@@ -4787,6 +4867,7 @@ era:gsmrErrorCorrectionsOnboard rdf:type owl:DatatypeProperty ;
                                 rdfs:domain era:CCSSubsystem ;
                                 rdfs:range xsd:anyURI ;
                                 dcterms:created "2023-03-14"^^xsd:date ;
+                                dcterms:isReplacedBy era:errorCorrectionsOnboard ;
                                 dcterms:modified "2024-01-08"^^xsd:date ,
                                                  "2024-04-18"^^xsd:date ;
                                 rdfs:comment """List of unacceptable errors impacting the IM network that are required to be solved in the on-board according to the CCS TSI point 7.2.10.3 specification maintenance point.
@@ -4911,11 +4992,11 @@ These conditions and restrictions of use are considered in section 6.4 of the CC
 and deviations – Guidelines for using the ERA template) with the following link."""@en ;
                                   dcterms:modified "2024-01-08"^^xsd:date ,
                                                    "2024-04-18"^^xsd:date ;
-                                  rdfs:seeAlso <https://www.era.europa.eu/content/certification-issues> ;
+                                  rdfs:seeAlso "https://www.era.europa.eu/content/certification-issues"^^xsd:anyURI,"https://www.era.europa.eu/system/files/2022-11/restrictions_and_added_functions_en_1.doc"^^xsd:anyURI ;
+                                  
                                   rdfs:comment "Indication whether restrictions or conditions due to partial compliance with the TSI CCS exist."@en ;
                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                   rdfs:label "Existence of operating restrictions or conditions"@en ;
-                                  rdfs:seeAlso <https://www.era.europa.eu/system/files/2022-11/restrictions_and_added_functions_en_1.doc> ;
                                   vs:term_status "stable" ;
                                   skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -5043,7 +5124,7 @@ era:hasOtherTrainProtection rdf:type owl:DatatypeProperty ;
                             era:rinfIndex "1.1.1.3.5.1" ;
                             dcterms:created "2021-08-09"^^xsd:date ;
                             dcterms:modified "2023-03-14"^^xsd:date ;
-                            rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. Indication if other train protection, control and warning systems in normal operation are installed lineside."@en ;
+                            rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Indication if other train protection, control and warning systems in normal operation are installed lineside."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Existence of other train protection, control and warning systems installed"@en ;
                             owl:deprecated "true"^^xsd:boolean ;
@@ -5415,12 +5496,13 @@ Each Section of Line may concern only one IM. """@en ;
            dcterms:isReplacedBy era:organisationCode ;
            dcterms:modified "2024-01-08"^^xsd:date ,
                             "2024-06-03"^^xsd:date , "2024-09-19"^^xsd:date ;
-           dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> , <http://data.europa.eu/eli/dir/2012/34/oj>, <http://data.europa.eu/eli/dec_impl/2018/1614> ;
+           dcterms:source <https://data.europa.eu/eli/reg_impl/2019/773/oj> , <https://data.europa.eu/eli/dir/2012/34/oj>, <https://data.europa.eu/eli/dec_impl/2018/1614> ;
+           
            rdfs:comment """(deprecated) Infrastructure manager means any body or firm responsible in particular for establishing, managing and maintaining railway infrastructure, including traffic management and control-command and signalling; 
 the functions of the infrastructure manager on a network or part of a network may be allocated to different bodies or firms. Definition in (Article 3(2))"""@en ;
            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
            rdfs:label "Infrastructure manager (IM)'s code"@en ;
-           rdfs:seeAlso <https://eur-lex.europa.eu/eli/dir/2012/34/oj#d1e885-32-1> ;
+           rdfs:seeAlso "https://eur-lex.europa.eu/eli/dir/2012/34/oj#d1e885-32-1"^^xsd:anyURI ;
            owl:deprecated "true"^^xsd:boolean ;
            vs:term_status "stable" .
 
@@ -5717,13 +5799,13 @@ era:mNvderun rdf:type owl:DatatypeProperty ,
              dcterms:created "2022-11-07"^^xsd:date ;
              dcterms:modified "2023-03-14"^^xsd:date ,
                               "2023-04-18"^^xsd:date ;
-             dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+             dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
+                            <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
              rdfs:comment """Entry of Driver ID permitted while running. 
 
 See: TSI CCS (Subset 26, chapter 7. 7.5.1.75 M_NVDERUN)"""@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "M_NVDERUN"@en ;
-             rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
              vs:term_status "stable" ;
              skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -5804,7 +5886,7 @@ era:maxDistConsecutiveAxles rdf:type owl:DatatypeProperty ;
                             era:unitOfMeasure unit:MilliM ;
                             dcterms:created "2021-08-08"^^xsd:date ;
                             dcterms:modified "2023-03-14"^^xsd:date ;
-                            rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter. Indication of maximum permitted distance between two consecutive axles in case of TSI non-compliance, given in millimetres."@en ;
+                            rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter. Indication of maximum permitted distance between two consecutive axles in case of TSI non-compliance, given in millimetres."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Maximum permitted distance between two consecutive axles in case of TSI non-compliance"@en ;
                             vs:term_status "stable" .
@@ -5819,7 +5901,7 @@ era:maxDistEndTrainFirstAxle rdf:type owl:DatatypeProperty ;
                              era:unitOfMeasure unit:MilliM ;
                              dcterms:created "2021-08-08"^^xsd:date ;
                              dcterms:modified "2023-03-14"^^xsd:date ;
-                             rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. Indication of maximum distance between end of train and first axle, given in millimetres, applicable for both sides (front and rear) of a vehicle or train."@en ;
+                             rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Indication of maximum distance between end of train and first axle, given in millimetres, applicable for both sides (front and rear) of a vehicle or train."@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "Maximum distance between end of train and first axle"@en ;
                              owl:deprecated "true"^^xsd:boolean ;
@@ -5840,7 +5922,7 @@ era:maxFlangeHeight rdf:type owl:DatatypeProperty ;
                     era:unitOfMeasure unit:MilliM ;
                     dcterms:created "2021-08-08"^^xsd:date ;
                     dcterms:modified "2023-03-14"^^xsd:date ;
-                    rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter. Maximum permitted flange height, given in millimiters."@en ;
+                    rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter. Maximum permitted flange height, given in millimiters."@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "Maximum permitted height of the flange"@en ;
                     vs:term_status "stable" .
@@ -6169,10 +6251,13 @@ era:maximumTemperature rdf:type owl:DatatypeProperty ;
                        era:rinfIndex "1.1.1.1.2.6" ;
                        era:usedInRCCCalculations "true"^^xsd:boolean ;
                        dcterms:created "2020-08-24"^^xsd:date ;
-                       dcterms:modified "2021-09-10"^^xsd:date ;
-                       rdfs:comment "Maximum temperature allowed for unrestricted operation access, according to European standard."@en ;
+                       dcterms:isReplacedBy era:TemperatureRange ;
+                       dcterms:modified "2021-09-10"^^xsd:date ,
+                                        "2024-09-25"^^xsd:date ;
+                       rdfs:comment "Deprecated because both RINF and ERATV define a temperature range as a set of predefined values (see https://www.era.europa.eu/system/files/2023-04/iu-eratv_application_guide_for_register_2016-797_en_0.pdf). Maximum temperature allowed for unrestricted operation access, according to European standard."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Temperature range (maximum)"@en ;
+                       owl:deprecated "true"^^xsd:boolean ;
                        vs:term_status "stable" .
 
 
@@ -6223,7 +6308,7 @@ era:minAxleLoad rdf:type owl:DatatypeProperty ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "Minimum permitted axle load"@en ;
                 vs:term_status "stable" ;
-                skos:scopeNote "Should be deprecated according to the ammendment to the Regulation (EU) 2019/777 but remains because it is also a parameter of ERATV."@en .
+                skos:scopeNote "Should be deprecated according to the amendment to the Regulation (EU) 2019/777 but remains because it is also a parameter of ERATV."@en .
 
 
 ###  http://data.europa.eu/949/minDistConsecutiveAxles
@@ -6240,7 +6325,7 @@ era:minDistConsecutiveAxles rdf:type owl:DatatypeProperty ;
                             era:unitOfMeasure unit:MilliM ;
                             dcterms:created "2021-08-08"^^xsd:date ;
                             dcterms:modified "2023-03-14"^^xsd:date ;
-                            rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ;
+                            rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Minimum permitted distance between two consecutive axles"@en ;
                             vs:term_status "stable" ;
@@ -6261,7 +6346,7 @@ era:minDistFirstLastAxle rdf:type owl:DatatypeProperty ;
                          era:unitOfMeasure unit:MilliM ;
                          dcterms:created "2021-08-08"^^xsd:date ;
                          dcterms:modified "2023-03-14"^^xsd:date ;
-                         rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ;
+                         rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Minimum permitted distance between first and last axle"@en ;
                          vs:term_status "stable" ;
@@ -6282,7 +6367,7 @@ era:minFlangeHeight rdf:type owl:DatatypeProperty ;
                     era:unitOfMeasure unit:MilliM ;
                     dcterms:created "2021-08-08"^^xsd:date ;
                     dcterms:modified "2021-09-01"^^xsd:date ;
-                    rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ;
+                    rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "Minimum permitted height of the flange"@en ;
                     vs:term_status "stable" ;
@@ -6303,7 +6388,7 @@ era:minFlangeThickness rdf:type owl:DatatypeProperty ;
                        era:unitOfMeasure unit:MilliM ;
                        dcterms:created "2021-08-08"^^xsd:date ;
                        dcterms:modified "2021-09-01"^^xsd:date ;
-                       rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ;
+                       rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Minimum permitted thickness of the flange"@en ;
                        vs:term_status "stable" ;
@@ -6324,7 +6409,7 @@ era:minRimWidth rdf:type owl:DatatypeProperty ;
                 era:unitOfMeasure unit:MilliM ;
                 dcterms:created "2021-08-08"^^xsd:date ;
                 dcterms:modified "2023-03-14"^^xsd:date ;
-                rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ;
+                rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "Minimum permitted width of the rim"@en ;
                 vs:term_status "stable" .
@@ -6380,7 +6465,7 @@ era:minWheelDiameter rdf:type owl:DatatypeProperty ;
                      era:unitOfMeasure unit:MilliM ;
                      dcterms:created "2021-08-08"^^xsd:date ;
                      dcterms:modified "2023-03-14"^^xsd:date ;
-                     rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ;
+                     rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "Minimum permitted wheel diameter"@en ;
                      vs:term_status "stable" ;
@@ -6469,10 +6554,13 @@ era:minimumTemperature rdf:type owl:DatatypeProperty ;
                        era:rinfIndex "1.1.1.1.2.6" ;
                        era:usedInRCCCalculations "true"^^xsd:boolean ;
                        dcterms:created "2020-08-24"^^xsd:date ;
-                       dcterms:modified "2021-09-10"^^xsd:date ;
-                       rdfs:comment "Minimum temperature allowed for unrestricted operation access, according to European standard."@en ;
+                       dcterms:isReplacedBy era:temperatureRange ;
+                       dcterms:modified "2021-09-10"^^xsd:date ,
+                                        "2024-09-25"^^xsd:date ;
+                       rdfs:comment "Deprecated because both RINF and ERATV define a temperature range as a set of predefined values (see https://www.era.europa.eu/system/files/2023-04/iu-eratv_application_guide_for_register_2016-797_en_0.pdf). Minimum temperature allowed for unrestricted operation access, according to European standard."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Temperature range (minimum)"@en ;
+                       owl:deprecated "true"^^xsd:boolean ;
                        vs:term_status "stable" .
 
 
@@ -6557,7 +6645,7 @@ era:multipleTrainProtectionRequired rdf:type owl:DatatypeProperty ;
                                     era:rinfIndex "1.1.1.3.5.2" ;
                                     dcterms:created "2021-08-09"^^xsd:date ;
                                     dcterms:modified "2023-03-14"^^xsd:date ;
-                                    rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. Indication whether more than one train protection, control and warning system is required to be on-board and active simultaneously."@en ;
+                                    rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Indication whether more than one train protection, control and warning system is required to be on-board and active simultaneously."@en ;
                                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                     rdfs:label "Need for more than one train protection, control and warning system required on board"@en ;
                                     owl:deprecated "true"^^xsd:boolean ;
@@ -6616,7 +6704,7 @@ era:nationalValuesBrakeModel rdf:type owl:DatatypeProperty ,
                              rdfs:domain era:CCSSubsystem ;
                              rdfs:range xsd:string ;
                              era:XMLName "CPE_NVBRAKEMOD" ;
-                             era:appendixD3index "1.5.13" ;
+                             era:appendixD3Index "1.5.13" ;
                              era:rinfIndex "1.1.1.3.2.16.13" ,
                                            "1.2.1.1.1.16.13" ;
                              dcterms:created "2023-03-14"^^xsd:date ;
@@ -7103,45 +7191,24 @@ era:publicNetworkRoamingDetails rdf:type owl:DatatypeProperty ,
                                 skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en .
 
 
-###  http://data.europa.eu/949/qNvdriverAdhes
-era:qNvdriverAdhes rdf:type owl:DatatypeProperty ,
-                            owl:FunctionalProperty ;
-                   rdfs:domain era:CCSSubsystem ;
-                   rdfs:range xsd:boolean ;
-                   era:XMLName "CPE_QNVDRIVERADHES" ;
-                   era:appendixD3Index "1.5.11" ;
-                   era:rinfIndex "1.1.1.3.2.16.11" ,
-                                 "1.2.1.1.1.16.11" ;
-                   dcterms:created "2024-04-18"^^xsd:date ;
-                   dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                   rdfs:comment """Boolean determining whether the driver is allowed to modify the adhesion factor used by the ETCS on-board to calculate the braking curves. 
-
-See: TSI CCS (Subset 26, chapter 7. 7.5.1.122 Q_NVDRIVER_ADHES)"""@en ;
-                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                   rdfs:label "Q_NVDRIVER_ADHES"@en ;
-                   rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
-                   vs:term_status "stable" ;
-                   skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
-
-
 ###  http://data.europa.eu/949/qNvsbtsmperm
 era:qNvsbtsmperm rdf:type owl:DatatypeProperty ,
                           owl:FunctionalProperty ;
                  rdfs:domain era:CCSSubsystem ;
                  rdfs:range xsd:boolean ;
                  era:XMLName "CPE_QNVSBTSMPERM" ;
-                 era:appendixD3index "1.5.12" ;
+                 era:appendixD3Index "1.5.12" ;
                  era:rinfIndex "1.1.1.3.2.16.12" ,
                                "1.2.1.1.1.16.12" ;
                  dcterms:created "2023-03-14"^^xsd:date ;
                  dcterms:modified "2024-04-18"^^xsd:date ;
-                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
+                                <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                  rdfs:comment """Permission to use service brake in target speed monitoring.
 
 See: TSI CCS (Subset-026, chapter 7. 7.5.1.124 Q_NVSBTSMPERM)"""@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "Q_NVSBTSMPERM"@en ;
-                 rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                  vs:term_status "stable" ;
                  skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -7165,7 +7232,7 @@ era:radioNetworkId rdf:type owl:DatatypeProperty ;
                    rdfs:range xsd:string ;
                    era:XMLName "CRG_RadioNID" ;
                    era:appendixD2Index "3.4.4" ;
-                   era:rinfIndex "1.1.1.3.3.13" ,
+                   era:rinfIndex "1.1.1.3.3.12" ,
                                  "1.2.1.1.2.13" ;
                    dcterms:created "2023-03-14"^^xsd:date ;
                    dcterms:modified "2024-04-18"^^xsd:date ;
@@ -7392,7 +7459,7 @@ era:requiredSandingOverride rdf:type owl:DatatypeProperty ;
                             era:rinfIndex "1.1.1.3.7.18" ;
                             dcterms:created "2021-08-08"^^xsd:date ;
                             dcterms:modified "2023-03-14"^^xsd:date ;
-                            dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
+                            dcterms:source <https://data.europa.eu/eli/reg_impl/2019/773/oj> ;
                             rdfs:comment "Indication whether possibility to activate/deactivate sanding devices by driver, according to instructions from the Infrastructure Manager, is required or not. Deprecated according to the ammendment to the Regulation (EU) 2019/777."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Sanding override by driver required"@en ;
@@ -7768,7 +7835,8 @@ era:tNvcontact rdf:type owl:DatatypeProperty ,
                dcterms:created "2022-11-07"^^xsd:date ;
                dcterms:modified "2023-03-14"^^xsd:date ,
                                 "2024-04-18"^^xsd:date ;
-               dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+               dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
+                              <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                rdfs:comment """Maximum time without a safe message from Radio Block Center before train reacts in seconds. 
 
 Precision: [NNN], with N a decimal number (0÷9), NNN = 255 means ∞ seconds, so values cannot be higher.
@@ -7776,7 +7844,6 @@ Precision: [NNN], with N a decimal number (0÷9), NNN = 255 means ∞ seconds, s
 See: TSI CCS (Subset 26, chapter 7. 7.5.1.148 T_NVCONTACT)"""@en ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                rdfs:label "T_NVCONTACT"@en ;
-               rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                vs:term_status "stable" ;
                skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -7794,7 +7861,8 @@ era:tNvovtrp rdf:type owl:DatatypeProperty ,
              dcterms:created "2022-11-07"^^xsd:date ;
              dcterms:modified "2023-03-14"^^xsd:date ,
                               "2024-04-18"^^xsd:date ;
-             dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+             dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
+                            <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
              rdfs:comment """Maximum time for overriding the train trip in seconds.
 
 Precision: [NNN], with N a decimal number (0÷9)
@@ -7802,7 +7870,6 @@ Precision: [NNN], with N a decimal number (0÷9)
 See: TSI CCS (Subset 26, chapter 7. 7.5.1.149 T_NVOVTRP)"""@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "T_NVOVTRP"@en ;
-             rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
              vs:term_status "stable" ;
              skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -7904,7 +7971,7 @@ era:tiltingSupported rdf:type owl:DatatypeProperty ;
                      era:rinfIndex "1.1.1.3.12.1" ;
                      dcterms:created "2021-08-09"^^xsd:date ;
                      dcterms:modified "2023-03-14"^^xsd:date ;
-                     rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. Indication whether tilting functions are supported by ETCS."@en ;
+                     rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Indication whether tilting functions are supported by ETCS."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "Indication whether tilting functions are supported by ETCS"@en ;
                      owl:deprecated "true"^^xsd:boolean ;
@@ -7971,13 +8038,13 @@ era:trainDetectionSystemSpecificCheck rdf:type owl:DatatypeProperty ;
                                                        "2024-04-18"^^xsd:date , 
                                                        "2024-09-19"^^xsd:date ;
                                       dcterms:relation era:trainDetectionSystemSpecificCheckDocument ;
-                                      rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
-                                      dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                                      rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
+                                      dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                       dcterms:description "String containing the name of the TD system for which checks are mentioned in 1.1.1.3.7.1.3."@en ;
                                       rdfs:comment "Reference to the technical specification of train detection system."@en ;
                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                       rdfs:label "Type of track circuits or axle counters to which specific checks are needed. "@en ;
-                                      owl:deprecated "false"^^xsd:boolean ;
+                                      
                                       vs:term_status "stable" ;
                                       skos:scopeNote "Only applicable, when 1.1.1.3.7.1.1 is applicable."@en .
 
@@ -7999,7 +8066,7 @@ era:trainIntegrityOnBoardRequired rdf:type owl:DatatypeProperty ,
                                                          ]
                                              ] ;
                                   era:XMLName "CPE_IntegrityConfirmation" ;
-                                  era:appendixD2index "3.4.11" ;
+                                  era:appendixD2Index "3.4.11" ;
                                   era:rinfIndex "1.1.1.3.2.8" ,
                                                 "1.2.1.1.1.8" ;
                                   era:usedInRCCCalculations "true"^^xsd:boolean ;
@@ -8219,6 +8286,9 @@ era:vNvallowovtrp rdf:type owl:DatatypeProperty ,
                   dcterms:created "2022-11-07"^^xsd:date ;
                   dcterms:modified "2023-03-14"^^xsd:date  , "2024-09-19"^^xsd:date ;
                   dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                  
+                  dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                  rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
                   rdfs:comment """Speed limit allowing the driver to select the “override” function in km/h.
 
 Format: [NNF], with N a decimal number (0÷9), F=(0|5), max. `600`.
@@ -8226,7 +8296,6 @@ Format: [NNF], with N a decimal number (0÷9), F=(0|5), max. `600`.
 See: TSI CCS (Subset-026, Chapter 7. 7.5.1.161)"""@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "V_NVALLOWOVTRP"@en ;
-                  rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                   vs:term_status "stable" ;
                   skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -8243,7 +8312,9 @@ era:vNvsupovtrp rdf:type owl:DatatypeProperty ,
                 era:unitOfMeasure unit:KiloM-PER-HR ;
                 dcterms:created "2022-11-07"^^xsd:date ;
                 dcterms:modified "2023-03-14"^^xsd:date  , "2024-09-19"^^xsd:date ;
-                dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                dcterms:modified "2023-03-14"^^xsd:date ;
+                rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
                 rdfs:comment """Override speed limit to be supervised when the “override” function is active in km/h.
 
 Format: [NNF], with N a decimal number (0÷9), F=(0|5), max. `600`.
@@ -8251,7 +8322,6 @@ Format: [NNF], with N a decimal number (0÷9), F=(0|5), max. `600`.
 See: TSI CCS (Subset-026, chapter 7. 7.5.1.163 V_NVSUPOVTRP)"""@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "V_NVSUPOVTRP"@en ;
-                rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
                 vs:term_status "stable" ;
                 skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -8457,7 +8527,7 @@ era:verificationINF rdf:type owl:DatatypeProperty ;
                     dcterms:created "2021-08-03"^^xsd:date ;
                     dcterms:modified "2024-01-08"^^xsd:date , "2024-09-19"^^xsd:date ;
                     rdfs:comment """Unique number for EC declarations in accordance with Commission Implementing Regulation (EU) 2019/250."""@en ;
-                    dcterms:source <http://data.europa.eu/eli/reg_impl/2019/777/oj> , <http://data.europa.eu/eli/reg/2014/1299/2023-09-28> ;
+                    dcterms:source <https://data.europa.eu/eli/reg_impl/2019/777/oj> , <https://data.europa.eu/eli/reg/2014/1299/2023-09-28> ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "EC declaration of verification for track relating to compliance with the requirements from TSIs applicable to infrastructure subsystem"@en ;
                     vs:term_status "stable" .
@@ -8641,6 +8711,7 @@ era:AggregatedObject rdf:type owl:Class ;
                      rdfs:subClassOf era:InfrastructureObject ;
                      rdfs:comment "An aggregated object is an infrastructure object defined at a higher level of granularity, containing at least one basic object."@en ;
                      skos:example "Example: in one operational point we can find several tracks, switches, signals, etc."@en ;
+                     owl:disjointWith era:BasicObject ;
                      rdfs:label "Aggregated Object"@en .
 
 
@@ -8917,6 +8988,8 @@ For the following cases, it is not possible to use EN 15528:20021categories of l
 era:Manufacturer rdf:type owl:Class ;
                  rdfs:subClassOf org:Organization ;
                  dcterms:created "2020-11-19"^^xsd:date ;
+                 dcterms:isReplacedBy era:Body ,
+                                      era:manufacturer ;
                  dcterms:modified "2020-11-19"^^xsd:date ,
                                   "2024-06-03"^^xsd:date ;
                  rdfs:comment "(deprecated) Replaced by the era:Body class and era:manufacturer property. A company or organization that manufactures vehicles."@en ;
@@ -8954,7 +9027,7 @@ era:MaximumSpeedAndCantDeficiency rdf:type owl:Class ;
 era:MinAxleLoadVehicleCategory rdf:type owl:Class ;
                                dcterms:created "2023-01-25"^^xsd:date ;
                                dcterms:modified "2023-03-14"^^xsd:date ;
-                               rdfs:comment "Deprecated according to the ammendment to the Regulation (EU) 2019/777. Represents information that indicates the load given in tons depending of the category of vehicle. Its properties are minAxleLoadVehicleCategory and minAxleLoad."@en ;
+                               rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. Represents information that indicates the load given in tons depending of the category of vehicle. Its properties are minAxleLoadVehicleCategory and minAxleLoad."@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "Min axle load vehicle category"@en ;
                                owl:deprecated "true"^^xsd:boolean ;
@@ -8988,7 +9061,7 @@ era:NationalRailwayLine rdf:type owl:Class ;
                         dcterms:created "2021-01-25"^^xsd:date ;
                         dcterms:modified "2021-08-03"^^xsd:date ;
                         rdfs:comment """Railway line within a member state.
-A line is a sequence of one or mores ections of line, which connects operational points and which may consist of several tracks used for regular railway operation."""@en ;
+A line is a sequence of one or mores sections of line, which connects operational points and which may consist of several tracks used for regular railway operation."""@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "National railway line"@en ;
                         vs:term_status "stable" .
@@ -8996,7 +9069,7 @@ A line is a sequence of one or mores ections of line, which connects operational
 
 ###  http://data.europa.eu/949/Network
 era:Network rdf:type owl:Class ;
-            rdfs:comment "A group of network resources for different purposes. It can be group of elements belonging to corridors, to one IM, to high speed lines, etc. There is no restriction on how elements should be groupped, it is the IM to decide the refinement of the information to be provided."@en ;
+            rdfs:comment "A group of network resources for different purposes. It can be a group of elements belonging to corridors, to one IM, to high speed lines, etc. There is no restriction on how elements should be grouped, it is the IM to decide the refinement of the information to be provided."@en ;
             rdfs:label "Network" .
 
 
@@ -9075,18 +9148,21 @@ Primary locations are identified by single and unique Primary Location codes. Pr
 See: Handbook 9.3.3 / page 60"""@en ;
                     skos:example "Primary locations are for example: stations, yards, halts, handover points, border points, open access terminals. "@en ;
                     rdfs:label "Primary Location"@en ;
-                    rdfs:seeAlso <http://taf-jsg.info/wp-content/uploads/2024/01/20231018-JGS-Handbook-3.4-with-XSD-3.4.0.0.pdf> .
+                    rdfs:seeAlso "http://taf-jsg.info/wp-content/uploads/2024/01/20231018-JGS-Handbook-3.4-with-XSD-3.4.0.0.pdf"^^xsd:anyURI ;
+                    rdfs:label "Primary Location"@en .
 
 
 ###  http://data.europa.eu/949/RadioBlockCenter
 era:RadioBlockCenter rdf:type owl:Class ;
                      rdfs:subClassOf era:AggregatedObject ;
+                     dcterms:source <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32023R1693&qid=1698394526534> ,
+                                    <https://www.era.europa.eu/system/files/2023-09/index003_-_SUBSET-023_v400.pdf> ;
                      rdfs:comment """ETCS trackside centralised unit controlling ETCS train movements in level 2.
 
 A centralised safety unit that receives train position information via radio and sends movement authorities via radio to trains."""@en ;
                      rdfs:label "Radio Block Center"@en ;
-                     rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index003_-_SUBSET-023_v400.pdf> ;
-                     dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1693/oj> . 
+                     rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index003_-_SUBSET-023_v400.pdf"^^xsd:anyURI ;
+                     dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1693/oj> . 
 
 
 ###  http://data.europa.eu/949/RaisedPantographsDistanceAndSpeed
@@ -9250,9 +9326,9 @@ era:SubsidiaryLocation rdf:type owl:Class ;
                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                          owl:onClass era:PrimaryLocation
                                        ] ;
+                       dcterms:source <http://taf-jsg.info/wp-content/uploads/2024/01/20231018-JGS-Handbook-3.4-with-XSD-3.4.0.0.pdf> ;
                        rdfs:comment "Subsidiary location must be linked to a Primary Location and specifies in more detailed way part, attributes, or usage of Primary location. It may be also a non-rail point or a rail point that is not managed by an Infrastructure Manager (IM). It may be defined by entity having company code according to their needs. The Subsidiary location is optional and dependent upon business needs."@en ;
-                       rdfs:label "Subsidiary location"@en ;
-                       rdfs:seeAlso <http://taf-jsg.info/wp-content/uploads/2024/01/20231018-JGS-Handbook-3.4-with-XSD-3.4.0.0.pdf> .
+                       rdfs:label "Subsidiary location"@en .
 
 
 ###  http://data.europa.eu/949/Switch
@@ -9260,10 +9336,9 @@ era:Switch rdf:type owl:Class ;
            rdfs:subClassOf era:BasicObject ;
            owl:disjointWith era:Track ,
                             era:Tunnel ;
-           dcterms:source <http://data.europa.eu/eli/reg_impl/2019/776/oj> ;
+           dcterms:source <https://data.europa.eu/eli/reg_impl/2019/776/oj> ;
            rdfs:comment "A unit of track comprising two fixed rails (stock rails) and two movable rails (switch rails) used to direct vehicles from one track to another track."@en ;
            rdfs:label "Switch"@en ;
-           rdfs:seeAlso <http://data.europa.eu/eli/reg/2014/1299/2019-06-16> ;
            vs:term_status "stable" .
 
 
@@ -9353,6 +9428,8 @@ era:Vehicle rdf:type owl:Class ;
 era:VehicleKeeper rdf:type owl:Class ;
                   rdfs:subClassOf org:Organization ;
                   dcterms:created "2020-11-23"^^xsd:date ;
+                  dcterms:isReplacedBy era:Body ,
+                                       era:vehicleKeeper ;
                   dcterms:modified "2020-11-23"^^xsd:date ,
                                    "2024-04-18"^^xsd:date ,
                                    "2024-06-03"^^xsd:date ;
@@ -9389,11 +9466,177 @@ The above mentioned certificate should be documented using era:certificate.
 
 
 ###  http://www.opengis.net/ont/geosparql#Feature
-geo:Feature rdf:type owl:Class .
+geo:Feature rdf:type owl:Class ;
+            rdfs:subClassOf geo:SpatialObject ;
+            owl:disjointWith geo:Geometry ;
+            dc:contributor "Matthew Perry" ;
+            dc:creator "OGC GeoSPARQL 1.0 Standard Working Group" ;
+            dc:date "2011-06-16"^^xsd:date ;
+            dc:description """
+      This class represents the top-level feature type. This class is 
+      equivalent to GFI_Feature defined in ISO 19156:2011, and it is 
+      superclass of all feature types.
+    """@en ;
+            rdfs:comment """
+      This class represents the top-level feature type. This class is 
+      equivalent to GFI_Feature defined in ISO 19156:2011, and it is 
+      superclass of all feature types.
+    """@en ;
+            rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
+                             <http://www.opengis.net/ont/gml> ,
+                             <http://www.opengis.net/spec/geosparql/1.0> ;
+            rdfs:label "Feature"@en ;
+            skos:definition """
+      This class represents the top-level feature type. This class is 
+      equivalent to GFI_Feature defined in ISO 19156:2011, and it is 
+      superclass of all feature types.
+    """@en ;
+            skos:prefLabel "Feature"@en .
 
 
 ###  http://www.opengis.net/ont/geosparql#Geometry
-geo:Geometry rdf:type owl:Class .
+geo:Geometry rdf:type owl:Class ;
+             rdfs:subClassOf geo:SpatialObject ;
+             dc:contributor "Matthew Perry" ;
+             dc:creator "OGC GeoSPARQL 1.0 Standard Working Group" ;
+             dc:date "2011-06-16"^^xsd:date ;
+             dc:description """
+      The class represents the top-level geometry type. This class is 
+      equivalent to the UML class GM_Object defined in ISO 19107, and 
+      it is superclass of all geometry types.
+    """@en ;
+             rdfs:comment """
+      The class represents the top-level geometry type. This class is 
+      equivalent to the UML class GM_Object defined in ISO 19107, and 
+      it is superclass of all geometry types.
+    """@en ;
+             rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
+                              <http://www.opengis.net/ont/gml> ,
+                              <http://www.opengis.net/spec/geosparql/1.0> ;
+             rdfs:label "Geometry"@en ;
+             skos:definition """
+      The class represents the top-level geometry type. This class is 
+      equivalent to the UML class GM_Object defined in ISO 19107, and 
+      it is superclass of all geometry types.
+    """@en ;
+             skos:prefLabel "Geometry"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#SpatialObject
+geo:SpatialObject rdf:type owl:Class ;
+                  dc:contributor "Matthew Perry" ;
+                  dc:creator "OGC GeoSPARQL 1.0 Standard Working Group" ;
+                  dc:date "2011-06-16"^^xsd:date ;
+                  dc:description """
+      The class spatial-object represents everything that can have 
+      a spatial representation. It is superclass of feature and geometry.
+    """@en ;
+                  rdfs:comment """
+      The class spatial-object represents everything that can have 
+      a spatial representation. It is superclass of feature and geometry.
+    """@en ;
+                  rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
+                                   <http://www.opengis.net/ont/gml> ,
+                                   <http://www.opengis.net/spec/geosparql/1.0> ;
+                  rdfs:label "SpatialObject"@en ;
+                  skos:definition """
+      The class spatial-object represents everything that can have 
+      a spatial representation. It is superclass of feature and geometry.
+    """@en ;
+                  skos:prefLabel "SpatialObject"@en .
+
+
+###  http://www.opengis.net/ont/sf#Curve
+<http://www.opengis.net/ont/sf#Curve> rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://www.opengis.net/ont/sf#Geometry> ;
+                                      rdfs:comment """
+A Curve is a 1-dimensional geometric object usually stored as a sequence of Points, with the subtype of Curve specifying the form of the interpolation between Points. This specification defines only one subclass of Curve, LineString, which uses linear interpolation between Points.
+A Curve is a 1-dimensional geometric object that is the homeomorphic image of a real, closed, interval.
+A Curve is simple if it does not pass through the same Point twice with the possible exception of the two end
+points.
+A Curve is closed if its start Point is equal to its end Point.
+The boundary of a closed Curve is empty.
+A Curve that is simple and closed is a Ring.
+The boundary of a non-closed Curve consists of its two end Points.
+A Curve is defined as topologically closed, that is, it contains its endpoints f(a) and f(b).
+    """@en ;
+                                      rdfs:isDefinedBy <http://www.opengis.net/ont/sf> ;
+                                      rdfs:label "Curve"@en .
+
+
+###  http://www.opengis.net/ont/sf#Geometry
+<http://www.opengis.net/ont/sf#Geometry> rdf:type owl:Class ;
+                                         rdfs:subClassOf geo:Geometry ;
+                                         rdfs:comment """
+Geometry is the root class of the hierarchy.
+The instantiable subclasses of Geometry are restricted to 0, 1 and 2-dimensional geometric objects that exist in 2, 3 or 4-dimensional coordinate space (R2, R3 or R4). Geometry values in R2 have points with coordinate values for x and y. Geometry values in R3 have points with coordinate values for x, y and z or for x, y and m. Geometry values in R4 have points with coordinate values for x, y, z and m.
+The interpretation of the coordinates is subject to the coordinate reference systems associated to the point. All coordinates within a geometry object should be in the same coordinate reference systems. Each coordinate shall be unambiguously associated to a coordinate reference system either directly or through its containing geometry. The z coordinate of a point is typically, but not necessarily, represents altitude or elevation. The m coordinate represents a measurement.
+All Geometry classes described in this specification are defined so that instances of Geometry are topologically closed, i.e. all represented geometries include their boundary as point sets. This does not affect their representation, and open version of the same classes may be used in other circumstances, such as topological representations.
+    """@en ;
+                                         rdfs:isDefinedBy <http://www.opengis.net/ont/sf> ;
+                                         rdfs:label "Geometry"@en .
+
+
+###  http://www.opengis.net/ont/sf#GeometryCollection
+<http://www.opengis.net/ont/sf#GeometryCollection> rdf:type owl:Class ;
+                                                   rdfs:subClassOf <http://www.opengis.net/ont/sf#Geometry> ;
+                                                   rdfs:comment """
+A GeometryCollection is a geometric object that is a collection of some number of geometric objects.
+All the elements in a GeometryCollection shall be in the same Spatial Reference System. This is also the Spatial Reference System for the GeometryCollection.
+GeometryCollection places no other constraints on its elements. Subclasses of GeometryCollection may restrict membership based on dimension and may also place other constraints on the degree of spatial overlap between elements.
+    """@en ;
+                                                   rdfs:isDefinedBy <http://www.opengis.net/ont/sf> ;
+                                                   rdfs:label "Geometry Collection"@en .
+
+
+###  http://www.opengis.net/ont/sf#LineString
+<http://www.opengis.net/ont/sf#LineString> rdf:type owl:Class ;
+                                           rdfs:subClassOf <http://www.opengis.net/ont/sf#Curve> ;
+                                           rdfs:comment """
+A LineString is a Curve with linear interpolation between Points. Each consecutive pair of Points defines a Line segment.
+    """@en ;
+                                           rdfs:isDefinedBy <http://www.opengis.net/ont/sf> ;
+                                           rdfs:label "Line String"@en .
+
+
+###  http://www.opengis.net/ont/sf#MultiPolygon
+<http://www.opengis.net/ont/sf#MultiPolygon> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://www.opengis.net/ont/sf#MultiSurface> ;
+                                             rdfs:comment """
+A MultiPolygon is a MultiSurface whose elements are Polygons.
+The assertions for MultiPolygons are as follows.
+a) The interiors of 2 Polygons that are elements of a MultiPolygon may not intersect.
+b) The boundaries of any 2 Polygons that are elements of a MultiPolygon may not cross and may touch at only a finite number of Points.
+c) A MultiPolygon is defined as topologically closed.
+d) A MultiPolygon may not have cut lines, spikes or punctures, a MultiPolygon is a regular closed Point set,
+e) The interior of a MultiPolygon with more than 1 Polygon is not connected; the number of connected components of the interior of a MultiPolygon is equal to the number of Polygons in the MultiPolygon. 
+The boundary of a MultiPolygon is a set of closed Curves (LineStrings) corresponding to the boundaries of its element Polygons. Each Curve in the boundary of the MultiPolygon is in the boundary of exactly 1 element Polygon, and every Curve in the boundary of an element Polygon is in the boundary of the MultiPolygon.
+    """@en ;
+                                             rdfs:isDefinedBy <http://www.opengis.net/ont/sf> ;
+                                             rdfs:label "Multi Polygon"@en .
+
+
+###  http://www.opengis.net/ont/sf#MultiSurface
+<http://www.opengis.net/ont/sf#MultiSurface> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://www.opengis.net/ont/sf#GeometryCollection> ;
+                                             rdfs:comment """
+A MultiSurface is a 2-dimensional GeometryCollection whose elements are Surfaces, all using coordinates from the same coordinate reference system. The geometric interiors of any two Surfaces in a MultiSurface may not intersect in the full coordinate system. The boundaries of any two coplanar elements in a MultiSurface may intersect, at most, at a finite number of Points. If they were to meet along a curve, they could be merged into a single surface.
+A MultiSurface may be used to represent heterogeneous surfaces collections of polygons and polyhedral surfaces. It defines a set of methods for its subclasses. The subclass of MultiSurface is MultiPolygon corresponding to a collection of Polygons only. Other collections shall use MultiSurface.
+    """@en ;
+                                             rdfs:isDefinedBy <http://www.opengis.net/ont/sf> ;
+                                             rdfs:label "Multi Surface"@en .
+
+
+###  http://www.opengis.net/ont/sf#Point
+<http://www.opengis.net/ont/sf#Point> rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://www.opengis.net/ont/sf#Geometry> ;
+                                      rdfs:comment """
+A Point is a 0-dimensional geometric object and represents a single location in coordinate space. 
+A Point has an x-coordinate value, a y-coordinate value. If called for by the associated Spatial Reference System, it may also have coordinate values for z and m.
+The boundary of a Point is the empty set.
+    """@en ;
+                                      rdfs:isDefinedBy <http://www.opengis.net/ont/sf> ;
+                                      rdfs:label "Point"@en .
 
 
 ###  http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag
@@ -9449,6 +9692,10 @@ skos:ConceptScheme rdf:type owl:Class .
 time:Instant rdf:type owl:Class .
 
 
+###  http://www.w3.org/2006/time#Interval
+time:Interval rdf:type owl:Class .
+
+
 ###  http://www.w3.org/2006/time#TemporalDuration
 time:TemporalDuration rdf:type owl:Class ;
                       rdfs:comment "Time extent; duration of a time interval separate from its particular start position"@en ;
@@ -9468,8 +9715,8 @@ time:TemporalEntity rdf:type owl:Class ;
                     skos:definition "A temporal interval or instant."@en .
 
 
-###  http://www.w3.org/2006/time#Interval
-<http://www.w3.org/2006/time#Interval> rdf:type owl:Class .
+###  http://www.w3.org/2006/time#:Interval
+<http://www.w3.org/2006/time#:Interval> rdf:type owl:Class .
 
 
 ###  http://www.w3.org/ns/org#Organization
@@ -9493,8 +9740,7 @@ foaf:Agent rdf:type owl:Class .
 
 ###  http://xmlns.com/foaf/0.1/Document
 foaf:Document rdf:type owl:Class ;
-              owl:disjointWith foaf:Organization ,
-                               foaf:Project ;
+              owl:disjointWith foaf:Organization ;
               rdfs:comment "A document." ;
               rdfs:isDefinedBy foaf: ;
               rdfs:label "Document" ;
@@ -9513,9 +9759,31 @@ foaf:Person rdf:type owl:Class ;
             vs:term_status "stable" .
 
 
-###  http://xmlns.com/foaf/0.1/Project
-foaf:Project rdf:type owl:Class .
+[ foaf:name "Dragos Patru" ;
+  org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+] .
 
+[ foaf:name "Maarten Duhoux" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Dragos Patru" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Maarten Duhoux" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Ghislain Atemezing" ;
+   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Ghislain Atemezing" ;
+   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
 
 #################################################################
 #    Annotations
@@ -9528,12 +9796,8 @@ wgs:lat_long rdfs:comment "A comma-separated representation of a latitude, longi
              rdfs:label "Lat/long" .
 
 
-wgs:location era:rinfIndex "1.1.0.0.1.1" ,
-                           "1.1.1.0.1.1" ,
-                           "1.1.1.3.14.5" ,
-                           "1.2.0.0.0.5" ,
-                           "1.2.1.0.8.5" ;
-             era:usedInRCCCalculations "true"^^xsd:boolean ;
+wgs:location rdfs:label "Location" ;
+             era:rinfIndex "1.1.0.0.1.1" ;
              rdfs:comment """The relation between something and the point, 
  or other geometrical thing in space, where it is.  For example, the relationship between
  a radio tower and a Point with a given lat and long.
@@ -9542,7 +9806,11 @@ wgs:location era:rinfIndex "1.1.0.0.1.1" ,
  Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
  an accuracy appropriate for the size of the object and uses such as mapping .
  """ ;
-             rdfs:label "Location" .
+             era:rinfIndex "1.1.1.3.14.5" ,
+                           "1.2.1.0.8.5" ,
+                           "1.2.0.0.0.5" ;
+             era:usedInRCCCalculations "true"^^xsd:boolean ;
+             era:rinfIndex "1.1.1.0.1.1" .
 
 
 #################################################################
@@ -9565,4 +9833,4 @@ wgs:location era:rinfIndex "1.1.0.0.1.1" ,
 ] .
 
 
-###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
