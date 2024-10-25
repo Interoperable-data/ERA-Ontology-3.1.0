@@ -1723,8 +1723,9 @@ era:lineNationalId rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/lineReference
 era:lineReference rdf:type owl:ObjectProperty ;
                   rdfs:domain era:InfrastructureObject ;
-                  rdfs:range <http://data.europa.eu/949/iss/LinePosition> ;
-                  dcterms:created "2021-01-29"^^xsd:date ;
+                  rdfs:range <http://data.europa.eu/949/LinePosition> ;
+                  dcterms:created era:nationalLine ,
+                                  "2021-01-29"^^xsd:date ;
                   dcterms:modified "2023-03-14"^^xsd:date ,
                                    "2024-10-24"^^xsd:date ;
                   rdfs:comment "Indicates a relationship with a national railway line at a specific kilometer point."@en ;
@@ -1736,9 +1737,9 @@ era:lineReference rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/lineReferenceTunnelEnd
 era:lineReferenceTunnelEnd rdf:type owl:ObjectProperty ;
-                           rdfs:subPropertyOf era:nationalLine ;
+                           rdfs:subPropertyOf era:hasPosition ;
                            rdfs:domain era:Tunnel ;
-                           rdfs:range <http://data.europa.eu/949/iss/LinePosition> ;
+                           rdfs:range <http://data.europa.eu/949/LinePosition> ;
                            era:XMLName "SOLTunnelEnd" ;
                            era:rinfIndex "1.1.1.1.8.4" ;
                            dcterms:created "2024-02-05"^^xsd:date ;
@@ -1751,9 +1752,9 @@ The End of tunnel is the Geographical coordinates in decimal degrees and km of t
 
 ###  http://data.europa.eu/949/lineReferenceTunnelStart
 era:lineReferenceTunnelStart rdf:type owl:ObjectProperty ;
-                             rdfs:subPropertyOf era:nationalLine ;
+                             rdfs:subPropertyOf era:hasPosition ;
                              rdfs:domain era:Tunnel ;
-                             rdfs:range <http://data.europa.eu/949/iss/LinePosition> ;
+                             rdfs:range <http://data.europa.eu/949/LinePosition> ;
                              era:XMLName "SOLTunnelStart" ;
                              era:rinfIndex "1.1.1.1.8.3" ;
                              dcterms:created "2024-02-05"^^xsd:date ;
@@ -2031,10 +2032,11 @@ era:minVehicleImpedanceVoltages rdf:type owl:ObjectProperty ;
 era:nationalLine rdf:type owl:ObjectProperty ;
                  rdfs:domain [ rdf:type owl:Class ;
                                owl:unionOf ( era:SectionOfLine
-                                             <http://data.europa.eu/949/iss/LinePosition>
+                                             <http://data.europa.eu/949/LinePosition>
                                            )
                              ] ;
                  rdfs:range era:NationalRailwayLine ;
+                 rdfs:comment "Indicates a relationship with a national railway line at a specific kilometer point."@en ;
                  rdfs:label "national line"@en .
 
 
@@ -3497,8 +3499,8 @@ era:wheelSetGaugeChangeoverFacility rdf:type owl:ObjectProperty ;
                                     vs:term_status "stable" .
 
 
-###  http://data.europa.eu/949/iss/infrastructureManager
-<http://data.europa.eu/949/iss/infrastructureManager> rdf:type owl:ObjectProperty ;
+###  http://data.europa.eu/949/infrastructureManager
+<http://data.europa.eu/949/infrastructureManager> rdf:type owl:ObjectProperty ;
                                                       rdfs:domain era:Network ;
                                                       rdfs:range era:OrganisationRole ;
                                                       dcterms:created "2024-10-24"^^xsd:date ;
@@ -3506,8 +3508,17 @@ era:wheelSetGaugeChangeoverFacility rdf:type owl:ObjectProperty ;
                                                       rdfs:label "infrastructure manager"@en .
 
 
-###  http://data.europa.eu/949/iss/subNetworkOf
-<http://data.europa.eu/949/iss/subNetworkOf> rdf:type owl:ObjectProperty ;
+###  http://data.europa.eu/949/referent
+<http://data.europa.eu/949/referent> rdf:type owl:ObjectProperty ;
+                                         rdfs:domain <http://data.europa.eu/949/TrackPosition> ;
+                                         rdfs:range era:Track ;
+                                         dcterms:created "2024-10-24"^^xsd:date ;
+                                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                         rdfs:label "referent"@en .
+
+
+###  http://data.europa.eu/949/subNetworkOf
+<http://data.europa.eu/949/subNetworkOf> rdf:type owl:ObjectProperty ;
                                              rdfs:domain era:Network ;
                                              rdfs:range era:Network ;
                                              dcterms:created "2024-10-24"^^xsd:date ;
@@ -5387,7 +5398,7 @@ era:isQuietRoute rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/kilometer
 era:kilometer rdf:type owl:DatatypeProperty ;
-              rdfs:domain era:Position ;
+              rdfs:domain <http://data.europa.eu/949/LinePosition> ;
               rdfs:range xsd:double ;
               era:XMLName "OPRailwayLocation" ;
               era:appendixD2Index "2.2.2" ;
@@ -5405,7 +5416,7 @@ era:kilometer rdf:type owl:DatatypeProperty ;
               dcterms:modified "2021-01-29"^^xsd:date ,
                                "2024-10-24" ;
               dcterms:source <https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj> ;
-              rdfs:comment "Distance measured in kilometers from the origin of a national railway line or a track."@en ;
+              rdfs:comment "Distance measured in kilometers from the origin of a national railway line."@en ;
               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
               rdfs:label "kilometer"@en ;
               vs:term_status "stable" .
@@ -5413,7 +5424,7 @@ era:kilometer rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/kmPostName
 era:kmPostName rdf:type owl:DatatypeProperty ;
-               rdfs:domain era:Position ;
+               rdfs:domain <http://data.europa.eu/949/LinePosition> ;
                rdfs:range xsd:string ;
                rdfs:label "kilometric post name"@en ;
                skos:altLabel "mileage post"@en .
@@ -8656,7 +8667,7 @@ era:LevelCrossing rdf:type owl:Class ;
 ###  http://data.europa.eu/949/LineReference
 era:LineReference rdf:type owl:Class ;
                   dcterms:created "2021-01-29"^^xsd:date ;
-                  dcterms:isReplacedBy era:LinePosition ;
+                  dcterms:isReplacedBy <http://data.europa.eu/949/LinePosition> ;
                   dcterms:modified "2021-01-29"^^xsd:date ,
                                    "2024-10-24"^^xsd:date ;
                   rdfs:comment "A reference to a specific national railway line."@en ;
@@ -8860,9 +8871,7 @@ era:PlatformEdge rdf:type owl:Class ;
 
 ###  http://data.europa.eu/949/Position
 era:Position rdf:type owl:Class ;
-             dcterms:modified "2024-10-24"@en ;
-             rdfs:comment """A class to position a railway element in relation to a fixed reference point.
-For example a kilometric post."""@en ;
+             rdfs:comment "Describes the linear position of an infrastructure object"@en ;
              rdfs:label "Position"@en .
 
 
@@ -9176,19 +9185,19 @@ The above mentioned certificate should be documented using era:certificate.
                 vs:term_status "stable" .
 
 
-###  http://data.europa.eu/949/iss/LinePosition
-<http://data.europa.eu/949/iss/LinePosition> rdf:type owl:Class ;
+###  http://data.europa.eu/949/LinePosition
+<http://data.europa.eu/949/LinePosition> rdf:type owl:Class ;
                                              rdfs:subClassOf era:Position ;
                                              dcterms:created "2024-10-24"^^xsd:date ;
                                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                              rdfs:label "line position"@en .
 
 
-###  http://data.europa.eu/949/iss/TrackPosition
-<http://data.europa.eu/949/iss/TrackPosition> rdf:type owl:Class ;
+###  http://data.europa.eu/949/TrackPosition
+<http://data.europa.eu/949/TrackPosition> rdf:type owl:Class ;
                                               rdfs:subClassOf era:Position ;
                                               dcterms:created "2024-10-24"@en ;
-                                              rdfs:isDefinedBy < http://data.europa.eu/949/> ;
+                                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                               rdfs:label "Track position"@en .
 
 
