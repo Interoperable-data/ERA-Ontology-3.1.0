@@ -47,7 +47,29 @@ rdfs:label "ERA Ontology"@en ;
 owl:priorVersion "https://github.com/Interoperable-data/ERA_vocabulary/releases/v3.0.0"^^xsd:anyURI ;
 owl:versionInfo "v3.1.0"@en ;
 owl:versionURI <https://github.com/Interoperable-data/ERA_vocabulary/releases/releases/v3.1.0> ;
-skos:changeNote """Revision 25-09-2024
+skos:changeNote """Revision 24-10-2024
+- Removed annotation  owl:deprecated \"false\" for 1.1.1.3.7.1.2 trainDetectionSystemSpecificCheck
+- Fix skos:definition to rdfs:label in era:direction property
+
+- Change in Network and Network Resource proposal:
+  + Deleted class NetworkResource
+  + belongsTo has as domain InfrastructureObject
+  + added new property subNetworkOf that relates two networks.
+  + added new property infrastructureManager to relate Network with the Organisation (OrganisationRole).
+  + Add axiom Network is a subclass of AreaLocation
+
+- Change in Position layer proposal
+  + Deprecated LineReference class and lineReference property
+  + Created LinePosition and TrackPosition as subclasses of Position. 
+  + Deleted the Referent class.
+  + The domain of kilometer and kmPostName is now LinePosition.
+  + Deleted the carrierObject property
+  + Changed domain of hasPosition to InfrastructureObject
+   + Changed domain of nationalLine to LinePosition
+   + Changed range of lineReferenceTunnelStart and lineReferenceTunnelEnd to LinePosition. Subproperties of hasPosition.
+  + Changed domain and range of referent property to TrackPosition and Track respectively.
+
+Revision 25-09-2024
 - Deprecated minimumTemperature and maximumTemperature as both RINF and ERATV define a temprature range with a list of predefined values.
 - Changed era:trainDetectionSystemSpecificChecks from a data property to an object property (It is a list of predefined values). Added the pointer to its SKOS Concept Scheme. 
 - Fixed annotation inSKOSConceptScheme for property era:osmClass 
@@ -473,7 +495,7 @@ era:additionalBrakingInformationDocument rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/allocationCompany
 era:allocationCompany rdf:type owl:ObjectProperty ;
                       rdfs:domain era:SubsidiaryLocation ;
-                      rdfs:range era:Body ;
+                      rdfs:range era:OrganisationRole ;
                       dcterms:created "2024-05-24"^^xsd:date ;
                       rdfs:comment "The organisation in charge to allocate the code for the subsidiary location."@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -589,9 +611,13 @@ era:borderPointOf rdf:type owl:ObjectProperty ;
                   rdfs:domain era:OperationalPoint ;
                   rdfs:range era:OperationalPoint ;
                   dcterms:created "2023-01-20"^^xsd:date ;
-                  rdfs:comment "TODO: review. Relates the information that each country maintains on a border point, to the operational point that represents the general information on the border point."@en ;
+                  dcterms:isReplacedBy era:ReferenceBorderPoint ,
+                                       era:referenceBorderPoint ;
+                  dcterms:modified "2024-10-25"^^xsd:date ;
+                  rdfs:comment "Relates the information that each country maintains on a border point, to the operational point that represents the general information on the border point."@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "border point of"@en ;
+                  owl:deprecated "true"^^xsd:boolean ;
                   vs:term_status "stable" .
 
 
@@ -653,9 +679,11 @@ era:companyCodeCategory rdf:type owl:ObjectProperty ;
                         rdfs:range skos:Concept ;
                         era:inSkosConceptScheme <http://data.europa.eu/949/concepts/company-code-categories/CompanyCodeCategories> ;
                         dcterms:created "2023-04-04"^^xsd:date ;
-                        rdfs:comment "TODO review if used or necessary: Category of a Railway company. Can be Infrastructure, Freight or Passenger."@en ;
+                        dcterms:modified "2024-10-25"^^xsd:date ;
+                        rdfs:comment "Category of a Railway company. Can be Infrastructure, Freight or Passenger. Deprecated as it will be integrated with the Organisations properties."@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "Company code category"@en ;
+                        owl:deprecated "true"^^xsd:boolean ;
                         vs:term_status "stable" .
 
 
@@ -1637,6 +1665,20 @@ era:inCountry rdf:type owl:ObjectProperty ;
               vs:term_status "stable" .
 
 
+###  http://data.europa.eu/949/infrastructureManager
+era:infrastructureManager rdf:type owl:ObjectProperty ;
+                          rdfs:domain [ rdf:type owl:Class ;
+                                        owl:unionOf ( era:InfrastructureObject
+                                                      era:Network
+                                                      era:PrimaryLocation
+                                                    )
+                                      ] ;
+                          rdfs:range era:OrganisationRole ;
+                          dcterms:created "2024-10-24"^^xsd:date ;
+                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                          rdfs:label "infrastructure manager"@en .
+
+
 ###  http://data.europa.eu/949/infrastructureMgr
 era:infrastructureMgr rdf:type owl:ObjectProperty ;
                       rdfs:domain era:InfrastructureObject ;
@@ -1723,7 +1765,7 @@ era:lineNationalId rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/lineReference
 era:lineReference rdf:type owl:ObjectProperty ;
                   rdfs:domain era:InfrastructureObject ;
-                  rdfs:range <http://data.europa.eu/949/LinePosition> ;
+                  rdfs:range era:LinePosition ;
                   dcterms:created era:nationalLine ,
                                   "2021-01-29"^^xsd:date ;
                   dcterms:modified "2023-03-14"^^xsd:date ,
@@ -1739,7 +1781,7 @@ era:lineReference rdf:type owl:ObjectProperty ;
 era:lineReferenceTunnelEnd rdf:type owl:ObjectProperty ;
                            rdfs:subPropertyOf era:hasPosition ;
                            rdfs:domain era:Tunnel ;
-                           rdfs:range <http://data.europa.eu/949/LinePosition> ;
+                           rdfs:range era:LinePosition ;
                            era:XMLName "SOLTunnelEnd" ;
                            era:rinfIndex "1.1.1.1.8.4" ;
                            dcterms:created "2024-02-05"^^xsd:date ;
@@ -1754,7 +1796,7 @@ The End of tunnel is the Geographical coordinates in decimal degrees and km of t
 era:lineReferenceTunnelStart rdf:type owl:ObjectProperty ;
                              rdfs:subPropertyOf era:hasPosition ;
                              rdfs:domain era:Tunnel ;
-                             rdfs:range <http://data.europa.eu/949/LinePosition> ;
+                             rdfs:range era:LinePosition ;
                              era:XMLName "SOLTunnelStart" ;
                              era:rinfIndex "1.1.1.1.8.3" ;
                              dcterms:created "2024-02-05"^^xsd:date ;
@@ -1938,7 +1980,7 @@ era:magneticBrakingConditionsDocument rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/manufacturer
 era:manufacturer rdf:type owl:ObjectProperty ;
                  rdfs:domain era:VehicleType ;
-                 rdfs:range era:Body ;
+                 rdfs:range era:OrganisationRole ;
                  dcterms:created "2020-07-29"^^xsd:date ;
                  dcterms:modified "2020-11-19"^^xsd:date ,
                                   "2024-06-03"^^xsd:date ;
@@ -2031,8 +2073,8 @@ era:minVehicleImpedanceVoltages rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/nationalLine
 era:nationalLine rdf:type owl:ObjectProperty ;
                  rdfs:domain [ rdf:type owl:Class ;
-                               owl:unionOf ( era:SectionOfLine
-                                             <http://data.europa.eu/949/LinePosition>
+                               owl:unionOf ( era:LinePosition
+                                             era:SectionOfLine
                                            )
                              ] ;
                  rdfs:range era:NationalRailwayLine ;
@@ -2118,9 +2160,13 @@ era:opInfoPerCountry rdf:type owl:ObjectProperty ;
                      rdfs:domain era:OperationalPoint ;
                      rdfs:range era:OperationalPoint ;
                      dcterms:created "2023-01-20"^^xsd:date ;
-                     rdfs:comment "TODO: review, it is in use. Relates an operational point that represents the general information of a border point to the information that each country maintains for the border point."@en ;
+                     dcterms:isReplacedBy era:ReferenceBorderPoint ,
+                                          era:referenceBorderPoint ;
+                     dcterms:modified "2024-10-25"^^xsd:date ;
+                     rdfs:comment "Relates an operational point that represents the general information of a border point to the information that each country maintains for the border point."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "Border point information per country"@en ;
+                     owl:deprecated "true"^^xsd:boolean ;
                      vs:term_status "stable" .
 
 
@@ -2336,8 +2382,10 @@ era:passesThroughTunnel rdf:type owl:ObjectProperty ;
                         rdfs:domain era:Track ;
                         rdfs:range era:Tunnel ;
                         dcterms:created "2020-07-29"^^xsd:date ;
+                        dcterms:isReplacedBy era:TrackPosition ,
+                                             era:referent ;
                         dcterms:modified "2022-10-27"^^xsd:date ;
-                        rdfs:comment "TODO: review. References a tunnel that a track goes through."@en ;
+                        rdfs:comment "References a tunnel that a track goes through."@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "Passes through tunnel"@en ;
                         owl:deprecated "true"^^xsd:boolean ;
@@ -2349,8 +2397,10 @@ era:platformEdge rdf:type owl:ObjectProperty ;
                  rdfs:domain era:Track ;
                  rdfs:range era:PlatformEdge ;
                  dcterms:created "2021-08-09"^^xsd:date ;
+                 dcterms:isReplacedBy era:TrackPosition ,
+                                      era:referent ;
                  dcterms:modified "2023-11-10"^^xsd:date ;
-                 rdfs:comment "TODO: review. Reference to a related platform edge."@en ;
+                 rdfs:comment "Reference to a related platform edge."@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "Platform edge"@en ;
                  vs:term_status "stable" .
@@ -2581,8 +2631,27 @@ See: Subset 26, Chapter 5 5.4 Procedure start of mission."""@en ;
                                       skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
+###  http://data.europa.eu/949/referenceBorderPoint
+era:referenceBorderPoint rdf:type owl:ObjectProperty ;
+                         rdfs:domain era:OperationalPoint ;
+                         rdfs:range era:ReferenceBorderPoint ;
+                         dcterms:created "2024-10-25"^^xsd:date ;
+                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                         rdfs:label "reference border point"@en .
+
+
+###  http://data.europa.eu/949/referent
+era:referent rdf:type owl:ObjectProperty ;
+             rdfs:domain era:TrackPosition ;
+             rdfs:range era:Track ;
+             dcterms:created "2024-10-24"^^xsd:date ;
+             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+             rdfs:label "referent"@en .
+
+
 ###  http://data.europa.eu/949/role
 era:role rdf:type owl:ObjectProperty ;
+         owl:inverseOf <http://data.europa.eu/949/iss/roleOf> ;
          rdfs:domain era:Body ;
          rdfs:range era:OrganisationRole ;
          dcterms:created "2024-06-03"^^xsd:date ;
@@ -2845,6 +2914,15 @@ era:subCategory rdf:type owl:ObjectProperty ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "Vehicle subcategory"@en ;
                 vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/subNetworkOf
+era:subNetworkOf rdf:type owl:ObjectProperty ;
+                 rdfs:domain era:Network ;
+                 rdfs:range era:Network ;
+                 dcterms:created "2024-10-24"^^xsd:date ;
+                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                 rdfs:label "sub network of"@en .
 
 
 ###  http://data.europa.eu/949/subsidiaryLocation
@@ -3383,7 +3461,7 @@ era:validity rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/vehicleKeeper
 era:vehicleKeeper rdf:type owl:ObjectProperty ;
                   rdfs:domain era:Vehicle ;
-                  rdfs:range era:Body ;
+                  rdfs:range era:OrganisationRole ;
                   dcterms:created "2020-11-23"^^xsd:date ;
                   dcterms:modified "2020-11-23"^^xsd:date ,
                                    "2024-06-03"^^xsd:date ;
@@ -3415,6 +3493,32 @@ era:vehicleTypeMaximumSpeedAndCantDeficiency rdf:type owl:ObjectProperty ;
                                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                              rdfs:label "Vehicle type maximum speed and cant deficiency"@en ;
                                              vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/vehicleTypesCompatibleTrafficLoad
+era:vehicleTypesCompatibleTrafficLoad rdf:type owl:ObjectProperty ;
+                                      rdfs:domain era:TechnicalCharacteristics ;
+                                      rdfs:range era:VehicleType ;
+                                      era:rinfIndex "1.1.1.5.1" ;
+                                      dcterms:created "2023-03-14"^^xsd:date ;
+                                      dcterms:modified "2024-10-25"^^xsd:date ;
+                                      rdfs:comment "The infrastructure managers shall provide through RINF the information to the RU regarding list of vehicle types compatible with the route for which they have already verified compatibility for parameter Traffic load and load carrying capacity of infrastructure and train detection systems, where such information is available."@en ;
+                                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                      rdfs:label "List of vehicle types already identified as compatible with Traffic load and load carrying capacity of infrastructure and train detection systems"@en ;
+                                      vs:term_status "unstable" .
+
+
+###  http://data.europa.eu/949/vehiclesCompatibleTrafficLoad
+era:vehiclesCompatibleTrafficLoad rdf:type owl:ObjectProperty ;
+                                  rdfs:domain era:TechnicalCharacteristics ;
+                                  rdfs:range era:Vehicle ;
+                                  era:rinfIndex "1.1.1.5.2" ;
+                                  dcterms:created "2023-03-14"^^xsd:date ;
+                                  dcterms:modified "2024-10-25"^^xsd:date ;
+                                  rdfs:comment "The infrastructure managers shall provide through RINF the information or a document to the RU regarding list of vehicle(s) compatible with the route for which they have already verified compatibility for parameter Traffic load and load carrying capacity of infrastructure and train detection systems, where such information is available."@en ;
+                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                  rdfs:label "List of vehicles already identified as compatible with Traffic load and load carrying capacity of infrastructure and train detection systems"@en ;
+                                  vs:term_status "unstable" .
 
 
 ###  http://data.europa.eu/949/voiceGSMRNetwork
@@ -3499,31 +3603,13 @@ era:wheelSetGaugeChangeoverFacility rdf:type owl:ObjectProperty ;
                                     vs:term_status "stable" .
 
 
-###  http://data.europa.eu/949/infrastructureManager
-<http://data.europa.eu/949/infrastructureManager> rdf:type owl:ObjectProperty ;
-                                                      rdfs:domain era:Network ;
-                                                      rdfs:range era:OrganisationRole ;
-                                                      dcterms:created "2024-10-24"^^xsd:date ;
-                                                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                                      rdfs:label "infrastructure manager"@en .
-
-
-###  http://data.europa.eu/949/referent
-<http://data.europa.eu/949/referent> rdf:type owl:ObjectProperty ;
-                                         rdfs:domain <http://data.europa.eu/949/TrackPosition> ;
-                                         rdfs:range era:Track ;
-                                         dcterms:created "2024-10-24"^^xsd:date ;
-                                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                         rdfs:label "referent"@en .
-
-
-###  http://data.europa.eu/949/subNetworkOf
-<http://data.europa.eu/949/subNetworkOf> rdf:type owl:ObjectProperty ;
-                                             rdfs:domain era:Network ;
-                                             rdfs:range era:Network ;
-                                             dcterms:created "2024-10-24"^^xsd:date ;
-                                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                             rdfs:label "sub network of"@en .
+###  http://data.europa.eu/949/iss/roleOf
+<http://data.europa.eu/949/iss/roleOf> rdf:type owl:ObjectProperty ;
+                                       rdfs:domain era:OrganisationRole ;
+                                       rdfs:range era:Body ;
+                                       dcterms:created "2024-10-25"^^xsd:date ;
+                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                       rdfs:label "role of"@en .
 
 
 ###  http://www.opengis.net/ont/geosparql#hasGeometry
@@ -4167,7 +4253,7 @@ era:digitalSchematicOverview rdf:type owl:DatatypeProperty ;
                              rdfs:range geo:wktLiteral ;
                              era:rinfIndex "1.2.0.0.0.7.2" ;
                              dcterms:created "2023-03-14"^^xsd:date ;
-                             rdfs:comment "TODO review: Diagrammatic representation of the operational point in Well Known Text polyline"@en ;
+                             rdfs:comment "Diagrammatic representation of the operational point in Well Known Text polyline"@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "Digital schematic overview"@en ;
                              vs:term_status "stable" .
@@ -5398,7 +5484,7 @@ era:isQuietRoute rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/kilometer
 era:kilometer rdf:type owl:DatatypeProperty ;
-              rdfs:domain <http://data.europa.eu/949/LinePosition> ;
+              rdfs:domain era:LinePosition ;
               rdfs:range xsd:double ;
               era:XMLName "OPRailwayLocation" ;
               era:appendixD2Index "2.2.2" ;
@@ -5424,7 +5510,7 @@ era:kilometer rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/kmPostName
 era:kmPostName rdf:type owl:DatatypeProperty ;
-               rdfs:domain <http://data.europa.eu/949/LinePosition> ;
+               rdfs:domain era:LinePosition ;
                rdfs:range xsd:string ;
                rdfs:label "kilometric post name"@en ;
                skos:altLabel "mileage post"@en .
@@ -8211,30 +8297,6 @@ era:vehicleTypeMaximumSpeed rdf:type owl:DatatypeProperty ;
                             vs:term_status "stable" .
 
 
-###  http://data.europa.eu/949/vehicleTypesCompatibleTrafficLoad
-era:vehicleTypesCompatibleTrafficLoad rdf:type owl:DatatypeProperty ;
-                                      rdfs:domain era:TechnicalCharacteristics ;
-                                      rdfs:range xsd:anyURI ;
-                                      era:rinfIndex "1.1.1.5.1" ;
-                                      dcterms:created "2023-03-14"^^xsd:date ;
-                                      rdfs:comment "TODO: review. The infrastructure managers shall provide through RINF the information to the RU regarding list of vehicle types compatible with the route for which they have already verified compatibility for parameter Traffic load and load carrying capacity of infrastructure and train detection systems, where such information is available."@en ;
-                                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                      rdfs:label "List of vehicle types already identified as compatible with Traffic load and load carrying capacity of infrastructure and train detection systems"@en ;
-                                      vs:term_status "unstable" .
-
-
-###  http://data.europa.eu/949/vehiclesCompatibleTrafficLoad
-era:vehiclesCompatibleTrafficLoad rdf:type owl:DatatypeProperty ;
-                                  rdfs:domain era:TechnicalCharacteristics ;
-                                  rdfs:range xsd:anyURI ;
-                                  era:rinfIndex "1.1.1.5.2" ;
-                                  dcterms:created "2023-03-14"^^xsd:date ;
-                                  rdfs:comment "TODO: review. The infrastructure managers shall provide through RINF the information or a document to the RU regarding list of vehicle(s) compatible with the route for which they have already verified compatibility for parameter Traffic load and load carrying capacity of infrastructure and train detection systems, where such information is available."@en ;
-                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                  rdfs:label "List of vehicles already identified as compatible with Traffic load and load carrying capacity of infrastructure and train detection systems"@en ;
-                                  vs:term_status "unstable" .
-
-
 ###  http://data.europa.eu/949/vehiclesComposingFixedFormation
 era:vehiclesComposingFixedFormation rdf:type owl:DatatypeProperty ;
                                     rdfs:domain era:VehicleType ;
@@ -8535,10 +8597,12 @@ era:CCSSubsystem rdf:type owl:Class ;
 ###  http://data.europa.eu/949/Certificate
 era:Certificate rdf:type owl:Class ;
                 dcterms:created "2022-06-15"^^xsd:date ;
-                dcterms:modified "2022-06-15"^^xsd:date ;
-                rdfs:comment "TODO review:Certificate of a vehicle type. Can be in one of the following states: Amended, New, Suspended, Withdrawn."@en ;
+                dcterms:modified "2022-06-15"^^xsd:date ,
+                                 "2024-10-25"^^xsd:date ;
+                rdfs:comment "Certificate of a vehicle type. Can be in one of the following states: Amended, New, Suspended, Withdrawn."@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "Certificate"@en ;
+                owl:deprecated "true"^^xsd:boolean ;
                 vs:term_status "stable" .
 
 
@@ -8664,10 +8728,18 @@ era:LevelCrossing rdf:type owl:Class ;
                   rdfs:label "Level crossing"@en .
 
 
+###  http://data.europa.eu/949/LinePosition
+era:LinePosition rdf:type owl:Class ;
+                 rdfs:subClassOf era:Position ;
+                 dcterms:created "2024-10-24"^^xsd:date ;
+                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                 rdfs:label "line position"@en .
+
+
 ###  http://data.europa.eu/949/LineReference
 era:LineReference rdf:type owl:Class ;
                   dcterms:created "2021-01-29"^^xsd:date ;
-                  dcterms:isReplacedBy <http://data.europa.eu/949/LinePosition> ;
+                  dcterms:isReplacedBy era:LinePosition ;
                   dcterms:modified "2021-01-29"^^xsd:date ,
                                    "2024-10-24"^^xsd:date ;
                   rdfs:comment "A reference to a specific national railway line."@en ;
@@ -8912,6 +8984,13 @@ As for different speeds different combinations of number of pantographs and dist
                                       vs:term_status "stable" .
 
 
+###  http://data.europa.eu/949/ReferenceBorderPoint
+era:ReferenceBorderPoint rdf:type owl:Class ;
+                         dcterms:created "2024-10-25"^^xsd:date ;
+                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                         rdfs:label "Reference border point"@en .
+
+
 ###  http://data.europa.eu/949/SectionOfLine
 era:SectionOfLine rdf:type owl:Class ;
                   rdfs:subClassOf era:AggregatedObject ,
@@ -9110,6 +9189,14 @@ era:Track rdf:type owl:Class ;
           vs:term_status "stable" .
 
 
+###  http://data.europa.eu/949/TrackPosition
+era:TrackPosition rdf:type owl:Class ;
+                  rdfs:subClassOf era:Position ;
+                  dcterms:created "2024-10-24"@en ;
+                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                  rdfs:label "Track position"@en .
+
+
 ###  http://data.europa.eu/949/TrainDetectionSystem
 era:TrainDetectionSystem rdf:type owl:Class ;
                          era:rinfIndex "1.1.1.3.4" ;
@@ -9183,22 +9270,6 @@ The above mentioned certificate should be documented using era:certificate.
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "Vehicle Type"@en ;
                 vs:term_status "stable" .
-
-
-###  http://data.europa.eu/949/LinePosition
-<http://data.europa.eu/949/LinePosition> rdf:type owl:Class ;
-                                             rdfs:subClassOf era:Position ;
-                                             dcterms:created "2024-10-24"^^xsd:date ;
-                                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                             rdfs:label "line position"@en .
-
-
-###  http://data.europa.eu/949/TrackPosition
-<http://data.europa.eu/949/TrackPosition> rdf:type owl:Class ;
-                                              rdfs:subClassOf era:Position ;
-                                              dcterms:created "2024-10-24"@en ;
-                                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                              rdfs:label "Track position"@en .
 
 
 ###  http://www.opengis.net/ont/geosparql#Feature
@@ -9495,25 +9566,25 @@ foaf:Person rdf:type owl:Class ;
             vs:term_status "stable" .
 
 
-[ foaf:name "Ghislain Atemezing" ;
-  dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
+[ foaf:name "Maarten Duhoux" ;
   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
 ] .
-
-[ foaf:name "Ghislain Atemezing" ;
-   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Maarten Duhoux" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
 
 [ foaf:name "Dragos Patru" ;
    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
  ] .
 
 [ foaf:name "Maarten Duhoux" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Ghislain Atemezing" ;
+   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Ghislain Atemezing" ;
+   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
  ] .
 
@@ -9533,6 +9604,7 @@ wgs:lat_long rdfs:comment "A comma-separated representation of a latitude, longi
 
 
 wgs:location rdfs:label "Location" ;
+             era:rinfIndex "1.1.0.0.1.1" ;
              rdfs:comment """The relation between something and the point, 
  or other geometrical thing in space, where it is.  For example, the realtionship between
  a radio tower and a Point with a given lat and long.
@@ -9541,8 +9613,7 @@ wgs:location rdfs:label "Location" ;
  Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
  an accuracy appropriate for the size of the object and uses such as mapping .
  """ ;
-             era:rinfIndex "1.1.0.0.1.1" ,
-                           "1.1.1.3.14.5" ,
+             era:rinfIndex "1.1.1.3.14.5" ,
                            "1.2.1.0.8.5" ,
                            "1.2.0.0.0.5" ;
              era:usedInRCCCalculations "true"^^xsd:boolean ;
