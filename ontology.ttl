@@ -52,7 +52,27 @@ rdfs:seeAlso "https://www.era.europa.eu/sites/default/files/registers/docs/iu-er
 owl:priorVersion "https://github.com/Interoperable-data/ERA_vocabulary/releases/v3.0.0"^^xsd:anyURI ;
 owl:versionInfo "v3.1.0" ;
 owl:versionURI <https://github.com/Interoperable-data/ERA_vocabulary/releases/releases/v3.1.0> ;
-skos:changeNote """Revision 25-10-2024
+skos:changeNote """Revision 28-10-2024
+- Move company code categories SKOS to deprecated SKOS as corresponding property has been deprecated.
+- Deprecated lineNationalId, replaced by nationalLine property. Create a string datatype property nationalLineIdentfication with same annotations than lineNationalId
+- Created property hasOrientation between Signal and Orientation
+- Fixed dcterms:isReplacedBy to hasPosition in deprecated lineReference property
+
+- Proposal for BaseLocation, PrimaryLocation and SubsidiaryLocation
++  Linear Location is now a subclass of BaseLocation
++ Changed domain of location from TopologicalObject to InfrstructureObject
++ Delete axiom InfrastructureObject is subclass of Feature.
++ PrimaryLocation is now a subclass of SpotLocation (no more subclass of an AggregatedObject)
++ Created linkedToPrimaryLocation between a SubsidiaryLocation and a PrimaryLocation
++ Added domain PrimaryLocation to hasPosition
+
+- Proposal on applicability
++ Changed the name of the class Applicability to ParameterApplicability.
++ Changed the name of the property applicability to parameterApplicability with domain InfrastructureObject and range ParameterApplicability
++ Created property era:ofparameter to relate the ParameterApplicability to the parameter it is denoting (a property in the ontology)
+
+
+Revision 25-10-2024
 -Changes according to agreed Organisation proposal:
 + Changed domain of property infrastructureManager to include Network or PrimaryLocation or InfrastructureObject
 + Added roleOf as an inverse property of role. Relation that goes from OrganisationRole to Organisation
@@ -452,6 +472,13 @@ xsd:date rdf:type rdfs:Datatype .
 #    Object Properties
 #################################################################
 
+###  http://data.europa.eu/949/HealthSafetyAndEnvironmentObjParameter
+era:HealthSafetyAndEnvironmentObjParameter rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf era:infraSubsystemObjParameter ;
+                                           era:rinfIndex "1.1.1.1.7" ;
+                                           rdfs:label "Health, safety and environment"@en .
+
+
 ###  http://data.europa.eu/949/TSIMagneticFields
 era:TSIMagneticFields rdf:type owl:ObjectProperty ;
                       rdfs:domain era:CCSSubsystem ;
@@ -698,7 +725,12 @@ era:companyCodeCategory rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/compatibilityProcedureDocument
 era:compatibilityProcedureDocument rdf:type owl:ObjectProperty ;
-                                   rdfs:domain era:InfraSubsystem ;
+                                   rdfs:subPropertyOf era:performanceObjParameter ;
+                                   rdfs:domain [ rdf:type owl:Class ;
+                                                 owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                               era:Track
+                                                             )
+                                               ] ;
                                    rdfs:range era:Document ;
                                    era:XMLName "IPP_StructureCheckDocRef" ;
                                    era:rinfIndex "1.1.1.1.2.4.4" ;
@@ -832,6 +864,13 @@ Information on RSC data requirements per country"""@en ;
                         skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en .
 
 
+###  http://data.europa.eu/949/declarationOfVerificationObjParameter
+era:declarationOfVerificationObjParameter rdf:type owl:ObjectProperty ;
+                                          rdfs:subPropertyOf era:infraSubsystemObjParameter ;
+                                          era:rinfIndex "1.1.1.1.1" ;
+                                          rdfs:label "Declarations of verification for track"@en .
+
+
 ###  http://data.europa.eu/949/definesSubset
 era:definesSubset rdf:type owl:ObjectProperty ;
                   rdfs:domain era:InfrastructureManager ;
@@ -858,7 +897,12 @@ era:direction rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/eddyCurrentBraking
 era:eddyCurrentBraking rdf:type owl:ObjectProperty ;
-                       rdfs:domain era:InfraSubsystem ;
+                       rdfs:subPropertyOf era:trackResistanceToAppliedLoadsObjParameter ;
+                       rdfs:domain [ rdf:type owl:Class ;
+                                     owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                   era:Track
+                                                 )
+                                   ] ;
                        rdfs:range skos:Concept ;
                        era:XMLName "ILR_EddyCurrentBrakes" ;
                        era:appendixD2Index "3.4.5" ;
@@ -880,7 +924,12 @@ era:eddyCurrentBraking rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/eddyCurrentBrakingConditionsDocument
 era:eddyCurrentBrakingConditionsDocument rdf:type owl:ObjectProperty ;
-                                         rdfs:domain era:InfraSubsystem ;
+                                         rdfs:subPropertyOf era:trackResistanceToAppliedLoadsObjParameter ;
+                                         rdfs:domain [ rdf:type owl:Class ;
+                                                       owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                                     era:Track
+                                                                   )
+                                                     ] ;
                                          rdfs:range era:Document ;
                                          era:XMLName "ILR_ECBDocRef" ;
                                          era:appendixD2Index "3.4.5" ;
@@ -963,7 +1012,8 @@ era:endCouplingType rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/endLocation
 era:endLocation rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf geo:hasGeometry ,
+                rdfs:subPropertyOf era:tunnelObjParameter ,
+                                   geo:hasGeometry ,
                                    wgs:location ;
                 rdfs:domain era:Tunnel ;
                 rdfs:range [ rdf:type owl:Class ;
@@ -1285,7 +1335,12 @@ era:fireSafetyCategory rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/freightCorridor
 era:freightCorridor rdf:type owl:ObjectProperty ;
-                    rdfs:domain era:InfraSubsystem ;
+                    rdfs:subPropertyOf era:performanceObjParameter ;
+                    rdfs:domain [ rdf:type owl:Class ;
+                                  owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                era:Track
+                                              )
+                                ] ;
                     rdfs:range skos:Concept ;
                     era:XMLName "IPP_FreightCorridor" ;
                     era:inSkosConceptScheme <http://data.europa.eu/949/concepts/freight-corridor/FreightCorridors> ;
@@ -1385,8 +1440,10 @@ era:from rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/gaugingProfile
 era:gaugingProfile rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf era:lineLayoutObjParameter ;
                    rdfs:domain [ rdf:type owl:Class ;
-                                 owl:unionOf ( era:InfraSubsystem
+                                 owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                               era:Track
                                                era:VehicleType
                                              )
                                ] ;
@@ -1414,7 +1471,12 @@ era:gaugingProfile rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/gaugingTransversalDocument
 era:gaugingTransversalDocument rdf:type owl:ObjectProperty ;
-                               rdfs:domain era:InfraSubsystem ;
+                               rdfs:subPropertyOf era:lineLayoutObjParameter ;
+                               rdfs:domain [ rdf:type owl:Class ;
+                                             owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                           era:Track
+                                                         )
+                                           ] ;
                                rdfs:range era:Document ;
                                era:XMLName "ILL_GaugeCheckDocRef" ;
                                era:rinfIndex "1.1.1.1.3.1.3" ,
@@ -1693,7 +1755,12 @@ era:hasTopology rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/hotAxleBoxDetectorDirection
 era:hotAxleBoxDetectorDirection rdf:type owl:ObjectProperty ;
-                                rdfs:domain era:InfraSubsystem ;
+                                rdfs:subPropertyOf era:HealthSafetyAndEnvironmentObjParameter ;
+                                rdfs:domain [ rdf:type owl:Class ;
+                                              owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                            era:Track
+                                                          )
+                                            ] ;
                                 rdfs:range skos:Concept ;
                                 era:XMLName "IHS_HABDDirecton" ;
                                 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/hot-axle/HotAxleBoxDetectorDirections> ;
@@ -1727,15 +1794,27 @@ era:inCountry rdf:type owl:ObjectProperty ;
               skos:editorialNote "TODO review the property"@en .
 
 
+###  http://data.europa.eu/949/infraSubsystemObjParameter
+era:infraSubsystemObjParameter rdf:type owl:ObjectProperty ;
+                               rdfs:subPropertyOf era:technicalObjectCharacteristic ;
+                               era:rinfIndex "1.1.1.1" ;
+                               dcterms:modifed "2024-10-28"^^xsd:date ;
+                               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                               rdfs:label "Infrastructure subsystem"@en .
+
+
 ###  http://data.europa.eu/949/infrastructureManager
 era:infrastructureManager rdf:type owl:ObjectProperty ;
                           rdfs:domain [ rdf:type owl:Class ;
                                         owl:unionOf ( era:InfrastructureObject
                                                       era:Network
                                                       era:PrimaryLocation
+                                                      era:SubsetWithCommonCharacteristics
                                                     )
                                       ] ;
                           rdfs:range era:OrganisationRole ;
+                          era:rinfIndex "1.1.0.0.0.1" ,
+                                        "1.1.1.1.8.1" ;
                           dcterms:created "2024-10-24"^^xsd:date ;
                           dcterms:replaces era:infrastructureMgr ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -1796,7 +1875,12 @@ era:legacyRadioSystem rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/lineCategory
 era:lineCategory rdf:type owl:ObjectProperty ;
-                 rdfs:domain era:InfraSubsystem ;
+                 rdfs:subPropertyOf era:performanceObjParameter ;
+                 rdfs:domain [ rdf:type owl:Class ;
+                               owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                             era:Track
+                                           )
+                             ] ;
                  rdfs:range skos:Concept ;
                  era:XMLName "IPP_LineCat" ;
                  era:inSkosConceptScheme <http://data.europa.eu/949/concepts/line-category/LineCategories> ;
@@ -1813,6 +1897,13 @@ TSI categories of line shall be used for the classification of existing lines to
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "category of line"@en ;
                  vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/lineLayoutObjParameter
+era:lineLayoutObjParameter rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf era:infraSubsystemObjParameter ;
+                           era:rinfIndex "1.1.1.1.3" ,
+                                         "Line layout" .
 
 
 ###  http://data.europa.eu/949/lineNationalId
@@ -1859,7 +1950,8 @@ era:lineReference rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/lineReferenceTunnelEnd
 era:lineReferenceTunnelEnd rdf:type owl:ObjectProperty ;
-                           rdfs:subPropertyOf era:hasPosition ;
+                           rdfs:subPropertyOf era:hasPosition ,
+                                              era:tunnelObjParameter ;
                            rdfs:domain era:Tunnel ;
                            rdfs:range era:LinePosition ;
                            era:XMLName "SOLTunnelEnd" ;
@@ -1879,7 +1971,8 @@ The End of tunnel is the Geographical coordinates in decimal degrees and km of t
 
 ###  http://data.europa.eu/949/lineReferenceTunnelStart
 era:lineReferenceTunnelStart rdf:type owl:ObjectProperty ;
-                             rdfs:subPropertyOf era:hasPosition ;
+                             rdfs:subPropertyOf era:hasPosition ,
+                                                era:tunnelObjParameter ;
                              rdfs:domain era:Tunnel ;
                              rdfs:range era:LinePosition ;
                              era:XMLName "SOLTunnelStart" ;
@@ -2055,7 +2148,12 @@ See: TSI CCS (Subset-026, chapter 7. 7.5.1.74 M_NVCONTACT)"""@en ;
 
 ###  http://data.europa.eu/949/magneticBraking
 era:magneticBraking rdf:type owl:ObjectProperty ;
-                    rdfs:domain era:InfraSubsystem ;
+                    rdfs:subPropertyOf era:trackResistanceToAppliedLoadsObjParameter ;
+                    rdfs:domain [ rdf:type owl:Class ;
+                                  owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                era:Track
+                                              )
+                                ] ;
                     rdfs:range skos:Concept ;
                     era:XMLName "ILR_MagneticBrakes" ;
                     era:appendixD2Index "3.4.6" ;
@@ -2077,7 +2175,12 @@ era:magneticBraking rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/magneticBrakingConditionsDocument
 era:magneticBrakingConditionsDocument rdf:type owl:ObjectProperty ;
-                                      rdfs:domain era:InfraSubsystem ;
+                                      rdfs:subPropertyOf era:trackResistanceToAppliedLoadsObjParameter ;
+                                      rdfs:domain [ rdf:type owl:Class ;
+                                                    owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                                  era:Track
+                                                                )
+                                                  ] ;
                                       rdfs:range era:Document ;
                                       era:XMLName "ILR_MBDocRef" ;
                                       era:appendixD2Index "3.4.6" ;
@@ -2252,6 +2355,15 @@ era:notYetAvailable rdf:type owl:ObjectProperty ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "Not provided"@en ;
                     vs:term_status "unstable" .
+
+
+###  http://data.europa.eu/949/ofParameter
+era:ofParameter rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:domain era:ParameterApplicability ;
+                dcterms:created "2024-10-28"^^xsd:date ;
+                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                rdfs:label "of parameter"@en .
 
 
 ###  http://data.europa.eu/949/onGrid
@@ -2534,6 +2646,13 @@ era:passesThroughTunnel rdf:type owl:ObjectProperty ;
                         vs:term_status "deprecated" .
 
 
+###  http://data.europa.eu/949/performanceObjParameter
+era:performanceObjParameter rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf era:infraSubsystemObjParameter ;
+                            era:rinfIndex "1.1.1.1.2" ;
+                            rdfs:label "Performance parameter"@en .
+
+
 ###  http://data.europa.eu/949/platformEdge
 era:platformEdge rdf:type owl:ObjectProperty ;
                  rdfs:domain era:Track ;
@@ -2622,7 +2741,12 @@ era:primaryLocation rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/profileNumberSemiTrailers
 era:profileNumberSemiTrailers rdf:type owl:ObjectProperty ;
-                              rdfs:domain era:InfraSubsystem ;
+                              rdfs:subPropertyOf era:lineLayoutObjParameter ;
+                              rdfs:domain [ rdf:type owl:Class ;
+                                            owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                          era:Track
+                                                        )
+                                          ] ;
                               rdfs:range skos:Concept ;
                               era:XMLName "ILL_ProfileNumSemiTrailers" ;
                               era:inSkosConceptScheme <http://data.europa.eu/949/concepts/profile-num-semi-trailers/ProfileNumbersSemiTrailers> ;
@@ -2637,7 +2761,12 @@ era:profileNumberSemiTrailers rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/profileNumberSwapBodies
 era:profileNumberSwapBodies rdf:type owl:ObjectProperty ;
-                            rdfs:domain era:InfraSubsystem ;
+                            rdfs:subPropertyOf era:lineLayoutObjParameter ;
+                            rdfs:domain [ rdf:type owl:Class ;
+                                          owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                        era:Track
+                                                      )
+                                        ] ;
                             rdfs:range skos:Concept ;
                             era:XMLName "ILL_ProfileNumSwapBodies" ;
                             era:inSkosConceptScheme <http://data.europa.eu/949/concepts/profile-num-swap-bodies/ProfileNumbersSwapBodies> ;
@@ -2734,8 +2863,10 @@ era:quieterRoutesExemptedCountry rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/railInclination
 era:railInclination rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf era:trackObjParameter ;
                     rdfs:domain [ rdf:type owl:Class ;
-                                  owl:unionOf ( era:InfraSubsystem
+                                  owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                era:Track
                                                 era:VehicleType
                                               )
                                 ] ;
@@ -2822,7 +2953,12 @@ era:roleOf rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/rollingStockFireCategory
 era:rollingStockFireCategory rdf:type owl:ObjectProperty ;
-                             rdfs:domain era:InfraSubsystem ;
+                             rdfs:subPropertyOf era:tunnelObjParameter ;
+                             rdfs:domain [ rdf:type owl:Class ;
+                                           owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                         era:Tunnel
+                                                       )
+                                         ] ;
                              rdfs:range skos:Concept ;
                              era:XMLName "ITU_FireCatReq" ;
                              era:appendixD2Index "3.2.3" ;
@@ -3056,7 +3192,8 @@ era:standardCombinedTransportRollerUnits rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/startLocation
 era:startLocation rdf:type owl:ObjectProperty ;
-                  rdfs:subPropertyOf geo:hasGeometry ,
+                  rdfs:subPropertyOf era:tunnelObjParameter ,
+                                     geo:hasGeometry ,
                                      wgs:location ;
                   rdfs:domain era:Tunnel ;
                   rdfs:range [ rdf:type owl:Class ;
@@ -3144,6 +3281,13 @@ era:supportedPlatformHeight rdf:type owl:ObjectProperty ;
                             vs:term_status "stable" .
 
 
+###  http://data.europa.eu/949/switchesAndCrossingsObjParameter
+era:switchesAndCrossingsObjParameter rdf:type owl:ObjectProperty ;
+                                     rdfs:subPropertyOf era:infraSubsystemObjParameter ;
+                                     era:rinfIndex "1.1.1.1.5" ;
+                                     rdfs:label "Switches and crossings" .
+
+
 ###  http://data.europa.eu/949/tdsFrenchTrainDetectionSystemLimitation
 era:tdsFrenchTrainDetectionSystemLimitation rdf:type owl:ObjectProperty ;
                                             rdfs:domain era:TrainDetectionSystem ;
@@ -3196,9 +3340,21 @@ era:tdsMinAxleLoadVehicleCategory rdf:type owl:ObjectProperty ;
                                   vs:term_status "stable" .
 
 
+###  http://data.europa.eu/949/technicalObjectCharacteristic
+era:technicalObjectCharacteristic rdf:type owl:ObjectProperty ;
+                                  dcterms:created "2024-10-28"^^xsd:date ;
+                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                  rdfs:label "Technical characteristic"@en .
+
+
 ###  http://data.europa.eu/949/temperatureRange
 era:temperatureRange rdf:type owl:ObjectProperty ;
-                     rdfs:domain era:InfraSubsystem ;
+                     rdfs:subPropertyOf era:performanceObjParameter ;
+                     rdfs:domain [ rdf:type owl:Class ;
+                                   owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                 era:Track
+                                               )
+                                 ] ;
                      rdfs:range skos:Concept ;
                      era:XMLName "IPP_TempRange" ;
                      era:eratvIndex "4.3.1" ;
@@ -3217,7 +3373,12 @@ era:temperatureRange rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/tenClassification
 era:tenClassification rdf:type owl:ObjectProperty ;
-                      rdfs:domain era:InfraSubsystem ;
+                      rdfs:subPropertyOf era:performanceObjParameter ;
+                      rdfs:domain [ rdf:type owl:Class ;
+                                    owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                  era:Track
+                                                )
+                                  ] ;
                       rdfs:range skos:Concept ;
                       era:XMLName "IPL_TENClass" ,
                                   "IPP_TENClass" ;
@@ -3309,7 +3470,12 @@ era:trackDirection rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/trackLoadCapability
 era:trackLoadCapability rdf:type owl:ObjectProperty ;
-                        rdfs:domain era:InfraSubsystem ;
+                        rdfs:subPropertyOf era:performanceObjParameter ;
+                        rdfs:domain [ rdf:type owl:Class ;
+                                      owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                    era:Track
+                                                  )
+                                    ] ;
                         rdfs:range era:LoadCapability ;
                         era:XMLName "IPP_LoadCap" ;
                         era:rinfIndex "1.1.1.1.2.4" ;
@@ -3319,6 +3485,13 @@ era:trackLoadCapability rdf:type owl:ObjectProperty ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "Track load capability"@en ;
                         vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/trackObjParameter
+era:trackObjParameter rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf era:infraSubsystemObjParameter ;
+                      era:rinfIndex "1.1.1.1.4" ;
+                      rdfs:label "Track parameters"@en .
 
 
 ###  http://data.europa.eu/949/trackPhaseInfo
@@ -3346,6 +3519,13 @@ era:trackRaisedPantographsDistanceAndSpeed rdf:type owl:ObjectProperty ;
                                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                            rdfs:label "Track raised pantograph distance and speed"@en ;
                                            vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/trackResistanceToAppliedLoadsObjParameter
+era:trackResistanceToAppliedLoadsObjParameter rdf:type owl:ObjectProperty ;
+                                              rdfs:subPropertyOf era:infraSubsystemObjParameter ;
+                                              era:rinfIndex "1.1.1.1.6" ;
+                                              rdfs:label "Track resistance to applied loads"@en .
 
 
 ###  http://data.europa.eu/949/trackSystemSeparationInfo
@@ -3605,7 +3785,12 @@ era:tsiPantographHead rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/tunnelDocRef
 era:tunnelDocRef rdf:type owl:ObjectProperty ;
-                 rdfs:domain era:InfraSubsystem ;
+                 rdfs:subPropertyOf era:tunnelObjParameter ;
+                 rdfs:domain [ rdf:type owl:Class ;
+                               owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                             era:Tunnel
+                                           )
+                             ] ;
                  rdfs:range era:Document ;
                  era:XMLName "ITU_TunnelDocRef" ;
                  era:rinfIndex "1.1.1.1.8.8.2" ;
@@ -3620,6 +3805,13 @@ era:tunnelDocRef rdf:type owl:ObjectProperty ;
                  vs:term_status "stable" ;
                  skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en ;
                  skos:scopeNote "Parameters of this group (from 1.1.1.1.8.1 to 1.1.1.1.8.13) are only applicable if tunnels exist on the SoL"@en .
+
+
+###  http://data.europa.eu/949/tunnelObjParameter
+era:tunnelObjParameter rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf era:infraSubsystemObjParameter ;
+                       era:rinfIndex "1.1.1.1.8"@en ;
+                       rdfs:label "Tunnel"@en .
 
 
 ###  http://data.europa.eu/949/typeVersionId
@@ -3757,8 +3949,10 @@ In case of RSC-EU-0 or None, no other values are allowed."""@en .
 
 ###  http://data.europa.eu/949/wheelSetGauge
 era:wheelSetGauge rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf era:trackObjParameter ;
                   rdfs:domain [ rdf:type owl:Class ;
-                                owl:unionOf ( era:InfraSubsystem
+                                owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                              era:Track
                                               era:VehicleType
                                             )
                               ] ;
@@ -3823,6 +4017,10 @@ geo:hasGeometry rdf:type owl:ObjectProperty ;
                 skos:prefLabel "hasGeometry"@en .
 
 
+###  http://www.w3.org/2002/07/owl#topObjectProperty
+owl:topObjectProperty rdfs:label "infrastructure subsystem parameter"@en .
+
+
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
 wgs:location rdf:type owl:ObjectProperty .
 
@@ -3833,7 +4031,12 @@ wgs:location rdf:type owl:ObjectProperty .
 
 ###  http://data.europa.eu/949/accelerationLevelCrossing
 era:accelerationLevelCrossing rdf:type owl:DatatypeProperty ;
-                              rdfs:domain era:InfraSubsystem ;
+                              rdfs:subPropertyOf era:healthSafetyAndEnvironmentDataParameter ;
+                              rdfs:domain [ rdf:type owl:Class ;
+                                            owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                          era:Track
+                                                        )
+                                          ] ;
                               rdfs:range xsd:string ;
                               era:XMLName "IHS_AccelerationLevelCrossing" ;
                               era:rinfIndex "1.1.1.1.7.3" ;
@@ -4029,7 +4232,12 @@ era:cantDefficiency rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/cantDeficiency
 era:cantDeficiency rdf:type owl:DatatypeProperty ;
-                   rdfs:domain era:InfraSubsystem ;
+                   rdfs:subPropertyOf era:trackDataParameter ;
+                   rdfs:domain [ rdf:type owl:Class ;
+                                 owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                               era:Track
+                                             )
+                               ] ;
                    rdfs:range xsd:integer ;
                    era:XMLName "ITP_CantDeficiency" ;
                    era:rinfIndex "1.1.1.1.4.2" ;
@@ -4060,7 +4268,12 @@ era:catenaryMaxRatedCurrent rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/complianceInfTsi
 era:complianceInfTsi rdf:type owl:DatatypeProperty ;
-                     rdfs:domain era:Tunnel ;
+                     rdfs:subPropertyOf era:tunnelDataParameter ;
+                     rdfs:domain [ rdf:type owl:Class ;
+                                   owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                 era:Tunnel
+                                               )
+                                 ] ;
                      rdfs:range xsd:boolean ;
                      era:XMLName "ITU_TSITunnel" ;
                      era:rinfIndex "1.1.1.1.8.8.1" ;
@@ -4211,7 +4424,12 @@ era:containerHandlingFlag rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/crossSectionArea
 era:crossSectionArea rdf:type owl:DatatypeProperty ;
-                     rdfs:domain era:Tunnel ;
+                     rdfs:subPropertyOf era:tunnelDataParameter ;
+                     rdfs:domain [ rdf:type owl:Class ;
+                                   owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                 era:Tunnel
+                                               )
+                                 ] ;
                      rdfs:range xsd:integer ;
                      era:XMLName "ITU_CrossSectionArea" ;
                      era:rinfIndex "1.1.1.1.8.8" ;
@@ -4347,6 +4565,13 @@ era:dangerousGoodsTankCode rdf:type owl:DatatypeProperty ;
                            vs:term_status "stable" .
 
 
+###  http://data.europa.eu/949/declarationOfVerificationDataParameter
+era:declarationOfVerificationDataParameter rdf:type owl:DatatypeProperty ;
+                                           rdfs:subPropertyOf era:infraSubsystemDataParameter ;
+                                           era:rinfIndex "1.1.1.1.1" ;
+                                           rdfs:label "Declarations of verification for track"@en .
+
+
 ###  http://data.europa.eu/949/demonstrationENE
 era:demonstrationENE rdf:type owl:DatatypeProperty ;
                      rdfs:domain era:EnergySubsystem ;
@@ -4364,7 +4589,12 @@ era:demonstrationENE rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/demonstrationINF
 era:demonstrationINF rdf:type owl:DatatypeProperty ;
-                     rdfs:domain era:InfraSubsystem ;
+                     rdfs:subPropertyOf era:declarationOfVerificationDataParameter ;
+                     rdfs:domain [ rdf:type owl:Class ;
+                                   owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                 era:Track
+                                               )
+                                 ] ;
                      rdfs:range xsd:string ;
                      era:XMLName "IDE_EIDemonstration" ;
                      era:rinfIndex "1.1.1.1.1.2" ,
@@ -4387,7 +4617,12 @@ The procedure for demonstration that existing network fits to requirements of th
 
 ###  http://data.europa.eu/949/demonstrationSRT
 era:demonstrationSRT rdf:type owl:DatatypeProperty ;
-                     rdfs:domain era:InfraSubsystem ;
+                     rdfs:subPropertyOf era:tunnelDataParameter ;
+                     rdfs:domain [ rdf:type owl:Class ;
+                                   owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                 era:Tunnel
+                                               )
+                                 ] ;
                      rdfs:range xsd:string ;
                      era:XMLName "ITU_EIDemonstration" ;
                      era:rinfIndex "1.1.1.1.8.6" ,
@@ -4875,7 +5110,12 @@ era:fixedSeats rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/flangeLubeForbidden
 era:flangeLubeForbidden rdf:type owl:DatatypeProperty ;
-                        rdfs:domain era:InfraSubsystem ;
+                        rdfs:subPropertyOf era:healthSafetyAndEnvironmentDataParameter ;
+                        rdfs:domain [ rdf:type owl:Class ;
+                                      owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                    era:Track
+                                                  )
+                                    ] ;
                         rdfs:range xsd:boolean ;
                         era:XMLName "IHS_FlangeLubeForbidden" ;
                         era:rinfIndex "1.1.1.1.7.1" ;
@@ -4942,7 +5182,12 @@ era:frenchTrainDetectionSystemLimitationApplicable rdf:type owl:DatatypeProperty
 
 ###  http://data.europa.eu/949/gaugingCheckLocation
 era:gaugingCheckLocation rdf:type owl:DatatypeProperty ;
-                         rdfs:domain era:InfraSubsystem ;
+                         rdfs:subPropertyOf era:lineLayoutDataParameter ;
+                         rdfs:domain [ rdf:type owl:Class ;
+                                       owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                     era:Track
+                                                   )
+                                     ] ;
                          rdfs:range xsd:string ;
                          era:XMLName "ILL_GaugeCheckLoc" ;
                          era:rinfIndex "1.1.1.1.3.1.2" ,
@@ -5023,7 +5268,12 @@ era:gradient rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/gradientProfile
 era:gradientProfile rdf:type owl:DatatypeProperty ;
-                    rdfs:domain era:InfraSubsystem ;
+                    rdfs:subPropertyOf era:lineLayoutDataParameter ;
+                    rdfs:domain [ rdf:type owl:Class ;
+                                  owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                era:Track
+                                              )
+                                ] ;
                     rdfs:range xsd:string ;
                     era:XMLName "ILL_GradProfile" ;
                     era:appendixD2Index "3.2.1" ,
@@ -5160,7 +5410,12 @@ era:hasAutomaticDroppingDevice rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/hasBallast
 era:hasBallast rdf:type owl:DatatypeProperty ;
-               rdfs:domain era:InfraSubsystem ;
+               rdfs:subPropertyOf era:trackDataParameter ;
+               rdfs:domain [ rdf:type owl:Class ;
+                             owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                           era:Track
+                                         )
+                           ] ;
                rdfs:range xsd:boolean ;
                era:XMLName "ITP_Ballast" ;
                era:rinfIndex "1.1.1.1.4.4" ;
@@ -5245,7 +5500,12 @@ era:hasElectricShoreSupply rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/hasEmergencyPlan
 era:hasEmergencyPlan rdf:type owl:DatatypeProperty ;
-                     rdfs:domain era:Tunnel ;
+                     rdfs:subPropertyOf era:tunnelDataParameter ;
+                     rdfs:domain [ rdf:type owl:Class ;
+                                   owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                 era:Tunnel
+                                               )
+                                 ] ;
                      rdfs:range xsd:boolean ;
                      era:XMLName "ITU_EmergencyPlan" ;
                      era:rinfIndex "1.1.1.1.8.9" ,
@@ -5307,7 +5567,12 @@ era:hasExternalCleaning rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/hasHotAxleBoxDetector
 era:hasHotAxleBoxDetector rdf:type owl:DatatypeProperty ;
-                          rdfs:domain era:InfraSubsystem ;
+                          rdfs:subPropertyOf era:healthSafetyAndEnvironmentDataParameter ;
+                          rdfs:domain [ rdf:type owl:Class ;
+                                        owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                      era:Track
+                                                    )
+                                      ] ;
                           rdfs:range xsd:boolean ;
                           era:XMLName "IHS_HABDExist" ;
                           era:rinfIndex "1.1.1.1.7.4" ;
@@ -5322,7 +5587,12 @@ era:hasHotAxleBoxDetector rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/hasLevelCrossings
 era:hasLevelCrossings rdf:type owl:DatatypeProperty ;
-                      rdfs:domain era:InfraSubsystem ;
+                      rdfs:subPropertyOf era:healthSafetyAndEnvironmentDataParameter ;
+                      rdfs:domain [ rdf:type owl:Class ;
+                                    owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                  era:Track
+                                                )
+                                  ] ;
                       rdfs:range xsd:boolean ;
                       era:XMLName "IHS_LevelCrossing" ;
                       era:rinfIndex "1.1.1.1.7.2" ;
@@ -5460,7 +5730,12 @@ era:hasSchematicOverviewOPDigitalForm rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/hasSevereWeatherConditions
 era:hasSevereWeatherConditions rdf:type owl:DatatypeProperty ;
-                               rdfs:domain era:InfraSubsystem ;
+                               rdfs:subPropertyOf era:performanceDataParameter ;
+                               rdfs:domain [ rdf:type owl:Class ;
+                                             owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                           era:Track
+                                                         )
+                                           ] ;
                                rdfs:range xsd:boolean ;
                                era:XMLName "IPP_SevereClimateCon" ;
                                era:rinfIndex "1.1.1.1.2.8" ;
@@ -5603,9 +5878,21 @@ era:hasWheelSlideProtectionSystem rdf:type owl:DatatypeProperty ;
                                   vs:term_status "stable" .
 
 
+###  http://data.europa.eu/949/healthSafetyAndEnvironmentDataParameter
+era:healthSafetyAndEnvironmentDataParameter rdf:type owl:DatatypeProperty ;
+                                            rdfs:subPropertyOf era:infraSubsystemDataParameter ;
+                                            era:rinfIndex "1.1.1.1.7" ;
+                                            rdfs:label "Health, safety and environment"@en .
+
+
 ###  http://data.europa.eu/949/highSpeedLoadModelCompliance
 era:highSpeedLoadModelCompliance rdf:type owl:DatatypeProperty ;
-                                 rdfs:domain era:InfraSubsystem ;
+                                 rdfs:subPropertyOf era:performanceDataParameter ;
+                                 rdfs:domain [ rdf:type owl:Class ;
+                                               owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                             era:Track
+                                                           )
+                                             ] ;
                                  rdfs:range xsd:boolean ;
                                  era:XMLName "IPP_HSLMCompliant" ;
                                  era:rinfIndex "1.1.1.1.2.4.2" ;
@@ -5624,7 +5911,12 @@ Information regarding the procedure to be used to perform the dynamic compatibil
 
 ###  http://data.europa.eu/949/hotAxleBoxDetectorGeneration
 era:hotAxleBoxDetectorGeneration rdf:type owl:DatatypeProperty ;
-                                 rdfs:domain era:InfraSubsystem ;
+                                 rdfs:subPropertyOf era:healthSafetyAndEnvironmentDataParameter ;
+                                 rdfs:domain [ rdf:type owl:Class ;
+                                               owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                             era:Track
+                                                           )
+                                             ] ;
                                  rdfs:range xsd:string ;
                                  era:XMLName "IHS_HABDGen" ;
                                  era:rinfIndex "1.1.1.1.7.7" ;
@@ -5640,7 +5932,12 @@ Generation of trackside hot axle box detector."""@en ;
 
 ###  http://data.europa.eu/949/hotAxleBoxDetectorIdentification
 era:hotAxleBoxDetectorIdentification rdf:type owl:DatatypeProperty ;
-                                     rdfs:domain era:InfraSubsystem ;
+                                     rdfs:subPropertyOf era:healthSafetyAndEnvironmentDataParameter ;
+                                     rdfs:domain [ rdf:type owl:Class ;
+                                                   owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                                 era:Track
+                                                               )
+                                                 ] ;
                                      rdfs:range xsd:string ;
                                      era:XMLName "IHS_HABDID" ;
                                      era:rinfIndex "1.1.1.1.7.6" ;
@@ -5656,7 +5953,12 @@ Applicable if trackside HABD is not TSI compliant, identification of trackside h
 
 ###  http://data.europa.eu/949/hotAxleBoxDetectorLocation
 era:hotAxleBoxDetectorLocation rdf:type owl:DatatypeProperty ;
-                               rdfs:domain era:InfraSubsystem ;
+                               rdfs:subPropertyOf era:healthSafetyAndEnvironmentDataParameter ;
+                               rdfs:domain [ rdf:type owl:Class ;
+                                             owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                           era:Track
+                                                         )
+                                           ] ;
                                rdfs:range xsd:double ;
                                era:XMLName "IHS_HABDLoc" ;
                                era:rinfIndex "1.1.1.1.7.8" ;
@@ -5672,7 +5974,12 @@ Applicable if trackside HABD is not TSI compliant, localisation of trackside hot
 
 ###  http://data.europa.eu/949/hotAxleBoxDetectorTSICompliant
 era:hotAxleBoxDetectorTSICompliant rdf:type owl:DatatypeProperty ;
-                                   rdfs:domain era:InfraSubsystem ;
+                                   rdfs:subPropertyOf era:healthSafetyAndEnvironmentDataParameter ;
+                                   rdfs:domain [ rdf:type owl:Class ;
+                                                 owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                               era:Track
+                                                             )
+                                               ] ;
                                    rdfs:range xsd:boolean ;
                                    era:XMLName "IHS_TSIHABD" ;
                                    era:rinfIndex "1.1.1.1.7.5" ;
@@ -5745,6 +6052,13 @@ the functions of the infrastructure manager on a network or part of a network ma
            vs:term_status "stable" .
 
 
+###  http://data.europa.eu/949/infraSubsystemDataParameter
+era:infraSubsystemDataParameter rdf:type owl:DatatypeProperty ;
+                                rdfs:subPropertyOf era:technicalDataCharacteristic ;
+                                era:rinfIndex "1.1.1.1" ;
+                                rdfs:label "Infrastructure subsystem"@en .
+
+
 ###  http://data.europa.eu/949/instructionsSwitchRadioSystems
 era:instructionsSwitchRadioSystems rdf:type owl:DatatypeProperty ;
                                    rdfs:domain era:CCSSubsystem ;
@@ -5765,7 +6079,12 @@ era:instructionsSwitchRadioSystems rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/isQuietRoute
 era:isQuietRoute rdf:type owl:DatatypeProperty ;
-                 rdfs:domain era:InfraSubsystem ;
+                 rdfs:subPropertyOf era:healthSafetyAndEnvironmentDataParameter ;
+                 rdfs:domain [ rdf:type owl:Class ;
+                               owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                             era:Track
+                                           )
+                             ] ;
                  rdfs:range xsd:boolean ;
                  era:XMLName "IHS_QuietRoute" ;
                  era:rinfIndex "1.1.1.1.7.11" ;
@@ -5918,7 +6237,8 @@ where trains can be parked safely."""@en ;
 
 ###  http://data.europa.eu/949/lengthOfTunnel
 era:lengthOfTunnel rdf:type owl:DatatypeProperty ;
-                   rdfs:subPropertyOf era:length ;
+                   rdfs:subPropertyOf era:length ,
+                                      era:tunnelDataParameter ;
                    rdfs:domain era:Tunnel ;
                    rdfs:range xsd:double ;
                    era:XMLName "ITU_Length" ;
@@ -5947,6 +6267,13 @@ era:letterMarking rdf:type owl:DatatypeProperty ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "Letter marking"@en ;
                   vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/lineLayoutDataParameter
+era:lineLayoutDataParameter rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf era:infraSubsystemDataParameter ;
+                            era:rinfIndex "1.1.1.1.3" ;
+                            rdfs:label "Line layout"@en .
 
 
 ###  http://data.europa.eu/949/linearCoordinate
@@ -6220,7 +6547,12 @@ era:maxTrainCurrent rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/maximumAltitude
 era:maximumAltitude rdf:type owl:DatatypeProperty ;
-                    rdfs:domain era:InfraSubsystem ;
+                    rdfs:subPropertyOf era:performanceDataParameter ;
+                    rdfs:domain [ rdf:type owl:Class ;
+                                  owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                era:Track
+                                              )
+                                ] ;
                     rdfs:range xsd:double ;
                     era:rinfIndex "1.1.1.1.2.7" ;
                     era:unitOfMeasure unit:M ;
@@ -6418,9 +6750,14 @@ era:maximumMagneticFieldDirectionZ rdf:type owl:DatatypeProperty ,
 
 
 ###  http://data.europa.eu/949/maximumPermittedSpeed
-era:maximumPermittedSpeed rdf:type owl:DatatypeProperty ,
-                                   owl:FunctionalProperty ;
-                          rdfs:domain era:InfraSubsystem ;
+era:maximumPermittedSpeed rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf era:performanceDataParameter ;
+                          rdf:type owl:FunctionalProperty ;
+                          rdfs:domain [ rdf:type owl:Class ;
+                                        owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                      era:Track
+                                                    )
+                                      ] ;
                           rdfs:range xsd:integer ;
                           era:XMLName "IPP_MaxSpeed" ;
                           era:appendixD2Index "3.1.4" ;
@@ -6509,7 +6846,12 @@ era:maximumTemperature rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/maximumTrainDeceleration
 era:maximumTrainDeceleration rdf:type owl:DatatypeProperty ;
-                             rdfs:domain era:InfraSubsystem ;
+                             rdfs:subPropertyOf era:trackResistanceToAppliedLoadsDataParameter ;
+                             rdfs:domain [ rdf:type owl:Class ;
+                                           owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                         era:Track
+                                                       )
+                                         ] ;
                              rdfs:range xsd:double ;
                              era:XMLName "ILR_MaxDeceleration" ;
                              era:rinfIndex "1.1.1.1.6.1" ;
@@ -6768,8 +7110,10 @@ era:minimumConvexVerticalRadius rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/minimumHorizontalRadius
 era:minimumHorizontalRadius rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf era:lineLayoutDataParameter ;
                             rdfs:domain [ rdf:type owl:Class ;
-                                          owl:unionOf ( era:InfraSubsystem
+                                          owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                        era:Track
                                                         era:VehicleType
                                                       )
                                         ] ;
@@ -6867,8 +7211,10 @@ era:minimumVerticalRadiusHollow rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/minimumWheelDiameter
 era:minimumWheelDiameter rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf era:switchesAndrossingsDataParameter ;
                          rdfs:domain [ rdf:type owl:Class ;
-                                       owl:unionOf ( era:InfraSubsystem
+                                       owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                     era:Track
                                                      era:VehicleType
                                                    )
                                      ] ;
@@ -6929,7 +7275,12 @@ In case when SoL is the track connecting between OPs within big node (resulting 
 
 ###  http://data.europa.eu/949/nationalLoadCapability
 era:nationalLoadCapability rdf:type owl:DatatypeProperty ;
-                           rdfs:domain era:InfraSubsystem ;
+                           rdfs:subPropertyOf era:performanceDataParameter ;
+                           rdfs:domain [ rdf:type owl:Class ;
+                                         owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                       era:Track
+                                                     )
+                                       ] ;
                            rdfs:range xsd:string ;
                            era:XMLName "IPP_NCLoadCap" ;
                            era:rinfIndex "1.1.1.1.2.4.1" ;
@@ -6946,7 +7297,12 @@ era:nationalLoadCapability rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/nationalRollingStockFireCategory
 era:nationalRollingStockFireCategory rdf:type owl:DatatypeProperty ;
-                                     rdfs:domain era:Tunnel ;
+                                     rdfs:subPropertyOf era:tunnelDataParameter ;
+                                     rdfs:domain [ rdf:type owl:Class ;
+                                                   owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                                 era:Tunnel
+                                                               )
+                                                 ] ;
                                      rdfs:range xsd:string ;
                                      era:XMLName "ITU_NatFireCatReq" ;
                                      era:rinfIndex "1.1.1.1.8.11" ,
@@ -7151,6 +7507,13 @@ era:passByNoiseLevel rdf:type owl:DatatypeProperty ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "Pass-by noise level"@en ;
                      vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/performanceDataParameter
+era:performanceDataParameter rdf:type owl:DatatypeProperty ;
+                             rdfs:subPropertyOf era:infraSubsystemDataParameter ;
+                             era:rinfIndex "1.1.1.1.2" ;
+                             rdfs:label "Performance parameter"@en .
 
 
 ###  http://data.europa.eu/949/permissiblePayload
@@ -7663,7 +8026,12 @@ Format: [NNNN NNNN NNNN NNNN] with N a decimal number (0÷9)"""@en ;
 
 ###  http://data.europa.eu/949/redLightsRequired
 era:redLightsRequired rdf:type owl:DatatypeProperty ;
-                      rdfs:domain era:InfraSubsystem ;
+                      rdfs:subPropertyOf era:healthSafetyAndEnvironmentDataParameter ;
+                      rdfs:domain [ rdf:type owl:Class ;
+                                    owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                  era:Track
+                                                )
+                                  ] ;
                       rdfs:range xsd:boolean ;
                       era:XMLName "IHS_RedLights" ;
                       era:rinfIndex "1.1.1.1.7.10" ;
@@ -7811,7 +8179,12 @@ era:sleepingPlaces rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/specificInformation
 era:specificInformation rdf:type owl:DatatypeProperty ;
-                        rdfs:domain era:InfraSubsystem ;
+                        rdfs:subPropertyOf era:lineLayoutDataParameter ;
+                        rdfs:domain [ rdf:type owl:Class ;
+                                      owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                    era:Track
+                                                  )
+                                    ] ;
                         rdfs:range xsd:string ;
                         era:XMLName "ILL_SpecificInfo" ;
                         era:rinfIndex "1.1.1.1.3.5.1" ;
@@ -7916,7 +8289,12 @@ era:structuralCategory rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/structureCheckLocation
 era:structureCheckLocation rdf:type owl:DatatypeProperty ;
-                           rdfs:domain era:InfraSubsystem ;
+                           rdfs:subPropertyOf era:performanceDataParameter ;
+                           rdfs:domain [ rdf:type owl:Class ;
+                                         owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                       era:Track
+                                                     )
+                                       ] ;
                            rdfs:range xsd:double ;
                            era:XMLName "IPP_StructureCheckLoc" ;
                            era:rinfIndex "1.1.1.1.2.4.3" ;
@@ -7999,6 +8377,13 @@ era:switchRadioSystem rdf:type owl:DatatypeProperty ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                       rdfs:label "Existence of switch over between different radio systems"@en ;
                       vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/switchesAndrossingsDataParameter
+era:switchesAndrossingsDataParameter rdf:type owl:DatatypeProperty ;
+                                     rdfs:subPropertyOf era:infraSubsystemDataParameter ;
+                                     era:rinfIndex "1.1.1.1.5" ;
+                                     rdfs:label "Switches and crossings"@en .
 
 
 ###  http://data.europa.eu/949/systemSeparationInfo
@@ -8165,9 +8550,19 @@ era:tafTAPCode rdf:type owl:DatatypeProperty ;
                vs:term_status "stable" .
 
 
+###  http://data.europa.eu/949/technicalDataCharacteristic
+era:technicalDataCharacteristic rdf:type owl:DatatypeProperty ;
+                                rdfs:label "Technical characteristic"@en .
+
+
 ###  http://data.europa.eu/949/tenGISId
 era:tenGISId rdf:type owl:DatatypeProperty ;
-             rdfs:domain era:InfraSubsystem ;
+             rdfs:subPropertyOf era:performanceDataParameter ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                         era:Track
+                                       )
+                         ] ;
              rdfs:range xsd:string ;
              era:XMLName "IPP_TENGISID" ;
              era:rinfIndex "1.1.1.1.2.1.2" ;
@@ -8265,6 +8660,13 @@ era:totalVehicleMass rdf:type owl:DatatypeProperty ;
                      vs:term_status "stable" .
 
 
+###  http://data.europa.eu/949/trackDataParameter
+era:trackDataParameter rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf era:infraSubsystemDataParameter ;
+                       era:rinfIndex "1.1.1.1.4" ;
+                       rdfs:label "Track paarameters"@en .
+
+
 ###  http://data.europa.eu/949/trackId
 era:trackId rdf:type owl:DatatypeProperty ;
             rdfs:subPropertyOf dcterms:identifier ;
@@ -8285,6 +8687,12 @@ era:trackId rdf:type owl:DatatypeProperty ;
             rdfs:label "Identification of track"@en ;
             vs:term_status "stable" ;
             skos:scopeNote "The check regarding the uniqueness of the ID within the SoL has to be done on national level (preferably by IM)."@en .
+
+
+###  http://data.europa.eu/949/trackResistanceToAppliedLoadsDataParameter
+era:trackResistanceToAppliedLoadsDataParameter rdf:type owl:DatatypeProperty ;
+                                               rdfs:subPropertyOf era:infraSubsystemDataParameter ;
+                                               era:rinfIndex "1.1.1.1.6" .
 
 
 ###  http://data.europa.eu/949/trainControlSwitchOverSpecialConditions
@@ -8379,7 +8787,12 @@ era:tsiMagneticFields rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/tsiSwitchCrossing
 era:tsiSwitchCrossing rdf:type owl:DatatypeProperty ;
-                      rdfs:domain era:InfraSubsystem ;
+                      rdfs:subPropertyOf era:switchesAndrossingsDataParameter ;
+                      rdfs:domain [ rdf:type owl:Class ;
+                                    owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                  era:Track
+                                                )
+                                  ] ;
                       rdfs:range xsd:boolean ;
                       era:XMLName "ISC_TSISwitchCrossing" ;
                       era:rinfIndex "1.1.1.1.5.1" ;
@@ -8407,9 +8820,17 @@ era:tsiTractionHarmonics rdf:type owl:DatatypeProperty ;
                          vs:term_status "stable" .
 
 
+###  http://data.europa.eu/949/tunnelDataParameter
+era:tunnelDataParameter rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf era:infraSubsystemDataParameter ;
+                        era:rinfIndex "1.1.1.1.8" ;
+                        rdfs:label "Tunnel"@en .
+
+
 ###  http://data.europa.eu/949/tunnelIdentification
 era:tunnelIdentification rdf:type owl:DatatypeProperty ;
-                         rdfs:subPropertyOf dcterms:identifier ;
+                         rdfs:subPropertyOf era:tunnelDataParameter ,
+                                            dcterms:identifier ;
                          rdfs:domain era:Tunnel ;
                          rdfs:range xsd:string ;
                          era:XMLName "OPSidingTunnelIdentification" ,
@@ -8755,7 +9176,12 @@ era:verificationENE rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/verificationINF
 era:verificationINF rdf:type owl:DatatypeProperty ;
-                    rdfs:domain era:InfraSubsystem ;
+                    rdfs:subPropertyOf era:declarationOfVerificationDataParameter ;
+                    rdfs:domain [ rdf:type owl:Class ;
+                                  owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                era:Track
+                                              )
+                                ] ;
                     rdfs:range xsd:string ;
                     era:XMLName "IDE_ECVerification" ;
                     era:rinfIndex "1.1.1.1.1.1" ,
@@ -8774,7 +9200,12 @@ era:verificationINF rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/verificationSRT
 era:verificationSRT rdf:type owl:DatatypeProperty ;
-                    rdfs:domain era:InfraSubsystem ;
+                    rdfs:subPropertyOf era:tunnelDataParameter ;
+                    rdfs:domain [ rdf:type owl:Class ;
+                                  owl:unionOf ( era:SubsetWithCommonCharacteristics
+                                                era:Tunnel
+                                              )
+                                ] ;
                     rdfs:range xsd:string ;
                     era:XMLName "ITU_ECVerification" ;
                     era:rinfIndex "1.1.1.1.8.5" ,
@@ -10026,18 +10457,9 @@ foaf:Person rdf:type owl:Class ;
             vs:term_status "stable" .
 
 
-[ foaf:name "Ghislain Atemezing" ;
-  dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
+[ foaf:name "Dragos Patru" ;
   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
 ] .
-
-[ foaf:name "Dragos Patru" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Maarten Duhoux" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
 
 [ foaf:name "Ghislain Atemezing" ;
    rdfs:seeAlso <https://orcid.org/0000-0003-1562-6922> ;
@@ -10045,6 +10467,15 @@ foaf:Person rdf:type owl:Class ;
  ] .
 
 [ foaf:name "Maarten Duhoux" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Maarten Duhoux" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Ghislain Atemezing" ;
+   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
  ] .
 
@@ -10065,14 +10496,14 @@ era:trainDetectionSystemSpecificCheck rdfs:label "Type of track circuits or axle
                                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                        vs:term_status "stable" ;
                                        dcterms:modified "2021-08-08"^^xsd:date ;
-                                       skos:scopeNote "Only applicable, when 1.1.1.3.7.1.1 is applicable."@en ;
                                        era:rinfIndex "1.1.1.3.7.1.2" ;
+                                       skos:scopeNote "Only applicable, when 1.1.1.3.7.1.1 is applicable."@en ;
                                        dcterms:modified "2024-09-19"^^xsd:date ;
                                        dcterms:description "String containing the name of the TD system for which checks are mentioned in 1.1.1.3.7.1.3."@en ;
                                        skos:scopeNote "String containing the name of the TD system for which checks are mentioned in 1.1.1.3.7.1.3."@en ;
                                        era:XMLName "CTD_TCCheck" ;
-                                       dcterms:modified "2024-09-25"^^xsd:date ;
                                        era:inSkosConceptScheme <http://data.europa.eu/949/concepts/train-detection-specific-checks/TrainDetectionSystemsSpecificChecks> ;
+                                       dcterms:modified "2024-09-25"^^xsd:date ;
                                        dcterms:created "2020-08-24"^^xsd:date ;
                                        dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                        era:rinfIndex "1.2.1.1.6.1" ;
