@@ -736,11 +736,11 @@ era:category rdf:type owl:ObjectProperty ;
              vs:term_status "stable" .
 
 
-###  http://data.europa.eu/949/ccsSubsystemDeclarationsOfVerificationObjParameter
-era:ccsSubsystemDeclarationsOfVerificationObjParameter rdf:type owl:ObjectProperty ;
-                                                       rdfs:subPropertyOf era:ccsSubsystemObjParameter ;
-                                                       era:rinfIndex "1.1.1.3.1" ;
-                                                       rdfs:label "Declarations of verification for track"@en .
+###  http://data.europa.eu/949/ccsSubsystemDeclarationsVerificationTrackObjParameter
+era:ccsSubsystemDeclarationsVerificationTrackObjParameter rdf:type owl:ObjectProperty ;
+                                                          rdfs:subPropertyOf era:ccsSubsystemObjParameter ;
+                                                          era:rinfIndex "1.1.1.3.1" ;
+                                                          rdfs:label "Declarations of verification for track"@en .
 
 
 ###  http://data.europa.eu/949/ccsSubsystemObjParameter
@@ -1156,7 +1156,7 @@ and frequency)."""@en ;
 
 ###  http://data.europa.eu/949/errorCorrectionsOnboard
 era:errorCorrectionsOnboard rdf:type owl:ObjectProperty ;
-                            rdfs:subPropertyOf era:ccsSubsystemDeclarationsOfVerificationObjParameter ;
+                            rdfs:subPropertyOf era:ccsSubsystemDeclarationsVerificationTrackObjParameter ;
                             rdfs:domain [ rdf:type owl:Class ;
                                           owl:unionOf ( era:SubsetWithCommonCharacteristics
                                                         era:Track
@@ -1960,12 +1960,12 @@ era:inCountry rdf:type owl:ObjectProperty ;
               skos:editorialNote "TODO review the property"@en .
 
 
-###  http://data.europa.eu/949/infraSubsystemDeclarationsOfVerificationObjParameter
-era:infraSubsystemDeclarationsOfVerificationObjParameter rdf:type owl:ObjectProperty ;
-                                                         rdfs:subPropertyOf era:infraSubsystemObjParameter ;
-                                                         era:rinfIndex "1.1.1.1.1" ,
-                                                                       "1.2.1.0.1" ;
-                                                         rdfs:label "Declarations of verification for track"@en .
+###  http://data.europa.eu/949/infraSubsystemDeclarationsVerificationTrackObjParameter
+era:infraSubsystemDeclarationsVerificationTrackObjParameter rdf:type owl:ObjectProperty ;
+                                                            rdfs:subPropertyOf era:infraSubsystemObjParameter ;
+                                                            era:rinfIndex "1.1.1.1.1" ,
+                                                                          "1.2.1.0.1" ;
+                                                            rdfs:label "Declarations of verification for track"@en .
 
 
 ###  http://data.europa.eu/949/infraSubsystemObjParameter
@@ -2077,8 +2077,8 @@ TSI categories of line shall be used for the classification of existing lines to
 era:lineLayoutObjParameter rdf:type owl:ObjectProperty ;
                            rdfs:subPropertyOf era:infraSubsystemObjParameter ;
                            era:rinfIndex "1.1.1.1.3" ,
-                                         "1.2.1.0.3" ,
-                                         "Line layout" .
+                                         "1.2.1.0.3" ;
+                           rdfs:label "Line layout"@en .
 
 
 ###  http://data.europa.eu/949/lineNationalId
@@ -4393,10 +4393,6 @@ geo:hasGeometry rdf:type owl:ObjectProperty ;
                 skos:prefLabel "hasGeometry"@en .
 
 
-###  http://www.w3.org/2002/07/owl#topObjectProperty
-owl:topObjectProperty rdfs:label "infrastructure subsystem parameter"@en .
-
-
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
 wgs:location rdf:type owl:ObjectProperty .
 
@@ -4673,11 +4669,11 @@ era:ccsSubsystemDataParameter rdf:type owl:DatatypeProperty ;
                               rdfs:label "Control-command and signalling subsystem"@en .
 
 
-###  http://data.europa.eu/949/ccsSubsystemDeclarationsOfVerificationDataParameter
-era:ccsSubsystemDeclarationsOfVerificationDataParameter rdf:type owl:DatatypeProperty ;
-                                                        rdfs:subPropertyOf era:ccsSubsystemDataParameter ;
-                                                        era:rinfIndex "1.1.1.3.1" ;
-                                                        rdfs:label "Declarations of verification for track"@en .
+###  http://data.europa.eu/949/ccsSubsystemDeclarationsVerificationTrackDataParameter
+era:ccsSubsystemDeclarationsVerificationTrackDataParameter rdf:type owl:DatatypeProperty ;
+                                                           rdfs:subPropertyOf era:ccsSubsystemDataParameter ;
+                                                           era:rinfIndex "1.1.1.3.1" ;
+                                                           rdfs:label "Declarations of verification for track"@en .
 
 
 ###  http://data.europa.eu/949/complianceInfTsi
@@ -5030,7 +5026,7 @@ era:dangerousGoodsTankCode rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/demonstrationENE
 era:demonstrationENE rdf:type owl:DatatypeProperty ;
-                     rdfs:subPropertyOf era:energySunsysremDeclarationsVerificationTrackDataParameter ;
+                     rdfs:subPropertyOf era:energySubsysremDeclarationsVerificationTrackDataParameter ;
                      rdfs:domain [ rdf:type owl:Class ;
                                    owl:unionOf ( era:SubsetWithCommonCharacteristics
                                                  era:Track
@@ -5050,7 +5046,7 @@ era:demonstrationENE rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/demonstrationINF
 era:demonstrationINF rdf:type owl:DatatypeProperty ;
-                     rdfs:subPropertyOf era:infraSubsystemDeclarationOfVerificationDataParameter ;
+                     rdfs:subPropertyOf era:infraSubsystemDeclarationsVerificationTrackDataParameter ;
                      rdfs:domain [ rdf:type owl:Class ;
                                    owl:unionOf ( era:SubsetWithCommonCharacteristics
                                                  era:Track
@@ -5326,18 +5322,18 @@ era:energyMeterInstalled rdf:type owl:DatatypeProperty ;
                          vs:term_status "stable" .
 
 
+###  http://data.europa.eu/949/energySubsysremDeclarationsVerificationTrackDataParameter
+era:energySubsysremDeclarationsVerificationTrackDataParameter rdf:type owl:DatatypeProperty ;
+                                                              rdfs:subPropertyOf era:energySubsystemDataParameter ;
+                                                              era:rinfIndex "1.1.1.2.1" ;
+                                                              rdfs:label "Declarations of verification for track"@en .
+
+
 ###  http://data.europa.eu/949/energySubsystemDataParameter
 era:energySubsystemDataParameter rdf:type owl:DatatypeProperty ;
                                  rdfs:subPropertyOf era:technicalDataCharacteristic ;
                                  rdfs:label "1.1.1.2" ,
                                             "Energy subsystem"@en .
-
-
-###  http://data.europa.eu/949/energySunsysremDeclarationsVerificationTrackDataParameter
-era:energySunsysremDeclarationsVerificationTrackDataParameter rdf:type owl:DatatypeProperty ;
-                                                              rdfs:subPropertyOf era:energySubsystemDataParameter ;
-                                                              era:rinfIndex "1.1.1.2.1" ;
-                                                              rdfs:label "Declarations of verification for track"@en .
 
 
 ###  http://data.europa.eu/949/energySupplyMaxPower
@@ -5375,7 +5371,7 @@ era:energySupplySystemTSICompliant rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/errorCorrectionsOnboardExplanation
 era:errorCorrectionsOnboardExplanation rdf:type owl:DatatypeProperty ;
-                                       rdfs:subPropertyOf era:ccsSubsystemDeclarationsOfVerificationDataParameter ;
+                                       rdfs:subPropertyOf era:ccsSubsystemDeclarationsVerificationTrackDataParameter ;
                                        rdfs:domain [ rdf:type owl:Class ;
                                                      owl:unionOf ( era:SubsetWithCommonCharacteristics
                                                                    era:Track
@@ -6628,11 +6624,11 @@ era:infraSubsystemDataParameter rdf:type owl:DatatypeProperty ;
                                 rdfs:label "Infrastructure subsystem"@en .
 
 
-###  http://data.europa.eu/949/infraSubsystemDeclarationOfVerificationDataParameter
-era:infraSubsystemDeclarationOfVerificationDataParameter rdf:type owl:DatatypeProperty ;
-                                                         rdfs:subPropertyOf era:infraSubsystemDataParameter ;
-                                                         era:rinfIndex "1.1.1.1.1" ;
-                                                         rdfs:label "Declarations of verification for track"@en .
+###  http://data.europa.eu/949/infraSubsystemDeclarationsVerificationTrackDataParameter
+era:infraSubsystemDeclarationsVerificationTrackDataParameter rdf:type owl:DatatypeProperty ;
+                                                             rdfs:subPropertyOf era:infraSubsystemDataParameter ;
+                                                             era:rinfIndex "1.1.1.1.1" ;
+                                                             rdfs:label "Declarations of verification for track"@en .
 
 
 ###  http://data.europa.eu/949/instructionsSwitchRadioSystems
@@ -9458,7 +9454,8 @@ era:trackId rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/trackResistanceToAppliedLoadsDataParameter
 era:trackResistanceToAppliedLoadsDataParameter rdf:type owl:DatatypeProperty ;
                                                rdfs:subPropertyOf era:infraSubsystemDataParameter ;
-                                               era:rinfIndex "1.1.1.1.6" .
+                                               era:rinfIndex "1.1.1.1.6" ;
+                                               rdfs:label "Track resistance to applied loads"@en .
 
 
 ###  http://data.europa.eu/949/trainControlSwitchOverSpecialConditions
@@ -9986,7 +9983,7 @@ era:vehiclesComposingFixedFormation rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/verificationCCS
 era:verificationCCS rdf:type owl:DatatypeProperty ;
-                    rdfs:subPropertyOf era:ccsSubsystemDeclarationsOfVerificationDataParameter ;
+                    rdfs:subPropertyOf era:ccsSubsystemDeclarationsVerificationTrackDataParameter ;
                     rdfs:domain [ rdf:type owl:Class ;
                                   owl:unionOf ( era:SubsetWithCommonCharacteristics
                                                 era:Track
@@ -10005,7 +10002,7 @@ era:verificationCCS rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/verificationENE
 era:verificationENE rdf:type owl:DatatypeProperty ;
-                    rdfs:subPropertyOf era:energySunsysremDeclarationsVerificationTrackDataParameter ;
+                    rdfs:subPropertyOf era:energySubsysremDeclarationsVerificationTrackDataParameter ;
                     rdfs:domain [ rdf:type owl:Class ;
                                   owl:unionOf ( era:SubsetWithCommonCharacteristics
                                                 era:Track
@@ -10024,7 +10021,7 @@ era:verificationENE rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/verificationINF
 era:verificationINF rdf:type owl:DatatypeProperty ;
-                    rdfs:subPropertyOf era:infraSubsystemDeclarationOfVerificationDataParameter ;
+                    rdfs:subPropertyOf era:infraSubsystemDeclarationsVerificationTrackDataParameter ;
                     rdfs:domain [ rdf:type owl:Class ;
                                   owl:unionOf ( era:SubsetWithCommonCharacteristics
                                                 era:Track
@@ -10871,8 +10868,11 @@ era:SystemSeparationInfo rdf:type owl:Class ;
 
 ###  http://data.europa.eu/949/TemporalFeature
 era:TemporalFeature rdf:type owl:Class ;
-                    rdfs:subClassOf time:TemporalDuration ,
-                                    time:TemporalEntity ;
+                    rdfs:subClassOf [ rdf:type owl:Class ;
+                                      owl:unionOf ( time:TemporalDuration
+                                                    time:TemporalEntity
+                                                  )
+                                    ] ;
                     dcterms:created "2024-05-24"^^xsd:date ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "Temporal Feature"@en .
@@ -11280,18 +11280,10 @@ foaf:Person rdf:type owl:Class ;
             vs:term_status "stable" .
 
 
-[ foaf:name "Maarten Duhoux" ;
+[ foaf:name "Ghislain Atemezing" ;
+  dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
 ] .
-
-[ foaf:name "Dragos Patru" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Ghislain Atemezing" ;
-   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
 
 [ foaf:name "Dragos Patru" ;
    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
@@ -11306,6 +11298,14 @@ foaf:Person rdf:type owl:Class ;
    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
  ] .
 
+[ foaf:name "Maarten Duhoux" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Dragos Patru" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
 [ foaf:name "Designated RINF Topical Working Groups"@en
  ] .
 
@@ -11315,20 +11315,20 @@ foaf:Person rdf:type owl:Class ;
 
 era:trainDetectionSystemSpecificCheck rdfs:label "Type of track circuits or axle counters to which specific checks are needed. "@en ;
                                        dcterms:relation era:trainDetectionSystemSpecificCheckDocument ;
-                                       rdfs:comment "Reference to the technical specification of train detection system."@en ;
                                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                       rdfs:comment "Reference to the technical specification of train detection system."@en ;
                                        vs:term_status "stable" ;
                                        dcterms:modified "2021-08-08"^^xsd:date ;
                                        era:rinfIndex "1.1.1.3.7.1.2" ;
                                        skos:scopeNote "Only applicable, when 1.1.1.3.7.1.1 is applicable."@en ;
                                        dcterms:modified "2024-09-19"^^xsd:date ;
-                                       skos:scopeNote "String containing the name of the TD system for which checks are mentioned in 1.1.1.3.7.1.3."@en ;
                                        dcterms:description "String containing the name of the TD system for which checks are mentioned in 1.1.1.3.7.1.3."@en ;
+                                       skos:scopeNote "String containing the name of the TD system for which checks are mentioned in 1.1.1.3.7.1.3."@en ;
                                        era:XMLName "CTD_TCCheck" ;
-                                       dcterms:modified "2024-09-25"^^xsd:date ;
                                        era:inSkosConceptScheme <http://data.europa.eu/949/concepts/train-detection-specific-checks/TrainDetectionSystemsSpecificChecks> ;
-                                       dcterms:created "2020-08-24"^^xsd:date ;
+                                       dcterms:modified "2024-09-25"^^xsd:date ;
                                        dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                                       dcterms:created "2020-08-24"^^xsd:date ;
                                        era:rinfIndex "1.2.1.1.6.1" ;
                                        era:usedInRCCCalculations "false"^^xsd:boolean ;
                                        dcterms:modified "2024-04-18"^^xsd:date ;
