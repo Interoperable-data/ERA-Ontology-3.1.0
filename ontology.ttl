@@ -1,4 +1,3 @@
-@prefix : <http://data.europa.eu/949/> .
 @prefix cc: <http://creativecommons.org/ns#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix era: <http://data.europa.eu/949/> .
@@ -15,14 +14,31 @@
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@base <http://data.europa.eu/949/> .
+
 
 <http://data.europa.eu/949/> rdf:type owl:Ontology ;
                               cc:license <https://creativecommons.org/licenses/by/4.0/> ;
-                              dcterms:contributor [ ] ,
-[ ] ;
-dcterms:creator [ ] ,
-[ ] ;
+                              dcterms:contributor 
+                              [ foaf:name "Maarten Duhoux" ;
+                              org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+                             ] , 
+
+                          [ foaf:name "Edna Rukhaus"],
+                          
+                          [ foaf:name "Oscar Corcho"],
+                        
+                         [ foaf:name "Designated RINF Topical Working Groups"@en
+                         ]  ;
+ dcterms:creator 
+   [ foaf:name "Ghislain Atemezing" ;
+   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+   ]  ,
+  [ foaf:name "Dragos Patru" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ]  ;
+
+
 dcterms:issued "2024-04-18"^^xsd:date ;
 dcterms:modifed "2024-10-28"^^xsd:date ;
 dcterms:modified "2024-04-18"^^xsd:date ,
@@ -184,7 +200,7 @@ Revision 03-06-2024:
 
 Revision 24-05-2024:
 - remove of the owl:FunctionalProperty from every object or data property;
-- addition of new classes for the purpose of the Topical Wrokgroup micro-level;							  
+- addition of new classes for the purpose of the Topical Wrokgroup micro-level;               
 - reshaping the topology layer, deprecating unused properties and renaming some of the classes
 - reuse of the time ontology for addressing the validity and applicability;
 - remove of the axiom era:TopologicalObject as subclass of era:Feature;
@@ -1342,7 +1358,7 @@ era:etcsLevelType rdf:type owl:ObjectProperty ;
                                 "1.2.1.1.1.1" ;
                   dcterms:created "2021-08-07"^^xsd:date ;
                   dcterms:description """The different ERTMS / ETCS application levels are a way to express the possible operating relationships between track and train. 
-	
+  
 Level definitions are principally related to the track side equipment used, to the way the track side information reaches the on-board units and to which functions are processed in the track side and in the on-board equipment respectively."""@en ;
                   dcterms:modified "2024-01-08"^^xsd:date ,
                                    "2024-04-18"^^xsd:date ,
@@ -1362,10 +1378,10 @@ Level definitions are principally related to the track side equipment used, to t
                   rdfs:label "ETCS level type"@en ;
                   vs:term_status "stable" ;
                   skos:scopeNote """If ETCS is on the trackside (one or more levels are selected), all other ETCS parameters (from 1.1.1.3.2.2 to 1.1.1.3.2.10) are applicable.
-	
+  
 The ETCS value NTC is only relevant when the line is dual equipped with ETCS (i.e., balises are placed in the track) and Class B system, and both systems are in operation at the same time. 
 In those cases, this parameter should be filled relevant ETCS Level and repeated with the value “NTC”.
-	
+  
 If the line is only equipped with Class B, this should be reflected in Parameter 1.1.1.3.5.3, and this parameter etcsLevelType should not be used. 
 
 See: TSI CCS (Subset-026, Chapter 2, 2.6)"""@en .
@@ -1555,14 +1571,14 @@ era:frenchTrainDetectionSystemLimitationNumber rdf:type owl:ObjectProperty ;
 Specific for route compatibility check on French network.
 
 Sections with:
-[1]	Tonnage circulated per track is inferior to 15000 tons/day/track
-[2]	Directional Interlocking
-[3]	45-second delay for directional interlocking
-[4]	Installation with track circuit announcement
-[5]	Absence of a shunting assistance pedal in the normal direction of circulation for non-reversible double track lines
-[6]	Absence of a shunting assistance pedal regardless of the direction of traffic for single track lines and tracks for two way working
-[7]	Absence of a pedal announcement mechanism
-[8]	45-second delay for specific announcement reset devices"""@en ;
+[1] Tonnage circulated per track is inferior to 15000 tons/day/track
+[2] Directional Interlocking
+[3] 45-second delay for directional interlocking
+[4] Installation with track circuit announcement
+[5] Absence of a shunting assistance pedal in the normal direction of circulation for non-reversible double track lines
+[6] Absence of a shunting assistance pedal regardless of the direction of traffic for single track lines and tracks for two way working
+[7] Absence of a pedal announcement mechanism
+[8] 45-second delay for specific announcement reset devices"""@en ;
                                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                                rdfs:label "Section with train detection limitation number, only for French network"@en ;
                                                vs:term_status "stable" .
@@ -1585,8 +1601,8 @@ era:frequencyBandsForDetection rdf:type owl:ObjectProperty ;
                                dcterms:description """Verification of compliance with TSI includes application of notified national rules (when they exist).
 
 Multiple selection from a predefined list:
--	Axle Counters: bands A1-A3
--	Track circuits: bands A1-A8"""@en ;
+- Axle Counters: bands A1-A3
+- Track circuits: bands A1-A8"""@en ;
                                dcterms:modified "2024-04-18"^^xsd:date ;
                                dcterms:relation era:maximumInterferenceCurrent ,
                                                 era:minVehicleImpedance ,
@@ -1976,9 +1992,9 @@ era:hotAxleBoxDetectorDirection rdf:type owl:ObjectProperty ;
                                 rdfs:comment """Specific for the French Italian and Swedish networks.
 Applicable if trackside HABD is not TSI compliant, direction of measurement of trackside Hot Axle Box Detector.
 If the direction of measurement is:
--	the same as the direction defined by the start and end of the SoL: (N)
--	the opposite to the direction defined by the start and end of the SoL: (O)
--	both directions: (B)."""@en ,
+- the same as the direction defined by the start and end of the SoL: (N)
+- the opposite to the direction defined by the start and end of the SoL: (O)
+- both directions: (B)."""@en ,
                                              "This property was previously a datatype property with domain Track and range string. As its values are a list of three predefined values, it is now a SKOS."@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "direction of measurement of trackside HABD"@en ;
@@ -6405,10 +6421,10 @@ era:hasSevereWeatherConditions rdf:type owl:DatatypeProperty ;
                                dcterms:description """Value 'true' shall be selected in case there are possible severe climatic conditions to be expected, i.e. a significant amount of snow or ice is to be expected during winter and vehicle should be designed accordingly to be able to run in such conditions. (compliance to 4.2.6.1.2(3),(4) of TSI Loc&Pas required). ‘N’ to be selected otherwise.
 
 Nominal and severe conditions are defined at TSI Loc&Pas level, section 4.2.6.1.2, which requires that the applicant declares to which snow conditions a vehicle complies with : either “nominal” or “severe” conditions. This technical aspect is reflected in the parameter 4.3.3 “Snow, ice and hail conditions” of ERATV , which will provide the two possible values:
--	Nominal conditions correspond to compliance with clause 4.7 of EN 50125 as referred in the §4.2.6.1.2 (1) of TSI Loc&Pas.
+- Nominal conditions correspond to compliance with clause 4.7 of EN 50125 as referred in the §4.2.6.1.2 (1) of TSI Loc&Pas.
 To be noted: It is not required to precise the categorisation S1, S2 or S3 as mentioned in the EN 50125.
 
--	Severe conditions correspond to compliance with §4.2.6.1.2 (3) and (4) : the applicant designs and tests its vehicle according to the different scenarios mentioned in the TSI §4.2.6.1.2 (3) (snowdrift, powder snow, temperature gradient, etc.) and set the related provisions to achieve this as required by §4.2.6.1.2 (4) (obstacle deflector of sufficient size, effect of ice and snow on running gear and brake function, etc.)."""@en ;
+- Severe conditions correspond to compliance with §4.2.6.1.2 (3) and (4) : the applicant designs and tests its vehicle according to the different scenarios mentioned in the TSI §4.2.6.1.2 (3) (snowdrift, powder snow, temperature gradient, etc.) and set the related provisions to achieve this as required by §4.2.6.1.2 (4) (obstacle deflector of sufficient size, effect of ice and snow on running gear and brake function, etc.)."""@en ;
                                dcterms:modified "2021-09-10"^^xsd:date ,
                                                 "2024-09-19"^^xsd:date ;
                                dcterms:source <http://data.europa.eu/eli/reg/2014/1302/2023-09-28> ;
@@ -7021,8 +7037,8 @@ era:loadCapabilitySpeed rdf:type owl:DatatypeProperty ;
                         rdfs:label "Load capability speed"@en ;
                         vs:term_status "stable" ;
                         skos:scopeNote """ The load capability is a value selected from the list of load models representing: 
-						line category which is amended by value of speed [km/h] permitted for a specific load model. 
-						The list of values may also be Route Availability which is amended by value of speed [miles/h] permitted for a specific load model."""@en .
+            line category which is amended by value of speed [km/h] permitted for a specific load model. 
+            The list of values may also be Route Availability which is amended by value of speed [miles/h] permitted for a specific load model."""@en .
 
 
 ###  http://data.europa.eu/949/loadingPlatformHeight
@@ -8415,7 +8431,7 @@ era:phaseInfo rdf:type owl:DatatypeProperty ;
               owl:deprecated "true"^^xsd:boolean ;
               vs:term_status "stable" ;
               skos:editorialNote """ Deprecated because of replacement by three properties. The reason is that the property is composed of three values: length [NNN] - the length of the phase separation in metres; switch off breaker [Y/N], single selection of 'yes' or 'no' to show whether the breaker has to be switched off; and lower pantograph [Y/N], single selection of 'yes' or 'no' to show whether the pantograph has to be lowered,  
-			             Km [NNN.NNN] - the location from the start of the line where the new value is valid."""@en .
+                   Km [NNN.NNN] - the location from the start of the line where the new value is valid."""@en .
 
 
 ###  http://data.europa.eu/949/phaseInfoChangeSupplySystem
@@ -10279,8 +10295,8 @@ era:weight rdf:type owl:DatatypeProperty ;
 
 :x rdf:type eraLinearElementLink;
     era:from :le1;
-	  era:to :le2;
-		era:weight \"1.234\"^^xsd:double; #length of the track topologically represented as :le1"""@en ;
+    era:to :le2;
+    era:weight \"1.234\"^^xsd:double; #length of the track topologically represented as :le1"""@en ;
            skos:scopeNote "The value of the weight is represented by the length of the functional representation of the linear element defined by the property era:from of the era:LinearElementLink."@en .
 
 
@@ -11463,35 +11479,6 @@ foaf:Person rdf:type owl:Class ;
             rdfs:label "Person" ;
             vs:term_status "stable" .
 
-
-[ foaf:name "Maarten Duhoux" ;
-  org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
-] .
-
-[ foaf:name "Dragos Patru" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Ghislain Atemezing" ;
-   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Dragos Patru" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Maarten Duhoux" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Ghislain Atemezing" ;
-   rdfs:seeAlso <https://orcid.org/0000-0003-1562-6922> ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Designated RINF Topical Working Groups"@en
- ] .
 
 #################################################################
 #    Annotations
