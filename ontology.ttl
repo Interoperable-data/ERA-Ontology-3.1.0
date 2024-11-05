@@ -55,6 +55,7 @@ dcterms:modified "2024-04-18"^^xsd:date ,
                  "2024-09-25"^^xsd:date ,
                  "2024-10-24"^^xsd:date ,
                  "2024-10-29"^^xsd:date ;
+                 "2024-11-05"^^xsd:date ;
 dcterms:publisher "European Union Agency for Railways" ;
 dcterms:title "ERA Ontology"@en ;
 rdfs:comment """This is the human and machine readable Ontology governed by the European Union Agency for Railways (https://www.era.europa.eu/). It represents the concepts and relationships linked to the sectorial legal framework and the use cases under the AgencyÂ´s remit, as described in the Commission Implementing Regulation (EU) [to be updated after publication] on the common specifications for the register of railway infrastructure [to be updated after publication].
@@ -69,8 +70,13 @@ rdfs:seeAlso "https://www.era.europa.eu/sites/default/files/registers/docs/iu-er
 owl:priorVersion "https://github.com/Interoperable-data/ERA_vocabulary/releases/v3.0.0"^^xsd:anyURI ;
 owl:versionInfo "v3.1.0" ;
 owl:versionURI <https://github.com/Interoperable-data/ERA_vocabulary/releases/releases/v3.1.0> ;
-skos:changeNote """Revision 29-10-2024
-Created hierarchy of properties for ccs subsystem and energy subsystem object parameters and ccs subsystem and energy subsystem data parameters. Changed domain to corresponding infrastructure object  and added SubsetWithCommonCharacteristics to domain of these properties.
+skos:changeNote """
+Revision 05-11-2024
+   - Added two annotation properties: era:legalDeadline and era:isApplicable
+   - Started the annotation for the property era:umax2 according to the newly added properties for the application guide.
+
+Revision 29-10-2024
+-Created hierarchy of properties for ccs subsystem and energy subsystem object parameters and ccs subsystem and energy subsystem data parameters. Changed domain to corresponding infrastructure object  and added SubsetWithCommonCharacteristics to domain of these properties.
 - Changed names clases InfrastructureObject, BasicObject and AggregatedObject to InfrastructureElement, BasicElement and AggregatedElement
 
 Revision 28-10-2024
@@ -303,6 +309,25 @@ era:inSkosConceptScheme rdf:type owl:AnnotationProperty ;
                         rdfs:range skos:ConceptScheme ;
                         rdfs:domain owl:ObjectProperty .
 
+###  http://data.europa.eu/949/isApplicable
+era:isApplicable rdf:type owl:AnnotationProperty ;
+                 dcterms:created "2024-11-05"^^xsd:date ;
+                 rdfs:comment "This property is used to annotate any entity for which applicability in data provision is used according to the RINF application guide."@en ;
+                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                 rdfs:label "is applicable"@en ;
+                 skos:scopeNote "This property annotation has three values: \"Y\" for Yes, \"N\" for No and \"NYA\" for Not Yet Available"@en ;
+                 rdfs:range xsd:token ;
+                 rdfs:domain rdfs:Resource .
+
+
+###  http://data.europa.eu/949/legalDeadline
+era:legalDeadline rdf:type owl:AnnotationProperty ;
+                  dcterms:created "2024-11-05"^^xsd:date ;
+                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                  rdfs:label "submission deadline"@en ;
+                  skos:scopeNote "legal date in the regulation to submit the data for this property or class. For example, for the regulation (EU) 2019/77, the deadline is 2019-05-19. A new date for the current legislation is to be announced once the Application guide is published by ERA."@en ;
+                  rdfs:range xsd:date ;
+                  rdfs:domain rdfs:Resource .
 
 ###  http://data.europa.eu/949/rinfIndex
 era:rinfIndex rdf:type owl:AnnotationProperty ;
@@ -9911,11 +9936,14 @@ era:umax2 rdf:type owl:DatatypeProperty ;
                       ] ;
           rdfs:range xsd:integer ;
           era:XMLName "ECS_Umax2" ;
+          era:isApplicable "N"^^xsd:token ,
+                           "Y"^^xsd:token ;
+          era:legalDeadline "2019-05-19"^^xsd:date ;
           era:rinfIndex "1.1.1.2.2.1.3" ;
           era:unitOfMeasure unit:V ;
           era:usedInRCCCalculations "true"^^xsd:boolean ;
           dcterms:created "2020-08-24"^^xsd:date ;
-          dcterms:modified "2024-01-08"^^xsd:date ;
+          dcterms:modified "2024-01-08"^^xsd:date, "2024-05-011"^^xsd:date ;
           rdfs:comment "Highest non-permanent voltage (Umax2) for France on lines not compliant with values defined in the the specification referenced in Appendix A-2, index [1]."@en ;
           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
           rdfs:label "Umax2 for the French network"@en ;
