@@ -6737,6 +6737,7 @@ the functions of the infrastructure manager on a network or part of a network ma
            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
            rdfs:label "Infrastructure manager (IM)'s code"@en ;
            rdfs:modified "2024-10-30"^^xsd:date ;
+            owl:deprecated "true"^^xsd:boolean ;
            rdfs:seeAlso "https://eur-lex.europa.eu/eli/dir/2012/34/oj#d1e885-32-1"^^xsd:anyURI ;
            vs:term_status "stable" .
 
@@ -8252,9 +8253,11 @@ era:opTypeGaugeChangeover rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/organisationCode
 era:organisationCode rdf:type owl:DatatypeProperty ;
                      rdfs:subPropertyOf dcterms:identifier ;
-                     rdfs:domain era:Body ;
+                     rdfs:domain era:OrganisationRole ;
                      rdfs:range xsd:string ;
                      dcterms:created "2024-06-03"^^xsd:date ;
+                     dcterms:modified "2024-11-06"^^xsd:date ;
+                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:comment "Four alpha-numeric code allocated by ERA to a body. It represent's the IM code in RINF."@en ;
                      rdfs:label "organisation code" .
 
