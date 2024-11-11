@@ -1,0 +1,50 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+#############################
+# Rules for sol-not-yet-available
+#############################
+
+#
+# not yet available (notYetAvailable)
+#
+era-sh:notYetavAilableNodeShape
+	a sh:NodeShape ;
+    sh:targetClass era:Track, era:OperationalPoint, era:ContactLineSystem, era:era:TrainDetectionSystem, era:ETCSLevel, era:Siding, era:Tunnel, era:PlatformEdge.
+
+era-sh:notYetavAilableNodeShape sh:property era-sh:notYetAvailablePropertyShape .
+era-sh:notYetAvailablePropertyShape
+        a sh:PropertyShape;
+        era:affectedProperty era:notYetAvailable;
+        era:affectedClass era:SectionOfLine, era:Track, era:OperationalPoint, era:Platform, era:TrainDetectionSystem, era:ContactLineSystem, era:NationalRaiwayLine, era:Tunnel, era:Platform, era:Siding;
+        era:scope "local";
+		sh:path era:notYetAvailable ;  
+        rdfs:comment "Reference to a property that is not provided."@en ;
+		sh:nodeKind sh:IRI ;
+        #sh:class owl:ObjectProperty, owl:DatatypeProperty;
+        sh:severity sh:Violation ;
+		sh:message "The value of this property is a reference to an ontology property that is not provided and it must be an IRI. The error may be due to the property not belonging to the ERA ontology or the property not being an IRI "@en .
+
+#
+# not applicable (notApplicable)
+#
+era-sh:notApplicableNodeShape
+	a sh:NodeShape ;
+    sh:targetClass era:Track, era:OperationalPoint, era:ContactLineSystem, era:era:TrainDetectionSystem, era:ETCSLevel, era:Siding, era:Tunnel, era:PlatformEdge.
+
+era-sh:notApplicableNodeShape sh:property era-sh:notApplicablePropertyShape .
+era-sh:notApplicablePropertyShape
+        a sh:PropertyShape;
+        era:affectedProperty era:notApplicable;
+        era:affectedClass era:SectionOfLine, era:Track, era:OperationalPoint, era:Platform, era:TrainDetectionSystem, era:ContactLineSystem, era:NationalRaiwayLine, era:Tunnel, era:Platform, era:Siding;
+        era:scope "local";
+		sh:path era:notApplicable ;  
+        rdfs:comment "Reference to a property that is not applicable."@en ;
+		sh:nodeKind sh:IRI ;
+        #sh:class owl:ObjectProperty, owl:DatatypeProperty;
+        sh:severity sh:Violation ;
+		sh:message "The value of this property is a reference to an ontology property that is not provided and it must be an IRI. The error may be due to the property not belonging to the ERA ontology or the property not being an IRI "@en .

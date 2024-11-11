@@ -1,0 +1,153 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-linecat: <http://data.europa.eu/949/concepts/line-category/> .
+@prefix era-fc: <http://data.europa.eu/949/concepts/freight-corridor/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+#############################
+# Rules for national-lines
+#############################
+
+#
+# national-lines
+#
+era-sh:nationallinesShape
+	a sh:NodeShape ;
+	sh:targetClass era:NationalRailwayLine .
+
+# inCountry 
+era-sh:nationallinesShape sh:property era-sh:inCountryNL .
+era-sh:inCountryNL
+	a sh:PropertyShape;
+    era:affectedProperty era:inCountry;
+    era:affectedClass era:NationalRailwayLine;
+    era:scope "local";
+	rdfs:comment "Indicates the country to which the national line belongs" ; 
+	sh:path era:inCountry ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI;
+	sh:severity sh:Violation ;
+	sh:message "inCountry:  Each national line must have exactly one country. This error may be due to having an OP without or with more than one country or it value is not a Concept."@en .
+
+# inCountry
+era-sh:nationallinesShape sh:sparql era-sh:inCountrySKOSNL .
+era-sh:inCountrySKOSNL
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:inCountry;
+    era:affectedClass era:NationalRailwayLine;
+    era:scope "local";
+	rdfs:comment "Indicates the country to which the national line belongs" ; 
+	sh:severity sh:Violation ;
+	sh:message "Country in which the national line belongs: The national line {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://publications.europa.eu/resource/authority/country."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    SELECT $this ?concept
+    WHERE {
+ 		$this era:inCountry ?concept .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme <http://publications.europa.eu/resource/authority/country> .
+		}
+	}
+""" .
+
+# lineCategory: # 1.1.1.1.2.2, 1.2.1.0.2.2 # NationalRailwayLine not in domain anymore
+# era-sh:nationallinesShape sh:property era-sh:lineCategoryShape .
+# era-sh:lineCategoryShape
+# 	a sh:PropertyShape ;
+#     era:affectedProperty era:lineCategory;
+#     era:affectedClass era:NationalRailwayLine;
+#     era:scope "local";
+# 	rdfs:comment "Classification of a line according to the INF TSI" ;
+# 	era:rinfIndex "1.1.1.1.2.2", "1.2.1.0.2.2" ;
+# 	sh:path era:lineCategory ;
+# 	sh:nodeKind sh:IRI ;
+# 	sh:severity sh:Violation ;
+# 	sh:message "lineCategory (1.1.1.1.2.2, 1.2.1.0.2.2): Each track has a classification of a line according to the INF TSI and the value must be an IRI"@en .
+
+# lineCategory: # 1.1.1.1.2.2, 1.2.1.0.2.2 # NationalRailwayLine not in domain anymore
+# era-sh:nationallinesShape sh:sparql era-sh:lineCategorySKOS .
+# era-sh:lineCategorySKOS
+# 	a sh:SPARQLConstraint ;
+#     era:affectedProperty era:lineCategory;
+#     era:affectedClass era:NationalRailwayLine;
+#     era:scope "local";
+# 	rdfs:comment "Classification of a line according to the INF TSI" ;
+# 	era:rinfIndex "1.1.1.1.2.2", "1.2.1.0.2.2" ;
+# 	sh:severity sh:Violation ;
+# 	sh:message "Classification of a line according to the INF TSI (1.1.1.1.2.2, 1.2.1.0.2.2): The National Line {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/line-category/LineCategories."@en ;
+#     sh:prefixes era:;
+# 	sh:select """
+#     PREFIX era: <http://data.europa.eu/949/>
+#     PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+#     SELECT $this ?concept
+#     WHERE {
+#  		$this era:lineCategory ?concept .
+#         era:lineCategory era:inSkosConceptScheme ?conceptScheme .
+# 		FILTER NOT EXISTS{         
+#   			?concept skos:inScheme ?conceptScheme .
+# 		}
+# 	}
+# """ .
+
+
+# freightCorridor: # 1.1.1.1.2.3, 1.2.1.0.2.3 # NationalRailwayLine not in domain anymore
+# era-sh:nationallinesShape sh:property era-sh:freightCorridorShape .
+# era-sh:freightCorridorShape
+# 	a sh:PropertyShape ;
+#     era:affectedProperty era:lineCategory;
+#     era:affectedClass era:freightCorridor;
+#     era:scope "local";
+# 	rdfs:comment "Indication whether the line is designated to a Railway Freight Corridor" ;
+# 	era:rinfIndex "1.1.1.1.2.3", "1.2.1.0.2.3" ;
+# 	sh:path era:freightCorridor ;
+# 	sh:nodeKind sh:IRI ;
+# 	sh:severity sh:Violation ;
+# 	sh:message "freightCorridor (1.1.1.1.2.3, 1.2.1.0.2.3): Each track must have an indication whether the line is designated to a Railway Freight Corridor"@en .
+
+# freightCorridor: # 1.1.1.1.2.3, 1.2.1.0.2.3 # NationalRailwayLine not in domain anymore
+# era-sh:nationallinesShape sh:sparql era-sh:freightCorridorSKOS .
+# era-sh:freightCorridorSKOS
+# 	a sh:SPARQLConstraint ;
+#     era:affectedProperty era:lineCategory;
+#     era:affectedClass era:freightCorridor;
+#     era:scope "local";
+# 	rdfs:comment "Indication whether the line is designated to a Railway Freight Corridor" ;
+# 	era:rinfIndex "1.1.1.1.2.3", "1.2.1.0.2.3" ;
+# 	sh:severity sh:Violation ;
+# 	sh:message "Indication whether the line is designated to a Railway Freight Corridor (1.1.1.1.2.3, 1.2.1.0.2.3): The National Line {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/freight-corridor/FreightCorridors."@en ;
+#     sh:prefixes era:;
+# 	sh:select """
+#     PREFIX era: <http://data.europa.eu/949/>
+#     PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+#     SELECT $this ?concept
+#     WHERE {
+#  		$this era:freightCorridor ?concept .
+#         era:freightCorridor era:inSkosConceptScheme ?conceptScheme .
+# 		FILTER NOT EXISTS{         
+#   			?concept skos:inScheme ?conceptScheme .
+# 		}
+# 	}
+# """ .
+
+# nationalLineId
+era-sh:nationallinesShape sh:property era-sh:nationalLineId .
+era-sh:nationalLineId
+	a sh:PropertyShape ;
+    era:affectedProperty era:nationalLineId;
+    era:affectedClass era:NationalRailwayLine;
+    era:scope "local";
+	rdfs:comment "Unique line identification or unique line number within Member State" ; # TODO check
+	# era:rinfIndex "" ; # Not available
+	sh:path era:nationalLineId ;
+	sh:datatype xsd:string ;
+    sh:maxCount  1;
+	sh:severity sh:Violation ;
+	sh:message "nationalLineId (1.1.0.0.0.?): The national railway line defines a national line identification. This error is due to having a value that is not  text (string)."@en . # TODO check
+
