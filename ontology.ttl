@@ -42,7 +42,8 @@ dcterms:modified "2024-04-18"^^xsd:date ,
                  "2024-10-28"^^xsd:date ,
                  "2024-10-29"^^xsd:date ,
                  "2024-10-30"^^xsd:date ,
-                 "2024-10-31"^^xsd:date ;
+                 "2024-10-31"^^xsd:date ,
+                 "2024-11-04"^^xsd:date ;
 dcterms:publisher "European Union Agency for Railways" ;
 dcterms:title "ERA Ontology"@en ;
 rdfs:comment """This is the human and machine readable Ontology governed by the European Union Agency for Railways (https://www.era.europa.eu/). It represents the concepts and relationships linked to the sectorial legal framework and the use cases under the AgencyÂ´s remit, as described in the Commission Implementing Regulation (EU) [to be updated after publication] on the common specifications for the register of railway infrastructure [to be updated after publication].
@@ -57,7 +58,19 @@ rdfs:seeAlso "https://www.era.europa.eu/sites/default/files/registers/docs/iu-er
 owl:priorVersion "https://github.com/Interoperable-data/ERA_vocabulary/releases/v3.0.0"^^xsd:anyURI ;
 owl:versionInfo "v3.1.0" ;
 owl:versionURI <https://github.com/Interoperable-data/ERA_vocabulary/releases/releases/v3.1.0> ;
-skos:changeNote """Revision 31-10-2024
+skos:changeNote """Revision 04-11-2024
+- Added metadata (dcterms:modified and  rdfs:isDefinedBy to all ObjParameter and DataParameter properties in the hierarchy of Energy, Infra and CCS subsystems
+- Deleted annotation properties dcterms:modifief and dcterms:modifed
+- Added annotation properties era:affectedProperty, era:affectedClass, era:scope for annotating SHACL shapes
+- Added annotation property era:shaclShapeValidationRule to point from properties to the corresponding shape.
+- Added functional axiom to properties according to RINF app guide (1.6.1) to those properties that have \"Can be repeated: N\"
+- Removed metadata from length, now a grouping property and place the relevant definitions in the corresponding subproperties. Added subproperty lengthOfVehicle
+- Imported propeties time:hasBeginning and time:hasEnd from Time ontology
+- Updated domain to the class ETCS: era:etcsInfill, era:etcsMVersion, era:etcsSystemCompatibility,  era:etcsTransmittedTrackConditions
+- Changed domain kilometer and kmPostName to Position
+- Changed data properties instructionsSwitchRadioSystems, documentRestrictionPowerConsumption, documentRestrictionPositionContactLineSeparation, conditionsSwitchClassBSystems, conditionsAppliedRegenerativeBraking to object properties with range era:Document
+
+Revision 31-10-2024
 - Added hierarchies for Vehicle and VehicleType characteristics.
 - Deprecated datatype property trainDetectionSystemSpecificCheck, as the same object property exists (points to a SKOS concept scheme)
 - Changes in network and subset with common characteristics proposal (decision meeting 31-10-2024)
@@ -883,7 +896,63 @@ era:condition rdf:type owl:ObjectProperty ;
               rdfs:label "condition"@en .
 
 
+###  http://data.europa.eu/949/conditionsAppliedRegenerativeBraking
+era:conditionsAppliedRegenerativeBraking rdf:type owl:ObjectProperty ;
+                                         rdfs:domain [ rdf:type owl:Class ;
+                                                       owl:unionOf ( era:CommonCharacteristicsSubset
+                                                                     era:ContactLineSystem
+                                                                   )
+                                                     ] ;
+                                         rdfs:range era:Document ;
+                                         era:XMLName "ECS_RegBrakingConditions" ;
+                                         era:appendixD2Index "3.3.7" ;
+                                         era:rinfIndex "1.1.1.2.2.4.1" ;
+                                         dcterms:created "2022-11-10"^^xsd:date ;
+                                         dcterms:modified "2023-03-14"^^xsd:date ,
+                                                          "2024-04-18"^^xsd:date ,
+                                                          "2024-11-04"^^xsd:date ;
+                                         dcterms:relation era:contactLineSystemType ;
+                                         dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ,
+                                                        <http://data.europa.eu/eli/reg_impl/2019/777/2023-09-28> ;
+                                         rdfs:comment "Name and/or reference of the document specifying the conditions applying in regards to regenerative braking."@en ;
+                                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                         rdfs:label "Conditions applying in regards to regenerative braking"@en ;
+                                         vs:term_status "stable" ;
+                                         skos:scopeNote "When `not electrified` is chosen in parameter 1.1.1.2.2.1.1, then this parameter is not applicable."@en .
 
+
+###  http://data.europa.eu/949/conditionsSwitchClassBSystems
+era:conditionsSwitchClassBSystems rdf:type owl:ObjectProperty ;
+                                  rdfs:subPropertyOf era:transitionsBetweenSystemsDataParameter ;
+                                  rdfs:domain [ rdf:type owl:Class ;
+                                                owl:unionOf ( era:CommonCharacteristicsSubset
+                                                              era:Track
+                                                            )
+                                              ] ;
+                                  rdfs:range era:Document ;
+                                  era:XMLName "CTS_SwitchProtectAB" ;
+                                  era:appendixD2Index "3.4.3" ;
+                                  era:rinfIndex "1.1.1.3.8.3" ,
+                                                "1.2.1.1.7.3" ;
+                                  dcterms:created "2022-10-28"^^xsd:date ;
+                                  dcterms:modified "2023-03-14"^^xsd:date ,
+                                                   "2024-04-18"^^xsd:date ,
+                                                   "2024-11-04"^^xsd:date ;
+                                  dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
+                                  rdfs:comment "Name and/or reference of the document specifying the Special technical conditions required to switch over between ERTMS/ETCS and Class B systems."@en ;
+                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                  rdfs:label "Special technical conditions required to switch over between ERTMS/ETCS and Class B systems"@en ;
+                                  vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/conditionsSwitchTrainProtectionSystems
+era:conditionsSwitchTrainProtectionSystems rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf era:transitionsBetweenSystemsDataParameter ;
+                                           rdfs:domain [ rdf:type owl:Class ;
+                                                         owl:unionOf ( era:CommonCharacteristicsSubset
+                                                                       era:Track
+                                                                     )
+                                                       ] .
 
 
 ###  http://data.europa.eu/949/conditionsUseReflectivePlates
@@ -1052,6 +1121,40 @@ era:direction rdf:type owl:ObjectProperty ;
               rdfs:comment "The direction of the orientation of a railway element, in relation to the carrier object"@en ;
               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
               rdfs:label "direction"@en .
+
+
+###  http://data.europa.eu/949/documentRestrictionPositionContactLineSeparation
+era:documentRestrictionPositionContactLineSeparation rdf:type owl:ObjectProperty ;
+                                                     rdfs:domain [ rdf:type owl:Class ;
+                                                                   owl:unionOf ( era:CommonCharacteristicsSubset
+                                                                                 era:Track
+                                                                               )
+                                                                 ] ;
+                                                     rdfs:range era:Document ;
+                                                     era:rinfIndex "1.1.1.2.5.5" ;
+                                                     dcterms:created "2023-03-14"^^xsd:date ;
+                                                     dcterms:modified "2024-11-04"^^xsd:date ;
+                                                     rdfs:comment "Name and/or reference of the document specifying the restriction(s) related to the position of Multiple Traction unit(s) to comply with contact line separation."@en ;
+                                                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                                     rdfs:label "Document with restriction related to the position of Multiple Traction unit(s) to comply with contact line separation"@en ;
+                                                     vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/documentRestrictionPowerConsumption
+era:documentRestrictionPowerConsumption rdf:type owl:ObjectProperty ;
+                                        rdfs:domain [ rdf:type owl:Class ;
+                                                      owl:unionOf ( era:CommonCharacteristicsSubset
+                                                                    era:Track
+                                                                  )
+                                                    ] ;
+                                        rdfs:range era:Document ;
+                                        era:rinfIndex "1.1.1.2.5.4" ;
+                                        dcterms:created "2023-03-14"^^xsd:date ;
+                                        dcterms:modified "2024-11-04"^^xsd:date ;
+                                        rdfs:comment "Name and/or reference of the document specifying the restriction(s) related to power consumption of specific electric traction unit(s)."@en ;
+                                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                        rdfs:label "Document with restriction related to power consumption of specific electric traction unit(s)"@en ;
+                                        vs:term_status "stable" .
 
 
 ###  http://data.europa.eu/949/eddyCurrentBraking
@@ -2116,6 +2219,30 @@ era:infrastructureMgr rdf:type owl:ObjectProperty ;
                       rdfs:label "Infrastructure manager"@en ;
                       owl:deprecated "true"^^xsd:boolean ;
                       vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/instructionsSwitchRadioSystems
+era:instructionsSwitchRadioSystems rdf:type owl:ObjectProperty ;
+                                   rdfs:subPropertyOf era:transitionsBetweenSystemsDataParameter ;
+                                   rdfs:domain [ rdf:type owl:Class ;
+                                                 owl:unionOf ( era:CommonCharacteristicsSubset
+                                                               era:Track
+                                                             )
+                                               ] ;
+                                   rdfs:range era:Document ;
+                                   era:XMLName "CTS_SwitchRadioConditions" ;
+                                   era:appendixD2Index "3.4.4" ;
+                                   era:rinfIndex "1.1.1.3.8.2.1" ,
+                                                 "1.2.1.1.7.2.1" ;
+                                   dcterms:created "2022-10-28"^^xsd:date ;
+                                   dcterms:modified "2023-03-14"^^xsd:date ,
+                                                    "2024-04-18"^^xsd:date ,
+                                                    "2024-11-04"^^xsd:date ;
+                                   dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
+                                   rdfs:comment "Name and/or reference of the document specifying the Special instructions to switch over between different radio systems."@en ;
+                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                   rdfs:label "Special instructions to switch over between different radio systems"@en ;
+                                   vs:term_status "stable" .
 
 
 ###  http://data.europa.eu/949/isPartOf
@@ -3715,6 +3842,28 @@ era:supportedPlatformHeight rdf:type owl:ObjectProperty ;
                             vs:term_status "stable" .
 
 
+###  http://data.europa.eu/949/switchProtectControlWarning
+era:switchProtectControlWarning rdf:type owl:ObjectProperty ;
+                                rdfs:subPropertyOf era:transitionsBetweenSystemsDataParameter ;
+                                rdf:type owl:FunctionalProperty ;
+                                rdfs:domain [ rdf:type owl:Class ;
+                                              owl:unionOf ( era:CommonCharacteristicsSubset
+                                                            era:Track
+                                                          )
+                                            ] .
+
+
+###  http://data.europa.eu/949/switchRadioSystem
+era:switchRadioSystem rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf era:transitionsBetweenSystemsDataParameter ;
+                      rdf:type owl:FunctionalProperty ;
+                      rdfs:domain [ rdf:type owl:Class ;
+                                    owl:unionOf ( era:CommonCharacteristicsSubset
+                                                  era:Track
+                                                )
+                                  ] .
+
+
 ###  http://data.europa.eu/949/switchesAndCrossingsObjParameter
 era:switchesAndCrossingsObjParameter rdf:type owl:ObjectProperty ;
                                      rdfs:subPropertyOf era:infraSubsystemObjParameter ;
@@ -4991,31 +5140,6 @@ era:conditionalRegenerativeBrake rdf:type owl:DatatypeProperty ;
                                  vs:term_status "stable" .
 
 
-###  http://data.europa.eu/949/conditionsAppliedRegenerativeBraking
-era:conditionsAppliedRegenerativeBraking rdf:type owl:ObjectProperty ;
-                                         rdfs:subPropertyOf era:contactLineSystemDataParameter ;
-                                         rdfs:domain [ rdf:type owl:Class ;
-                                                       owl:unionOf ( era:CommonCharacteristicsSubset
-                                                                     era:ContactLineSystem
-                                                                   )
-                                                     ] ;
-                                         rdfs:range era:Document ;
-                                         era:XMLName "ECS_RegBrakingConditions" ;
-                                         era:appendixD2Index "3.3.7" ;
-                                         era:rinfIndex "1.1.1.2.2.4.1" ;
-                                         dcterms:created "2022-11-10"^^xsd:date ;
-                                         dcterms:modified "2023-03-14"^^xsd:date ,
-                                                          "2024-04-18"^^xsd:date ;
-                                         dcterms:relation era:contactLineSystemType ;
-                                         dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ,
-                                                        <http://data.europa.eu/eli/reg_impl/2019/777/2023-09-28> ;
-                                         rdfs:comment "Name and/or reference of the document specifying the conditions applying in regards to regenerative braking."@en ;
-                                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                         rdfs:label "Conditions applying in regards to regenerative braking"@en ;
-                                         vs:term_status "stable" ;
-                                         skos:scopeNote "When `not electrified` is chosen in parameter 1.1.1.2.2.1.1, then this parameter is not applicable."@en .
-
-
 ###  http://data.europa.eu/949/conditionsChargingElectricEnergyStorage
 era:conditionsChargingElectricEnergyStorage rdf:type owl:DatatypeProperty ;
                                             rdfs:subPropertyOf era:contactLineSystemDataParameter ;
@@ -5033,48 +5157,9 @@ era:conditionsChargingElectricEnergyStorage rdf:type owl:DatatypeProperty ;
                                             vs:term_status "stable" .
 
 
-###  http://data.europa.eu/949/conditionsSwitchClassBSystems
-era:conditionsSwitchClassBSystems rdf:type owl:ObjectProperty ;
-                                  rdfs:subPropertyOf era:transitionsBetweenSystemsDataParameter ;
-                                  rdfs:domain [ rdf:type owl:Class ;
-                                                owl:unionOf ( era:CommonCharacteristicsSubset
-                                                              era:Track
-                                                            )
-                                              ] ;
-                                  rdfs:range era:Document ;
-                                  era:XMLName "CTS_SwitchProtectAB" ;
-                                  era:appendixD2Index "3.4.3" ;
-                                  era:rinfIndex "1.1.1.3.8.3" ,
-                                                "1.2.1.1.7.3" ;
-                                  dcterms:created "2022-10-28"^^xsd:date ;
-                                  dcterms:modified "2023-03-14"^^xsd:date ,
-                                                   "2024-04-18"^^xsd:date ;
-                                  dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
-                                  rdfs:comment "Name and/or reference of the document specifying the Special technical conditions required to switch over between ERTMS/ETCS and Class B systems."@en ;
-                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                  rdfs:label "Special technical conditions required to switch over between ERTMS/ETCS and Class B systems"@en ;
-                                  vs:term_status "stable" .
-
-
 ###  http://data.europa.eu/949/conditionsSwitchTrainProtectionSystems
 era:conditionsSwitchTrainProtectionSystems rdf:type owl:DatatypeProperty ;
-                                           rdfs:subPropertyOf era:transitionsBetweenSystemsDataParameter ;
-                                           rdfs:domain [ rdf:type owl:Class ;
-                                                         owl:unionOf ( era:CommonCharacteristicsSubset
-                                                                       era:Track
-                                                                     )
-                                                       ] ;
-                                           rdfs:range xsd:string ;
-                                           era:XMLName "CTS_SwitchProtectConditions" ;
-                                           era:appendixD2Index "3.4.2" ;
-                                           era:rinfIndex "1.1.1.3.8.1.1" ,
-                                                         "1.2.1.1.7.1.1" ;
-                                           dcterms:created "2022-10-28"^^xsd:date ;
-                                           dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
-                                           rdfs:comment "Conditions to switch over between different class B train protection, control and warning systems."@en ;
-                                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                           rdfs:label "Special conditions to switch over between different class B train protection, control and warning systems"@en ;
-                                           vs:term_status "stable" .
+                                           rdfs:range xsd:string .
 
 
 ###  http://data.europa.eu/949/conditionsTrainFormation
@@ -5478,40 +5563,6 @@ Distance between the signboard authorizing the driver to ‘raise pantograph’ 
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Distance between signboard and phase separation ending"@en ;
                        vs:term_status "stable" .
-
-
-###  http://data.europa.eu/949/documentRestrictionPositionContactLineSeparation
-era:documentRestrictionPositionContactLineSeparation rdf:type owl:ObjectProperty ;
-                                                     rdfs:subPropertyOf era:requirementsRollingStockDataParameter ;
-                                                     rdfs:domain [ rdf:type owl:Class ;
-                                                                   owl:unionOf ( era:CommonCharacteristicsSubset
-                                                                                 era:Track
-                                                                               )
-                                                                 ] ;
-                                                     rdfs:range era:Document ;
-                                                     era:rinfIndex "1.1.1.2.5.5" ;
-                                                     dcterms:created "2023-03-14"^^xsd:date ;
-                                                     rdfs:comment "Name and/or reference of the document specifying the restriction(s) related to the position of Multiple Traction unit(s) to comply with contact line separation."@en ;
-                                                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                                     rdfs:label "Document with restriction related to the position of Multiple Traction unit(s) to comply with contact line separation"@en ;
-                                                     vs:term_status "stable" .
-
-
-###  http://data.europa.eu/949/documentRestrictionPowerConsumption
-era:documentRestrictionPowerConsumption rdf:type owl:ObjectProperty ;
-                                        rdfs:subPropertyOf era:requirementsRollingStockDataParameter ;
-                                        rdfs:domain [ rdf:type owl:Class ;
-                                                      owl:unionOf ( era:CommonCharacteristicsSubset
-                                                                    era:Track
-                                                                  )
-                                                    ] ;
-                                        rdfs:range era:Document ;
-                                        era:rinfIndex "1.1.1.2.5.4" ;
-                                        dcterms:created "2023-03-14"^^xsd:date ;
-                                        rdfs:comment "Name and/or reference of the document specifying the restriction(s) related to power consumption of specific electric traction unit(s)."@en ;
-                                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                        rdfs:label "Document with restriction related to power consumption of specific electric traction unit(s)"@en ;
-                                        vs:term_status "stable" .
 
 
 ###  http://data.europa.eu/949/documentUrl
@@ -6970,8 +7021,8 @@ the functions of the infrastructure manager on a network or part of a network ma
            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
            rdfs:label "Infrastructure manager (IM)'s code"@en ;
            rdfs:modified "2024-10-30"^^xsd:date ;
-            owl:deprecated "true"^^xsd:boolean ;
            rdfs:seeAlso "https://eur-lex.europa.eu/eli/dir/2012/34/oj#d1e885-32-1"^^xsd:anyURI ;
+           owl:deprecated "true"^^xsd:boolean ;
            vs:term_status "stable" .
 
 
@@ -6991,29 +7042,6 @@ era:infraSubsystemDeclarationsVerificationTrackDataParameter rdf:type owl:Dataty
                                                              dcterms:created "2024-10-31"^^xsd:date ;
                                                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                                              rdfs:label "Declarations of verification for track"@en .
-
-
-###  http://data.europa.eu/949/instructionsSwitchRadioSystems
-era:instructionsSwitchRadioSystems rdf:type owl:ObjectProperty ;
-                                   rdfs:subPropertyOf era:transitionsBetweenSystemsDataParameter ;
-                                   rdfs:domain [ rdf:type owl:Class ;
-                                                 owl:unionOf ( era:CommonCharacteristicsSubset
-                                                               era:Track
-                                                             )
-                                               ] ;
-                                   rdfs:range era:Document ;
-                                   era:XMLName "CTS_SwitchRadioConditions" ;
-                                   era:appendixD2Index "3.4.4" ;
-                                   era:rinfIndex "1.1.1.3.8.2.1" ,
-                                                 "1.2.1.1.7.2.1" ;
-                                   dcterms:created "2022-10-28"^^xsd:date ;
-                                   dcterms:modified "2023-03-14"^^xsd:date ,
-                                                    "2024-04-18"^^xsd:date ;
-                                   dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
-                                   rdfs:comment "Name and/or reference of the document specifying the Special instructions to switch over between different radio systems."@en ;
-                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                   rdfs:label "Special instructions to switch over between different radio systems"@en ;
-                                   vs:term_status "stable" .
 
 
 ###  http://data.europa.eu/949/isQuietRoute
@@ -8517,8 +8545,8 @@ era:organisationCode rdf:type owl:DatatypeProperty ;
                      rdfs:range xsd:string ;
                      dcterms:created "2024-06-03"^^xsd:date ;
                      dcterms:modified "2024-11-06"^^xsd:date ;
-                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:comment "Four alpha-numeric code allocated by ERA to a body. It represent's the IM code in RINF."@en ;
+                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "organisation code" .
 
 
@@ -9533,47 +9561,15 @@ era:subsidiaryLocationName rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/switchProtectControlWarning
-era:switchProtectControlWarning rdf:type owl:DatatypeProperty ;
-                                rdfs:subPropertyOf era:transitionsBetweenSystemsDataParameter ;
-                                rdf:type owl:FunctionalProperty ;
-                                rdfs:domain [ rdf:type owl:Class ;
-                                              owl:unionOf ( era:CommonCharacteristicsSubset
-                                                            era:Track
-                                                          )
-                                            ] ;
-                                rdfs:range xsd:boolean ;
-                                era:XMLName "CTS_SwitchProtectControlWarn" ;
-                                era:appendixD2Index "3.4.2" ;
-                                era:rinfIndex "1.1.1.3.8.1" ,
-                                              "1.2.1.1.7.1" ;
-                                dcterms:created "2021-08-09"^^xsd:date ;
-                                dcterms:modified "2021-09-12"^^xsd:date ;
-                                rdfs:comment "Indication whether a switch over between different systems whilst running exists."@en ;
-                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                rdfs:label "Existence of switch over between different protection, control and warning systems while running"@en ;
-                                vs:term_status "stable" .
+era:switchProtectControlWarning rdf:type owl:DatatypeProperty ,
+                                         owl:FunctionalProperty ;
+                                rdfs:range xsd:boolean .
 
 
 ###  http://data.europa.eu/949/switchRadioSystem
-era:switchRadioSystem rdf:type owl:DatatypeProperty ;
-                      rdfs:subPropertyOf era:transitionsBetweenSystemsDataParameter ;
-                      rdf:type owl:FunctionalProperty ;
-                      rdfs:domain [ rdf:type owl:Class ;
-                                    owl:unionOf ( era:CommonCharacteristicsSubset
-                                                  era:Track
-                                                )
-                                  ] ;
-                      rdfs:range xsd:boolean ;
-                      era:XMLName "CTS_SwitchRadioSystem" ;
-                      era:appendixD2Index "3.4.4" ;
-                      era:rinfIndex "1.1.1.3.8.2" ,
-                                    "1.2.1.1.7.2" ;
-                      dcterms:created "2021-08-09"^^xsd:date ;
-                      dcterms:modified "2021-09-12"^^xsd:date ;
-                      rdfs:comment "Indication whether a switch over between different radio systems and no communication system whilst running exists."@en ;
-                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                      rdfs:label "Existence of switch over between different radio systems"@en ;
-                      vs:term_status "stable" .
+era:switchRadioSystem rdf:type owl:DatatypeProperty ,
+                               owl:FunctionalProperty ;
+                      rdfs:range xsd:boolean .
 
 
 ###  http://data.europa.eu/949/switchesAndCrossingsDataParameter
@@ -9997,12 +9993,7 @@ era:trainProtectionLegacySystemDataParameter rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/transitionsBetweenSystemsDataParameter
 era:transitionsBetweenSystemsDataParameter rdf:type owl:DatatypeProperty ;
-                                           rdfs:subPropertyOf era:ccsSubsystemDataParameter ;
-                                           era:rinfIndex "1.1.1.3.8" ,
-                                                         "1.2.1.1.7" ;
-                                           dcterms:created "2024-10-31"^^xsd:date ;
-                                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                           rdfs:label "Transitions between systems"@en .
+                                           rdfs:subPropertyOf era:ccsSubsystemDataParameter .
 
 
 ###  http://data.europa.eu/949/transportableOnFerry
@@ -11819,24 +11810,6 @@ foaf:Person rdf:type owl:Class ;
   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
 ] .
 
-[ foaf:name "Ghislain Atemezing" ;
-   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Dragos Patru" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Ghislain Atemezing" ;
-   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Dragos Patru" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
 [ foaf:name "Maarten Duhoux" ;
    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
  ] .
@@ -11846,29 +11819,8 @@ foaf:Person rdf:type owl:Class ;
    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
  ] .
 
-[ foaf:name "Dragos Patru" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
 [ foaf:name "Ghislain Atemezing" ;
    dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Dragos Patru" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Ghislain Atemezing" ;
-   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Dragos Patru" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Dragos Patru" ;
    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
  ] .
 
@@ -11880,11 +11832,11 @@ foaf:Person rdf:type owl:Class ;
    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
  ] .
 
-[ foaf:name "Maarten Duhoux" ;
+[ foaf:name "Dragos Patru" ;
    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
  ] .
 
-[ foaf:name "Maarten Duhoux" ;
+[ foaf:name "Dragos Patru" ;
    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
  ] .
 
@@ -11893,6 +11845,48 @@ foaf:Person rdf:type owl:Class ;
    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
  ] .
 
+[ foaf:name "Dragos Patru" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Dragos Patru" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Ghislain Atemezing" ;
+   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Maarten Duhoux" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Maarten Duhoux" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Dragos Patru" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Dragos Patru" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Ghislain Atemezing" ;
+   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Ghislain Atemezing" ;
+   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Oscar Corcho"
+ ] .
+
 [ foaf:name "Edna Rukhaus"
  ] .
 
@@ -11902,24 +11896,6 @@ foaf:Person rdf:type owl:Class ;
 [ foaf:name "Oscar Corcho"
  ] .
 
-[ foaf:name "Oscar Corcho"
- ] .
-
-[ foaf:name "Designated RINF Topical Working Groups"@en
- ] .
-
-[ foaf:name "Designated RINF Topical Working Groups"@en
- ] .
-
-[ foaf:name "Oscar Corcho"
- ] .
-
-[ foaf:name "Edna Rukhaus"
- ] .
-
-[ foaf:name "Edna Rukhaus"
- ] .
-
 [ foaf:name "Edna Rukhaus"
  ] .
 
@@ -11929,10 +11905,28 @@ foaf:Person rdf:type owl:Class ;
 [ foaf:name "Designated RINF Topical Working Groups"@en
  ] .
 
-[ foaf:name "Oscar Corcho"
+[ foaf:name "Designated RINF Topical Working Groups"@en
  ] .
 
 [ foaf:name "Edna Rukhaus"
+ ] .
+
+[ foaf:name "Edna Rukhaus"
+ ] .
+
+[ foaf:name "Edna Rukhaus"
+ ] .
+
+[ foaf:name "Designated RINF Topical Working Groups"@en
+ ] .
+
+[ foaf:name "Oscar Corcho"
+ ] .
+
+[ foaf:name "Designated RINF Topical Working Groups"@en
+ ] .
+
+[ foaf:name "Oscar Corcho"
  ] .
 
 [ foaf:name "Designated RINF Topical Working Groups"@en
@@ -11942,38 +11936,78 @@ foaf:Person rdf:type owl:Class ;
  ] .
 
 [ foaf:name "Oscar Corcho"
- ] .
-
-[ foaf:name "Designated RINF Topical Working Groups"@en
  ] .
 
 #################################################################
 #    Annotations
 #################################################################
 
+era:conditionsSwitchTrainProtectionSystems era:rinfIndex "1.1.1.3.8.1.1" ;
+                                            era:appendixD2Index "3.4.2" ;
+                                            era:XMLName "CTS_SwitchProtectConditions" ;
+                                            era:rinfIndex "1.2.1.1.7.1.1" ;
+                                            vs:term_status "stable" ;
+                                            rdfs:comment "Conditions to switch over between different class B train protection, control and warning systems."@en ;
+                                            dcterms:created "2022-10-28"^^xsd:date ;
+                                            dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
+                                            rdfs:label "Special conditions to switch over between different class B train protection, control and warning systems"@en ;
+                                            rdfs:isDefinedBy <http://data.europa.eu/949/> .
+
+
+era:switchProtectControlWarning rdfs:comment "Indication whether a switch over between different systems whilst running exists."@en ;
+                                era:rinfIndex "1.2.1.1.7.1" ,
+                                              "1.1.1.3.8.1" ;
+                                era:appendixD2Index "3.4.2" ;
+                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                era:XMLName "CTS_SwitchProtectControlWarn" ;
+                                dcterms:modified "2021-09-12"^^xsd:date ;
+                                vs:term_status "stable" ;
+                                dcterms:created "2021-08-09"^^xsd:date ;
+                                rdfs:label "Existence of switch over between different protection, control and warning systems while running"@en .
+
+
+era:switchRadioSystem era:rinfIndex "1.2.1.1.7.2" ,
+                                    "1.1.1.3.8.2" ;
+                      dcterms:created "2021-08-09"^^xsd:date ;
+                      vs:term_status "stable" ;
+                      era:XMLName "CTS_SwitchRadioSystem" ;
+                      rdfs:comment "Indication whether a switch over between different radio systems and no communication system whilst running exists."@en ;
+                      dcterms:modified "2021-09-12"^^xsd:date ;
+                      era:appendixD2Index "3.4.4" ;
+                      rdfs:label "Existence of switch over between different radio systems"@en ;
+                      rdfs:isDefinedBy <http://data.europa.eu/949/> .
+
+
 era:trainDetectionSystemSpecificCheck rdfs:label "Type of track circuits or axle counters to which specific checks are needed. "@en ;
-                                       dcterms:relation era:trainDetectionSystemSpecificCheckDocument ;
-                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                       rdfs:comment "Reference to the technical specification of train detection system."@en ;
-                                       vs:term_status "stable" ;
-                                       dcterms:modified "2021-08-08"^^xsd:date ;
-                                       skos:scopeNote "Only applicable, when 1.1.1.3.7.1.1 is applicable."@en ;
-                                       era:rinfIndex "1.1.1.3.7.1.2" ;
-                                       owl:deprecated "true"^^xsd:boolean ;
-                                       dcterms:modified "2024-10-31"^^xsd:date ,
-                                                        "2024-09-19"^^xsd:date ;
-                                       skos:scopeNote "String containing the name of the TD system for which checks are mentioned in 1.1.1.3.7.1.3."@en ;
-                                       dcterms:description "String containing the name of the TD system for which checks are mentioned in 1.1.1.3.7.1.3."@en ;
-                                       era:XMLName "CTD_TCCheck" ;
-                                       dcterms:modified "2024-09-25"^^xsd:date ;
-                                       era:inSkosConceptScheme <http://data.europa.eu/949/concepts/train-detection-specific-checks/TrainDetectionSystemsSpecificChecks> ;
-                                       dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                                       dcterms:created "2020-08-24"^^xsd:date ;
-                                       era:rinfIndex "1.2.1.1.6.1" ;
-                                       era:usedInRCCCalculations "false"^^xsd:boolean ;
-                                       dcterms:modified "2024-04-18"^^xsd:date ;
-                                       dcterms:source "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf" ;
-                                       rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI .
+                                      dcterms:relation era:trainDetectionSystemSpecificCheckDocument ;
+                                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                      rdfs:comment "Reference to the technical specification of train detection system."@en ;
+                                      vs:term_status "stable" ;
+                                      dcterms:modified "2021-08-08"^^xsd:date ;
+                                      era:rinfIndex "1.1.1.3.7.1.2" ;
+                                      skos:scopeNote "Only applicable, when 1.1.1.3.7.1.1 is applicable."@en ;
+                                      dcterms:modified "2024-09-19"^^xsd:date ;
+                                      owl:deprecated "true"^^xsd:boolean ;
+                                      dcterms:modified "2024-10-31"^^xsd:date ;
+                                      skos:scopeNote "String containing the name of the TD system for which checks are mentioned in 1.1.1.3.7.1.3."@en ;
+                                      dcterms:description "String containing the name of the TD system for which checks are mentioned in 1.1.1.3.7.1.3."@en ;
+                                      era:XMLName "CTD_TCCheck" ;
+                                      era:inSkosConceptScheme <http://data.europa.eu/949/concepts/train-detection-specific-checks/TrainDetectionSystemsSpecificChecks> ;
+                                      dcterms:modified "2024-09-25"^^xsd:date ;
+                                      dcterms:created "2020-08-24"^^xsd:date ;
+                                      dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                                      era:rinfIndex "1.2.1.1.6.1" ;
+                                      era:usedInRCCCalculations "false"^^xsd:boolean ;
+                                      dcterms:source "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf" ;
+                                      dcterms:modified "2024-04-18"^^xsd:date ;
+                                      rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI .
+
+
+era:transitionsBetweenSystemsDataParameter dcterms:created "2024-10-31"^^xsd:date ;
+                                           rdfs:label "Transitions between systems"@en ;
+                                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                           era:rinfIndex "1.1.1.3.8" ,
+                                                         "1.2.1.1.7" .
 
 
 wgs: rdfs:label "geo" .
