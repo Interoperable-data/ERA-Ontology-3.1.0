@@ -1,0 +1,35 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+
+
+#############################
+# Rules for line position
+#############################
+era-sh:linePositionShape
+	a sh:NodeShape ;
+	sh:targetClass era:LinePosition.
+
+
+# nationalLine 
+era-sh:tunnelsShape sh:property era-sh:tunnelStartLineNationalId .
+era-sh:tunnelStartLineNationalId
+	a sh:PropertyShape;
+    era:affectedProperty era:lineNationalId;
+    era:affectedClass era:Tunnel;
+    era:affectedClass era:LineReference;
+    era:affectedClass era:NationalRailwayLine;
+    era:scope "local";  
+    rdfs:comment "A reference to a specific national railway line." ;
+	sh:path (era:lineReferenceTunnelStart era:lineNationalId) ;
+    sh:class era:NationalRailwayLine;
+    sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "lineReferenceTunnelStart - lineNationalId (1.1.1.1.8.3):  The tunnel's kilometer at its beginning must have at least one reference to a specific national railway line and this reference mut be an URI."@en .

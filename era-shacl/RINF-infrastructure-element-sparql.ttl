@@ -1,0 +1,133 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+
+#############################
+# Rules for infrastructure elements
+#############################
+era-sh:infrastructureElementShape
+	a sh:NodeShape ;
+	sh:targetClass era:InfrastructureElement.
+
+# organisationCode: # 1.2.1.0.6.1, 1.1.0.0.0.1, 1.1.1.1.8.1, 1.2.1.0.0.1, 1.2.1.0.5.1, 1.2.2.0.0.1, 1.2.2.0.5.1
+era-sh:infrastructureElementShape sh:property era-sh:infrastructureManagerIE .
+era-sh:infrastructureManagerIE
+	a sh:PropertyShape;
+    era:affectedProperty era:infrastructureManager;
+    era:affectedProperty era:belongsTo;
+    era:affectedClass era:InfrastructureElement;
+    era:affectedClass era:CommonCharacteristicsSubset;
+    era:affectedClass era:OrganisationRole;
+    era:scope "local";   
+	rdfs:comment "Each infrastructure element can only be submitted by one infrastructure manager, represented by a four-digit code." ;
+	era:rinfIndex "1.2.1.0.6.1" ;
+    era:rinfIndex "1.1.0.0.0.1" ;
+    era:rinfIndex "1.1.1.1.8.1" ;
+    era:rinfIndex "1.2.1.0.0.1" ;
+    era:rinfIndex "1.2.1.0.5.1" ;
+    era:rinfIndex "1.2.2.0.0.1" ;
+    era:rinfIndex "1.2.2.0.5.1" ;
+	sh:path (era:belongsTo era:infrastructureManager) ;
+    sh:class era:OrganisationRole ;
+	sh:minCount 1 ;
+    sh:maxCount 1 ;
+	sh:message "imCode (1.2.1.0.6.1): Each infrastructure element must belong to only one network (subset with common characteristics), and in turn have one infrastructure manager. This error may be due to having an infrastructure element with no infrastructure manager associated or with more than one infrastructure manager."@en .
+
+# organisationCode: # 1.2.1.0.6.1, 1.1.0.0.0.1, 1.1.1.1.8.1, 1.2.1.0.0.1, 1.2.1.0.5.1, 1.2.2.0.0.1, 1.2.2.0.5.1 Check that the organisationRole instance points to the skos value for infrastructure manager.
+era-sh:infrastructureElementShape sh:sparql era-sh:infrastructureManagerSKOSValue .
+era-sh:infrastructureManagerSKOSValue
+	a sh:SPARQLConstraint;
+    era:affectedProperty era:hasOrganisationRole;
+    era:affectedProperty era:infrastructureManager;
+    era:affectedProperty era:belongsTo;
+    era:affectedClass era:InfrastructureElement;
+    era:affectedClass era:CommonCharacteristicsSubset;
+    era:affectedClass era:OrganisationRole;
+    era:scope "local";   
+	rdfs:comment "Each infrastructure element can only be submitted by one infrastructure manager, represented by a four-digit code." ;
+	era:rinfIndex "1.2.1.0.6.1" ;
+    era:rinfIndex "1.1.0.0.0.1" ;
+    era:rinfIndex "1.1.1.1.8.1" ;
+    era:rinfIndex "1.2.1.0.0.1" ;
+    era:rinfIndex "1.2.1.0.5.1" ;
+    era:rinfIndex "1.2.2.0.0.1" ;
+    era:rinfIndex "1.2.2.0.5.1" ;
+    sh:message "imCode (1.2.1.0.6.1): Each infrastructure element {$this} with label {?label} refers to a network (subset with common characteristics), that in turn refers to an instance of an OrganisationRole. This instance must have an era:organisationRole pointing to the value era-organisation-roles:IM in the orgRoles SKOS concept scheme. The error is due to a {?value} different from <http://data.europa.eu/949/concepts/organisation-roles/IM>"@en ;
+    sh:prefixes era:;
+    sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this ?label ?value
+			WHERE {
+                $this a era:InfrastructureElement .
+                $this era:belongsTo ?subset .
+                ?subset era:infrastructureManager ?orgRole .
+                ?orgRole era:hasOrganisationRole ?value .
+                OPTIONAL{$this rdfs:label ?label} .
+                FILTER(?value != <http://data.europa.eu/949/concepts/organisation-roles/IM>) . 
+				
+			}
+			""" .
+
+# inCountry 
+era-sh:infrastructureElementShape sh:property era-sh:inCountry .
+era-sh:inCountry
+	a sh:PropertyShape;
+    era:affectedProperty era:inCountry;
+    era:affectedClass era:InfrastructureElement;
+    era:scope "local";
+	rdfs:comment "Indicates the country to which the infrastructure element belongs" ; 
+	sh:path era:inCountry ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI;
+	sh:severity sh:Violation ;
+	sh:message "inCountry:  Each infrastructure element must have exactly one country. This error may be due to having an infrast without or with more than one country or it value is not a Concept."@en .
+
+# inCountry
+era-sh:infrastructureElementShape sh:sparql era-sh:inCountrySKOS .
+era-sh:inCountrySKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:inCountry;
+    era:affectedClass era:InfrastructureElement;
+    era:scope "local";
+	rdfs:comment "Indicates the country to which the infrastructure element belongs" ; 
+	sh:severity sh:Violation ;
+	sh:message "The infrastructure element {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://publications.europa.eu/resource/authority/country."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    SELECT $this ?concept
+    WHERE {
+ 		$this era:inCountry ?concept .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme <http://publications.europa.eu/resource/authority/country> .
+		}
+	}
+""" .
+
+# nationalLine 
+era-sh:infrastructureElementShape sh:property era-sh:nationalLine .
+era-sh:nationalLine
+	a sh:PropertyShape;
+    era:affectedProperty era:nationalLine;
+    era:affectedClass era:LinePosition;
+    era:affectedClass era:InfrastructureElement;
+    era:affectedClass era:NationalRailwayLine;
+    era:scope "local";  
+    rdfs:comment "Indicates a relationship with a national railway line at a specific kilometer point." ;
+	sh:path (era:hasPosition era:nationalLine) ;
+    sh:class era:NationalRailwayLine;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "nationalLine:  The infrastructure element must have at least one reference to a position with respect to a specific national railway line and this reference mut be an URI."@en .
+
