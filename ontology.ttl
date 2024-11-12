@@ -19,26 +19,28 @@
 
 <http://data.europa.eu/949/> rdf:type owl:Ontology ;
                               cc:license <https://creativecommons.org/licenses/by/4.0/> ;
-                              dcterms:contributor [ foaf:name "Designated RINF Topical Working Groups"@en
+                              dcterms:contributor [ foaf:name "Oscar Corcho" ;
+													org:memberOf <https://www.upm.es/>		  
                                                   ] ,
-                                                  [ foaf:name "Oscar Corcho"
+                                                  [ foaf:name "Designated RINF Topical Working Groups"@en
                                                   ] ,
-                                                  [ foaf:name "Edna Ruckhaus"
-                                                  ] ,
-                                                  [ foaf:name "Polymnia Vasilopoulou" ;
+                                                  [ foaf:name "Maarten Duhoux" ;
                                                     org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                                   ] ,
                                                   [ foaf:name "Marina Aguado" ;
                                                     org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                                   ] ,
-                                                  [ foaf:name "Maarten Duhoux" ;
+                                                  [ foaf:name "Polymnia Vasilopoulou" ;
                                                     org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+                                                  ] ,
+                                                  [ foaf:name "Edna Ruckhaus" ;
+															  org:memberOf <https://www.upm.es/>
                                                   ] ;
-                              dcterms:creator [ foaf:name "Dragos Patru" ;
+                              dcterms:creator [ foaf:name "Ghislain Atemezing" ;
+                                                dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
                                                 org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                               ] ,
-                                              [ foaf:name "Ghislain Atemezing" ;
-                                                dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
+                                              [ foaf:name "Dragos Patru" ;
                                                 org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                               ] ;
                               dcterms:issued "2024-04-18"^^xsd:date ;
@@ -59,7 +61,8 @@
                                                "2024-10-29"^^xsd:date ,
                                                "2024-10-30"^^xsd:date ,
                                                "2024-10-31"^^xsd:date ,
-                                               "2024-11-04"^^xsd:date ;
+                                               "2024-11-04"^^xsd:date ,
+                                               "2024-11-12"^^xsd:date ;
                               dcterms:publisher "European Union Agency for Railways" ;
                               dcterms:title "ERA Ontology"@en ;
                               rdfs:comment """This is the human and machine readable Ontology governed by the European Union Agency for Railways (https://www.era.europa.eu/). It represents the concepts and relationships linked to the sectorial legal framework and the use cases under the AgencyÂ´s remit, as described in the Commission Implementing Regulation (EU) [to be updated after publication] on the common specifications for the register of railway infrastructure [to be updated after publication].
@@ -74,7 +77,10 @@ The Ontology also includes the routebook concepts described in appendix D2 \"Ele
                               owl:priorVersion "https://github.com/Interoperable-data/ERA_vocabulary/releases/v3.0.0"^^xsd:anyURI ;
                               owl:versionInfo "v3.1.0" ;
                               owl:versionURI <https://github.com/Interoperable-data/ERA_vocabulary/releases/releases/v3.1.0> ;
-                              skos:changeNote """Revision 04-11-2024
+                              skos:changeNote """Revision 12-11-2024
+- Deprecated era:imCode. Replaced by organisationCode
+
+Revision 04-11-2024
 - Added metadata (dcterms:modified and  rdfs:isDefinedBy to all ObjParameter and DataParameter properties in the hierarchy of Energy, Infra and CCS subsystems
 - Deleted annotation properties dcterms:modifief and dcterms:modifed
 - Added annotation properties era:affectedProperty, era:affectedClass, era:scope for annotating SHACL shapes
@@ -95,7 +101,7 @@ Revision 31-10-2024
 Revision 30-10-2024
 - Created the hierarchy of object and datatype properties for CCS system. Updated domain to Track. Added Subset of Common characteristics to domain. Deleted the class CCS subsystem
 - Changed names for classes InfrastructureObject to InfrastructureElement and also their subclasses now BasicElement and AggregatedElement.
-- Axiom for depreation was deleted for imCode. Its domain is OrganisationRole.
+- Axiom for deprecation was deleted for imCode. Its domain is OrganisationRole.
 - Deleted the class TechnicalCharacteristic. Change all domain and ranges where this class appears. Delete the era:parameter property.
 - Deprecated properties certificate, state of VehicleType as the class Certificate was also deprecated. The skos concept scheme for certificate states is moved to folder of deprecated skos.
 - Deleted the property organization between InfrastructureElement and Body (now infrastructureManager is the property that relates the Infrastructure element with the organisation role)
@@ -7034,9 +7040,12 @@ era:imCode rdf:type owl:DatatypeProperty ;
 - If the IM is subject to TAF/TAP TSIs, it corresponds to the code used in TAF/TAP TSIs. 
 - In other cases, it corresponds to the \"organisation code” assigned by the Agency for the specific needs of the RINF
 Each Section of Line may concern only one IM. """@en ;
+           dcterms:isReplacedBy era:organisationCode ;
            dcterms:modified "2024-01-08"^^xsd:date ,
                             "2024-06-03"^^xsd:date ,
-                            "2024-09-19"^^xsd:date ;
+                            "2024-09-19"^^xsd:date ,
+                            "2024-10-30"^^xsd:date ,
+                            "2024-11-12"^^xsd:date ;
            dcterms:source <https://data.europa.eu/eli/dec_impl/2018/1614> ,
                           <https://data.europa.eu/eli/dir/2012/34/oj> ,
                           <https://data.europa.eu/eli/reg_impl/2019/773/oj> ;
@@ -7044,8 +7053,8 @@ Each Section of Line may concern only one IM. """@en ;
 the functions of the infrastructure manager on a network or part of a network may be allocated to different bodies or firms. Definition in (Article 3(2))"""@en ;
            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
            rdfs:label "Infrastructure manager (IM)'s code"@en ;
-           rdfs:modified "2024-10-30"^^xsd:date ;
            rdfs:seeAlso "https://eur-lex.europa.eu/eli/dir/2012/34/oj#d1e885-32-1"^^xsd:anyURI ;
+           owl:deprecated "true"^^xsd:boolean ;
            vs:term_status "stable" .
 
 
@@ -7225,11 +7234,11 @@ era:lengthOfTunnel rdf:type owl:DatatypeProperty ;
                    era:unitOfMeasure unit:M ;
                    era:usedInRCCCalculations "true"^^xsd:boolean ;
                    dcterms:created "2024-05-16"^^xsd:date ;
+                   dcterms:modified "2024-09-19"^^xsd:date ;
                    dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
                    rdfs:comment "Length of a tunnel in metres from entrance portal to exit portal."@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    rdfs:label "Length of tunnel"@en ;
-                   rdfs:modified "2024-09-19"^^xsd:date ;
                    vs:term_status "stable" ;
                    skos:scopeNote "Parameters of this group (from 1.1.1.1.8.1 to 1.1.1.1.8.13) are only applicable if tunnels exist on the SoL"@en .
 
@@ -8566,11 +8575,37 @@ era:organisationCode rdf:type owl:DatatypeProperty ;
                      rdfs:subPropertyOf dcterms:identifier ;
                      rdfs:domain era:OrganisationRole ;
                      rdfs:range xsd:string ;
+                     era:appendixD2Index 1.1 ;
                      dcterms:created "2024-06-03"^^xsd:date ;
-                     dcterms:modified "2024-11-06"^^xsd:date ;
-                     rdfs:comment "Four alpha-numeric code allocated by ERA to a body. It represent's the IM code in RINF."@en ;
+                     dcterms:description """The Code is a unique identifier for the Infrastructure Manager and it shall be verified on national level. 
+- If the IM is subject to TAF/TAP TSIs, it corresponds to the code used in TAF/TAP TSIs. 
+- In other cases, it corresponds to the \"organisation code” assigned by the Agency for the specific needs of the RINF
+Each Section of Line may concern only one IM."""@en ;
+                     dcterms:modified "2024-11-06"^^xsd:date ,
+                                      "2024-11-12" ;
+                     dcterms:source <https://data.europa.eu/eli/dec_impl/2018/1614> ,
+                                    <https://data.europa.eu/eli/dir/2012/34/oj> ,
+                                    <https://data.europa.eu/eli/reg_impl/2019/773/oj> ;
+                     rdfs:comment """Four alpha-numeric code allocated by ERA to a body. It represent's the Infrastructure Manager (IM) code in RINF.
+Infrastructure manager means any body or firm responsible in particular for establishing, managing and maintaining railway infrastructure, including traffic management and control-command and signalling; 
+the functions of the infrastructure manager on a network or part of a network may be allocated to different bodies or firms. Definition in (Article 3(2))"""@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                     rdfs:label "organisation code" .
+                     rdfs:label "organisation code" ;
+                     era:rinfIndex "1.1.0.0.0.1" ,
+                         "1.1.1.1.8.1" ,
+                         "1.2.1.0.0.1" ,
+                         "1.2.1.0.5.1" ,
+                         "1.2.1.0.6.1" ,
+                         "1.2.2.0.0.1" ,
+                         "1.2.2.0.5.1" ;
+                     era:XMLName "OPSidingIMCode" ,
+                       "OPSidingTunnelIMCode" ,
+                       "OPTrackIMCode" ,
+                       "OPTrackPlatformIMCode" ,
+                       "OPTrackTunnelIMCode" ,
+                       "SOLIMCode" ,
+                       "SOLTunnelIMCode" ;
+                     rdfs:seeAlso "https://eur-lex.europa.eu/eli/dir/2012/34/oj#d1e885-32-1"^^xsd:anyURI .
 
 
 ###  http://data.europa.eu/949/otherRadioSystemsDataParameter
@@ -10823,11 +10858,11 @@ era:Certificate rdf:type owl:Class ;
 ###  http://data.europa.eu/949/CommonCharacteristicsSubset
 era:CommonCharacteristicsSubset rdf:type owl:Class ;
                                 dcterms:created "2022-11-04"^^xsd:date ;
-                                dcterms:modified "2023-03-14"^^xsd:date ;
+                                dcterms:modified "2023-03-14"^^xsd:date ,
+                                                 "2024-10-31" ;
                                 rdfs:comment "A set of common technical characteristics that is shared by different infrastructure objects. The set of parameters may not be restricted to only one railway subsystem, but it can include common characteristics from each one of them (infrastructure, energy, track-side CCS)"@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "Subset with common characteristics"@en ;
-                                rdfs:modified "2024-10-31" ;
                                 vs:term_status "stable" .
 
 
@@ -11828,46 +11863,19 @@ foaf:Person rdf:type owl:Class ;
             rdfs:comment "A person." ;
             rdfs:label "Person" ;
             vs:term_status "stable" .
+            vs:term_status "stable" .
 
 
-[ foaf:name "Designated RINF Topical Working Groups"@en
-] .
 
-[ foaf:name "Oscar Corcho"
- ] .
-
-[ foaf:name "Edna Ruckhaus"
- ] .
-
-[ foaf:name "Polymnia Vasilopoulou" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Marina Aguado" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Maarten Duhoux" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Dragos Patru" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Ghislain Atemezing" ;
-   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
 
 #################################################################
 #    Annotations
 #################################################################
 
-era:conditionsSwitchTrainProtectionSystems era:rinfIndex "1.1.1.3.8.1.1" ,
-                                                          "1.2.1.1.7.1.1" ;
+era:conditionsSwitchTrainProtectionSystems era:rinfIndex "1.1.1.3.8.1.1" ;
                                             era:appendixD2Index "3.4.2" ;
                                             era:XMLName "CTS_SwitchProtectConditions" ;
+                                            era:rinfIndex "1.2.1.1.7.1.1" ;
                                             vs:term_status "stable" ;
                                             rdfs:comment "Conditions to switch over between different class B train protection, control and warning systems."@en ;
                                             dcterms:created "2022-10-28"^^xsd:date ;
@@ -11879,8 +11887,8 @@ era:conditionsSwitchTrainProtectionSystems era:rinfIndex "1.1.1.3.8.1.1" ,
 era:switchProtectControlWarning rdfs:comment "Indication whether a switch over between different systems whilst running exists."@en ;
                                 era:rinfIndex "1.2.1.1.7.1" ,
                                               "1.1.1.3.8.1" ;
-                                era:appendixD2Index "3.4.2" ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                era:appendixD2Index "3.4.2" ;
                                 era:XMLName "CTS_SwitchProtectControlWarn" ;
                                 dcterms:modified "2021-09-12"^^xsd:date ;
                                 vs:term_status "stable" ;
@@ -11892,9 +11900,9 @@ era:switchRadioSystem era:rinfIndex "1.2.1.1.7.2" ,
                                     "1.1.1.3.8.2" ;
                       dcterms:created "2021-08-09"^^xsd:date ;
                       vs:term_status "stable" ;
-                      dcterms:modified "2021-09-12"^^xsd:date ;
                       rdfs:comment "Indication whether a switch over between different radio systems and no communication system whilst running exists."@en ;
                       era:XMLName "CTS_SwitchRadioSystem" ;
+                      dcterms:modified "2021-09-12"^^xsd:date ;
                       era:appendixD2Index "3.4.4" ;
                       rdfs:label "Existence of switch over between different radio systems"@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> .
@@ -11906,8 +11914,8 @@ era:trainDetectionSystemSpecificCheck rdfs:label "Type of track circuits or axle
                                       rdfs:comment "Reference to the technical specification of train detection system."@en ;
                                       vs:term_status "stable" ;
                                       dcterms:modified "2021-08-08"^^xsd:date ;
-                                      skos:scopeNote "Only applicable, when 1.1.1.3.7.1.1 is applicable."@en ;
                                       era:rinfIndex "1.1.1.3.7.1.2" ;
+                                      skos:scopeNote "Only applicable, when 1.1.1.3.7.1.1 is applicable."@en ;
                                       owl:deprecated "true"^^xsd:boolean ;
                                       dcterms:modified "2024-09-19"^^xsd:date ,
                                                        "2024-10-31"^^xsd:date ;
@@ -11920,8 +11928,8 @@ era:trainDetectionSystemSpecificCheck rdfs:label "Type of track circuits or axle
                                       dcterms:created "2020-08-24"^^xsd:date ;
                                       era:rinfIndex "1.2.1.1.6.1" ;
                                       era:usedInRCCCalculations "false"^^xsd:boolean ;
-                                      dcterms:modified "2024-04-18"^^xsd:date ;
                                       dcterms:source "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf" ;
+                                      dcterms:modified "2024-04-18"^^xsd:date ;
                                       rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI .
 
 
