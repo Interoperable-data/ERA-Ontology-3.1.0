@@ -1,0 +1,328 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix era-ph: <http://data.europa.eu/949/concepts/platform-heights/> .
+@prefix era-tenclass: <http://data.europa.eu/949/concepts/ten-classifications/> .
+@prefix era-gaugings: <http://data.europa.eu/949/concepts/gaugings/> .
+@prefix era-ntg: <http://data.europa.eu/949/concepts/nominal-track-gauges/> .
+@prefix era-tds: <http://data.europa.eu/949/concepts/train-detection/> .
+@prefix era-tdssc: <http://data.europa.eu/949/concepts/train-detection-specific-checks/> .
+@prefix era-tsi: <http://data.europa.eu/949/concepts/tsi-compliances/> .
+@prefix era-malvc: <http://data.europa.eu/949/concepts/min-axle-loads-per-vehicle-category/> .
+@prefix era-mas: <http://data.europa.eu/949/concepts/max-amount-sandings/> .
+
+#############################
+# Rules for train detection system
+#############################
+
+era-sh:TrainDetectionSystemShape
+	a sh:NodeShape ;
+	sh:targetClass era:TrainDetectionSystem .    # Applies to all TrainDetectionSystem instances
+
+# trainDetectionSystemType: # 1.1.1.3.7.1.1
+era-sh:trackShape sh:property era-sh:TrainDetectionSystemType.
+era-sh:TrainDetectionSystemType
+	a sh:PropertyShape ;     
+	era:affectedProperty era:trainDetectionSystemType;     
+	era:affectedClass era:TrainDetectionSystem;     
+	era:scope "local"; 
+	rdfs:comment "Indication of types of train detection system installed." ;
+	era:rinfIndex "1.1.1.3.7.1.1" ;
+	sh:path era:trainDetectionSystemType ;
+	## sh:minCount 0 ; #TODO: Not yet applicable
+	sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "trainDetectionSystem (1.1.1.3.7.1.1): The track must define the indication of types of train detection system installed."@en .
+
+# trainDetectionSystemType: # 1.1.1.3.7.1.1
+era-sh:TrainDetectionSystemShape sh:sparql era-sh:TrainDetectionSystemTypeSKOS .
+era-sh:TrainDetectionSystemTypeSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:trainDetectionSystemType;     
+	era:affectedClass era:TrainDetectionSystem;     
+	era:scope "local"; 
+	rdfs:comment "Indication of types of train detection system installed." ;
+	era:rinfIndex "1.1.1.3.7.1.1" ;
+	sh:severity sh:Violation ;
+	sh:message "Indication of types of train detection system installed (1.1.1.3.7.1.1): The train detection system {$this} (label {?tdsLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/train-detection/TrainDetectionSystems."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept ?tdsLabel
+    WHERE {
+        OPTIONAL {$this rdfs:label ?tdsLabel} .
+        $this era:trainDetectionSystemType ?concept .
+        era:trainDetectionSystemType era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+# trainDetectionSystemSpecificCheckDocument: # 1.1.1.3.7.1.3
+era-sh:TrainDetectionSystemShape sh:property era-sh:TrainDetectionSystemSpecificCheckDocument.
+era-sh:TrainDetectionSystemSpecificCheckDocument
+	a sh:PropertyShape ;     
+	era:affectedProperty era:trainDetectionSystemSpecificCheckDocument;     
+	era:affectedClass era:TrainDetectionSystem;     
+	era:scope "local"; 
+	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency with precise procedures for the specific check to be performed for train detection systems identified in 1.1.1.3.7.1.2." ;
+	era:rinfIndex "1.1.1.3.7.1.3" ;
+	sh:path era:trainDetectionSystemSpecificCheckDocument ;
+	### sh:minCount 0 ; #TODO: Not yet applicable
+	sh:class era:Document; # Previously commented: pending fix in mappings 
+	sh:severity sh:Violation ;
+	sh:message "trainDetectionSystemSpecificCheckDocument (1.1.1.3.7.1.3): The track defines the electronic document available in two EU languages value and it must be a Document."@en .
+
+
+# maxDistConsecutiveAxles: # 1.1.1.3.7.2.2  Parameter no longer in RINF regulation # 
+era-sh:TrainDetectionSystemShape sh:property era-sh:maxDistConsecutiveAxles .
+era-sh:maxDistConsecutiveAxles
+	a sh:PropertyShape ;     
+	era:affectedProperty era:maxDistConsecutiveAxles;     
+	era:affectedClass era:TrainDetectionSystem;     
+	era:scope "local"; 
+	rdfs:comment "Indication of maximum permitted distance between two consecutive axles in case of TSI non-compliance, given millimetres." ;
+	era:rinfIndex "1.1.1.3.7.2.2" ;
+	sh:path era:maxDistConsecutiveAxles ;
+    sh:maxCount 0 ;
+	# sh:minCount 0 ; # TODO: Not yet applicable
+	sh:datatype xsd:integer ;
+	sh:severity sh:Violation ;
+	sh:message "maxDistConsecutiveAxles (1.1.1.3.7.2.2): The parameter was deprecated, and its provision is no longer accepted. If you have provided a Full XML dataset, in this dataset the XML name for this parameter is CTD_MaxDistConsecutiveAxles."@en .
+
+
+# minDistFirstLastAxle: # 1.1.1.3.7.4 Parameter no longer in RINF regulation # TODO check ontology
+# era-sh:TrainDetectionSystemShape sh:property era-sh:minDistFirstLastAxle .
+# era-sh:minDistFirstLastAxle
+# 	a sh:PropertyShape ;     
+# 	era:affectedProperty era:minDistFirstLastAxle;     
+# 	era:affectedClass era:TrainDetectionSystem;     
+# 	era:scope "local";
+# 	rdfs:comment "Indication of minimum permitted distance between the first and last axles, given millimetres." ;
+# 	era:rinfIndex "1.1.1.3.7.4" ;
+# 	sh:path era:minDistFirstLastAxle ;
+#     sh:maxCount 0 ;
+# 	# sh:minCount 0 ; # TODO: Not yet applicable
+# 	sh:datatype xsd:integer ;
+# 	sh:severity sh:Violation ;
+# 	sh:message "minDistFirstLastAxle (1.1.1.3.7.4): The parameter was deprecated, and its provision is no longer accepted. If you have provided a Full XML dataset, in this dataset the XML name for this parameter is CTD_MinDistFirstLastAxles."@en .
+
+# minRimWidth: # 1.1.1.3.7.6 Parameter no longer in RINF regulation # TODO check ontology
+# era-sh:TrainDetectionSystemShape sh:property era-sh:minRimWidth .
+# era-sh:minRimWidth
+# 	a sh:PropertyShape ;     
+# 	era:affectedProperty era:minRimWidth;     
+# 	era:affectedClass era:TrainDetectionSystem;     
+# 	era:scope "local";
+# 	rdfs:comment "Indication of minimum permitted rim width, given millimetres." ;
+# 	era:rinfIndex "1.1.1.3.7.6" ;
+# 	sh:path era:minRimWidth ;
+#     sh:maxCount 0 ;
+# 	# sh:minCount 0 ; # TODO: Not yet applicable
+# 	sh:severity sh:Violation ;
+# 	sh:datatype xsd:double ;
+# 	sh:message "minRimWidth (1.1.1.3.7.6): The parameter was deprecated, and its provision is no longer accepted. If you have provided a Full XML dataset, in this dataset the XML name for this parameter is CTD_MinRimWidth."@en .
+	
+# minWheelDiameter: # 1.1.1.3.7.7 Parameter no longer in RINF regulation # TODO check ontology
+# era-sh:TrainDetectionSystemShape sh:property era-sh:minWheelDiameter .
+# era-sh:minWheelDiameter
+# 	a sh:PropertyShape ;     
+# 	era:affectedProperty era:minWheelDiameter;     
+# 	era:affectedClass era:TrainDetectionSystem;     
+# 	era:scope "local";
+# 	rdfs:comment "Indication of minimum permitted wheel diameter, given millimetres." ;
+# 	era:rinfIndex "1.1.1.3.7.7" ;
+# 	sh:path era:minWheelDiameter ;
+#     sh:maxCount 0 ;
+# 	# sh:minCount 0 ; # TODO: Not yet applicable
+# 	sh:severity sh:Violation ;
+# 	sh:datatype xsd:integer ;
+# 	sh:message "minWheelDiameter (1.1.1.3.7.7): The parameter was deprecated, and its provision is no longer accepted. If you have provided a Full XML dataset, in this dataset the XML name for this parameter is CTD_MinWheelDiameter."@en .
+
+## minFlangeThickness: # 1.1.1.3.7.8 Parameter no longer in RINF regulation # TODO check ontology
+# era-sh:TrainDetectionSystemShape sh:property era-sh:minFlangeThickness .
+# era-sh:minFlangeThickness
+# 	a sh:PropertyShape ;     
+# 	era:affectedProperty era:minFlangeThickness;     
+# 	era:affectedClass era:TrainDetectionSystem;     
+# 	era:scope "local";
+# 	rdfs:comment "Indication of minimum permitted flange thickness, given millimetres." ;
+# 	era:rinfIndex "1.1.1.3.7.8" ;
+# 	sh:path era:minFlangeThickness ;
+#     sh:maxCount 0 ;
+# 	# sh:minCount 0 ; # TODO: Not yet applicable
+# 	sh:severity sh:Violation ;
+# 	sh:datatype xsd:double ;
+# 	sh:message "minFlangeThickness (1.1.1.3.7.8): The parameter was deprecated, and its provision is no longer accepted. If you have provided a Full XML dataset, in this dataset the XML name for this parameter is CTD_MinFlangeThickness."@en .
+
+# minFlangeHeight: # 1.1.1.3.7.9 Parameter no longer in RINF regulation # TODO check ontology
+# era-sh:TrainDetectionSystemShape sh:property era-sh:minFlangeHeight .
+# era-sh:minFlangeHeight
+# 	a sh:PropertyShape ;     
+# 	era:affectedProperty era:minFlangeHeight;     
+# 	era:affectedClass era:TrainDetectionSystem;     
+# 	era:scope "local";
+# 	rdfs:comment "Indication of minimum permitted flange height, given millimetres." ;
+# 	era:rinfIndex "1.1.1.7.9" ;
+# 	sh:path era:minFlangeHeight ;
+#     sh:maxCount 0 ;
+# 	# sh:minCount 0 ; # TODO: Not yet applicable
+# 	sh:pattern "^([1-9]{0,1}[0-9]\\.[0-9])$" ;
+# 	sh:datatype xsd:double ;
+# 	sh:severity sh:Violation ;
+# 	sh:message "minFlangeHeight (1.1.1.7.9): The parameter was deprecated, and its provision is no longer accepted. If you have provided a Full XML dataset, in this dataset the XML name for this parameter is CTD_MinFlangeHeight."@en .
+
+# maxFlangeHeight: # 1.1.1.3.7.10 Parameter no longer in RINF regulation
+era-sh:TrainDetectionSystemShape sh:property era-sh:maxFlangeHeight .
+era-sh:maxFlangeHeight
+	a sh:PropertyShape ;     
+	era:affectedProperty era:maxFlangeHeight;     
+	era:affectedClass era:TrainDetectionSystem;     
+	era:scope "local";
+	rdfs:comment "Indication of maximum permitted flange height, given millimetres." ;
+	era:rinfIndex "1.1.1.3.7.10" ;
+	sh:path era:maxFlangeHeight ;
+    sh:maxCount 0 ;
+	# sh:minCount 0 ; # TODO: Not yet applicable
+	sh:datatype xsd:double ;
+	sh:severity sh:Violation ;
+	sh:message "maxFlangeHeight (1.1.1.3.7.10): The parameter was deprecated, and its provision is no longer accepted. If you have provided a Full XML dataset, in this dataset the XML name for this parameter is CTD_MaxFlangeHeight."@en .
+
+
+# maximumInterferenceCurrentEvaluation: 1.1.1.3.4.2.1  1.2.1.1.3.2.1
+era-sh:TrainDetectionSystemShape sh:property era-sh:maximumInterferenceCurrentEvaluation .
+era-sh:maximumInterferenceCurrentEvaluation
+	a sh:PropertyShape ;     
+	era:affectedProperty era:maximumInterferenceCurrentEvaluation;     
+	era:affectedClass era:TrainDetectionSystem;     
+	era:scope "local";
+	rdfs:comment "If the preferred frequency bands are not used, (mandatory) description of the parameters for evaluation of compliance. If the preferred frequency bands are used, this parameter is optional." ;
+	era:rinfIndex "1.1.1.3.4.2.1", "1.2.1.1.3.2.1" ;
+	sh:path era:maximumInterferenceCurrentEvaluation ;
+	sh:maxCount 1 ; # Functional property
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation ;
+	sh:message "maximumInterferenceCurrentEvaluation (1.1.1.3.4.2.1): Each TrainDetectionSystem may have a single value for maximumInterferenceCurrentEvaluation that is a character string. This error is due to having more than one maximumInterferenceCurrentEvaluation value or having a value that is not a string."@en .
+
+# frequencyBandsForDetection: 1.1.1.3.4.2 1.2.1.1.3.2
+era-sh:TrainDetectionSystemShape sh:property era-sh:frequencyBandsForDetection .
+era-sh:frequencyBandsForDetection
+	a sh:PropertyShape ;     
+	era:affectedProperty era:frequencyBandsForDetection;     
+	era:affectedClass era:TrainDetectionSystem;     
+	era:scope "local";
+	rdfs:comment "Bands of the frequency management of the train detection systems as defined in the TSI CCS (Annex I, Appendix A, Table A.2 -Index 77), and in the specific cases or technical documents referred to in Article 13 of TSI CCS when they are available." ;
+	era:rinfIndex "1.1.1.3.4.2", "1.2.1.1.3.2" ;
+	sh:path era:frequencyBandsForDetection ;
+	sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "frequencyBandsForDetection (1.1.1.3.4.2.1): The train detection system has a frequency band for detection that must be an IRI."@en .
+
+# frequencyBandsForDetection: 1.1.1.3.4.2 1.2.1.1.3.2
+era-sh:TrainDetectionSystemShape sh:sparql era-sh:frequencyBandsForDetectionSKOS .
+era-sh:frequencyBandsForDetectionSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:frequencyBandsForDetection;
+    era:affectedClass era:TrainDetectionSystem;
+    era:scope "local";
+	rdfs:comment "Indication of the frequency band for detection of the train detection system" ;
+	era:rinfIndex "1.1.1.3.4.2", "1.2.1.1.3.2" ;
+	sh:severity sh:Violation ;
+	sh:message "Indication of the frequency band for detection of the train detection system (1.1.1.3.4.2): The train detection system {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/train-detection/FrequencyBandsForDetection."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    SELECT $this  ?concept
+    WHERE {
+        $this era:frequencyBandsForDetection ?concept .
+        era:frequencyBandsForDetection era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+# maximumInterferenceCurrent: 1.1.1.3.4.2.1 1.2.1.1.3.2.1
+era-sh:TrainDetectionSystemShape sh:property era-sh:maximumInterferenceCurrent .
+era-sh:maximumInterferenceCurrent
+	a sh:PropertyShape ;     
+	era:affectedProperty era:maximumInterferenceCurrent;     
+	era:affectedClass era:TrainDetectionSystem;     
+	era:scope "local";
+	rdfs:comment "Maximum interference current limits allowed for track circuits for a defined frequency band (to be expressed in A/m)." ;
+	era:rinfIndex "1.1.1.3.4.2.1" , "1.2.1.1.3.2.1" ;
+	sh:path era:maximumInterferenceCurrent ;
+	sh:datatype xsd:double ;
+	# sh:pattern "([1-9]\\d{2}|[1-9]\\d{1}|[0-9])" ; # TODO check pattern
+	sh:severity sh:Violation ;
+	sh:message "maximumInterferenceCurrent (1.1.1.3.4.2.1): Each train detection system must define the maximum interference current in Amperes. This error is due to having the maximum interference current value that is not a double (real) number."@en .
+
+# tdsMaximumMagneticField: 1.1.1.3.4.2.3 1.2.1.1.3.2.3
+era-sh:TrainDetectionSystemShape sh:property era-sh:tdsMaximumMagneticField .
+era-sh:tdsMaximumMagneticField
+	a sh:PropertyShape;
+    era:affectedClass era:TrainDetectionSystem;
+    era:affectedProperty era:tdsMaximumMagneticField ;
+    era:scope "local";
+	rdfs:comment "Relates the Axle Counter TrainDetectionSystem with its MaximumMagneticField in (X,Y,Z). The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band. It should be provided in 3 directions." ;
+	era:rinfIndex "1.1.1.3.4.2.3" , "1.2.1.1.3.2.3" ;
+	sh:path era:tdsMaximumMagneticField ;
+	sh:class era:MaximumMagneticField;
+	sh:severity sh:Violation ;
+	sh:message "tdsMaximumMagneticField (1.1.1.3.4.2.3): The train detection system has a train detection system maximum magnetic field reference that must be a maximum magnetic field."@en .
+
+# maxFlangeHeight: 1.1.1.3.7.10
+era-sh:TrainDetectionSystemShape sh:property era-sh:maxFlangeHeight .
+era-sh:maxFlangeHeight
+	a sh:PropertyShape ;     
+	era:affectedProperty era:maxFlangeHeight;     
+	era:affectedClass era:TrainDetectionSystem;     
+	era:scope "local";
+	rdfs:comment "Deprecated according to the amendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter. Maximum permitted flange height, given in millimiters." ;
+	era:rinfIndex "1.1.1.3.7.10" ;
+	sh:path era:maxFlangeHeight ;
+	sh:datatype xsd:double ;
+	# sh:pattern "([1-9]\\d{2}|[1-9]\\d{1}|[0-9])" ; # TODO check pattern
+	sh:severity sh:Violation ;
+	sh:message "maxFlangeHeight (1.1.1.3.7.10): Each train detection system must define the maximum permitted height of the flange in millimeters. This error is due to having the maximum permitted flange height value that is not a double (real) number."@en .
+
+# minVehicleImpedance: 1.1.1.3.4.2.2
+era-sh:TrainDetectionSystemShape sh:property era-sh:minVehicleImpedance .
+era-sh:minVehicleImpedance
+	a sh:PropertyShape;
+    era:affectedClass era:TrainDetectionSystem;
+    era:affectedProperty era:minVehicleImpedance ;
+    era:scope "local";
+	# rdfs:comment "." ; # TODO not available in the ontology
+	era:rinfIndex "1.1.1.3.4.2.3" , "1.2.1.1.3.2.3" ;
+	sh:path era:minVehicleImpedance ;
+	sh:class era:MinVehicleImpedance;
+	sh:severity sh:Violation ;
+	sh:message "minVehicleImpedance (1.1.1.3.4.2.3): The train detection system has a minimum vehicle impedance reference that must be a minimum vehicle impedance."@en .
+
+# tdsFrenchTrainDetectionSystemLimitation: 1.1.1.3.7.1.4 1.2.1.1.6.3
+era-sh:TrainDetectionSystemShape sh:property era-sh:tdsFrenchTrainDetectionSystemLimitation .
+era-sh:tdsFrenchTrainDetectionSystemLimitation
+	a sh:PropertyShape;
+    era:affectedClass era:TrainDetectionSystem;
+    era:affectedProperty era:tdsFrenchTrainDetectionSystemLimitation ;
+    era:scope "local";
+	rdfs:comment "Relates the class train detection system with the class that represents the section with train detection limitation. Specific for route compatibility check on French network." ;
+	era:rinfIndex "1.1.1.3.7.1.4" , "1.2.1.1.6.3" ;
+	sh:path era:tdsFrenchTrainDetectionSystemLimitation ;
+	sh:class era:FrenchTrainDetectionSystemLimitation;
+	sh:severity sh:Violation ;
+	sh:message "tdsFrenchTrainDetectionSystemLimitation (1.1.1.3.7.1.4): The train detection system has a tds french train detection system limitation reference that must be a french train detection system limitation."@en .
