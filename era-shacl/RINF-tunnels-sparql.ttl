@@ -1,0 +1,298 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix era-ph: <http://data.europa.eu/949/concepts/platform-heights/> .
+@prefix era-tenclass: <http://data.europa.eu/949/concepts/ten-classifications/> .
+@prefix era-gaugings: <http://data.europa.eu/949/concepts/gaugings/> .
+@prefix era-ntg: <http://data.europa.eu/949/concepts/nominal-track-gauges/> .
+#############################
+# Rules for tunnels
+#############################
+
+era-sh:sectionOfLineShape
+	a sh:NodeShape ;
+	sh:targetClass era:SectionOfLine.
+
+#
+# tunnels
+#
+era-sh:tunnelsShape
+	a sh:NodeShape ;
+	sh:targetClass era:Tunnel .
+	
+
+# tunnelIdentification: # 1.1.1.1.8.2, 1.2.1.0.5.2
+era-sh:tunnelsShape sh:property era-sh:tunnelIdentification .
+era-sh:tunnelIdentification
+    a sh:PropertyShape ;
+    era:affectedProperty era:tunnelIdentification;
+    era:affectedClass era:Tunnel;
+    era:scope "local";  
+    rdfs:comment "Unique tunnel identification or unique number within Member State." ;
+    era:rinfIndex "1.1.1.1.8.2", "1.2.1.0.5.2" ;
+    sh:path era:tunnelIdentification ;           
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:severity sh:Violation ;
+    sh:message "tunnelIdentification (1.1.1.1.8.2, 1.2.1.0.5.2): Each Tunnel can be referred with only one identification. This error may be due to having a Tunnel with no identification or with more than one identification."@en .
+
+# lineReferenceTunnelStart - kilometer: 
+era-sh:tunnelsShape sh:property era-sh:lineReferenceTunnelStart .
+era-sh:lineReferenceTunnelStart
+	a sh:PropertyShape;
+    era:affectedProperty era:kilometer;
+    era:affectedClass era:Tunnel;
+    era:affectedClass era:LinePosition;
+    era:scope "local"; 
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    era:rinfIndex "1.1.1.1.8.3";
+    rdfs:comment "Part of the Start of tunnel that indicates the km of the line at the beginning of a tunnel." ;
+	sh:path (era:lineReferenceTunnelStart era:kilometer) ;
+    sh:datatype xsd:double;
+	sh:severity sh:Violation ;
+	sh:message "lineReferenceTunnelStart - kilometer (1.1.1.1.8.3):  The tunnel either does not have a value for kilometer at its beginning, it has more than one value for kilometer at its beginning, or the value of the kilometer is not a double (real) number."@en .
+
+# lineReferenceTunnelEnd - kilometer: 
+era-sh:tunnelsShape sh:property era-sh:lineReferenceTunnelEnd .
+era-sh:lineReferenceTunnelEnd
+	a sh:PropertyShape;
+    era:affectedProperty era:kilometer;
+    era:affectedClass era:Tunnel;
+    era:affectedClass era:LineReference;
+    era:scope "local"; 
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    era:rinfIndex "1.1.1.1.8.4";
+    rdfs:comment "Part of the End of tunnel that indicates the km of the line at the end of a tunnel." ;
+	sh:path (era:lineReferenceTunnelEnd era:kilometer) ;
+    sh:datatype xsd:double;
+	sh:severity sh:Violation ;
+	sh:message "lineReferenceTunnelEnd - kilometer (1.1.1.1.8.4):  The tunnel either does not have a value for kilometer at its end , it has more than one value for kilometer at its end, or the value of the kilometer is not a double (real) number."@en .
+
+
+
+
+
+# verificationSRT: # 1.1.1.1.8.5 TODO: Not yet applicable 
+era-sh:tunnelsShape sh:property era-sh:verificationSRT .
+era-sh:verificationSRT
+	a sh:PropertyShape ;
+    era:affectedProperty era:verificationSRT;
+    era:affectedClass era:Tunnel;
+    era:scope "local";
+   
+	rdfs:comment "Unique number for EC declarations following format requirements specified in the 'Document about practical arrangements for transmitting interoperability documents'" ;
+	era:rinfIndex "1.1.1.1.8.5" ;
+	sh:path era:verificationSRT ;
+	#sh:minCount 0 ;
+	sh:datatype xsd:string ;
+    sh:pattern "^[A-Z]{2}/.{14}/(19[0-9][0-9]|20[0-9][0-9]|2100)/[0-9]{6}$";
+	sh:severity sh:Violation ;
+	sh:message "verificationSRT (1.1.1.1.8.5): Each Tunnel may have one or more verificationSRT following this pattern country code/national registration number/year between 1900 and 2100/progressive counter. This error may be due to having a value that does not follow the pattern or that is not a character string."@en .
+
+
+# demonstrationSRT: # 1.1.1.1.8.6 
+era-sh:tunnelsShape sh:property era-sh:demonstrationSRT .
+era-sh:demonstrationSRT
+	a sh:PropertyShape ;
+    era:affectedProperty era:demonstrationSRT;
+    era:affectedClass era:Tunnel;
+    era:scope "local";
+	rdfs:comment "Unique number for EI declarations following the same format requirements as specified in the 'Document about practical arrangements for transmitting interoperability documents'" ;
+	era:rinfIndex "1.1.1.1.8.6" ;
+	sh:path era:demonstrationSRT ;
+	#sh:minCount 0 ;
+	sh:datatype xsd:string ;
+	sh:pattern "^[A-Z]{2}/.{14}/(19[0-9][0-9]|20[0-9][0-9]|2100)/[0-9]{6}$";
+	sh:severity sh:Violation ;
+	sh:message "demonstrationINF (1.1.1.1.8.6): Each Tunnel may have one or more demonstrationSRT following this pattern country code/national registration number/year between 1900 and 2100/progressive counter. This error may be due to having a value that does not follow the pattern or that is not a character string."@en .
+
+
+# lengthOfTunnel: # 1.1.1.1.8.7
+era-sh:tunnelsShape sh:property era-sh:lengthT .
+era-sh:lengthT
+	a sh:PropertyShape ;
+    era:affectedProperty era:lengthOfTunnel;
+    era:affectedClass era:Tunnel;
+    era:scope "local";
+  
+	rdfs:comment "Length of a tunnel in metres from entrance portal to exit portal." ;
+	era:rinfIndex "1.1.1.1.8.7" ;
+	sh:path era:length ;
+	#sh:minCount 0 ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:double ;
+	sh:minInclusive 100 ;
+	sh:severity sh:Violation ;
+	sh:message "length (1.1.1.1.8.7): A Tunnel must have at most one length declaration. This error may be due to having a tunnel with more than one length, to having a value for a tunnel that is under 100 metres in length, or to having a value that is not a double (real) number."@en .
+
+# crossSectionArea: # 1.1.1.1.8.8 
+era-sh:tunnelsShape sh:property era-sh:crossSectionAreaP .
+era-sh:crossSectionAreaP
+	a sh:PropertyShape ;
+    era:affectedProperty era:crossSectionArea;
+    era:affectedClass era:Tunnel;
+    era:scope "local";  
+	rdfs:comment "Smallest cross section area in square metres of the tunnel." ;
+	era:rinfIndex "1.1.1.1.8.8" ;
+	sh:path era:crossSectionArea ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:integer ;
+	sh:minInclusive 1 ; 
+	sh:maxExclusive 1000 ;
+	sh:severity sh:Violation ;
+	sh:message "crossSectionArea (1.1.1.1.8.8): A Tunnel can have at most one crossSectionArea. This error may be due to having a tunnel with more than one crossSectionArea, having a surface out of the range [0,1000) square metres, having more than one value, or having a value  that is not an integer number. "@en .
+
+
+# complianceInfTsi: # 1.1.1.1.8.8.1 
+era-sh:tunnelsShape sh:property era-sh:complianceInfTsiP .
+era-sh:complianceInfTsiP
+	a sh:PropertyShape ;
+    era:affectedProperty era:complianceInfTsi;
+    era:affectedClass era:Tunnel;
+    era:scope "local";  
+	rdfs:comment "Compliance of the tunnel with INF TSI at the maximum permitted speed." ;
+	era:rinfIndex "1.1.1.1.8.8.1" ;
+	sh:path era:complianceInfTsi ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "complianceInfTsi (1.1.1.1.8.8.1): A Tunnel can have at most one complianceInfTsi. This error may be due to having a tunnel with more than one complianceInfTsi or having a value type different than Y/N (boolean)."@en .
+
+
+# tunnelDocRef: # 1.1.1.1.8.8.2
+era-sh:tunnelsShape sh:property era-sh:tunnelDocRef .
+era-sh:tunnelDocRef
+	a sh:PropertyShape ;
+    era:affectedProperty era:tunnelDocRef;
+    era:affectedClass era:Tunnel;
+    era:scope "local";  
+	rdfs:comment "Electronic document available from the IM stored by the Agency with precise description of the clearance gauge and geometry of the tunnel" ;
+	era:rinfIndex "1.1.1.1.8.8.2" ;
+	sh:path era:tunnelDocRef ;
+	# sh:minCount 0 ;
+	sh:class era:Document;
+	sh:severity sh:Violation ;
+	sh:message "tunnelDocRef (1.1.1.1.8.8.2): A Tunnel has a tunnelDocRef with precise description of the clearance gauge and geometry of the tunnel, and it must be a Document."@en .
+
+
+
+# hasEmergencyPlan: # 1.1.1.1.8.9
+era-sh:tunnelsShape sh:property era-sh:hasEmergencyPlan .
+era-sh:hasEmergencyPlan
+	a sh:PropertyShape ;
+    era:affectedProperty era:hasEmergencyPlan;
+    era:affectedClass era:Tunnel;
+    era:scope "local";   
+	rdfs:comment "Indication whether emergency plan exists." ;
+	era:rinfIndex "1.1.1.1.8.9" ;
+	sh:path era:hasEmergencyPlan ;
+    sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "hasEmergencyPlan (1.1.1.1.8.9): A Tunnel has an indication about the existence of an emergency plan. This error may be due to having a tunnel with more than one value for hasEmergencyPlan or having a value type different than Y/N (boolean)."@en .
+
+
+# hasEvacuationAndRescuePoints: # 1.1.1.1.8.13
+era-sh:tunnelsShape sh:property era-sh:hasEvacuationAndRescuePoints .
+era-sh:hasEvacuationAndRescuePoints
+	a sh:PropertyShape ;
+    era:affectedProperty era:hasEvacuationAndRescuePoints;
+    era:affectedClass era:Tunnel;
+    era:scope "local";   
+	rdfs:comment "Indication of existence of evacuation and rescue points." ;
+	era:rinfIndex "1.1.1.1.8.13" ;
+    era:rinfIndex "1.2.1.0.5.11" ;
+    era:rinfIndex "1.1.1.1.8.13" ;
+	sh:path era:hasEmergencyPlan ;
+    sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "hasEvacuationAndRescuePoints (1.1.1.1.8.9): A Tunnel has an indication about the existence of an evacuation and rescue points. This error may be due to having a tunnel with more than one value for hasEvacuationAndRescuePoints or having a value type different than Y/N (boolean)."@en .
+
+# rollingStockFireCategory: # 1.1.1.1.8.10
+era-sh:tunnelsShape sh:property era-sh:rollingStockFireCategoryP .
+era-sh:rollingStockFireCategoryP
+	a sh:PropertyShape ;
+    era:affectedProperty era:rollingStockFireCategory;
+    era:affectedClass era:Tunnel;
+    era:scope "local";  
+	rdfs:comment "Categorisation on how a passenger train with a fire on board will continue to operate for a defined time period" ;
+	era:rinfIndex "1.1.1.1.8.10" ;
+	sh:path era:rollingStockFireCategory ;
+    sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "rollingStockFireCategory (1.1.1.1.8.10): A Tunnel may have an indication about the rollingStockFireCategory. This error may be due to having a tunnel without a rollingStockFireCategory declaration or having a literal as value. This error may be due to a tunnel having more than one value."@en .
+
+# rollingStockFireCategory: # 1.1.1.1.8.10
+era-sh:tunnelsShape sh:sparql era-sh:rollingStockFireCategorySKOS .
+era-sh:rollingStockFireCategorySKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:rollingStockFireCategory;
+    era:affectedClass era:Tunnel;
+    era:scope "local";
+   
+	rdfs:comment "Categorisation on how a passenger train with a fire on board will continue to operate for a defined time period" ;
+	era:rinfIndex "1.1.1.1.8.10" ;
+	sh:severity sh:Violation ;
+	sh:message "Categorisation on how a passenger train with a fire on board will continue to operate (1.1.1.1.8.10): The tunnel {$this} (label {?tunnelLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/rolling-stock-fire/Categories."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this ?concept ?tunnelLabel
+    WHERE {
+        OPTIONAL {$this rdfs:label ?tunnelLabel} .
+ 		$this era:rollingStockFireCategory ?concept .
+        era:rollingStockFireCategory era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+
+## nationalRollingStockFireCategory: # 1.1.1.1.8.11
+era-sh:tunnelsShape sh:property era-sh:nationalRollingStockFireCategory .
+era-sh:nationalRollingStockFireCategory
+	a sh:PropertyShape ;
+    era:affectedProperty era:nationalRollingStockFireCategory;
+    era:affectedClass era:Tunnel;
+    era:scope "local";
+   
+	rdfs:comment "Categorisation on how a passenger train with a fire on board will continue to operate for a defined time period - according to national rules if they exist." ;
+	era:rinfIndex "1.1.1.1.8.11" ;
+	sh:path era:nationalRollingStockFireCategory ;
+	#sh:minCount 0 ;
+    sh:maxCount 1 ;
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation ;
+	sh:message "nationalRollingStockFireCategory (1.1.1.1.8.11): A Tunnel may have an indication about the nationalRollingStockFireCategory. This error may be due to having a tunnel with more than one value or having a value type different than string."@en .
+
+# dieselThermalAllowed: # 1.2.1.0.5.9
+era-sh:tunnelsShape sh:property era-sh:dieselThermalAllowed .
+era-sh:dieselThermalAllowed
+	a sh:PropertyShape ;
+    era:affectedProperty era:dieselThermalAllowed;
+    era:affectedClass era:Tunnel;
+    era:scope "local";   
+	rdfs:comment "Indication whether it is allowed to use diesel or other thermal traction in the tunnel." ;
+	era:rinfIndex "1.2.1.0.5.9" ;
+	sh:path era:dieselThermalAllowed ;
+    sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "dieselThermalAllowed (1.2.1.0.5.9): A Tunnel may have an indication about the permission of thermal traction. This error may be due to having a tunnel woth more than one dieselThermalAllowed declaration or having a value type different than Y/N (boolean)."@en .
+
