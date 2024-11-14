@@ -27,6 +27,10 @@ era-sh:sectionOfLineShape
 era-sh:tunnelsShape
 	a sh:NodeShape ;
 	sh:targetClass era:Tunnel .
+
+era-sh:commonCharacteristicsSubsetShape
+	a sh:NodeShape ;
+	sh:targetClass era:CommonCharacteristicsSubset .  # Applies to all Common Characteritics Subset  with sidings parameters 
 	
 
 # tunnelIdentification: # 1.1.1.1.8.2, 1.2.1.0.5.2
@@ -45,7 +49,7 @@ era-sh:tunnelIdentification
     sh:severity sh:Violation ;
     sh:message "tunnelIdentification (1.1.1.1.8.2, 1.2.1.0.5.2): Each Tunnel can be referred with only one identification. This error may be due to having a Tunnel with no identification or with more than one identification."@en .
 
-# lineReferenceTunnelStart - kilometer: 
+# lineReferenceTunnelStart - kilometer: 1.1.1.1.8.3
 era-sh:tunnelsShape sh:property era-sh:lineReferenceTunnelStart .
 era-sh:lineReferenceTunnelStart
 	a sh:PropertyShape;
@@ -60,9 +64,9 @@ era-sh:lineReferenceTunnelStart
 	sh:path (era:lineReferenceTunnelStart era:kilometer) ;
     sh:datatype xsd:double;
 	sh:severity sh:Violation ;
-	sh:message "lineReferenceTunnelStart - kilometer (1.1.1.1.8.3):  The tunnel either does not have a value for kilometer at its beginning, it has more than one value for kilometer at its beginning, or the value of the kilometer is not a double (real) number."@en .
+	sh:message "lineReferenceTunnelStart - kilometer (1.1.1.1.8.3):  The tunnel either does not have a value for kilometer at its beginning, has more than one value, or the value is not a double (real) number."@en .
 
-# lineReferenceTunnelEnd - kilometer: 
+# lineReferenceTunnelEnd - kilometer: 1.1.1.1.8.4
 era-sh:tunnelsShape sh:property era-sh:lineReferenceTunnelEnd .
 era-sh:lineReferenceTunnelEnd
 	a sh:PropertyShape;
@@ -77,20 +81,17 @@ era-sh:lineReferenceTunnelEnd
 	sh:path (era:lineReferenceTunnelEnd era:kilometer) ;
     sh:datatype xsd:double;
 	sh:severity sh:Violation ;
-	sh:message "lineReferenceTunnelEnd - kilometer (1.1.1.1.8.4):  The tunnel either does not have a value for kilometer at its end , it has more than one value for kilometer at its end, or the value of the kilometer is not a double (real) number."@en .
+	sh:message "lineReferenceTunnelEnd - kilometer (1.1.1.1.8.4):  The tunnel either does not have a value for kilometer at its end , has more than one value , or the value is not a double (real) number."@en .
 
 
-
-
-
-# verificationSRT: # 1.1.1.1.8.5 TODO: Not yet applicable 
+# verificationSRT: # 1.1.1.1.8.5 
 era-sh:tunnelsShape sh:property era-sh:verificationSRT .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:verificationSRT .
 era-sh:verificationSRT
 	a sh:PropertyShape ;
     era:affectedProperty era:verificationSRT;
     era:affectedClass era:Tunnel;
-    era:scope "local";
-   
+    era:scope "local";  
 	rdfs:comment "Unique number for EC declarations following format requirements specified in the 'Document about practical arrangements for transmitting interoperability documents'" ;
 	era:rinfIndex "1.1.1.1.8.5" ;
 	sh:path era:verificationSRT ;
@@ -103,6 +104,7 @@ era-sh:verificationSRT
 
 # demonstrationSRT: # 1.1.1.1.8.6 
 era-sh:tunnelsShape sh:property era-sh:demonstrationSRT .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:demonstrationSRT.
 era-sh:demonstrationSRT
 	a sh:PropertyShape ;
     era:affectedProperty era:demonstrationSRT;
@@ -125,20 +127,18 @@ era-sh:lengthT
     era:affectedProperty era:lengthOfTunnel;
     era:affectedClass era:Tunnel;
     era:scope "local";
-  
 	rdfs:comment "Length of a tunnel in metres from entrance portal to exit portal." ;
 	era:rinfIndex "1.1.1.1.8.7" ;
 	sh:path era:length ;
-	#sh:minCount 0 ;
 	sh:maxCount 1 ;
 	sh:datatype xsd:double ;
-	sh:minInclusive 100 ;
 	sh:severity sh:Violation ;
-	sh:message "length (1.1.1.1.8.7): A Tunnel must have at most one length declaration. This error may be due to having a tunnel with more than one length, to having a value for a tunnel that is under 100 metres in length, or to having a value that is not a double (real) number."@en .
+	sh:message "length (1.1.1.1.8.7): A Tunnel must have at most one length declaration. This error may be due to having a tunnel with more than one length or to having a value that is not a double (real) number."@en .
 
 # crossSectionArea: # 1.1.1.1.8.8 
-era-sh:tunnelsShape sh:property era-sh:crossSectionAreaP .
-era-sh:crossSectionAreaP
+era-sh:tunnelsShape sh:property era-sh:crossSectionAreaT .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:crossSectionAreaT.
+era-sh:crossSectionAreaT
 	a sh:PropertyShape ;
     era:affectedProperty era:crossSectionArea;
     era:affectedClass era:Tunnel;
@@ -147,15 +147,14 @@ era-sh:crossSectionAreaP
 	era:rinfIndex "1.1.1.1.8.8" ;
 	sh:path era:crossSectionArea ;
 	sh:maxCount 1 ;
-	sh:datatype xsd:integer ;
-	sh:minInclusive 1 ; 
-	sh:maxExclusive 1000 ;
+	sh:datatype xsd:integer ; 
 	sh:severity sh:Violation ;
-	sh:message "crossSectionArea (1.1.1.1.8.8): A Tunnel can have at most one crossSectionArea. This error may be due to having a tunnel with more than one crossSectionArea, having a surface out of the range [0,1000) square metres, having more than one value, or having a value  that is not an integer number. "@en .
+	sh:message "crossSectionArea (1.1.1.1.8.8): A Tunnel can have at most one crossSectionArea. This error may be due to having a tunnel with more than one crossSectionArea or having a value  that is not an integer number."@en .
 
 
 # complianceInfTsi: # 1.1.1.1.8.8.1 
 era-sh:tunnelsShape sh:property era-sh:complianceInfTsiP .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:complianceInfTsiP .
 era-sh:complianceInfTsiP
 	a sh:PropertyShape ;
     era:affectedProperty era:complianceInfTsi;
@@ -172,6 +171,7 @@ era-sh:complianceInfTsiP
 
 # tunnelDocRef: # 1.1.1.1.8.8.2
 era-sh:tunnelsShape sh:property era-sh:tunnelDocRef .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:tunnelDocRef .
 era-sh:tunnelDocRef
 	a sh:PropertyShape ;
     era:affectedProperty era:tunnelDocRef;
@@ -189,6 +189,7 @@ era-sh:tunnelDocRef
 
 # hasEmergencyPlan: # 1.1.1.1.8.9
 era-sh:tunnelsShape sh:property era-sh:hasEmergencyPlan .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasEmergencyPlan .
 era-sh:hasEmergencyPlan
 	a sh:PropertyShape ;
     era:affectedProperty era:hasEmergencyPlan;
@@ -205,6 +206,7 @@ era-sh:hasEmergencyPlan
 
 # hasEvacuationAndRescuePoints: # 1.1.1.1.8.13
 era-sh:tunnelsShape sh:property era-sh:hasEvacuationAndRescuePoints .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasEvacuationAndRescuePoints .
 era-sh:hasEvacuationAndRescuePoints
 	a sh:PropertyShape ;
     era:affectedProperty era:hasEvacuationAndRescuePoints;
@@ -221,8 +223,9 @@ era-sh:hasEvacuationAndRescuePoints
 	sh:message "hasEvacuationAndRescuePoints (1.1.1.1.8.9): A Tunnel has an indication about the existence of an evacuation and rescue points. This error may be due to having a tunnel with more than one value for hasEvacuationAndRescuePoints or having a value type different than Y/N (boolean)."@en .
 
 # rollingStockFireCategory: # 1.1.1.1.8.10
-era-sh:tunnelsShape sh:property era-sh:rollingStockFireCategoryP .
-era-sh:rollingStockFireCategoryP
+era-sh:tunnelsShape sh:property era-sh:rollingStockFireCategory .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:rollingStockFireCategory .
+era-sh:rollingStockFireCategory
 	a sh:PropertyShape ;
     era:affectedProperty era:rollingStockFireCategory;
     era:affectedClass era:Tunnel;
@@ -237,12 +240,12 @@ era-sh:rollingStockFireCategoryP
 
 # rollingStockFireCategory: # 1.1.1.1.8.10
 era-sh:tunnelsShape sh:sparql era-sh:rollingStockFireCategorySKOS .
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:rollingStockFireCategorySKOS .
 era-sh:rollingStockFireCategorySKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:rollingStockFireCategory;
     era:affectedClass era:Tunnel;
-    era:scope "local";
-   
+    era:scope "local";   
 	rdfs:comment "Categorisation on how a passenger train with a fire on board will continue to operate for a defined time period" ;
 	era:rinfIndex "1.1.1.1.8.10" ;
 	sh:severity sh:Violation ;
@@ -266,12 +269,12 @@ era-sh:rollingStockFireCategorySKOS
 
 ## nationalRollingStockFireCategory: # 1.1.1.1.8.11
 era-sh:tunnelsShape sh:property era-sh:nationalRollingStockFireCategory .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:nationalRollingStockFireCategory .
 era-sh:nationalRollingStockFireCategory
 	a sh:PropertyShape ;
     era:affectedProperty era:nationalRollingStockFireCategory;
     era:affectedClass era:Tunnel;
-    era:scope "local";
-   
+    era:scope "local";   
 	rdfs:comment "Categorisation on how a passenger train with a fire on board will continue to operate for a defined time period - according to national rules if they exist." ;
 	era:rinfIndex "1.1.1.1.8.11" ;
 	sh:path era:nationalRollingStockFireCategory ;
@@ -283,6 +286,7 @@ era-sh:nationalRollingStockFireCategory
 
 # dieselThermalAllowed: # 1.2.1.0.5.9
 era-sh:tunnelsShape sh:property era-sh:dieselThermalAllowed .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:dieselThermalAllowed .
 era-sh:dieselThermalAllowed
 	a sh:PropertyShape ;
     era:affectedProperty era:dieselThermalAllowed;

@@ -26,26 +26,13 @@ era-sh:sidingsShape
 	a sh:NodeShape ;
 	sh:targetClass era:Siding .   # Applies to all Siding
 
+era-sh:commonCharacteristicsSubsetShape
+	a sh:NodeShape ;
+	sh:targetClass era:CommonCharacteristicsSubset .  # Applies to all Common Characteritics Subset  with sidings parameters 
+
 era-sh:OPShape
 	a sh:NodeShape ;
 	sh:targetClass era:OperationalPoint .   # Applies to all Operational points with sidings
-
-# imCode: #1.2.2.0.0.1 # TODO belongs to shape class OrganisationRole
-# era-sh:sidingsShape sh:property era-sh:imCodeS .
-# era-sh:imCodeS
-# 	a sh:PropertyShape ;
-#     era:affectedProperty era:imCode ;
-#     era:affectedClass era:Siding;
-#     era:scope "local";
-# 	rdfs:comment "Infrastructure manager means any body or undertaking that is responsible in particular for establishing and maintaining railway infrastructure or a part thereof" ;
-# 	era:rinfIndex "1.2.2.0.0.1" ;
-# 	sh:path era:imCode ;
-# 	sh:minCount 1 ;
-# 	sh:maxCount 1 ;
-# 	sh:datatype xsd:string ;
-# 	sh:pattern "^[0-9]{4}$" ;
-# 	sh:severity sh:Violation ;
-# 	sh:message "imCode (1.2.2.0.0.1): Each Siding must refer to exactly one infrastructure manager, which MUST be represented with a four-digit code."@en .
 
 # sidingId: #1.2.2.0.0.2 
 era-sh:sidingsShape sh:property era-sh:sidingId .
@@ -93,92 +80,83 @@ era-sh:NoRepeatedSidingIds
 			""" .
 
 
-
-# tenClassification: # 1.2.2.0.0.3 # TODO change to superClass Track
-# era-sh:sidingsShape sh:property era-sh:TenClassificationS.
-# era-sh:TenClassificationS
-# 	a sh:PropertyShape ;
-#     era:affectedProperty era:tenClassification ;
-#     era:affectedClass era:Siding;
-#     era:scope "local";
-# 	rdfs:comment "Indication of the part of the trans-European network the line belongs to." ;	era:rinfIndex "1.2.2.0.0.3" ;	
-#     sh:path era:tenClassification ;
-# 	sh:nodeKind sh:IRI ; 	
-# 	sh:severity sh:Violation ;	sh:message "tenClassification (1.1.1.1.2.1): The siding must have at least one TEN classificaion value (Indication of the part of the trans-European network the line belongs to) that must be an IRI."@en .
-
-# tenClassification: # 1.2.1.0.6.3
+# tenClassification: # 1.2.2.0.0.3
 era-sh:sidingsShape sh:property era-sh:tenClassificationS .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:tenClassificationS .
 era-sh:tenClassificationS
 	a sh:PropertyShape;
     era:affectedProperty era:tenClassification;
     era:affectedClass era:Siding;
     era:scope "local";   
     rdfs:comment "Indicates the part of the trans-European network the platform belongs to." ;
-	era:rinfIndex "1.2.1.0.6.3" ;
+	era:rinfIndex "1.2.2.0.0.3" ;
 	sh:path era:tenClassification ;
 	sh:nodeKind sh:IRI;
 	sh:severity sh:Violation ;
-	sh:message "TEN classification (1.2.1.0.6.3): This error may be due to having a Platform with a TEN classification that is not an URI."@en .
+	sh:message "TEN classification (1.2.2.0.0.3): This error may be due to having a Platform with a TEN classification that is not an URI."@en .
 
-#tenClassification: # 1.2.2.0.0.3 # TODO change to superClass Track
-# era-sh:sidingsShape sh:sparql era-sh:TenClassificationSKOSS .
-# era-sh:TenClassificationSKOSS
-# 	a sh:SPARQLConstraint ;
-#     era:affectedProperty era:tenClassification ;
-#     era:affectedClass era:Siding;
-#     era:scope "local";
-# 	rdfs:comment "Indication of the part of the trans-European network the line belongs to." ;	era:rinfIndex "1.2.2.0.0.3" ;
-# 	era:rinfIndex "1.2.2.0.0.3" ;
-# 	sh:nodeKind sh:IRI ;
-# 	sh:severity sh:Violation ;
-# 	sh:message "TEN classification (1.2.2.0.0.3): The siding {$this} with label {?sidingLabel} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/ten-classifications/TENClassifications."@en ;
-#     sh:prefixes era:;
-# 	sh:select """
-#     PREFIX era: <http://data.europa.eu/949/>
-#     PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-#     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-#     SELECT $this  ?concept ?sidingLabel
-#     WHERE {
-#         OPTIONAL{$this rdfs:label ?sidingLabel}
-#         $this era:tenClassification ?concept .
-#         era:tenClassification era:inSkosConceptScheme ?conceptScheme .
-# 		FILTER NOT EXISTS{         
-#   			?concept skos:inScheme ?conceptScheme .
-# 		}
-# 	}
-# """ .	
+# tenClassification: # 1.2.2.0.0.3 
+ era-sh:sidingsShape sh:sparql era-sh:TenClassificationSKOSS .
+ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:TenClassificationSKOSS .
+ era-sh:TenClassificationSKOSS
+ 	a sh:SPARQLConstraint ;
+    era:affectedProperty era:tenClassification ;
+    era:affectedClass era:Siding;
+    era:scope "local";
+ 	rdfs:comment "Indication of the part of the trans-European network the line belongs to." ;	era:rinfIndex "1.2.2.0.0.3" ;
+ 	era:rinfIndex "1.2.2.0.0.3" ;
+ 	sh:nodeKind sh:IRI ;
+ 	sh:severity sh:Violation ;
+ 	sh:message "TEN classification (1.2.2.0.0.3): The siding {$this} with label {?sidingLabel} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/ten-classifications/TENClassifications."@en ;
+     sh:prefixes era:;
+ 	sh:select """
+     PREFIX era: <http://data.europa.eu/949/>
+     PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+     SELECT $this  ?concept ?sidingLabel
+     WHERE {
+         OPTIONAL{$this rdfs:label ?sidingLabel}
+         $this era:tenClassification ?concept .
+         era:tenClassification era:inSkosConceptScheme ?conceptScheme .
+ 		FILTER NOT EXISTS{         
+   			?concept skos:inScheme ?conceptScheme .
+ 		}
+ 	}
+ """ .	
 
 
-# verificationINF: # 1.2.2.0.1.1 # TODO move to Track
-# era-sh:sidingsShape sh:property era-sh:verificationINF .
-# era-sh:verificationINF
-# 	a sh:PropertyShape;
-#     era:affectedProperty era:verificationINF ;
-#     era:affectedClass era:Siding;
-#     era:scope "local";
-# 	rdfs:comment "Indication of the verification of the infrastructure manager" ;
-# 	era:rinfIndex "1.2.2.0.1.1" ;
-# 	sh:path era:verificationINF ;
-#     sh:datatype xsd:string ;
-# 	sh:pattern "^[A-Z]{2}/.{14}/(19[0-9][0-9]|20[0-9][0-9]|2100)/[0-9]{6}$";
-# 	sh:severity sh:Violation ;
-# 	sh:message "verificationINF (1.2.2.0.1.1): Each Siding may have one or more verificationINF. This error is due to the value not being a string or the value not following this pattern: country code/national registration number/year between 1900 and 2100/progressive counter."@en .
+ # verificationINF: # 1.2.2.0.1.1 
+ era-sh:sidingsShape sh:property era-sh:verificationINFS .
+ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:verificationINFS .
+ era-sh:verificationINFS
+ 	a sh:PropertyShape;
+     era:affectedProperty era:verificationINF ;
+     era:affectedClass era:Siding;
+     era:scope "local";
+ 	 rdfs:comment "Indication of the verification of the infrastructure manager" ;
+ 	 era:rinfIndex "1.2.2.0.1.1" ;
+ 	 sh:path era:verificationINF ;
+     sh:datatype xsd:string ;
+ 	 sh:pattern "^[A-Z]{2}/.{14}/(19[0-9][0-9]|20[0-9][0-9]|2100)/[0-9]{6}$";
+ 	 sh:severity sh:Violation ;
+ 	 sh:message "verificationINF (1.2.2.0.1.1): Each Siding may have one or more verificationINF. This error is due to the value not being a string or the value not following this pattern: country code/national registration number/year between 1900 and 2100/progressive counter."@en .
 
-# demonstrationINF: # # 1.2.2.0.1.2 # TODO move to Track
-# era-sh:sidingsShape sh:property era-sh:demonstrationINF .
-# era-sh:demonstrationINF
-# 	a sh:PropertyShape;
-#     era:affectedProperty era:demonstrationINF ;
-#     era:affectedClass era:Siding;
-#     era:scope "local";
-# 	rdfs:comment "Unique number for EI declarations following the same format requirements as specified in the 'Documents about practical arrangements for transmitting interoperability documents'" ;
-# 	era:rinfIndex "1.2.2.0.1.2" ;
-# 	sh:path era:demonstrationINF ;
-# 	# sh:minCount 0 ; #TODO: Not yet applicable
-# 	sh:datatype xsd:string ;
-# 	sh:pattern "^[A-Z]{2}/.{14}/(19[0-9][0-9]|20[0-9][0-9]|2100)/[0-9]{6}$";
-# 	sh:severity sh:Violation ;
-# 	sh:message "demonstrationINF (1.2.2.0.1.2): Each Siding may have one or more demonstrationINF.  This error is due to the value not being a string or the value not following this pattern: country code/national registration number/year between 1900 and 2100/progressive counter."@en .
+# demonstrationINF: #  1.2.2.0.1.2 
+ era-sh:sidingsShape sh:property era-sh:demonstrationINFS .
+ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:demonstrationINFS .
+ era-sh:demonstrationINFS
+ 	a sh:PropertyShape;
+     era:affectedProperty era:demonstrationINF ;
+     era:affectedClass era:Siding;
+     era:scope "local";
+ 	rdfs:comment "Unique number for EI declarations following the same format requirements as specified in the 'Documents about practical arrangements for transmitting interoperability documents'" ;
+ 	era:rinfIndex "1.2.2.0.1.2" ;
+ 	sh:path era:demonstrationINF ;
+ 	 sh:minCount 0 ; #TODO: Not yet applicable
+ 	sh:datatype xsd:string ;
+ 	sh:pattern "^[A-Z]{2}/.{14}/(19[0-9][0-9]|20[0-9][0-9]|2100)/[0-9]{6}$";
+ 	sh:severity sh:Violation ;
+ 	sh:message "demonstrationINF (1.2.2.0.1.2): Each Siding may have one or more demonstrationINF.  This error is due to the value not being a string or the value not following this pattern: country code/national registration number/year between 1900 and 2100/progressive counter."@en .
 
 # lengthOfSiding: # 1.2.2.0.2.1
 era-sh:sidingsShape sh:property era-sh:lengthS .
@@ -194,10 +172,11 @@ era-sh:lengthS
 	sh:datatype xsd:double ;
 	sh:pattern "([1-9]\\d{3}|[1-9]\\d{2}|[1-9]\\d{1}|[0-9])" ;
 	sh:severity sh:Violation ;
-	sh:message "lengthOfSiding (1.2.2.0.2.1): Each Siding may have a length in meters. This error is due to having more than one length value or having a length that is not a double (real) number."@en .
+	sh:message "lengthOfSiding (1.2.2.0.2.1): Each Siding may have a length in meters. This error is due to having more than one length value or having a length that is not a double (real) number or not following the pattern [NNNN]."@en .
 
 # gradient: # 1.2.2.0.3.1
 era-sh:sidingsShape sh:property era-sh:gradient .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gradient .
 era-sh:gradient
 	a sh:PropertyShape;
     era:affectedProperty era:gradient ;
@@ -206,32 +185,32 @@ era-sh:gradient
 	rdfs:comment "Maximum value of the gradient expressed in millimeters per meter" ;
 	era:rinfIndex "1.2.2.0.3.1" ;
 	sh:path era:gradient ;
-	# sh:minCount 0 ; #TODO: Not yet applicable
 	sh:maxCount 1 ;
 	sh:datatype xsd:double ;
 	sh:pattern "([1-9]\\d{1}|[0-9])\\.[0-9]" ;
 	sh:severity sh:Violation ;
 	sh:message "gradient (1.2.2.0.3.1): Each Siding may have a gradient in millimeters per meter. This error is due to having more than one gradient value or having a gradient that is not a double (real) number."@en .
 
-# minimumHorizontalRadius: # 1.2.2.0.3.2 # TODO move to Track
-# era-sh:sidingsShape sh:property era-sh:minimumHorizontalRadius .
-# era-sh:minimumHorizontalRadius
-# 	a sh:PropertyShape;
-#     era:affectedProperty era:minimumHorizontalRadius ;
-#     era:affectedClass era:Siding;
-#     era:scope "local";
-# 	rdfs:comment "Radius of the smallest horizontal curve expressed in meters" ;
-# 	era:rinfIndex "1.2.2.0.3.2" ;
-# 	sh:path era:minimumHorizontalRadius ;
-# 	sh:maxCount 1 ;
-# 	sh:datatype xsd:integer ;
-# 	#sh:pattern "([1-9]\\d{2}|[1-9]\\d{1}|[0-9])" ;
-# 	sh:severity sh:Violation ;
-# 	sh:message "minimumHorizontalRadius (1.2.2.0.3.2): Each Siding may have a minimumHorizontalRadius in meters. This error is due to having more than one minimum horizontal radius value or having a minimum horizontal radius that is not an integer number."@en .
 
+# minimumHorizontalRadius: # 1.2.2.0.3.2 
+era-sh:sidingsShape sh:property era-sh:minimumHorizontalRadius .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:minimumHorizontalRadius .
+era-sh:minimumHorizontalRadius
+	a sh:PropertyShape;
+    era:affectedProperty era:minimumHorizontalRadius ;
+    era:affectedClass era:Siding;
+    era:scope "local";
+	rdfs:comment "Radius of the smallest horizontal curve of the track in metres." ;
+	era:rinfIndex "1.2.2.0.3.2" ;
+	sh:path era:minimumVerticalRadiusCrest ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:integer ;
+	sh:severity sh:Violation ;
+	sh:message "minimumHorizontalRadius (1.2.2.0.3.2): Each Siding may have a minimumHorizontalRadius in meters. This error is due to having more than one minimum horisontal radius  value or having a minimum horizontal radius that is not an integer number."@en. 
 
 # minimumVerticalRadiusCrest: # 1.2.2.0.3.3 
 era-sh:sidingsShape sh:property era-sh:minimumVerticalRadiusCrest .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:minimumVerticalRadiusCrest .
 era-sh:minimumVerticalRadiusCrest
 	a sh:PropertyShape;
     era:affectedProperty era:minimumVerticalRadiusCrest ;
@@ -247,6 +226,7 @@ era-sh:minimumVerticalRadiusCrest
 
 # minimumVerticalRadiusHollow: # 1.2.2.0.3.3
 era-sh:sidingsShape sh:property era-sh:minimumVerticalRadiusHollow .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:minimumVerticalRadiusHollow .
 era-sh:minimumVerticalRadiusHollow
 	a sh:PropertyShape;
     era:affectedProperty era:minimumVerticalRadiusHollow ;
@@ -263,6 +243,7 @@ era-sh:minimumVerticalRadiusHollow
 
 # hasToiletDischarge: # 1.2.2.0.4.1
 era-sh:sidingsShape sh:property era-sh:hasToiletDischarge .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasToiletDischarge .
 era-sh:hasToiletDischarge
 	a sh:PropertyShape;
     era:affectedProperty era:hasToiletDischarge ;
@@ -278,6 +259,7 @@ era-sh:hasToiletDischarge
 
 # hasExternalCleaning: # 1.2.2.0.4.2
 era-sh:sidingsShape sh:property era-sh:hasExternalCleaning .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasExternalCleaning .
 era-sh:hasExternalCleaning
 	a sh:PropertyShape;
     era:affectedProperty era:hasExternalCleaning ;
@@ -293,6 +275,7 @@ era-sh:hasExternalCleaning
 
 # hasWaterRestocking: # 1.2.2.0.4.3
 era-sh:sidingsShape sh:property era-sh:hasWaterRestocking .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasWaterRestocking .
 era-sh:hasWaterRestocking
 	a sh:PropertyShape;
     era:affectedProperty era:hasWaterRestocking ;
@@ -308,6 +291,7 @@ era-sh:hasWaterRestocking
 
 # hasRefuelling: # 1.2.2.0.4.4
 era-sh:sidingsShape sh:property era-sh:hasRefuelling .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasRefuelling .
 era-sh:hasRefuelling
 	a sh:PropertyShape;
     era:affectedProperty era:hasRefuelling ;
@@ -323,6 +307,7 @@ era-sh:hasRefuelling
 
 # hasSandRestocking: # 1.2.2.0.4.5
 era-sh:sidingsShape sh:property era-sh:hasSandRestocking .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasSandRestocking .
 era-sh:hasSandRestocking
 	a sh:PropertyShape;
      era:affectedProperty era:hasSandRestocking ;
@@ -338,6 +323,7 @@ era-sh:hasSandRestocking
 
 # hasElectricShoreSupply: # 1.2.2.0.4.6
 era-sh:sidingsShape sh:property era-sh:hasElectricShoreSupply .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasElectricShoreSupply .
 era-sh:hasElectricShoreSupply
 	a sh:PropertyShape;
     era:affectedProperty era:hasElectricShoreSupply ;
@@ -354,6 +340,7 @@ era-sh:hasElectricShoreSupply
 
 # maxCurrentStandstillPantograph: # 1.2.2.0.6.1
 era-sh:sidingsShape sh:property era-sh:maxCurrentStandstillPantographS .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:maxCurrentStandstillPantographS .
 era-sh:maxCurrentStandstillPantographS
 	a sh:PropertyShape;
     era:affectedProperty era:maxCurrentStandstillPantograph ;
@@ -365,4 +352,4 @@ era-sh:maxCurrentStandstillPantographS
 	sh:datatype xsd:double ;
 	sh:pattern "([1-9]\\d{2}|[1-9]\\d{1}|[0-9])" ;
 	sh:severity sh:Violation ;
-	sh:message "maxCurrentStandstillPantograph (1.2.2.0.6.1): Each Siding must define the maximum allowable train current at standstill for DC systems expressed in amperes. This error is due to having max current standstill pantograph value that is not a double (real) number."@en .
+	sh:message "maxCurrentStandstillPantograph (1.2.2.0.6.1): Each Siding must define the maximum allowable train current at standstill for DC systems expressed in amperes. This error is due to having a max current standstill pantograph value that is not a double (real) number."@en .

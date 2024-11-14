@@ -25,6 +25,11 @@ era-sh:operationalPointShape
 	a sh:NodeShape ;
 	sh:targetClass era:OperationalPoint .
 
+era-sh:commonCharacteristicsSubsetShape
+	a sh:NodeShape ;
+	sh:targetClass era:CommonCharacteristicsSubset .  # Applies to all Common Characteritics Subset  with platform parameters 
+
+
 
 # platformId: # 1.2.1.0.6.2
 era-sh:platformsShape sh:property era-sh:platformId .
@@ -72,53 +77,9 @@ era-sh:NoRepeatedPlatformIdsOP
 			""" .
 
 
-
-
-
-# imCode: # 1.2.1.0.6.1
-era-sh:platformsShape sh:property era-sh:imCodePlatform .
-era-sh:imCodePlatform
-	a sh:PropertyShape;
-    era:affectedProperty era:imCode;
-    era:affectedClass era:PlatformEdge;
-    era:scope "local";   
-	rdfs:comment "Each Platform can only be submitted by one infrastructure manager, represented by a four-digit code." ;
-	era:rinfIndex "1.2.1.0.6.1" ;
-	sh:path (era:belongsTo era:infrastructureManager) ;
-    sh:class era:OrganisationRole ;
-	sh:minCount 1 ;
-    sh:maxCount 1 ;
-	sh:message "imCode (1.2.1.0.6.1): Each Platform must belong to only one network (subset with common characteristics), and in turn have one infrastructure manager. This error may be due to having a Platform with no infrastructure manager associated or with more than one infrastructure manager."@en .
-
-# organisationCode: # 1.2.1.0.6.1 Check that the organisationRole instance points to the skos value for infrastructure manager.
-era-sh:platformsShape sh:sparql era-sh:imCodePlatformSKOSValue .
-era-sh:imCodePlatformSKOSValue
-	a sh:SPARQLConstraint;
-    era:affectedProperty era:imCode;
-    era:affectedClass era:PlatformEdge;
-    era:scope "local";   
-	rdfs:comment "Each Platform can only be submitted by one infrastructure manager, represented by a four-digit code." ;
-	era:rinfIndex "1.2.1.0.6.1" ;
-    sh:message "imCode (1.2.1.0.6.1): Each Platform {$this} with label {?platformLabel} refers to a network (subset with common characteristics), that in turn refers to an instance of an OrganisationRole. This instance must have an era:organisationRole pointing to the value era-organisation-roles:IM in the orgRoles SKOS concept scheme. The error is due to a {?value} different from <http://data.europa.eu/949/concepts/organisation-roles/IM>"@en ;
-    sh:prefixes era:;
-    sh:select """
-    PREFIX era: <http://data.europa.eu/949/>
-    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT $this ?platformLabel ?value
-			WHERE {
-                $this a era:Platform .
-                $this era:belongsTo ?subset .
-                ?subset era:infrastructureManager ?orgRole .
-                ?orgRole era:hasOrganisationRole ?value .
-                OPTIONAL{$this rdfs:label ?platformLabel} .
-                FILTER(?value != <http://data.europa.eu/949/concepts/organisation-roles/IM>) . 
-				
-			}
-			""" .
-
 # tenClassification: # 1.2.1.0.6.3
 era-sh:platformsShape sh:property era-sh:tenClassificationP .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:tenClassificationP .
 era-sh:tenClassificationP
 	a sh:PropertyShape;
     era:affectedProperty era:tenClassification;
@@ -133,6 +94,7 @@ era-sh:tenClassificationP
 
 #tenClassification: # 1.2.1.0.6.3
 era-sh:platformsShape sh:sparql era-sh:TenClassificationSKOSP .
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:TenClassificationSKOSP .
 era-sh:TenClassificationSKOSP
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:tenClassification;
@@ -179,6 +141,7 @@ era-sh:lengthP
 
 # platformHeight: # 1.2.1.0.6.5
 era-sh:platformsShape sh:property era-sh:platformHeightP .
+ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:platformHeightP .
 era-sh:platformHeightP
 	a sh:PropertyShape;
     era:affectedProperty era:platformHeight;
@@ -194,6 +157,7 @@ era-sh:platformHeightP
 
 # platformHeight: # 1.2.1.0.6.5
 era-sh:platformsShape sh:sparql era-sh:PlatformHeightSKOS .
+ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:PlatformHeightSKOS .
 era-sh:PlatformHeightSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:platformHeight;
@@ -223,6 +187,7 @@ era-sh:PlatformHeightSKOS
 
 # assistanceStartingTrain: # 1.2.1.0.6.6
 era-sh:platformsShape sh:property era-sh:assistanceStartingTrain .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:assistanceStartingTrain  .
 era-sh:assistanceStartingTrain
 	a sh:PropertyShape;
     era:affectedProperty era:assistanceStartingTrain;
@@ -238,6 +203,7 @@ era-sh:assistanceStartingTrain
 	
 # areaBoardingAid: # 1.2.1.0.6.7
 era-sh:platformsShape sh:property era-sh:areaBoardingAid .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:areaBoardingAid .
 era-sh:areaBoardingAid
 	a sh:PropertyShape;
     era:affectedProperty era:areaBoardingAid;
@@ -253,6 +219,7 @@ era-sh:areaBoardingAid
 
 # hasPlatformCurvature: # 1.2.1.0.6.8 
 era-sh:platformsShape sh:property era-sh:hasPlatformCurvature .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasPlatformCurvature .
 era-sh:hasPlatformCurvature
 	a sh:PropertyShape;
     era:affectedProperty era:hasPlatformCurvature;
