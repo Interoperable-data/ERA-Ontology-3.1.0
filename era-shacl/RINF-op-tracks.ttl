@@ -40,7 +40,7 @@ era-sh:OPTrackIdsMaxCount
    rdfs:comment "Each track shall have unique identification or number within the OP. This number cannot be used for naming any other track in the same OP." ;
    era:rinfIndex "1.2.1.0.0.2" ;
      sh:severity sh:Violation ;
-     sh:message "There should be at most one Track ID. There is a problem with OP {$this} ({?opLabel}) and its track {?track} ({?trackLabel}). This track has at least two different values for this property: {?value1} and {?value2}"@en ;
+     sh:message "There should be at most one Track ID per Track in an OP. There is a problem with OP {$this} ({?opLabel}) and its track {?track} ({?trackLabel}). This track has at least two different values for this property: {?value1} and {?value2}"@en ;
      sh:prefixes era:;
      sh:select """
      PREFIX era: <http://data.europa.eu/949/>
@@ -66,7 +66,7 @@ era-sh:OPTrackIdsMaxCount
     rdfs:comment "Each track shall have unique identification or number within the OP. This number cannot be used for naming any other track in the same OP." ;
     era:rinfIndex "1.2.1.0.0.2" ;
     sh:severity sh:Violation ;
-     sh:message "There should be at least one Track Id. There is a problem with OP {$this} ({?opLabel}) and its track {?track} ({?trackLabel}). This track has no values for this property"@en ;
+     sh:message "There should be at least one Track Id per Track in an OP. There is a problem with OP {$this} ({?opLabel}) and its track {?track} ({?trackLabel}). This track has no values for this property"@en ;
      sh:prefixes era:;
      sh:select """
     PREFIX era: <http://data.europa.eu/949/>
@@ -110,23 +110,6 @@ era-sh:NoRepeatedTrackIdsOP
 			""" .
 
 
-# # imCode: #1.2.1.0.0.1 # TODO belongs to shape class OrganisationRole
-# era-sh:operationalpointsShape sh:property era-sh:imCodeOPT .
-# era-sh:imCodeOPT
-# 	a sh:PropertyShape ;
-#     era:affectedProperty era:imCode;
-#     era:affectedClass era:Track;
-#     era:affectedClass era:OperationalPoint;
-#     era:scope "local";
-#     rdfs:comment "Infrastructure manager means any body or undertaking that is responsible in particular for establishing and maintaining railway infrastructure or a part thereof" ;
-# 	era:rinfIndex "1.2.1.0.0.1" ;
-# 	sh:path (era:track era:imCode) ;
-# 	sh:datatype xsd:string ;
-# 	sh:pattern "^[A-Za-z0-9]{4}$" ;
-#   sh:minCount 1 ;
-#   sh:maxCount 1 ;
-# 	sh:severity sh:Violation ;
-# 	sh:message "imCode (1.2.1.0.0.1): Each OPTrack MUST be represented with a four-digit code."@en .
 
 
 

@@ -1,0 +1,60 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+
+era-sh:primarylocationsShape
+	a sh:NodeShape ;
+	sh:targetClass era:PrimaryLocation.
+
+# localRulesOrRestrictions: # 1.2.3.1 
+era-sh:operationalpointsShape sh:property era-sh:localRulesOrRestrictions .
+era-sh:localRulesOrRestrictions
+	a sh:PropertyShape;
+    era:affectedClass era:OperationalPoint;
+    era:affectedProperty era:localRulesOrRestrictions ;
+    era:scope "local";
+	rdfs:comment "Existence of rules and restrictions of a strictly local nature." ;
+	era:rinfIndex "1.2.3.1" ;
+	sh:path era:localRulesOrRestrictions ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean;
+	sh:severity sh:Violation ;
+	sh:message "localRulesOrRestrictions (1.2.3.1): The Operational Point must have one localRulesOrRestrictions at most and the type must be Y/N (boolean)."@en .
+
+# localRulesOrRestrictionsDoc: # 1.2.3.2 todo revisar Y/N/NYA
+era-sh:operationalpointsShape sh:property era-sh:localRulesOrRestrictionsDoc .
+era-sh:localRulesOrRestrictionsDoc
+	a sh:PropertyShape;
+    era:affectedClass era:OperationalPoint;
+    era:affectedProperty era:localRulesOrRestrictionsDoc ;
+    era:scope "local";
+	rdfs:comment "Reference of the documents regarding the rules or restrictions of a strictly local nature available by the IM." ;
+	era:rinfIndex "1.2.3.2" ;
+	sh:path era:localRulesOrRestrictionsDoc ;
+	# # sh:minCount 0 ;
+	sh:maxCount 1;	
+	sh:class era:Document;
+	sh:severity sh:Violation ;
+	sh:message "localRulesOrRestrictionsDoc (1.2.3.2): The Operational Point has a localRulesOrRestrictionsDoc reference that must be a Document."@en .
+
+# primaryLocationCode: # 1.2.0.0.0.3 #pending checking pattern  [AANNNNN]
+era-sh:primarylocationsShape sh:property era-sh:primaryLocationCode .
+era-sh:primaryLocationCode
+	a sh:PropertyShape;
+    era:affectedClass era:PrimaryLocation;
+    era:affectedProperty era:primaryLocationCode ;
+    era:scope "local";
+	rdfs:comment "Primary location code developed for information exchange in accordance with the TSIs relating to the telematics applications subsystem."@en ;
+	era:rinfIndex "1.2.0.0.0.3" ;
+	sh:path era:primaryLocationCode ;
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation ;
+	sh:message "primaryLocationCode (1.2.0.0.0.3): The primery location code must be represented as a String and follow the pattern [AANNNNN]."@en .
