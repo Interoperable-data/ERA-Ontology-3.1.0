@@ -20,9 +20,7 @@
 <http://data.europa.eu/949/> rdf:type owl:Ontology ;
                               cc:license <https://creativecommons.org/licenses/by/4.0/> ;
                               dcterms:contributor [ foaf:name "Oscar Corcho" ;
-													org:memberOf <https://www.upm.es/>		  
-                                                  ] ,
-                                                  [ foaf:name "Designated RINF Topical Working Groups"@en
+                                                    org:memberOf <https://www.upm.es/>
                                                   ] ,
                                                   [ foaf:name "Maarten Duhoux" ;
                                                     org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
@@ -34,13 +32,15 @@
                                                     org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                                   ] ,
                                                   [ foaf:name "Edna Ruckhaus" ;
-															  org:memberOf <https://www.upm.es/>
+                                                    org:memberOf <https://www.upm.es/>
+                                                  ] ,
+                                                  [ foaf:name "Designated RINF Topical Working Groups"@en
                                                   ] ;
-                              dcterms:creator [ foaf:name "Ghislain Atemezing" ;
-                                                dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
+                              dcterms:creator [ foaf:name "Dragos Patru" ;
                                                 org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                               ] ,
-                                              [ foaf:name "Dragos Patru" ;
+                                              [ foaf:name "Ghislain Atemezing" ;
+                                                dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
                                                 org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                               ] ;
                               dcterms:issued "2024-04-18"^^xsd:date ;
@@ -920,11 +920,7 @@ era:condition rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/conditionsAppliedRegenerativeBraking
 era:conditionsAppliedRegenerativeBraking rdf:type owl:ObjectProperty ;
-                                         rdfs:domain [ rdf:type owl:Class ;
-                                                       owl:unionOf ( era:CommonCharacteristicsSubset
-                                                                     era:ContactLineSystem
-                                                                   )
-                                                     ] ;
+                                         rdfs:domain era:ContactLineSystem ;
                                          rdfs:range era:Document ;
                                          era:XMLName "ECS_RegBrakingConditions" ;
                                          era:appendixD2Index "3.3.7" ;
@@ -1024,11 +1020,7 @@ era:contactLineSystemObjParameter rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/contactLineSystemType
 era:contactLineSystemType rdf:type owl:ObjectProperty ;
                           rdfs:subPropertyOf era:contactLineSystemObjParameter ;
-                          rdfs:domain [ rdf:type owl:Class ;
-                                        owl:unionOf ( era:CommonCharacteristicsSubset
-                                                      era:ContactLineSystem
-                                                    )
-                                      ] ;
+                          rdfs:domain era:ContactLineSystem ;
                           rdfs:range skos:Concept ;
                           era:XMLName "ECS_SystemType" ;
                           era:inSkosConceptScheme <http://data.europa.eu/949/concepts/contact-line-systems/ContactLineSystems> ;
@@ -1349,8 +1341,7 @@ era:energySupplySystem rdf:type owl:ObjectProperty ;
                        rdfs:subPropertyOf era:contactLineSystemObjParameter ,
                                           era:vehicleTypeTechnicalObjectCharacteristic ;
                        rdfs:domain [ rdf:type owl:Class ;
-                                     owl:unionOf ( era:CommonCharacteristicsSubset
-                                                   era:ContactLineSystem
+                                     owl:unionOf ( era:ContactLineSystem
                                                    era:VehicleType
                                                  )
                                    ] ;
@@ -1415,8 +1406,7 @@ era:etcsBaseline rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf era:tsiCompliantTrainProtectionSystemObjParameter ,
                                     era:vehicleTypeTechnicalObjectCharacteristic ;
                  rdfs:domain [ rdf:type owl:Class ;
-                               owl:unionOf ( era:CommonCharacteristicsSubset
-                                             era:ETCS
+                               owl:unionOf ( era:ETCS
                                              era:VehicleType
                                            )
                              ] ;
@@ -1497,8 +1487,7 @@ era:etcsInfill rdf:type owl:ObjectProperty ;
                                   era:vehicleTypeTechnicalObjectCharacteristic ;
                rdf:type owl:FunctionalProperty ;
                rdfs:domain [ rdf:type owl:Class ;
-                             owl:unionOf ( era:CommonCharacteristicsSubset
-                                           era:ETCS
+                             owl:unionOf ( era:ETCS
                                            era:VehicleType
                                          )
                            ] ;
@@ -1523,11 +1512,7 @@ era:etcsInfill rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/etcsLevelType
 era:etcsLevelType rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf era:tsiCompliantTrainProtectionSystemObjParameter ;
-                  rdfs:domain [ rdf:type owl:Class ;
-                                owl:unionOf ( era:CommonCharacteristicsSubset
-                                              era:ETCS
-                                            )
-                              ] ;
+                  rdfs:domain era:ETCS ;
                   rdfs:range skos:Concept ;
                   era:XMLName "CPE_Level" ;
                   era:appendixD2Index "3.2.7" ;
@@ -1569,11 +1554,7 @@ See: TSI CCS (Subset-026, Chapter 2, 2.6)"""@en .
 era:etcsMVersion rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf era:tsiCompliantTrainProtectionSystemObjParameter ;
                  rdf:type owl:FunctionalProperty ;
-                 rdfs:domain [ rdf:type owl:Class ;
-                               owl:unionOf ( era:CommonCharacteristicsSubset
-                                             era:ETCS
-                                           )
-                             ] ;
+                 rdfs:domain era:ETCS ;
                  rdfs:range skos:Concept ;
                  era:XMLName "CPE_MVersion" ;
                  era:inSkosConceptScheme <http://data.europa.eu/949/concepts/etcs-m-versions/ETCSMVersions> ;
@@ -1609,7 +1590,6 @@ era:etcsSystemCompatibility rdf:type owl:ObjectProperty ;
                             rdf:type owl:FunctionalProperty ;
                             rdfs:domain [ rdf:type owl:Class ;
                                           owl:unionOf ( era:CommonCharacteristicsSubset
-                                                        era:ETCS
                                                         era:VehicleType
                                                       )
                                         ] ;
@@ -1652,11 +1632,7 @@ The ESC Types shall only be used when published with status ‘Valid’ in the A
 era:etcsTransmittedTrackConditions rdf:type owl:ObjectProperty ;
                                    rdfs:subPropertyOf era:tsiCompliantTrainProtectionSystemObjParameter ;
                                    rdf:type owl:FunctionalProperty ;
-                                   rdfs:domain [ rdf:type owl:Class ;
-                                                 owl:unionOf ( era:CommonCharacteristicsSubset
-                                                               era:ETCS
-                                                             )
-                                               ] ;
+                                   rdfs:domain era:CommonCharacteristicsSubset ;
                                    rdfs:range skos:Concept ;
                                    era:XMLName "CPE_TransmittedTCs" ;
                                    era:appendixD3Index "1.1" ;
@@ -1769,11 +1745,7 @@ Sections with:
 ###  http://data.europa.eu/949/frequencyBandsForDetection
 era:frequencyBandsForDetection rdf:type owl:ObjectProperty ;
                                rdfs:subPropertyOf era:trainDetectionSystemBasedFrequencyBandsObjParameter ;
-                               rdfs:domain [ rdf:type owl:Class ;
-                                             owl:unionOf ( era:CommonCharacteristicsSubset
-                                                           era:TrainDetectionSystem
-                                                         )
-                                           ] ;
+                               rdfs:domain era:TrainDetectionSystem ;
                                rdfs:range skos:Concept ;
                                era:XMLName "CCD_TSIFreqBandsDet" ;
                                era:inSkosConceptScheme <http://data.europa.eu/949/concepts/train-detection/FrequencyBandsForDetection> ;
@@ -2133,13 +2105,6 @@ era:hasPosition rdf:type owl:ObjectProperty ;
                 rdfs:label "has position"@en .
 
 
-###  http://data.europa.eu/949/hasSetOfParameters
-era:hasSetOfParameters rdf:type owl:ObjectProperty ;
-                       rdfs:domain era:InfrastructureElement ;
-                       rdfs:range era:CommonCharacteristicsSubset ;
-                       rdfs:label "has set of parameters"@en .
-
-
 ###  http://data.europa.eu/949/hasTopology
 era:hasTopology rdf:type owl:ObjectProperty ;
                 owl:inverseOf era:topologyOf ;
@@ -2359,8 +2324,7 @@ era:lineNationalId rdf:type owl:ObjectProperty ;
                    dcterms:description """Each SoL can belong to only one national line.
 
 In case when SoL is the track connecting between OPs within big node (resulting from division of big station into several smaller) the line can be identified using the name of this track."""@en ;
-                   dcterms:isReplacedBy era:nationalLine ,
-                                        era:nationalLineIdentification ;
+                   dcterms:isReplacedBy era:nationalLine ;
                    dcterms:modified "2023-03-14"^^xsd:date ,
                                     "2024-09-19"^^xsd:date ,
                                     "2024-10-28"^^xsd:date ;
@@ -2735,11 +2699,7 @@ Deprecated according to the amendment to the Regulation (EU) 2019/777."""@en ;
 ###  http://data.europa.eu/949/minVehicleImpedance
 era:minVehicleImpedance rdf:type owl:ObjectProperty ;
                         rdfs:subPropertyOf era:trainDetectionSystemBasedFrequencyBandsObjParameter ;
-                        rdfs:domain [ rdf:type owl:Class ;
-                                      owl:unionOf ( era:CommonCharacteristicsSubset
-                                                    era:TrainDetectionSystem
-                                                  )
-                                    ] ;
+                        rdfs:domain era:TrainDetectionSystem ;
                         rdfs:range era:MinVehicleImpedance ;
                         era:rinfIndex "1.1.1.3.4.2.2" ;
                         rdfs:label "minimum vehicle impedance"@en .
@@ -2774,12 +2734,20 @@ era:nationalLine rdf:type owl:ObjectProperty ;
                                            )
                              ] ;
                  rdfs:range era:NationalRailwayLine ;
+                 era:XMLName "SOLLineIdentification" ;
+                 era:rinfIndex "1.1.0.0.0.2" ;
                  dcterms:created "2024-05-24"^^xsd:date ;
-                 dcterms:modified "2024-10-24"^^xsd:date ;
+                 dcterms:description """Each SoL can belong to only one national line.
+
+In case when SoL is the track connecting between OPs within big node (resulting from division of big station into several smaller) the line can be identified using the name of this track."""@en ;
+                 dcterms:modified "2024-10-24"^^xsd:date ,
+                                  "2024-11-18"^^xsd:date ;
                  dcterms:replaces era:lineReference ;
-                 rdfs:comment "Indicates a relationship with a national railway line at a specific kilometer point."@en ;
+                 rdfs:comment """Indicates a relationship with a national railway line at a specific kilometer point.
+For a Section of Line: unique line identification or unique line number within Member State."""@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                 rdfs:label "national line"@en .
+                 rdfs:label "national line"@en ;
+                 vs:term_status "stable" .
 
 
 ###  http://data.europa.eu/949/navigability
@@ -3184,7 +3152,11 @@ era:platformEdge rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/platformHeight
 era:platformHeight rdf:type owl:ObjectProperty ,
                             owl:FunctionalProperty ;
-                   rdfs:domain era:PlatformEdge ;
+                   rdfs:domain [ rdf:type owl:Class ;
+                                 owl:unionOf ( era:CommonCharacteristicsSubset
+                                               era:PlatformEdge
+                                             )
+                               ] ;
                    rdfs:range skos:Concept ;
                    era:XMLName "IPL_Height" ;
                    era:appendixD2Index "2.3.7" ;
@@ -3827,7 +3799,8 @@ era:subCategory rdf:type owl:ObjectProperty ;
 
 
 ###  http://data.europa.eu/949/subsetOf
-era:subsetOf rdf:type owl:ObjectProperty ;
+era:subsetOf rdf:type owl:ObjectProperty ,
+                      owl:TransitiveProperty ;
              rdfs:domain era:CommonCharacteristicsSubset ;
              rdfs:range era:CommonCharacteristicsSubset ;
              dcterms:created "2024-10-31"^^xsd:date ;
@@ -3902,11 +3875,7 @@ era:switchesAndCrossingsObjParameter rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/tdsFrenchTrainDetectionSystemLimitation
 era:tdsFrenchTrainDetectionSystemLimitation rdf:type owl:ObjectProperty ;
                                             rdfs:subPropertyOf era:otherTrainDetectionSystemsObjParameter ;
-                                            rdfs:domain [ rdf:type owl:Class ;
-                                                          owl:unionOf ( era:CommonCharacteristicsSubset
-                                                                        era:TrainDetectionSystem
-                                                                      )
-                                                        ] ;
+                                            rdfs:domain era:TrainDetectionSystem ;
                                             rdfs:range era:FrenchTrainDetectionSystemLimitation ;
                                             era:XMLName "CTD_TCLimitation" ;
                                             era:rinfIndex "1.1.1.3.7.1.4" ,
@@ -3924,11 +3893,7 @@ Specific for route compatibility check on French network."""@en ;
 ###  http://data.europa.eu/949/tdsMaximumMagneticField
 era:tdsMaximumMagneticField rdf:type owl:ObjectProperty ;
                             rdfs:subPropertyOf era:trainDetectionSystemBasedFrequencyBandsObjParameter ;
-                            rdfs:domain [ rdf:type owl:Class ;
-                                          owl:unionOf ( era:CommonCharacteristicsSubset
-                                                        era:TrainDetectionSystem
-                                                      )
-                                        ] ;
+                            rdfs:domain era:TrainDetectionSystem ;
                             rdfs:range era:MaximumMagneticField ;
                             era:XMLName "CCD_ACMagFieldMax" ;
                             era:rinfIndex "1.1.1.3.4.2.3" ,
@@ -4212,22 +4177,14 @@ era:trainDetectionSystemBasedFrequencyBandsObjParameter rdf:type owl:ObjectPrope
 ###  http://data.europa.eu/949/trainDetectionSystemSpecificCheck
 era:trainDetectionSystemSpecificCheck rdf:type owl:ObjectProperty ;
                                       rdfs:subPropertyOf era:otherTrainDetectionSystemsObjParameter ;
-                                      rdfs:domain [ rdf:type owl:Class ;
-                                                    owl:unionOf ( era:CommonCharacteristicsSubset
-                                                                  era:TrainDetectionSystem
-                                                                )
-                                                  ] ;
+                                      rdfs:domain era:TrainDetectionSystem ;
                                       rdfs:range skos:Concept .
 
 
 ###  http://data.europa.eu/949/trainDetectionSystemSpecificCheckDocument
 era:trainDetectionSystemSpecificCheckDocument rdf:type owl:ObjectProperty ;
                                               rdfs:subPropertyOf era:otherTrainDetectionSystemsObjParameter ;
-                                              rdfs:domain [ rdf:type owl:Class ;
-                                                            owl:unionOf ( era:CommonCharacteristicsSubset
-                                                                          era:TrainDetectionSystem
-                                                                        )
-                                                          ] ;
+                                              rdfs:domain era:TrainDetectionSystem ;
                                               rdfs:range era:Document ;
                                               era:XMLName "CTD_TCCheckDocRef" ;
                                               era:rinfIndex "1.1.1.3.7.1.3" ,
@@ -4253,8 +4210,7 @@ era:trainDetectionSystemType rdf:type owl:ObjectProperty ;
                              rdfs:subPropertyOf era:otherTrainDetectionSystemsObjParameter ,
                                                 era:vehicleTypeTechnicalObjectCharacteristic ;
                              rdfs:domain [ rdf:type owl:Class ;
-                                           owl:unionOf ( era:CommonCharacteristicsSubset
-                                                         era:TrainDetectionSystem
+                                           owl:unionOf ( era:TrainDetectionSystem
                                                          era:VehicleType
                                                        )
                                          ] ;
@@ -4331,11 +4287,7 @@ era:tsiCompliantFerromagneticWheel rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/tsiCompliantMaxDistConsecutiveAxles
 era:tsiCompliantMaxDistConsecutiveAxles rdf:type owl:ObjectProperty ;
-                                        rdfs:domain [ rdf:type owl:Class ;
-                                                      owl:unionOf ( era:CommonCharacteristicsSubset
-                                                                    era:TrainDetectionSystem
-                                                                  )
-                                                    ] ;
+                                        rdfs:domain era:TrainDetectionSystem ;
                                         rdfs:range skos:Concept ;
                                         era:XMLName "CTD_TSIMaxDistConsecutiveAxles" ;
                                         era:inSkosConceptScheme <http://data.europa.eu/949/concepts/tsi-compliances/TSICompliances> ;
@@ -4504,11 +4456,7 @@ era:tsiPantographHead rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/tunnelDocRef
 era:tunnelDocRef rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf era:tunnelObjParameter ;
-                 rdfs:domain [ rdf:type owl:Class ;
-                               owl:unionOf ( era:CommonCharacteristicsSubset
-                                             era:Tunnel
-                                           )
-                             ] ;
+                 rdfs:domain era:Tunnel ;
                  rdfs:range era:Document ;
                  era:XMLName "ITU_TunnelDocRef" ;
                  era:rinfIndex "1.1.1.1.8.8.2" ;
@@ -4528,7 +4476,7 @@ era:tunnelDocRef rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/tunnelObjParameter
 era:tunnelObjParameter rdf:type owl:ObjectProperty ;
                        rdfs:subPropertyOf era:infraSubsystemObjParameter ;
-                       era:rinfIndex "1.1.1.1.8"@en ,
+                       era:rinfIndex "1.1.1.1.8" ,
                                      "1.2.1.0.5" ,
                                      "1.2.2.0.5" ;
                        dcterms:created "2024-10-31"^^xsd:date ;
@@ -4880,7 +4828,11 @@ era:altitudeRangeDetail rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/areaBoardingAid
 era:areaBoardingAid rdf:type owl:DatatypeProperty ,
                              owl:FunctionalProperty ;
-                    rdfs:domain era:PlatformEdge ;
+                    rdfs:domain [ rdf:type owl:Class ;
+                                  owl:unionOf ( era:CommonCharacteristicsSubset
+                                                era:PlatformEdge
+                                              )
+                                ] ;
                     rdfs:range xsd:integer ;
                     era:XMLName "IPL_AreaBoardingAid" ;
                     era:rinfIndex "1.2.1.0.6.7" ;
@@ -4896,7 +4848,11 @@ era:areaBoardingAid rdf:type owl:DatatypeProperty ,
 ###  http://data.europa.eu/949/assistanceStartingTrain
 era:assistanceStartingTrain rdf:type owl:DatatypeProperty ,
                                      owl:FunctionalProperty ;
-                            rdfs:domain era:PlatformEdge ;
+                            rdfs:domain [ rdf:type owl:Class ;
+                                          owl:unionOf ( era:CommonCharacteristicsSubset
+                                                        era:PlatformEdge
+                                                      )
+                                        ] ;
                             rdfs:range xsd:boolean ;
                             era:XMLName "IPL_AssistanceStartingTrain" ;
                             era:rinfIndex "1.2.1.0.6.6" ;
@@ -5153,11 +5109,7 @@ era:compositeBrakeBlockRetrofitted rdf:type owl:DatatypeProperty ;
 era:conditionalRegenerativeBrake rdf:type owl:DatatypeProperty ;
                                  rdfs:subPropertyOf era:contactLineSystemDataParameter ;
                                  rdf:type owl:FunctionalProperty ;
-                                 rdfs:domain [ rdf:type owl:Class ;
-                                               owl:unionOf ( era:CommonCharacteristicsSubset
-                                                             era:ContactLineSystem
-                                                           )
-                                             ] ;
+                                 rdfs:domain era:ContactLineSystem ;
                                  rdfs:range xsd:boolean ;
                                  era:XMLName "ECS_RegenerativeBraking" ;
                                  era:appendixD2Index "3.3.7" ;
@@ -5174,11 +5126,7 @@ era:conditionalRegenerativeBrake rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/conditionsChargingElectricEnergyStorage
 era:conditionsChargingElectricEnergyStorage rdf:type owl:DatatypeProperty ;
                                             rdfs:subPropertyOf era:contactLineSystemDataParameter ;
-                                            rdfs:domain [ rdf:type owl:Class ;
-                                                          owl:unionOf ( era:CommonCharacteristicsSubset
-                                                                        era:ContactLineSystem
-                                                                      )
-                                                        ] ;
+                                            rdfs:domain era:ContactLineSystem ;
                                             rdfs:range xsd:anyURI ;
                                             era:rinfIndex "1.2.1.0.7.2" ;
                                             dcterms:created "2023-03-14"^^xsd:date ;
@@ -5723,11 +5671,7 @@ era:energySupplyMaxPower rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/energySupplySystemTSICompliant
 era:energySupplySystemTSICompliant rdf:type owl:DatatypeProperty ;
                                    rdfs:subPropertyOf era:contactLineSystemDataParameter ;
-                                   rdfs:domain [ rdf:type owl:Class ;
-                                                 owl:unionOf ( era:CommonCharacteristicsSubset
-                                                               era:ContactLineSystem
-                                                             )
-                                               ] ;
+                                   rdfs:domain era:ContactLineSystem ;
                                    rdfs:range xsd:boolean ;
                                    era:XMLName "ECS_TSIVoltFreq" ;
                                    era:rinfIndex "1.1.1.2.2.1.2.1" ;
@@ -6431,7 +6375,11 @@ and deviations – Guidelines for using the ERA template) with the following lin
 ###  http://data.europa.eu/949/hasElectricShoreSupply
 era:hasElectricShoreSupply rdf:type owl:DatatypeProperty ,
                                     owl:FunctionalProperty ;
-                           rdfs:domain era:Siding ;
+                           rdfs:domain [ rdf:type owl:Class ;
+                                         owl:unionOf ( era:CommonCharacteristicsSubset
+                                                       era:Siding
+                                                     )
+                                       ] ;
                            rdfs:range xsd:boolean ;
                            era:XMLName "ITS_ElectricShoreSupply" ;
                            era:rinfIndex "1.2.2.0.4.6" ;
@@ -6505,7 +6453,11 @@ era:hasEvacuationAndRescuePoints rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/hasExternalCleaning
 era:hasExternalCleaning rdf:type owl:DatatypeProperty ,
                                  owl:FunctionalProperty ;
-                        rdfs:domain era:Siding ;
+                        rdfs:domain [ rdf:type owl:Class ;
+                                      owl:unionOf ( era:CommonCharacteristicsSubset
+                                                    era:Siding
+                                                  )
+                                    ] ;
                         rdfs:range xsd:boolean ;
                         era:XMLName "ITS_ExternalCleaning" ;
                         era:rinfIndex "1.2.2.0.4.2" ;
@@ -6623,7 +6575,11 @@ era:hasPhaseSeparation rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/hasPlatformCurvature
 era:hasPlatformCurvature rdf:type owl:DatatypeProperty ;
-                         rdfs:domain era:PlatformEdge ;
+                         rdfs:domain [ rdf:type owl:Class ;
+                                       owl:unionOf ( era:CommonCharacteristicsSubset
+                                                     era:PlatformEdge
+                                                   )
+                                     ] ;
                          rdfs:range xsd:boolean ;
                          era:appendixD2Index "2.3.8" ;
                          era:rinfIndex "1.2.1.0.6.8" ;
@@ -6639,7 +6595,11 @@ era:hasPlatformCurvature rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/hasRefuelling
 era:hasRefuelling rdf:type owl:DatatypeProperty ,
                            owl:FunctionalProperty ;
-                  rdfs:domain era:Siding ;
+                  rdfs:domain [ rdf:type owl:Class ;
+                                owl:unionOf ( era:CommonCharacteristicsSubset
+                                              era:Siding
+                                            )
+                              ] ;
                   rdfs:range xsd:boolean ;
                   era:XMLName "ITS_Refuelling" ;
                   era:rinfIndex "1.2.2.0.4.4" ;
@@ -6670,7 +6630,11 @@ era:hasRegenerativeBrake rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/hasSandRestocking
 era:hasSandRestocking rdf:type owl:DatatypeProperty ,
                                owl:FunctionalProperty ;
-                      rdfs:domain era:Siding ;
+                      rdfs:domain [ rdf:type owl:Class ;
+                                    owl:unionOf ( era:CommonCharacteristicsSubset
+                                                  era:Siding
+                                                )
+                                  ] ;
                       rdfs:range xsd:boolean ;
                       era:XMLName "ITS_SandRestocking" ;
                       era:rinfIndex "1.2.2.0.4.5" ;
@@ -6798,7 +6762,11 @@ era:hasTSITrainDetection rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/hasToiletDischarge
 era:hasToiletDischarge rdf:type owl:DatatypeProperty ,
                                 owl:FunctionalProperty ;
-                       rdfs:domain era:Siding ;
+                       rdfs:domain [ rdf:type owl:Class ;
+                                     owl:unionOf ( era:CommonCharacteristicsSubset
+                                                   era:Siding
+                                                 )
+                                   ] ;
                        rdfs:range xsd:boolean ;
                        era:XMLName "ITS_ToiletDischarge" ;
                        era:rinfIndex "1.2.2.0.4.1" ;
@@ -6828,7 +6796,11 @@ era:hasTrainIntegrityConfirmation rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/hasWalkway
 era:hasWalkway rdf:type owl:DatatypeProperty ;
-               rdfs:domain era:Tunnel ;
+               rdfs:domain [ rdf:type owl:Class ;
+                             owl:unionOf ( era:CommonCharacteristicsSubset
+                                           era:Tunnel
+                                         )
+                           ] ;
                rdfs:range xsd:boolean ;
                era:appendixD2Index "3.2.3" ;
                era:rinfIndex "1.1.1.1.8.12" ,
@@ -6848,7 +6820,11 @@ era:hasWalkway rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/hasWaterRestocking
 era:hasWaterRestocking rdf:type owl:DatatypeProperty ,
                                 owl:FunctionalProperty ;
-                       rdfs:domain era:Siding ;
+                       rdfs:domain [ rdf:type owl:Class ;
+                                     owl:unionOf ( era:CommonCharacteristicsSubset
+                                                   era:Siding
+                                                 )
+                                   ] ;
                        rdfs:range xsd:boolean ;
                        era:XMLName "ITS_WaterRestocking" ;
                        era:rinfIndex "1.2.2.0.4.3" ;
@@ -7452,8 +7428,7 @@ era:maxCurrentStandstillPantograph rdf:type owl:DatatypeProperty ;
                                    rdfs:subPropertyOf era:contactLineSystemDataParameter ,
                                                       era:vehicleTypeTechnicalDataCharacteristic ;
                                    rdfs:domain [ rdf:type owl:Class ;
-                                                 owl:unionOf ( era:CommonCharacteristicsSubset
-                                                               era:ContactLineSystem
+                                                 owl:unionOf ( era:ContactLineSystem
                                                                era:VehicleType
                                                              )
                                                ] ;
@@ -7476,18 +7451,11 @@ era:maxCurrentStandstillPantograph rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/maxDistConsecutiveAxles
 era:maxDistConsecutiveAxles rdf:type owl:DatatypeProperty ;
-                            rdfs:subPropertyOf era:otherTrainDetectionSystemsDataParameter ,
-                                               era:vehicleTypeTechnicalDataCharacteristic ;
-                            rdfs:domain [ rdf:type owl:Class ;
-                                          owl:unionOf ( era:CommonCharacteristicsSubset
-                                                        era:TrainDetectionSystem
-                                                        era:VehicleType
-                                                      )
-                                        ] ;
+                            rdfs:subPropertyOf era:vehicleTypeTechnicalDataCharacteristic ;
+                            rdfs:domain era:VehicleType ;
                             rdfs:range xsd:integer ;
                             era:XMLName "CTD_MaxDistConsecutiveAxles" ;
                             era:eratvIndex "4.14.2.1" ;
-                            era:rinfIndex "1.1.1.3.7.2.2" ;
                             era:unitOfMeasure unit:MilliM ;
                             dcterms:created "2021-08-08"^^xsd:date ;
                             dcterms:modified "2023-03-14"^^xsd:date ;
@@ -7515,18 +7483,11 @@ era:maxDistEndTrainFirstAxle rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/maxFlangeHeight
 era:maxFlangeHeight rdf:type owl:DatatypeProperty ;
-                    rdfs:subPropertyOf era:otherTrainDetectionSystemsDataParameter ,
-                                       era:vehicleTypeTechnicalDataCharacteristic ;
-                    rdfs:domain [ rdf:type owl:Class ;
-                                  owl:unionOf ( era:CommonCharacteristicsSubset
-                                                era:TrainDetectionSystem
-                                                era:VehicleType
-                                              )
-                                ] ;
+                    rdfs:subPropertyOf era:vehicleTypeTechnicalDataCharacteristic ;
+                    rdfs:domain era:VehicleType ;
                     rdfs:range xsd:double ;
                     era:XMLName "CTD_MaxFlangeHeight" ;
                     era:eratvIndex "4.14.2.9" ;
-                    era:rinfIndex "1.1.1.3.7.10" ;
                     era:unitOfMeasure unit:MilliM ;
                     dcterms:created "2021-08-08"^^xsd:date ;
                     dcterms:modified "2023-03-14"^^xsd:date ;
@@ -7573,11 +7534,7 @@ era:maxLengthVehicleNose rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/maxTrainCurrent
 era:maxTrainCurrent rdf:type owl:DatatypeProperty ;
                     rdfs:subPropertyOf era:contactLineSystemDataParameter ;
-                    rdfs:domain [ rdf:type owl:Class ;
-                                  owl:unionOf ( era:CommonCharacteristicsSubset
-                                                era:ContactLineSystem
-                                              )
-                                ] ;
+                    rdfs:domain era:ContactLineSystem ;
                     rdfs:range xsd:integer ;
                     era:XMLName "ECS_MaxTrainCurrent" ;
                     era:appendixD2Index "3.3.2" ;
@@ -7676,8 +7633,7 @@ era:maximumContactWireHeight rdf:type owl:DatatypeProperty ;
                                                 era:vehicleTypeTechnicalDataCharacteristic ;
                              rdf:type owl:FunctionalProperty ;
                              rdfs:domain [ rdf:type owl:Class ;
-                                           owl:unionOf ( era:CommonCharacteristicsSubset
-                                                         era:ContactLineSystem
+                                           owl:unionOf ( era:ContactLineSystem
                                                          era:VehicleType
                                                        )
                                          ] ;
@@ -7987,18 +7943,11 @@ era:minDistConsecutiveAxles rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/minDistFirstLastAxle
 era:minDistFirstLastAxle rdf:type owl:DatatypeProperty ;
-                         rdfs:subPropertyOf era:otherTrainDetectionSystemsDataParameter ,
-                                            era:vehicleTypeTechnicalDataCharacteristic ;
-                         rdfs:domain [ rdf:type owl:Class ;
-                                       owl:unionOf ( era:CommonCharacteristicsSubset
-                                                     era:Track
-                                                     era:VehicleType
-                                                   )
-                                     ] ;
+                         rdfs:subPropertyOf era:vehicleTypeTechnicalDataCharacteristic ;
+                         rdfs:domain era:VehicleType ;
                          rdfs:range xsd:integer ;
                          era:XMLName "CTD_MinDistFirstLastAxles" ;
                          era:eratvIndex "4.14.2.3" ;
-                         era:rinfIndex "1.1.1.3.7.4" ;
                          era:unitOfMeasure unit:MilliM ;
                          dcterms:created "2021-08-08"^^xsd:date ;
                          dcterms:modified "2023-03-14"^^xsd:date ;
@@ -8011,18 +7960,11 @@ era:minDistFirstLastAxle rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/minFlangeHeight
 era:minFlangeHeight rdf:type owl:DatatypeProperty ;
-                    rdfs:subPropertyOf era:otherTrainDetectionSystemsDataParameter ,
-                                       era:vehicleTypeTechnicalDataCharacteristic ;
-                    rdfs:domain [ rdf:type owl:Class ;
-                                  owl:unionOf ( era:CommonCharacteristicsSubset
-                                                era:Track
-                                                era:VehicleType
-                                              )
-                                ] ;
+                    rdfs:subPropertyOf era:vehicleTypeTechnicalDataCharacteristic ;
+                    rdfs:domain era:VehicleType ;
                     rdfs:range xsd:double ;
                     era:XMLName "CTD_MinFlangeHeight" ;
                     era:eratvIndex "4.14.2.8" ;
-                    era:rinfIndex "1.1.1.3.7.9" ;
                     era:unitOfMeasure unit:MilliM ;
                     dcterms:created "2021-08-08"^^xsd:date ;
                     dcterms:modified "2021-09-01"^^xsd:date ;
@@ -8035,18 +7977,11 @@ era:minFlangeHeight rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/minFlangeThickness
 era:minFlangeThickness rdf:type owl:DatatypeProperty ;
-                       rdfs:subPropertyOf era:otherTrainDetectionSystemsDataParameter ,
-                                          era:vehicleTypeTechnicalDataCharacteristic ;
-                       rdfs:domain [ rdf:type owl:Class ;
-                                     owl:unionOf ( era:CommonCharacteristicsSubset
-                                                   era:Track
-                                                   era:VehicleType
-                                                 )
-                                   ] ;
+                       rdfs:subPropertyOf era:vehicleTypeTechnicalDataCharacteristic ;
+                       rdfs:domain era:VehicleType ;
                        rdfs:range xsd:double ;
                        era:XMLName "CTD_MinFlangeThickness" ;
                        era:eratvIndex "4.14.2.7" ;
-                       era:rinfIndex "1.1.1.3.7.8" ;
                        era:unitOfMeasure unit:MilliM ;
                        dcterms:created "2021-08-08"^^xsd:date ;
                        dcterms:modified "2021-09-01"^^xsd:date ;
@@ -8059,18 +7994,11 @@ era:minFlangeThickness rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/minRimWidth
 era:minRimWidth rdf:type owl:DatatypeProperty ;
-                rdfs:subPropertyOf era:otherTrainDetectionSystemsDataParameter ,
-                                   era:vehicleTypeTechnicalDataCharacteristic ;
-                rdfs:domain [ rdf:type owl:Class ;
-                              owl:unionOf ( era:CommonCharacteristicsSubset
-                                            era:Track
-                                            era:VehicleType
-                                          )
-                            ] ;
+                rdfs:subPropertyOf era:otherTrainDetectionSystemsDataParameter ;
+                rdfs:domain era:VehicleType ;
                 rdfs:range xsd:double ;
                 era:XMLName "CTD_MinRimWidth" ;
                 era:eratvIndex "4.14.2.5" ;
-                era:rinfIndex "1.1.1.3.7.6" ;
                 era:unitOfMeasure unit:MilliM ;
                 dcterms:created "2021-08-08"^^xsd:date ;
                 dcterms:modified "2023-03-14"^^xsd:date ;
@@ -8122,18 +8050,11 @@ era:minVehicleInputImpedance rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/minWheelDiameter
 era:minWheelDiameter rdf:type owl:DatatypeProperty ;
-                     rdfs:subPropertyOf era:otherTrainDetectionSystemsDataParameter ,
-                                        era:vehicleTypeTechnicalDataCharacteristic ;
-                     rdfs:domain [ rdf:type owl:Class ;
-                                   owl:unionOf ( era:CommonCharacteristicsSubset
-                                                 era:Track
-                                                 era:VehicleType
-                                               )
-                                 ] ;
+                     rdfs:subPropertyOf era:vehicleTypeTechnicalDataCharacteristic ;
+                     rdfs:domain era:VehicleType ;
                      rdfs:range xsd:integer ;
                      era:XMLName "CTD_MinWheelDiameter" ;
                      era:eratvIndex "4.14.2.6" ;
-                     era:rinfIndex "1.1.1.3.7.7" ;
                      era:unitOfMeasure unit:MilliM ;
                      dcterms:created "2021-08-08"^^xsd:date ;
                      dcterms:modified "2023-03-14"^^xsd:date ;
@@ -8164,8 +8085,7 @@ era:minimumContactWireHeight rdf:type owl:DatatypeProperty ;
                                                 era:vehicleTypeTechnicalDataCharacteristic ;
                              rdf:type owl:FunctionalProperty ;
                              rdfs:domain [ rdf:type owl:Class ;
-                                           owl:unionOf ( era:CommonCharacteristicsSubset
-                                                         era:ContactLineSystem
+                                           owl:unionOf ( era:ContactLineSystem
                                                          era:VehicleType
                                                        )
                                          ] ;
@@ -8353,25 +8273,10 @@ era:nationalLineId rdf:type owl:DatatypeProperty ,
                             owl:FunctionalProperty ;
                    rdfs:domain era:NationalRailwayLine ;
                    rdfs:range xsd:string ;
+                   dcterms:modified "2024-11-18"^^xsd:date ;
+                   rdfs:comment "Unique line identification or unique line number within Member State." ;
+                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    rdfs:label "national line identifier"@en .
-
-
-###  http://data.europa.eu/949/nationalLineIdentification
-era:nationalLineIdentification rdf:type owl:DatatypeProperty ,
-                                        owl:FunctionalProperty ;
-                               rdfs:domain era:SectionOfLine ;
-                               rdfs:range xsd:string ;
-                               era:XMLName "SOLLineIdentification" ;
-                               era:appendixD2Index "2.2.1.1" ;
-                               era:rinfIndex "1.1.0.0.0.2" ;
-                               dcterms:created "2024-10-28"^^xsd:date ;
-                               dcterms:description """Each SoL can belong to only one national line.
-
-In case when SoL is the track connecting between OPs within big node (resulting from division of big station into several smaller) the line can be identified using the name of this track."""@en ;
-                               rdfs:comment "Unique line identification or unique line number within Member State."@en ;
-                               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                               rdfs:label "national line identification"@en ;
-                               vs:term_status "stable" .
 
 
 ###  http://data.europa.eu/949/nationalLoadCapability
@@ -8575,7 +8480,21 @@ era:organisationCode rdf:type owl:DatatypeProperty ;
                      rdfs:subPropertyOf dcterms:identifier ;
                      rdfs:domain era:OrganisationRole ;
                      rdfs:range xsd:string ;
+                     era:XMLName "OPSidingIMCode" ,
+                                 "OPSidingTunnelIMCode" ,
+                                 "OPTrackIMCode" ,
+                                 "OPTrackPlatformIMCode" ,
+                                 "OPTrackTunnelIMCode" ,
+                                 "SOLIMCode" ,
+                                 "SOLTunnelIMCode" ;
                      era:appendixD2Index 1.1 ;
+                     era:rinfIndex "1.1.0.0.0.1" ,
+                                   "1.1.1.1.8.1" ,
+                                   "1.2.1.0.0.1" ,
+                                   "1.2.1.0.5.1" ,
+                                   "1.2.1.0.6.1" ,
+                                   "1.2.2.0.0.1" ,
+                                   "1.2.2.0.5.1" ;
                      dcterms:created "2024-06-03"^^xsd:date ;
                      dcterms:description """The Code is a unique identifier for the Infrastructure Manager and it shall be verified on national level. 
 - If the IM is subject to TAF/TAP TSIs, it corresponds to the code used in TAF/TAP TSIs. 
@@ -8591,20 +8510,6 @@ Infrastructure manager means any body or firm responsible in particular for esta
 the functions of the infrastructure manager on a network or part of a network may be allocated to different bodies or firms. Definition in (Article 3(2))"""@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "organisation code" ;
-                     era:rinfIndex "1.1.0.0.0.1" ,
-                         "1.1.1.1.8.1" ,
-                         "1.2.1.0.0.1" ,
-                         "1.2.1.0.5.1" ,
-                         "1.2.1.0.6.1" ,
-                         "1.2.2.0.0.1" ,
-                         "1.2.2.0.5.1" ;
-                     era:XMLName "OPSidingIMCode" ,
-                       "OPSidingTunnelIMCode" ,
-                       "OPTrackIMCode" ,
-                       "OPTrackPlatformIMCode" ,
-                       "OPTrackTunnelIMCode" ,
-                       "SOLIMCode" ,
-                       "SOLTunnelIMCode" ;
                      rdfs:seeAlso "https://eur-lex.europa.eu/eli/dir/2012/34/oj#d1e885-32-1"^^xsd:anyURI .
 
 
@@ -10253,11 +10158,7 @@ era:typeVersionNumber rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/umax2
 era:umax2 rdf:type owl:DatatypeProperty ;
           rdfs:subPropertyOf era:contactLineSystemDataParameter ;
-          rdfs:domain [ rdf:type owl:Class ;
-                        owl:unionOf ( era:CommonCharacteristicsSubset
-                                      era:ContactLineSystem
-                                    )
-                      ] ;
+          rdfs:domain era:ContactLineSystem ;
           rdfs:range xsd:integer ;
           era:XMLName "ECS_Umax2" ;
           era:rinfIndex "1.1.1.2.2.1.3" ;
@@ -11863,10 +11764,71 @@ foaf:Person rdf:type owl:Class ;
             rdfs:comment "A person." ;
             rdfs:label "Person" ;
             vs:term_status "stable" .
-            
 
 
+[ foaf:name "Oscar Corcho" ;
+  org:memberOf <https://www.upm.es/>
+] .
 
+[ foaf:name "Maarten Duhoux" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Marina Aguado" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Polymnia Vasilopoulou" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Edna Ruckhaus" ;
+   org:memberOf <https://www.upm.es/>
+ ] .
+
+[ foaf:name "Designated RINF Topical Working Groups"@en
+ ] .
+
+[ foaf:name "Dragos Patru" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Ghislain Atemezing" ;
+   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Dragos Patru" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Ghislain Atemezing" ;
+   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Edna Ruckhaus" ;
+   org:memberOf <https://www.upm.es/>
+ ] .
+
+[ foaf:name "Polymnia Vasilopoulou" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Marina Aguado" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Maarten Duhoux" ;
+   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+ ] .
+
+[ foaf:name "Oscar Corcho" ;
+   org:memberOf <https://www.upm.es/>
+ ] .
+
+[ foaf:name "Designated RINF Topical Working Groups"@en
+ ] .
 
 #################################################################
 #    Annotations
@@ -11901,8 +11863,8 @@ era:switchRadioSystem era:rinfIndex "1.2.1.1.7.2" ,
                       dcterms:created "2021-08-09"^^xsd:date ;
                       vs:term_status "stable" ;
                       rdfs:comment "Indication whether a switch over between different radio systems and no communication system whilst running exists."@en ;
-                      era:XMLName "CTS_SwitchRadioSystem" ;
                       dcterms:modified "2021-09-12"^^xsd:date ;
+                      era:XMLName "CTS_SwitchRadioSystem" ;
                       era:appendixD2Index "3.4.4" ;
                       rdfs:label "Existence of switch over between different radio systems"@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> .
@@ -11910,22 +11872,21 @@ era:switchRadioSystem era:rinfIndex "1.2.1.1.7.2" ,
 
 era:trainDetectionSystemSpecificCheck rdfs:label "Type of track circuits or axle counters to which specific checks are needed. "@en ;
                                       dcterms:relation era:trainDetectionSystemSpecificCheckDocument ;
-                                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                       rdfs:comment "Reference to the technical specification of train detection system."@en ;
+                                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                       vs:term_status "stable" ;
                                       dcterms:modified "2021-08-08"^^xsd:date ;
                                       era:rinfIndex "1.1.1.3.7.1.2" ;
                                       skos:scopeNote "Only applicable, when 1.1.1.3.7.1.1 is applicable."@en ;
-                                      owl:deprecated "true"^^xsd:boolean ;
-                                      dcterms:modified "2024-09-19"^^xsd:date ,
-                                                       "2024-10-31"^^xsd:date ;
+                                      dcterms:modified "2024-10-31"^^xsd:date ,
+                                                       "2024-09-19"^^xsd:date ;
                                       dcterms:description "String containing the name of the TD system for which checks are mentioned in 1.1.1.3.7.1.3."@en ;
                                       skos:scopeNote "String containing the name of the TD system for which checks are mentioned in 1.1.1.3.7.1.3."@en ;
                                       era:XMLName "CTD_TCCheck" ;
-                                      dcterms:modified "2024-09-25"^^xsd:date ;
                                       era:inSkosConceptScheme <http://data.europa.eu/949/concepts/train-detection-specific-checks/TrainDetectionSystemsSpecificChecks> ;
-                                      dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                                      dcterms:modified "2024-09-25"^^xsd:date ;
                                       dcterms:created "2020-08-24"^^xsd:date ;
+                                      dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                       era:rinfIndex "1.2.1.1.6.1" ;
                                       era:usedInRCCCalculations "false"^^xsd:boolean ;
                                       dcterms:source "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf" ;
