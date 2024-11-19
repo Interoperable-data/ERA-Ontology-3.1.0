@@ -21,10 +21,6 @@ era-sh:operationalpointsShape
 	a sh:NodeShape ;
 	sh:targetClass era:OperationalPoint.
 
-era-sh:commonCharacteristicsSubsetShape
-	a sh:NodeShape ;
-	sh:targetClass era:CommonCharacteristicsSubset .  # Applies to all Common Characteritics Subset  with sidings parameters 
-
 
 # opName: # 1.2.0.0.0.1
 era-sh:operationalpointsShape sh:property era-sh:opName .
@@ -59,7 +55,7 @@ era-sh:uopidP
 	sh:severity sh:Violation ;
 	sh:message "uopid (1.2.0.0.0.2): This error is due to having more than one op id, having a value that is not a string, or having a value that does not follow the pattern where the first part ‘AA’ is the country code in two-letter system of ISO and the second part is the alphanumeric OP code within the MS."@en .
 
-# uopid: # 1.2.0.0.0.2 enforce minCount considering all instances that ar enot border points
+# uopid: # 1.2.0.0.0.2 enforce minCount considering all instances that are not border points
  era-sh:operationalpointsShape sh:sparql era-sh:uopidMin .
  era-sh:uopidMin
  	a sh:SPARQLConstraint;
@@ -84,7 +80,6 @@ era-sh:uopidP
 
 # opType: # 1.2.0.0.0.4
 era-sh:operationalpointsShape sh:property era-sh:opTypeP .
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:opTypeP .
 era-sh:opTypeP
 	a sh:PropertyShape;
     era:affectedClass era:OperationalPoint;
@@ -104,7 +99,6 @@ era-sh:opTypeP
 
 # opType: # 1.2.0.0.0.4
 era-sh:operationalpointsShape sh:sparql era-sh:opTypeSKOS .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:opTypeSKOS .
 era-sh:opTypeSKOS
 	a sh:SPARQLConstraint ;
     era:affectedClass era:OperationalPoint;
@@ -134,7 +128,6 @@ era-sh:opTypeSKOS
 
 # opTypeGaugeChangeover: # 1.2.0.0.0.4.1 
 era-sh:operationalpointsShape sh:property era-sh:opTypeGaugeChangeover .
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:opTypeGaugeChangeover .
 era-sh:opTypeGaugeChangeover
 	a sh:PropertyShape;
     era:affectedClass era:OperationalPoint;
@@ -175,7 +168,7 @@ era-sh:primaryLocation
 	sh:class era:PrimaryLocation;
     sh:nodeKind sh:IRI ;
 	sh:severity sh:Violation ;
-	sh:message "primaryLocation: The Operational Point has a primaryLocation reference that must be an IRI that belongs to the class PrimaryLocation."@en .
+	sh:message "primaryLocation: The Operational Point has a primaryLocation reference that must be an IRI that refers to an instance of PrimaryLocation."@en .
 
 
 # referenceBorderPoint: #

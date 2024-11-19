@@ -28,59 +28,7 @@ era-sh:operationalPointShape
 	a sh:NodeShape ;
 	sh:targetClass era:OperationalPoint .
 
-
-
-era-sh:operationalPointShape sh:sparql era-sh:OPTrackIdsMaxCount.
-era-sh:OPTrackIdsMaxCount 
-   a sh:SPARQLConstraint ;
-   era:affectedProperty era:trackId;
-    era:affectedClass era:Track;
-    era:affectedClass era:OperationalPoint;
-    era:scope "local";
-   rdfs:comment "Each track shall have unique identification or number within the OP. This number cannot be used for naming any other track in the same OP." ;
-   era:rinfIndex "1.2.1.0.0.2" ;
-     sh:severity sh:Violation ;
-     sh:message "There should be at most one Track ID per Track in an OP. There is a problem with OP {$this} ({?opLabel}) and its track {?track} ({?trackLabel}). This track has at least two different values for this property: {?value1} and {?value2}"@en ;
-     sh:prefixes era:;
-     sh:select """
-     PREFIX era: <http://data.europa.eu/949/>
-     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-     SELECT DISTINCT $this ?solLabel ?track ?trackLabel ?value1 ?value2
-	 		WHERE {
-                $this era:hasPart ?track .
-     			OPTIONAL{?track rdfs:label ?trackLabel} .
-	 			OPTIONAL{$this rdfs:label ?opLabel} .
-                ?track era:trackId ?value1 .
-                 ?track era:trackId ?value2 .
-                 FILTER(?value1 < ?value2) .
-   	 	}
-		 	""" .
-
- era-sh:operationalPointShape sh:sparql era-sh:OPTrackIdsMinCount.
- era-sh:OPTrackIdsMinCount
-    a sh:SPARQLConstraint ; 
-    era:affectedProperty era:trackId;
-    era:affectedClass era:Track;
-    era:affectedClass era:OperationalPoint;
-    era:scope "local";
-    rdfs:comment "Each track shall have unique identification or number within the OP. This number cannot be used for naming any other track in the same OP." ;
-    era:rinfIndex "1.2.1.0.0.2" ;
-    sh:severity sh:Violation ;
-     sh:message "There should be at least one Track Id per Track in an OP. There is a problem with OP {$this} ({?opLabel}) and its track {?track} ({?trackLabel}). This track has no values for this property"@en ;
-     sh:prefixes era:;
-     sh:select """
-    PREFIX era: <http://data.europa.eu/949/>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-     SELECT DISTINCT $this ?opLabel ?track ?trackLabel ?value
-	 		WHERE {
-                 $this era:hasPart ?track .
-     			OPTIONAL{?track rdfs:label ?trackLabel} .
-	 			OPTIONAL{$this rdfs:label ?solLabel} .
-                FILTER NOT EXISTS{?track era:trackId ?value} .
-   	 		}
-	 		""" .
-
-# trackId: # 1.2.1.0.0.2
+# trackId: # 1.2.1.0.0.2 
 era-sh:operationalPointShape sh:sparql era-sh:NoRepeatedTrackIdsOP.
 era-sh:NoRepeatedTrackIdsOP 
     a sh:SPARQLConstraint ; 
