@@ -41,7 +41,7 @@ era-sh:TrainDetectionSystemType
 	sh:maxCount 1 ; # Functional property
 	sh:nodeKind sh:IRI ;
 	sh:severity sh:Violation ;
-	sh:message "trainDetectionSystemType (1.1.1.3.7.1.1): The train detection system has a train detection system type that must be a single IRI.".
+	sh:message "trainDetectionSystemType (1.1.1.3.7.1.1): The train detection system has a train detection system type that must be a single IRI. This error may be due to having more than one value or having a value that is not an IRI.".
 
 # trainDetectionSystemType: # 1.1.1.3.7.1.1
 era-sh:TrainDetectionSystemShape sh:sparql era-sh:TrainDetectionSystemTypeSKOS .
@@ -84,7 +84,7 @@ era-sh:trainDetectionSystemSpecificCheck
 	sh:maxCount 1 ; # Functional property
 	sh:nodeKind sh:IRI ;
 	sh:severity sh:Violation ;
-	sh:message "trainDetectionSystemSpecificCheck (1.1.1.3.7.1.2): The train detection system has a train detection system specific check that must be a single IRI.".
+	sh:message "trainDetectionSystemSpecificCheck (1.1.1.3.7.1.2): The train detection system has a train detection system specific check that must be a single IRI. This error may be due to having more than one value or having a value that is not an IRI.".
 
 # trainDetectionSystemSpecificCheck. : 1.1.1.3.7.1.2 1.2.1.1.6.1
 era-sh:TrainDetectionSystemShape sh:sparql era-sh:trainDetectionSystemSpecificCheckSKOS .
@@ -96,7 +96,7 @@ era-sh:trainDetectionSystemSpecificCheckSKOS
 	rdfs:comment "Reference to the technical specification of train detection system." ;
 	era:rinfIndex "1.1.1.3.7.1.2", "1.2.1.1.6.1" ;
 	sh:severity sh:Violation ;
-	sh:message "Indication of specific checks of train detection system installed (1.1.1.3.7.1.2): The train detection system {$this} (label {?tdsLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/train-detection-specific-checks/."@en ;
+	sh:message "Indication of specific checks of train detection system installed (1.1.1.3.7.1.2): The train detection system {$this} (label {?tdsLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/train-detection-specific-checks."@en ;
     sh:prefixes era:;
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
@@ -125,11 +125,10 @@ era-sh:TrainDetectionSystemSpecificCheckDocument
 	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency with precise procedures for the specific check to be performed for train detection systems identified in 1.1.1.3.7.1.2." ;
 	era:rinfIndex "1.1.1.3.7.1.3" ;
 	sh:path era:trainDetectionSystemSpecificCheckDocument ;
-	### sh:minCount 0 ; #TODO: Not yet applicable
 	sh:maxCount 1 ; # Functional property
-	sh:class era:Document; # Previously commented: pending fix in mappings 
+	sh:class era:Document; 
 	sh:severity sh:Violation ;
-	sh:message "trainDetectionSystemSpecificCheckDocument (1.1.1.3.7.1.3): The track defines the electronic document available in two EU languages value and it must be a Document."@en .
+	sh:message "trainDetectionSystemSpecificCheckDocument (1.1.1.3.7.1.3): The track defines the electronic document available in two EU languages value and it must be a Document. This error may be due to having more than one value or having a value that is not a Document."@en .
 
 
 # maximumInterferenceCurrentEvaluation: 1.1.1.3.4.2.1  1.2.1.1.3.2.1
@@ -160,7 +159,7 @@ era-sh:frequencyBandsForDetection
 	sh:nodeKind sh:IRI ;
 	sh:maxCount 1 ; # Functional property
 	sh:severity sh:Violation ;
-	sh:message "frequencyBandsForDetection (1.1.1.3.4.2.1): The train detection system has a frequency band for detection that must be an IRI."@en .
+	sh:message "frequencyBandsForDetection (1.1.1.3.4.2.1): The train detection system has a frequency band for detection that must be an IRI. This error may be due to having more than one value or having a value that is not a Document."@en .
 
 # frequencyBandsForDetection: 1.1.1.3.4.2 1.2.1.1.3.2
 era-sh:TrainDetectionSystemShape sh:sparql era-sh:frequencyBandsForDetectionSKOS .
@@ -201,7 +200,7 @@ era-sh:maximumInterferenceCurrent
 	# sh:pattern "([1-9]\\d{2}|[1-9]\\d{1}|[0-9])" ; # TODO check pattern
 	sh:maxCount 1 ; # Functional property
 	sh:severity sh:Violation ;
-	sh:message "maximumInterferenceCurrent (1.1.1.3.4.2.1): Each train detection system must define the maximum interference current in Amperes. This error is due to having the maximum interference current value that is not a double (real) number."@en .
+	sh:message "maximumInterferenceCurrent (1.1.1.3.4.2.1): Each train detection system must define the maximum interference current in Amperes. This error may be due to having more than one value or having a value that is not a double (real) number."@en .
 
 # tdsMaximumMagneticField: 1.1.1.3.4.2.3 1.2.1.1.3.2.3
 era-sh:TrainDetectionSystemShape sh:property era-sh:tdsMaximumMagneticField .
@@ -216,7 +215,7 @@ era-sh:tdsMaximumMagneticField
 	sh:class era:MaximumMagneticField;
 	sh:maxCount 1 ; # As functional
 	sh:severity sh:Violation ;
-	sh:message "tdsMaximumMagneticField (1.1.1.3.4.2.3): The train detection system has a train detection system maximum magnetic field reference that must be a maximum magnetic field."@en .
+	sh:message "tdsMaximumMagneticField (1.1.1.3.4.2.3): The train detection system has a train detection system maximum magnetic field reference that must be a maximum magnetic field. This error may be due to having more than one value or having a value that is not an instance of a MaximumMagnaticField."@en .
 
 # minVehicleImpedance: 1.1.1.3.4.2.2
 era-sh:TrainDetectionSystemShape sh:property era-sh:minVehicleImpedance .
@@ -231,7 +230,7 @@ era-sh:minVehicleImpedance
 	sh:class era:MinVehicleImpedance;
 	sh:maxCount 1 ; # As functional
 	sh:severity sh:Violation ;
-	sh:message "minVehicleImpedance (1.1.1.3.4.2.3): The train detection system has a minimum vehicle impedance reference that must be a minimum vehicle impedance."@en .
+	sh:message "minVehicleImpedance (1.1.1.3.4.2.3): The train detection system has a minimum vehicle impedance reference that must be a minimum vehicle impedance. This error may be due to having more than one value or having a value that is not an instance of a MinVehicleImpedance."@en .
 
 # tdsFrenchTrainDetectionSystemLimitation: 1.1.1.3.7.1.4 1.2.1.1.6.3
 era-sh:TrainDetectionSystemShape sh:property era-sh:tdsFrenchTrainDetectionSystemLimitation .
@@ -246,4 +245,4 @@ era-sh:tdsFrenchTrainDetectionSystemLimitation
 	sh:class era:FrenchTrainDetectionSystemLimitation;
 	sh:maxCount 1 ; # As functional
 	sh:severity sh:Violation ;
-	sh:message "tdsFrenchTrainDetectionSystemLimitation (1.1.1.3.7.1.4): The train detection system has a tds french train detection system limitation reference that must be a french train detection system limitation."@en .
+	sh:message "tdsFrenchTrainDetectionSystemLimitation (1.1.1.3.7.1.4): The train detection system has a tds french train detection system limitation reference that must be a french train detection system limitation. This error may be due to having more than one value or having a value that is not an instance of a FrenchTrainDetectionSystemLimitation"@en .

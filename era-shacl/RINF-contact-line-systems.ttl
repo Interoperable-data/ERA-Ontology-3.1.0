@@ -27,8 +27,10 @@ era-sh:contactLineSystemType
 	era:rinfIndex "1.1.1.2.2.1.1" ;
 	sh:path era:contactLineSystemType ;
 	sh:nodeKind sh:IRI ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
 	sh:severity sh:Violation ;
-	sh:message "contactLineSystemType (1.1.1.2.2.1.1): The contact line system has a contact line system type that must be an IRI."@en .
+	sh:message "contactLineSystemType (1.1.1.2.2.1.1): The contact line system must have a contact line system type, and its value must be an IRI. This error is due to the contact line system not having a value for this property, having more than one value for this property, or having a value that is not an IRI."@en .
 
 #contactLineSystemType: # 1.1.1.2.2.1.1
 era-sh:contactLineSystemShape sh:sparql era-sh:contactLineSystemTypeSKOS .
@@ -40,7 +42,7 @@ era-sh:contactLineSystemTypeSKOS
 	rdfs:comment "Indication of the type of the contact line system" ;
 	era:rinfIndex "1.1.1.2.2.1.1" ;
 	sh:severity sh:Violation ;
-	sh:message "Indication of the type of the contact line system (1.1.1.2.2.1.1): The contact line system {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/contact-line-systems/ContactLineSystems."@en ;
+	sh:message "contactLineSystemType (1.1.1.2.2.1.1): The contact line system {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/contact-line-systems/ContactLineSystems."@en ;
     sh:prefixes era:;
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
@@ -66,8 +68,9 @@ era-sh:EnergySupplySystem
 	era:rinfIndex "1.1.1.2.2.1.2" ;
 	sh:path era:energySupplySystem ;
 	sh:nodeKind sh:IRI ;
+    sh:maxCount 1 ;
 	sh:severity sh:Violation ;
-	sh:message "energySupplySystem (1.1.1.2.2.1.2): The contact line system defines the energy supply system and it must be an IRI."@en .
+	sh:message "energySupplySystem (1.1.1.2.2.1.2): The contact line system defines the energy supply system.This error is due to a contact line system having more than one value for this property or having a value that is not an IRI."@en .
 
 # energySupplySystem: # 1.1.1.2.2.1.2
 era-sh:contactLineSystemShape sh:sparql era-sh:EnergySupplySystemSKOS .
@@ -79,7 +82,7 @@ era-sh:EnergySupplySystemSKOS
 	rdfs:comment "Indication of the traction supply system" ;
 	era:rinfIndex "1.1.1.2.2.1.2" ;
 	sh:severity sh:Violation ;
-	sh:message "Indication of the traction supply system (1.1.1.2.2.1.2): The contact line system {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/energy-supply-systems/EnergySupplySystems."@en ;
+	sh:message "energySupplySystem (1.1.1.2.2.1.2): The contact line system {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/energy-supply-systems/EnergySupplySystems."@en ;
     sh:prefixes era:;
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
@@ -88,9 +91,7 @@ era-sh:EnergySupplySystemSKOS
     WHERE {
         $this era:energySupplySystem ?concept .
         era:energySupplySystem era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
+		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
 	}
 """ .
 
@@ -105,8 +106,9 @@ era-sh:energySupplySystemTSICompliant
 	era:rinfIndex "1.1.1.2.2.1.2.1" ;
 	sh:path era:energySupplySystemTSICompliant ;
 	sh:datatype xsd:boolean ;
+    sh:maxCount 1 ;
 	sh:severity sh:Violation ;
-	sh:message "energySupplySystemTSICompliant (1.1.1.2.2.1.2.1): The contact line system defines if the energy supply system is fully compliant with TSI. This error is due to having a value that is not Y/N (boolean)."@en .
+	sh:message "energySupplySystemTSICompliant (1.1.1.2.2.1.2.1): The contact line system defines if the energy supply system is fully compliant with TSI. This error is due to having more than one value for this property or having a value that is not Y/N (boolean)."@en .
 
 
 
@@ -122,8 +124,9 @@ era-sh:umax2
 	sh:path era:umax2 ;
 	sh:datatype xsd:integer ;
 	sh:pattern "[1-9]\\d{0,5}|0" ;
+    sh:maxCount 1 ;
 	sh:severity sh:Violation ;
-	sh:message "umax2 (1.1.1.2.2.1.3): The contact line system defines the Umax2 . This error is due to having a value that is not an integer or having an integer that does not follow the pattern [NNNNNN]."@en .
+	sh:message "umax2 (1.1.1.2.2.1.3): The contact line system defines the Umax2 . This error is due to having more than one value for this property, having a value that is not an integer, or having an integer that does not follow the pattern [NNNNNN]."@en .
 
 # maxTrainCurrent: # 1.1.1.2.2.2
 era-sh:contactLineSystemShape sh:property era-sh:maximumTrainCurrent .
@@ -137,8 +140,9 @@ era-sh:maximumTrainCurrent
 	sh:path era:maxTrainCurrent ;
 	sh:datatype xsd:integer ;
 	sh:pattern "[1-9]\\d{0,3}|0" ;
+    sh:maxCount 1 ;
 	sh:severity sh:Violation ;
-	sh:message "maxTrainCurrent (1.1.1.2.2.2): The contact line system defines the maximum allowable train current . This error is due to having a value that is not an integer or having an integer that does not follow the pattern [NNNN]."@en .
+	sh:message "maxTrainCurrent (1.1.1.2.2.2): The contact line system defines the maximum allowable train current . This error is due to having more than one value for this property, having a value that is not an integer, or having an integer that does not follow the pattern [NNNN]."@en .
 
 # maxCurrentStandstillPantograph: # 1.1.1.2.2.3
 era-sh:contactLineSystemShape sh:property era-sh:maxCurrentStandstillPantographCLS .
@@ -152,8 +156,9 @@ era-sh:maxCurrentStandstillPantographCLS
 	sh:path era:maxCurrentStandstillPantograph ;
 	sh:datatype xsd:double ;
 	sh:pattern "[1-9]\\d{0,2}|0" ; #TODO check pattern, it is defined as double
+    sh:maxCount 1 ;
 	sh:severity sh:Violation ;
-	sh:message "maxCurrentStandstillPantograph (1.1.1.2.2.3): The contact line system defines the maximum allowable current at standstill per pantograph . This error is due to having a value that is not a double (real) number or having a number that does not follow the pattern [NNN] (with 0 decimals)."@en .
+	sh:message "maxCurrentStandstillPantograph (1.1.1.2.2.3): The contact line system defines the maximum allowable current at standstill per pantograph . This error is due to having more than one value for this property, having a value that is not a double (real) number, or having a number that does not follow the pattern [NNN] (with 0 decimals)."@en .
 
 # conditionalRegenerativeBrake: # 1.1.1.2.2.4
 era-sh:contactLineSystemShape sh:property era-sh:conditionalRegenerativeBrake .
@@ -166,8 +171,9 @@ era-sh:conditionalRegenerativeBrake
 	era:rinfIndex "1.1.1.2.2.4" ;
 	sh:path era:conditionalRegenerativeBrake ;
 	sh:datatype xsd:boolean ;
+    sh:maxCount 1 ;
 	sh:severity sh:Violation ;
-	sh:message "conditionalRegenerativeBrake (1.1.1.2.2.4): The contact line system defines if the regenerative brake is permitted. This error is due to having a value that is not  Y/N (boolean)."@en .
+	sh:message "conditionalRegenerativeBrake (1.1.1.2.2.4): The contact line system defines if the regenerative brake is permitted. This error is due to having more than one value for this property or having a value that is not  Y/N (boolean)."@en .
 
 # conditionsAppliedRegenerativeBraking: # 1.1.1.2.2.4.1
 era-sh:contactLineSystemShape sh:property era-sh:conditionsAppliedRegenerativeBraking .
@@ -180,8 +186,9 @@ era-sh:conditionsAppliedRegenerativeBraking
 	era:rinfIndex "1.1.1.2.2.4.1" ;
 	sh:path era:conditionsAppliedRegenerativeBraking ;
 	sh:class era:Document;
+    sh:maxCount 1 ;
 	sh:severity sh:Violation ;
-	sh:message "conditionsAppliedRegenerativeBraking (1.1.1.2.2.4.1): The contact line system has a conditionsAppliedRegenerativeBraking reference that must be a Document."@en .
+	sh:message "conditionsAppliedRegenerativeBraking (1.1.1.2.2.4.1): The contact line system has a conditionsAppliedRegenerativeBraking reference that must be a Document. This error is due to having more than one value for this property or having a value that is not a Document."@en .
 
 
 # maximumContactWireHeight: # 1.1.1.2.2.5
@@ -195,9 +202,10 @@ era-sh:maximumContactWireHeight
 	era:rinfIndex "1.1.1.2.2.5" ; 
 	sh:path era:maximumContactWireHeight ;
 	sh:datatype xsd:double ;
-	sh:pattern "[1-9]\\d{0,2}|0" ; 
+	sh:pattern "[1-9]\\d{0,2}|0" ;
+    sh:maxCount 1;
 	sh:severity sh:Violation ;
-	sh:message "maximumContactWireHeight (1.1.1.2.2.5): The contact line system defines a maximum contact wire height expressed in metres. This error is due to having a value that is not a double (real) number or having a number that does not follow the pattern [NNN] (with 0 decimals)."@en . # TODO check
+	sh:message "maximumContactWireHeight (1.1.1.2.2.5): The contact line system defines a maximum contact wire height expressed in metres. This error is due to having more than one value for this property, having a value that is not a double (real) number, or having a number that does not follow the pattern [NNN] (with 0 decimals)."@en . # TODO check
 
 # minimumContactWireHeight: # 1.1.1.2.2.6
 era-sh:contactLineSystemShape sh:property era-sh:minimumContactWireHeight .
@@ -210,9 +218,10 @@ era-sh:minimumContactWireHeight
 	era:rinfIndex "1.1.1.2.2.6" ; 
 	sh:path era:minimumContactWireHeight ;
 	sh:datatype xsd:double ;
-	sh:pattern "[1-9]\\d{0,2}|0" ; #TODO check pattern, it is defined as double
+	sh:pattern "[1-9]\\d{0,2}|0" ; 
+    sh:maxCount 1;
 	sh:severity sh:Violation ;
-	sh:message "minimumContactWireHeight (1.1.1.2.2.6): The contact line system defines a minimum contact wire height expressed in metres. This error is due to having a value that is not a double (real) number or having a number that does not follow the pattern [NNN] (with 0 decimals)."@en . # TODO check
+	sh:message "minimumContactWireHeight (1.1.1.2.2.6): The contact line system defines a minimum contact wire height expressed in metres. This error is due to having more than one value for this property, having a value that is not a double (real) number, or having a number that does not follow the pattern [NNN] (with 0 decimals)."@en . # TODO check
 
 
 # permissionChargingElectricEnergyTractionStandstill # 1.2.1.0.7.1
@@ -226,5 +235,20 @@ era-sh:permissionChargingElectricEnergyTractionStandstill
 	era:rinfIndex "1.2.1.0.7.1" ;
 	sh:path era:permissionChargingElectricEnergyTractionStandstill ;
 	sh:datatype xsd:boolean ;
+    sh:maxCount 1;
 	sh:severity sh:Violation ;
-	sh:message "permissionChargingElectricEnergyTractionStandstill (1.2.1.0.7.1): The contact line system defines if charging electric energy storage for traction purposes at standstill is permitted. This error is due to having a value that is not  Y/N (boolean)."@en .
+	sh:message "permissionChargingElectricEnergyTractionStandstill (1.2.1.0.7.1): The contact line system defines if charging electric energy storage for traction purposes at standstill is permitted. This error is due to having more than one value for this property or having a value that is not  Y/N (boolean)."@en .
+
+# conditionsChargingElectricEnergyStorage # 1.2.1.0.7.2
+era-sh:conditionsChargingElectricEnergyStorage
+	a sh:PropertyShape ;
+    era:affectedProperty era:conditionsChargingElectricEnergyStorage;
+    era:affectedClass era:ContactLineSystem;
+    era:scope "local";
+	rdfs:comment "Indication if charging electric energy storage for traction purposes at standstill is permitted" ;
+	era:rinfIndex "1.2.1.0.7.2" ;
+	sh:path era:conditionsChargingElectricEnergyStorage ;
+	sh:datatype xsd:anyURI ;
+    sh:maxCount 1;
+	sh:severity sh:Violation ;
+	sh:message "conditionsChargingElectricEnergyStorage (1.2.1.0.7.2): The contact line system defines the permitted conditions for charging electric energy storage for traction purposes at standstill. This error is due to having more than one value for this property or having a value that is not  an URI."@en .

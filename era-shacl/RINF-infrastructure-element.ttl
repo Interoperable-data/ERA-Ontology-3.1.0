@@ -12,33 +12,7 @@
 #############################
 # Rules for infrastructure elements
 #############################
-era-sh:infrastructureElementShape
-	a sh:NodeShape ;
-	sh:targetClass era:InfrastructureElement.
 
-# organisationCode: # 1.2.1.0.6.1, 1.1.0.0.0.1, 1.1.1.1.8.1, 1.2.1.0.0.1, 1.2.1.0.5.1, 1.2.2.0.0.1, 1.2.2.0.5.1
-era-sh:infrastructureElementShape sh:property era-sh:infrastructureManagerIE .
-era-sh:infrastructureManagerIE
-	a sh:PropertyShape;
-    era:affectedProperty era:infrastructureManager;
-    era:affectedProperty era:belongsTo;
-    era:affectedClass era:InfrastructureElement;
-    era:affectedClass era:CommonCharacteristicsSubset;
-    era:affectedClass era:OrganisationRole;
-    era:scope "local";   
-	rdfs:comment "Each infrastructure element can only be submitted by one infrastructure manager, represented by a four-digit code." ;
-	era:rinfIndex "1.2.1.0.6.1" ;
-    era:rinfIndex "1.1.0.0.0.1" ;
-    era:rinfIndex "1.1.1.1.8.1" ;
-    era:rinfIndex "1.2.1.0.0.1" ;
-    era:rinfIndex "1.2.1.0.5.1" ;
-    era:rinfIndex "1.2.2.0.0.1" ;
-    era:rinfIndex "1.2.2.0.5.1" ;
-	sh:path (era:belongsTo era:infrastructureManager) ;
-    sh:class era:OrganisationRole ;
-	sh:minCount 1 ;
-    sh:maxCount 1 ;
-	sh:message "imCode (1.2.1.0.6.1): Each infrastructure element must belong to only one network (subset with common characteristics), and in turn have one infrastructure manager. This error may be due to having an infrastructure element with no infrastructure manager associated or with more than one infrastructure manager."@en .
 
 # organisationCode: # 1.2.1.0.6.1, 1.1.0.0.0.1, 1.1.1.1.8.1, 1.2.1.0.0.1, 1.2.1.0.5.1, 1.2.2.0.0.1, 1.2.2.0.5.1 Check that the organisationRole instance points to the skos value for infrastructure manager.
 era-sh:infrastructureElementShape sh:sparql era-sh:infrastructureManagerSKOSValue .
@@ -114,20 +88,5 @@ era-sh:inCountrySKOS
 	}
 """ .
 
-# nationalLine 
-era-sh:infrastructureElementShape sh:property era-sh:nationalLine .
-era-sh:nationalLine
-	a sh:PropertyShape;
-    era:affectedProperty era:nationalLine;
-    era:affectedClass era:LinePosition;
-    era:affectedClass era:InfrastructureElement;
-    era:affectedClass era:NationalRailwayLine;
-    era:scope "local";  
-    rdfs:comment "Indicates a relationship with a national railway line at a specific kilometer point." ;
-	sh:path (era:hasPosition era:nationalLine) ;
-    sh:class era:NationalRailwayLine;
-    sh:minCount 1 ;
-    sh:nodeKind sh:IRI ;
-	sh:severity sh:Violation ;
-	sh:message "nationalLine:  The infrastructure element must have at least one reference to a position with respect to a specific national railway line and this reference mut be an URI."@en .
+
 
