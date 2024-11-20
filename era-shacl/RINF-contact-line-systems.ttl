@@ -144,7 +144,7 @@ era-sh:maximumTrainCurrent
 	sh:severity sh:Violation ;
 	sh:message "maxTrainCurrent (1.1.1.2.2.2): The contact line system defines the maximum allowable train current . This error is due to having more than one value for this property, having a value that is not an integer, or having an integer that does not follow the pattern [NNNN]."@en .
 
-# maxCurrentStandstillPantograph: # 1.1.1.2.2.3
+# maxCurrentStandstillPantograph: # 1.1.1.2.2.3, 1.2.2.0.6.1
 era-sh:contactLineSystemShape sh:property era-sh:maxCurrentStandstillPantographCLS .
 era-sh:maxCurrentStandstillPantographCLS
 	a sh:PropertyShape ;
@@ -152,13 +152,13 @@ era-sh:maxCurrentStandstillPantographCLS
     era:affectedClass era:ContactLineSystem;
     era:scope "local";
 	rdfs:comment "Indication of the maximum allowable current at standstill per pantograph" ;
-	era:rinfIndex "1.1.1.2.2.3" ;
+	era:rinfIndex "1.1.1.2.2.3", "1.2.2.0.6.1" ;
 	sh:path era:maxCurrentStandstillPantograph ;
 	sh:datatype xsd:double ;
 	sh:pattern "[1-9]\\d{0,2}|0" ; #TODO check pattern, it is defined as double
     sh:maxCount 1 ;
 	sh:severity sh:Violation ;
-	sh:message "maxCurrentStandstillPantograph (1.1.1.2.2.3): The contact line system defines the maximum allowable current at standstill per pantograph . This error is due to having more than one value for this property, having a value that is not a double (real) number, or having a number that does not follow the pattern [NNN] (with 0 decimals)."@en .
+	sh:message "maxCurrentStandstillPantograph (1.1.1.2.2.3, 1.2.2.0.6.1): The contact line system defines the maximum allowable current at standstill per pantograph . This error is due to having more than one value for this property, having a value that is not a double (real) number, or having a number that does not follow the pattern [NNN] (with 0 decimals)."@en .
 
 # conditionalRegenerativeBrake: # 1.1.1.2.2.4
 era-sh:contactLineSystemShape sh:property era-sh:conditionalRegenerativeBrake .

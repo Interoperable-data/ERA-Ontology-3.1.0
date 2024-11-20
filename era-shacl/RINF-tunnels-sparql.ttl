@@ -33,7 +33,7 @@ era-sh:commonCharacteristicsSubsetShape
 	sh:targetClass era:CommonCharacteristicsSubset .  # Applies to all Common Characteritics Subset  with sidings parameters 
 	
 
-# tunnelIdentification: # 1.1.1.1.8.2, 1.2.1.0.5.2
+# tunnelIdentification: # 1.1.1.1.8.2, 1.2.1.0.5.2, 1.2.2.0.5.2
 era-sh:tunnelsShape sh:property era-sh:tunnelIdentification .
 era-sh:tunnelIdentification
     a sh:PropertyShape ;
@@ -41,13 +41,13 @@ era-sh:tunnelIdentification
     era:affectedClass era:Tunnel;
     era:scope "local";  
     rdfs:comment "Unique tunnel identification or unique number within Member State." ;
-    era:rinfIndex "1.1.1.1.8.2", "1.2.1.0.5.2" ;
+    era:rinfIndex "1.1.1.1.8.2", "1.2.1.0.5.2", "1.2.2.0.5.2" ;
     sh:path era:tunnelIdentification ;           
     sh:minCount 1 ;
     sh:maxCount 1 ;
     sh:datatype xsd:string ;
     sh:severity sh:Violation ;
-    sh:message "tunnelIdentification (1.1.1.1.8.2, 1.2.1.0.5.2): Each Tunnel can be referred with only one identification. This error may be due to having a Tunnel with no identification or with more than one identification."@en .
+    sh:message "tunnelIdentification (1.1.1.1.8.2, 1.2.1.0.5.2, 1.2.2.0.5.2): Each Tunnel can be referred with only one identification. This error may be due to having a Tunnel with no identification or with more than one identification."@en .
 
 # lineReferenceTunnelStart - kilometer: 1.1.1.1.8.3
 era-sh:tunnelsShape sh:property era-sh:lineReferenceTunnelStart .
@@ -84,7 +84,7 @@ era-sh:lineReferenceTunnelEnd
 	sh:message "lineReferenceTunnelEnd - kilometer (1.1.1.1.8.4):  The tunnel either does not have a value for kilometer at its end , has more than one value , or the value is not a double (real) number."@en .
 
 
-# verificationSRT: # 1.1.1.1.8.5 
+# verificationSRT: # 1.1.1.1.8.5, 1.2.1.0.5.3, 1.2.2.0.5.3
 era-sh:tunnelsShape sh:property era-sh:verificationSRT .
 era-sh:commonCharacteristicsSubsetShape sh:property era-sh:verificationSRT .
 era-sh:verificationSRT
@@ -93,16 +93,16 @@ era-sh:verificationSRT
     era:affectedClass era:Tunnel;
     era:scope "local";  
 	rdfs:comment "Unique number for EC declarations following format requirements specified in the 'Document about practical arrangements for transmitting interoperability documents'" ;
-	era:rinfIndex "1.1.1.1.8.5" ;
+	era:rinfIndex "1.1.1.1.8.5", "1.2.1.0.5.3" , "1.2.2.0.5.3" ;
 	sh:path era:verificationSRT ;
 	#sh:minCount 0 ;
 	sh:datatype xsd:string ;
     sh:pattern "^[A-Z]{2}/.{14}/(19[0-9][0-9]|20[0-9][0-9]|2100)/[0-9]{6}$";
 	sh:severity sh:Violation ;
-	sh:message "verificationSRT (1.1.1.1.8.5): Each Tunnel may have one or more verificationSRT following this pattern country code/national registration number/year between 1900 and 2100/progressive counter. This error may be due to having a value that does not follow the pattern or that is not a character string."@en .
+	sh:message "verificationSRT (1.1.1.1.8.5, 1.2.1.0.5.3, 1.2.2.0.5.3): Each Tunnel may have one or more verificationSRT following this pattern country code/national registration number/year between 1900 and 2100/progressive counter. This error may be due to having a value that does not follow the pattern or that is not a character string."@en .
 
 
-# demonstrationSRT: # 1.1.1.1.8.6 
+# demonstrationSRT: # 1.1.1.1.8.6, 1.2.1.0.5.4, 1.2.2.0.5.4
 era-sh:tunnelsShape sh:property era-sh:demonstrationSRT .
 era-sh:commonCharacteristicsSubsetShape sh:property era-sh:demonstrationSRT.
 era-sh:demonstrationSRT
@@ -111,16 +111,16 @@ era-sh:demonstrationSRT
     era:affectedClass era:Tunnel;
     era:scope "local";
 	rdfs:comment "Unique number for EI declarations following the same format requirements as specified in the 'Document about practical arrangements for transmitting interoperability documents'" ;
-	era:rinfIndex "1.1.1.1.8.6" ;
+	era:rinfIndex "1.1.1.1.8.6", "1.2.1.0.5.4" , "1.2.2.0.5.4" ;
 	sh:path era:demonstrationSRT ;
 	#sh:minCount 0 ;
 	sh:datatype xsd:string ;
 	sh:pattern "^[A-Z]{2}/.{14}/(19[0-9][0-9]|20[0-9][0-9]|2100)/[0-9]{6}$";
 	sh:severity sh:Violation ;
-	sh:message "demonstrationINF (1.1.1.1.8.6): Each Tunnel may have one or more demonstrationSRT following this pattern country code/national registration number/year between 1900 and 2100/progressive counter. This error may be due to having a value that does not follow the pattern or that is not a character string."@en .
+	sh:message "demonstrationINF (1.1.1.1.8.6, 1.2.1.0.5.4, 1.2.2.0.5.4): Each Tunnel may have one or more demonstrationSRT following this pattern country code/national registration number/year between 1900 and 2100/progressive counter. This error may be due to having a value that does not follow the pattern or that is not a character string."@en .
 
 
-# lengthOfTunnel: # 1.1.1.1.8.7
+# lengthOfTunnel: # 1.1.1.1.8.7, 1.2.1.0.5.5, 1.2.2.0.5.5
 era-sh:tunnelsShape sh:property era-sh:lengthT .
 era-sh:lengthT
 	a sh:PropertyShape ;
@@ -128,12 +128,12 @@ era-sh:lengthT
     era:affectedClass era:Tunnel;
     era:scope "local";
 	rdfs:comment "Length of a tunnel in metres from entrance portal to exit portal." ;
-	era:rinfIndex "1.1.1.1.8.7" ;
+	era:rinfIndex "1.1.1.1.8.7", "1.2.1.0.5.5", "1.2.2.0.5.5" ;
 	sh:path era:length ;
 	sh:maxCount 1 ;
 	sh:datatype xsd:double ;
 	sh:severity sh:Violation ;
-	sh:message "length (1.1.1.1.8.7): A Tunnel must have at most one length declaration. This error may be due to having a tunnel with more than one length or to having a value that is not a double (real) number."@en .
+	sh:message "length (1.1.1.1.8.7, 1.2.1.0.5.5, 1.2.2.0.5.5): A Tunnel must have at most one length declaration. This error may be due to having a tunnel with more than one length or to having a value that is not a double (real) number."@en .
 
 # crossSectionArea: # 1.1.1.1.8.8 
 era-sh:tunnelsShape sh:property era-sh:crossSectionAreaT .
@@ -187,7 +187,7 @@ era-sh:tunnelDocRef
 
 
 
-# hasEmergencyPlan: # 1.1.1.1.8.9
+# hasEmergencyPlan: # 1.1.1.1.8.9, 1.2.1.0.5.6, 1.2.2.0.5.6
 era-sh:tunnelsShape sh:property era-sh:hasEmergencyPlan .
 era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasEmergencyPlan .
 era-sh:hasEmergencyPlan
@@ -196,15 +196,15 @@ era-sh:hasEmergencyPlan
     era:affectedClass era:Tunnel;
     era:scope "local";   
 	rdfs:comment "Indication whether emergency plan exists." ;
-	era:rinfIndex "1.1.1.1.8.9" ;
+	era:rinfIndex "1.1.1.1.8.9", "1.2.1.0.5.6", "1.2.2.0.5.6" ;
 	sh:path era:hasEmergencyPlan ;
     sh:maxCount 1 ;
 	sh:datatype xsd:boolean ;
 	sh:severity sh:Violation ;
-	sh:message "hasEmergencyPlan (1.1.1.1.8.9): A Tunnel has an indication about the existence of an emergency plan. This error may be due to having a tunnel with more than one value for hasEmergencyPlan or having a value type different than Y/N (boolean)."@en .
+	sh:message "hasEmergencyPlan (1.1.1.1.8.9, 1.2.1.0.5.6, 1.2.2.0.5.6): A Tunnel has an indication about the existence of an emergency plan. This error may be due to having a tunnel with more than one value for hasEmergencyPlan or having a value type different than Y/N (boolean)."@en .
 
 
-# hasEvacuationAndRescuePoints: # 1.1.1.1.8.13
+# hasEvacuationAndRescuePoints: # 1.1.1.1.8.13, 1.2.1.0.5.11, 1.2.2.0.5.10
 era-sh:tunnelsShape sh:property era-sh:hasEvacuationAndRescuePoints .
 era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasEvacuationAndRescuePoints .
 era-sh:hasEvacuationAndRescuePoints
@@ -213,16 +213,14 @@ era-sh:hasEvacuationAndRescuePoints
     era:affectedClass era:Tunnel;
     era:scope "local";   
 	rdfs:comment "Indication of existence of evacuation and rescue points." ;
-	era:rinfIndex "1.1.1.1.8.13" ;
-    era:rinfIndex "1.2.1.0.5.11" ;
-    era:rinfIndex "1.1.1.1.8.13" ;
+	era:rinfIndex "1.1.1.1.8.13", "1.2.1.0.5.11", "1.2.2.0.5.10" ;
 	sh:path era:hasEmergencyPlan ;
     sh:maxCount 1 ;
 	sh:datatype xsd:boolean ;
 	sh:severity sh:Violation ;
-	sh:message "hasEvacuationAndRescuePoints (1.1.1.1.8.9): A Tunnel has an indication about the existence of an evacuation and rescue points. This error may be due to having a tunnel with more than one value for hasEvacuationAndRescuePoints or having a value type different than Y/N (boolean)."@en .
+	sh:message "hasEvacuationAndRescuePoints (1.1.1.1.8.13, 1.2.1.0.5.11, 1.2.2.0.5.10): A Tunnel has an indication about the existence of an evacuation and rescue points. This error may be due to having a tunnel with more than one value for hasEvacuationAndRescuePoints or having a value type different than Y/N (boolean)."@en .
 
-# rollingStockFireCategory: # 1.1.1.1.8.10
+# rollingStockFireCategory: # 1.1.1.1.8.10, 1.2.1.0.5.7, 1.2.2.0.5.7
 era-sh:tunnelsShape sh:property era-sh:rollingStockFireCategory .
 era-sh:commonCharacteristicsSubsetShape sh:property era-sh:rollingStockFireCategory .
 era-sh:rollingStockFireCategory
@@ -231,14 +229,14 @@ era-sh:rollingStockFireCategory
     era:affectedClass era:Tunnel;
     era:scope "local";  
 	rdfs:comment "Categorisation on how a passenger train with a fire on board will continue to operate for a defined time period" ;
-	era:rinfIndex "1.1.1.1.8.10" ;
+	era:rinfIndex "1.1.1.1.8.10", "1.2.1.0.5.7", "1.2.2.0.5.7" ;
 	sh:path era:rollingStockFireCategory ;
     sh:maxCount 1 ;
 	sh:nodeKind sh:IRI ;
 	sh:severity sh:Violation ;
-	sh:message "rollingStockFireCategory (1.1.1.1.8.10): A Tunnel may have an indication about the rollingStockFireCategory. This error may be due to having a tunnel without a rollingStockFireCategory declaration or having a literal as value. This error may be due to a tunnel having more than one value."@en .
+	sh:message "rollingStockFireCategory (1.1.1.1.8.10, 1.2.1.0.5.7, 1.2.2.0.5.7): A Tunnel may have an indication about the rollingStockFireCategory. This error may be due to having a tunnel without a rollingStockFireCategory declaration or having a literal as value. This error may be due to a tunnel having more than one value."@en .
 
-# rollingStockFireCategory: # 1.1.1.1.8.10
+# rollingStockFireCategory: # 1.1.1.1.8.10, 1.2.1.0.5.7, 1.2.2.0.5.7
 era-sh:tunnelsShape sh:sparql era-sh:rollingStockFireCategorySKOS .
 era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:rollingStockFireCategorySKOS .
 era-sh:rollingStockFireCategorySKOS
@@ -247,9 +245,9 @@ era-sh:rollingStockFireCategorySKOS
     era:affectedClass era:Tunnel;
     era:scope "local";   
 	rdfs:comment "Categorisation on how a passenger train with a fire on board will continue to operate for a defined time period" ;
-	era:rinfIndex "1.1.1.1.8.10" ;
+	era:rinfIndex "1.1.1.1.8.10", "1.2.1.0.5.7", "1.2.2.0.5.7" ;
 	sh:severity sh:Violation ;
-	sh:message "Categorisation on how a passenger train with a fire on board will continue to operate (1.1.1.1.8.10): The tunnel {$this} (label {?tunnelLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/rolling-stock-fire/Categories."@en ;
+	sh:message "Categorisation on how a passenger train with a fire on board will continue to operate (1.1.1.1.8.10, 1.2.1.0.5.7, 1.2.2.0.5.7): The tunnel {$this} (label {?tunnelLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/rolling-stock-fire/Categories."@en ;
     sh:prefixes era:;
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
@@ -267,7 +265,7 @@ era-sh:rollingStockFireCategorySKOS
 """ .
 
 
-## nationalRollingStockFireCategory: # 1.1.1.1.8.11
+## nationalRollingStockFireCategory: # 1.1.1.1.8.11, 1.2.1.0.5.8, 1.2.2.0.5.8
 era-sh:tunnelsShape sh:property era-sh:nationalRollingStockFireCategory .
 era-sh:commonCharacteristicsSubsetShape sh:property era-sh:nationalRollingStockFireCategory .
 era-sh:nationalRollingStockFireCategory
@@ -276,13 +274,13 @@ era-sh:nationalRollingStockFireCategory
     era:affectedClass era:Tunnel;
     era:scope "local";   
 	rdfs:comment "Categorisation on how a passenger train with a fire on board will continue to operate for a defined time period - according to national rules if they exist." ;
-	era:rinfIndex "1.1.1.1.8.11" ;
+	era:rinfIndex "1.1.1.1.8.11", "1.2.1.0.5.8", "1.2.2.0.5.8" ;
 	sh:path era:nationalRollingStockFireCategory ;
 	#sh:minCount 0 ;
     sh:maxCount 1 ;
 	sh:datatype xsd:string ;
 	sh:severity sh:Violation ;
-	sh:message "nationalRollingStockFireCategory (1.1.1.1.8.11): A Tunnel may have an indication about the nationalRollingStockFireCategory. This error may be due to having a tunnel with more than one value or having a value type different than string."@en .
+	sh:message "nationalRollingStockFireCategory (1.1.1.1.8.11, 1.2.1.0.5.8, 1.2.2.0.5.8): A Tunnel may have an indication about the nationalRollingStockFireCategory. This error may be due to having a tunnel with more than one value or having a value type different than string."@en .
 
 # dieselThermalAllowed: # 1.2.1.0.5.9
 era-sh:tunnelsShape sh:property era-sh:dieselThermalAllowed .
