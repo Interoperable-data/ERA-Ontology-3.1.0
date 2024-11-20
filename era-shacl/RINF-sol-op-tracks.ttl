@@ -84,7 +84,7 @@ era-sh:DemonstrationINF
 	sh:message "demonstrationINF (1.1.1.1.1.2, 1.2.1.0.1.2): The demonstrationINF must be a string following the format 'XX/XXXXXXXXXXXXXX/YYYY/DDDDDD' where XX is the country code, XXXXXXXXXXXXXX is the unique number for EI declarations, YYYY is the year of the declaration (1900-2100) and DDDDDD is the sequential number of the declaration. This error is due to the value not following the pattern."@en .
 
 # tenClassification: # 1.1.1.1.2.1, 1.2.1.0.2.1
- era-sh:trackShape sh:property era-sh:TenClassificationT.
+era-sh:trackShape sh:property era-sh:TenClassificationT.
 era-sh:TenClassificationT
 	a sh:PropertyShape ;
     era:affectedProperty era:tenClassification;
@@ -126,11 +126,6 @@ era-sh:TenClassificationSKOST
 		}
 	}
 """ .
-
-
-
-
-
 
 # gaugingProfile: # 1.1.1.1.3.1.1, 1.2.1.0.3.4
 era-sh:trackShape sh:property era-sh:GaugingProfile.
@@ -206,8 +201,6 @@ era-sh:GaugingTransversalDocument
 	sh:class era:Document ;
 	sh:severity sh:Violation ;
 	sh:message "gaugingTransversalDocument (1.1.1.1.3.1.3, 1.2.1.0.3.6): The track has a transversal document of the gauging check value that must be a Document."@en .
-
-
 
 # wheelSetGauge: # 1.1.1.1.4.1, 1.2.1.0.4.1
 era-sh:trackShape sh:property era-sh:WheelSetGauge.
@@ -426,11 +419,7 @@ era-sh:cantDeficiencyBasicSSP
     era:affectedProperty era:cantDeficiencyBasicSSP;
     era:affectedClass era:Track;
     era:scope "local";
-	rdfs:comment """Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with  parameter \"Other Cant Deficiency train categories for which the ETCS trackside is configured to provide SSP\".
-
-Subset-026 (3.11.3.2.1.1) definition:
-a) The “Cant Deficiency” SSP categories: the cant deficiency value assigned to one category shall define the maximum speed, determined by suspension design, at which a particular train can traverse a curve and thus can be used to set a specific speed limit in a curve with regards to this category.
-""" ;
+	rdfs:comment "Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with  parameter \"Other Cant Deficiency train categories for which the ETCS trackside is configured to provide SSP\"." ;
 	era:rinfIndex "1.1.1.3.2.14", "1.2.1.1.1.14" ;
 	sh:path era:cantDeficiencyBasicSSP ;
     sh:maxCount 1; # Functional property
@@ -445,11 +434,7 @@ era-sh:cantDeficiencyBasicSSPSKOS
     era:affectedProperty era:cantDeficiencyBasicSSP;
     era:affectedClass era:Track;
     era:scope "local";
-	rdfs:comment """Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with  parameter \"Other Cant Deficiency train categories for which the ETCS trackside is configured to provide SSP\".
-
-Subset-026 (3.11.3.2.1.1) definition:
-a) The “Cant Deficiency” SSP categories: the cant deficiency value assigned to one category shall define the maximum speed, determined by suspension design, at which a particular train can traverse a curve and thus can be used to set a specific speed limit in a curve with regards to this category.
-""" ;
+	rdfs:comment "Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with  parameter \"Other Cant Deficiency train categories for which the ETCS trackside is configured to provide SSP\"." ;
 	era:rinfIndex "1.1.1.3.2.14", "1.2.1.1.1.14" ;
 	sh:severity sh:Violation ;
 	sh:message "cantDeficiencyBasicSSP (1.1.1.3.2.14, 1.2.1.1.1.14): The track {$this} (label {?trackLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/cant-deficiencies/CantDeficiencies."@en ;
@@ -566,7 +551,6 @@ era-sh:publicNetworkRoamingDetails
     era:affectedClass era:Track;
     era:scope "local";
 	rdfs:comment """If roaming to public networks is configured, please:
-
 1. indicate to which networks, for which users and in which areas.
 2. list if any GSM-R functionality is not available when roaming to a public network (e.g. REC, Functional Addressing, Group Calls). 
 3. also add if there is any operational restriction for vehicles that cannot roam into any of the available public networks.""" ;
@@ -1060,7 +1044,7 @@ era-sh:trackShape sh:property era-sh:minimumHorizontalRadius .
 era-sh:minimumHorizontalRadius
 	a sh:PropertyShape ;
     era:affectedProperty era:minimumHorizontalRadius;
-    era:affectedClass era:ContactLineSystem;
+    era:affectedClass era:Track;
     era:scope "local";
 	rdfs:comment "Radius of the smallest horizontal curve of the track in metres." ;
 	era:rinfIndex "1.1.1.1.3.7" , "1.2.2.0.3.2" ;
@@ -1392,4 +1376,496 @@ era-sh:qNvdriverAdhesSKOS
 		}
 	}
 """ .
+
+# qNvemrrls: 1.1.1.3.2.16.2, 1.2.1.1.1.16.2
+era-sh:trackShape sh:property era-sh:qNvemrrls.
+era-sh:qNvemrrls
+	a sh:PropertyShape ;
+    era:affectedProperty era:qNvemrrls;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Qualifier defining whether the application of the emergency brake for reasons other than a trip can be revoked as soon as the conditions for it have disappeared or after the train has come to a complete standstill." ;
+	era:rinfIndex "1.1.1.3.2.16.2" , "1.2.1.1.1.16.2" ;
+	sh:path era:qNvemrrls ;
+    sh:maxCount 1 ; # Functional property
+    sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "qNvemrrls (1.1.1.3.2.16.2, 1.2.1.1.1.16.2): The track must have a single Q_NVEMRRLS value that is an IRI."@en .	
+
+# qNvemrrls: 1.1.1.3.2.16.2, 1.2.1.1.1.16.2
+era-sh:trackShape sh:sparql era-sh:qNvemrrlsSKOS .
+era-sh:qNvemrrlsSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:qNvemrrls;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Qualifier defining whether the application of the emergency brake for reasons other than a trip can be revoked as soon as the conditions for it have disappeared or after the train has come to a complete standstill." ;
+	era:rinfIndex "1.1.1.3.2.16.2" , "1.2.1.1.1.16.2" ;
+	sh:severity sh:Violation ;
+	sh:message "qNvemrrls (1.1.1.3.2.16.2, 1.2.1.1.1.16.2): The track {$this} (label {?trackLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/ebr-qualifier/EBReleaseQualifier."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept ?trackLabel
+    WHERE {
+        OPTIONAL {$this rdfs:label ?trackLabel} .
+        $this era:qNvemrrls ?concept .
+        era:qNvemrrls era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+# qNvsbtsmperm: 1.1.1.3.2.16.12, 1.2.1.1.1.16.12
+era-sh:trackShape sh:property era-sh:qNvsbtsmperm .
+era-sh:qNvsbtsmperm
+	a sh:PropertyShape;
+    era:affectedProperty era:qNvsbtsmperm ;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Permission to use service brake in target speed monitoring." ; 
+	era:rinfIndex "1.1.1.3.2.16.12" , "1.2.1.1.1.16.12" ;
+	sh:path era:qNvsbtsmperm ;
+	sh:maxCount 1 ; # Functional property
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "qNvsbtsmperm (1.1.1.3.2.16.12, 1.2.1.1.1.16.12): Each Track may define the existence of a permission to use service brake in target speed monitoring Q_NVSBTSMPERM. This error is due to having more than one indication of existence of permission to use service brake in target speed monitoring Q_NVSBTSMPERM value or having an indication of permission to use service brake in target speed monitoring Q_NVSBTSMPERM value that is not Y/N (boolean)."@en .
+
+# radioNetworkId: 1.1.1.3.3.12, 1.2.1.1.2.13
+era-sh:trackShape sh:property era-sh:radioNetworkId.
+era-sh:radioNetworkId
+	a sh:PropertyShape ;
+    era:affectedProperty era:radioNetworkId;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Unique identification of the GSM-R network the calling mobile station has to register with, as defined in the specification referenced in TSI CCS." ;
+	era:rinfIndex "1.1.1.3.3.12" , "1.2.1.1.2.13" ;
+	sh:path era:radioNetworkId ;
+	sh:datatype xsd:string ;
+	# sh:pattern "[1-9]\\d{0,5}|0" ; # TODO check pattern
+    # sh:minCount 1 ; # TODO: Check in ontology comment
+	sh:severity sh:Violation ;
+	sh:message "radioNetworkId (1.1.1.3.3.12, 1.2.1.1.2.13): The track has a Radio Network ID that must be a string and follow the format [NNNNNN]. The error is due to the value not following the pattern."@en .
+
+# dataRadioCompatible: 1.1.1.3.3.10, 1.2.1.1.2.10
+era-sh:trackShape sh:property era-sh:dataRadioCompatible.
+era-sh:dataRadioCompatible
+	a sh:PropertyShape ;
+    era:affectedProperty era:dataRadioCompatible;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Radio requirements used for demonstrating technical compatibility data." ;
+	era:rinfIndex "1.1.1.3.3.10" , "1.2.1.1.2.10" ;
+	sh:path era:dataRadioCompatible ;
+    sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "dataRadioCompatible (1.1.1.3.3.10, 1.2.1.1.2.10): The track must have a radio system compatibility data value that is an IRI."@en .	
+
+# dataRadioCompatible: 1.1.1.3.3.10, 1.2.1.1.2.10
+era-sh:trackShape sh:sparql era-sh:dataRadioCompatibleSKOS .
+era-sh:dataRadioCompatibleSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:dataRadioCompatible;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Radio requirements used for demonstrating technical compatibility data." ;
+	era:rinfIndex "1.1.1.3.3.10" , "1.2.1.1.2.10" ;
+	sh:severity sh:Violation ;
+	sh:message "dataRadioCompatible (1.1.1.3.3.10, 1.2.1.1.2.10): The track {$this} (label {?trackLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/radio-system-compatibilities-data/RadioSystemCompatibilitiesData."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept ?trackLabel
+    WHERE {
+        OPTIONAL {$this rdfs:label ?trackLabel} .
+        $this era:dataRadioCompatible ?concept .
+        era:dataRadioCompatible era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+# voiceRadioCompatible: 1.1.1.3.3.9, 1.2.1.1.2.9
+era-sh:trackShape sh:property era-sh:voiceRadioCompatible.
+era-sh:voiceRadioCompatible
+	a sh:PropertyShape ;
+    era:affectedProperty era:voiceRadioCompatible;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Radio requirements used for demonstrating technical compatibility voice." ;
+	era:rinfIndex "1.1.1.3.3.9" , "1.2.1.1.2.9" ;
+	sh:path era:voiceRadioCompatible ;
+    sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "voiceRadioCompatible (1.1.1.3.3.9, 1.2.1.1.2.9): The track must have a radio system compatibility voice value that is an IRI."@en .	
+
+# voiceRadioCompatible: 1.1.1.3.3.9, 1.2.1.1.2.9
+era-sh:trackShape sh:sparql era-sh:voiceRadioCompatibleSKOS .
+era-sh:voiceRadioCompatibleSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:voiceRadioCompatible;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Radio requirements used for demonstrating technical compatibility voice." ;
+	era:rinfIndex "1.1.1.3.3.9" , "1.2.1.1.2.9" ;
+	sh:severity sh:Violation ;
+	sh:message "voiceRadioCompatible (1.1.1.3.3.9, 1.2.1.1.2.9): The track {$this} (label {?trackLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/radio-system-compatibilities-voice/RadioSystemCompatibilitiesVoice."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept ?trackLabel
+    WHERE {
+        OPTIONAL {$this rdfs:label ?trackLabel} .
+        $this era:voiceRadioCompatible ?concept .
+        era:voiceRadioCompatible era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+# errorCorrectionsOnboardExplanation: 1.1.1.3.1.2, 1.2.1.1.1.19
+era-sh:trackShape sh:property era-sh:errorCorrectionsOnboardExplanation.
+era-sh:errorCorrectionsOnboardExplanation
+	a sh:PropertyShape ;
+    era:affectedProperty era:errorCorrectionsOnboardExplanation;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Explanation on why a mandatory onboard CR required to be solved in the on-board (ETCS, GSM-R and/or ATO) was accepted by the IM." ;
+	era:rinfIndex "1.1.1.3.1.2" , "1.2.1.1.1.19" ;
+	sh:path era:errorCorrectionsOnboardExplanation ;
+    # sh:maxCount 1 ; # Application guide
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation ;
+	sh:message "errorCorrectionsOnboardExplanation (1.1.1.3.1.2, 1.2.1.1.1.19): The errorCorrectionsOnboardExplanation must be a string. This error is due to the value not being a string."@en .
+
+# reasonsEtcsRadioBlockCenterReject: 1.1.1.3.2.15, 1.2.1.1.1.15
+era-sh:trackShape sh:property era-sh:reasonsEtcsRadioBlockCenterReject.
+era-sh:reasonsEtcsRadioBlockCenterReject
+	a sh:PropertyShape ;
+    era:affectedProperty era:reasonsEtcsRadioBlockCenterReject;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "List of cases subject to system design choices made by the infrastructure manager according to the specification referenced in TSI CCS." ;
+	era:rinfIndex "1.1.1.3.2.15" , "1.2.1.1.1.15" ;
+	sh:path era:reasonsEtcsRadioBlockCenterReject ;
+    sh:maxCount 1 ; # Functional property
+    sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "reasonsEtcsRadioBlockCenterReject (1.1.1.3.2.15, 1.2.1.1.1.15): The track must have a single reasons for which an ETCS Radio Block Center can reject a train value that is an IRI."@en .	
+
+# reasonsEtcsRadioBlockCenterReject: 1.1.1.3.2.15, 1.2.1.1.1.15
+era-sh:trackShape sh:sparql era-sh:reasonsEtcsRadioBlockCenterRejectSKOS .
+era-sh:reasonsEtcsRadioBlockCenterRejectSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:reasonsEtcsRadioBlockCenterReject;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "List of cases subject to system design choices made by the infrastructure manager according to the specification referenced in TSI CCS." ;
+	era:rinfIndex "1.1.1.3.2.15" , "1.2.1.1.1.15" ;
+	sh:severity sh:Violation ;
+	sh:message "reasonsEtcsRadioBlockCenterReject (1.1.1.3.2.15, 1.2.1.1.1.15): The track {$this} (label {?trackLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/etcs-rbc-reject-reasons/ETCSRBCRejectionReasons."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept ?trackLabel
+    WHERE {
+        OPTIONAL {$this rdfs:label ?trackLabel} .
+        $this era:reasonsEtcsRadioBlockCenterReject ?concept .
+        era:reasonsEtcsRadioBlockCenterReject era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+# safeConsistLengthInformationNecessary: 1.1.1.3.2.11, 1.2.1.1.1.11
+era-sh:trackShape sh:property era-sh:safeConsistLengthInformationNecessary.
+era-sh:safeConsistLengthInformationNecessary
+	a sh:PropertyShape ;
+    era:affectedProperty era:safeConsistLengthInformationNecessary;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Indication whether safe consist train length information from on-board is required to access the line for safety reasons and the required safety integrity level." ;
+	era:rinfIndex "1.1.1.3.2.11" , "1.2.1.1.1.11" ;
+	sh:path era:safeConsistLengthInformationNecessary ;
+    sh:maxCount 1 ; # Functional property
+    sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "safeConsistLengthInformationNecessary (1.1.1.3.2.11, 1.2.1.1.1.11): The track must have a single Safe consist length information from on-board necessary for access the line and SIL value that is an IRI."@en .	
+
+# safeConsistLengthInformationNecessary: 1.1.1.3.2.11, 1.2.1.1.1.11
+era-sh:trackShape sh:sparql era-sh:safeConsistLengthInformationNecessarySKOS .
+era-sh:safeConsistLengthInformationNecessarySKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:safeConsistLengthInformationNecessary;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Indication whether safe consist train length information from on-board is required to access the line for safety reasons and the required safety integrity level." ;
+	era:rinfIndex "1.1.1.3.2.11" , "1.2.1.1.1.11" ;
+	sh:severity sh:Violation ;
+	sh:message "safeConsistLengthInformationNecessary (1.1.1.3.2.11, 1.2.1.1.1.11): The track {$this} (label {?trackLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/safe-consist-length/SafeConsistLengthNecessary."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept ?trackLabel
+    WHERE {
+        OPTIONAL {$this rdfs:label ?trackLabel} .
+        $this era:safeConsistLengthInformationNecessary ?concept .
+        era:safeConsistLengthInformationNecessary era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+# conditionsSwitchTrainProtectionSystems: 1.1.1.3.8.1.1, 1.2.1.1.7.1.1
+era-sh:trackShape sh:property era-sh:conditionsSwitchTrainProtectionSystems.
+era-sh:conditionsSwitchTrainProtectionSystems
+	a sh:PropertyShape ;
+    era:affectedProperty era:conditionsSwitchTrainProtectionSystems;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Conditions to switch over between different class B train protection, control and warning systems." ;
+	era:rinfIndex "1.1.1.3.8.1.1", "1.2.1.1.7.1.1" ;
+	sh:path era:conditionsSwitchTrainProtectionSystems ;
+	sh:datatype xsd:string ;
+	# sh:pattern "^([1-9]\\d{1,3}|[0-9])(\\.\\d{1,3})?(\\s.*)?$" ; # TODO: check pattern
+    # sh:maxCount 1 ; # Functional property?
+	sh:severity sh:Violation ;
+	sh:message "conditionsSwitchTrainProtectionSystems (1.1.1.3.8.1.1, 1.2.1.1.7.1.1): The track has a Special conditions to switch over between different class B train protection, control and warning systems value that must be a string and follow the format [NNN]. The error is due to having more than one value, or it is due to the value not following the pattern."@en .
+
+# instructionsSwitchRadioSystems: 1.1.1.3.8.2.1, 1.2.1.1.7.2.1
+era-sh:trackShape sh:property era-sh:instructionsSwitchRadioSystems.
+era-sh:instructionsSwitchRadioSystems
+	a sh:PropertyShape ;
+    era:affectedProperty era:instructionsSwitchRadioSystems;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Name and/or reference of the document specifying the Special instructions to switch over between different radio systems." ;
+	era:rinfIndex "1.1.1.3.8.2.1" , "1.2.1.1.7.2.1" ;
+	sh:path era:instructionsSwitchRadioSystems ;
+	sh:class era:Document ;
+    # sh:maxCount 1 ; # Functional property?
+	sh:severity sh:Violation ;
+	sh:message "instructionsSwitchRadioSystems (1.1.1.3.8.2.1, 1.2.1.1.7.2.1): The track has Special instructions to switch over between different radio systems value that must be a Document."@en .
+
+# conditionsSwitchClassBSystems: 1.1.1.3.8.3, 1.2.1.1.7.3
+era-sh:trackShape sh:property era-sh:conditionsSwitchClassBSystems.
+era-sh:conditionsSwitchClassBSystems
+	a sh:PropertyShape ;
+    era:affectedProperty era:conditionsSwitchClassBSystems;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Name and/or reference of the document specifying the Special technical conditions required to switch over between ERTMS/ETCS and Class B systems." ;
+	era:rinfIndex "1.1.1.3.8.3" , "1.2.1.1.7.3" ;
+	sh:path era:conditionsSwitchClassBSystems ;
+	sh:class era:Document ;
+    # sh:maxCount 1 ; # Functional property?
+	sh:severity sh:Violation ;
+	sh:message "conditionsSwitchClassBSystems (1.1.1.3.8.3, 1.2.1.1.7.3): The track has Special technical conditions required to switch over between ERTMS/ETCS and Class B systems value that must be a Document."@en .
+
+# mNvcontact: 1.1.1.3.2.16.9, 1.2.1.1.1.16.9
+era-sh:trackShape sh:property era-sh:mNvcontact.
+era-sh:mNvcontact
+	a sh:PropertyShape ;
+    era:affectedProperty era:mNvcontact;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "On-Board system reaction when T_NVCONTACT expires." ;
+	era:rinfIndex "1.1.1.3.2.16.9" , "1.2.1.1.1.16.9" ;
+	sh:path era:mNvcontact ;
+    sh:maxCount 1 ; # Functional property
+    sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "mNvcontact (1.1.1.3.2.16.9, 1.2.1.1.1.16.9): The track must have a single M_NVCONTACT value that is an IRI."@en .	
+
+# mNvcontact: 1.1.1.3.2.16.9, 1.2.1.1.1.16.9
+era-sh:trackShape sh:sparql era-sh:mNvcontactSKOS .
+era-sh:mNvcontactSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:mNvcontact;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "On-Board system reaction when T_NVCONTACT expires." ;
+	era:rinfIndex "1.1.1.3.2.16.9" , "1.2.1.1.1.16.9" ;
+	sh:severity sh:Violation ;
+	sh:message "mNvcontact (1.1.1.3.2.16.9, 1.2.1.1.1.16.9): The track {$this} (label {?trackLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/etcs-reactions-contact/ETCSReactionsNVContact."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept ?trackLabel
+    WHERE {
+        OPTIONAL {$this rdfs:label ?trackLabel} .
+        $this era:mNvcontact ?concept .
+        era:mNvcontact era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+# tNvovtrp: 1.1.1.3.2.16.6, 1.2.1.1.1.16.6
+era-sh:trackShape sh:property era-sh:tNvovtrp .
+era-sh:tNvovtrp
+	a sh:PropertyShape ;
+    era:affectedProperty era:tNvovtrp;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Maximum time for overriding the train trip in seconds." ;
+	era:rinfIndex "1.1.1.3.2.16.6" , "1.2.1.1.1.16.6" ;
+	sh:path era:tNvovtrp ;
+    sh:maxCount 1 ; # Functional property
+	sh:datatype xsd:integer ;
+	# sh:pattern "[1-9]\\d{0,5}|0" ; # TODO check pattern
+	sh:severity sh:Violation ;
+	sh:message "tNvovtrp (1.1.1.3.2.16.6 , 1.2.1.1.1.16.6): The track defines a T_NVOVTRP. This error is due to having more than one value, having a value that is not an integer or having an integer that does not follow the pattern [NNN]."@en .
+
+# trainIntegrityOnBoardRequired: 1.1.1.3.2.8, 1.2.1.1.1.8
+era-sh:trackShape sh:property era-sh:trainIntegrityOnBoardRequired .
+era-sh:trainIntegrityOnBoardRequired
+	a sh:PropertyShape ;
+    era:affectedProperty era:trainIntegrityOnBoardRequired;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Indication whether train confirmation from on-board is required to access the line for safety reasons. In hybrid operation, the confirmation can be optional." ;
+	era:rinfIndex "1.1.1.3.2.8" , "1.2.1.1.1.8" ;
+	sh:path era:trainIntegrityOnBoardRequired ;
+    sh:in ( "N" "Optional" "Y" ) ;
+    sh:maxCount 1 ; # Functional property
+	sh:severity sh:Violation ;
+	sh:message "trainIntegrityOnBoardRequired (1.1.1.3.2.8, 1.2.1.1.1.8): The track defines a train integrity confirmation from on-board (not from driver) necessary for line access. This error is due to having more than one value or having a value that is not in the list of valid alternatives."@en .
+
+
+# eddyCurrentBraking: 1.1.1.1.6.2, 1.2.1.0.4.2
+era-sh:trackShape sh:property era-sh:eddyCurrentBraking.
+era-sh:eddyCurrentBraking
+	a sh:PropertyShape ;
+    era:affectedProperty era:eddyCurrentBraking;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Indication of limitations on the use of eddy current brakes." ;
+	era:rinfIndex "1.1.1.1.6.2" , "1.2.1.0.4.2" ;
+	sh:path era:eddyCurrentBraking ;
+    # sh:minCount 1 ; # TODO: Not yet applicable
+    sh:maxCount 1 ; # Functional property
+    sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "eddyCurrentBraking (1.1.1.1.6.2, 1.2.1.0.4.2): The track must have a single use of eddy current brakes value that is an IRI."@en .	
+
+# eddyCurrentBraking: 1.1.1.1.6.2, 1.2.1.0.4.2
+era-sh:trackShape sh:sparql era-sh:eddyCurrentBrakingSKOS .
+era-sh:eddyCurrentBrakingSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:eddyCurrentBraking;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Indication of limitations on the use of eddy current brakes." ;
+	era:rinfIndex "1.1.1.1.6.2" , "1.2.1.0.4.2" ;
+	sh:severity sh:Violation ;
+	sh:message "eddyCurrentBraking (1.1.1.1.6.2, 1.2.1.0.4.2): The track {$this} (label {?trackLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/eddy-current-braking/EddyCurrentBraking."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept ?trackLabel
+    WHERE {
+        OPTIONAL {$this rdfs:label ?trackLabel} .
+        $this era:eddyCurrentBraking ?concept .
+        era:eddyCurrentBraking era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+# magneticBraking: 1.1.1.1.6.3, 1.2.1.0.4.3
+era-sh:trackShape sh:property era-sh:magneticBraking.
+era-sh:magneticBraking
+	a sh:PropertyShape ;
+    era:affectedProperty era:magneticBraking;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Indication of limitations on the use of magnetic brakes." ;
+	era:rinfIndex "1.1.1.1.6.3" , "1.2.1.0.4.3" ;
+	sh:path era:magneticBraking ;
+    # sh:minCount 1 ; # TODO: Not yet applicable
+    sh:maxCount 1 ; # Functional property
+    sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "magneticBraking (1.1.1.1.6.3, 1.2.1.0.4.3): The track must have a single use of magnetic brakes value that is an IRI."@en .	
+
+# magneticBraking: 1.1.1.1.6.3, 1.2.1.0.4.3
+era-sh:trackShape sh:sparql era-sh:magneticBrakingSKOS .
+era-sh:magneticBrakingSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:magneticBraking;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Indication of limitations on the use of magnetic brakes." ;
+	era:rinfIndex "1.1.1.1.6.3" , "1.2.1.0.4.3" ;
+	sh:severity sh:Violation ;
+	sh:message "magneticBraking (1.1.1.1.6.3, 1.2.1.0.4.3): The track {$this} (label {?trackLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/magnetic-braking/MagneticBraking."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept ?trackLabel
+    WHERE {
+        OPTIONAL {$this rdfs:label ?trackLabel} .
+        $this era:magneticBraking ?concept .
+        era:magneticBraking era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+# vNvallowovtrp: 1.1.1.3.2.16.3, 1.2.1.1.1.16.3
+era-sh:trackShape sh:property era-sh:vNvallowovtrp .
+era-sh:vNvallowovtrp
+	a sh:PropertyShape ;
+    era:affectedProperty era:vNvallowovtrp;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Speed limit allowing the driver to select the “override” function in km/h." ;
+	era:rinfIndex "1.1.1.3.2.16.3" , "1.2.1.1.1.16.3" ;
+	sh:path era:vNvallowovtrp ;
+    sh:maxCount 1 ; # Functional property
+	sh:datatype xsd:integer ;
+	# sh:pattern "[1-9]\\d{0,5}|0" ; # TODO check pattern
+	sh:severity sh:Violation ;
+	sh:message "vNvallowovtrp (1.1.1.3.2.16.3, 1.2.1.1.1.16.3): The track defines a speed limit allowing the driver to select the “override” function (V_NVALLOWOVTRP). This error is due to having more than one value, having a value that is not an integer or having an integer that does not follow the pattern [NNF], with N a decimal number (0÷9), F=(0|5), max. `600`."@en .
+
+# vNvsupovtrp: 1.1.1.3.2.16.4, 1.2.1.1.1.16.4
+era-sh:trackShape sh:property era-sh:vNvsupovtrp .
+era-sh:vNvsupovtrp
+	a sh:PropertyShape ;
+    era:affectedProperty era:vNvsupovtrp;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Override speed limit to be supervised when the “override” function is active in km/h." ;
+	era:rinfIndex "1.1.1.3.2.16.4" , "1.2.1.1.1.16.4" ;
+	sh:path era:vNvsupovtrp ;
+    sh:maxCount 1 ; # Functional property
+	sh:datatype xsd:integer ;
+	# sh:pattern "[1-9]\\d{0,5}|0" ; # TODO check pattern
+	sh:severity sh:Violation ;
+	sh:message "vNvsupovtrp (1.1.1.3.2.16.4, 1.2.1.1.1.16.4): The track defines a override speed limit to be supervised when the “override” function is active (V_NVSUPOVTRP). This error is due to having more than one value, having a value that is not an integer or having an integer that does not follow the pattern [NNF], with N a decimal number (0÷9), F=(0|5), max. `600`."@en .
 
