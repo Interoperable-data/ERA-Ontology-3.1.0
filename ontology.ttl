@@ -1402,6 +1402,7 @@ era:etcs rdf:type owl:ObjectProperty ;
 era:etcsBaseline rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf era:tsiCompliantTrainProtectionSystemObjParameter ,
                                     era:vehicleTypeTechnicalObjectCharacteristic ;
+                 rdf:type owl:FunctionalProperty ;
                  rdfs:domain [ rdf:type owl:Class ;
                                owl:unionOf ( era:ETCS
                                              era:VehicleType
@@ -1509,6 +1510,7 @@ era:etcsInfill rdf:type owl:ObjectProperty ;
 ###  http://data.europa.eu/949/etcsLevelType
 era:etcsLevelType rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf era:tsiCompliantTrainProtectionSystemObjParameter ;
+                  rdf:type owl:FunctionalProperty ;
                   rdfs:domain era:ETCS ;
                   rdfs:range skos:Concept ;
                   era:XMLName "CPE_Level" ;
@@ -1570,6 +1572,35 @@ era:etcsMVersion rdf:type owl:ObjectProperty ;
                  skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
+###  http://data.europa.eu/949/etcsNationalPacket44Function
+era:etcsNationalPacket44Function rdf:type owl:ObjectProperty ;
+                                 rdfs:subPropertyOf era:tsiCompliantTrainProtectionSystemObjParameter ;
+                                 rdfs:domain [ rdf:type owl:Class ;
+                                               owl:unionOf ( era:CommonCharacteristicsSubset
+                                                             era:Track
+                                                           )
+                                             ] ;
+                                 rdfs:range skos:Concept ;
+                                 era:XMLName "CPE_NatApplication" ;
+                                 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/etcs-national-packet-444-functions/ETCSNationalPacket444Functions/> ;
+                                 era:rinfIndex "1.1.1.3.2.5" ,
+                                               "1.2.1.1.1.5" ;
+                                 dcterms:created "2024-11-20"^^xsd:date ;
+                                 dcterms:description """Value can be `false` or a link to the implemented functions. The hasetcsNationalPacket444 property  represents the true or false value. The etcsNationalPacket444Function represents the functions.
+
+Packets 44 are the means to transmit data for national applications between train and track and vice versa, using the data transmission facilities included within the ETCS. 
+NID_XUSER values managed by ERA in a document about ETCS variables available on ERA website. 
+
+See: TSI CCS (7.4.3 & 6.2.4.2)."""@en ;
+                                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                                 rdfs:comment "Link to the implemented functions for national packet 44 applications that are  transmitted between track and train."@en ;
+                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                 rdfs:label "ETCS national packet 44 application implemented function"@en ;
+                                 rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
+                                 vs:term_status "stable" ;
+                                 skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
+
+
 ###  http://data.europa.eu/949/etcsNationalValuesObjParameter
 era:etcsNationalValuesObjParameter rdf:type owl:ObjectProperty ;
                                    rdfs:subPropertyOf era:tsiCompliantTrainProtectionSystemObjParameter ;
@@ -1580,11 +1611,32 @@ era:etcsNationalValuesObjParameter rdf:type owl:ObjectProperty ;
                                    rdfs:label "ETCS National Values"@en .
 
 
+###  http://data.europa.eu/949/etcsRestrictionsConditionsDoc
+era:etcsRestrictionsConditionsDoc rdf:type owl:ObjectProperty ,
+                                           owl:FunctionalProperty ;
+                                  rdfs:domain [ rdf:type owl:Class ;
+                                                owl:unionOf ( era:CommonCharacteristicsSubset
+                                                              era:Track
+                                                            )
+                                              ] ;
+                                  rdfs:range era:Document ;
+                                  era:XMLName "CPE_RestrictionsConditions" ;
+                                  era:rinfIndex "1.1.1.3.2.6" ,
+                                                "1.2.1.1.1.6" ;
+                                  dcterms:description """If not `false` (property hasEtcsRestrictionsConditions), a link to the conditions must be provided. The RU has to contact the IM to be informed about these conditions.
+These conditions and restrictions of use are considered in section 6.4 of the CCS TSI. They should be described using the template available on Agency website (Certification and deviations – Guidelines for using the ERA template) with the following link."""@en ;
+                                  rdfs:comment "Indication of the document where restrictions or conditions due to partial compliance with the TSI CCS are described."@en ;
+                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                  rdfs:label "document with operating restrictions or conditions"@en ;
+                                  rdfs:seeAlso <https://www.era.europa.eu/content/certification-issues> ,
+                                               <https://www.era.europa.eu/system/files/2022-11/restrictions_and_added_functions_en_1.doc> ;
+                                  skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
+
+
 ###  http://data.europa.eu/949/etcsSystemCompatibility
 era:etcsSystemCompatibility rdf:type owl:ObjectProperty ;
                             rdfs:subPropertyOf era:tsiCompliantTrainProtectionSystemObjParameter ,
                                                era:vehicleTypeTechnicalObjectCharacteristic ;
-                            rdf:type owl:FunctionalProperty ;
                             rdfs:domain [ rdf:type owl:Class ;
                                           owl:unionOf ( era:CommonCharacteristicsSubset
                                                         era:VehicleType
@@ -3840,17 +3892,6 @@ era:supportedPlatformHeight rdf:type owl:ObjectProperty ;
                             vs:term_status "stable" .
 
 
-###  http://data.europa.eu/949/switchRadioSystem
-era:switchRadioSystem rdf:type owl:ObjectProperty ;
-                      rdfs:subPropertyOf era:transitionsBetweenSystemsDataParameter ;
-                      rdf:type owl:FunctionalProperty ;
-                      rdfs:domain [ rdf:type owl:Class ;
-                                    owl:unionOf ( era:CommonCharacteristicsSubset
-                                                  era:RunningTrack
-                                                )
-                                  ] .
-
-
 ###  http://data.europa.eu/949/switchesAndCrossingsObjParameter
 era:switchesAndCrossingsObjParameter rdf:type owl:ObjectProperty ;
                                      rdfs:subPropertyOf era:infraSubsystemObjParameter ;
@@ -3921,6 +3962,7 @@ era:temperatureRange rdf:type owl:ObjectProperty ;
                      rdfs:domain [ rdf:type owl:Class ;
                                    owl:unionOf ( era:CommonCharacteristicsSubset
                                                  era:RunningTrack
+                                                 era:VehicleType
                                                )
                                  ] ;
                      rdfs:range skos:Concept ;
@@ -5841,6 +5883,8 @@ Packets 44 are the means to transmit data for national applications between trai
 NID_XUSER values managed by ERA in a document about ETCS variables available on ERA website. 
 
 See: TSI CCS (7.4.3 & 6.2.4.2)"""@en ;
+                         dcterms:isReplacedBy era:etcsNationalPacket44Function ,
+                                              era:hasEtcsNationalPacket44 ;
                          dcterms:modified "2021-09-12"^^xsd:date ,
                                           "2024-04-18"^^xsd:date ;
                          dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -5848,6 +5892,7 @@ See: TSI CCS (7.4.3 & 6.2.4.2)"""@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "ETCS national packet 44 application implemented"@en ;
                          rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
+                         owl:deprecated "true"^^xsd:boolean ;
                          vs:term_status "stable" ;
                          skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -5909,11 +5954,7 @@ era:etcsSystemFunctionalitiesNextFiveYears rdf:type owl:DatatypeProperty ;
 era:etcsTransmitsTrackConditions rdf:type owl:DatatypeProperty ;
                                  rdfs:subPropertyOf era:tsiCompliantTrainProtectionSystemDataParameter ;
                                  rdf:type owl:FunctionalProperty ;
-                                 rdfs:domain [ rdf:type owl:Class ;
-                                               owl:unionOf ( era:CommonCharacteristicsSubset
-                                                             era:RunningTrack
-                                                           )
-                                             ] ;
+                                 rdfs:domain era:ETCS ;
                                  rdfs:range xsd:boolean ;
                                  era:XMLName "CPE_CanTransmitTCs" ;
                                  era:appendixD3Index "1.1" ;
@@ -6355,21 +6396,18 @@ era:hasETCSRestrictionsConditions rdf:type owl:DatatypeProperty ;
                                                               era:RunningTrack
                                                             )
                                               ] ;
-                                  rdfs:range [ rdf:type rdfs:Datatype ;
-                                               owl:unionOf ( xsd:anyURI
-                                                             xsd:boolean
-                                                           )
-                                             ] ;
+                                  rdfs:range xsd:boolean ;
                                   era:XMLName "CPE_RestrictionsConditions" ;
                                   era:rinfIndex "1.1.1.3.2.6" ,
                                                 "1.2.1.1.1.6" ;
                                   dcterms:created "2021-08-08"^^xsd:date ;
-                                  dcterms:description """If not `false`, a link to the conditions must be provided. The RU has to contact the IM to be informed about these conditions.
+                                  dcterms:description """If not `false`, a link to the conditions must be provided (property era:hasEtcsRestrictiondConditionsDoc). The RU has to contact the IM to be informed about these conditions.
                                   
 These conditions and restrictions of use are considered in section 6.4 of the CCS TSI. They should be described using the template available on Agency website (Certification 
 and deviations – Guidelines for using the ERA template) with the following link."""@en ;
                                   dcterms:modified "2024-01-08"^^xsd:date ,
-                                                   "2024-04-18"^^xsd:date ;
+                                                   "2024-04-18"^^xsd:date ,
+                                                   "2024-11-20"^^xsd:date ;
                                   rdfs:comment "Indication whether restrictions or conditions due to partial compliance with the TSI CCS exist."@en ;
                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                   rdfs:label "Existence of operating restrictions or conditions"@en ;
@@ -6431,6 +6469,35 @@ OPE TSI: 4.2.3.7"""@en ;
 
 Applicable for tunnels longer than 1 km, in accordance with section 4.4.2 of SRT TSI, the emergency plan is mandatory only for tunnel length of more than 1km.
 Not applicable can be selected for short tunnels of less than 1 km, as for them the fire category according SRT TSI does not exist."""@en .
+
+
+###  http://data.europa.eu/949/hasEtcsNationalPacket44
+era:hasEtcsNationalPacket44 rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf era:tsiCompliantTrainProtectionSystemDataParameter ;
+                            rdf:type owl:FunctionalProperty ;
+                            rdfs:domain [ rdf:type owl:Class ;
+                                          owl:unionOf ( era:CommonCharacteristicsSubset
+                                                        era:Track
+                                                      )
+                                        ] ;
+                            rdfs:range xsd:boolean ;
+                            era:XMLName "era:XMLName \"CPE_NatApplication\" ;" ;
+                            era:rinfIndex "1.1.1.3.2.5" ,
+                                          "1.2.1.1.1.5" ;
+                            dcterms:created "2024-11-20" ;
+                            dcterms:description """Value can be `false` or a link to the implemented functions. The hasetcsNationalPacket444 property  represents the true or false value. The etcsNationalPacket444Function represents the functions.
+
+Packets 44 are the means to transmit data for national applications between train and track and vice versa, using the data transmission facilities included within the ETCS. 
+NID_XUSER values managed by ERA in a document about ETCS variables available on ERA website. 
+
+See: TSI CCS (7.4.3 & 6.2.4.2).""" ;
+                            dcterms:source "http://data.europa.eu/eli/reg_impl/2023/1695/oj" ;
+                            rdfs:comment "Indication whether data for national packet 44 applications is transmitted between track and train."@en ;
+                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                            rdfs:label "has ETCS national packet 44 application implemented"@en ;
+                            rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
+                            vs:term_status "stable" ;
+                            skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/hasEvacuationAndRescuePoints
@@ -9129,7 +9196,8 @@ spacing centre line to centre line of adjacent pantograph heads, expressed in me
 
 ###  http://data.europa.eu/949/rbcID
 era:rbcID rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf era:tsiCompliantTrainProtectionSystemDataParameter ;
+          rdfs:subPropertyOf era:tsiCompliantTrainProtectionSystemDataParameter ,
+                             dcterms:identifier ;
           rdf:type owl:FunctionalProperty ;
           rdfs:domain era:RadioBlockCenter ;
           rdfs:range xsd:string ;
@@ -9555,9 +9623,24 @@ era:switchProtectControlWarning rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/switchRadioSystem
-era:switchRadioSystem rdf:type owl:DatatypeProperty ,
-                               owl:FunctionalProperty ;
-                      rdfs:range xsd:boolean .
+era:switchRadioSystem rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf era:transitionsBetweenSystemsDataParameter ;
+                      rdf:type owl:FunctionalProperty ;
+                      rdfs:domain [ rdf:type owl:Class ;
+                                    owl:unionOf ( era:CommonCharacteristicsSubset
+                                                  era:Track
+                                                )
+                                  ] ;
+                      rdfs:range xsd:boolean ;
+                      era:XMLName "CTS_SwitchRadioSystem" ;
+                      era:appendixD2Index "3.4.4" ;
+                      era:rinfIndex "1.1.1.3.8.2" ;
+                      dcterms:created "2021-08-09"^^xsd:date ;
+                      dcterms:modified "2021-09-12"^^xsd:date ;
+                      rdfs:comment "Indication whether a switch over between different radio systems and no communication system whilst running exists."@en ;
+                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                      rdfs:label "Existence of switch over between different radio systems" ;
+                      vs:term_status "stable" .
 
 
 ###  http://data.europa.eu/949/switchesAndCrossingsDataParameter
@@ -11829,23 +11912,11 @@ foaf:Person rdf:type owl:Class ;
 #    Annotations
 #################################################################
 
-era:switchRadioSystem era:rinfIndex "1.2.1.1.7.2" ,
-                                     "1.1.1.3.8.2" ;
-                       dcterms:created "2021-08-09"^^xsd:date ;
-                       vs:term_status "stable" ;
-                       rdfs:comment "Indication whether a switch over between different radio systems and no communication system whilst running exists."@en ;
-                       era:XMLName "CTS_SwitchRadioSystem" ;
-                       dcterms:modified "2021-09-12"^^xsd:date ;
-                       era:appendixD2Index "3.4.4" ;
-                       rdfs:label "Existence of switch over between different radio systems"@en ;
-                       rdfs:isDefinedBy <http://data.europa.eu/949/> .
-
-
 era:transitionsBetweenSystemsDataParameter dcterms:created "2024-10-31"^^xsd:date ;
-                                           rdfs:label "Transitions between systems"@en ;
-                                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                           era:rinfIndex "1.1.1.3.8" ,
-                                                         "1.2.1.1.7" .
+                                            rdfs:label "Transitions between systems"@en ;
+                                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                            era:rinfIndex "1.1.1.3.8" ,
+                                                          "1.2.1.1.7" .
 
 
 wgs: rdfs:label "geo" .
