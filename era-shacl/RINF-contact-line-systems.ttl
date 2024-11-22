@@ -267,6 +267,28 @@ era-sh:conditionsAppliedRegenerativeBraking
 	sh:severity sh:Violation ;
 	sh:message "conditionsAppliedRegenerativeBraking (1.1.1.2.2.4.1): The contact line system has a conditionsAppliedRegenerativeBraking reference that must be a Document. This error is due to having more than one value for this property or having a value that is not a Document."@en .
 
+# conditionsAppliedRegenerativeBraking: # 1.1.1.2.2.4.1
+era-sh:contactLineSystemShape sh:sparql era-sh:conditionsAppliedRegenerativeBrakingApplicability .
+era-sh:conditionsAppliedRegenerativeBrakingApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:conditionsAppliedRegenerativeBraking;
+    era:affectedClass era:ContactLineSystem;
+    era:scope "local";
+	rdfs:comment "This parameter is applicable (“Y”) only if “Overhead contact line (OCL)” is selected for parameter 1.1.1.2.2.1.1." ;
+	era:rinfIndex "1.1.1.2.2.4.1" ;
+	sh:severity sh:Violation ;
+	sh:message "conditionsAppliedRegenerativeBraking (1.1.1.2.2.4.1):The Contact Line System {$this} ({?clsLabel}), has a 'Overhead contact line (OCL)' type which makes the conditionsAppliedRegenerativeBraking parameter applicable. This error is due to {$this} not having a value for such a parameter."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                 $this era:contactLineSystemType <http://data.europa.eu/949/concepts/contact-line-systems/10>.
+				OPTIONAL{$this rdfs:label ?clsLabel} .
+                FILTER NOT EXISTS {$this era:conditionsAppliedRegenerativeBraking ?value} . 
+            }
+			""" .
 
 # maximumContactWireHeight: # 1.1.1.2.2.5
 era-sh:contactLineSystemShape sh:property era-sh:maximumContactWireHeight .
