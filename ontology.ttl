@@ -62,7 +62,8 @@
                                                "2024-10-30"^^xsd:date ,
                                                "2024-10-31"^^xsd:date ,
                                                "2024-11-04"^^xsd:date ,
-                                               "2024-11-12"^^xsd:date ;
+                                               "2024-11-12"^^xsd:date ,
+                                               "2024-11-22"^^xsd:date ;
                               dcterms:publisher "European Union Agency for Railways" ;
                               dcterms:title "ERA Ontology"@en ;
                               rdfs:comment """This is the human and machine readable Ontology governed by the European Union Agency for Railways (https://www.era.europa.eu/). It represents the concepts and relationships linked to the sectorial legal framework and the use cases under the AgencyÂ´s remit, as described in the Commission Implementing Regulation (EU) [to be updated after publication] on the common specifications for the register of railway infrastructure [to be updated after publication].
@@ -77,7 +78,10 @@ The Ontology also includes the routebook concepts described in appendix D2 \"Ele
                               owl:priorVersion "https://github.com/Interoperable-data/ERA_vocabulary/releases/v3.0.0"^^xsd:anyURI ;
                               owl:versionInfo "v3.1.0" ;
                               owl:versionURI <https://github.com/Interoperable-data/ERA_vocabulary/releases/releases/v3.1.0> ;
-                              skos:changeNote """Revision 12-11-2024
+                              skos:changeNote """Revision 22-11-2024
+- Added two annotation properties: era:applicable and era:legalDeadline
+
+Revision 12-11-2024
 - Deprecated era:imCode. Replaced by organisationCode
 
 Revision 04-11-2024
@@ -303,6 +307,14 @@ era:appendixD2Index rdf:type owl:AnnotationProperty ;
                     skos:definition "The index of a vocabulary term in Appendix D2 Elements the infrastructure manager has to provide to the railway undertaking for the Route Book from the document Commission Implementing Regulation (EU) 2019/773 of 16 May 2019 on the technical specification for interoperability relating to the operation and traffic management subsystem of the rail system within the European Union and repealing Decision 2012/757/EU."@en ;
                     rdfs:range xsd:string .
 
+###  http://data.europa.eu/949/applicable
+era:applicable rdf:type owl:AnnotationProperty ;
+                        dcterms:created "2024-11-22"^^xsd:date ;
+                        rdfs:comment "Annotation used to point to the applicability of a parameter in RINF. Values are Y/N/NYA"@en ;
+                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                        rdfs:label "applicable"@en ;
+                        vs:term_status "stable" ;
+                        rdfs:range xsd:string.
 
 ###  http://data.europa.eu/949/appendixD3Index
 era:appendixD3Index rdf:type owl:AnnotationProperty ;
@@ -362,6 +374,14 @@ era:inSkosConceptScheme rdf:type owl:AnnotationProperty ;
                         rdfs:range skos:ConceptScheme ;
                         rdfs:domain owl:ObjectProperty .
 
+###  http://data.europa.eu/949/legalDeadline
+era:legalDeadline rdf:type owl:AnnotationProperty ;
+                        dcterms:created "2024-11-22"^^xsd:date ;
+                        rdfs:comment "Annotation used to point to legal obligation of a parameter in RINF"@en ;
+                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                        rdfs:label "legal deadline"@en ;
+                        vs:term_status "stable" ;
+                        rdfs:range xsd:string.                  
 
 ###  http://data.europa.eu/949/rinfIndex
 era:rinfIndex rdf:type owl:AnnotationProperty ;
