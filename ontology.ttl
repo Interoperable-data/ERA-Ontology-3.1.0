@@ -23,7 +23,7 @@
                               org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                              ] , 
 
-                          [ foaf:name "Edna Rukhaus"],
+                          [ foaf:name "Edna Ruckhaus"],
                           
                           [ foaf:name "Oscar Corcho"],
                         
@@ -1001,9 +1001,11 @@ era:dataRadioCompatible rdf:type owl:ObjectProperty ;
                         dcterms:modified "2021-09-12"^^xsd:date ,
                                          "2024-04-18"^^xsd:date ,
                                          "2024-09-19"^^xsd:date ;
-                        rdfs:comment """Radio requirements used for demonstrating technical compatibility data.
+                        rdfs:comment "Radio requirements used for demonstrating technical compatibility data."@en ;
+                        dcterms:description """Information on RSC data requirements per country.
 
-Information on RSC data requirements per country"""@en ;
+Vehicles are considered compatible with the infrastructure regarding this parameter, if any of the values declared matches. 
+In case the value “Not Defined” or “RSC-EU-0” is used, repetitions with additional values are not expected."""@en ;
                         dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         dcterms:relation era:etcsLevelType ;
@@ -1643,6 +1645,7 @@ era:frequencyBandsForDetection rdf:type owl:ObjectProperty ;
                                dcterms:created "2023-03-14"^^xsd:date ;
                                dcterms:description """Verification of compliance with TSI includes application of notified national rules (when they exist).
 
+See TSI CCS (Annex I, Appendix A, Table A.2 -Index 77).
 Multiple selection from a predefined list:
 - Axle Counters: bands A1-A3
 - Track circuits: bands A1-A8"""@en ;
@@ -1651,7 +1654,7 @@ Multiple selection from a predefined list:
                                                 era:minVehicleImpedance ,
                                                 era:tdsMaximumMagneticField ;
                                dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                               rdfs:comment "Bands of the frequency management of the train detection systems as defined in the TSI CCS (Annex I, Appendix A, Table A.2 -Index 77), and in the specific cases or technical documents referred to in Article 13 of TSI CCS when they are available."@en ;
+                               rdfs:comment "Bands of the frequency management of the train detection systems as defined in the TSI CCS, and in the specific cases or technical documents referred to in Article 13 of TSI CCS when they are available."@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "frequency bands for detection"@en ;
                                rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
@@ -1741,11 +1744,9 @@ era:gsmRActiveMobiles rdf:type owl:ObjectProperty ;
                       era:rinfIndex "1.1.1.3.3.2" ,
                                     "1.2.1.1.2.2" ;
                       dcterms:created "2021-08-08"^^xsd:date ;
-                      dcterms:description """In case there is no ETCS Level 2 in the line, do not use this property.
-In case there is ETCS Level 2 in the line, the minimum number of EDOR required on board would be 1. 
+                      dcterms:description """In case there is ETCS Level 2 on the line, the minimum number of EDOR required on board would be 1. 
 In case ETCS baseline 3 release 2 or baseline 4 is selected, select “2”.
-Please select ”1” or “2”, taking into account that TSI compliant trains may only be fitted with 1 EDOR.
-"""@en ;
+Please select ”1” or “2”, taking into account that TSI compliant trains may only be fitted with 1 EDOR."""@en ;
                       dcterms:modified "2021-09-12"^^xsd:date ,
                                        "2024-04-18"^^xsd:date ;
                       dcterms:relation era:etcsLevelType ;
@@ -1799,7 +1800,9 @@ era:gsmROptionalFunctions rdf:type owl:ObjectProperty ;
                           era:rinfIndex "1.1.1.3.3.3" ,
                                         "1.2.1.1.2.3" ;
                           dcterms:created "2021-08-08"^^xsd:date ;
-                          dcterms:description """(*1) These inputs refer to the expected behaviour by the network, i.e. if there is any area or point where an automatic selection of network should be done or if there is any location where balises to instruct a change of radio network have been installed. 
+                          dcterms:description """To show more than one function by indicating single selection, the parameter has to be repeated as many times as the function has to be presented.
+                          
+(*1) These inputs refer to the expected behaviour by the network, i.e. if there is any area or point where an automatic selection of network should be done or if there is any location where balises to instruct a change of radio network have been installed. 
 In order to be able to attend to these indications (automatic network, network change by balise) some configuration is needed in the mobile.
 In case there is a balise used to announce the change of the network, or if there are locations where the network selection is planned by the IM to be done automatically (and not manually, as stated in the requirements). It should be considered as an item that is related to the design of the infrastructure.
 
@@ -1868,7 +1871,8 @@ era:gsmRVersion rdf:type owl:ObjectProperty ;
                 dcterms:modified "2021-09-12"^^xsd:date ,
                                  "2024-04-18"^^xsd:date ;
                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                rdfs:comment """GSM-R functional requirements specification and system requirements specification in accordance with the specification respectively referenced in TSI CCS (Annex ), version number installed lineside.
+                rdfs:comment "GSM-R version installed lineside"@en ;
+                dcterms:description """GSM-R functional requirements specification and system requirements specification in accordance with the specification respectively referenced in TSI CCS (Annex ), version number installed lineside.
                 
 Since more than one version may be installed in different areas, this property can have multiple values."""@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -1917,12 +1921,13 @@ era:gsmrNetworkCoverage rdf:type owl:ObjectProperty ;
                                       "1.2.1.1.2.5" ;
                         era:usedInRCCCalculations "true"^^xsd:boolean ;
                         dcterms:created "2020-08-31"^^xsd:date ;
-                        dcterms:description """Name of the own GSM-R network and list of GSM-R networks which are covered by a roaming agreement for CS services. 
+                        dcterms:description """List of GSM-R networks which are covered by a roaming agreement.
+
 This list is managed by UIC. The Agency will monitor it in order to update the list of possible values when necessary. 
 For Route Compatibility purposes and simplicity, the own network needs to be declared by the IM, so the RUs can systematically check the compatibility.
 For voice services, roaming for CS is applicable.  For ETCS, as long as roaming for CS is ensured, the interoperability will be guaranteed."""@en ;
                         dcterms:modified "2021-09-12"^^xsd:date ;
-                        rdfs:comment "List of GSM-R networks which are covered by a roaming agreement."@en ;
+                        rdfs:comment "Name of the own GSM-R network and list of GSM-R networks which are covered by a roaming agreement (for CS services)."@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "GSM-R networks covered by a roaming agreement"@en ;
                         vs:term_status "stable" ;
@@ -2585,7 +2590,8 @@ era:minVehicleImpedanceVoltages rdf:type owl:ObjectProperty ;
                                 era:usedInRCCCalculations "true"^^xsd:boolean ;
                                 dcterms:created "2024-05-30"^^xsd:date ;
                                 dcterms:modified "2024-09-19"^^xsd:date ;
-                                rdfs:comment "Indication of the voltage system valid for the minimal impedance value (track circuits)."@en ;
+                                rdfs:comment "Impedance as defined in the specification referenced in TSI CCS (Regulation (EU) 2023/1695 of 10 August 2023)"@en ;
+                                dcterms:description "Indication of the voltage system valid for the minimal impedance value (track circuits)."@en ;
                                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                 dcterms:relation era:trainDetectionSystemType ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -3169,9 +3175,8 @@ era:qNvdriverAdhes rdf:type owl:ObjectProperty ;
                    dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                    dcterms:relation era:etcsLevelType ;
                    rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
-                   rdfs:comment """Qualifier determining whether the driver is allowed to modify the adhesion factor used by the ETCS on-board to calculate the braking curves. 
-
-See: TSI CCS (Subset 26, chapter 7. 7.5.1.122 Q_NVDRIVER_ADHES)"""@en ;
+                   rdfs:comment """Qualifier determining whether the driver is allowed to modify the adhesion factor used by the ETCS on-board to calculate the braking curves"""@en ;
+                   dcterms:description "See: TSI CCS (Subset 26, chapter 7. 7.5.1.122 Q_NVDRIVER_ADHES)"@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    rdfs:label "Q_NVDRIVER_ADHES"@en ;
                    vs:term_status "stable" ;
@@ -3738,9 +3743,8 @@ era:tdsMaximumMagneticField rdf:type owl:ObjectProperty ;
                             dcterms:modified "2024-04-18"^^xsd:date, "2024-09-19"^^xsd:date ;
                             dcterms:relation era:trainDetectionSystemType ;
                             rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
-                            rdfs:comment """Relates the Axle Counter TrainDetectionSystem with its MaximumMagneticField in (X,Y,Z).
-
-The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band.
+                            dcterms:description "Relates the Axle Counter TrainDetectionSystem with its MaximumMagneticField in (X,Y,Z). Verification of compliance with TSI includes application of notified national rules (when they exist)."@en ;
+                            rdfs:comment """The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band.
 It should be provided in 3 directions."""@en ;
                             dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -4043,7 +4047,7 @@ era:trainDetectionSystemSpecificCheckDocument rdf:type owl:ObjectProperty ;
                                               rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                                               vs:term_status "stable" ;
                                               skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en ;
-                                              skos:scopeNote "The document itself has to be uploaded by the NRE via the `reference document management` functionality. The reference of the document is provided for the parameter using the characterstring format."@en .
+                                              dcterms:description "The document itself has to be uploaded by the NRE via the `reference document management` functionality. The reference of the document is provided for the parameter using the characterstring format."@en .
 
 
 ###  http://data.europa.eu/949/trainDetectionSystemType
@@ -4064,7 +4068,9 @@ era:trainDetectionSystemType rdf:type owl:ObjectProperty ;
                                            "1.2.1.1.3.1.1" ;
                              era:usedInRCCCalculations "true"^^xsd:boolean ;
                              dcterms:created "2021-08-07"^^xsd:date ;
-                             dcterms:description """Explanation on data presentation: 
+                             dcterms:description """Verification of compliance with TSI includes application of notified national rules (when they exist).
+
+Explanation on data presentation: 
 The option of ‘wheel detector’ has to be also selected for: wheel sensor for axle counter, pedal or treadle."""@en ;
                              dcterms:modified "2021-08-07"^^xsd:date ,
                                               "2024-04-18"^^xsd:date ;
@@ -4469,11 +4475,13 @@ era:voiceRadioCompatible rdf:type owl:ObjectProperty ;
                          dcterms:modified "2021-09-12"^^xsd:date ,
                                           "2024-04-18"^^xsd:date ,
                                           "2024-09-19"^^xsd:date ;
-                         rdfs:comment """Radio requirements used for demonstrating technical compatibility voice.
-
-The allowed values for this property belong to a SKOS Concept Scheme. This concept scheme is temporarily non-deferenceable.
+                         rdfs:comment "Radio requirements used for demonstrating technical compatibility voice."@en ;
+                         dcterms:description """The allowed values for this property belong to a SKOS Concept Scheme. This concept scheme is temporarily non-deferenceable.
  
-Information on RSC voice requirements per country is given in the refered document."""@en ;
+Information on RSC voice requirements per country is given in the refered document.
+
+Vehicles are considered compatible with the infrastructure regarding this parameter, if any of the values declared matches. 
+In case the value “Not Defined” or “RSC-EU-0” is used, repetitions with additional values are not expected."""@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Radio system compatibility voice"@en ;
                          rdfs:seeAlso "https://www.era.europa.eu/era-folder/radio-system-compatibility-rsc-voice-and-data-documents"^^xsd:anyURI ,
@@ -4734,6 +4742,7 @@ era:bigMetalMass rdf:type owl:DatatypeProperty ;
                                   "2024-04-18"^^xsd:date ;
                  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                  rdfs:comment "Indication of existence of metal mass in the vicinity of the location, susceptible of perturbating the reading of balises by the on-board system."@en ;
+                 dcterms:description "According to the specification referenced in TSI CCS."@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "Big Metal Mass"@en ;
                  vs:term_status "stable" ;
@@ -6004,7 +6013,8 @@ era:gprsImplementationArea rdf:type owl:DatatypeProperty ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "Area of implementation of GPRS"@en ;
                            vs:term_status "stable" ;
-                           skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1), ETCS L2 (parameter 1.1.1.3.2.1) and GPRS for ETCS (parameter 1.1.1.3.3.3.2) must be installed for this parameter to be applicable."@en .
+                           skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1), ETCS L2 (parameter 1.1.1.3.2.1) and GPRS for ETCS (parameter 1.1.1.3.3.3.2) must be installed for this parameter to be applicable."@en ;
+                           skos:editorialNote "See issue https://citnet.tech.ec.europa.eu/CITnet/jira/browse/LD4RAIL-1238, this parameter should be an rbcProperty" .
 
 
 ###  http://data.europa.eu/949/gradient
@@ -6082,7 +6092,8 @@ era:gsmRNoCoverage rdf:type owl:DatatypeProperty ;
                    dcterms:created "2021-08-09"^^xsd:date ;
                    dcterms:description """If GSM-R is not installed, this parameter should not be used.
 This parameter is mainly to capture the case of Radio Hole functionality (lack of GSM-R coverage), that is foreseen in the ETCS specifications as packet 68. 
-Another possible use is the declaration of a temporary situation where, although the area is in principle covered by GSM-R, there is a long-term outage or a project for replacement of the radio (i.e. a section that will not be covered with GSM-R for half a year or longer)."""@en ;
+Another possible use is the declaration of a temporary situation where, although the area is in principle covered by GSM-R, there is a long-term outage or a project 
+for replacement of the radio (i.e. a section that will not be covered with GSM-R for half a year or longer)."""@en ;
                    dcterms:modified "2021-09-12"^^xsd:date ,
                                     "2024-09-19"^^xsd:date ;
                    rdfs:comment "Indication if there is no GSMR coverage."@en ;
@@ -6142,7 +6153,7 @@ era:gsmrForcedDeregistrationFunctionalNumber rdf:type owl:DatatypeProperty ;
                                              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                              rdfs:comment "This feature will determine the applicable operational rules for drivers and signallers when dealing with cab radios registered under wrong numbers."@en ;
                                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                             rdfs:label "Is the GSM-R network configured to allow forced de-registration of a functional number by another driver?"@en ;
+                                             rdfs:label "GSM-R network configured to allow forced de-registration of a functional number by another driver"@en ;
                                              vs:term_status "stable" ;
                                              skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en .
 
@@ -6603,7 +6614,10 @@ era:hasTSITrainDetection rdf:type owl:DatatypeProperty ;
                                        "1.2.1.1.3.1" ;
                          dcterms:created "2021-08-09"^^xsd:date ;
                          dcterms:modified "2024-01-08"^^xsd:date ;
-                         rdfs:comment "Indication if there is any train detection system installed and fully compliant with the TSI CCS (Annex I, Appendix A, Table A.2 -Index 77)."@en ;
+                         rdfs:comment "Indication if there is any train detection system installed and fully compliant with the TSI CCS"@en;
+                         dcterms:description """Verification of compliance with TSI includes application of notified national rules (when they exist).
+                         
+See: (Annex I, Appendix A, Table A.2 -Index 77)."""@en ;
                          dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                          dcterms:relation era:trainDetectionSystemType ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -7220,9 +7234,8 @@ era:mNvderun rdf:type owl:DatatypeProperty ;
                               "2023-04-18"^^xsd:date ;
              dcterms:relation era:etcsLevelType ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-             rdfs:comment """Entry of Driver ID permitted while running. 
-
-See: TSI CCS (Subset 26, chapter 7. 7.5.1.75 M_NVDERUN)"""@en ;
+             rdfs:comment "Entry of Driver ID permitted while running"@en ;
+             dcterms:description "See: TSI CCS (Subset 26, chapter 7. 7.5.1.75 M_NVDERUN)"@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "M_NVDERUN"@en ;
              rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
@@ -7560,8 +7573,10 @@ era:maximumInterferenceCurrent rdf:type owl:DatatypeProperty ;
                                era:unitOfMeasure <https://qudt.org/vocab/unit/A-PER-M> ;
                                dcterms:created "2023-03-14"^^xsd:date ;
                                dcterms:modified "2024-04-18"^^xsd:date ;
-                               rdfs:comment "Maximum interference current limits allowed for track circuits for a defined frequency band (to be expressed in A/m)."@en ;
-                               dcterms:description "Verification of compliance with TSI includes application of notified national rules (when they exist)."@en ;
+                               rdfs:comment "Maximum interference current limits allowed for track circuits for a defined frequency band"@en ;
+                               dcterms:description """To be expressed in A/m. Verification of compliance with TSI includes application of notified national rules (when they exist). 
+                               
+Evaluation parameters must be added if preferred bands are not used. """@en ;
                                dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                dcterms:relation era:trainDetectionSystemType , era:maximumInterferenceCurrentEvaluation;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -7579,8 +7594,9 @@ era:maximumInterferenceCurrentEvaluation rdf:type owl:DatatypeProperty ;
                                          era:XMLName "CCD_IInterferenceMax" ;
                                          era:rinfIndex "1.1.1.3.4.2.1" ,
                                                        "1.2.1.1.3.2.1" ;
-                                         dcterms:created "2024-04-18"^^xsd:date ;
-                                         rdfs:comment """If the preferred frequency bands are not used, (mandatory) description of the parameters for evaluation of compliance.
+                                         dcterms:created "2024-04-18"^^xsd:date ; 
+                                         rdfs:comment "Maximum interference current limits allowed for track circuits for a defined frequency band. "@en ;
+                                         dcterms:description """If the preferred frequency bands are not used, (mandatory) description of the parameters for evaluation of compliance.
 If the preferred frequency bands are used, this parameter is optional."""@en ;
                                          dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                          dcterms:relation era:trainDetectionSystemType , era:maximumInterferenceCurrent ;
@@ -7946,7 +7962,8 @@ era:minVehicleInputCapacitance rdf:type owl:DatatypeProperty ;
                                era:unitOfMeasure <https://qudt.org/vocab/unit/NanoFARAD> ;
                                era:usedInRCCCalculations "true"^^xsd:boolean ;
                                dcterms:created "2024-05-30"^^xsd:date ;
-                               rdfs:comment "For the selected DC voltage: [CCCC], as input capacitance [CCCC](Cin)"@en ;
+                               rdfs:comment "Impedance as defined in the specification referenced in TSI CCS (Regulation (EU) 2023/1695 of 10 August 2023)"@en ;
+                               dcterms:description "For the selected DC voltage: [CCCC], as input capacitance [CCCC](Cin)"@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                dcterms:relation era:trainDetectionSystemType ;
@@ -7967,7 +7984,8 @@ era:minVehicleInputImpedance rdf:type owl:DatatypeProperty ;
                              era:unitOfMeasure <https://qudt.org/vocab/unit/MilliH> ;
                              era:usedInRCCCalculations "true"^^xsd:boolean ;
                              dcterms:created "2024-05-30"^^xsd:date ;
-                             rdfs:comment "For the selected DC voltage: [ZZZZ], as input impedance [ZZZZ](Zin)"@en ;
+                             rdfs:comment "Impedance as defined in the specification referenced in TSI CCS (Regulation (EU) 2023/1695 of 10 August 2023)"@en ;
+                             dcterms:description "For the selected DC voltage: [ZZZZ], as input impedance [ZZZZ](Zin)"@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "minimal vehicle input impedance"@en ;
                              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -8294,11 +8312,12 @@ era:nationalValuesBrakeModel rdf:type owl:DatatypeProperty ;
                              era:rinfIndex "1.1.1.3.2.16.13" ,
                                            "1.2.1.1.1.16.13" ;
                              dcterms:created "2023-03-14"^^xsd:date ;
-                             dcterms:modified "2024-01-08"^^xsd:date ;
+                             dcterms:modified "2024-01-08"^^xsd:date , "2024-04-18"^^xsd:date ;
                              dcterms:relation era:etcsLevelType ;
                              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                              rdfs:comment """Set of parameters for adapting the braking curves calculated by the ETCS on-board system to match accuracy, performance and safety margins imposed by the infrastructure manager.
 It copies the content of Packet 3 or of Packet 203 as defined in the specification referenced in TSI CCS (Annex I, Appendix A, Table A.2 -Subset-026)."""@en ;
+                             dcterms:description "Non-harmonisable character string: [Contents of P3/P203]"@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "National Values used for the brake model"@en ;
                              vs:term_status "stable" ;
@@ -8832,6 +8851,7 @@ era:publicNetworkRoaming rdf:type owl:DatatypeProperty ;
                          dcterms:modified "2024-01-08"^^xsd:date ;
                          dcterms:relation era:publicNetworkRoamingDetails ;
                          rdfs:comment """Existence of roaming to a public network.
+                         
 In case of Y, provide the name of the public network(s) under parameter \"Details on GSM-R roaming to public networks\"."""@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Existence of GSM-R roaming to public networks"@en ;
@@ -8855,15 +8875,14 @@ era:publicNetworkRoamingDetails rdf:type owl:DatatypeProperty ;
                                 dcterms:created "2021-08-09"^^xsd:date ;
                                 dcterms:modified "2024-01-08"^^xsd:date ,
                                                  "2024-04-18"^^xsd:date ;
-                                rdfs:comment """If roaming to public networks is configured, please:
-
-1. indicate to which networks, for which users and in which areas.
-2. list if any GSM-R functionality is not available when roaming to a public network (e.g. REC, Functional Addressing, Group Calls). 
-3. also add if there is any operational restriction for vehicles that cannot roam into any of the available public networks."""@en ;
+                                rdfs:comment "If roaming to public networks is configured, please indicate to which networks, for which users and in which areas."@en ;
+                                dcterms:description """List if any GSM-R functionality is not available when roaming to a public network (e.g. REC, Functional Addressing, Group Calls). 
+Please also add if there is any operational restriction for vehicles that cannot roam into any of the available public networks."""@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "Details on GSM-R roaming to public networks"@en ;
                                 vs:term_status "stable" ;
-                                skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en .
+                                dcterms:relation era:publicNetworkRoaming ;
+                                skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) must be installed and `era:publicNetworkRoaming` 'true', for this parameter to be applicable."@en .
 
 
 ###  http://data.europa.eu/949/qNvsbtsmperm
@@ -8884,9 +8903,8 @@ era:qNvsbtsmperm rdf:type owl:DatatypeProperty ;
                  dcterms:modified "2024-04-18"^^xsd:date ;
                  dcterms:relation era:etcsLevelType ;
                  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                 rdfs:comment """Permission to use service brake in target speed monitoring.
-
-See: TSI CCS (Subset-026, chapter 7. 7.5.1.124 Q_NVSBTSMPERM)"""@en ;
+                 rdfs:comment "Permission to use service brake in target speed monitoring"@en ;
+                 dcterms:description "See: TSI CCS (Subset-026, chapter 7. 7.5.1.124 Q_NVSBTSMPERM)"@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "Q_NVSBTSMPERM"@en ;
                  rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
@@ -8925,13 +8943,13 @@ era:radioNetworkId rdf:type owl:DatatypeProperty ;
                    dcterms:modified "2024-04-18"^^xsd:date , "2024-09-19"^^xsd:date ;
                    dcterms:relation era:etcsLevelType , era:gprsForETCS ;
                    dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                   rdfs:comment """Unique identification of the GSM-R network the calling mobile station has to register with, as defined in the specification referenced in TSI CCS.
-
-Format: [NNNNNN] with N a decimal number (0÷9)(sh:minCount 1)."""@en ;
+                   rdfs:comment """Unique identification of the GSM-R network the calling mobile station has to register with, as defined in the specification referenced in TSI CCS."""@en ;
+                   dcterms:description """Format: [NNNNNN] with N a decimal number (0÷9)."""@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    rdfs:label "Radio Network ID"@en ;
                    vs:term_status "stable" ;
-                   skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en .
+                   skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en ;
+                   skos:editorialNote "(sh:minCount 1)" .
 
 
 ###  http://data.europa.eu/949/radioSwitchOverSpecialConditions
@@ -9058,9 +9076,8 @@ era:rbcID rdf:type owl:DatatypeProperty ;
           dcterms:created "2024-04-18"^^xsd:date ;
           dcterms:relation era:etcsLevelType ;
           dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-          rdfs:comment """Unique RBC identification (NID_C+NID_RBC) as defined in the specification referenced in TSI CCS.
-          
-Format: [NNNN NNNN] with N a decimal number (0÷9)"""@en ;
+          rdfs:comment "(part) Unique RBC identification (NID_C+NID_RBC) as defined in the specification referenced in TSI CCS."@en ;
+          dcterms:description "Format: [NNNN NNNN] with N a decimal number (0÷9)"@en ;
           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
           rdfs:label "ERTMS/ETCS Radio Block Center (RBC) identifier"@en ;
           vs:term_status "stable" ;
@@ -9080,9 +9097,8 @@ era:rbcPhone rdf:type owl:DatatypeProperty ;
              dcterms:created "2024-04-18"^^xsd:date ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;                      
              dcterms:relation era:etcsLevelType ;
-             rdfs:comment """Unique RBC calling number (NID_RADIO) as defined in the specification referenced in TSI CCS.
-             
-Format: [NNNN NNNN NNNN NNNN] with N a decimal number (0÷9)"""@en ;
+             rdfs:comment "(part) Unique RBC calling number (NID_RADIO) as defined in the specification referenced in TSI CCS."@en ;
+             dcterms:description "Format: [NNNN NNNN NNNN NNNN] with N a decimal number (0÷9)"@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "ERTMS/ETCS Radio Block Center (RBC) phone number"@en ;
              vs:term_status "stable" ;
