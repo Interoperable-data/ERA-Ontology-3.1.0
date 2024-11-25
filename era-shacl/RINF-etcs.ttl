@@ -109,7 +109,7 @@ era-sh:EtcsMVersion
 	sh:maxCount 1 ;
 	sh:nodeKind sh:IRI ;
 	sh:severity sh:Violation ;
-	sh:message "etcsMVersion (1.1.1.3.2.10, 1.2.1.1.1.10): The ETCS has at most one ETCS_M version value and it must be an IRI. This error is due to the track having more than one value or having a value that is not an IRI."@en .
+	sh:message "etcsMVersion (1.1.1.3.2.10, 1.2.1.1.1.10): The ETCS has at most one ETCS_M version value and it must be an IRI. This error is due to the ETCS having more than one value or having a value that is not an IRI."@en .
 
 # etcsMVersion: # 1.1.1.3.2.10, 1.2.1.1.1.10
 era-sh:ETCSShape sh:sparql era-sh:EtcsMVersionSKOS.
@@ -147,7 +147,7 @@ era-sh:EtcsLevelType
 	sh:maxCount 1 ;
 	sh:nodeKind sh:IRI ;
 	sh:severity sh:Violation ;
-	sh:message "etcsLevelType (1.1.1.3.2.1, 1.2.1.1.1.1): The ETCS has at most one etcsLevelType value and it must be an IRI. This error is due to the track having more than one value or having a value that is not an IRI."@en .
+	sh:message "etcsLevelType (1.1.1.3.2.1, 1.2.1.1.1.1): The ETCS has at most one etcsLevelType value and it must be an IRI. This error is due to the ETCS having more than one value or having a value that is not an IRI."@en .
 
 # etcsLevelType: # 1.1.1.3.2.1, 1.2.1.1.1.1
 era-sh:ETCSShape sh:sparql era-sh:EtcsLevelTypeSKOS.
@@ -262,6 +262,47 @@ era-sh:etcsTransmitsTrackConditionsApplicability
 	sh:message "etcsTransmitsTrackConditions (1.1.1.3.2.12.1, 1.2.1.1.1.12.1): The ETCS {$this} ({?thisLabel}), has a {$conditionalTypeProperty} which makes the etcsTransmitsTrackConditions parameter applicable. This error is due to {$this} not having a value for such a parameter."@en .
 
 # etcsTransmittedTrackConditions: # 1.1.1.3.2.12.1, 1.2.1.1.1.12.1
+era-sh:ETCSShape sh:property era-sh:etcsTransmittedTrackConditions.
+era-sh:etcsTransmittedTrackConditions
+	a sh:PropertyShape ; 
+	era:affectedProperty era:etcsTransmittedTrackConditions  ;     
+	era:affectedClass  era:ETCS;     
+	era:scope "local";     
+	rdfs:comment "Transmittable track conditions by the CCSSubsystem, as per CCS TSI." ;
+	era:rinfIndex "1.1.1.3.2.12.1", "1.2.1.1.1.12.1" ;
+	sh:path era:etcsTransmittedTrackConditions ;
+	sh:maxCount 1 ; # Functional property
+	sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "etcsTransmittedTrackConditions (1.1.1.3.2.12.1, 1.2.1.1.1.12.1): The ETCS has at most one etcsTransmittedTrackConditions value and it must be an IRI. This error is due to the ETCS having more than one value or having a value that is not an IRI."@en .
+
+# etcsTransmittedTrackConditions: # 1.1.1.3.2.12.1, 1.2.1.1.1.12.1
+era-sh:ETCSShape sh:sparql era-sh:etcsTransmittedTrackConditionsSKOS.
+era-sh:etcsTransmittedTrackConditionsSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:etcsTransmittedTrackConditions  ;     
+	era:affectedClass  era:ETCS;     
+	era:scope "local";     
+    rdfs:comment "Transmittable track conditions by the CCSSubsystem, as per CCS TSI." ;
+	era:rinfIndex "1.1.1.3.2.12.1", "1.2.1.1.1.12.1" ;
+	sh:severity sh:Violation ;
+    sh:message "etcsTransmittedTrackConditions (1.1.1.3.2.12.1, 1.2.1.1.1.12.1): The ETCS {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/etcs-transmitted-tcs/TransmittedTrackConditions."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+        $this era:etcsTransmittedTrackConditions ?concept .
+        era:etcsTransmittedTrackConditions era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+# etcsTransmittedTrackConditions: # 1.1.1.3.2.12.1, 1.2.1.1.1.12.1
 era-sh:ETCSShape sh:property era-sh:etcsTransmittedTrackConditionsApplicability.
 era-sh:etcsTransmittedTrackConditionsApplicability
 	a sh:PropertyShape ; 
@@ -274,6 +315,46 @@ era-sh:etcsTransmittedTrackConditionsApplicability
 	era-sh:conditionalTypeProperty era-sh:etcsLevelType;
 	sh:severity sh:Violation ;
 	sh:message "etcsTransmittedTrackConditions (1.1.1.3.2.12.1, 1.2.1.1.1.12.1): The ETCS {$this} ({?thisLabel}), has a {$conditionalTypeProperty} which makes the etcsTransmittedTrackConditions parameter applicable. This error is due to {$this} not having a value for such a parameter."@en .
+
+# etcsSystemCompatibility: 1.1.1.3.2.9, 1.2.1.1.1.9
+era-sh:ETCSShape sh:property era-sh:etcsSystemCompatibility.
+era-sh:etcsSystemCompatibility
+	a sh:PropertyShape ; 
+	era:affectedProperty era:etcsSystemCompatibility  ;     
+	era:affectedClass  era:ETCS;     
+	era:scope "local";     
+	rdfs:comment "ETCS requirements used for demonstrating technical compatibility." ;
+	era:rinfIndex "1.1.1.3.2.9", "1.2.1.1.1.9" ;
+	sh:path era:etcsSystemCompatibility ;
+	sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "etcsSystemCompatibility (1.1.1.3.2.9, 1.2.1.1.1.9): The ETCS has a etcsSystemCompatibility value that must be an IRI. This error is due to the ETCS having a value that is not an IRI."@en .
+
+# etcsSystemCompatibility: 1.1.1.3.2.9, 1.2.1.1.1.9
+era-sh:ETCSShape sh:sparql era-sh:etcsSystemCompatibilitySKOS.
+era-sh:etcsSystemCompatibilitySKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:etcsSystemCompatibility  ;     
+	era:affectedClass  era:ETCS;     
+	era:scope "local";     
+    rdfs:comment "ETCS requirements used for demonstrating technical compatibility." ;
+	era:rinfIndex "1.1.1.3.2.9", "1.2.1.1.1.9" ;
+	sh:severity sh:Violation ;
+    sh:message "etcsSystemCompatibility (1.1.1.3.2.9, 1.2.1.1.1.9): The ETCS {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/etcs-system-compatibilities/ETCSSystemCompatibilities."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+        $this era:etcsSystemCompatibility ?concept .
+        era:etcsSystemCompatibility era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
 
 # etcsSystemCompatibility: 1.1.1.3.2.9, 1.2.1.1.1.9
 era-sh:ETCSShape sh:property era-sh:etcsSystemCompatibilityApplicability.
