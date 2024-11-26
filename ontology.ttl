@@ -138,7 +138,6 @@ Revision 31-10-2024
 - Deprecated datatype property trainDetectionSystemSpecificCheck, as the same object property exists (points to a SKOS concept scheme)
 - Changes in network and subset with common characteristics proposal (decision meeting 31-10-2024)
 
-
 Revision 30-10-2024
 - Created the hierarchy of object and datatype properties for CCS system. Updated domain to Track. Added Subset of Common characteristics to domain. Deleted the class CCS subsystem
 - Changed names for classes InfrastructureObject to InfrastructureElement and also their subclasses now BasicElement and AggregatedElement.
@@ -150,11 +149,6 @@ Revision 30-10-2024
 - Deleted lineNationalId as lineNationalIdentification also exists (with complete metadata)
 - Changed name of class and property ETCSLevel and etcsLevel to ETCS and etcs respectively.
 - Added deprecated axiom to property platformEdge.
-
-
-Revision 05-11-2024
-   - Added two annotation properties: era:legalDeadline and era:isApplicable
-   - Started the annotation for the property era:umax2 according to the newly added properties for the application guide.
 
 Revision 29-10-2024
 - Created hierarchy of properties for ccs subsystem and energy subsystem object parameters and ccs subsystem and energy subsystem data parameters. Changed domain to corresponding infrastructure object  and added SubsetWithCommonCharacteristics to domain of these properties.
@@ -10639,14 +10633,12 @@ era:umax2 rdf:type owl:DatatypeProperty ;
           rdfs:domain era:ContactLineSystem ;
           rdfs:range xsd:integer ;
           era:XMLName "ECS_Umax2" ;
-          era:isApplicable "N"^^xsd:token ,
-                           "Y"^^xsd:token ;
           era:legalDeadline "2019-05-19"^^xsd:date ;
           era:rinfIndex "1.1.1.2.2.1.3" ;
           era:unitOfMeasure unit:V ;
           era:usedInRCCCalculations "true"^^xsd:boolean ;
           dcterms:created "2020-08-24"^^xsd:date ;
-          dcterms:modified "2024-01-08"^^xsd:date , "2024-09-25"^^xsd:date;
+          dcterms:modified "2024-01-08"^^xsd:date , "2024-09-25"^^xsd:date ;
           dcterms:relation era:contactLineSystemType ;
           rdfs:comment "Highest non-permanent voltage (Umax2) for France on lines not compliant with values defined in the the specification referenced in Appendix A-2, index [1]."@en ;
           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
