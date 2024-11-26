@@ -219,4 +219,53 @@ era-sh:hasSchematicOverviewOPDigitalForm
  	sh:severity sh:Violation ;
  	sh:message "hasPart from an operational point : The Operational Point may have a siding (hasPart) reference that is a Siding object or a track (hasPart) reference that is a Track object. This error mey be due to a hasPart relationship from an operational point that is not a Siding nor a Track."@en .
 
+# primaryLocation
+era-sh:operationalpointsShape sh:property era-sh:primaryLocation .
+era-sh:parameterApplicability
+	a sh:PropertyShape;
+    era:affectedClass era:OperationalPoint;
+    era:affectedClass era:PrimaryLocation;
+    era:affectedProperty era:primaryLocation ;
+    era:scope "local";
+	rdfs:comment "Place used by IM to define a path for a train in TAF/TAP TSI framework/messages. This location is a rail point inside the rail network where train starts, ends, stops, or runs through or change line. This location must be managed by an Infrastructure Manager (IM) identified by company code.." ;
+	sh:path era:primaryLocation ;
+	sh:class era:PrimaryLocation;
+	sh:severity sh:Violation ;
+	sh:message "primaryLocation: The operational point may have a primaryLocation reference that must be an instance of PrimaryLocation. This error is due to having having a value that is not an instance of PrimaryLocation."@en .
+
+# uopid: # 1.2.0.0.0.2 enforce the border point constraint, if an OP is a border point, it should point to ReferenceBorderPoint
+
+
+
+
+
+
+
+# uopid: # 1.2.0.0.0.2 enforce the border point constraint, if an OP is a border point, it should point to ReferenceBorderPoint and its uopid but be the code in the RefenreceBorderPoint class.
+ era-sh:operationalpointsShape sh:sparql era-sh:borderPointValidCode .
+ era-sh:borderPointValidCode
+ 	a sh:SPARQLConstraint;
+    era:affectedClass era:OperationalPoint;
+    era:affectedClass era:ReferenceBorderPoint;
+    era:affectedProperty era:uopid ;
+    era:scope "local";
+ 	rdfs:comment "Code composed of country code and alphanumeric OP code." ;
+ 	era:rinfIndex "1.2.0.0.0.2" ;
+ 	sh:severity sh:Violation ;
+ 	sh:message "uopid (1.2.0.0.0.2):  The OperationalPoint {$this} with id {?uopid} and  label {?opLabel} is a border point that either does not point to a ReferenceBorderPoint or does not have a value for uopid that matches the id of its referenced border point."@en ;
+ 	sh:prefixes era:;
+    sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT DISTINCT $this ?uopid ?opLabel 		
+    WHERE {
+               OPTIONAL {$this rdfs:label ?opLabel} .
+               $this era:uopid ?uopid .
+               $this era:opType <http://data.europa.eu/949/concepts/op-types/90> .
+               FILTER (NOT EXISTS {$this era:referenceBorderPoint era:ReferenceBorderPoint} ||
+               (?uopid != era:borderPointId) .
+			}
+			""" .
+
+
 

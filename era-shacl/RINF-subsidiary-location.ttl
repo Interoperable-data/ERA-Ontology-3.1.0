@@ -1,0 +1,88 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix time:<http://www.w3.org/2006/time#> .
+@prefix owl:<http://www.w3.org/2002/07/owl#> .
+
+era-sh:SubsidiaryLocationShape
+	a sh:NodeShape ;
+	sh:targetClass era:SubsidiaryLocation.
+
+
+
+# allocationCompany
+era-sh:SubsidiaryLocationShape sh:property era-sh:allocationCompany .
+era-sh:allocationCompany
+	a sh:PropertyShape;
+    era:affectedClass era:SubsidiaryLocation;
+    era:affectedClass era:OrganisationRole;
+    era:affectedProperty era:allocationCompany ;
+    era:scope "local";
+	rdfs:comment "The organisation in charge to allocate the code for the subsidiary location. "@en ;
+	sh:path era:allocationCompany ;
+    sh:nodeKind sh:IRI ;
+    sh:class era:OrganisationRole;
+	sh:severity sh:Violation ;
+	sh:message "allocationCompany: An instance of subsidiary location may have a value for allocation company. This error may be due to having a value that is not an IRI or that does not point to an instance of OrganisationRole."@en .
+
+# linkedToPrimaryLocation
+era-sh:SubsidiaryLocationShape sh:property era-sh:linkedToPrimaryLocation .
+era-sh:linkedToPrimaryLocation
+	a sh:PropertyShape;
+    era:affectedClass era:SubsidiaryLocation;
+    era:affectedClass era:PrimaryLocation;
+    era:affectedProperty era:linkedToPrimaryLocation ;
+    era:scope "local";
+	rdfs:comment "Linked to primary location."@en ;
+	sh:path era:linkedToPrimaryLocation ;
+    sh:nodeKind sh:IRI ;
+    sh:class era:PrimaryLocation;
+	sh:severity sh:Violation ;
+	sh:message "linkedToPrimaryLocation: An instance of subsidiary location may have a value for linkedToPrimaryLocation. This error may be due to having a value that is not an IRI or that does not point to an instance of PrimaryLocation."@en .
+
+# subsidiaryLocationType
+era-sh:SubsidiaryLocationShape sh:property era-sh:subsidiaryLocationType .
+era-sh:subsidiaryLocationType
+	a sh:PropertyShape;
+    era:affectedClass era:SubsidiaryLocation;
+    era:affectedProperty era:subsidiaryLocationType ;
+    era:scope "local";
+	rdfs:comment "Subsidiary location type."@en ;
+	sh:path era:subsidiaryLocationType ;
+    sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "subsidiaryLocationType: An instance of subsidiary location may have a value for subsidiary location type. This error may be due to having a value that is not an IRI."@en .
+
+# subsidiaryLocationType
+era-sh:SubsidiaryLocationShape sh:sparql era-sh:subsidiaryLocationTypeSKOS .
+era-sh:subsidiaryLocationTypeSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedClass era:SubsidiaryLocation;
+    era:affectedProperty era:subsidiaryLocationType ;
+    era:scope "local";
+	rdfs:comment "Subsidiary location type." ;
+	sh:severity sh:Violation ;
+	sh:message "subsidiaryLocationType: The Subsidiary Location {$this} (label {?slLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/subsidiary-location-types/SubsidiaryLocationTypes."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this ?concept ?opLabel
+    WHERE {
+         OPTIONAL {$this rdfs:label ?slLabel} .
+ 		$this era:subsidiaryLocationType ?concept .
+        era:subsidiaryLocationType era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
