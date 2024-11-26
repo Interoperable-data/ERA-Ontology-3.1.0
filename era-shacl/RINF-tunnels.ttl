@@ -151,6 +151,30 @@ era-sh:crossSectionAreaT
 	sh:severity sh:Violation ;
 	sh:message "crossSectionArea (1.1.1.1.8.8): A Tunnel can have at most one crossSectionArea. This error may be due to having a tunnel with more than one crossSectionArea or having a value  that is not an integer number."@en .
 
+# crossSectionArea: # 1.1.1.1.8.8 
+era-sh:tunnelsShape sh:sparql era-sh:crossSectionAreaApplicability .
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:crossSectionAreaApplicability .
+era-sh:crossSectionAreaApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:crossSectionArea;
+    era:affectedClass era:Tunnel;
+    era:scope "local";   
+	rdfs:comment "Y (applicable) if is speed of the line equal or greater than 200km/h." ;
+	era:rinfIndex "1.1.1.1.8.8.8" ;
+	sh:severity sh:Violation ;
+	sh:message "crossSectionArea (1.1.1.1.8.8): The Tunnel {$this} ({?label}) has a maximum permitted speed of {?tunnelSpeed} Km/h . For any tunnel with a speed of the line equal or greater than 200km/h the crossSectionArea parameter is applicable. This error is due to {$this} not having a value for such a parameter."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT DISTINCT $this ?label
+			WHERE {
+                 $this era:maximumPermittedSpeed ?tunnelSpeed .
+				OPTIONAL{$this rdfs:label ?label} .
+				FILTER (?tunnelSpeed >= 200).
+                FILTER NOT EXISTS {$this era:crossSectionArea ?value} . 
+            }
+			""" .
 
 # complianceInfTsi: # 1.1.1.1.8.8.1 
 era-sh:tunnelsShape sh:property era-sh:complianceInfTsiP .
@@ -168,6 +192,30 @@ era-sh:complianceInfTsiP
 	sh:severity sh:Violation ;
 	sh:message "complianceInfTsi (1.1.1.1.8.8.1): A Tunnel can have at most one complianceInfTsi. This error may be due to having a tunnel with more than one complianceInfTsi or having a value type different than Y/N (boolean)."@en .
 
+# complianceInfTsi: # 1.1.1.1.8.8.1 
+era-sh:tunnelsShape sh:sparql era-sh:complianceInfTsiApplicability .
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:complianceInfTsiApplicability .
+era-sh:complianceInfTsiApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:complianceInfTsi;
+    era:affectedClass era:Tunnel;
+    era:scope "local";   
+	rdfs:comment "Y (applicable) if is speed of the line equal or greater than 200km/h." ;
+	era:rinfIndex "1.1.1.1.8.8.1" ;
+	sh:severity sh:Violation ;
+	sh:message "complianceInfTsi (1.1.1.1.8.9, 1.2.1.0.5.6, 1.2.2.0.5.6): The Tunnel {$this} ({?label}) has a maximum permitted speed of {?tunnelSpeed} Km/h . For any tunnel with a speed of the line equal or greater than 200km/h the complianceInfTsi parameter is applicable. This error is due to {$this} not having a value for such a parameter."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT DISTINCT $this ?label
+			WHERE {
+                 $this era:maximumPermittedSpeed ?tunnelSpeed .
+				OPTIONAL{$this rdfs:label ?label} .
+				FILTER (?tunnelSpeed >= 200).
+                FILTER NOT EXISTS {$this era:complianceInfTsi ?value} . 
+            }
+			""" .
 
 # tunnelDocRef: # 1.1.1.1.8.8.2
 era-sh:tunnelsShape sh:property era-sh:tunnelDocRef .
@@ -203,6 +251,30 @@ era-sh:hasEmergencyPlan
 	sh:severity sh:Violation ;
 	sh:message "hasEmergencyPlan (1.1.1.1.8.9, 1.2.1.0.5.6, 1.2.2.0.5.6): A Tunnel has an indication about the existence of an emergency plan. This error may be due to having a tunnel with more than one value for hasEmergencyPlan or having a value type different than Y/N (boolean)."@en .
 
+# hasEmergencyPlan: # 1.1.1.1.8.9, 1.2.1.0.5.6, 1.2.2.0.5.6
+era-sh:tunnelsShape sh:sparql era-sh:hasEmergencyPlanApplicability .
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:hasEmergencyPlanApplicability .
+era-sh:hasEmergencyPlanApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:hasEmergencyPlan;
+    era:affectedClass era:Tunnel;
+    era:scope "local";   
+	rdfs:comment "Applicable for tunnels longer than 1 km." ;
+	era:rinfIndex "1.1.1.1.8.9", "1.2.1.0.5.6", "1.2.2.0.5.6" ;
+	sh:severity sh:Violation ;
+	sh:message "hasEmergencyPlan (1.1.1.1.8.9, 1.2.1.0.5.6, 1.2.2.0.5.6): The Tunnel {$this} ({?label}) has a length of {?tunnelLength} meters. Any tunnel longer than 1 Km makes the hasEmergencyPlan parameter applicable. This error is due to {$this} not having a value for such a parameter."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT DISTINCT $this ?label
+			WHERE {
+                 $this era:lengthOfTunnel ?tunnelLength .
+				OPTIONAL{$this rdfs:label ?label} .
+				FILTER (?tunnelLength > 1000).
+                FILTER NOT EXISTS {$this era:hasEmergencyPlan ?value} . 
+            }
+			""" .
 
 # hasEvacuationAndRescuePoints: # 1.1.1.1.8.13, 1.2.1.0.5.11, 1.2.2.0.5.10
 era-sh:tunnelsShape sh:property era-sh:hasEvacuationAndRescuePoints .
@@ -264,6 +336,31 @@ era-sh:rollingStockFireCategorySKOS
 	}
 """ .
 
+# rollingStockFireCategory: # 1.1.1.1.8.10, 1.2.1.0.5.7, 1.2.2.0.5.7
+era-sh:tunnelsShape sh:sparql era-sh:rollingStockFireCategoryApplicability .
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:rollingStockFireCategoryApplicability .
+era-sh:rollingStockFireCategoryApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:rollingStockFireCategory;
+    era:affectedClass era:Tunnel;
+    era:scope "local";   
+	rdfs:comment "Applicable for tunnels longer than 1 km." ;
+	era:rinfIndex "1.1.1.1.8.10", "1.2.1.0.5.7", "1.2.2.0.5.7" ;
+	sh:severity sh:Violation ;
+	sh:message "rollingStockFireCategory (1.1.1.1.8.10, 1.2.1.0.5.7, 1.2.2.0.5.7): The Tunnel {$this} ({?label}) has a length of {?tunnelLength} meters. Any tunnel longer than 1 Km makes the rollingStockFireCategory parameter applicable. This error is due to {$this} not having a value for such a parameter."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT DISTINCT $this ?label
+			WHERE {
+                 $this era:lengthOfTunnel ?tunnelLength .
+				OPTIONAL{$this rdfs:label ?label} .
+				FILTER (?tunnelLength > 1000).
+                FILTER NOT EXISTS {$this era:rollingStockFireCategory ?value} . 
+            }
+			""" .
+
 
 ## nationalRollingStockFireCategory: # 1.1.1.1.8.11, 1.2.1.0.5.8, 1.2.2.0.5.8
 era-sh:tunnelsShape sh:property era-sh:nationalRollingStockFireCategory .
@@ -282,6 +379,30 @@ era-sh:nationalRollingStockFireCategory
 	sh:severity sh:Violation ;
 	sh:message "nationalRollingStockFireCategory (1.1.1.1.8.11, 1.2.1.0.5.8, 1.2.2.0.5.8): A Tunnel may have an indication about the nationalRollingStockFireCategory. This error may be due to having a tunnel with more than one value or having a value type different than string."@en .
 
+# nationalRollingStockFireCategory: # 1.1.1.1.8.11, 1.2.1.0.5.8, 1.2.2.0.5.8
+era-sh:tunnelsShape sh:sparql era-sh:nationalRollingStockFireCategoryApplicability .
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:nationalRollingStockFireCategoryApplicability .
+era-sh:nationalRollingStockFireCategoryApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:nationalRollingStockFireCategory;
+    era:affectedClass era:Tunnel;
+    era:scope "local";   
+	rdfs:comment "Applicable only for tunnels when for the parameter 1.1.1.1.8.10 the option 'none' was selected and national rules exist." ;
+	era:rinfIndex "1.1.1.1.8.11", "1.2.1.0.5.8", "1.2.2.0.5.8" ;
+	sh:severity sh:Violation ;
+	sh:message "nationalRollingStockFireCategory (1.1.1.1.8.11, 1.2.1.0.5.8, 1.2.2.0.5.8): The Tunnel {$this} ({?clsLabel}), has a 'rolling stock fire' category that makes the nationalRollingStockFireCategory parameter applicable. This error is due to {$this} not having a value for such a parameter."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                 $this era:rollingStockFireCategory <http://data.europa.eu/949/concepts/rolling-stock-fire/rinf/30>.
+				OPTIONAL{$this rdfs:label ?clsLabel} .
+                FILTER NOT EXISTS {$this era:nationalRollingStockFireCategory ?value} . 
+            }
+			""" .
+
 # dieselThermalAllowed: # 1.2.1.0.5.9
 era-sh:tunnelsShape sh:property era-sh:dieselThermalAllowed .
 era-sh:commonCharacteristicsSubsetShape sh:property era-sh:dieselThermalAllowed .
@@ -298,3 +419,54 @@ era-sh:dieselThermalAllowed
 	sh:severity sh:Violation ;
 	sh:message "dieselThermalAllowed (1.2.1.0.5.9): A Tunnel may have an indication about the permission of thermal traction. This error may be due to having a tunnel woth more than one dieselThermalAllowed declaration or having a value type different than Y/N (boolean)."@en .
 
+# startLocation: 1.1.1.1.8.3
+era-sh:tunnelsShape sh:property era-sh:startLocation .
+era-sh:startLocation
+	a sh:PropertyShape;
+	era:affectedClass era:Tunnel;
+	era:affectedProperty era:startLocation ;
+	era:scope "local";
+	rdfs:comment "Part of the Start of tunnel that indicates the Geographical coordinates according to the standard World Geodetic System (WGS)."@en ;
+	sh:path era:startLocation ;
+	sh:nodeKind sh:IRI ;
+	sh:maxCount 1; # Functional property
+	sh:or (
+		[sh:class geo:Geometry ;]
+		[sh:class wgs:Point ;]
+		);
+	sh:severity sh:Violation ;
+	sh:message "startLocation (1.1.1.1.8.3): The Tunnel may have a start location (startLocation) reference that is a Geometry object or a Point. This error mey be due to a startLocation relationship from a Tunnel that is not a Geometry nor a Point."@en .
+
+# endLocation: 1.1.1.1.8.4
+era-sh:tunnelsShape sh:property era-sh:endLocation .
+era-sh:endLocation
+	a sh:PropertyShape;
+	era:affectedClass era:Tunnel;
+	era:affectedProperty era:endLocation ;
+	era:scope "local";
+	rdfs:comment "Geographical coordinates in decimal degrees and km of the line at the end of a tunnel."@en ;
+	sh:path era:endLocation ;
+	sh:nodeKind sh:IRI ;
+	sh:maxCount 1; # Functional property
+	sh:or (
+		[sh:class geo:Geometry ;]
+		[sh:class wgs:Point ;]
+		);
+	sh:severity sh:Violation ;
+	sh:message "endLocation (1.1.1.1.8.4): The Tunnel may have an end location (endLocation) reference that is a Geometry object or a Point. This error mey be due to an endLocation relationship from a Tunnel that is not a Geometry nor a Point."@en .
+
+# hasWalkway: # 1.1.1.1.8.12, 1.2.1.0.5.10, 1.2.2.0.5.9
+era-sh:tunnelsShape sh:property era-sh:hasWalkway .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasWalkway .
+era-sh:hasWalkway
+	a sh:PropertyShape ;
+    era:affectedProperty era:hasWalkway;
+    era:affectedClass era:Tunnel;
+    era:scope "local";  
+	rdfs:comment "Indication of existence of walkways." ;
+	era:rinfIndex "1.1.1.1.8.12" , "1.2.1.0.5.10" , "1.2.2.0.5.9" ;
+	sh:path era:hasWalkway ;
+	sh:maxCount 1 ; # Functional property
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "hasWalkway (1.1.1.1.8.12, 1.2.1.0.5.10, 1.2.2.0.5.9): A Tunnel can have at most one hasWalkway. This error may be due to having a tunnel with more than one hasWalkway or having a value type different than Y/N (boolean)."@en .
