@@ -1,0 +1,71 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix time:<http://www.w3.org/2006/time#> .
+@prefix owl:<http://www.w3.org/2002/07/owl#> .
+
+era-sh:ParameterApplicabilityShape
+	a sh:NodeShape ;
+	sh:targetClass era:ParameterApplicability.
+
+
+
+# ofParameter
+era-sh:ParameterApplicabilityShape sh:property era-sh:ofParameter .
+era-sh:ofParameter
+	a sh:PropertyShape;
+    era:affectedClass era:ParameterApplicability;
+    era:affectedProperty era:ofParameter ;
+    era:scope "local";
+	rdfs:comment "Applicability interval defines the date interval in which a characteristic of an infrastructure element is applicable. The characteristic to which it applies is the ofParameter property. "@en ;
+	sh:path era:ofParameter ;
+    sh:nodeKind sh:IRI ;
+    sh:or (
+ 		[sh:class owl:ObjectProperty ;]
+		[sh:class owl:DatatypeProperty ;]
+		);
+    sh:minCount 1; 
+    sh:maxCount 1 ;
+	sh:severity sh:Violation ;
+	sh:message "ofParameter: An instance of parameter applicability must have exactly one value of the characteristic (ofParameter) to which it applies to. This error may be due to not having a value, having more than one value, having a value that is not an IRI or is not an object or datatype property in the ontology."@en .
+
+# time:hasBeginning
+era-sh:ParameterApplicabilityShape sh:property era-sh:hasBeginning .
+era-sh:hasBeginning
+	a sh:PropertyShape;
+    era:affectedClass era:ParameterApplicability;
+    era:affectedProperty era:hasBeginning ;
+    era:scope "local";
+	rdfs:comment "Applicability interval defines the date interval in which a characteristic of an infrastructure element is applicable."@en ;
+	sh:path time:hasBeginning ;
+    sh:nodeKind sh:IRI ;
+    sh:class time:Instant;
+    sh:minCount 1; 
+    sh:maxCount 1 ;
+	sh:severity sh:Violation ;
+	sh:message "hasBeginning: An instance of parameter applicability must have exactly one value of the beginning of the interval in which it is applicable. This error may be due to not having a value, having more than one value, having a value that is not an IRI or is not a time:Instant."@en .
+
+# time:hasEnd
+era-sh:ParameterApplicabilityShape sh:property era-sh:hasEnd .
+era-sh:hasEnd
+	a sh:PropertyShape;
+    era:affectedClass era:ParameterApplicability;
+    era:affectedProperty era:hasEnd ;
+    era:scope "local";
+	rdfs:comment "Applicability interval defines the date interval in which a characteristic of an infrastructure element is applicable."@en ;
+	sh:path time:hasEnd ;
+    sh:nodeKind sh:IRI ;
+    sh:class time:Instant;
+    sh:minCount 1; 
+    sh:maxCount 1 ;
+	sh:severity sh:Violation ;
+	sh:message "hasEnd: An instance of parameter applicability must have exactly one value of the end of the interval in which it is applicable. This error may be due to not having a value, having more than one value, having a value that is not an IRI or is not a time:Instant."@en .
+
