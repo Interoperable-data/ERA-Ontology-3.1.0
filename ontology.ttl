@@ -317,7 +317,7 @@ era:XMLName rdf:type owl:AnnotationProperty ;
             rdfs:comment "Corresponding XML name as indicated in the RINF application guide"@en ;
             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
             rdfs:label "XML name"@en ;
-            rdfs:seeAlso <https://www.era.europa.eu/sites/default/files/registers/docs/rinf_application_guide_for_register_en.pdf> ;
+            rdfs:seeAlso "https://www.era.europa.eu/sites/default/files/registers/docs/rinf_application_guide_for_register_en.pdf"^^xsd:anyURI ;
             rdfs:range xsd:string .
 
 
@@ -1099,10 +1099,12 @@ era:conditionsSwitchClassBSystems rdf:type owl:ObjectProperty ;
                                   dcterms:modified "2023-03-14"^^xsd:date ,
                                                    "2024-04-18"^^xsd:date ,
                                                    "2024-11-04"^^xsd:date ;
-                                  dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
+                                  dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> , <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                                  dcterms:relation era:switchProtectControlWarning , era:ETCS ;
                                   rdfs:comment "Name and/or reference of the document specifying the Special technical conditions required to switch over between ERTMS/ETCS and Class B systems."@en ;
                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                   rdfs:label "Special technical conditions required to switch over between ERTMS/ETCS and Class B systems"@en ;
+                                  skos:scopeNote "Applicable (‘Y’) when at least two different class of protection systems exist."@en ;
                                   vs:term_status "stable" .
 
 
@@ -1739,7 +1741,7 @@ See: TSI CCS (7.4.3 & 6.2.4.2)."""@en ;
                                  rdfs:comment "Link to the implemented functions for national packet 44 applications that are  transmitted between track and train."@en ;
                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                  rdfs:label "ETCS national packet 44 application implemented function"@en ;
-                                 rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
+                                 rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
                                  vs:term_status "stable" ;
                                  skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -1772,8 +1774,8 @@ These conditions and restrictions of use are considered in section 6.4 of the CC
                                   rdfs:comment "Indication of the document where restrictions or conditions due to partial compliance with the TSI CCS are described."@en ;
                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                   rdfs:label "document with operating restrictions or conditions"@en ;
-                                  rdfs:seeAlso <https://www.era.europa.eu/content/certification-issues> ,
-                                               <https://www.era.europa.eu/system/files/2022-11/restrictions_and_added_functions_en_1.doc> ;
+                                  rdfs:seeAlso "https://www.era.europa.eu/content/certification-issues"^^xsd:anyURI ,
+                                               "https://www.era.europa.eu/system/files/2022-11/restrictions_and_added_functions_en_1.doc"^^xsd:anyURI ;
                                   skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
@@ -2435,10 +2437,11 @@ era:instructionsSwitchRadioSystems rdf:type owl:ObjectProperty ;
                                    dcterms:modified "2023-03-14"^^xsd:date ,
                                                     "2024-04-18"^^xsd:date ,
                                                     "2024-11-04"^^xsd:date ;
-                                   dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
+                                   dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> , <http://data.europa.eu/eli/reg_impl/2023/1695/oj>;
                                    rdfs:comment "Name and/or reference of the document specifying the Special instructions to switch over between different radio systems."@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "Special instructions to switch over between different radio systems"@en ;
+                                   skos:scopeNote "Applicable (‘Y’) when at least two different radio systems exist. "@en ;
                                    vs:term_status "stable" .
 
 
@@ -4427,13 +4430,13 @@ era:trainDetectionSystemSpecificCheck rdf:type owl:ObjectProperty ;
                                                        "2024-04-18"^^xsd:date ,
                                                        "2024-09-19"^^xsd:date ,
                                                        "2024-09-25"^^xsd:date ,
-                                                       "2024-10-31"@en ;
-                                      dcterms:relation era:trainDetectionSystemSpecificCheckDocument ;
+                                                       "2024-10-31"^^xsd:date ;
+                                      dcterms:relation era:trainDetectionSystemSpecificCheckDocument , era:trainDetectionSystemType ;
                                       dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                                                      <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                       rdfs:label "Type of track circuits or axle counters to which specific checks are needed"@en ;
-                                      rdfs:seeAlso <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
+                                      rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                                       vs:term_status "stable" ;
                                       skos:scopeNote "Only applicable, when 1.1.1.3.7.1.1 is applicable."@en ,
                                                      "String containing the name of the TD system for which checks are mentioned in 1.1.1.3.7.1.3."@en .
@@ -6741,7 +6744,7 @@ era:hasEtcsNationalPacket44 rdf:type owl:DatatypeProperty ;
                                                       )
                                         ] ;
                             rdfs:range xsd:boolean ;
-                            era:XMLName "era:XMLName \"CPE_NatApplication\" ;" ;
+                            era:XMLName "CPE_NatApplication" ;
                             era:rinfIndex "1.1.1.3.2.5" ,
                                           "1.2.1.1.1.5" ;
                             dcterms:created "2024-11-20" ;
@@ -6751,11 +6754,11 @@ Packets 44 are the means to transmit data for national applications between trai
 NID_XUSER values managed by ERA in a document about ETCS variables available on ERA website. 
 
 See: TSI CCS (7.4.3 & 6.2.4.2).""" ;
-                            dcterms:source "http://data.europa.eu/eli/reg_impl/2023/1695/oj" ;
+                            dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                             rdfs:comment "Indication whether data for national packet 44 applications is transmitted between track and train."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "has ETCS national packet 44 application implemented"@en ;
-                            rdfs:seeAlso <https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632> ;
+                            rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
                             vs:term_status "stable" ;
                             skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -6901,6 +6904,7 @@ era:hasPhaseSeparation rdf:type owl:DatatypeProperty ;
                        era:rinfIndex "1.1.1.2.4.1.1" ;
                        dcterms:created "2021-08-08"^^xsd:date ;
                        dcterms:modified "2021-09-12"^^xsd:date ;
+                       dcterms:relation era:contactLineSystemType ; 
                        rdfs:comment "Indication of existence of phase separation and required information."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Phase separation"@en ;
@@ -11785,7 +11789,7 @@ era:SubsidiaryLocation rdf:type owl:Class ;
                                          owl:onClass era:PrimaryLocation
                                        ] ;
                        dcterms:created "2024-05-24"^^xsd:date ;
-                       dcterms:source "http://taf-jsg.info/wp-content/uploads/2024/01/20231018-JGS-Handbook-3.4-with-XSD-3.4.0.0.pdf" ;
+                       rdfs:seeAlso "http://taf-jsg.info/wp-content/uploads/2024/01/20231018-JGS-Handbook-3.4-with-XSD-3.4.0.0.pdf" ;
                        rdfs:comment "Subsidiary location must be linked to a Primary Location and specifies in more detailed way part, attributes, or usage of Primary location. It may be also a non-rail point or a rail point that is not managed by an Infrastructure Manager (IM). It may be defined by entity having company code according to their needs. The Subsidiary location is optional and dependent upon business needs."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Subsidiary location"@en .
