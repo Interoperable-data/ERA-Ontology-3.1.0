@@ -330,9 +330,7 @@ era-sh:rollingStockFireCategorySKOS
         OPTIONAL {$this rdfs:label ?tunnelLabel} .
  		$this era:rollingStockFireCategory ?concept .
         era:rollingStockFireCategory era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
+		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
 	}
 """ .
 
