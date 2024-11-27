@@ -64,7 +64,8 @@
                                                "2024-11-12"^^xsd:date ,
                                                "2024-11-20"^^xsd:date ,
                                                "2024-11-22"^^xsd:date ,
-                                               "2024-11-26"^^xsd:date ;
+                                               "2024-11-26"^^xsd:date ,
+                                               "2024-11-27"^^xsd:date ;
                               dcterms:publisher "European Union Agency for Railways" ;
                               dcterms:title "ERA Ontology"@en ;
                               rdfs:comment """This is the human and machine readable Ontology governed by the European Union Agency for Railways (https://www.era.europa.eu/). It represents the concepts and relationships linked to the sectorial legal framework and the use cases under the AgencyÂ´s remit, as described in the Commission Implementing Regulation (EU) [to be updated after publication] on the common specifications for the register of railway infrastructure [to be updated after publication].
@@ -85,6 +86,7 @@ Revision 27-11-2024
 - Removed obsolete classes and properties involved in topology and positioning
 - Introduced era:parameterValueType to describe parameter applicability value meaning
 - Bug fixes
+- renamed era:tsiOPEappendixD1Index to era:tsiOPEAppendixD1Index, same for era:tsiOPEappendixD2Index to era:tsiOPEAppendixD2Index and s/era:tsiOPEappendixD3Index/era:tsiOPEAppendixD3Index
 
 Revision 26-11-2024
 - Added definitions to object properties that denote relationships among classes
@@ -94,7 +96,7 @@ Revision 26-11-2024
 - Added porperty borderPointId to the class ReferenceBorderPoint
 - Fix RINF index 1.1.1.3.14.5 to 1.1.1.3.14.6 for location 
 - Added definition to class Track
-- Renamed the annotation properties era:appendixD2Index and era:appendixD3Index to the corresponding era:tsiOPEappendixD2Index and era:tsiOPEappendixD3Index. Created  annotation properties era:tsiOPEappendixD1Index
+- Renamed the annotation properties era:appendixD2Index and era:appendixD3Index to the corresponding era:tsiOPEAppendixD2Index and era:tsiOPEAppendixD3Index. Created  annotation properties era:tsiOPEappendixD1Index
 
 Revision 22-11-2024
 - Added two annotation properties: era:applicable and era:legalDeadline
@@ -806,7 +808,7 @@ era:atoCommunicationSystem rdf:type owl:ObjectProperty ;
                            era:inSkosConceptScheme <http://data.europa.eu/949/concepts/ato-commsys/ATOCommSystem> ;
                            era:rinfIndex "1.1.1.3.13.3" ,
                                          "1.2.1.1.10.3" ;
-                           era:tsiOPEappendixD2Index "3.4.9" ;
+                           era:tsiOPEAppendixD2Index "3.4.9" ;
                            dcterms:created "2023-03-14"^^xsd:date ;
                            dcterms:description "ATO system communication system to the specification referenced in TSI CCS (4.2.4 & 4.2.19)."@en ;
                            dcterms:modified "2024-04-18"^^xsd:date ;
@@ -833,7 +835,7 @@ era:atoGradeAutomation rdf:type owl:ObjectProperty ;
                        era:inSkosConceptScheme <http://data.europa.eu/949/concepts/ato-grades-automation/ATOGradeOfAutomation> ;
                        era:rinfIndex "1.1.1.3.13.1" ,
                                      "1.2.1.1.10.1" ;
-                       era:tsiOPEappendixD2Index "3.4.8" ;
+                       era:tsiOPEAppendixD2Index "3.4.8" ;
                        dcterms:created "2023-03-14"^^xsd:date ;
                        dcterms:description "ATO is an optional function added in ETCS B4, only available under L2. See: TSI CCS, 4.2.4 & 4.2.19"@en ;
                        dcterms:modified "2024-04-18"^^xsd:date ,
@@ -862,7 +864,7 @@ era:atoSystemVersion rdf:type owl:ObjectProperty ;
                      era:inSkosConceptScheme <http://data.europa.eu/949/concepts/ato-s-versions/ATOSystemVersions> ;
                      era:rinfIndex "1.1.1.3.13.2" ,
                                    "1.2.1.1.10.2" ;
-                     era:tsiOPEappendixD2Index "3.4.8" ;
+                     era:tsiOPEAppendixD2Index "3.4.8" ;
                      dcterms:created "2023-03-14"^^xsd:date ;
                      dcterms:modified "2024-04-18"^^xsd:date ,
                                       "2024-09-19"^^xsd:date ;
@@ -966,7 +968,7 @@ era:cantDeficiencyBasicSSP rdf:type owl:ObjectProperty ;
                            era:inSkosConceptScheme <http://data.europa.eu/949/concepts/cant-deficiencies/CantDeficiencies> ;
                            era:rinfIndex "1.1.1.3.2.14" ,
                                          "1.2.1.1.1.14" ;
-                           era:tsiOPEappendixD3Index "1.3" ;
+                           era:tsiOPEAppendixD3Index "1.3" ;
                            dcterms:created "2023-03-14"^^xsd:date ;
                            dcterms:description """Subset-026 (3.11.3.2.1.1) definition:
 a) The “Cant Deficiency” SSP categories: the cant deficiency value assigned to one category shall define the maximum speed, determined by suspension design, at which a particular train can traverse a curve and thus can be used to set a specific speed limit in a curve with regards to this category."""@en ;
@@ -1078,7 +1080,7 @@ era:conditionsAppliedRegenerativeBraking rdf:type owl:ObjectProperty ,
                                          rdfs:range era:Document ;
                                          era:XMLName "ECS_RegBrakingConditions" ;
                                          era:rinfIndex "1.1.1.2.2.4.1" ;
-                                         era:tsiOPEappendixD2Index "3.3.7" ;
+                                         era:tsiOPEAppendixD2Index "3.3.7" ;
                                          dcterms:created "2022-11-10"^^xsd:date ;
                                          dcterms:modified "2023-03-14"^^xsd:date ,
                                                           "2024-04-18"^^xsd:date ,
@@ -1106,7 +1108,7 @@ era:conditionsSwitchClassBSystems rdf:type owl:ObjectProperty ;
                                   era:XMLName "CTS_SwitchProtectAB" ;
                                   era:rinfIndex "1.1.1.3.8.3" ,
                                                 "1.2.1.1.7.3" ;
-                                  era:tsiOPEappendixD2Index "3.4.3" ;
+                                  era:tsiOPEAppendixD2Index "3.4.3" ;
                                   dcterms:created "2022-10-28"^^xsd:date ;
                                   dcterms:modified "2023-03-14"^^xsd:date ,
                                                    "2024-04-18"^^xsd:date ,
@@ -1346,7 +1348,7 @@ era:eddyCurrentBraking rdf:type owl:ObjectProperty ;
                        era:inSkosConceptScheme <http://data.europa.eu/949/concepts/eddy-current-braking/EddyCurrentBraking> ;
                        era:rinfIndex "1.1.1.1.6.2" ,
                                      "1.2.1.0.4.2" ;
-                       era:tsiOPEappendixD2Index "3.4.5" ;
+                       era:tsiOPEAppendixD2Index "3.4.5" ;
                        era:usedInRCCCalculations "true"^^xsd:boolean ;
                        dcterms:created "2020-08-24"^^xsd:date ;
                        dcterms:modified "2022-09-06"^^xsd:date ,
@@ -1371,7 +1373,7 @@ era:eddyCurrentBrakingConditionsDocument rdf:type owl:ObjectProperty ;
                                          rdfs:range era:Document ;
                                          era:XMLName "ILR_ECBDocRef" ;
                                          era:rinfIndex "1.1.1.1.6.4" ;
-                                         era:tsiOPEappendixD2Index "3.4.5" ;
+                                         era:tsiOPEAppendixD2Index "3.4.5" ;
                                          era:usedInRCCCalculations "true"^^xsd:boolean ;
                                          dcterms:created "2020-08-24"^^xsd:date ;
                                          dcterms:modified "2021-09-10"^^xsd:date ,
@@ -1517,7 +1519,7 @@ era:energySupplySystem rdf:type owl:ObjectProperty ;
                        era:eratvIndex "4.10.1" ;
                        era:inSkosConceptScheme <http://data.europa.eu/949/concepts/energy-supply-systems/EnergySupplySystems> ;
                        era:rinfIndex "1.1.1.2.2.1.2" ;
-                       era:tsiOPEappendixD2Index "3.3.1" ;
+                       era:tsiOPEAppendixD2Index "3.3.1" ;
                        era:usedInRCCCalculations "true"^^xsd:boolean ;
                        dcterms:created "2020-08-24"^^xsd:date ;
                        dcterms:description "If the real values exceed range of the EN 50163:2004+A1:2007+A2:2020+A3:2022, then option ‘other’ shall be selected."@en ;
@@ -1589,7 +1591,7 @@ era:etcsBaseline rdf:type owl:ObjectProperty ;
                  era:inSkosConceptScheme <http://data.europa.eu/949/concepts/etcs-baselines/ETCSBaselines> ;
                  era:rinfIndex "1.1.1.3.2.2" ,
                                "1.2.1.1.1.2" ;
-                 era:tsiOPEappendixD2Index "3.2.7" ;
+                 era:tsiOPEAppendixD2Index "3.2.7" ;
                  dcterms:created "2021-08-07"^^xsd:date ;
                  dcterms:description "The ETCS baseline needs to be provided for each available ETCS Level. See: TSI CCS (Table A2)"@en ;
                  dcterms:modified "2021-08-31"^^xsd:date ,
@@ -1617,7 +1619,7 @@ era:etcsDegradedSituation rdf:type owl:ObjectProperty ;
                           era:inSkosConceptScheme <http://data.europa.eu/949/concepts/etcs-situation/ETCSSituations> ;
                           era:rinfIndex "1.1.1.3.10.1" ,
                                         "1.2.1.1.9.1" ;
-                          era:tsiOPEappendixD2Index "3.4.1" ;
+                          era:tsiOPEAppendixD2Index "3.4.1" ;
                           dcterms:created "2021-08-09"^^xsd:date ;
                           dcterms:description """System for degraded situation. 
 
@@ -1697,7 +1699,7 @@ era:etcsLevelType rdf:type owl:ObjectProperty ;
                   era:inSkosConceptScheme <http://data.europa.eu/949/concepts/etcs-levels/ETCSLevels> ;
                   era:rinfIndex "1.1.1.3.2.1" ,
                                 "1.2.1.1.1.1" ;
-                  era:tsiOPEappendixD2Index "3.2.7" ;
+                  era:tsiOPEAppendixD2Index "3.2.7" ;
                   dcterms:created "2021-08-07"^^xsd:date ;
                   dcterms:description """The different ERTMS / ETCS application levels are a way to express the possible operating relationships between track and train. 
   
@@ -1872,7 +1874,7 @@ era:etcsTransmittedTrackConditions rdf:type owl:ObjectProperty ;
                                    era:inSkosConceptScheme <http://data.europa.eu/949/concepts/etcs-transmitted-tcs/TransmittedTrackConditions> ;
                                    era:rinfIndex "1.1.1.3.2.12.1" ,
                                                  "1.2.1.1.1.12.1" ;
-                                   era:tsiOPEappendixD3Index "1.1" ;
+                                   era:tsiOPEAppendixD3Index "1.1" ;
                                    dcterms:created "2022-11-16"^^xsd:date ;
                                    dcterms:description "See: TSI CCS (Subset-026, Chapter 5, section 5.18.1.1)"@en ;
                                    dcterms:modified "2023-03-14"^^xsd:date ,
@@ -2203,7 +2205,7 @@ era:gsmRVersion rdf:type owl:ObjectProperty ;
                 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/gsmr-versions/GSMRVersions> ;
                 era:rinfIndex "1.1.1.3.3.1" ,
                               "1.2.1.1.2.1" ;
-                era:tsiOPEappendixD2Index "3.1.7" ,
+                era:tsiOPEAppendixD2Index "3.1.7" ,
                                           "3.4.4" ;
                 dcterms:created "2021-08-08"^^xsd:date ;
                 dcterms:description """GSM-R functional requirements specification and system requirements specification in accordance with the specification respectively referenced in TSI CCS (Annex ), version number installed lineside.
@@ -2231,7 +2233,7 @@ era:gsmrConstraintsOperateOnlyInCircuitSwitch rdf:type owl:ObjectProperty ;
                                               era:XMLName "CRG_ConstraintsCS" ;
                                               era:inSkosConceptScheme <http://data.europa.eu/949/concepts/gsmr-cs-constraints/GSMRConstraints> ;
                                               era:rinfIndex "1.2.1.1.2.12" ;
-                                              era:tsiOPEappendixD3Index "2.2" ;
+                                              era:tsiOPEAppendixD3Index "2.2" ;
                                               dcterms:created "2023-03-14"^^xsd:date ;
                                               dcterms:modified "2024-04-18"^^xsd:date ;
                                               dcterms:relation era:etcsLevelType ;
@@ -2478,7 +2480,7 @@ era:instructionsSwitchRadioSystems rdf:type owl:ObjectProperty ;
                                    era:XMLName "CTS_SwitchRadioConditions" ;
                                    era:rinfIndex "1.1.1.3.8.2.1" ,
                                                  "1.2.1.1.7.2.1" ;
-                                   era:tsiOPEappendixD2Index "3.4.4" ;
+                                   era:tsiOPEAppendixD2Index "3.4.4" ;
                                    dcterms:created "2022-10-28"^^xsd:date ;
                                    dcterms:modified "2023-03-14"^^xsd:date ,
                                                     "2024-04-18"^^xsd:date ,
@@ -2517,7 +2519,7 @@ era:legacyRadioSystem rdf:type owl:ObjectProperty ;
                       era:inSkosConceptScheme <http://data.europa.eu/949/concepts/legacy-radio-systems/LegacyRadioSystems> ;
                       era:rinfIndex "1.1.1.3.6.1" ,
                                     "1.2.1.1.5.1" ;
-                      era:tsiOPEappendixD2Index "3.1.7" ,
+                      era:tsiOPEAppendixD2Index "3.1.7" ,
                                                 "3.4.4" ;
                       era:usedInRCCCalculations "true"^^xsd:boolean ;
                       dcterms:created "2020-08-31"^^xsd:date ;
@@ -2581,7 +2583,7 @@ era:lineNationalId rdf:type owl:ObjectProperty ;
                    rdfs:range era:NationalRailwayLine ;
                    era:XMLName "SOLLineIdentification" ;
                    era:rinfIndex "1.1.0.0.0.2" ;
-                   era:tsiOPEappendixD2Index "2.2.1.1" ;
+                   era:tsiOPEAppendixD2Index "2.2.1.1" ;
                    dcterms:created "2020-09-30"^^xsd:date ;
                    dcterms:description """Each SoL can belong to only one national line.
 
@@ -2676,7 +2678,7 @@ era:linesideDistanceIndicationAppearance rdf:type owl:ObjectProperty ;
                                          rdfs:range skos:Concept ;
                                          era:inSkosConceptScheme <http://data.europa.eu/949/concepts/lineside-distance-indication-appearance/LinesideDistanceIndicationAppearance> ;
                                          era:rinfIndex "1.1.1.0.0.3" ;
-                                         era:tsiOPEappendixD2Index "3.1.3" ;
+                                         era:tsiOPEAppendixD2Index "3.1.3" ;
                                          dcterms:created "2022-10-27"^^xsd:date ;
                                          dcterms:modified "2023-03-14"^^xsd:date ,
                                                           "2024-09-19"^^xsd:date ,
@@ -2697,7 +2699,7 @@ era:linesideDistanceIndicationPositioning rdf:type owl:ObjectProperty ;
                                                       ] ;
                                           rdfs:range skos:Concept ;
                                           era:rinfIndex "1.1.1.0.0.3" ;
-                                          era:tsiOPEappendixD2Index "3.1.3" ;
+                                          era:tsiOPEAppendixD2Index "3.1.3" ;
                                           dcterms:created "2023-03-14"^^xsd:date ,
                                                           "2024-09-19"^^xsd:date ;
                                           dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
@@ -2826,7 +2828,7 @@ era:mNvcontact rdf:type owl:ObjectProperty ;
                era:inSkosConceptScheme <http://data.europa.eu/949/concepts/etcs-reactions-contact/ETCSReactionsNVContact> ;
                era:rinfIndex "1.1.1.3.2.16.9" ,
                              "1.2.1.1.1.16.9" ;
-               era:tsiOPEappendixD3Index "1.5.9" ;
+               era:tsiOPEAppendixD3Index "1.5.9" ;
                dcterms:created "2022-11-07"^^xsd:date ;
                dcterms:description "See: TSI CCS (Subset-026, chapter 7. 7.5.1.74 M_NVCONTACT)"@en ;
                dcterms:modified "2023-03-14"^^xsd:date ,
@@ -2855,7 +2857,7 @@ era:magneticBraking rdf:type owl:ObjectProperty ;
                     era:inSkosConceptScheme <http://data.europa.eu/949/concepts/magnetic-braking/MagneticBraking> ;
                     era:rinfIndex "1.1.1.1.6.3" ,
                                   "1.2.1.0.4.3" ;
-                    era:tsiOPEappendixD2Index "3.4.6" ;
+                    era:tsiOPEAppendixD2Index "3.4.6" ;
                     era:usedInRCCCalculations "true"^^xsd:boolean ;
                     dcterms:created "2020-08-24"^^xsd:date ;
                     dcterms:modified "2022-09-12"^^xsd:date ,
@@ -2880,7 +2882,7 @@ era:magneticBrakingConditionsDocument rdf:type owl:ObjectProperty ;
                                       rdfs:range era:Document ;
                                       era:XMLName "ILR_MBDocRef" ;
                                       era:rinfIndex "1.1.1.1.6.5" ;
-                                      era:tsiOPEappendixD2Index "3.4.6" ;
+                                      era:tsiOPEAppendixD2Index "3.4.6" ;
                                       era:usedInRCCCalculations "true"^^xsd:boolean ;
                                       dcterms:created "2020-08-24"^^xsd:date ;
                                       dcterms:modified "2021-09-11"^^xsd:date ,
@@ -3136,7 +3138,7 @@ era:opEnd rdf:type owl:ObjectProperty ,
           rdfs:range era:OperationalPoint ;
           era:XMLName "SOLOPEnd" ;
           era:rinfIndex "1.1.0.0.0.4" ;
-          era:tsiOPEappendixD2Index "3.1.2" ;
+          era:tsiOPEAppendixD2Index "3.1.2" ;
           dcterms:created "2021-09-09"^^xsd:date ;
           dcterms:modified "2024-01-08"^^xsd:date ,
                            "2024-09-19"^^xsd:date ;
@@ -3169,7 +3171,7 @@ era:opStart rdf:type owl:ObjectProperty ,
             rdfs:range era:OperationalPoint ;
             era:XMLName "SOLOPStart" ;
             era:rinfIndex "1.1.0.0.0.3" ;
-            era:tsiOPEappendixD2Index "3.1.1" ;
+            era:tsiOPEAppendixD2Index "3.1.1" ;
             dcterms:created "2021-09-09"^^xsd:date ;
             dcterms:modified "2024-01-08"^^xsd:date ,
                              "2024-09-19"^^xsd:date ;
@@ -3188,7 +3190,7 @@ era:opType rdf:type owl:ObjectProperty ,
            era:XMLName "OPType" ;
            era:inSkosConceptScheme <http://data.europa.eu/949/concepts/op-types/OperationalPointTypes> ;
            era:rinfIndex "1.2.0.0.0.4" ;
-           era:tsiOPEappendixD2Index "2.2.2" ,
+           era:tsiOPEAppendixD2Index "2.2.2" ,
                                      "2.3.2" ;
            dcterms:created "2020-07-29"^^xsd:date ;
            dcterms:modified "2021-08-03"^^xsd:date ,
@@ -3206,7 +3208,7 @@ era:operatingLanguage rdf:type owl:ObjectProperty ;
                       era:inSkosConceptScheme <http://publications.europa.eu/resource/authority/language> ;
                       era:rinfIndex "1.1.0.0.1.2" ,
                                     "1.2.0.0.0.8" ;
-                      era:tsiOPEappendixD2Index "3.5.1" ;
+                      era:tsiOPEAppendixD2Index "3.5.1" ;
                       dcterms:created "2022-10-28"^^xsd:date ;
                       dcterms:modified "2023-03-14"^^xsd:date ,
                                        "2024-09-19"^^xsd:date ;
@@ -3222,7 +3224,7 @@ era:operationalRegimeType rdf:type owl:ObjectProperty ;
                           rdfs:range skos:Concept ;
                           era:inSkosConceptScheme <http://data.europa.eu/949/concepts/operational-regime-types/OperationalRegimeTypes> ;
                           era:rinfIndex "1.1.0.0.1.3" ;
-                          era:tsiOPEappendixD2Index "3.2.7" ;
+                          era:tsiOPEAppendixD2Index "3.2.7" ;
                           dcterms:created "2022-10-27"^^xsd:date ;
                           dcterms:modified "2024-01-08"^^xsd:date ,
                                            "2024-09-19"^^xsd:date ,
@@ -3290,7 +3292,7 @@ era:otherCantDeficiencyBasicSSP rdf:type owl:ObjectProperty ;
                                 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/cant-deficiencies/CantDeficiencies> ;
                                 era:rinfIndex "1.1.1.3.2.14.1" ,
                                               "1.2.1.1.1.14.1" ;
-                                era:tsiOPEappendixD3Index "1.3" ;
+                                era:tsiOPEAppendixD3Index "1.3" ;
                                 dcterms:created "2023-03-14"^^xsd:date ;
                                 dcterms:modified "2024-04-18"^^xsd:date ,
                                                  "2024-09-19"^^xsd:date ;
@@ -3370,7 +3372,7 @@ era:otherTrainProtection rdf:type owl:ObjectProperty ;
                          era:inSkosConceptScheme <http://data.europa.eu/949/concepts/other-protection-control-warning/OtherProtectionControlWarnings> ;
                          era:rinfIndex "1.1.1.3.10.2" ,
                                        "1.2.1.1.9.2" ;
-                         era:tsiOPEappendixD2Index "3.4.1" ;
+                         era:tsiOPEAppendixD2Index "3.4.1" ;
                          dcterms:created "2021-08-09"^^xsd:date ;
                          dcterms:description "Selected value shall answer the question whether any other system than ETCS exists on the respective track. The list is in line with ERA/TD/2011-09/INT (v1.13), Table 3."@en ;
                          dcterms:modified "2021-09-12"^^xsd:date ,
@@ -3492,7 +3494,7 @@ era:platformHeight rdf:type owl:ObjectProperty ,
                    era:XMLName "IPL_Height" ;
                    era:inSkosConceptScheme <http://data.europa.eu/949/concepts/platform-heights/PlatformHeights> ;
                    era:rinfIndex "1.2.1.0.6.5" ;
-                   era:tsiOPEappendixD2Index "2.3.7" ;
+                   era:tsiOPEAppendixD2Index "2.3.7" ;
                    era:usedInRCCCalculations "true"^^xsd:boolean ;
                    dcterms:created "2021-08-02"^^xsd:date ;
                    dcterms:modified "2021-08-02"^^xsd:date ,
@@ -3645,7 +3647,7 @@ era:qNvdriverAdhes rdf:type owl:ObjectProperty ;
                    era:inSkosConceptScheme <http://data.europa.eu/949/concepts/adhf-qualifier/AdhesionFactorChange> ;
                    era:rinfIndex "1.1.1.3.2.16.11" ,
                                  "1.2.1.1.1.16.11" ;
-                   era:tsiOPEappendixD3Index "1.5.11" ;
+                   era:tsiOPEAppendixD3Index "1.5.11" ;
                    dcterms:created "2024-04-18"^^xsd:date ;
                    dcterms:description "See: TSI CCS (Subset 26, chapter 7. 7.5.1.122 Q_NVDRIVER_ADHES)"@en ;
                    dcterms:modified "2024-09-20"^^xsd:date ;
@@ -3673,7 +3675,7 @@ era:qNvemrrls rdf:type owl:ObjectProperty ;
               era:inSkosConceptScheme <http://data.europa.eu/949/concepts/ebr-qualifier/EBReleaseQualifier> ;
               era:rinfIndex "1.1.1.3.2.16.2" ,
                             "1.2.1.1.1.16.2" ;
-              era:tsiOPEappendixD3Index "1.5.2" ;
+              era:tsiOPEAppendixD3Index "1.5.2" ;
               dcterms:created "2023-03-14"^^xsd:date ;
               dcterms:description "According to the specification referenced in TSI CCS (Subset-026, chapter 7, 7.5.1.123 Q_NVEMRRLS)"@en ;
               dcterms:modified "2024-04-18"^^xsd:date ;
@@ -3741,7 +3743,7 @@ era:reasonsEtcsRadioBlockCenterReject rdf:type owl:ObjectProperty ;
                                       era:inSkosConceptScheme <http://data.europa.eu/949/concepts/etcs-rbc-reject-reasons/ETCSRBCRejectionReasons> ;
                                       era:rinfIndex "1.1.1.3.2.15" ,
                                                     "1.2.1.1.1.15" ;
-                                      era:tsiOPEappendixD3Index "1.4" ;
+                                      era:tsiOPEAppendixD3Index "1.4" ;
                                       dcterms:created "2022-11-07"^^xsd:date ;
                                       dcterms:modified "2023-03-14"^^xsd:date ,
                                                        "2024-04-18"^^xsd:date ,
@@ -3824,7 +3826,7 @@ era:rollingStockFireCategory rdf:type owl:ObjectProperty ;
                              era:rinfIndex "1.1.1.1.8.10" ,
                                            "1.2.1.0.5.7" ,
                                            "1.2.2.0.5.7" ;
-                             era:tsiOPEappendixD2Index "3.2.3" ;
+                             era:tsiOPEAppendixD2Index "3.2.3" ;
                              era:usedInRCCCalculations "true"^^xsd:boolean ;
                              dcterms:created "2020-07-29"^^xsd:date ;
                              dcterms:description "Wherever category B is not needed, generally the category A has to be understood as the default value. ‘None’ shall be selected when none of A or B fire category is applied for a specific tunnel."@en ;
@@ -3921,7 +3923,7 @@ era:signalOrientation rdf:type owl:ObjectProperty ;
                       era:inSkosConceptScheme <http://data.europa.eu/949/concepts/track-running-directions/TrackRunningDirections> ;
                       era:rinfIndex "1.1.1.3.14.3" ,
                                     "1.2.1.0.8.3" ;
-                      era:tsiOPEappendixD2Index "2.2.3" ,
+                      era:tsiOPEAppendixD2Index "2.2.3" ,
                                                 "2.3.3" ;
                       dcterms:created "2023-03-14"^^xsd:date ;
                       dcterms:description "Indication if the signal (on the track or in OP) is applicable for operation on normal, opposite track direction or if it contains bidirectionally valid information (radio-based system only)."@en ;
@@ -3947,7 +3949,7 @@ era:signalType rdf:type owl:ObjectProperty ;
                era:inSkosConceptScheme <http://data.europa.eu/949/concepts/signal-types/SignalTypes> ;
                era:rinfIndex "1.1.1.3.14.2" ,
                              "1.2.1.0.8.2" ;
-               era:tsiOPEappendixD2Index "2.2.3" ,
+               era:tsiOPEAppendixD2Index "2.2.3" ,
                                          "2.3.3" ;
                dcterms:created "2022-10-27"^^xsd:date ;
                dcterms:description "Indicates what function the signal (on the track or in OP) executes in relation to the track/switches."@en ;
@@ -3967,7 +3969,7 @@ era:signalType rdf:type owl:ObjectProperty ;
 era:signallingSystemType rdf:type owl:ObjectProperty ;
                          rdfs:range skos:Concept ;
                          era:rinfIndex "1.1.0.0.1.3" ;
-                         era:tsiOPEappendixD2Index "3.2.7" ;
+                         era:tsiOPEAppendixD2Index "3.2.7" ;
                          dcterms:created "2023-03-14"^^xsd:date ;
                          dcterms:modified "2024-09-19"^^xsd:date ;
                          dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
@@ -4016,7 +4018,7 @@ era:specialAreaType rdf:type owl:ObjectProperty ;
                     rdfs:range skos:Concept ;
                     era:inSkosConceptScheme <http://data.europa.eu/949/concepts/special-area-types/SpecialAreaTypes> ;
                     era:rinfIndex "1.1.0.0.1.1" ;
-                    era:tsiOPEappendixD2Index "3.2.3" ,
+                    era:tsiOPEAppendixD2Index "3.2.3" ,
                                               "3.2.4" ,
                                               "3.2.5" ,
                                               "3.2.6" ,
@@ -4035,7 +4037,7 @@ era:specialAreaType rdf:type owl:ObjectProperty ;
 era:specialTunnelArea rdf:type owl:ObjectProperty ;
                       rdfs:domain era:Tunnel ;
                       rdfs:range era:SpecialTunnelArea ;
-                      era:tsiOPEappendixD2Index "3.2.3" ;
+                      era:tsiOPEAppendixD2Index "3.2.3" ;
                       dcterms:created "2022-10-27"^^xsd:date ;
                       dcterms:modified "2024-09-19"^^xsd:date ;
                       dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
@@ -4356,7 +4358,7 @@ era:trackDirection rdf:type owl:ObjectProperty ,
                    era:XMLName "SOLTrackDirection" ;
                    era:inSkosConceptScheme <http://data.europa.eu/949/concepts/track-running-directions/TrackRunningDirections> ;
                    era:rinfIndex "1.1.1.0.0.2" ;
-                   era:tsiOPEappendixD2Index "2.2.1.1" ;
+                   era:tsiOPEAppendixD2Index "2.2.1.1" ;
                    dcterms:created "2021-09-09"^^xsd:date ;
                    dcterms:modified "2024-01-08"^^xsd:date ;
                    rdfs:comment """The normal running direction is:
@@ -5281,7 +5283,7 @@ era:bigMetalMass rdf:type owl:DatatypeProperty ;
                  era:XMLName "CPE_BigMetalMass" ;
                  era:rinfIndex "1.1.1.3.2.18" ,
                                "1.2.1.1.1.18" ;
-                 era:tsiOPEappendixD2Index "3.4.10" ;
+                 era:tsiOPEAppendixD2Index "3.4.10" ;
                  dcterms:created "2023-03-14"^^xsd:date ;
                  dcterms:description "According to the specification referenced in TSI CCS."@en ;
                  dcterms:modified "2024-01-08"^^xsd:date ,
@@ -5473,7 +5475,7 @@ era:conditionalRegenerativeBrake rdf:type owl:DatatypeProperty ;
                                  rdfs:range xsd:boolean ;
                                  era:XMLName "ECS_RegenerativeBraking" ;
                                  era:rinfIndex "1.1.1.2.2.4" ;
-                                 era:tsiOPEappendixD2Index "3.3.7" ;
+                                 era:tsiOPEAppendixD2Index "3.3.7" ;
                                  era:usedInRCCCalculations "true"^^xsd:boolean ;
                                  dcterms:created "2020-08-24"^^xsd:date ;
                                  dcterms:modified "2023-01-20"^^xsd:date ,
@@ -5512,7 +5514,7 @@ era:conditionsSwitchTrainProtectionSystems rdf:type owl:DatatypeProperty ;
                                            era:XMLName "CTS_SwitchProtectConditions" ;
                                            era:rinfIndex "1.1.1.3.8.1.1" ,
                                                          "1.2.1.1.7.1.1" ;
-                                           era:tsiOPEappendixD2Index "3.4.2" ;
+                                           era:tsiOPEAppendixD2Index "3.4.2" ;
                                            dcterms:created "2022-10-28"^^xsd:date ;
                                            dcterms:description "Switch over between different systems whilst running. Installation depends on local conditions. " ;
                                            dcterms:relation era:switchProtectControlWarning ;
@@ -5654,7 +5656,7 @@ era:dNvovtrp rdf:type owl:DatatypeProperty ;
              era:XMLName "CPE_DNVOVTRP" ;
              era:rinfIndex "1.1.1.3.2.16.5" ,
                            "1.2.1.1.1.16.5" ;
-             era:tsiOPEappendixD3Index "1.5.5" ;
+             era:tsiOPEAppendixD3Index "1.5.5" ;
              era:unitOfMeasure unit:M ;
              dcterms:created "2022-11-07"^^xsd:date ;
              dcterms:description """Precision: [NNNNNN.N] with N a decimal number (0÷9) 
@@ -5684,7 +5686,7 @@ era:dNvpotrp rdf:type owl:DatatypeProperty ;
              era:XMLName "CPE_DNVPOTRP" ;
              era:rinfIndex "1.1.1.3.2.16.7" ,
                            "1.2.1.1.1.16.7" ;
-             era:tsiOPEappendixD3Index "1.5.7" ;
+             era:tsiOPEAppendixD3Index "1.5.7" ;
              era:unitOfMeasure unit:M ;
              dcterms:created "2022-11-07"^^xsd:date ;
              dcterms:description """Precision: [NNNNNN.N], with N a decimal number (0÷9)
@@ -5715,7 +5717,7 @@ era:dNvroll rdf:type owl:DatatypeProperty ;
             era:XMLName "CPE_DNVROLL" ;
             era:rinfIndex "1.1.1.3.2.16.1" ,
                           "1.2.1.1.1.16.1" ;
-            era:tsiOPEappendixD3Index "1.5.1" ;
+            era:tsiOPEAppendixD3Index "1.5.1" ;
             era:unitOfMeasure unit:M ;
             dcterms:created "2022-11-07"^^xsd:date ;
             dcterms:description """Precision: [NNNNNN.N], with N a decimal number (0÷9).
@@ -6161,7 +6163,7 @@ era:etcsImplementsLevelCrossingProcedure rdf:type owl:DatatypeProperty ;
                                          era:XMLName "CPE_LXProcedure" ;
                                          era:rinfIndex "1.1.1.3.2.13" ,
                                                        "1.2.1.1.1.13" ;
-                                         era:tsiOPEappendixD3Index "1.2" ;
+                                         era:tsiOPEAppendixD3Index "1.2" ;
                                          dcterms:created "2022-11-04"^^xsd:date ;
                                          dcterms:modified "2024-04-18"^^xsd:date ;
                                          dcterms:relation era:etcsLevelType ;
@@ -6316,7 +6318,7 @@ era:etcsTransmitsTrackConditions rdf:type owl:DatatypeProperty ;
                                  era:XMLName "CPE_CanTransmitTCs" ;
                                  era:rinfIndex "1.1.1.3.2.12" ,
                                                "1.2.1.1.1.12" ;
-                                 era:tsiOPEappendixD3Index "1.1" ;
+                                 era:tsiOPEAppendixD3Index "1.1" ;
                                  dcterms:created "2022-11-04"^^xsd:date ;
                                  dcterms:modified "2023-03-14"^^xsd:date ,
                                                   "2024-04-18"^^xsd:date ;
@@ -6552,7 +6554,7 @@ era:gradientProfile rdf:type owl:DatatypeProperty ;
                     rdfs:range xsd:string ;
                     era:XMLName "ILL_GradProfile" ;
                     era:rinfIndex "1.1.1.1.3.6" ;
-                    era:tsiOPEappendixD2Index "3.2.1" ,
+                    era:tsiOPEAppendixD2Index "3.2.1" ,
                                               "3.2.2" ;
                     era:usedInRCCCalculations "true"^^xsd:boolean ;
                     dcterms:created "2020-08-24"^^xsd:date ;
@@ -6647,7 +6649,7 @@ era:gsmrForcedDeregistrationFunctionalNumber rdf:type owl:DatatypeProperty ;
                                              era:XMLName "CRG_ForcedDeReg" ;
                                              era:rinfIndex "1.1.1.3.3.11" ,
                                                            "1.2.1.1.2.11" ;
-                                             era:tsiOPEappendixD3Index "2.1" ;
+                                             era:tsiOPEAppendixD3Index "2.1" ;
                                              dcterms:created "2022-11-07"^^xsd:date ;
                                              dcterms:modified "2023-03-14"^^xsd:date ,
                                                               "2024-04-18"^^xsd:date ;
@@ -6880,7 +6882,7 @@ era:hasEvacuationAndRescuePoints rdf:type owl:DatatypeProperty ;
                                  era:rinfIndex "1.1.1.1.8.13" ,
                                                "1.2.1.0.5.11" ,
                                                "1.2.2.0.5.10" ;
-                                 era:tsiOPEappendixD2Index "3.2.3" ;
+                                 era:tsiOPEAppendixD2Index "3.2.3" ;
                                  dcterms:created "2022-10-27"^^xsd:date ;
                                  dcterms:modified "2023-03-14"^^xsd:date ,
                                                   "2024-09-19"^^xsd:date ;
@@ -7025,7 +7027,7 @@ era:hasPlatformCurvature rdf:type owl:DatatypeProperty ;
                                      ] ;
                          rdfs:range xsd:boolean ;
                          era:rinfIndex "1.2.1.0.6.8" ;
-                         era:tsiOPEappendixD2Index "2.3.8" ;
+                         era:tsiOPEAppendixD2Index "2.3.8" ;
                          dcterms:created "2022-10-27"^^xsd:date ;
                          dcterms:modified "2023-03-14"^^xsd:date ;
                          dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
@@ -7253,7 +7255,7 @@ era:hasWalkway rdf:type owl:DatatypeProperty ;
                era:rinfIndex "1.1.1.1.8.12" ,
                              "1.2.1.0.5.10" ,
                              "1.2.2.0.5.9" ;
-               era:tsiOPEappendixD2Index "3.2.3" ;
+               era:tsiOPEAppendixD2Index "3.2.3" ;
                dcterms:created "2022-10-27"^^xsd:date ;
                dcterms:modified "2023-03-14"^^xsd:date ,
                                 "2024-09-19"^^xsd:date ;
@@ -7426,7 +7428,7 @@ era:idPhoneErtmsRadioBlockCenter rdf:type owl:DatatypeProperty ;
                                  rdfs:range xsd:string ;
                                  era:rinfIndex "1.1.1.3.2.17" ,
                                                "1.2.1.1.1.17" ;
-                                 era:tsiOPEappendixD2Index "3.4.7" ;
+                                 era:tsiOPEAppendixD2Index "3.4.7" ;
                                  dcterms:created "2023-03-14"^^xsd:date ;
                                  dcterms:isReplacedBy era:rbcID ,
                                                       era:rbcPhone ;
@@ -7460,7 +7462,7 @@ era:imCode rdf:type owl:DatatypeProperty ;
                          "1.2.1.0.6.1" ,
                          "1.2.2.0.0.1" ,
                          "1.2.2.0.5.1" ;
-           era:tsiOPEappendixD2Index "1.1" ;
+           era:tsiOPEAppendixD2Index "1.1" ;
            dcterms:created "2021-08-02"^^xsd:date ;
            dcterms:description """The Code is a unique identifier for the Infrastructure Manager and it shall be verified on national level. 
 - If the IM is subject to TAF/TAP TSIs, it corresponds to the code used in TAF/TAP TSIs. 
@@ -7575,7 +7577,7 @@ era:kilometer rdf:type owl:DatatypeProperty ;
                             "1.2.1.0.8.3" ,
                             "1.2.2.0.5.10.1" ,
                             "1.2.2.0.5.9.1" ;
-              era:tsiOPEappendixD2Index "2.2.2" ;
+              era:tsiOPEAppendixD2Index "2.2.2" ;
               dcterms:created "2021-01-29"^^xsd:date ;
               dcterms:description """For walkways: Value provided in Kilometric point of the start of the walkway and the length in m. Repeatable values for each location.
 For rescue points: Value provided in Kilometric point of the start of the point of evacuation and rescue point and the length in m. Repeatable values for each location.
@@ -7676,7 +7678,7 @@ era:lengthOfPlatform rdf:type owl:DatatypeProperty ;
                      rdfs:range xsd:double ;
                      era:XMLName "IPL_Length" ;
                      era:rinfIndex "1.2.1.0.6.4" ;
-                     era:tsiOPEappendixD2Index "2.3.6" ;
+                     era:tsiOPEAppendixD2Index "2.3.6" ;
                      era:unitOfMeasure unit:M ;
                      era:usedInRCCCalculations "true"^^xsd:boolean ;
                      dcterms:created "2024-05-16"^^xsd:date ;
@@ -7736,7 +7738,7 @@ era:lengthOfTunnel rdf:type owl:DatatypeProperty ;
                    era:rinfIndex "1.1.1.1.8.7" ,
                                  "1.2.1.0.5.5" ,
                                  "1.2.2.0.5.5" ;
-                   era:tsiOPEappendixD2Index "3.2.3" ;
+                   era:tsiOPEAppendixD2Index "3.2.3" ;
                    era:unitOfMeasure unit:M ;
                    era:usedInRCCCalculations "true"^^xsd:boolean ;
                    dcterms:created "2024-05-16"^^xsd:date ;
@@ -7819,7 +7821,7 @@ era:linesideDistanceIndicationFrequency rdf:type owl:DatatypeProperty ;
                                                     ] ;
                                         rdfs:range xsd:integer ;
                                         era:rinfIndex "1.1.1.0.0.3" ;
-                                        era:tsiOPEappendixD2Index "3.1.3" ;
+                                        era:tsiOPEAppendixD2Index "3.1.3" ;
                                         dcterms:created "2022-10-27"^^xsd:date ;
                                         dcterms:modified "2023-03-14"^^xsd:date ;
                                         dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
@@ -7898,7 +7900,7 @@ era:mNvderun rdf:type owl:DatatypeProperty ;
              era:XMLName "CPE_MNVDERUN" ;
              era:rinfIndex "1.1.1.3.2.16.10" ,
                            "1.2.1.1.1.16.10" ;
-             era:tsiOPEappendixD3Index "1.5.10" ;
+             era:tsiOPEAppendixD3Index "1.5.10" ;
              dcterms:created "2022-11-07"^^xsd:date ;
              dcterms:description "See: TSI CCS (Subset 26, chapter 7. 7.5.1.75 M_NVDERUN)"@en ;
              dcterms:modified "2023-03-14"^^xsd:date ,
@@ -7970,7 +7972,7 @@ era:maxCurrentStandstillPantograph rdf:type owl:DatatypeProperty ;
                                    era:eratvIndex "4.10.4" ;
                                    era:rinfIndex "1.1.1.2.2.3" ,
                                                  "1.2.2.0.6.1" ;
-                                   era:tsiOPEappendixD2Index "3.3.8" ;
+                                   era:tsiOPEAppendixD2Index "3.3.8" ;
                                    era:unitOfMeasure unit:A ;
                                    era:usedInRCCCalculations "true"^^xsd:boolean ;
                                    dcterms:created "2020-08-25"^^xsd:date ;
@@ -8075,7 +8077,7 @@ era:maxTrainCurrent rdf:type owl:DatatypeProperty ;
                     rdfs:range xsd:integer ;
                     era:XMLName "ECS_MaxTrainCurrent" ;
                     era:rinfIndex "1.1.1.2.2.2" ;
-                    era:tsiOPEappendixD2Index "3.3.2" ;
+                    era:tsiOPEAppendixD2Index "3.3.2" ;
                     era:unitOfMeasure unit:A ;
                     dcterms:created "2021-08-06"^^xsd:date ;
                     dcterms:modified "2021-08-06"^^xsd:date ,
@@ -8360,7 +8362,7 @@ era:maximumPermittedSpeed rdf:type owl:DatatypeProperty ;
                           rdfs:range xsd:integer ;
                           era:XMLName "IPP_MaxSpeed" ;
                           era:rinfIndex "1.1.1.1.2.5" ;
-                          era:tsiOPEappendixD2Index "3.1.4" ;
+                          era:tsiOPEAppendixD2Index "3.1.4" ;
                           era:unitOfMeasure unit:KiloM-PER-HR ;
                           era:usedInRCCCalculations "true"^^xsd:boolean ;
                           dcterms:created "2020-08-24"^^xsd:date ;
@@ -8942,7 +8944,7 @@ era:nationalValuesBrakeModel rdf:type owl:DatatypeProperty ;
                              era:XMLName "CPE_NVBRAKEMOD" ;
                              era:rinfIndex "1.1.1.3.2.16.13" ,
                                            "1.2.1.1.1.16.13" ;
-                             era:tsiOPEappendixD3Index "1.5.13" ;
+                             era:tsiOPEAppendixD3Index "1.5.13" ;
                              dcterms:created "2023-03-14"^^xsd:date ;
                              dcterms:description "Non-harmonisable character string: [Contents of P3/P203]"@en ;
                              dcterms:modified "2024-01-08"^^xsd:date ,
@@ -9063,7 +9065,7 @@ era:opName rdf:type owl:DatatypeProperty ,
            rdfs:range xsd:string ;
            era:XMLName "OPName" ;
            era:rinfIndex "1.2.0.0.0.1" ;
-           era:tsiOPEappendixD2Index "2.3.1" ;
+           era:tsiOPEAppendixD2Index "2.3.1" ;
            dcterms:created "2021-09-13"^^xsd:date ;
            dcterms:modified "2021-09-13"^^xsd:date ;
            dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
@@ -9108,7 +9110,7 @@ era:organisationCode rdf:type owl:DatatypeProperty ;
                                    "1.2.1.0.6.1" ,
                                    "1.2.2.0.0.1" ,
                                    "1.2.2.0.5.1" ;
-                     era:tsiOPEappendixD2Index 1.1 ;
+                     era:tsiOPEAppendixD2Index 1.1 ;
                      dcterms:created "2024-06-03"^^xsd:date ;
                      dcterms:description """The Code is a unique identifier for the Infrastructure Manager and it shall be verified on national level. 
 - If the IM is subject to TAF/TAP TSIs, it corresponds to the code used in TAF/TAP TSIs. 
@@ -9414,7 +9416,7 @@ era:platformId rdf:type owl:DatatypeProperty ,
                rdfs:range xsd:string ;
                era:XMLName "OPTrackPlatformIdentification" ;
                era:rinfIndex "1.2.1.0.6.2" ;
-               era:tsiOPEappendixD2Index "2.3.5" ;
+               era:tsiOPEAppendixD2Index "2.3.5" ;
                dcterms:created "2021-09-13"^^xsd:date ;
                dcterms:modified "2023-03-14"^^xsd:date ;
                dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
@@ -9461,7 +9463,7 @@ era:primaryLocationCode rdf:type owl:DatatypeProperty ;
                         rdfs:range xsd:string ;
                         era:XMLName "OPTafTapCode" ;
                         era:rinfIndex "1.2.0.0.0.3" ;
-                        era:tsiOPEappendixD2Index "2.2.2" ;
+                        era:tsiOPEAppendixD2Index "2.2.2" ;
                         dcterms:created "2024-06-03"^^xsd:date ;
                         dcterms:replaces era:tafTAPCode ;
                         rdfs:comment "Primary location code developed for information exchange in accordance with the TSIs relating to the telematics applications subsystem."@en ;
@@ -9574,7 +9576,7 @@ era:qNvsbtsmperm rdf:type owl:DatatypeProperty ;
                  era:XMLName "CPE_QNVSBTSMPERM" ;
                  era:rinfIndex "1.1.1.3.2.16.12" ,
                                "1.2.1.1.1.16.12" ;
-                 era:tsiOPEappendixD3Index "1.5.12" ;
+                 era:tsiOPEAppendixD3Index "1.5.12" ;
                  dcterms:created "2023-03-14"^^xsd:date ;
                  dcterms:description "See: TSI CCS (Subset-026, chapter 7. 7.5.1.124 Q_NVSBTSMPERM)"@en ;
                  dcterms:modified "2024-04-18"^^xsd:date ;
@@ -9614,7 +9616,7 @@ era:radioNetworkId rdf:type owl:DatatypeProperty ;
                    era:XMLName "CRG_RadioNID" ;
                    era:rinfIndex "1.1.1.3.3.12" ,
                                  "1.2.1.1.2.13" ;
-                   era:tsiOPEappendixD2Index "3.4.4" ;
+                   era:tsiOPEAppendixD2Index "3.4.4" ;
                    dcterms:created "2023-03-14"^^xsd:date ;
                    dcterms:description "Format: [NNNNNN] with N a decimal number (0÷9)."@en ;
                    dcterms:modified "2024-04-18"^^xsd:date ,
@@ -9665,7 +9667,7 @@ era:raisedPantographsDistance rdf:type owl:DatatypeProperty ;
                               rdfs:range xsd:integer ;
                               era:XMLName "EPA_NumRaisedSpeed" ;
                               era:rinfIndex "1.1.1.2.3.3" ;
-                              era:tsiOPEappendixD2Index "3.3.4" ;
+                              era:tsiOPEAppendixD2Index "3.3.4" ;
                               era:unitOfMeasure unit:M ;
                               era:usedInRCCCalculations "true"^^xsd:boolean ;
                               dcterms:created "2023-04-05"^^xsd:date ;
@@ -9685,7 +9687,7 @@ era:raisedPantographsDistanceAndSpeed rdf:type owl:DatatypeProperty ;
                                       rdfs:range xsd:string ;
                                       era:XMLName "EPA_NumRaisedSpeed" ;
                                       era:rinfIndex "1.1.1.2.3.3" ;
-                                      era:tsiOPEappendixD2Index "3.3.4" ;
+                                      era:tsiOPEAppendixD2Index "3.3.4" ;
                                       dcterms:created "2020-08-25"^^xsd:date ;
                                       dcterms:modified "2023-04-05"^^xsd:date ;
                                       dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
@@ -9705,7 +9707,7 @@ era:raisedPantographsNumber rdf:type owl:DatatypeProperty ;
                             rdfs:range xsd:integer ;
                             era:XMLName "EPA_NumRaisedSpeed" ;
                             era:rinfIndex "1.1.1.2.3.3" ;
-                            era:tsiOPEappendixD2Index "3.3.4" ;
+                            era:tsiOPEAppendixD2Index "3.3.4" ;
                             era:usedInRCCCalculations "true"^^xsd:boolean ;
                             dcterms:created "2023-04-05"^^xsd:date ;
                             dcterms:modified "2024-09-19"^^xsd:date ;
@@ -9727,7 +9729,7 @@ era:raisedPantographsSpeed rdf:type owl:DatatypeProperty ;
                            rdfs:range xsd:integer ;
                            era:XMLName "EPA_NumRaisedSpeed" ;
                            era:rinfIndex "1.1.1.2.3.3" ;
-                           era:tsiOPEappendixD2Index "3.3.4" ;
+                           era:tsiOPEAppendixD2Index "3.3.4" ;
                            era:unitOfMeasure <https://qudt.org/vocab/unit/KiloM-PER-HR> ;
                            era:usedInRCCCalculations "true"^^xsd:boolean ;
                            dcterms:created "2023-04-05"^^xsd:date ;
@@ -9754,7 +9756,7 @@ era:rbcID rdf:type owl:DatatypeProperty ;
           era:XMLName "CPE_IDRBC" ;
           era:rinfIndex "1.1.1.3.2.17" ,
                         "1.2.1.1.1.17" ;
-          era:tsiOPEappendixD2Index "3.4.7" ;
+          era:tsiOPEAppendixD2Index "3.4.7" ;
           dcterms:created "2024-04-18"^^xsd:date ;
           dcterms:description "Format: [NNNN NNNN] with N a decimal number (0÷9)"@en ;
           dcterms:relation era:etcsLevelType ;
@@ -9775,7 +9777,7 @@ era:rbcPhone rdf:type owl:DatatypeProperty ;
              era:XMLName "CPE_PHONERBC" ;
              era:rinfIndex "1.1.1.3.2.17" ,
                            "1.2.1.1.1.17" ;
-             era:tsiOPEappendixD2Index "3.4.7" ;
+             era:tsiOPEAppendixD2Index "3.4.7" ;
              dcterms:created "2024-04-18"^^xsd:date ;
              dcterms:description "Format: [NNNN NNNN NNNN NNNN] with N a decimal number (0÷9)"@en ;
              dcterms:relation era:etcsLevelType ;
@@ -9838,7 +9840,7 @@ era:relativeDistanceDangerPoint rdf:type owl:DatatypeProperty ;
                                 rdfs:range xsd:integer ;
                                 era:rinfIndex "1.1.1.3.14.4" ,
                                               "1.2.1.0.8.4" ;
-                                era:tsiOPEappendixD2Index "2.2.3" ,
+                                era:tsiOPEAppendixD2Index "2.2.3" ,
                                                           "2.3.3" ;
                                 era:unitOfMeasure <https://qudt.org/vocab/unit/M> ;
                                 dcterms:created "2023-03-14"^^xsd:date ;
@@ -9868,7 +9870,7 @@ era:requiredSandingOverride rdf:type owl:DatatypeProperty ;
                             rdfs:range xsd:boolean ;
                             era:XMLName "CTD_SandDriverOverride" ;
                             era:rinfIndex "1.1.1.3.7.18" ;
-                            era:tsiOPEappendixD2Index "3.2.6" ;
+                            era:tsiOPEAppendixD2Index "3.2.6" ;
                             dcterms:created "2021-08-08"^^xsd:date ;
                             dcterms:modified "2023-03-14"^^xsd:date ;
                             dcterms:source <https://data.europa.eu/eli/reg_impl/2019/773/oj> ;
@@ -9922,7 +9924,7 @@ era:sidingId rdf:type owl:DatatypeProperty ;
              rdfs:range xsd:string ;
              era:XMLName "OPSidingIdentification" ;
              era:rinfIndex "1.2.2.0.0.2" ;
-             era:tsiOPEappendixD2Index "2.2.1" ,
+             era:tsiOPEAppendixD2Index "2.2.1" ,
                                        "2.2.1.4" ;
              dcterms:created "2021-09-13"^^xsd:date ;
              dcterms:modified "2023-03-14"^^xsd:date ;
@@ -9951,7 +9953,7 @@ era:signalId rdf:type owl:DatatypeProperty ;
              rdfs:range xsd:string ;
              era:rinfIndex "1.1.1.3.14.1" ,
                            "1.2.1.0.8.1" ;
-             era:tsiOPEappendixD2Index "2.2.3" ,
+             era:tsiOPEAppendixD2Index "2.2.3" ,
                                        "2.3.3" ;
              dcterms:created "2023-03-14"^^xsd:date ;
              dcterms:description "Operational identifier of the signal (on the track or in OP), as in the operational and maintenance provisions."@en ;
@@ -10174,7 +10176,7 @@ era:switchProtectControlWarning rdf:type owl:DatatypeProperty ;
                                 rdfs:range xsd:boolean ;
                                 era:XMLName "CTS_SwitchProtectControlWarn" ;
                                 era:rinfIndex "1.1.1.3.8.1" ;
-                                era:tsiOPEappendixD2Index "3.4.2" ;
+                                era:tsiOPEAppendixD2Index "3.4.2" ;
                                 dcterms:created "2021-08-09"^^xsd:date ;
                                 dcterms:description "Switch over between different systems whilst running. Installation depends on local conditions. " ;
                                 dcterms:modified "2021-09-12"^^xsd:date ;
@@ -10200,7 +10202,7 @@ era:switchRadioSystem rdf:type owl:DatatypeProperty ;
                       rdfs:range xsd:boolean ;
                       era:XMLName "CTS_SwitchRadioSystem" ;
                       era:rinfIndex "1.1.1.3.8.2" ;
-                      era:tsiOPEappendixD2Index "3.4.4" ;
+                      era:tsiOPEAppendixD2Index "3.4.4" ;
                       dcterms:created "2021-08-09"^^xsd:date ;
                       dcterms:description """Switch over between different radio systems and no communication system whilst running. Installation depends on local conditions. 
   
@@ -10340,7 +10342,7 @@ era:tNvcontact rdf:type owl:DatatypeProperty ;
                era:XMLName "CPE_TNVCONTACT" ;
                era:rinfIndex "1.1.1.3.2.16.8" ,
                              "1.2.1.1.1.16.8" ;
-               era:tsiOPEappendixD3Index "1.5.8" ;
+               era:tsiOPEAppendixD3Index "1.5.8" ;
                era:unitOfMeasure unit:SEC ;
                dcterms:created "2022-11-07"^^xsd:date ;
                dcterms:description """Precision: [NNN], with N a decimal number (0÷9), NNN = 255 means ∞ seconds, so values cannot be higher.
@@ -10371,7 +10373,7 @@ era:tNvovtrp rdf:type owl:DatatypeProperty ;
              era:XMLName "CPE_TNVOVTRP" ;
              era:rinfIndex "1.1.1.3.2.16.6" ,
                            "1.2.1.1.1.16.6" ;
-             era:tsiOPEappendixD3Index "1.5.6" ;
+             era:tsiOPEAppendixD3Index "1.5.6" ;
              era:unitOfMeasure unit:SEC ;
              dcterms:created "2022-11-07"^^xsd:date ;
              dcterms:description """Precision: [NNN], with N a decimal number (0÷9)
@@ -10396,7 +10398,7 @@ era:tafTAPCode rdf:type owl:DatatypeProperty ;
                rdfs:range xsd:string ;
                era:XMLName "OPTafTapCode" ;
                era:rinfIndex "1.2.0.0.0.3" ;
-               era:tsiOPEappendixD2Index "2.2.2" ;
+               era:tsiOPEAppendixD2Index "2.2.2" ;
                dcterms:created "2020-07-29"^^xsd:date ;
                dcterms:isReplacedBy era:primaryLocationCode ;
                dcterms:modified "2024-01-08"^^xsd:date ,
@@ -10539,7 +10541,7 @@ era:trackId rdf:type owl:DatatypeProperty ;
                         "SOLTrackIdentification" ;
             era:rinfIndex "1.1.1.0.0.1" ,
                           "1.2.1.0.0.2" ;
-            era:tsiOPEappendixD2Index "2.2.1.1" ;
+            era:tsiOPEAppendixD2Index "2.2.1.1" ;
             dcterms:created "2021-09-09"^^xsd:date ;
             dcterms:description "Each track shall have unique identification or number within the SoL. This number cannot be used for naming any other track in the same SoL."@en ;
             dcterms:modified "2024-01-08"^^xsd:date ,
@@ -10609,7 +10611,7 @@ era:trainIntegrityOnBoardRequired rdf:type owl:DatatypeProperty ;
                                   era:XMLName "CPE_IntegrityConfirmation" ;
                                   era:rinfIndex "1.1.1.3.2.8" ,
                                                 "1.2.1.1.1.8" ;
-                                  era:tsiOPEappendixD2Index "3.4.11" ;
+                                  era:tsiOPEAppendixD2Index "3.4.11" ;
                                   era:usedInRCCCalculations "true"^^xsd:boolean ;
                                   dcterms:created "2020-08-31"^^xsd:date ;
                                   dcterms:description """In hybrid operation, the confirmation can be optional. 
@@ -10802,7 +10804,7 @@ era:tunnelIdentification rdf:type owl:DatatypeProperty ;
                          era:rinfIndex "1.1.1.1.8.2" ,
                                        "1.2.1.0.5.2" ,
                                        "1.2.2.0.5.2" ;
-                         era:tsiOPEappendixD2Index "3.2.3" ;
+                         era:tsiOPEAppendixD2Index "3.2.3" ;
                          dcterms:created "2021-08-03"^^xsd:date ;
                          dcterms:modified "2021-09-13"^^xsd:date ,
                                           "2024-09-19"^^xsd:date ;
@@ -10892,7 +10894,7 @@ era:uopid rdf:type owl:DatatypeProperty ;
           rdfs:range xsd:string ;
           era:XMLName "UniqueOPID" ;
           era:rinfIndex "1.2.0.0.0.2" ;
-          era:tsiOPEappendixD2Index "2.2.2" ;
+          era:tsiOPEAppendixD2Index "2.2.2" ;
           dcterms:created "2020-07-29"^^xsd:date ;
           dcterms:modified "2024-01-08"^^xsd:date ,
                            "2024-09-19"^^xsd:date ;
@@ -10942,7 +10944,7 @@ era:vNvallowovtrp rdf:type owl:DatatypeProperty ;
                   era:XMLName "CPE_VNVALLOWOVTRP" ;
                   era:rinfIndex "1.1.1.3.2.16.3" ,
                                 "1.2.1.1.1.16.3" ;
-                  era:tsiOPEappendixD3Index "1.5.3" ;
+                  era:tsiOPEAppendixD3Index "1.5.3" ;
                   era:unitOfMeasure unit:KiloM-PER-HR ;
                   dcterms:created "2022-11-07"^^xsd:date ;
                   dcterms:description """Format: [NNF], with N a decimal number (0÷9), [NNF] must be divisible by 5, so F=(0|5), max. `600`.
@@ -10973,7 +10975,7 @@ era:vNvsupovtrp rdf:type owl:DatatypeProperty ;
                 era:XMLName "CPE_VNVSUPOVTRP" ;
                 era:rinfIndex "1.1.1.3.2.16.4" ,
                               "1.2.1.1.1.16.4" ;
-                era:tsiOPEappendixD3Index "1.5.4" ;
+                era:tsiOPEAppendixD3Index "1.5.4" ;
                 era:unitOfMeasure unit:KiloM-PER-HR ;
                 dcterms:created "2022-11-07"^^xsd:date ;
                 dcterms:description """Format: [NNF], with N a decimal number (0÷9), [NNF] is divisible by 5 so F=(0|5), max. `600`.
@@ -11312,7 +11314,7 @@ geo:asWKT rdf:type owl:DatatypeProperty ;
                         "1.1.1.3.14.6" ,
                         "1.2.0.0.0.5" ,
                         "1.2.1.0.8.5" ;
-          era:tsiOPEappendixD2Index "2.1.1" ,
+          era:tsiOPEAppendixD2Index "2.1.1" ,
                                     "2.1.2" ,
                                     "2.2.2" ,
                                     "3.2.5" ;
@@ -11796,7 +11798,7 @@ era:NonLinearElement rdf:type owl:Class ;
 era:OperationalPoint rdf:type owl:Class ;
                      rdfs:subClassOf era:AggregatedElement ;
                      era:rinfIndex 1.2 ;
-                     era:tsiOPEappendixD2Index "2.1.2" ;
+                     era:tsiOPEAppendixD2Index "2.1.2" ;
                      dcterms:created "2020-07-29"^^xsd:date ;
                      dcterms:modified "2022-07-07"^^xsd:date ;
                      rdfs:comment "An operational point (OP) means any location for train service operations, where train services may begin and end or change route, and where passenger or freight services may be provided; operational point also means any location at boundaries between Member States or infrastructure managers."@en ;
@@ -11938,7 +11940,7 @@ era:SectionOfLine rdf:type owl:Class ;
                                     owl:onClass era:OperationalPoint
                                   ] ;
                   era:rinfIndex "1.1" ;
-                  era:tsiOPEappendixD2Index "2.1.1" ;
+                  era:tsiOPEAppendixD2Index "2.1.1" ;
                   dcterms:created "2021-04-02"^^xsd:date ;
                   dcterms:description "Each network shall be described using as many SoLs as necessary. Each SoL   is generated and identified by OP IDs at start and at end. A SoL only belongs to one Line."@en ;
                   dcterms:modified "2022-07-07"^^xsd:date ,
@@ -12003,7 +12005,7 @@ The switches' position in a SignalsGrid are controlled together by the interlock
 ###  http://data.europa.eu/949/SpecialArea
 era:SpecialArea rdf:type owl:Class ;
                 rdfs:subClassOf era:InfrastructureElement ;
-                era:tsiOPEappendixD2Index "3.2.4" ,
+                era:tsiOPEAppendixD2Index "3.2.4" ,
                                           "3.2.5" ;
                 dcterms:created "2022-10-27"^^xsd:date ,
                                 "2024-04-18"^^xsd:date ;
@@ -12024,7 +12026,7 @@ Industrial Risk Area: locations where it is dangerous for the driver to step out
 ###  http://data.europa.eu/949/SpecialTunnelArea
 era:SpecialTunnelArea rdf:type owl:Class ;
                       rdfs:subClassOf era:SpecialArea ;
-                      era:tsiOPEappendixD2Index "3.2.3" ;
+                      era:tsiOPEAppendixD2Index "3.2.3" ;
                       dcterms:created "2022-10-27"^^xsd:date ;
                       dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
                       rdfs:comment """TODO review: Area or location within a tunnel where there are 
