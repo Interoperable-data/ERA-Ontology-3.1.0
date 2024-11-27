@@ -1507,30 +1507,7 @@ era-sh:EtcsMVersionSKOS
 
 
 
-# gsmROptionalFunctions: # 1.1.1.3.3.3 # pass to sol-op-tracks
-era-sh:SectionOfLineShape sh:sparql era-sh:GsmROptionalFunctionsSKOS.
-era-sh:GsmROptionalFunctionsSKOS
-	a sh:SPARQLConstraint ;
-    era:affectedProperty era:gsmROptionalFunctions  ;     era:affectedClass  era:Track;     era:scope "local";     
-    rdfs:comment "Use of optional GSM-R functions which might improve operation on the line. They are for information only and not for network access criteria." ;
-	era:rinfIndex "1.1.1.3.3.3" ;
-	sh:severity sh:Violation ;
-    sh:message "Indication of the gsmROptionalFunctions (1.1.1.3.3.3): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list:  http://data.europa.eu/949/concepts/gsmr-optional-functions/OptionalFunctions."@en ;
-    sh:prefixes era:;
-	sh:select """
-    PREFIX era: <http://data.europa.eu/949/>
-    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT $this  ?concept
-    WHERE {
-	    $this era:hasPart ?track .
-        ?track era:gsmROptionalFunctions ?concept .
-        era:gsmROptionalFunctions era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
-	}
-""" .
+
 
 
 # gsmRAdditionalInfo: # 1.1.1.3.3.3.1
@@ -2046,7 +2023,7 @@ era-sh:trackPhaseInfo
 
 # trackSystemSeparationInfo: # 1.1.1.2.4.2.2
 era-sh:SectionOfLineShape sh:property era-sh:trackSystemSeparationInfo.
-era-sh:v
+era-sh:trackSystemSeparationInfo
 	a sh:PropertyShape ; era:affectedProperty era:trackSystemSeparationInfo  ;     era:affectedClass  era:Track;     era:scope "local";     
 	rdfs:comment "Relates the Track with the SystemSeparationInfo. Indication of required several information on system separation." ;
 	era:rinfIndex "1.1.1.2.4.2.2" ;
@@ -2058,7 +2035,7 @@ era-sh:v
 
 #  1.1.1.1.2.4 trackLoadCapability
 era-sh:SectionOfLineShape sh:property era-sh:trackLoadCapability.
-era-sh:v
+era-sh:trackLoadCapability
 	a sh:PropertyShape ; era:affectedProperty era:trackLoadCapability  ;     era:affectedClass  era:Track;     era:scope "local";     
 	rdfs:comment "Relates the track with the class LoadCapability. A combination of the line category and speed at the weakest point of the track." ;
 	era:rinfIndex "1.1.1.1.2.4" ;
@@ -2067,18 +2044,6 @@ era-sh:v
 	sh:severity sh:Violation ;
 	sh:message "trackLoadCapability (1.1.1.1.2.4): The track defines a load capability value that must be an instance of LoadCapability."@en .
 
-
-era-sh:OnlyApplicableIfSelectValidator a sh:SPARQLSelectValidator ;
-	sh:select """
-    PREFIX era: <http://data.europa.eu/949/>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
-			WHERE {
-                 $this $conditionalTypeProperty $conditionalValue .
-				OPTIONAL{$this rdfs:label ?thisLabel} .
-                FILTER NOT EXISTS {$this $PATH ?value} . 
-            }
-			""" .
 
 # 1.1.1.1.7.7	hotAxleBoxDetectorGeneration applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:hotAxleBoxDetectorGenerationApplicability .
@@ -2101,7 +2066,7 @@ era-sh:hotAxleBoxDetectorGenerationApplicability
                 $this rdfs:label ?thisLabel .
                 $this era:hasPart ?track .
                 ?track rdfs:label ?trackLabel .
-                ?track era:hotAxleBoxDetectorTSICompliant "false"^^xsd:boolean .				
+                ?track era:hotAxleBoxDetectorTSICompliant "0"^^xsd:boolean .				
                 FILTER NOT EXISTS {$this era:hotAxleBoxDetectorGeneration ?value} . 
             }
 			""" .
@@ -2127,7 +2092,7 @@ era-sh:hotAxleBoxDetectorDirectionApplicability
                 $this rdfs:label ?thisLabel .
                 $this era:hasPart ?track .
                 ?track rdfs:label ?trackLabel .
-                ?track era:hotAxleBoxDetectorTSICompliant "false"^^xsd:boolean .				
+                ?track era:hotAxleBoxDetectorTSICompliant "0"^^xsd:boolean .				
                 FILTER NOT EXISTS {$this era:hotAxleBoxDetectorDirection ?value} . 
             }
 			""" .
@@ -2153,7 +2118,7 @@ era-sh:hotAxleBoxDetectorIdentificationApplicability
                 $this rdfs:label ?thisLabel .
                 $this era:hasPart ?track .
                 ?track rdfs:label ?trackLabel .
-                ?track era:hotAxleBoxDetectorTSICompliant "false"^^xsd:boolean .				
+                ?track era:hotAxleBoxDetectorTSICompliant "0"^^xsd:boolean .				
                 FILTER NOT EXISTS {$this era:hotAxleBoxDetectorIdentification ?value} . 
             }
 			""" .
@@ -2168,7 +2133,7 @@ era-sh:hotAxleBoxDetectorLocationApplicability
 	rdfs:comment "Specific for the French Italian and Swedish networks. Applicable if trackside HABD is not TSI compliant, localisation of trackside hot axle box detector.";
 	era:rinfIndex "1.1.1.1.7.8" ;
 	sh:severity sh:Violation ;
-    sh:message "hotAxleBoxDetectorLocation (1.1.1.1.7.6): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: “Y” if the answer to parameter 1.1.1.1.7.5 is “N”"@en ;
+    sh:message "hotAxleBoxDetectorLocation (1.1.1.1.7.8): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: “Y” if the answer to parameter 1.1.1.1.7.5 is “N”"@en ;
     sh:prefixes era:;
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
@@ -2179,12 +2144,473 @@ era-sh:hotAxleBoxDetectorLocationApplicability
                 $this rdfs:label ?thisLabel .
                 $this era:hasPart ?track .
                 ?track rdfs:label ?trackLabel .
-                ?track era:hotAxleBoxDetectorTSICompliant "false"^^xsd:boolean .				
+                ?track era:hotAxleBoxDetectorTSICompliant "0"^^xsd:boolean .				
                 FILTER NOT EXISTS {$this era:hotAxleBoxDetectorLocation ?value} . 
             }
 			""" .
 
+# 1.1.1.1.7.3	accelerationLevelCrossing applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:accelerationLevelCrossingApplicability .
+era-sh:accelerationLevelCrossingApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:accelerationLevelCrossing;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Existence of limit for acceleration of train if stopping or recovering speed close to a level crossing expressed in a specific reference acceleration curve.";
+	era:rinfIndex "1.1.1.1.7.3" ;
+	sh:severity sh:Violation ;
+    sh:message "accelerationLevelCrossing (1.1.1.1.7.3): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: Applicable only when selected value of parameter 1.1.1.1.7.2 is ‘Y’"@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                FILTER EXISTS {$this era:hasLevelCrossings ?value} .  			
+                FILTER NOT EXISTS {$this era:accelerationLevelCrossing ?value} . 
+            }
+			""" .
 
+# 1.1.1.2.4.1.2	trackPhaseInfo applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:trackPhaseInfoApplicability .
+era-sh:trackPhaseInfoApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:trackPhaseInfo;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Relates the Track with PhaseInfo. Indication of required several information on phase separation.";
+	era:rinfIndex "1.1.1.2.4.1.2" ;
+	sh:severity sh:Violation ;
+    sh:message "trackPhaseInfo (1.1.1.2.4.1.2): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: Applicable when in parameter 1.1.1.2.4.1.1 selected option is ‘Y’"@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:hasPhaseSeparation "1"^^xsd:boolean .			
+                FILTER NOT EXISTS {$this era:trackPhaseInfo ?value} . 
+            }
+			""" .
+
+# 1.1.1.2.4.2.2	trackSystemSeparationInfo applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:trackSystemSeparationInfoApplicability .
+era-sh:trackSystemSeparationInfoApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:trackSystemSeparationInfo;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Relates the Track with the SystemSeparationInfo. Indication of required several information on system separation.";
+	era:rinfIndex "1.1.1.2.4.2.2" ;
+	sh:severity sh:Violation ;
+    sh:message "trackSystemSeparationInfo (1.1.1.2.4.2.2): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: Applicable when in parameter 1.1.1.2.4.2.1 selected option is ‘Y’"@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:hasSystemSeparation "1"^^xsd:boolean .			
+                FILTER NOT EXISTS {$this era:trackSystemSeparationInfo ?value} . 
+            }
+			""" .
+   
+# 1.1.1.2.3.1	tsiPantographHead applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:tsiPantographHeadApplicability .
+era-sh:tsiPantographHeadApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:tsiPantographHead;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Indication of TSI compliant pantograph heads which are allowed to be used.";
+	era:rinfIndex "1.1.1.2.3.1" ;
+	sh:severity sh:Violation ;
+    sh:message "tsiPantographHead (1.1.1.2.3.1): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:contactLineSystem ?cls .
+                ?cls era:contactLineSystemType ?clsType .
+                FILTER (?clsType  != <http://data.europa.eu/949/concepts/contact-line-systems/10> .	
+                FILTER EXISTS {$this era:tsiPantographHead ?value} . 
+            }
+			""" .
+
+
+# 1.1.1.2.3.3	trackRaisedPantographDistanceAndSpeed applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:trackRaisedPantographDistanceAndSpeedApplicability .
+era-sh:trackRaisedPantographDistanceAndSpeedApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:trackRaisedPantographDistanceAndSpeed;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Relates the track with the class RaisedPantographsDistanceAndSpeed. Indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed.";
+	era:rinfIndex "1.1.1.2.3.3" ;
+	sh:severity sh:Violation ;
+    sh:message "trackRaisedPantographDistanceAndSpeed (1.1.1.2.3.3): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:contactLineSystem ?cls .
+                ?cls era:contactLineSystemType ?clsType .
+                FILTER (?clsType  != <http://data.europa.eu/949/concepts/contact-line-systems/10>) .	
+                FILTER EXISTS {$this era:trackRaisedPantographDistanceAndSpeed ?value} . 
+            }
+			""" .
+
+# 1.1.1.2.4.1.1	hasPhaseSeparation applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:hasPhaseSeparationApplicability .
+era-sh:hasPhaseSeparationApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:hasPhaseSeparation;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Indication of existence of phase separation and required information.";
+	era:rinfIndex "1.1.1.2.4.1.1" ;
+	sh:severity sh:Violation ;
+    sh:message "hasPhaseSeparation (1.1.1.2.4.1.1): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:contactLineSystem ?cls .
+                ?cls era:contactLineSystemType ?clsType .
+                FILTER (?clsType  != <http://data.europa.eu/949/concepts/contact-line-systems/10>) .			
+                FILTER EXISTS {$this era:hasPhaseSeparation ?value} . 
+            }
+			""" .
+
+# 1.1.1.2.3.4	contactStripMaterial applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:contactStripMaterialApplicability .
+era-sh:contactStripMaterialApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:contactStripMaterial;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Indication of which contact strip materials are permitted to be used.";
+	era:rinfIndex "1.1.1.2.3.4" ;
+	sh:severity sh:Violation ;
+    sh:message "contactStripMaterial (1.1.1.2.3.4): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:contactLineSystem ?cls .
+                ?cls era:contactLineSystemType ?clsType .
+                FILTER (?clsType  != <http://data.europa.eu/949/concepts/contact-line-systems/10>) .			
+                FILTER EXISTS {$this era:contactStripMaterial ?value} . 
+            }
+			""" .
+
+# 1.1.1.2.3.2	otherPantographHead applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:otherPantographHeadApplicability .
+era-sh:otherPantographHeadApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:otherPantographHead;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Indication of pantograph heads which are allowed to be used.";
+	era:rinfIndex "1.1.1.2.3.2" ;
+	sh:severity sh:Violation ;
+    sh:message "otherPantographHead (1.1.1.2.3.2): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:contactLineSystem ?cls .
+                ?cls era:contactLineSystemType ?clsType .
+                FILTER (?clsType  != <http://data.europa.eu/949/concepts/contact-line-systems/10>) .			
+                FILTER EXISTS {$this era:otherPantographHead ?value} . 
+            }
+			""" .
+
+# 1.1.1.2.4.2.1	hasSystemSeparation applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:hasSystemSeparationApplicability .
+era-sh:hasSystemSeparationApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:hasSystemSeparation;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Indication of existence of system separation.";
+	era:rinfIndex "1.1.1.2.4.2.1" ;
+	sh:severity sh:Violation ;
+    sh:message "hasSystemSeparation (1.1.1.2.4.2.1): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:contactLineSystem ?cls .
+                ?cls era:contactLineSystemType ?clsType .
+                FILTER (?clsType  != <http://data.europa.eu/949/concepts/contact-line-systems/10>) .		
+                FILTER EXISTS {$this era:hasSystemSeparation ?value} . 
+            }
+			""" .
+
+# 1.1.1.2.5.2	permittedContactForce applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:permittedContactForceApplicability .
+era-sh:permittedContactForceApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:permittedContactForce;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Indication of contact force allowed expressed in newton.";
+	era:rinfIndex "1.1.1.2.5.2" ;
+	sh:severity sh:Violation ;
+    sh:message "permittedContactForce (1.1.1.2.5.2): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:contactLineSystem ?cls .
+                ?cls era:contactLineSystemType ?clsType .
+                FILTER (?clsType  != <http://data.europa.eu/949/concepts/contact-line-systems/10>) .		
+                FILTER EXISTS {$this era:permittedContactForce ?value} . 
+            }
+			""" .
+
+# 1.1.1.2.5.3	automaticDroppingDeviceRequired applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:automaticDroppingDeviceRequiredApplicability .
+era-sh:automaticDroppingDeviceRequiredApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:automaticDroppingDeviceRequired;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Indication of whether an automatic dropping device (ADD) required on the vehicle.";
+	era:rinfIndex "1.1.1.2.5.3" ;
+	sh:severity sh:Violation ;
+    sh:message "automaticDroppingDeviceRequired (1.1.1.2.5.3): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:contactLineSystem ?cls .
+                FILTER (?clsType  != <http://data.europa.eu/949/concepts/contact-line-systems/10>) .			
+                FILTER EXISTS {$this era:automaticDroppingDeviceRequired ?value} . 
+            }
+			""" .
+
+# 1.1.1.2.5.1	currentLimitationRequired applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:currentLimitationRequiredApplicability .
+era-sh:currentLimitationRequiredApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:currentLimitationRequired;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Indication of whether an on board current or power limitation function on vehicles is required.";
+	era:rinfIndex "1.1.1.2.5.1" ;
+	sh:severity sh:Violation ;
+    sh:message "currentLimitationRequired (1.1.1.2.5.1): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: When 'not electrified' is chosen in parameter 1.1.1.2.2.1.1, then this parameter is not applicable selection ‘N’."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:contactLineSystem ?cls .
+                FILTER (?clsType  = <http://data.europa.eu/949/concepts/contact-line-systems/40>) .			
+                FILTER EXISTS {$this era:currentLimitationRequired ?value} . 
+            }
+			""" .
+
+# 1.1.1.1.4.4	hasBallast aaplicability
+era-sh:SectionOfLineShape sh:sparql era-sh:hasBallastApplicability .
+era-sh:hasBallastApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:hasBallast;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Specifies whether track construction is with sleepers embedded in ballast or not.";
+	era:rinfIndex "1.1.1.1.4.4" ;
+	sh:severity sh:Violation ;
+    sh:message "hasBallast (1.1.1.1.4.4): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: Y for tracks with permitted speed (parameter 1.1.1.1.2.5) greater than 250km/h."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:maximumPermittedSpeed ?mps .
+                FILTER (?mps > 250) .			
+                FILTER NOT EXISTS {$this era:hasBallast ?value} . 
+            }
+			""" .
+
+# 1.1.1.1.6.5	magneticBrakingConditionsDocument applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:magneticBrakingConditionsDocumentApplicability .
+era-sh:magneticBrakingConditionsDocumentApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:magneticBrakingConditionsDocument;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency with conditions for the use of magnetic brakes identified in 1.1.1.1.6.3.";
+	era:rinfIndex "1.1.1.1.6.5" ;
+	sh:severity sh:Violation ;
+    sh:message "magneticBrakingConditionsDocument (1.1.1.1.6.5): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: Y if the answer to 1.1.1.1.6.3 / Use of magnetic brakes is “allowed under conditions” or “allowed under conditions only for emergency brake”."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:magneticBraking ?mb .
+                FILTER (?mb = <http://data.europa.eu/949/concepts/magnetic-braking/20> || ?mb = <http://data.europa.eu/949/concepts/magnetic-braking/30> ) .		
+                FILTER NOT EXISTS {$this era:magneticBrakingConditionsDocument ?value} . 
+            }
+			""" .
+
+# 1.1.1.1.2.1.2	tenGISId applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:tenGISIdApplicability .
+era-sh:tenGISIdApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:tenGISId;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Indication of the GIS identity (GIS ID) of the section of TEN-T database to which the track belongs.";
+	era:rinfIndex "1.1.1.1.2.1.2" ;
+	sh:severity sh:Violation ;
+    sh:message "tenGISId (1.1.1.1.2.1.2): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: Y if the answer to parameter 1.1.1.1.2.1 is not off TEN."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:tenClassification ?tc .
+                FILTER (?tc != <http://data.europa.eu/949/concepts/ten-classifications/40>) .		
+                FILTER NOT EXISTS {$this era:tenGISId ?value} . 
+            }
+			""" .
+
+# 1.1.1.3.11.3	additionalBrakingInformationDocument applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:additionalBrakingInformationDocumentApplicability .
+era-sh:additionalBrakingInformationDocumentApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:additionalBrakingInformationDocument;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency providing additional information as defined in point (2) of point 4.2.2.6.2 of TSI OPE.";
+	era:rinfIndex "1.1.1.3.11.3" ;
+	sh:severity sh:Violation ;
+    sh:message "additionalBrakingInformationDocument (1.1.1.3.11.3): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: Y in case of Y for 1.1.1.3.11.2."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:hasAdditionalBrakingInformation "1"^^xsd:boolean .		
+                FILTER NOT EXISTS {$this era:additionalBrakingInformationDocument ?value} . 
+            }
+			""" .
+
+# 1.1.1.1.6.4	eddyCurrentBrakingConditionsDocument applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:eddyCurrentBrakingConditionsDocumentApplicability .
+era-sh:eddyCurrentBrakingConditionsDocumentApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:eddyCurrentBrakingConditionsDocument;
+    era:affectedClass era:Track;
+    era:scope "local";
+	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency with conditions for the use of eddy current brakes identified in 1.1.1.1.6.2.";
+	era:rinfIndex "1.1.1.1.6.4" ;
+	sh:severity sh:Violation ;
+    sh:message "eddyCurrentBrakingConditionsDocument (1.1.1.1.6.4): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: Y in case of Y for 1.1.1.1.6.2 Use of eddy current brakes is “allowed under conditions” or “allowed under conditions only for emergency brake””."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:eddyCurrentBraking ?ecb .
+                FILTER (?ecb = <http://data.europa.eu/949/concepts/magnetic-braking/20> || ?ecb = <http://data.europa.eu/949/concepts/magnetic-braking/40> ) .		
+                FILTER NOT EXISTS {$this era:eddyCurrentBrakingConditionsDocument ?value} . 
+            }
+			""" .
 
 
 
