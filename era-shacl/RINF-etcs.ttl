@@ -350,9 +350,7 @@ era-sh:etcsSystemCompatibilitySKOS
     WHERE {
         $this era:etcsSystemCompatibility ?concept .
         era:etcsSystemCompatibility era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
+		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
 	}
 """ .
 

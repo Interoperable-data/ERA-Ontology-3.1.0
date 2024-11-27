@@ -64,9 +64,7 @@ era-sh:TrainDetectionSystemTypeSKOS
         OPTIONAL {$this rdfs:label ?tdsLabel} .
         $this era:trainDetectionSystemType ?concept .
         era:trainDetectionSystemType era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
+		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
 	}
 """ .
 

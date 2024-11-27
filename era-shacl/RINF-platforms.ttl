@@ -178,9 +178,7 @@ era-sh:PlatformHeightSKOS
         OPTIONAL {$this rdfs:label ?label} .
         $this era:platformHeight ?concept .
         era:platformHeight era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
+		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
 	}
 """ .
 

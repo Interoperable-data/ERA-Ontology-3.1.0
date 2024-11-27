@@ -175,9 +175,7 @@ era-sh:GaugingProfileSKOS
         OPTIONAL {$this rdfs:label ?trackLabel} .
         $this era:gaugingProfile ?concept .
         era:gaugingProfile era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
+		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
 	}
 """ .
 
@@ -253,9 +251,7 @@ era-sh:WheelSetGaugeSKOS
         OPTIONAL {$this rdfs:label ?trackLabel} .
         $this era:wheelSetGauge ?concept .
         era:wheelSetGauge era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
+		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
 	}
 """ .
 
@@ -926,9 +922,7 @@ era-sh:gsmrNetworkCoverageSKOS
         OPTIONAL {$this rdfs:label ?trackLabel} .
         $this era:gsmrNetworkCoverage ?concept .
         era:gsmrNetworkCoverage era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
+		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
 	}
 """ .
 
@@ -985,9 +979,7 @@ era-sh:gsmRVersionSKOS
         OPTIONAL {$this rdfs:label ?trackLabel} .
         $this era:gsmRVersion ?concept .
         era:gsmRVersion era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
+		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
 	}
 """ .
 
@@ -1301,9 +1293,7 @@ era-sh:legacyRadioSystemSKOS
         OPTIONAL {$this rdfs:label ?trackLabel} .
         $this era:legacyRadioSystem ?concept .
         era:legacyRadioSystem era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
+		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
 	}
 """ .
 
@@ -1550,9 +1540,7 @@ era-sh:dataRadioCompatibleSKOS
         OPTIONAL {$this rdfs:label ?trackLabel} .
         $this era:dataRadioCompatible ?concept .
         era:dataRadioCompatible era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
+		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
 	}
 """ .
 
@@ -1593,9 +1581,7 @@ era-sh:voiceRadioCompatibleSKOS
         OPTIONAL {$this rdfs:label ?trackLabel} .
         $this era:voiceRadioCompatible ?concept .
         era:voiceRadioCompatible era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
+		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
 	}
 """ .
 
