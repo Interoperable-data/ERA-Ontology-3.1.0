@@ -2300,6 +2300,16 @@ era:hasImplementation rdf:type owl:ObjectProperty ;
                       vs:term_status "stable" .
 
 
+###  http://data.europa.eu/949/hasLRS
+era:hasLRS rdf:type owl:ObjectProperty ;
+           rdfs:domain era:LinearPositioningSystemCoordinate ;
+           rdfs:range era:LinearPositioningSystem ;
+           dcterms:created "2024-11-29"^^xsd:date ;
+           rdfs:comment "The linear referencing system on which the coordinate is applied."@en ;
+           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+           rdfs:label "has linear referencing system"@en .
+
+
 ###  http://data.europa.eu/949/hasLrsCoordinate
 era:hasLrsCoordinate rdf:type owl:ObjectProperty ;
                      rdfs:domain era:TopologicalCoordinate ;
@@ -7605,7 +7615,7 @@ era:kilometerNumber rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/kilometerPostName
 era:kilometerPostName rdf:type owl:DatatypeProperty ;
-                      rdfs:domain era:LinearPositioningSystem ;
+                      rdfs:domain era:LinearPositioningSystemCoordinate ;
                       rdfs:range xsd:string ;
                       dcterms:created "2024-11-29"^^xsd:date ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -9039,7 +9049,7 @@ era:oclType rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/offsetFromKilometricPost
 era:offsetFromKilometricPost rdf:type owl:DatatypeProperty ;
-                             rdfs:domain era:LinearPositioningSystem ;
+                             rdfs:domain era:LinearPositioningSystemCoordinate ;
                              rdfs:range xsd:double ;
                              dcterms:created "2024-11-29"^^xsd:date ;
                              era:unitOfMeasure unit:M ;
