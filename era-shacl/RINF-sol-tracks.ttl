@@ -63,7 +63,7 @@ era-sh:NoRepeatedTrackIdsSoL
     a sh:SPARQLConstraint ; 
     era:affectedProperty era:trackId;
     era:affectedClass  era:SectionOfLine;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "global";
     rdfs:comment "Each track shall have unique identification or number within the SoL. This number cannot be used for naming any other track in the same SoL." ;
     era:rinfIndex "1.1.1.0.0.1" ;
@@ -91,7 +91,7 @@ era-sh:NoRepeatedTrackIdsSoL
  era-sh:SoLTrackDirectionMinCount 
     a sh:SPARQLConstraint ; 
     era:affectedProperty era:trackDirection;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:affectedClass era:SectionOfLine;
     era:scope "local";   
     rdfs:comment "The normal running direction is: 1) the same as the direction defined by the start and end of the SoL 2) the opposite to the direction defined by the start and end of the SoL 3) both directions defined for SoL." ;
@@ -115,7 +115,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:SoLTrackDirectionMaxCount.
 era-sh:SoLTrackDirectionMaxCount 
    a sh:SPARQLConstraint ;
    era:affectedProperty era:trackDirection;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:affectedClass era:SectionOfLine;
     era:scope "local";   
    rdfs:comment "The normal running direction is: 1) the same as the direction defined by the start and end of the SoL 2) the opposite to the direction defined by the start and end of the SoL 3) both directions defined for SoL." ;
@@ -143,7 +143,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:TrackDirectionSKOS.
 era-sh:TrackDirectionSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:trackDirection;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";  
     rdfs:comment "The normal running direction is: 1) the same as the direction defined by the start and end of the SoL 2) the opposite to the direction defined by the start and end of the SoL 3) both directions defined for SoL." ;
 	era:rinfIndex "1.1.1.0.0.2" ;
@@ -176,7 +176,7 @@ era-sh:SectionOfLineShape sh:property era-sh:TenGISId.
 era-sh:TenGISId
 	a sh:PropertyShape ; 
     era:affectedProperty era:tenGISId;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local"; 
 	rdfs:comment "Indication of the GIS identity (GIS ID) of the section of TEN-T database to which the track belongs." ;
 	era:rinfIndex "1.1.1.1.2.1.2" ;
@@ -191,7 +191,7 @@ era-sh:TenGISId
  era-sh:LoadCapabilitySpeed
 	a sh:PropertyShape ; 
     era:affectedProperty era:loadCapabilitySpeed;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:affectedClass  era:LoadCapability;
     era:scope "local";   
 	rdfs:comment "Load capability is a combination of the line category and speed at the weakest point of the track.";
@@ -207,7 +207,7 @@ era-sh:TenGISId
  era-sh:LoadCapabilityLineCategory
 	a sh:PropertyShape ; 
     era:affectedProperty era:loadCapabilityLineCategory;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:affectedClass  era:LoadCapability;
     era:scope "local";   
 	rdfs:comment "Load capability is a combination of the line category and speed at the weakest point of the track.";
@@ -223,7 +223,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:LoadCapabilityLineCategorySKOS.
 era-sh:LoadCapabilityLineCategorySKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:loadCapabilityLineCategory;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:affectedClass  era:LoadCapability;
     era:scope "local";   
     rdfs:comment "Load capability is a combination of the line category and speed at the weakest point of the track.";
@@ -253,7 +253,7 @@ era-sh:SectionOfLineShape sh:property era-sh:NationalLoadCapability.
 era-sh:NationalLoadCapability
 	a sh:PropertyShape ; 
     era:affectedProperty era:nationalLoadCapability;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";   
 	rdfs:comment "National classification for load capability." ;
 	era:rinfIndex "1.1.1.1.2.4.1" ;
@@ -267,7 +267,7 @@ era-sh:SectionOfLineShape sh:property era-sh:HighSpeedLoadModelCompliance.
 era-sh:HighSpeedLoadModelCompliance
 	a sh:PropertyShape ; 
     era:affectedProperty era:highSpeedLoadModelCompliance;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";    
 	rdfs:comment "National classification for load capability." ;
 	rdfs:comment "For sections of line with a maximum permitted speed of 200km/h or more information regarding the procedure to be used to perform the dynamic compatibility check" ;
@@ -283,7 +283,7 @@ era-sh:SectionOfLineShape sh:property era-sh:StructureCheckLocation.
 era-sh:StructureCheckLocation
 	a sh:PropertyShape ; 
     era:affectedProperty era:structureCheckLocation;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";  
 	rdfs:comment "Localisation of structures requiring specific checks." ;
 	era:rinfIndex "1.1.1.1.2.4.3" ;
@@ -298,7 +298,7 @@ era-sh:SectionOfLineShape sh:property era-sh:CompatibilityProcedureDocument.
 era-sh:CompatibilityProcedureDocument
 	a sh:PropertyShape ; 
     era:affectedProperty era:compatibilityProcedureDocument;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";  
 	rdfs:comment "Document with the procedure for static and dynamic compatibility checks." ;
 	era:rinfIndex "1.1.1.1.2.4.4" ;
@@ -312,7 +312,7 @@ era-sh:SectionOfLineShape sh:property era-sh:MaximumPermittedSpeed.
 era-sh:MaximumPermittedSpeed
 	a sh:PropertyShape ; 
     era:affectedProperty era:maximumPermittedSpeed;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";   
 	rdfs:comment "Maximum permitted speed." ;
 	era:rinfIndex "1.1.1.1.2.5" ;
@@ -329,7 +329,7 @@ era-sh:SectionOfLineShape sh:property era-sh:TemperatureRange.
 era-sh:TemperatureRange
 	a sh:PropertyShape ; 
     era:affectedProperty era:temperatureRange;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";   
 	rdfs:comment "Indication of the temperature range of track." ;
 	era:rinfIndex "1.1.1.1.2.6" ;
@@ -344,7 +344,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:TemperatureRangeSKOS.
 era-sh:TemperatureRangeSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:temperatureRange;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";    
     rdfs:comment "Indication of the temperature range of track." ;
 	era:rinfIndex "1.1.1.1.2.6" ;
@@ -371,7 +371,7 @@ era-sh:SectionOfLineShape sh:property era-sh:MaximumAltitude.
 era-sh:MaximumAltitude
 	a sh:PropertyShape ; 
     era:affectedProperty era:maximumAltitude;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";    
 	rdfs:comment "Highest point of the section of line above sea level in reference to Normal Amsterdam's Peil (NAP)." ;
 	era:rinfIndex "1.1.1.1.2.7" ;
@@ -388,7 +388,7 @@ era-sh:SectionOfLineShape sh:property era-sh:HasSevereWeatherConditions.
 era-sh:HasSevereWeatherConditions
 	a sh:PropertyShape ; 
     era:affectedProperty era:hasSevereWeatherConditions;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";    
 	rdfs:comment "Climatic conditions on the line are severe according to European standard." ;
 	era:rinfIndex "1.1.1.1.2.8" ;
@@ -404,7 +404,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:ProfileNumberSwapBodiesSKOS.
 era-sh:ProfileNumberSwapBodiesSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:profileNumberSwapBodies;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";
     rdfs:comment "Coding for combined transport with swap bodies as defined in UIC Code." ;
 	era:rinfIndex "1.1.1.1.3.4" ;
@@ -432,7 +432,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:ProfileNumberSemiTrailersSKOS.
 era-sh:ProfileNumberSemiTrailersSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:profileNumberSemiTrailers;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";  
     rdfs:comment "Coding for combined transport with semi-trailers as defined in UIC Code." ;
 	era:rinfIndex "1.1.1.1.3.5" ;
@@ -461,7 +461,7 @@ era-sh:SectionOfLineShape sh:property era-sh:SpecificInformation.
 era-sh:SpecificInformation
 	a sh:PropertyShape ; 
     era:affectedProperty era:specificInformation;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";
     
 	rdfs:comment "Any specific information from the IM." ;
@@ -476,7 +476,7 @@ era-sh:SectionOfLineShape sh:property era-sh:GradientProfile.
 era-sh:GradientProfile
 	a sh:PropertyShape ; 
     era:affectedProperty era:gradientProfile;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";    
 	rdfs:comment "Sequence of gradient values and locations of change in gradient." ;
 	era:rinfIndex "1.1.1.1.3.6" ;
@@ -492,7 +492,7 @@ era-sh:SectionOfLineShape sh:property era-sh:MinimumHorizontalRadius.
 era-sh:MinimumHorizontalRadius
 	a sh:PropertyShape ; 
     era:affectedProperty era:minimumHorizontalRadius;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";
     
 	rdfs:comment "Radius of the smallest horizontal curve of the track in meters." ;
@@ -511,7 +511,7 @@ era-sh:SectionsOfLineShape sh:property era-sh:CantDeficiency.
 era-sh:CantDeficiency
 	a sh:PropertyShape ; 
     era:affectedProperty era:cantDeficiency;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";
     
 	rdfs:comment "Maximum cant deficiency expressed in millimeters defined as difference between the applied cant and a higher equilibrium cant the line has been designed for." ;
@@ -529,7 +529,7 @@ era-sh:SectionOfLineShape sh:property era-sh:RailInclination.
 era-sh:RailInclination
 	a sh:PropertyShape ; 
     era:affectedProperty era:railInclination;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";
     
 	rdfs:comment "An angle defining the inclination of the head of a rail relatie to the running surface." ;
@@ -545,7 +545,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:RailInclinationSKOS.
 era-sh:RailInclinationSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:railInclination;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";
     
     rdfs:comment "An angle defining the inclination of the head of a rail relatie to the running surface." ;
@@ -572,7 +572,7 @@ era-sh:SectionOfLineShape sh:property era-sh:HasBallast.
 era-sh:HasBallast
 	a sh:PropertyShape ; 
     era:affectedProperty era:hasBallast ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";    
 	rdfs:comment "Specifies whether the track construction is with sleepers embedded in ballast or not." ;
 	era:rinfIndex "1.1.1.1.4.4" ;
@@ -587,7 +587,7 @@ era-sh:SectionOfLineShape sh:property era-sh:TSISwitchCrossing.
 era-sh:TSISwitchCrossing
 	a sh:PropertyShape ; 
     era:affectedProperty era:tsiSwitchCrossing ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";    
 	rdfs:comment "Switches and crossings are maintained to in service limit dimension as specified in TSI." ;
 	era:rinfIndex "1.1.1.1.5.1" ;
@@ -602,7 +602,7 @@ era-sh:SectionOfLineShape sh:property era-sh:MinimumWheelDiameter.
 era-sh:MinimumWheelDiameter
 	a sh:PropertyShape ; 
     era:affectedProperty era:minimumWheelDiameter ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";   
 	rdfs:comment "Maximum unguided length of fixed obtuse crossings is based on a minimum wheel diameter in service expressed in millimiters." ;
 	era:rinfIndex "1.1.1.1.5.2" ;
@@ -618,7 +618,7 @@ era-sh:SectionOfLineShape sh:property era-sh:MaximumTrainDeceleration.
 era-sh:MaximumTrainDeceleration
 	a sh:PropertyShape ; 
     era:affectedProperty era:maximumTrainDeceleration ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";   
 	rdfs:comment "Limit for longitudinal track resistance given as a maximum allowed train deceleration and expressed in m/s2." ;
 	era:rinfIndex "1.1.1.1.6.1" ;
@@ -635,7 +635,7 @@ era-sh:SectionOfLineShape sh:property era-sh:EddyCurrentBraking.
 era-sh:EddyCurrentBraking
 	a sh:PropertyShape ; 
     era:affectedProperty era:eddyCurrentBraking ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";  
 	rdfs:comment "Indication of limitations on the use of eddy current brakes." ;	
     era:rinfIndex "1.1.1.1.6.2" ;	
@@ -650,7 +650,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:EddyCurrentBrakingSKOS.
 era-sh:EddyCurrentBrakingSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:eddyCurrentBraking ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";
     rdfs:comment "Indication of limitations on the use of eddy current brakes." ;
 	era:rinfIndex "1.1.1.1.6.2" ;
@@ -683,7 +683,7 @@ era-sh:SectionOfLineShape sh:property era-sh:MagneticBraking.
 era-sh:MagneticBraking
 	a sh:PropertyShape ; 
     era:affectedProperty era:magneticBraking ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";
    
 	rdfs:comment "Indication of limitations of the use of magnetic brakes." ;
@@ -699,7 +699,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:MagneticBrakingSKOS.
 era-sh:MagneticBrakingSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:magneticBraking ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";    
     rdfs:comment "Indication of limitations of the use of magnetic brakes" ;
 	era:rinfIndex "1.1.1.1.6.3" ;
@@ -728,7 +728,7 @@ era-sh:SectionOfLineShape sh:property era-sh:EddyCurrentBrakingConditionsDocumen
 era-sh:EddyCurrentBrakingConditionsDocument
 	a sh:PropertyShape ; 
     era:affectedProperty era:eddyCurrentBrakingConditionsDocument ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";   
 	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency with conditions for the use of eddy current brakes identified in 1.1.1.1.6.2." ;
 	era:rinfIndex "1.1.1.1.6.4" ;
@@ -742,7 +742,7 @@ era-sh:SectionOfLineShape sh:property era-sh:MagneticBrakingConditionsDocument.
 era-sh:MagneticBrakingConditionsDocument
 	a sh:PropertyShape ; 
     era:affectedProperty era:magneticBrakingConditionsDocument ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";   
 	rdfs:comment "Electronic documents available in two EU languages from the IM stored by the Agency with conditions for the use of magnetic brakes identified in 1.1.1.1.6.3." ;
 	era:rinfIndex "1.1.1.1.6.5" ;
@@ -756,7 +756,7 @@ era-sh:SectionOfLineShape sh:property era-sh:FlangeLubeForbidden.
 era-sh:FlangeLubeForbidden
 	a sh:PropertyShape ; 
     era:affectedProperty era:flangeLubeForbidden ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";  
 	rdfs:comment "Indication whether the use of on-board device for flange lubrication is forbidden." ;
 	era:rinfIndex "1.1.1.1.7.1" ;
@@ -771,7 +771,7 @@ era-sh:SectionOfLineShape sh:property era-sh:HasLevelCrossings.
 era-sh:HasLevelCrossings
 	a sh:PropertyShape ; 
     era:affectedProperty era:hasLevelCrossings ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";  
 	rdfs:comment "Indication whether level crossings (including pedestrian track crossing) exist onf the section line." ;
 	era:rinfIndex "1.1.1.1.7.2" ;
@@ -786,7 +786,7 @@ era-sh:SectionOfLineShape sh:property era-sh:AccelerationLevelCrossing.
 era-sh:AccelerationLevelCrossing
 	a sh:PropertyShape ; 
     era:affectedProperty era:accelerationLevelCrossing ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";   
 	rdfs:comment "Existence of limit for acceleration of train if stopping or recovering speed close to a level crossing expressed in a specific reference acceleration curve." ;
 	era:rinfIndex "1.1.1.1.7.3" ;
@@ -801,7 +801,7 @@ era-sh:SectionOfLineShape sh:property era-sh:HasHotAxleBoxDetector.
 era-sh:HasHotAxleBoxDetector
 	a sh:PropertyShape ; 
     era:affectedProperty era:hasHotAxleBoxDetector ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";    
 	rdfs:comment "Existence of trackside hot axle box detector." ;
 	era:rinfIndex "1.1.1.1.7.4" ;
@@ -816,7 +816,7 @@ era-sh:SectionOfLineShape sh:property era-sh:HotAxleBoxDetectorTSICompliant.
 era-sh:HotAxleBoxDetectorTSICompliant
 	a sh:PropertyShape ; 
     era:affectedProperty era:hotAxleBoxDetectorTSICompliant ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";  
 	rdfs:comment "Trackside HABD compilant to TSI means that the HABD is compliant with EN 15437:2009 and specific cases mentioned in TSIs." ;
 	era:rinfIndex "1.1.1.1.7.5" ;
@@ -831,7 +831,7 @@ era-sh:SectionOfLineShape sh:property era-sh:HotAxleBoxDetectorIdentification.
 era-sh:HotAxleBoxDetectorIdentification
 	a sh:PropertyShape ; 
     era:affectedProperty era:hotAxleBoxDetectorIdentification ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";    
 	rdfs:comment "Applicable if trackside HABD is not TSI compliant. Identification of the trackside HABD." ;
 	era:rinfIndex "1.1.1.1.7.6" ;
@@ -846,7 +846,7 @@ era-sh:SectionOfLineShape sh:property era-sh:HotAxleBoxDetectorGeneration.
 era-sh:HotAxleBoxDetectorGeneration
 	a sh:PropertyShape ; 
     era:affectedProperty era:hotAxleBoxDetectorGeneration ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";   
 	rdfs:comment "Applicable if trackside HABD is not TSI compliant. Generation of the trackside HABD." ;
 	era:rinfIndex "1.1.1.1.7.7" ;
@@ -861,7 +861,7 @@ era-sh:SectionOfLineShape sh:property era-sh:HotAxleBoxDetectorLocation.
 era-sh:HotAxleBoxDetectorLocation
 	a sh:PropertyShape ; 
     era:affectedProperty era:hotAxleBoxDetectorLocation  ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";   
 	rdfs:comment "Applicable if trackside HABD is not TSI compliant. Location of the trackside HABD." ;
 	era:rinfIndex "1.1.1.1.7.8" ;
@@ -876,7 +876,7 @@ era-sh:SectionOfLineShape sh:property era-sh:HotAxleBoxDetectorDirection.
 era-sh:HotAxleBoxDetectorDirection
 	a sh:PropertyShape ; 
     era:affectedProperty era:hotAxleBoxDetectorDirection  ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Direction of measurement of the trackside HABD." ;
 	era:rinfIndex "1.1.1.1.7.9" ;
@@ -891,7 +891,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:HotAxleBoxDetectorDirectionSKOS.
 era-sh:HotAxleBoxDetectorDirectionSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hotAxleBoxDetectorDirection  ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";
     
     rdfs:comment "Direction of measurement of the trackside HABD." ;
@@ -922,7 +922,7 @@ era-sh:SectionOfLineShape sh:property era-sh:RedLightsRequired.
 era-sh:RedLightsRequired
 	a sh:PropertyShape ; 
     era:affectedProperty era:redLightsRequired  ;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";   
 	rdfs:comment "Sections where two steady red lights are required in accordance with Implementing Regulations (EU) 2019/773." ;
 	era:rinfIndex "1.1.1.1.7.10" ;
@@ -935,7 +935,7 @@ era-sh:RedLightsRequired
 # isQuietRoute: # 1.1.1.1.7.11
 era-sh:SectionOfLineShape sh:property era-sh:IsQuietRoute.
 era-sh:IsQuietRoute
-	a sh:PropertyShape ; era:affectedProperty era:isQuietRoute  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:isQuietRoute  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Belonging to a 'quiet route' in accordance with Article 5b of Regulation (EU) 1304/2014." ;
 	era:rinfIndex "1.1.1.1.7.11" ;
 	sh:path (era:hasPart era:isQuietRoute) ;	
@@ -947,7 +947,7 @@ era-sh:IsQuietRoute
 # verificationENE: # 1.1.1.2.1.1
 era-sh:SectionOfLineShape sh:property era-sh:VerificationENE.
 era-sh:VerificationENE
-	a sh:PropertyShape ; era:affectedProperty era:verificationENE  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:verificationENE  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Unique number for EC declarations following format requirements specified in the 'Document about practical arrangents for transmitting interoperability documents' ." ;
 	era:rinfIndex "1.1.1.2.1.1" ;
 	sh:path (era:hasPart era:verificationENE) ;
@@ -960,7 +960,7 @@ era-sh:VerificationENE
 # demonstrationENE: #1.1.1.2.1.2
 era-sh:SectionOfLineShape sh:property era-sh:DemonstrationENE.
 era-sh:DemonstrationENE
-	a sh:PropertyShape ; era:affectedProperty era:demonstrationENE  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:demonstrationENE  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Unique number for EI declarations following the same format requirements as specified in the 'Document about practical arrangents for transmitting interoperability documents'." ;
 	era:rinfIndex "1.1.1.2.1.2" ;
 	sh:path (era:hasPart era:demonstrationENE) ;
@@ -972,7 +972,7 @@ era-sh:DemonstrationENE
 # maximumContactWireHeight: # 1.1.1.2.2.5 
 era-sh:SectionOfLineShape sh:property era-sh:MaximumContactWireHeight.
 era-sh:MaximumContactWireHeight
-	a sh:PropertyShape ; era:affectedProperty era:maximumContactWireHeight  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:maximumContactWireHeight  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication of the maximum contact wire height expressed in meters." ;
 	era:rinfIndex "1.1.1.2.2.5" ;
 	sh:path (era:hasPart era:maximumContactWireHeight) ;
@@ -986,7 +986,7 @@ era-sh:MaximumContactWireHeight
 # minimumContactWireHeight: # 1.1.1.2.2.6
 era-sh:SectionOfLineShape sh:property era-sh:MinimumContactWireHeight.
 era-sh:MinimumContactWireHeight
-	a sh:PropertyShape ; era:affectedProperty era:minimumContactWireHeight  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:minimumContactWireHeight  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication of the minimum contact wire height expressed in meters." ;
 	era:rinfIndex "1.1.1.2.2.6" ;
 	sh:path (era:hasPart era:minimumContactWireHeight) ;
@@ -1001,7 +1001,7 @@ era-sh:MinimumContactWireHeight
 era-sh:SectionOfLineShape sh:sparql era-sh:TsiPantographHeadSKOS.
 era-sh:TsiPantographHeadSKOS
 	a sh:SPARQLConstraint ;
-    era:affectedProperty era:tsiPantographHead  ;     era:affectedClass  era:Track;     era:scope "local";     
+    era:affectedProperty era:tsiPantographHead  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     rdfs:comment "Accepted TSI compliant pantograph heads." ;
 	era:rinfIndex "1.1.1.2.3.1" ;
 	sh:severity sh:Violation ;
@@ -1026,7 +1026,7 @@ era-sh:TsiPantographHeadSKOS
 era-sh:SectionOfLineShape sh:sparql era-sh:OtherPantographHeadSKOS.
 era-sh:OtherPantographHeadSKOS
 	a sh:SPARQLConstraint ;
-    era:affectedProperty era:otherPantographHea  ;     era:affectedClass  era:Track;     era:scope "local";     
+    era:affectedProperty era:otherPantographHea  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     rdfs:comment "Indication of which other pantograph heads are allowed to be used." ;
 	era:rinfIndex "1.1.1.2.3.2" ;
 	sh:severity sh:Violation ;
@@ -1051,7 +1051,7 @@ era-sh:OtherPantographHeadSKOS
 # raisedPantographsDistance: # 1.1.1.2.3.3
  era-sh:SectionOfLineShape sh:property era-sh:RaisedPantographsDistance.
  era-sh:RaisedPantographsDistance
-	a sh:PropertyShape ; era:affectedProperty era:raisedPantographsDistance  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:raisedPantographsDistance  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     era:affectedClass  era:RaisedPantographsDistanceAndSpeed;
 	rdfs:comment "Indication of maximum number of raised pantographs per train allowed and minumum spacing centre line to centre line of adjacent pantograph heads, expressed in meters, at the given speed." ;
 	era:rinfIndex "1.1.1.2.3.3" ;
@@ -1064,7 +1064,7 @@ era-sh:OtherPantographHeadSKOS
 # raisedPantographsSpeed: # 1.1.1.2.3.3
  era-sh:SectionOfLineShape sh:property era-sh:RaisedPantographsSpeed.
  era-sh:RaisedPantographsSpeed
-	a sh:PropertyShape ; era:affectedProperty era:raisedPantographsSpeed  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:raisedPantographsSpeed  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     era:affectedClass  era:RaisedPantographsDistanceAndSpeed;
 	rdfs:comment "Indication of maximum number of raised pantographs per train allowed and minumum spacing centre line to centre line of adjacent pantograph heads, expressed in meters, at the given speed." ;
 	era:rinfIndex "1.1.1.2.3.3" ;
@@ -1077,7 +1077,7 @@ era-sh:OtherPantographHeadSKOS
 # raisedPantographsNumber: # 1.1.1.2.3.3
  era-sh:SectionOfLineShape sh:property era-sh:RaisedPantographsNumber.
  era-sh:RaisedPantographsNumber
-	a sh:PropertyShape ; era:affectedProperty era:raisedPantographsNumber  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:raisedPantographsNumber  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     era:affectedClass  era:RaisedPantographsDistanceAndSpeed;
 	rdfs:comment "Indication of maximum number of raised pantographs per train allowed and minumum spacing centre line to centre line of adjacent pantograph heads, expressed in meters, at the given speed." ;
 	era:rinfIndex "1.1.1.2.3.3" ;
@@ -1092,7 +1092,7 @@ era-sh:OtherPantographHeadSKOS
 era-sh:SectionOfLineShape sh:sparql era-sh:ContactStripMaterialSKOS.
 era-sh:ContactStripMaterialSKOS
 	a sh:SPARQLConstraint ;
-era:affectedProperty era:contactStripMaterial  ;     era:affectedClass  era:Track;     era:scope "local";     
+era:affectedProperty era:contactStripMaterial  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
    rdfs:comment "Indication of the material of the contact strip." ;
 	era:rinfIndex "1.1.1.2.3.4" ;
 	sh:severity sh:Violation ;
@@ -1116,7 +1116,7 @@ era:affectedProperty era:contactStripMaterial  ;     era:affectedClass  era:Trac
 # contactStripMaterialMetallicContent: # 1.1.1.2.3.4
 era-sh:SectionOfLineShape sh:property era-sh:ContactStripMaterialMetallicContent.
 era-sh:ContactStripMaterialMetallicContent
-	a sh:PropertyShape ; era:affectedProperty era:contactStripMaterialMetallicContent  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:contactStripMaterialMetallicContent  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "In case that the value of the property era:contactStripMaterial is impregnated carbon, it is the metallic content, the maximum percentage allowed." ;
 	era:rinfIndex "1.1.1.2.3.4" ;
 	sh:path (era:hasPart era:contactStripMaterialMetallicContent) ;
@@ -1127,7 +1127,7 @@ era-sh:ContactStripMaterialMetallicContent
 # phaseSeparation: # 1.1.1.2.4.1.1
  era-sh:SectionOfLineShape sh:property era-sh:hasPhaseSeparation.
  era-sh:hasPhaseSeparation
-    a sh:PropertyShape ; era:affectedProperty era:hasPhaseSeparation ;     era:affectedClass  era:Track;     era:scope "local";     
+    a sh:PropertyShape ; era:affectedProperty era:hasPhaseSeparation ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication of existence of phase separation and required information." ;
 	era:rinfIndex "1.1.1.2.4.1.1" ;
 	sh:path (era:hasPart era:hasPhaseSeparation) ;
@@ -1142,7 +1142,7 @@ era-sh:ContactStripMaterialMetallicContent
 # phaseInfoKm: # 1.1.1.2.4.1.2 
 era-sh:SectionOfLineShape sh:property era-sh:PhaseInfoKm.
  era-sh:PhaseInfoKm
-	a sh:PropertyShape ; era:affectedProperty era:phaseInfoKm  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:phaseInfoKm  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     era:affectedClass  era:PhaseInfo;
 	rdfs:comment "Indication of existence of phase separation and required information." ;
 	sh:path (era:hasPart era:trackPhaseInfo era:phaseInfoKm) ;
@@ -1155,7 +1155,7 @@ era-sh:SectionOfLineShape sh:property era-sh:PhaseInfoKm.
 # phaseInfoDistanceType: # 1.1.1.2.4.1.2 
  era-sh:SectionOfLineShape sh:property era-sh:PhaseInfoDistanceType.
  era-sh:PhaseInfoDistanceType 
-    a sh:PropertyShape ; era:affectedProperty era:phaseInfoDistanceType  ;     era:affectedClass  era:Track;     era:scope "local";     
+    a sh:PropertyShape ; era:affectedProperty era:phaseInfoDistanceType  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     era:affectedClass  era:PhaseInfo;
 	rdfs:comment "Indication of existence of phase separation and required information." ;
 	sh:path (era:hasPart era:trackPhaseInfo era:phaseInfoDistanceType) ;
@@ -1174,7 +1174,7 @@ era-sh:SectionOfLineShape sh:property era-sh:PhaseInfoKm.
 # phaseInfoLength: # 1.1.1.2.4.1.2
  era-sh:SectionOfLineShape sh:property era-sh:PhaseInfoLength.
  era-sh:PhaseInfoLength
-	a sh:PropertyShape ; era:affectedProperty era:phaseInfoLength  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:phaseInfoLength  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     era:affectedClass  era:PhaseInfo;
 	rdfs:comment "Indication of existence of phase separation and required information." ;
     era:rinfIndex "1.1.1.2.4.1.2" ;
@@ -1186,7 +1186,7 @@ era-sh:SectionOfLineShape sh:property era-sh:PhaseInfoKm.
 # phaseInfoPantographLowered: # 1.1.1.2.4.1.2
  era-sh:SectionOfLineShape sh:property era-sh:PhaseInfoPantographLowered.
  era-sh:PhaseInfoPantographLowered
-	a sh:PropertyShape ; era:affectedProperty era:phaseInfoPantographLowered  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:phaseInfoPantographLowered  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     era:affectedClass  era:PhaseInfo;
 	rdfs:comment "Indication of existence of phase separation and required information." ;
 	sh:path (era:hasPart era:trackPhaseInfo era:phaseInfoPantographLowered) ;
@@ -1199,7 +1199,7 @@ era-sh:SectionOfLineShape sh:property era-sh:PhaseInfoKm.
 # phaseInfoSwitchOffBreaker: # 1.1.1.2.4.1.2
  era-sh:SectionOfLineShape sh:property era-sh:PhaseInfoSwitchOffBreaker.
  era-sh:PhaseInfoSwitchOffBreaker
-	a sh:PropertyShape ; era:affectedProperty era:phaseInfoSwitchOffBreaker  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:phaseInfoSwitchOffBreaker  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     era:affectedClass  era:PhaseInfo;
 	rdfs:comment "Indication of existence of phase separation and required information." ;
 	sh:path (era:hasPart era:trackPhaseInfo era:phaseInfoSwitchOffBreaker) ;
@@ -1211,7 +1211,7 @@ era-sh:SectionOfLineShape sh:property era-sh:PhaseInfoKm.
 # hasSystemSeparation: # 1.1.1.2.4.2.1
 era-sh:SectionOfLineShape sh:property era-sh:HasSystemSeparation.
 era-sh:HasSystemSeparation
-	a sh:PropertyShape ; era:affectedProperty era:hasSystemSeparation  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:hasSystemSeparation  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication of existence of system separation." ;
 	era:rinfIndex "1.1.1.2.4.2.1" ;
 	sh:path (era:hasPart era:hasSystemSeparation) ;	
@@ -1224,7 +1224,7 @@ era-sh:HasSystemSeparation
 # systemSeparationInfoKm: # 1.1.1.2.4.2.2
  era-sh:SectionOfLineShape sh:property era-sh:SystemSeparationInfoKm.
  era-sh:SystemSeparationInfoKm
-	a sh:PropertyShape ; era:affectedProperty era:SystemSeparationInfoKm  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:SystemSeparationInfoKm  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     era:affectedClass  era:SystemSeparationInfo;
 	rdfs:comment "Indication of required several information on system separation." ;
 	sh:path (era:hasPart era:trackSystemSeparationInfo era:SystemSeparationInfoKm) ;
@@ -1237,7 +1237,7 @@ era-sh:HasSystemSeparation
 # systemSeparationInfoLength: # 1.1.1.2.4.2.2
  era-sh:SectionOfLineShape sh:property era-sh:SystemSeparationInfoLength.
  era-sh:SystemSeparationInfoLength
-	a sh:PropertyShape ; era:affectedProperty era:SystemSeparationInfoLength  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:SystemSeparationInfoLength  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     era:affectedClass  era:SystemSeparationInfo;
 	rdfs:comment "Indication of required several information on system separation." ;
 	sh:path (era:hasPart era:trackSystemSeparationInfo era:SystemSeparationInfoLength) ;
@@ -1249,7 +1249,7 @@ era-sh:HasSystemSeparation
  # systemSeparationInfoPantographLowered: # 1.1.1.2.4.2.2
  era-sh:SectionOfLineShape sh:property era-sh:SystemSeparationInfoPantographLowered.
  era-sh:SystemSeparationInfoPantographLowered
-	a sh:PropertyShape ; era:affectedProperty era:SystemSeparationInfoPantographLowered  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:SystemSeparationInfoPantographLowered  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     era:affectedClass  era:SystemSeparationInfo;
 	rdfs:comment "Indication of required several information on system separation." ;
 	sh:path (era:hasPart era:trackSystemSeparationInfo era:SystemSeparationInfoPantographLowered) ;
@@ -1262,7 +1262,7 @@ era-sh:HasSystemSeparation
 # systemSeparationInfoSwitchOffBreaker: # 1.1.1.2.4.2.2
  era-sh:SectionOfLineShape sh:property era-sh:SystemSeparationInfoSwitchOffBreaker.
  era-sh:SystemSeparationInfoSwitchOffBreaker
-	a sh:PropertyShape ; era:affectedProperty era:SystemSeparationInfoSwitchOffBreaker  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:SystemSeparationInfoSwitchOffBreaker  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication of required several information on system separation." ;
 	sh:path (era:hasPart era:trackSystemSeparationInfo era:SystemSeparationInfoSwitchOffBreaker) ;
     era:affectedClass  era:SystemSeparationInfo;
@@ -1275,7 +1275,7 @@ era-sh:HasSystemSeparation
 # systemSeparationInfoChangeSupplySystem: # 1.1.1.2.4.2.2
  era-sh:SectionOfLineShape sh:property era-sh:SystemSeparationInfoChangeSupplySystem.
  era-sh:SystemSeparationInfoChangeSupplySystem
-	a sh:PropertyShape ; era:affectedProperty era:SystemSeparationInfoChangeSupplySystem  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:SystemSeparationInfoChangeSupplySystem  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     era:affectedClass  era:SystemSeparationInfo;
 	rdfs:comment "Indication of required several information on system separation." ;
 	sh:path (era:hasPart era:trackSystemSeparationInfo era:SystemSeparationInfoChangeSupplySystem) ;
@@ -1289,7 +1289,7 @@ era-sh:HasSystemSeparation
 # distSignToPhaseEnd: # 1.1.1.2.4.3
 era-sh:SectionOfLineShape sh:property era-sh:DistSignToPhaseEnd.
 era-sh:DistSignToPhaseEnd
-	a sh:PropertyShape ; era:affectedProperty era:distSignToPhaseEnd  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:distSignToPhaseEnd  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Specific for route compatibility check on French network. Distance between the signboard authorizing the driver to 'raise pantograph' or 'close the circuit breaker' after passing the phase separation and the end of the phase separation section." ;
 	era:rinfIndex "1.1.1.2.4.3" ;
 	sh:path (era:hasPart era:distSignToPhaseEnd) ;
@@ -1303,7 +1303,7 @@ era-sh:DistSignToPhaseEnd
 # permittedContactForce: # 1.1.1.2.5.2
 era-sh:SectionOfLineShape sh:property era-sh:PermittedContactForce.
 era-sh:PermittedContactForce
-	a sh:PropertyShape ; era:affectedProperty era:permittedContactForce  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:permittedContactForce  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication of contact force allowed expressed in newtons." ;
 	era:rinfIndex "1.1.1.2.5.2" ;
 	sh:path (era:hasPart era:permittedContactForce) ;
@@ -1316,7 +1316,7 @@ era-sh:PermittedContactForce
 # automaticDroppingDeviceRequired: # 1.1.1.2.5.3
 era-sh:SectionsOfLineShape sh:property era-sh:AutomaticDroppingDeviceRequired.
 era-sh:AutomaticDroppingDeviceRequired
-	a sh:PropertyShape ; era:affectedProperty era:automaticDroppingDeviceRequired  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:automaticDroppingDeviceRequired  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication of the requirement of automatic dropping device." ;
 	era:rinfIndex "1.1.1.2.5.3" ;
 	sh:path (era:hasPart era:automaticDroppingDeviceRequired) ;
@@ -1329,7 +1329,7 @@ era-sh:AutomaticDroppingDeviceRequired
 # verificationCCS: # 1.1.1.3.1.1
 era-sh:SectionOfLineShape sh:property era-sh:VerificationCCS.
 era-sh:VerificationCCS
-	a sh:PropertyShape ; era:affectedProperty era:verificationCCS  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:verificationCCS  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Unique number for EC declarations following format requirements specified in the 'Document about practical arrangements for transmitting interoperability documents'." ;
 	era:rinfIndex "1.1.1.3.1.1" ;
 	sh:path (era:hasPart era:verificationCCS) ;
@@ -1341,7 +1341,7 @@ era-sh:VerificationCCS
 # etcsInfillLineAccess: # 1.1.1.3.2.3
 era-sh:SectionOfLineShape sh:property era-sh:EtcsInfillLineAccess.
 era-sh:EtcsInfillLineAccess
-	a sh:PropertyShape ; era:affectedProperty era:etcsInfillLineAccess  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:etcsInfillLineAccess  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication of the access to the ETCS infill line." ;
 	era:rinfIndex "1.1.1.3.2.3" ;
 	sh:path (era:hasPart era:etcsInfillLineAccess) ;
@@ -1354,7 +1354,7 @@ era-sh:EtcsInfillLineAccess
 # etcsInfill: # 1.1.1.3.2.4
 era-sh:SectionOfLineShape sh:property era-sh:EtcsInfill.
 era-sh:EtcsInfill
-	a sh:PropertyShape ; era:affectedProperty era:etcsInfill  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:etcsInfill  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Information about installed trackside equipment capable to transmit infill information by loop or GSM-R for level 1 installation." ;
 	era:rinfIndex "1.1.1.3.2.4" ;
 	sh:path (era:hasPart era:etcsInfill) ;
@@ -1368,7 +1368,7 @@ era-sh:EtcsInfill
 era-sh:SectionOfLineShape sh:sparql era-sh:EtcsInfillSKOS.
 era-sh:EtcsInfillSKOS
 	a sh:SPARQLConstraint ;
-    era:affectedProperty era:etcsInfill  ;     era:affectedClass  era:Track;     era:scope "local";     
+    era:affectedProperty era:etcsInfill  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     rdfs:comment "Information about installed trackside equipment capable to transmit infill information by loop or GSM-R for level 1 installation." ;
 	era:rinfIndex "1.1.1.3.2.4" ;
 	sh:severity sh:Violation ;
@@ -1394,7 +1394,7 @@ era-sh:EtcsInfillSKOS
 # etcsNationalPacket44: # 1.1.1.3.2.5
 era-sh:SectionOfLineShape sh:property era-sh:EtcsNationalPacket44.
 era-sh:EtcsNationalPacket44
-	a sh:PropertyShape ; era:affectedProperty era:etcsNationalPacket44  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:etcsNationalPacket44  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication whether data for national application is transmitted between track and train." ;
 	era:rinfIndex "1.1.1.3.2.5" ;
 	sh:path (era:hasPart era:etcsNationalPacket44) ;
@@ -1407,7 +1407,7 @@ era-sh:EtcsNationalPacket44
 # hasETCSRestrictionsConditions: # 1.1.1.3.2.6
 era-sh:sectionOfLineShape sh:property era-sh:HasETCSRestrictionsConditions.
 era-sh:HasETCSRestrictionsConditions
-	a sh:PropertyShape ; era:affectedProperty era:hasETCSRestrictionsConditions  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:hasETCSRestrictionsConditions  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication whether restrictions or conditions due to partial compilance with the CCS TSI exist." ;
 	era:rinfIndex "1.1.1.3.2.6" ;
 	sh:path (era:hasPart era:hasETCSRestrictionsConditions) ;
@@ -1420,7 +1420,7 @@ era-sh:HasETCSRestrictionsConditions
 # trainIntegrityOnBoardRequired: # 1.1.1.3.2.8
 era-sh:SectionOfLineShape sh:property era-sh:TrainIntegrityOnBoardRequired.
 era-sh:TrainIntegrityOnBoardRequired
-	a sh:PropertyShape ; era:affectedProperty era:trainIntegrityOnBoardRequired ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:trainIntegrityOnBoardRequired ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication whether TIMS is required to access the line for safety reasons." ;
 	era:rinfIndex "1.1.1.3.2.8" ;
 	sh:path (era:hasPart era:trainIntegrityOnBoardRequired) ;
@@ -1433,7 +1433,7 @@ era-sh:TrainIntegrityOnBoardRequired
 # etcsSystemCompatibility: # 1.1.1.3.2.9
 era-sh:SectionOfLineShape sh:property era-sh:EtcsSystemCompatibility.
 era-sh:EtcsSystemCompatibility
-	a sh:PropertyShape ; era:affectedProperty era:etcsSystemCompatibility  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:etcsSystemCompatibility  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "ETCS requirements used for demonstrating technical compatibility." ;
 	era:rinfIndex "1.1.1.3.2.9" ;
 	sh:path era:etcsSystemCompatibility ;
@@ -1445,7 +1445,7 @@ era-sh:EtcsSystemCompatibility
 era-sh:SectionOfLineShape sh:sparql era-sh:EtcsSystemCompatibilitySKOS.
 era-sh:EtcsSystemCompatibilitySKOS
 	a sh:SPARQLConstraint ;
-    era:affectedProperty era:etcsSystemCompatibility  ;     era:affectedClass  era:Track;     era:scope "local";     
+    era:affectedProperty era:etcsSystemCompatibility  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     rdfs:comment "ETCS requirements used for demonstrating technical compatibility." ;
 	era:rinfIndex "1.1.1.3.2.9" ;
 	sh:severity sh:Violation ;
@@ -1471,7 +1471,7 @@ era-sh:EtcsSystemCompatibilitySKOS
 # etcsMVersion: # 1.1.1.3.2.10
 era-sh:SectionOfLineShape sh:property era-sh:EtcsMVersion.
 era-sh:EtcsMVersion
-	a sh:PropertyShape ; era:affectedProperty era:etcsMVersion  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:etcsMVersion  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "ETCS_M version according to SRS 7.5.1.9" ;
 	era:rinfIndex "1.1.1.3.2.10" ;
 	sh:path (era:hasPart era:etcsMVersion) ;	
@@ -1484,7 +1484,7 @@ era-sh:EtcsMVersion
 era-sh:SectionOfLineShape sh:sparql era-sh:EtcsMVersionSKOS.
 era-sh:EtcsMVersionSKOS
 	a sh:SPARQLConstraint ;
-    era:affectedProperty era:etcsMVersion  ;     era:affectedClass  era:Track;     era:scope "local";     
+    era:affectedProperty era:etcsMVersion  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     rdfs:comment "ETCS_M version according to SRS 7.5.1.9" ;
 	era:rinfIndex "1.1.1.3.2.10" ;
 	sh:severity sh:Violation ;
@@ -1513,7 +1513,7 @@ era-sh:EtcsMVersionSKOS
 # gsmRAdditionalInfo: # 1.1.1.3.3.3.1
 era-sh:SectionOfLineShape sh:property era-sh:GsmRAdditionalInfo.
 era-sh:GsmRAdditionalInfo
-	a sh:PropertyShape ; era:affectedProperty era:gsmRAdditionalInfo  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:gsmRAdditionalInfo  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Additional information on network characteristics." ;
 	era:rinfIndex "1.1.1.3.3.3.1" ;
 	sh:path (era:hasPart era:gsmRAdditionalInfo) ;
@@ -1524,7 +1524,7 @@ era-sh:GsmRAdditionalInfo
 # gprsForETCS: # 1.1.1.3.3.3.2
 era-sh:SectionOfLineShape sh:property era-sh:GprsForETCS.
 era-sh:GprsForETCS
-	a sh:PropertyShape ; era:affectedProperty era:gprsForETCS  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:gprsForETCS  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication if GPRS can be used for ETCS." ;
 	era:rinfIndex "1.1.1.3.3.3.2" ;
 	sh:path (era:hasPart era:gprsForETCS) ;
@@ -1536,7 +1536,7 @@ era-sh:GprsForETCS
 # gprsImplementationArea: # 1.1.1.3.3.3.3
 era-sh:SectionOfLineShape sh:property era-sh:GprsImplementationArea.
 era-sh:GprsImplementationArea
-	a sh:PropertyShape ; era:affectedProperty era:gprsImplementationArea  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:gprsImplementationArea  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication of the area in which GPRS can be used for ETCS." ;
 	era:rinfIndex "1.1.1.3.3.3.3" ;
 	sh:path (era:hasPart era:gprsImplementationArea) ;
@@ -1547,7 +1547,7 @@ era-sh:GprsImplementationArea
 # usesGroup555: # 1.1.1.3.3.4
 era-sh:SectionOfLineShape sh:property era-sh:UsesGroup555.
 era-sh:UsesGroup555
-	a sh:PropertyShape ; era:affectedProperty era:usesGroup555  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:usesGroup555  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication if group 555 is needed." ;
 	era:rinfIndex "1.1.1.3.3.4" ;
 	sh:path (era:haPart era:usesGroup555) ;
@@ -1562,7 +1562,7 @@ era-sh:UsesGroup555
 # publicNetworkRoaming: # 1.1.1.3.3.6
 era-sh:SectionOfLineShape sh:property era-sh:PublicNetworkRoaming.
 era-sh:PublicNetworkRoaming
-	a sh:PropertyShape ; era:affectedProperty era:publicNetworkRoaming  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:publicNetworkRoaming  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Existence of roaming to a public network (if roaming to a public network is configured, please indicate so)." ;
 	era:rinfIndex "1.1.1.3.3.6" ;
 	sh:path (era:hasPart era:publicNetworkRoaming) ;
@@ -1575,7 +1575,7 @@ era-sh:PublicNetworkRoaming
 # publicNetworkRoamingDetails: # 1.1.1.3.3.7
 era-sh:SectionOfLineShape sh:property era-sh:PublicNetworkRoamingDetails.
 era-sh:PublicNetworkRoamingDetails
-	a sh:PropertyShape ; era:affectedProperty era:publicNetworkRoamingDetails ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:publicNetworkRoamingDetails ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "If roaming to public networks is configured, please indicate to which networks, for which users and in which areas." ;
 	era:rinfIndex "1.1.1.3.3.7" ;
 	sh:path (era:hasPart era:publicNetworkRoamingDetails) ;	
@@ -1587,7 +1587,7 @@ era-sh:PublicNetworkRoamingDetails
 # gsmRNoCoverage: # 1.1.1.3.3.8
 era-sh:SectionOfLineShape sh:property era-sh:GsmRNoCoverage.
 era-sh:GsmRNoCoverage
-	a sh:PropertyShape ; era:affectedProperty era:gsmRNoCoverage  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:gsmRNoCoverage  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication if there is a no GSM-R coverage." ;
 	era:rinfIndex "1.1.1.3.3.8" ;
 	sh:path (era:hasPart era:gsmRNoCoverage) ;
@@ -1602,7 +1602,7 @@ era-sh:GsmRNoCoverage
 # hasTSITrainDetection: # 1.1.1.3.4.1
 era-sh:SectionOfLineShape sh:property era-sh:HasTSITrainDetection.
 era-sh:HasTSITrainDetection
-	a sh:PropertyShape ; era:affectedProperty era:hasTSITrainDetection  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:hasTSITrainDetection  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication if there is any train detection system installed and fully compilant with the CCS TSI requirements." ;
 	era:rinfIndex "1.1.1.3.4.1" ;
 	sh:path (era:hasPart era:hasTSITrainDetection );
@@ -1616,7 +1616,7 @@ era-sh:HasTSITrainDetection
 era-sh:SectionOfLineShape sh:sparql era-sh:ProtectionLegacySystemSKOS.
 era-sh:ProtectionLegacySystemSKOS
 	a sh:SPARQLConstraint ;
-    era:affectedProperty era:protectionLegacySystem  ;     era:affectedClass  era:Track;     era:scope "local";     
+    era:affectedProperty era:protectionLegacySystem  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     rdfs:comment "Indication of which class B system is installed." ;
 	era:rinfIndex "1.1.1.3.5.3" ;
 	sh:severity sh:Violation ;
@@ -1640,7 +1640,7 @@ era-sh:ProtectionLegacySystemSKOS
 era-sh:SectionOfLineShape sh:sparql era-sh:FrenchTrainDetectionSystemLimitationNumberSKOS.
 era-sh:FrenchTrainDetectionSystemLimitationNumberSKOS
 	a sh:SPARQLConstraint ;
-    era:affectedProperty era:frenchTrainDetectionSystemLimitationNumber  ;     era:affectedClass  era:Track;     era:scope "local";     
+    era:affectedProperty era:frenchTrainDetectionSystemLimitationNumber  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     rdfs:comment "Section with train detection limitation." ;
 	era:rinfIndex "1.1.1.3.7.1.4" ;
 	sh:severity sh:Violation ;
@@ -1666,7 +1666,7 @@ era-sh:FrenchTrainDetectionSystemLimitationNumberSKOS
 # switchProtectControlWarning: # 1.1.1.3.8.1
 era-sh:SectionOfLineShape sh:property era-sh:SwitchProtectControlWarning.
 era-sh:SwitchProtectControlWarning
-	a sh:PropertyShape ; era:affectedProperty era:switchProtectControlWarning  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:switchProtectControlWarning  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication whether a switch over between different systems whilst running exist." ;
 	era:rinfIndex "1.1.1.3.8.1" ;
 	sh:path (era:hasPart era:switchProtectControlWarning) ;
@@ -1679,7 +1679,7 @@ era-sh:SwitchProtectControlWarning
 # switchRadioSystem: # 1.1.1.3.8.2
 era-sh:SectionOfLineShape sh:property era-sh:SwitchRadioSystem.
 era-sh:SwitchRadioSystem
-	a sh:PropertyShape ; era:affectedProperty era:switchRadioSystem  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:switchRadioSystem  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication whether a switch over between different radio systems and no communication system whilst running exist." ;
 	era:rinfIndex "1.1.1.3.8.2" ;
 	sh:path (era:hasPart era:switchRadioSystem);
@@ -1694,7 +1694,7 @@ era-sh:SwitchRadioSystem
 era-sh:SectionOfLineShape sh:sparql era-sh:EtcsDegradedSituationSKOS.
 era-sh:EtcsDegradedSituationSKOS
 	a sh:SPARQLConstraint ;
-    era:affectedProperty era:etcsDegradedSituation  ;     era:affectedClass  era:Track;     era:scope "local";     
+    era:affectedProperty era:etcsDegradedSituation  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
     rdfs:comment "ERTMS/ ETCS application level for degraded situation related to the track side equipment." ;
 	era:rinfIndex "1.1.1.3.10.1" ;
 	sh:severity sh:Violation ;
@@ -1719,7 +1719,7 @@ era-sh:EtcsDegradedSituationSKOS
 # otherTrainProtection: # 1.1.1.3.10.2
 era-sh:SectionOfLineShape sh:property era-sh:OtherTrainProtection.
 era-sh:OtherTrainProtection
-	a sh:PropertyShape ; era:affectedProperty era:otherTrainProtection  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:otherTrainProtection  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication of existence of other systems than ETCS for degraded situation." ;
 	era:rinfIndex "1.1.1.3.10.2" ;
 	sh:path (era:hasPart era:otherTrainProtection) ;
@@ -1733,7 +1733,7 @@ era-sh:OtherTrainProtection
 era-sh:SectionOfLineShape sh:sparql era-sh:OtherTrainProtectionSKOS.
 era-sh:OtherTrainProtectionSKOS
 	a sh:SPARQLConstraint ;
-    era:affectedProperty era:otherTrainProtection  ;     era:affectedClass  era:Track;     era:scope "local";     
+    era:affectedProperty era:otherTrainProtection  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
    rdfs:comment "Indication of existence of other systems than ETCS for degraded situation." ;
 	era:rinfIndex "1.1.1.3.10.2" ;
 	sh:severity sh:Violation ;
@@ -1759,7 +1759,7 @@ era-sh:OtherTrainProtectionSKOS
 # maximumBrakingDistance: # 1.1.1.3.11.1
 era-sh:SectionOfLineShape sh:property era-sh:MaximumBrakingDistance.
 era-sh:MaximumBrakingDistance
-	a sh:PropertyShape ; era:affectedProperty era:maximumBrakingDistance  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:maximumBrakingDistance  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "The maximum value of the braking distance [in metres] of a train shall be given for the maximum line speed." ;
 	era:rinfIndex "1.1.1.3.11.1" ;
 	sh:path (era:hasPart era:maximumBrakingDistance) ;
@@ -1773,7 +1773,7 @@ era-sh:MaximumBrakingDistance
 # hasAdditionalBrakingInformation: # 1.1.1.3.11.2
 era-sh:SectionOfLineShape sh:property era-sh:HasAdditionalBrakingInformation.
 era-sh:HasAdditionalBrakingInformation
-	a sh:PropertyShape ; era:affectedProperty era:hasAdditionalBrakingInformation  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:hasAdditionalBrakingInformation  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Availability by the IM of additional information as defined in 4.2.2.6.2 (2) Regulation XXX-OPE TSI." ;
 	era:rinfIndex "1.1.1.3.11.2" ;
 	sh:path (era:hasPart era:hasAdditionalBrakingInformation) ;
@@ -1785,7 +1785,7 @@ era-sh:HasAdditionalBrakingInformation
 # additionalBrakingInformationDocument: # 1.1.1.3.11.3
 era-sh:SectionsOfLineShape sh:property era-sh:AdditionalBrakingInformationDocument.
 era-sh:AdditionalBrakingInformationDocument
-	a sh:PropertyShape ; era:affectedProperty era:additionalBrakingInformationDocument  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:additionalBrakingInformationDocument  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Documents available by the IM relating to braking performance." ;
 	era:rinfIndex "1.1.1.3.11.3" ;
 	sh:path (era:hasPart era:additionalBrakingInformationDocument) ;		
@@ -1797,7 +1797,7 @@ era-sh:AdditionalBrakingInformationDocument
 # tiltingSupported: # 1.1.1.3.12.1
 era-sh:SectionOfLineShape sh:property era-sh:TiltingSupported.
 era-sh:TiltingSupported
-	a sh:PropertyShape ; era:affectedProperty era:tiltingSupported  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:tiltingSupported  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication whether tilting functions are supported by the track." ;
 	era:rinfIndex "1.1.1.3.12.1" ;
 	sh:path (era:hasPart era:tiltingSupported) ;
@@ -1810,7 +1810,7 @@ era-sh:TiltingSupported
 # localRulesOrRestrictions: # 1.1.1.4.1
 era-sh:SectionOfLineShape sh:property era-sh:LocalRulesOrRestrictions.
 era-sh:LocalRulesOrRestrictions
-	a sh:PropertyShape ; era:affectedProperty era:localRulesOrRestrictions  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:localRulesOrRestrictions  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Existence of rules and restrictions of a strictly local nature." ;
 	era:rinfIndex "1.1.1.4.1" ;
 	sh:path (era:hasPart era:localRulesOrRestrictions) ;
@@ -1822,7 +1822,7 @@ era-sh:LocalRulesOrRestrictions
 # localRulesOrRestrictionsDoc: # 1.1.1.4.2
 era-sh:SectionOfLineShape sh:property era-sh:LocalRulesOrRestrictionsDoc.
 era-sh:LocalRulesOrRestrictionsDoc
-	a sh:PropertyShape ; era:affectedProperty era:localRulesOrRestrictionsDoc  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:localRulesOrRestrictionsDoc  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Documents regarding the rules or restrictions of a strictly local nature available by the IM." ;
 	era:rinfIndex "1.1.1.4.2" ;
 	sh:path (era:hasPart era:localRulesOrRestrictionsDoc) ;
@@ -1838,7 +1838,7 @@ era-sh:SectionsOfLineShape sh:property era-sh:currentLimitationRequired.
 era-sh:currentLimitationRequired
 	a sh:PropertyShape ; 
     era:affectedProperty era:currentLimitationRequired;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of whether an on board current or power limitation function on vehicles is required." ;
 	era:rinfIndex "1.1.1.2.5.1" ;
@@ -1852,7 +1852,7 @@ era-sh:SectionsOfLineShape sh:property era-sh:distSignToPhaseEnd.
 era-sh:distSignToPhaseEnd
 	a sh:PropertyShape ; 
     era:affectedProperty era:distSignToPhaseEnd;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Distance between the signboard authorizing the driver to “raise pantograph” or “close the circuit breaker” after passing the phase separation and the end of the phase separation section." ;
 	era:rinfIndex "1.1.1.2.4.3" ;
@@ -1868,7 +1868,7 @@ era-sh:SectionsOfLineShape sh:property era-sh:documentRestrictionPositionContact
 era-sh:documentRestrictionPositionContactLineSeparation
 	a sh:PropertyShape ; 
     era:affectedProperty era:documentRestrictionPositionContactLineSeparation;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Document with restriction related to the position of Multiple Traction unit(s) to comply with contact line separation." ;
 	era:rinfIndex "1.1.1.2.5.5" ;
@@ -1882,7 +1882,7 @@ era-sh:SectionsOfLineShape sh:property era-sh:documentRestrictionPowerConsumptio
 era-sh:documentRestrictionPowerConsumption
 	a sh:PropertyShape ; 
     era:affectedProperty era:documentRestrictionPowerConsumption;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Document with restriction related to power consumption of specific electric traction unit(s)." ;
 	era:rinfIndex "1.1.1.2.5.4" ;
@@ -1896,7 +1896,7 @@ era-sh:documentRestrictionPowerConsumption
 # linesideDistanceIndicationPositioning: # 1.1.1.0.0.3
 era-sh:SectionOfLineShape sh:property era-sh:linesideDistanceIndicationPositioning.
 era-sh:linesideDistanceIndicationPositioning
-	a sh:PropertyShape ; era:affectedProperty era:linesideDistanceIndicationPositioning  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:linesideDistanceIndicationPositioning  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication of the side along the track where the lineside indication is positioned (left or right)." ;
 	era:rinfIndex "1.1.1.0.0.3" ;
 	sh:path (era:hasPart era:linesideDistanceIndicationPositioning );
@@ -1910,7 +1910,7 @@ era-sh:linesideDistanceIndicationPositioning
 era-sh:SectionOfLineShape sh:sparql era-sh:linesideDistanceIndicationPositioningSKOS.
 era-sh:linesideDistanceIndicationPositioningSKOS
 	a sh:SPARQLConstraint ;
-    era:affectedProperty era:linesideDistanceIndicationPositioning  ;     era:affectedClass  era:Track;     era:scope "local";     
+    era:affectedProperty era:linesideDistanceIndicationPositioning  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
    rdfs:comment "Indication of the side along the track where the lineside indication is positioned (left or right)." ;
 	era:rinfIndex "1.1.1.0.0.3" ;
 	sh:severity sh:Violation ;
@@ -1934,7 +1934,7 @@ era-sh:linesideDistanceIndicationPositioningSKOS
 # linesideDistanceIndicationAppearance: # 1.1.1.0.0.3
 era-sh:SectionOfLineShape sh:property era-sh:linesideDistanceIndicationAppearance.
 era-sh:linesideDistanceIndicationAppearance
-	a sh:PropertyShape ; era:affectedProperty era:linesideDistanceIndicationAppearance  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:linesideDistanceIndicationAppearance  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication of types of appearance of track lineside distance indications." ;
 	era:rinfIndex "1.1.1.0.0.3" ;
 	sh:path (era:hasPart era:linesideDistanceIndicationAppearance );
@@ -1948,7 +1948,7 @@ era-sh:linesideDistanceIndicationAppearance
 era-sh:SectionOfLineShape sh:sparql era-sh:linesideDistanceIndicationAppearanceSKOS.
 era-sh:linesideDistanceIndicationAppearanceSKOS
 	a sh:SPARQLConstraint ;
-    era:affectedProperty era:linesideDistanceIndicationAppearance  ;     era:affectedClass  era:Track;     era:scope "local";     
+    era:affectedProperty era:linesideDistanceIndicationAppearance  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
    rdfs:comment "Indication of types of appearance of track lineside distance indications." ;
 	era:rinfIndex "1.1.1.0.0.3" ;
 	sh:severity sh:Violation ;
@@ -1972,7 +1972,7 @@ era-sh:linesideDistanceIndicationAppearanceSKOS
 # linesideDistanceIndicationFrequency: # 1.1.1.0.0.3
 era-sh:SectionOfLineShape sh:property era-sh:linesideDistanceIndicationFrequency.
 era-sh:linesideDistanceIndicationFrequency
-	a sh:PropertyShape ; era:affectedProperty era:linesideDistanceIndicationFrequency  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:linesideDistanceIndicationFrequency  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Frequency of track lineside distance indications.." ;
 	era:rinfIndex "1.1.1.0.0.3" ;
 	sh:path (era:hasPart era:linesideDistanceIndicationFrequency );
@@ -1987,7 +1987,7 @@ era-sh:SectionsOfLineShape sh:property era-sh:phaseInfoChangesupplySystem.
 era-sh:phaseInfoChangesupplySystem
 	a sh:PropertyShape ; 
     era:affectedProperty era:phaseInfoChangesupplySystem;
-    era:affectedClass  era:Track;
+    era:affectedClass  era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Part of the phase info of a track that corresponds to the single selection of Y=yes or N=no to show if the energy supply system changes" ;
 	era:rinfIndex "1.1.1.2.4.1.2" ;
@@ -2002,7 +2002,7 @@ era-sh:phaseInfoChangesupplySystem
 # trackRaisedPantographsDistanceAndSpeed: # 1.1.1.2.3.3
 era-sh:SectionOfLineShape sh:property era-sh:trackRaisedPantographsDistanceAndSpeed.
 era-sh:trackRaisedPantographsDistanceAndSpeed
-	a sh:PropertyShape ; era:affectedProperty era:trackRaisedPantographsDistanceAndSpeed  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:trackRaisedPantographsDistanceAndSpeed  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Relates the track with the class RaisedPantporaphsDistanceAndSpeed. Indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed." ;
 	era:rinfIndex "1.1.1.2.3.3" ;
 	sh:path (era:hasPart era:trackRaisedPantographsDistanceAndSpeed) ;
@@ -2013,7 +2013,7 @@ era-sh:trackRaisedPantographsDistanceAndSpeed
 # trackPhaseInfo: # 1.1.1.2.4.1.2
 era-sh:SectionOfLineShape sh:property era-sh:trackPhaseInfo.
 era-sh:trackPhaseInfo
-	a sh:PropertyShape ; era:affectedProperty era:trackPhaseInfo  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:trackPhaseInfo  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Relates the Track with PhaseInfo. Indication of required several information on phase separation." ;
 	era:rinfIndex "1.1.1.2.4.1.2" ;
 	sh:path (era:hasPart era:trackPhaseInfo) ;
@@ -2024,7 +2024,7 @@ era-sh:trackPhaseInfo
 # trackSystemSeparationInfo: # 1.1.1.2.4.2.2
 era-sh:SectionOfLineShape sh:property era-sh:trackSystemSeparationInfo.
 era-sh:trackSystemSeparationInfo
-	a sh:PropertyShape ; era:affectedProperty era:trackSystemSeparationInfo  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:trackSystemSeparationInfo  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Relates the Track with the SystemSeparationInfo. Indication of required several information on system separation." ;
 	era:rinfIndex "1.1.1.2.4.2.2" ;
 	sh:path (era:hasPart era:trackSystemSeparationInfo) ;
@@ -2036,7 +2036,7 @@ era-sh:trackSystemSeparationInfo
 #  1.1.1.1.2.4 trackLoadCapability
 era-sh:SectionOfLineShape sh:property era-sh:trackLoadCapability.
 era-sh:trackLoadCapability
-	a sh:PropertyShape ; era:affectedProperty era:trackLoadCapability  ;     era:affectedClass  era:Track;     era:scope "local";     
+	a sh:PropertyShape ; era:affectedProperty era:trackLoadCapability  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Relates the track with the class LoadCapability. A combination of the line category and speed at the weakest point of the track." ;
 	era:rinfIndex "1.1.1.1.2.4" ;
 	sh:path (era:hasPart era:trackLoadCapability) ;
@@ -2050,7 +2050,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:hotAxleBoxDetectorGenerationApplicabi
 era-sh:hotAxleBoxDetectorGenerationApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hotAxleBoxDetectorGeneration;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Specific for the French Italian and Swedish networks. Generation of trackside hot axle box detector. “Y” if the answer to parameter 1.1.1.1.7.5 is “N”" ;
 	era:rinfIndex "1.1.1.1.7.7" ;
@@ -2076,7 +2076,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:hotAxleBoxDetectorDirectionApplicabil
 era-sh:hotAxleBoxDetectorDirectionApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hotAxleBoxDetectorDirection;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Specific for the French Italian and Swedish networks. If the direction of measurement is: - the same as the direction defined by the start and end of the SoL: (N); - the opposite to the direction defined by the start and end of the SoL: (O); - both directions: (B). “Y” if the answer to parameter 1.1.1.1.7.5 is “N”." ;
 	era:rinfIndex "1.1.1.1.7.9" ;
@@ -2102,7 +2102,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:hotAxleBoxDetectorIdentificationAppli
 era-sh:hotAxleBoxDetectorIdentificationApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hotAxleBoxDetectorIdentification;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Specific for the French Italian and Swedish networks. Applicable if trackside HABD is not TSI compliant, identification of trackside hot axle box detector.";
 	era:rinfIndex "1.1.1.1.7.6" ;
@@ -2128,7 +2128,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:hotAxleBoxDetectorLocationApplicabili
 era-sh:hotAxleBoxDetectorLocationApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hotAxleBoxDetectorLocation;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Specific for the French Italian and Swedish networks. Applicable if trackside HABD is not TSI compliant, localisation of trackside hot axle box detector.";
 	era:rinfIndex "1.1.1.1.7.8" ;
@@ -2154,7 +2154,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:accelerationLevelCrossingApplicabilit
 era-sh:accelerationLevelCrossingApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:accelerationLevelCrossing;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Existence of limit for acceleration of train if stopping or recovering speed close to a level crossing expressed in a specific reference acceleration curve.";
 	era:rinfIndex "1.1.1.1.7.3" ;
@@ -2180,7 +2180,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:trackPhaseInfoApplicability .
 era-sh:trackPhaseInfoApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:trackPhaseInfo;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Relates the Track with PhaseInfo. Indication of required several information on phase separation.";
 	era:rinfIndex "1.1.1.2.4.1.2" ;
@@ -2206,7 +2206,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:trackSystemSeparationInfoApplicabilit
 era-sh:trackSystemSeparationInfoApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:trackSystemSeparationInfo;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Relates the Track with the SystemSeparationInfo. Indication of required several information on system separation.";
 	era:rinfIndex "1.1.1.2.4.2.2" ;
@@ -2232,7 +2232,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:tsiPantographHeadApplicability .
 era-sh:tsiPantographHeadApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:tsiPantographHead;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of TSI compliant pantograph heads which are allowed to be used.";
 	era:rinfIndex "1.1.1.2.3.1" ;
@@ -2261,7 +2261,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:trackRaisedPantographDistanceAndSpeed
 era-sh:trackRaisedPantographDistanceAndSpeedApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:trackRaisedPantographDistanceAndSpeed;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Relates the track with the class RaisedPantographsDistanceAndSpeed. Indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed.";
 	era:rinfIndex "1.1.1.2.3.3" ;
@@ -2289,7 +2289,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:hasPhaseSeparationApplicability .
 era-sh:hasPhaseSeparationApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hasPhaseSeparation;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of existence of phase separation and required information.";
 	era:rinfIndex "1.1.1.2.4.1.1" ;
@@ -2317,7 +2317,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:contactStripMaterialApplicability .
 era-sh:contactStripMaterialApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:contactStripMaterial;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of which contact strip materials are permitted to be used.";
 	era:rinfIndex "1.1.1.2.3.4" ;
@@ -2345,7 +2345,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:otherPantographHeadApplicability .
 era-sh:otherPantographHeadApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:otherPantographHead;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of pantograph heads which are allowed to be used.";
 	era:rinfIndex "1.1.1.2.3.2" ;
@@ -2373,7 +2373,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:hasSystemSeparationApplicability .
 era-sh:hasSystemSeparationApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hasSystemSeparation;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of existence of system separation.";
 	era:rinfIndex "1.1.1.2.4.2.1" ;
@@ -2401,7 +2401,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:permittedContactForceApplicability .
 era-sh:permittedContactForceApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:permittedContactForce;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of contact force allowed expressed in newton.";
 	era:rinfIndex "1.1.1.2.5.2" ;
@@ -2429,7 +2429,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:automaticDroppingDeviceRequiredApplic
 era-sh:automaticDroppingDeviceRequiredApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:automaticDroppingDeviceRequired;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of whether an automatic dropping device (ADD) required on the vehicle.";
 	era:rinfIndex "1.1.1.2.5.3" ;
@@ -2456,7 +2456,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:currentLimitationRequiredApplicabilit
 era-sh:currentLimitationRequiredApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:currentLimitationRequired;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of whether an on board current or power limitation function on vehicles is required.";
 	era:rinfIndex "1.1.1.2.5.1" ;
@@ -2483,7 +2483,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:hasBallastApplicability .
 era-sh:hasBallastApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hasBallast;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Specifies whether track construction is with sleepers embedded in ballast or not.";
 	era:rinfIndex "1.1.1.1.4.4" ;
@@ -2510,7 +2510,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:magneticBrakingConditionsDocumentAppl
 era-sh:magneticBrakingConditionsDocumentApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:magneticBrakingConditionsDocument;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency with conditions for the use of magnetic brakes identified in 1.1.1.1.6.3.";
 	era:rinfIndex "1.1.1.1.6.5" ;
@@ -2537,7 +2537,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:tenGISIdApplicability .
 era-sh:tenGISIdApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:tenGISId;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of the GIS identity (GIS ID) of the section of TEN-T database to which the track belongs.";
 	era:rinfIndex "1.1.1.1.2.1.2" ;
@@ -2564,7 +2564,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:additionalBrakingInformationDocumentA
 era-sh:additionalBrakingInformationDocumentApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:additionalBrakingInformationDocument;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency providing additional information as defined in point (2) of point 4.2.2.6.2 of TSI OPE.";
 	era:rinfIndex "1.1.1.3.11.3" ;
@@ -2590,7 +2590,7 @@ era-sh:SectionOfLineShape sh:sparql era-sh:eddyCurrentBrakingConditionsDocumentA
 era-sh:eddyCurrentBrakingConditionsDocumentApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:eddyCurrentBrakingConditionsDocument;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency with conditions for the use of eddy current brakes identified in 1.1.1.1.6.2.";
 	era:rinfIndex "1.1.1.1.6.4" ;

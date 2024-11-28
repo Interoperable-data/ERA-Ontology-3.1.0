@@ -48,7 +48,7 @@
 
 era-sh:trackShape  
     a sh:NodeShape ;
-    sh:targetClass era:Track .
+    sh:targetClass era:RunningTrack .
 
 era-sh:commonCharacteristicsSubsetShape
 	a sh:NodeShape ;
@@ -60,7 +60,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:VerificationINF.
 era-sh:VerificationINF
 	a sh:PropertyShape ;
     era:affectedProperty era:verificationINF;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Unique number for EC declarations following format requirements specified in the 'Document about practical arrangements for transmitting interoperability documents'." ;
 	era:rinfIndex "1.1.1.1.1.1" ;
@@ -78,7 +78,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:DemonstrationINF.
 era-sh:DemonstrationINF
 	a sh:PropertyShape ;
     era:affectedProperty era:demonstrationINF;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Unique number for EI declarations following format requirements specified in the 'Document about practical arrangements for transmitting interoperability documents'." ;
 	era:rinfIndex "1.1.1.1.1.2" ;
@@ -95,7 +95,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:TenClassificationT.
 era-sh:TenClassificationT
 	a sh:PropertyShape ;
     era:affectedProperty era:tenClassification;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of the part of the trans-European network the line belongs to." ;	
     sh:path era:tenClassification ;
@@ -111,7 +111,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:TenClassificationSKOST.
 era-sh:TenClassificationSKOST
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:tenClassification;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of the TEN classification of track." ;
 	era:rinfIndex "1.1.1.1.2.1" ;
@@ -141,7 +141,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:GaugingProfile.
  era-sh:GaugingProfile
 	a sh:PropertyShape ;
     era:affectedProperty era:gaugingProfile;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Gauges as defined in European standard or other local gauges, including lower or upper part." ;
     era:rinfIndex "1.1.1.1.3.1.1" ;
@@ -158,7 +158,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:GaugingProfileSKOS.
 era-sh:GaugingProfileSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gaugingProfile;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of the gauging profile of track." ;
 	era:rinfIndex "1.1.1.1.3.1.1" ;
@@ -185,7 +185,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:GaugingCheckLocation.
 era-sh:GaugingCheckLocation
 	a sh:PropertyShape ;
     era:affectedProperty era:gaugingCheckLocation;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Location of particular points requiring specific checks due to deviations from gauging referred to in 1.1.1.1.3.1.1." ;
 	era:rinfIndex "1.1.1.1.3.1.2" ;
@@ -203,7 +203,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:GaugingTransversalDoc
 era-sh:GaugingTransversalDocument
 	a sh:PropertyShape ;
     era:affectedProperty era:gaugingTransversalDocument;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Document with the transversal section of the particular points requiring specific checks." ;
 	era:rinfIndex "1.1.1.1.3.1.3", "1.2.1.0.3.6" ;
@@ -218,7 +218,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:WheelSetGauge.
 era-sh:WheelSetGauge
 	a sh:PropertyShape ;
     era:affectedProperty era:wheelSetGauge;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "A single value expressed in millimeters that identifies the track gauge." ;
 	era:rinfIndex "1.1.1.1.4.1", "1.2.1.0.4.1" ;
@@ -235,7 +235,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:WheelSetGaugeSKOS.
 era-sh:WheelSetGaugeSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:wheelSetGauge;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "A single value expressed in millimeters that identifies the track gauge." ;
 	era:rinfIndex "1.1.1.1.4.1", "1.2.1.0.4.1" ;
@@ -262,7 +262,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmRAdditionalInfo.
 era-sh:gsmRAdditionalInfo
 	a sh:PropertyShape ;
     era:affectedProperty era:gsmRAdditionalInfo;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Any additional information on network characteristics or corresponding document available from the IM and stored by the Agency, e.g.; interference level, leading to the recommendation of additional on-board protection." ;
 	era:rinfIndex "1.1.1.3.3.3.1" , "1.2.1.1.2.3.1" ;
@@ -277,7 +277,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmRAdditionalInfoApp
 era-sh:gsmRAdditionalInfoApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmRAdditionalInfo;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable." ;
 	era:rinfIndex "1.1.1.3.3.3.1" , "1.2.1.1.2.3.1" ;
@@ -301,7 +301,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gprsImplementationAre
 era-sh:gprsImplementationArea
 	a sh:PropertyShape ;
     era:affectedProperty era:gprsImplementationArea;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of the area in which GPRS can be used for ETCS, expressed as a list of GPRS-enabled RBC's." ;
 	era:rinfIndex "1.1.1.3.3.3.3" , "1.2.1.1.2.3.3" ;
@@ -316,7 +316,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gprsImplementationAre
 era-sh:gprsImplementationAreaApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gprsImplementationArea;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "GSM-R (parameter 1.1.1.3.3.1), ETCS L2 (parameter 1.1.1.3.2.1) and GPRS for ETCS (parameter 1.1.1.3.3.3.2) must be installed for this parameter to be applicable." ;
 	era:rinfIndex "1.1.1.3.3.3.3" , "1.2.1.1.2.3.3" ;
@@ -343,7 +343,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:atoCommunicationSyste
 era-sh:atoCommunicationSystem
 	a sh:PropertyShape ;
     era:affectedProperty era:atoCommunicationSystem;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Supported ATO communication systems from trackside." ;
 	era:rinfIndex "1.1.1.3.13.3", "1.2.1.1.10.3" ;
@@ -358,7 +358,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:atoCommunicationSystemS
 era-sh:atoCommunicationSystemSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:atoCommunicationSystem;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Supported ATO communication systems from trackside." ;
 	era:rinfIndex "1.1.1.3.13.3", "1.2.1.1.10.3" ;
@@ -386,7 +386,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:atoGradeAutomation.
 era-sh:atoGradeAutomation
 	a sh:PropertyShape ;
     era:affectedProperty era:atoGradeAutomation;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "ATO grade of automation installed lineside." ;
 	era:rinfIndex "1.1.1.3.13.1", "1.2.1.1.10.1" ;
@@ -401,7 +401,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:atoGradeAutomationSKOS.
 era-sh:atoGradeAutomationSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:atoGradeAutomation;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "ATO grade of automation installed lineside." ;
 	era:rinfIndex "1.1.1.3.13.1", "1.2.1.1.10.1" ;
@@ -429,7 +429,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:atoSystemVersion.
 era-sh:atoSystemVersion
 	a sh:PropertyShape ;
     era:affectedProperty era:atoSystemVersion;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "ATO system version according to the specification referenced in TSI CCS (4.2.19)." ;
 	era:rinfIndex "1.1.1.3.13.2", "1.2.1.1.10.2" ;
@@ -444,7 +444,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:atoSystemVersionSKOS.
 era-sh:atoSystemVersionSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:atoSystemVersion;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "ATO system version according to the specification referenced in TSI CCS (4.2.19)." ;
 	era:rinfIndex "1.1.1.3.13.2", "1.2.1.1.10.2" ;
@@ -472,7 +472,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:bigMetalMass.
 era-sh:bigMetalMass
 	a sh:PropertyShape;
     era:affectedProperty era:bigMetalMass ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of existence of metal mass in the vicinity of the location, susceptible of perturbating the reading of balises by the on-board system." ; 
 	era:rinfIndex "1.1.1.3.2.18", "1.2.1.1.1.18" ;
@@ -488,7 +488,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:bigMetalMassApplicabi
 era-sh:bigMetalMassApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:bigMetalMass;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.2.18", "1.2.1.1.1.18" ;
@@ -513,7 +513,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:cantDeficiencyBasicSS
 era-sh:cantDeficiencyBasicSSP
 	a sh:PropertyShape ;
     era:affectedProperty era:cantDeficiencyBasicSSP;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with  parameter \"Other Cant Deficiency train categories for which the ETCS trackside is configured to provide SSP\"." ;
 	era:rinfIndex "1.1.1.3.2.14", "1.2.1.1.1.14" ;
@@ -529,7 +529,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:cantDeficiencyBasicSSPS
 era-sh:cantDeficiencyBasicSSPSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:cantDeficiencyBasicSSP;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with  parameter \"Other Cant Deficiency train categories for which the ETCS trackside is configured to provide SSP\"." ;
 	era:rinfIndex "1.1.1.3.2.14", "1.2.1.1.1.14" ;
@@ -557,7 +557,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:cantDeficiencyBasicSS
 era-sh:cantDeficiencyBasicSSPApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:cantDeficiencyBasicSSP;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.2.14", "1.2.1.1.1.14" ;
@@ -582,7 +582,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:lineCategory.
 era-sh:lineCategory
 	a sh:PropertyShape ;
     era:affectedProperty era:lineCategory;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Classification of a line according to the TSI INF." ;
 	era:rinfIndex "1.1.1.1.2.2", "1.2.1.0.2.2" ;
@@ -597,7 +597,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:lineCategorySKOS.
 era-sh:lineCategorySKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:lineCategory;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Classification of a line according to the TSI INF." ;
 	era:rinfIndex "1.1.1.1.2.2", "1.2.1.0.2.2" ;
@@ -625,7 +625,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:dNvovtrp.
 era-sh:dNvovtrp
 	a sh:PropertyShape;
     era:affectedProperty era:dNvovtrp ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Maximum distance for overriding the train trip in metres." ;
 	era:rinfIndex "1.1.1.3.2.16.5", "1.2.1.1.1.16.5" ;
@@ -642,7 +642,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:dNvovtrpApplicability
 era-sh:dNvovtrpApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:dNvovtrp;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.2.16.5", "1.2.1.1.1.16.5" ;
@@ -667,7 +667,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:dNvpotrp.
 era-sh:dNvpotrp
 	a sh:PropertyShape;
     era:affectedProperty era:dNvpotrp ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Maximum distance for reversing in Post Trip mode in metres." ;
 	era:rinfIndex "1.1.1.3.2.16.7", "1.2.1.1.1.16.7" ;
@@ -684,7 +684,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:dNvpotrpApplicability
 era-sh:dNvpotrpApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:dNvpotrp;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.2.16.7", "1.2.1.1.1.16.7" ;
@@ -709,7 +709,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:dNvroll.
 era-sh:dNvroll
 	a sh:PropertyShape;
     era:affectedProperty era:dNvroll ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Parameter used by the ETCS on-board to supervise the distance allowed to be travelled under the roll-away protection and the reverse movement protection, in metres." ;
 	era:rinfIndex "1.1.1.3.2.16.1", "1.2.1.1.1.16.1" ;
@@ -726,7 +726,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:dNvrollApplicability.
 era-sh:dNvrollApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:dNvroll;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.2.16.1", "1.2.1.1.1.16.1" ;
@@ -751,7 +751,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:publicNetworkRoamingD
 era-sh:publicNetworkRoamingDetails
 	a sh:PropertyShape ;
     era:affectedProperty era:publicNetworkRoamingDetails ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment """If roaming to public networks is configured, please:
 1. indicate to which networks, for which users and in which areas.
@@ -770,7 +770,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:publicNetworkRoamingD
 era-sh:publicNetworkRoamingDetailsApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:publicNetworkRoamingDetails;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable." ;
 	era:rinfIndex "1.1.1.3.3.7", "1.2.1.1.2.7" ;
@@ -794,7 +794,7 @@ era-sh:trackShape sh:property era-sh:localRulesOrRestrictionsDoc.
 era-sh:localRulesOrRestrictionsDoc
 	a sh:PropertyShape ;
     era:affectedProperty era:localRulesOrRestrictionsDoc;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Electronic document available from the IM stored by the Agency providing additional information." ;
 	era:rinfIndex "1.1.1.4.2", "1.2.3.2" ;
@@ -810,7 +810,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:errorCorrectionsOnboa
 era-sh:errorCorrectionsOnboard
 	a sh:PropertyShape ;
     era:affectedProperty era:errorCorrectionsOnboard;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "List of unacceptable errors impacting the IM network that are required to be solved in the on-board according to the TSI CCS point 7.2.10.3 specification maintenance point (ETCS, GSM-R and/or ATO)." ;
 	era:rinfIndex "1.1.1.3.1.2", "1.2.1.1.1.19" ;
@@ -825,7 +825,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:errorCorrectionsOnboard
 era-sh:errorCorrectionsOnboardSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:errorCorrectionsOnboard;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "List of unacceptable errors impacting the IM network that are required to be solved in the on-board according to the TSI CCS point 7.2.10.3 specification maintenance point (ETCS, GSM-R and/or ATO)." ;
 	era:rinfIndex "1.1.1.3.1.2", "1.2.1.1.1.19" ;
@@ -853,7 +853,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:etcsInfillLineAccess.
 era-sh:etcsInfillLineAccess
 	a sh:PropertyShape;
     era:affectedProperty era:etcsInfillLineAccess ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication whether infill is required to access the line for safety reasons." ; 
 	era:rinfIndex "1.1.1.3.2.3", "1.2.1.1.1.3" ;
@@ -869,7 +869,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:etcsInfillLineAccessA
 era-sh:etcsInfillLineAccessApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsInfillLineAccess;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.2.3", "1.2.1.1.1.3" ;
@@ -894,7 +894,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:etcsDegradedSituation
 era-sh:etcsDegradedSituation
 	a sh:PropertyShape ;
     era:affectedProperty era:etcsDegradedSituation;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "ERTMS / ETCS application level for degraded situation related to the track side equipment." ;
 	era:rinfIndex "1.1.1.3.10.1", "1.2.1.1.9.1" ;
@@ -909,7 +909,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:etcsDegradedSituationSK
 era-sh:etcsDegradedSituationSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsDegradedSituation;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "ERTMS / ETCS application level for degraded situation related to the track side equipment." ;
 	era:rinfIndex "1.1.1.3.10.1", "1.2.1.1.9.1" ;
@@ -937,7 +937,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:etcsDegradedSituation
 era-sh:etcsDegradedSituationApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsDegradedSituation;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.10.1", "1.2.1.1.9.1" ;
@@ -962,7 +962,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:etcsNationalPacket44.
 era-sh:etcsNationalPacket44
 	a sh:PropertyShape;
     era:affectedProperty era:etcsNationalPacket44 ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication whether data for national packet 44 applications is transmitted between track and train." ; 
 	era:rinfIndex "1.1.1.3.2.5", "1.2.1.1.1.5" ;
@@ -979,7 +979,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:etcsImplementsLevelCr
 era-sh:etcsImplementsLevelCrossingProcedure
 	a sh:PropertyShape;
     era:affectedProperty era:etcsImplementsLevelCrossingProcedure ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "If the trackside does not implement any solution to cover defective LXs (which are normally protected by means of a technical system), then drivers will be required to comply with instructions received from other sources." ; 
 	era:rinfIndex "1.1.1.3.2.13", "1.2.1.1.1.13" ;
@@ -995,7 +995,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:etcsImplementsLevelCr
 era-sh:etcsImplementsLevelCrossingProcedureApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsImplementsLevelCrossingProcedure;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.2.13", "1.2.1.1.1.13" ;
@@ -1020,7 +1020,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:tsiTractionHarmonics.
 era-sh:tsiTractionHarmonics
 	a sh:PropertyShape;
     era:affectedProperty era:tsiTractionHarmonics ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication whether rules exist and are compliant with the TSI." ; 
 	era:rinfIndex "1.1.1.3.9.2", "1.2.1.1.8.2" ;
@@ -1036,7 +1036,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:tsiTractionHarmonicsA
 era-sh:tsiTractionHarmonicsApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:tsiTractionHarmonics;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Applicable ('Y') only when for parameter 1.1.1.3.7.1.1 the selected option is 'wheel detector' or 'track circuit'." ;
 	era:rinfIndex "1.1.1.3.9.2", "1.2.1.1.8.2" ;
@@ -1062,7 +1062,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:tsiMagneticFields.
 era-sh:tsiMagneticFields
 	a sh:PropertyShape;
     era:affectedProperty era:tsiMagneticFields ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication whether rules exist and are compliant with the TSI." ; 
 	era:rinfIndex "1.1.1.3.9.1", "1.2.1.1.8.1" ;
@@ -1078,7 +1078,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:tsiMagneticFieldsAppl
 era-sh:tsiMagneticFieldsApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:tsiMagneticFields;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Applicable ('Y') only when for parameter 1.1.1.3.7.1.1 the selected option is 'wheel detector'." ;
 	era:rinfIndex "1.1.1.3.9.1", "1.2.1.1.8.1" ;
@@ -1103,7 +1103,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:publicNetworkRoaming.
 era-sh:publicNetworkRoaming
 	a sh:PropertyShape;
     era:affectedProperty era:publicNetworkRoaming ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Existence of roaming to a public network." ; 
 	era:rinfIndex "1.1.1.3.3.6", "1.2.1.1.2.6" ;
@@ -1119,7 +1119,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:publicNetworkRoamingA
 era-sh:publicNetworkRoamingApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:publicNetworkRoaming;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable." ;
 	era:rinfIndex "1.1.1.3.3.6", "1.2.1.1.2.6" ;
@@ -1143,7 +1143,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasETCSRestrictionsCo
 era-sh:hasETCSRestrictionsConditions
 	a sh:PropertyShape;
     era:affectedProperty era:hasETCSRestrictionsConditions ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication whether restrictions or conditions due to partial compliance with the TSI CCS exist." ; 
 	era:rinfIndex "1.1.1.3.2.6", "1.2.1.1.1.6" ;
@@ -1160,7 +1160,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasETCSRestrictionsCo
 era-sh:hasETCSRestrictionsConditionsApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hasETCSRestrictionsConditions;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable (true) when selected value for 1.1.1.3.2.1 (ETCS present)." ;
 	era:rinfIndex "1.1.1.3.2.6", "1.2.1.1.1.6" ;
@@ -1185,7 +1185,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:etcsRestrictionsCondi
 era-sh:etcsRestrictionsConditionsDocApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsRestrictionsConditionsDoc;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when hasETCSRestricionsConditions is true." ;
 	era:rinfIndex "1.1.1.3.2.6" , "1.2.1.1.1.6" ;
@@ -1210,7 +1210,7 @@ era-sh:trackShape sh:property era-sh:localRulesOrRestrictions.
 era-sh:localRulesOrRestrictions
 	a sh:PropertyShape;
     era:affectedProperty era:localRulesOrRestrictions ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Existence of rules and restrictions of a strictly local nature." ; 
 	era:rinfIndex "1.1.1.4.1", "1.2.3.1" ;
@@ -1226,7 +1226,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:switchProtectControlW
 era-sh:switchProtectControlWarning
 	a sh:PropertyShape;
     era:affectedProperty era:switchProtectControlWarning ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication whether a switch over between different systems whilst running exists." ; 
 	era:rinfIndex "1.2.1.1.7.1", "1.1.1.3.8.1" ;
@@ -1242,7 +1242,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:switchRadioSystem.
 era-sh:switchRadioSystem
 	a sh:PropertyShape;
     era:affectedProperty era:switchRadioSystem ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication whether a switch over between different radio systems and no communication system whilst running exists." ; 
 	era:rinfIndex "1.2.1.1.7.2", "1.1.1.3.8.2" ;
@@ -1258,7 +1258,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasTSITrainDetection.
 era-sh:hasTSITrainDetection
 	a sh:PropertyShape;
     era:affectedProperty era:hasTSITrainDetection ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication if there is any train detection system installed and fully compliant with the TSI CCS (Annex I, Appendix A, Table A.2 -Index 77)." ; 
 	era:rinfIndex "1.1.1.3.4.1", "1.2.1.1.3.1" ;
@@ -1275,7 +1275,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gprsForETCS.
 era-sh:gprsForETCS
 	a sh:PropertyShape;
     era:affectedProperty era:gprsForETCS ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication if GPRS can be used for ETCS." ; 
 	era:rinfIndex "1.1.1.3.3.3.2", "1.2.1.1.2.3.2" ;
@@ -1291,7 +1291,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gprsForETCSApplicabil
 era-sh:gprsForETCSApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gprsForETCS;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable." ;
 	era:rinfIndex "1.1.1.3.3.3.2", "1.2.1.1.2.3.2" ;
@@ -1317,7 +1317,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmrNetworkCoverage.
 era-sh:gsmrNetworkCoverage
 	a sh:PropertyShape ;
     era:affectedProperty era:gsmrNetworkCoverage;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "List of GSM-R networks which are covered by a roaming agreement." ;
 	era:rinfIndex "1.1.1.3.3.5", "1.2.1.1.2.5" ;
@@ -1332,7 +1332,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:gsmrNetworkCoverageSKOS
 era-sh:gsmrNetworkCoverageSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmrNetworkCoverage;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "List of GSM-R networks which are covered by a roaming agreement." ;
 	era:rinfIndex "1.1.1.3.3.5", "1.2.1.1.2.5" ;
@@ -1358,7 +1358,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmrNetworkCoverageAp
 era-sh:gsmrNetworkCoverageApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmrNetworkCoverage;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable." ;
 	era:rinfIndex "1.1.1.3.3.5", "1.2.1.1.2.5" ;
@@ -1382,7 +1382,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:usesGroup555.
 era-sh:usesGroup555
 	a sh:PropertyShape;
     era:affectedProperty era:usesGroup555 ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication if group 555 is used." ; 
 	era:rinfIndex "1.1.1.3.3.4", "1.2.1.1.2.4" ;
@@ -1398,7 +1398,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:usesGroup555Applicabi
 era-sh:usesGroup555Applicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:usesGroup555;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable." ;
 	era:rinfIndex "1.1.1.3.3.4", "1.2.1.1.2.4" ;
@@ -1424,7 +1424,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmRVersion.
 era-sh:gsmRVersion
 	a sh:PropertyShape ;
     era:affectedProperty era:gsmRVersion;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "GSM-R functional requirements specification and system requirements specification in accordance with the specification respectively referenced in TSI CCS (Annex ), version number installed lineside." ;
 	era:rinfIndex "1.1.1.3.3.1", "1.2.1.1.2.1" ;
@@ -1439,7 +1439,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:gsmRVersionSKOS.
 era-sh:gsmRVersionSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmRVersion;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "GSM-R functional requirements specification and system requirements specification in accordance with the specification respectively referenced in TSI CCS (Annex ), version number installed lineside." ;
 	era:rinfIndex "1.1.1.3.3.1", "1.2.1.1.2.1" ;
@@ -1464,7 +1464,7 @@ era-sh:trackShape sh:property era-sh:trackId.
 era-sh:trackId
 	a sh:PropertyShape ;
     era:affectedProperty era:trackId;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Unique track identification or unique track number within an OP or a section of line." ;
 	era:rinfIndex "1.1.1.0.0.1", "1.2.1.0.0.2" ;
@@ -1479,7 +1479,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmrForcedDeregistrat
 era-sh:gsmrForcedDeregistrationFunctionalNumber
 	a sh:PropertyShape;
     era:affectedProperty era:gsmrForcedDeregistrationFunctionalNumber;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "This feature will determine the applicable operational rules for drivers and signallers when dealing with cab radios registered under wrong numbers." ; 
 	era:rinfIndex "1.1.1.3.3.11" , "1.2.1.1.2.11" ;
@@ -1495,7 +1495,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmrForcedDeregistrat
 era-sh:gsmrForcedDeregistrationFunctionalNumberApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmrForcedDeregistrationFunctionalNumber;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable." ;
 	era:rinfIndex "1.1.1.3.3.11" , "1.2.1.1.2.11" ;
@@ -1521,7 +1521,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:mNvcontact.
 era-sh:mNvcontact
 	a sh:PropertyShape ;
     era:affectedProperty era:mNvcontact;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "On-Board system reaction when T_NVCONTACT expires." ;
 	era:rinfIndex "1.1.1.3.2.16.9" , "1.2.1.1.1.16.9" ;
@@ -1537,7 +1537,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:mNvcontactSKOS.
 era-sh:mNvcontactSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:mNvcontact;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "On-Board system reaction when T_NVCONTACT expires." ;
 	era:rinfIndex "1.1.1.3.2.16.9" , "1.2.1.1.1.16.9" ;
@@ -1565,7 +1565,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:mNvcontactApplicabili
 era-sh:mNvcontactApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:mNvcontact;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.2.16.9" , "1.2.1.1.1.16.9" ;
@@ -1590,7 +1590,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:mNvderun.
 era-sh:mNvderun
 	a sh:PropertyShape;
     era:affectedProperty era:mNvderun ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Entry of Driver ID permitted while running." ; 
 	era:rinfIndex "1.1.1.3.2.16.10" , "1.2.1.1.1.16.10" ;
@@ -1606,7 +1606,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:mNvderunApplicability
 era-sh:mNvderunApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:mNvderun;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.2.16.10" , "1.2.1.1.1.16.10" ;
@@ -1631,7 +1631,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:minimumHorizontalRadi
 era-sh:minimumHorizontalRadius
 	a sh:PropertyShape ;
     era:affectedProperty era:minimumHorizontalRadius;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Radius of the smallest horizontal curve of the track in metres." ;
 	era:rinfIndex "1.1.1.1.3.7" , "1.2.2.0.3.2" ;
@@ -1649,7 +1649,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:nationalValuesBrakeMo
 era-sh:nationalValuesBrakeModel
 	a sh:PropertyShape ;
     era:affectedProperty era:nationalValuesBrakeModel;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Set of parameters for adapting the braking curves calculated by the ETCS on-board system to match accuracy, performance and safety margins imposed by the infrastructure manager." ;
 	era:rinfIndex "1.1.1.3.2.16.13" , "1.2.1.1.1.16.13" ;
@@ -1666,7 +1666,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:nationalValuesBrakeMo
 era-sh:nationalValuesBrakeModelApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:nationalValuesBrakeModel;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.2.16.13" , "1.2.1.1.1.16.13" ;
@@ -1691,7 +1691,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmRNoCoverage.
 era-sh:gsmRNoCoverage
 	a sh:PropertyShape;
     era:affectedProperty era:gsmRNoCoverage ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication if there is no GSMR coverage." ; 
 	era:rinfIndex "1.1.1.3.3.8", "1.2.1.1.2.8" ;
@@ -1707,7 +1707,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmRNoCoverageApplica
 era-sh:gsmRNoCoverageApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmRNoCoverage;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable." ;
 	era:rinfIndex "1.1.1.3.3.8", "1.2.1.1.2.8" ;
@@ -1731,7 +1731,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmRActiveMobiles.
 era-sh:gsmRActiveMobiles
 	a sh:PropertyShape ;
     era:affectedProperty era:gsmRActiveMobiles;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Number of simultaneous communication session on board for ETCS level 2 required for a smooth running of the train. This relates to the radio block centre (RBC) handling of communication sessions. Not safety critical and no matter of interoperability." ;
 	era:rinfIndex "1.1.1.3.3.2" , "1.2.1.1.2.2" ;
@@ -1747,7 +1747,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:gsmRActiveMobilesSKOS.
 era-sh:gsmRActiveMobilesSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmRActiveMobiles;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Number of simultaneous communication session on board for ETCS level 2 required for a smooth running of the train. This relates to the radio block centre (RBC) handling of communication sessions. Not safety critical and no matter of interoperability." ;
 	era:rinfIndex "1.1.1.3.3.2" , "1.2.1.1.2.2" ;
@@ -1775,7 +1775,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmRActiveMobilesAppl
 era-sh:gsmRActiveMobilesApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmRActiveMobiles;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable." ;
 	era:rinfIndex "1.1.1.3.3.2" , "1.2.1.1.2.2" ;
@@ -1801,7 +1801,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmROptionalFunctions
 era-sh:gsmROptionalFunctions
 	a sh:PropertyShape ;
     era:affectedProperty era:gsmROptionalFunctions;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Use of optional GSM-R functions which might improve operation on the line. They are for information only and not for network access criteria." ;
 	era:rinfIndex "1.1.1.3.3.3, 1.2.1.1.2.3" ;
@@ -1816,7 +1816,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:gsmROptionalFunctionsSK
 era-sh:gsmROptionalFunctionsSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmROptionalFunctions;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Use of optional GSM-R functions which might improve operation on the line. They are for information only and not for network access criteria." ;
 	era:rinfIndex "1.1.1.3.3.2" , "1.2.1.1.2.2" ;
@@ -1844,7 +1844,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmROptionalFunctions
 era-sh:gsmROptionalFunctionsApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmROptionalFunctions;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable." ;
 	era:rinfIndex "1.1.1.3.3.2" , "1.2.1.1.2.2" ;
@@ -1868,7 +1868,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:otherCantDeficiencyBa
 era-sh:otherCantDeficiencyBasicSSP
 	a sh:PropertyShape ;
     era:affectedProperty era:otherCantDeficiencyBasicSSP;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with parameter \"Cant Deficiency used for the basic SSP\"\"\"." ;
 	era:rinfIndex "1.1.1.3.2.14.1" , "1.2.1.1.1.14.1" ;
@@ -1884,7 +1884,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:otherCantDeficiencyBasi
 era-sh:otherCantDeficiencyBasicSSPSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:otherCantDeficiencyBasicSSP;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with parameter \"Cant Deficiency used for the basic SSP\"\"\"." ;
 	era:rinfIndex "1.1.1.3.2.14.1" , "1.2.1.1.1.14.1" ;
@@ -1912,7 +1912,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:otherCantDeficiencyBa
 era-sh:otherCantDeficiencyBasicSSPApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:otherCantDeficiencyBasicSSP;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.2.14.1" , "1.2.1.1.1.14.1" ;
@@ -1937,7 +1937,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:legacyRadioSystem.
 era-sh:legacyRadioSystem
 	a sh:PropertyShape ;
     era:affectedProperty era:legacyRadioSystem;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of radio legacy systems installed." ;
 	era:rinfIndex "1.1.1.3.6.1" ,"1.2.1.1.5.1" ;
@@ -1953,7 +1953,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:legacyRadioSystemSKOS.
 era-sh:legacyRadioSystemSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:legacyRadioSystem;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of radio legacy systems installed." ;
 	era:rinfIndex "1.1.1.3.6.1" , "1.2.1.1.5.1" ;
@@ -1979,7 +1979,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:otherTrainProtection.
 era-sh:otherTrainProtection
 	a sh:PropertyShape ;
     era:affectedProperty era:otherTrainProtection;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of existence of other system than ETCS for degraded situation." ;
 	era:rinfIndex "1.1.1.3.10.2" , "1.2.1.1.9.2" ;
@@ -1995,7 +1995,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:otherTrainProtectionSKO
 era-sh:otherTrainProtectionSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:otherTrainProtection;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of existence of other system than ETCS for degraded situation." ;
 	era:rinfIndex "1.1.1.3.10.2" , "1.2.1.1.9.2" ;
@@ -2023,7 +2023,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:otherTrainProtectionA
 era-sh:otherTrainProtectionApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:otherTrainProtection;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.10.2" , "1.2.1.1.9.2" ;
@@ -2089,7 +2089,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:qNvdriverAdhes.
 era-sh:qNvdriverAdhes
 	a sh:PropertyShape ;
     era:affectedProperty era:qNvdriverAdhes;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Qualifier determining whether the driver is allowed to modify the adhesion factor used by the ETCS on-board to calculate the braking curves." ;
 	era:rinfIndex "1.1.1.3.2.16.11" , "1.2.1.1.1.16.11" ;
@@ -2105,7 +2105,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:qNvdriverAdhesSKOS.
 era-sh:qNvdriverAdhesSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:qNvdriverAdhes;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Qualifier determining whether the driver is allowed to modify the adhesion factor used by the ETCS on-board to calculate the braking curves." ;
 	era:rinfIndex "1.1.1.3.2.16.11" , "1.2.1.1.1.16.11" ;
@@ -2133,7 +2133,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:qNvdriverAdhesApplica
 era-sh:qNvdriverAdhesApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:qNvdriverAdhes;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.2.16.11" , "1.2.1.1.1.16.11" ;
@@ -2158,7 +2158,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:qNvemrrls.
 era-sh:qNvemrrls
 	a sh:PropertyShape ;
     era:affectedProperty era:qNvemrrls;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Qualifier defining whether the application of the emergency brake for reasons other than a trip can be revoked as soon as the conditions for it have disappeared or after the train has come to a complete standstill." ;
 	era:rinfIndex "1.1.1.3.2.16.2" , "1.2.1.1.1.16.2" ;
@@ -2174,7 +2174,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:qNvemrrlsSKOS.
 era-sh:qNvemrrlsSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:qNvemrrls;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Qualifier defining whether the application of the emergency brake for reasons other than a trip can be revoked as soon as the conditions for it have disappeared or after the train has come to a complete standstill." ;
 	era:rinfIndex "1.1.1.3.2.16.2" , "1.2.1.1.1.16.2" ;
@@ -2202,7 +2202,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:qNvemrrlsApplicabilit
 era-sh:qNvemrrlsApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:qNvemrrls;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when parameter 1.1.1.3.2.1 is applicable (its Applicable: 'Y')." ;
 	era:rinfIndex "1.1.1.3.2.16.2" , "1.2.1.1.1.16.2" ;
@@ -2228,7 +2228,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:qNvsbtsmperm.
 era-sh:qNvsbtsmperm
 	a sh:PropertyShape;
     era:affectedProperty era:qNvsbtsmperm ;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Permission to use service brake in target speed monitoring." ; 
 	era:rinfIndex "1.1.1.3.2.16.12" , "1.2.1.1.1.16.12" ;
@@ -2244,7 +2244,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:qNvsbtsmpermApplicabi
 era-sh:qNvsbtsmpermApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:qNvsbtsmperm;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.2.16.12" , "1.2.1.1.1.16.12" ;
@@ -2269,7 +2269,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:radioNetworkId.
 era-sh:radioNetworkId
 	a sh:PropertyShape ;
     era:affectedProperty era:radioNetworkId;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Unique identification of the GSM-R network the calling mobile station has to register with, as defined in the specification referenced in TSI CCS." ;
 	era:rinfIndex "1.1.1.3.3.12" , "1.2.1.1.2.13" ;
@@ -2286,7 +2286,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:radioNetworkIdApplica
 era-sh:radioNetworkIdApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:radioNetworkId;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable." ;
 	era:rinfIndex "1.1.1.3.3.12" , "1.2.1.1.2.13" ;
@@ -2310,7 +2310,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:dataRadioCompatible.
 era-sh:dataRadioCompatible
 	a sh:PropertyShape ;
     era:affectedProperty era:dataRadioCompatible;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Radio requirements used for demonstrating technical compatibility data." ;
 	era:rinfIndex "1.1.1.3.3.10" , "1.2.1.1.2.10" ;
@@ -2325,7 +2325,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:dataRadioCompatibleSKOS
 era-sh:dataRadioCompatibleSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:dataRadioCompatible;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Radio requirements used for demonstrating technical compatibility data." ;
 	era:rinfIndex "1.1.1.3.3.10" , "1.2.1.1.2.10" ;
@@ -2351,7 +2351,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:dataRadioCompatibleAp
 era-sh:dataRadioCompatibleApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:dataRadioCompatible;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable." ;
 	era:rinfIndex "1.1.1.3.3.10" , "1.2.1.1.2.10" ;
@@ -2377,7 +2377,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:voiceRadioCompatible.
 era-sh:voiceRadioCompatible
 	a sh:PropertyShape ;
     era:affectedProperty era:voiceRadioCompatible;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Radio requirements used for demonstrating technical compatibility voice." ;
 	era:rinfIndex "1.1.1.3.3.9" , "1.2.1.1.2.9" ;
@@ -2392,7 +2392,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:voiceRadioCompatibleSKO
 era-sh:voiceRadioCompatibleSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:voiceRadioCompatible;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Radio requirements used for demonstrating technical compatibility voice." ;
 	era:rinfIndex "1.1.1.3.3.9" , "1.2.1.1.2.9" ;
@@ -2418,7 +2418,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:voiceRadioCompatibleA
 era-sh:voiceRadioCompatibleApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:voiceRadioCompatible;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable." ;
 	era:rinfIndex "1.1.1.3.3.9" , "1.2.1.1.2.9" ;
@@ -2442,7 +2442,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:errorCorrectionsOnboa
 era-sh:errorCorrectionsOnboardExplanation
 	a sh:PropertyShape ;
     era:affectedProperty era:errorCorrectionsOnboardExplanation;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Explanation on why a mandatory onboard CR required to be solved in the on-board (ETCS, GSM-R and/or ATO) was accepted by the IM." ;
 	era:rinfIndex "1.1.1.3.1.2" , "1.2.1.1.1.19" ;
@@ -2458,7 +2458,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:reasonsEtcsRadioBlock
 era-sh:reasonsEtcsRadioBlockCenterReject
 	a sh:PropertyShape ;
     era:affectedProperty era:reasonsEtcsRadioBlockCenterReject;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "List of cases subject to system design choices made by the infrastructure manager according to the specification referenced in TSI CCS." ;
 	era:rinfIndex "1.1.1.3.2.15" , "1.2.1.1.1.15" ;
@@ -2474,7 +2474,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:reasonsEtcsRadioBlockCe
 era-sh:reasonsEtcsRadioBlockCenterRejectSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:reasonsEtcsRadioBlockCenterReject;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "List of cases subject to system design choices made by the infrastructure manager according to the specification referenced in TSI CCS." ;
 	era:rinfIndex "1.1.1.3.2.15" , "1.2.1.1.1.15" ;
@@ -2502,7 +2502,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:safeConsistLengthInfo
 era-sh:safeConsistLengthInformationNecessary
 	a sh:PropertyShape ;
     era:affectedProperty era:safeConsistLengthInformationNecessary;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication whether safe consist train length information from on-board is required to access the line for safety reasons and the required safety integrity level." ;
 	era:rinfIndex "1.1.1.3.2.11" , "1.2.1.1.1.11" ;
@@ -2518,7 +2518,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:safeConsistLengthInform
 era-sh:safeConsistLengthInformationNecessarySKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:safeConsistLengthInformationNecessary;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication whether safe consist train length information from on-board is required to access the line for safety reasons and the required safety integrity level." ;
 	era:rinfIndex "1.1.1.3.2.11" , "1.2.1.1.1.11" ;
@@ -2546,7 +2546,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:safeConsistLengthInfo
 era-sh:safeConsistLengthInformationNecessaryApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:safeConsistLengthInformationNecessary;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when parameter 1.1.1.3.2.1 is applicable (its Applicable: 'Y')." ;
 	era:rinfIndex "1.1.1.3.2.11" , "1.2.1.1.1.11" ;
@@ -2571,7 +2571,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:conditionsSwitchTrain
 era-sh:conditionsSwitchTrainProtectionSystems
 	a sh:PropertyShape ;
     era:affectedProperty era:conditionsSwitchTrainProtectionSystems;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Conditions to switch over between different class B train protection, control and warning systems." ;
 	era:rinfIndex "1.1.1.3.8.1.1", "1.2.1.1.7.1.1" ;
@@ -2588,7 +2588,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:instructionsSwitchRad
 era-sh:instructionsSwitchRadioSystems
 	a sh:PropertyShape ;
     era:affectedProperty era:instructionsSwitchRadioSystems;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Name and/or reference of the document specifying the Special instructions to switch over between different radio systems." ;
 	era:rinfIndex "1.1.1.3.8.2.1" , "1.2.1.1.7.2.1" ;
@@ -2604,7 +2604,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:conditionsSwitchClass
 era-sh:conditionsSwitchClassBSystems
 	a sh:PropertyShape ;
     era:affectedProperty era:conditionsSwitchClassBSystems;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Name and/or reference of the document specifying the Special technical conditions required to switch over between ERTMS/ETCS and Class B systems." ;
 	era:rinfIndex "1.1.1.3.8.3" , "1.2.1.1.7.3" ;
@@ -2620,7 +2620,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:mNvcontact.
 era-sh:mNvcontact
 	a sh:PropertyShape ;
     era:affectedProperty era:mNvcontact;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "On-Board system reaction when T_NVCONTACT expires." ;
 	era:rinfIndex "1.1.1.3.2.16.9" , "1.2.1.1.1.16.9" ;
@@ -2636,7 +2636,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:mNvcontactSKOS.
 era-sh:mNvcontactSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:mNvcontact;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "On-Board system reaction when T_NVCONTACT expires." ;
 	era:rinfIndex "1.1.1.3.2.16.9" , "1.2.1.1.1.16.9" ;
@@ -2664,7 +2664,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:tNvovtrp.
 era-sh:tNvovtrp
 	a sh:PropertyShape ;
     era:affectedProperty era:tNvovtrp;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Maximum time for overriding the train trip in seconds." ;
 	era:rinfIndex "1.1.1.3.2.16.6" , "1.2.1.1.1.16.6" ;
@@ -2681,7 +2681,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:tNvovtrpApplicability
 era-sh:tNvovtrpApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:tNvovtrp;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.2.16.6" , "1.2.1.1.1.16.6" ;
@@ -2706,7 +2706,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:trainIntegrityOnBoard
 era-sh:trainIntegrityOnBoardRequired
 	a sh:PropertyShape ;
     era:affectedProperty era:trainIntegrityOnBoardRequired;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication whether train confirmation from on-board is required to access the line for safety reasons. In hybrid operation, the confirmation can be optional." ;
 	era:rinfIndex "1.1.1.3.2.8" , "1.2.1.1.1.8" ;
@@ -2723,7 +2723,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:eddyCurrentBraking.
 era-sh:eddyCurrentBraking
 	a sh:PropertyShape ;
     era:affectedProperty era:eddyCurrentBraking;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of limitations on the use of eddy current brakes." ;
 	era:rinfIndex "1.1.1.1.6.2" , "1.2.1.0.4.2" ;
@@ -2740,7 +2740,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:eddyCurrentBrakingSKOS.
 era-sh:eddyCurrentBrakingSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:eddyCurrentBraking;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of limitations on the use of eddy current brakes." ;
 	era:rinfIndex "1.1.1.1.6.2" , "1.2.1.0.4.2" ;
@@ -2768,7 +2768,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:magneticBraking.
 era-sh:magneticBraking
 	a sh:PropertyShape ;
     era:affectedProperty era:magneticBraking;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of limitations on the use of magnetic brakes." ;
 	era:rinfIndex "1.1.1.1.6.3" , "1.2.1.0.4.3" ;
@@ -2785,7 +2785,7 @@ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:magneticBrakingSKOS.
 era-sh:magneticBrakingSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:magneticBraking;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Indication of limitations on the use of magnetic brakes." ;
 	era:rinfIndex "1.1.1.1.6.3" , "1.2.1.0.4.3" ;
@@ -2813,7 +2813,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:vNvallowovtrp.
 era-sh:vNvallowovtrp
 	a sh:PropertyShape ;
     era:affectedProperty era:vNvallowovtrp;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Speed limit allowing the driver to select the “override” function in km/h." ;
 	era:rinfIndex "1.1.1.3.2.16.3" , "1.2.1.1.1.16.3" ;
@@ -2830,7 +2830,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:vNvallowovtrpApplicab
 era-sh:vNvallowovtrpApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:vNvallowovtrp;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.2.16.3" , "1.2.1.1.1.16.3" ;
@@ -2855,7 +2855,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:vNvsupovtrp.
 era-sh:vNvsupovtrp
 	a sh:PropertyShape ;
     era:affectedProperty era:vNvsupovtrp;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Override speed limit to be supervised when the “override” function is active in km/h." ;
 	era:rinfIndex "1.1.1.3.2.16.4" , "1.2.1.1.1.16.4" ;
@@ -2872,7 +2872,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:vNvsupovtrpApplicabil
 era-sh:vNvsupovtrpApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:vNvsupovtrp;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.2.16.4" , "1.2.1.1.1.16.4" ;
@@ -2897,7 +2897,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmrConstraintsOperat
 era-sh:gsmrConstraintsOperateOnlyInCircuitSwitchApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmrConstraintsOperateOnlyInCircuitSwitch;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable." ;
 	era:rinfIndex "1.2.1.1.2.12" ;
@@ -2924,7 +2924,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:tNvcontact.
 era-sh:tNvcontact
 	a sh:PropertyShape ;
     era:affectedProperty era:tNvcontact;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Maximum time without a safe message from Radio Block Center before train reacts in seconds." ;
 	era:rinfIndex "1.1.1.3.2.16.8" , "1.2.1.1.1.16.8" ;
@@ -2941,7 +2941,7 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:tNvcontactApplicabili
 era-sh:tNvcontactApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:tNvcontact;
-    era:affectedClass era:Track;
+    era:affectedClass era:RunningTrack;
     era:scope "local";
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present).." ;
 	era:rinfIndex "1.1.1.3.2.16.8" , "1.2.1.1.1.16.8" ;
