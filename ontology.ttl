@@ -2312,7 +2312,7 @@ era:hasLRS rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/hasLrsCoordinate
 era:hasLrsCoordinate rdf:type owl:ObjectProperty ;
-                     rdfs:domain era:TopologicalCoordinate ;
+                     rdfs:domain era:NetPointReference ;
                      rdfs:range era:LinearPositioningSystemCoordinate ;
                      dcterms:created "2024-11-29"^^xsd:date ;
                      rdfs:comment "Specifies the LRS coordinate associated with a topological coordinate."@en ;
@@ -2604,7 +2604,7 @@ In case when SoL is the track connecting between OPs within big node (resulting 
                                     "2024-10-28"^^xsd:date ;
                    rdfs:comment "Unique line identification or unique line number within Member State."@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                   rdfs:label "National line identification"@en ;
+                   rdfs:label "CHECK:National line identification"@en ;
                    owl:deprecated "true"^^xsd:boolean ;
                    vs:term_status "stable" .
 
@@ -8880,14 +8880,16 @@ era:multipleTrainProtectionRequired rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/nationalLineId
-era:nationalLineId rdf:type owl:DatatypeProperty ,
+era:lineId rdf:type owl:DatatypeProperty ,
                             owl:FunctionalProperty ;
-                   rdfs:domain era:NationalRailwayLine ;
+                   rdfs:domain era:LinearPositioningSystem ;
                    rdfs:range xsd:string ;
                    dcterms:modified "2024-11-18"^^xsd:date ;
+                 era:XMLName "SOLLineIdentification" ;
+                 era:rinfIndex "1.1.0.0.0.2" ;
                    rdfs:comment "Unique line identification or unique line number within Member State." ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                   rdfs:label "national line identifier"@en .
+                   rdfs:label "line identifier"@en .
 
 
 ###  http://data.europa.eu/949/nationalLoadCapability
@@ -11933,12 +11935,7 @@ era:RunningTrack rdf:type owl:Class ;
 
 ###  http://data.europa.eu/949/SectionOfLine
 era:SectionOfLine rdf:type owl:Class ;
-                  rdfs:subClassOf era:AggregatedElement ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty era:nationalLine ;
-                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                    owl:onClass era:NationalRailwayLine
-                                  ] ,
+                  rdfs:subClassOf era:AggregatedElement 
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty era:opEnd ;
                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
