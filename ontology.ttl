@@ -379,6 +379,10 @@ era:eratvIndex rdf:type owl:AnnotationProperty ;
                rdfs:range xsd:string .
 
 
+###  http://data.europa.eu/949/formatNote
+era:formatNote rdf:type owl:AnnotationProperty .
+
+
 ###  http://data.europa.eu/949/hashSource
 era:hashSource rdf:type owl:AnnotationProperty ;
                dcterms:created "2024-02-06"^^xsd:date ;
@@ -2604,7 +2608,7 @@ In case when SoL is the track connecting between OPs within big node (resulting 
                                     "2024-10-28"^^xsd:date ;
                    rdfs:comment "Unique line identification or unique line number within Member State."@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                   rdfs:label "CHECK:National line identification"@en ;
+                   rdfs:label "(deprecated) National line identification"@en ;
                    owl:deprecated "true"^^xsd:boolean ;
                    vs:term_status "stable" .
 
@@ -2619,7 +2623,7 @@ era:lineReference rdf:type owl:ObjectProperty ;
                                    "2024-11-29"^^xsd:date ;
                   rdfs:comment "Indicates a relationship with a national railway line at a specific kilometer point."@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                  rdfs:label "CHECK: Railway location of an infrastructure object"@en ;
+                  rdfs:label "(deprecated) Railway location of an infrastructure object"@en ;
                   owl:deprecated "true"^^xsd:boolean ;
                   vs:term_status "stable" .
 
@@ -2640,7 +2644,7 @@ era:lineReferenceTunnelEnd rdf:type owl:ObjectProperty ;
 
 The End of tunnel is the Geographical coordinates in decimal degrees and km of the line at the end of a tunnel."""@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                           rdfs:label "CHECK: End of tunnel kilometer"@en ;
+                           rdfs:label "End of tunnel kilometer"@en ;
                            vs:term_status "stable" ;
                            skos:example "Kilometer=`0.270`" ;
                            skos:scopeNote "Parameters of this group (from 1.1.1.1.8.1 to 1.1.1.1.8.13) are only applicable if tunnels exist on the SoL"@en .
@@ -2662,7 +2666,7 @@ era:lineReferenceTunnelStart rdf:type owl:ObjectProperty ;
 
 The Start of tunnel is the Geographical coordinates in decimal degrees and km of the line at the end of a tunnel."""@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                             rdfs:label "CHECK: Start of tunnel kilometer"@en ;
+                             rdfs:label "Start of tunnel kilometer"@en ;
                              vs:term_status "stable" ;
                              skos:example "Kilometer=`0.895`" ;
                              skos:scopeNote "Parameters of this group (from 1.1.1.1.8.1 to 1.1.1.1.8.13) are only applicable if tunnels exist on the SoL"@en .
@@ -3010,12 +3014,8 @@ era:minVehicleImpedanceVoltages rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/nationalLine
 era:nationalLine rdf:type owl:ObjectProperty ;
-                 rdfs:domain [ rdf:type owl:Class ;
-                               owl:unionOf ( era:LinearPositioningSystem
-                                             era:SectionOfLine
-                                           )
-                             ] ;
-                 rdfs:range era:NationalRailwayLine ;
+                 rdfs:domain era:SectionOfLine ;
+                 rdfs:range era:LinearPositioningSystem ;
                  era:XMLName "SOLLineIdentification" ;
                  era:rinfIndex "1.1.0.0.0.2" ;
                  dcterms:created "2024-05-24"^^xsd:date ;
@@ -3029,7 +3029,7 @@ In case when SoL is the track connecting between OPs within big node (resulting 
                  rdfs:comment """Indicates a relationship with a national railway line at a specific kilometer point.
 For a Section of Line: unique line identification or unique line number within Member State."""@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                 rdfs:label "CHECK: national line"@en ;
+                 rdfs:label "national line identification"@en ;
                  vs:term_status "stable" .
 
 
@@ -3037,6 +3037,11 @@ For a Section of Line: unique line identification or unique line number within M
 era:navigability rdf:type owl:ObjectProperty ;
                  rdfs:domain era:NetRelation ;
                  rdfs:range skos:Concept ;
+                 era:formatNote """•	AB: Trains can move from element A to element B.
+•	BA: Trains can move from element B to element A.
+•	Both: Movement is bidirectional.
+•	None: No movement is allowed between the two elements.
+"""@en ;
                  era:inSkosConceptScheme <http://data.europa.eu/949/concepts/navigabilities/Navigabilities> ;
                  era:rinfIndex "1.1.1.0.1.2" ,
                                "1.2.4.1" ;
@@ -7598,7 +7603,7 @@ For signals: Relative position to the line identified under parameter 1.1.0.0.0.
               dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
               rdfs:comment "Distance measured in kilometers from the origin of a national railway line/route."@en ;
               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-              rdfs:label "CHECK: kilometer"@en ;
+              rdfs:label "kilometer"@en ;
               vs:term_status "stable" .
 
 
@@ -7606,8 +7611,8 @@ For signals: Relative position to the line identified under parameter 1.1.0.0.0.
 era:kilometerNumber rdf:type owl:DatatypeProperty ;
                     rdfs:domain era:KilometricPost ;
                     rdfs:range xsd:integer ;
-                    dcterms:created "2024-11-29"^^xsd:date ;
                     era:unitOfMeasure unit:KiloM ;
+                    dcterms:created "2024-11-29"^^xsd:date ;
                     rdfs:comment "Kilometer number of the kilometric post."@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "kilometer number"@en .
@@ -7622,16 +7627,6 @@ era:kilometerPostName rdf:type owl:DatatypeProperty ;
                       rdfs:label "kilometer post name"@en .
 
 
-###  http://data.europa.eu/949/kilometricPostName
-era:kilometricPostName rdf:type owl:DatatypeProperty ;
-                       rdfs:domain era:KilometricPost ;
-                       rdfs:range xsd:string ;
-                       dcterms:created "2024-11-29"^^xsd:date ;
-                       rdfs:comment "Name of the kilometric post (optional)."@en ;
-                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                       rdfs:label "kilometric post name"@en .
-
-
 ###  http://data.europa.eu/949/kmPostName
 era:kmPostName rdf:type owl:DatatypeProperty ;
                rdfs:domain era:KilometricPost ;
@@ -7639,8 +7634,9 @@ era:kmPostName rdf:type owl:DatatypeProperty ;
                dcterms:created "2024-05-24"^^xsd:date ;
                dcterms:modified "2024-10-24"^^xsd:date ,
                                 "2024-11-29"^^xsd:date ;
+               rdfs:comment "Name of the kilometric post (optional)."@en ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-               rdfs:label "CHECK: kilometric post name"@en ;
+               rdfs:label "kilometric post name"@en ;
                vs:term_status "stable" ;
                skos:altLabel "mileage post"@en .
 
@@ -7786,6 +7782,19 @@ era:letterMarking rdf:type owl:DatatypeProperty ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "Letter marking"@en ;
                   vs:term_status "stable" .
+
+
+###  http://data.europa.eu/949/lineId
+era:lineId rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain era:LinearPositioningSystem ;
+           rdfs:range xsd:string ;
+           era:XMLName "SOLLineIdentification" ;
+           era:rinfIndex "1.1.0.0.0.2" ;
+           dcterms:modified "2024-11-18"^^xsd:date ;
+           rdfs:comment "Unique line identification or unique line number within Member State." ;
+           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+           rdfs:label "line identifier"@en .
 
 
 ###  http://data.europa.eu/949/lineLayoutDataParameter
@@ -8879,19 +8888,6 @@ era:multipleTrainProtectionRequired rdf:type owl:DatatypeProperty ;
                                     vs:term_status "unstable" .
 
 
-###  http://data.europa.eu/949/nationalLineId
-era:lineId rdf:type owl:DatatypeProperty ,
-                            owl:FunctionalProperty ;
-                   rdfs:domain era:LinearPositioningSystem ;
-                   rdfs:range xsd:string ;
-                   dcterms:modified "2024-11-18"^^xsd:date ;
-                 era:XMLName "SOLLineIdentification" ;
-                 era:rinfIndex "1.1.0.0.0.2" ;
-                   rdfs:comment "Unique line identification or unique line number within Member State." ;
-                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                   rdfs:label "line identifier"@en .
-
-
 ###  http://data.europa.eu/949/nationalLoadCapability
 era:nationalLoadCapability rdf:type owl:DatatypeProperty ;
                            rdfs:subPropertyOf era:performanceDataParameter ;
@@ -9053,8 +9049,8 @@ era:oclType rdf:type owl:DatatypeProperty ;
 era:offsetFromKilometricPost rdf:type owl:DatatypeProperty ;
                              rdfs:domain era:LinearPositioningSystemCoordinate ;
                              rdfs:range xsd:double ;
-                             dcterms:created "2024-11-29"^^xsd:date ;
                              era:unitOfMeasure unit:M ;
+                             dcterms:created "2024-11-29"^^xsd:date ;
                              rdfs:comment "Relative distance from a reference kilometric post "@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "offset"@en .
@@ -11395,25 +11391,6 @@ era:AggregatedElement rdf:type owl:Class ;
                       skos:example "Example: in one operational point we can find several tracks, switches, signals, etc."@en .
 
 
-###  http://data.europa.eu/949/AreaLocation
-era:AreaLocation rdf:type owl:Class ;
-                 rdfs:subClassOf era:BaseLocation ;
-                 dcterms:isReplacedBy era:NetAreaReference ;
-                 rdfs:comment "Represents a geographical representation of a polygonal area."@en ;
-                 rdfs:label "CHECK: Area Location"@en ;
-                 vs:term_status "unstable" ;
-                 skos:example "Example: non-stopping area,cross section area, area of implementation of GPRS etc."@en .
-
-
-###  http://data.europa.eu/949/BaseLocation
-era:BaseLocation rdf:type owl:Class ;
-                 rdfs:subClassOf era:Feature ;
-                 dcterms:isReplacedBy era:NetBasicReference ;
-                 rdfs:comment "It represents different types of geographical locations. Geographical coordinates are provied according to the standard World Geodetic System (WGS84)."@en ;
-                 rdfs:label "CHECK: Base Location"@en ;
-                 vs:term_status "unstable" .
-
-
 ###  http://data.europa.eu/949/BasicElement
 era:BasicElement rdf:type owl:Class ;
                  rdfs:subClassOf era:InfrastructureElement ;
@@ -11584,7 +11561,7 @@ era:LineReference rdf:type owl:Class ;
                                    "2024-11-29"^^xsd:date ;
                   rdfs:comment "A reference to a specific railway line."@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                  rdfs:label "CHECK: Railway location"@en ;
+                  rdfs:label "(deprecated) Railway location"@en ;
                   owl:deprecated "true"^^xsd:boolean ;
                   vs:term_status "stable" ;
                   skos:altLabel "Line reference" .
@@ -11594,9 +11571,10 @@ era:LineReference rdf:type owl:Class ;
 era:LinearElement rdf:type owl:Class ;
                   rdfs:subClassOf era:NetElement ;
                   dcterms:modified "2024-11-29"^^xsd:date ;
-                  rdfs:comment "This class represents a node in the topological graph. It represents a linear element in the network."@en ;
+                  rdfs:comment ""@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                  rdfs:label "Linear Element"@en .
+                  rdfs:label "Linear Element"@en ;
+                  skos:scopeNote "This class represents a node in the topological graph. It represents a linear element in the network."@en .
 
 
 ###  http://data.europa.eu/949/LinearElementSection
@@ -11604,23 +11582,15 @@ era:LinearElementSection rdf:type owl:Class ;
                          rdfs:subClassOf era:LinearElement ;
                          rdfs:comment "Represents a section of a linear element."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                         rdfs:label "Linear Element Section"@en .
-
-
-###  http://data.europa.eu/949/LinearLocation
-era:LinearLocation rdf:type owl:Class ;
-                   rdfs:subClassOf era:BaseLocation ;
-                   dcterms:isReplacedBy era:NetLinearReference ;
-                   dcterms:modified "2024-10-28"^^xsd:date ;
-                   rdfs:comment "Geographical representation of a curvi-linear topology element."@en ;
-                   rdfs:label "CHECK: Linear Location"@en ;
-                   skos:example "Example: tracks, tunnels, bridges, platform edges etc."@en .
+                         rdfs:label "Linear Element Section"@en ;
+                         skos:scopeNote "A linear element section is a finer granularity of a linear element, representing a specific portion of it. This concept is introduced to address the cases when a linear element needs to be split such as a part of it is used by a net referencing (more in the paragraph describing the positioning on the network). By using start and end offsets measured from origin of the element in ascending order, sections eliminate the need for intrinsic coordinates and instead rely on distances along the linear element."@en .
 
 
 ###  http://data.europa.eu/949/LinearPositioningSystem
 era:LinearPositioningSystem rdf:type owl:Class ;
                             dcterms:created "2024-11-29"^^xsd:date ;
-                            rdfs:comment "Represents a linear positioning system for referencing."@en ;
+                            rdfs:comment """Represents a linear positioning system used for referencing positions on the network.
+It can also represent a sequence of one or more sections of line, used for regular railway operations."""@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Linear Positioning System"@en .
 
@@ -11739,7 +11709,7 @@ era:NationalRailwayLine rdf:type owl:Class ;
                         rdfs:comment """Railway line within a member state.
 A line is a sequence of one or mores sections of line, which connects operational points and which may consist of several tracks used for regular railway operation."""@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                        rdfs:label "CHECK: National railway line"@en ;
+                        rdfs:label "National railway line"@en ;
                         owl:deprecated "true"^^xsd:boolean ;
                         vs:term_status "stable" .
 
@@ -11751,7 +11721,8 @@ era:NetAreaReference rdf:type owl:Class ;
                      rdfs:comment "Represents an area reference in the network."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "Net Area Reference"@en ;
-                     skos:example "Example: non-stopping area,cross section area, area of implementation of GPRS etc."@en .
+                     skos:example "Example: non-stopping area,cross section area, area of implementation of GPRS etc."@en ;
+                     skos:scopeNote "It is used for infrastructure elements positioned in relation to the topology as a subnetwork. (e.g.: tunnels, non-stopping area, stations etc.)"@en .
 
 
 ###  http://data.europa.eu/949/NetBasicReference
@@ -11760,14 +11731,18 @@ era:NetBasicReference rdf:type owl:Class ;
                       dcterms:created "2024-11-29"^^xsd:date ;
                       rdfs:comment "Basic positioning reference within the ERA ontology.It represents different types of geographical locations. Geographical coordinates are provied according to the standard World Geodetic System (WGS84)."@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                      rdfs:label "Net Basic Reference"@en .
+                      rdfs:label "Net Basic Reference"@en ;
+                      rdfs:seeAlso "https://wiki.railtopomodel.org/wiki/Object_positioning_in_the_network"^^xsd:anyURI ;
+                      skos:scopeNote ""@en .
 
 
 ###  http://data.europa.eu/949/NetElement
 era:NetElement rdf:type owl:Class ;
                dcterms:created "2024-11-29"^^xsd:date ;
+               rdfs:comment "It is a representation of all building blocks of the topology. It references an associated topological network element."@en ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-               rdfs:label "Net element"@en .
+               rdfs:label "Net element"@en ;
+               rdfs:seeAlso "https://wiki.railtopomodel.org/wiki/Topological_structure_(network)"^^xsd:anyURI .
 
 
 ###  http://data.europa.eu/949/NetLinearReference
@@ -11777,7 +11752,8 @@ era:NetLinearReference rdf:type owl:Class ;
                        rdfs:comment "Represents a linear reference in the network."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Net Linear Reference"@en ;
-                       skos:example "Example: tracks, tunnels, bridges, platform edges etc."@en .
+                       skos:example "Example: tracks, tunnels, bridges, platform edges etc."@en ;
+                       skos:scopeNote "It is used for infrastructure elements positioned in relation to the topology as a line, or along a path. (e.g.: tracks, bridges, platform edges, etc.)"@en .
 
 
 ###  http://data.europa.eu/949/NetPointReference
@@ -11786,7 +11762,8 @@ era:NetPointReference rdf:type owl:Class ;
                       dcterms:created "2024-11-29"^^xsd:date ;
                       rdfs:comment "Represents a point reference in the network."@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                      rdfs:label "Net Point Reference"@en .
+                      rdfs:label "Net Point Reference"@en ;
+                      skos:scopeNote "It is used for infrastructure elements positioned in relation to the topology as a point. (e.g.: signals, ETCS balises, buffer stops, etc.)"@en .
 
 
 ###  http://data.europa.eu/949/NetRelation
@@ -11794,7 +11771,18 @@ era:NetRelation rdf:type owl:Class ;
                 dcterms:created "2024-11-29"^^xsd:date ;
                 rdfs:comment "Defines a relation between two elements."@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                rdfs:label "Net Relation"@en .
+                rdfs:label "Net Relation"@en ;
+                rdfs:seeAlso "https://wiki.railtopomodel.org/wiki/Topological_structure_(network)"^^xsd:anyURI ;
+                skos:scopeNote """Connectivity and the navigability between consecutive linear elements are resolved by using net relations. It models how different elements are related to each other, representing a transition from one element to another. 
+Net relations specify where two linear elements connect. This could be at the origin of one element, the end of another, or even at specific offsets along their lengths. For example, two tracks might connect at a junction, with one ending at offset 1500 and the other beginning at offset 0. 
+NetRelation explicitly models these connections by linking two linear elements (elementA and elementB) and defining their physical or logical relationship.
+Net relations also specify the permitted directions of travel:
+•	AB: Trains can move from element A to element B.
+•	BA: Trains can move from element B to element A.
+•	Both: Movement is bidirectional.
+•	None: No movement is allowed between the two elements.
+To make this even more precise, net relations include information about whether the connection is at the origin of each element. For example, a relation might indicate that Track A ends at its origin (offset 0) and connects to Track B at its start (isOnOriginOfElementA and isOnOriginOfElementB).
+"""@en .
 
 
 ###  http://data.europa.eu/949/NonLinearElement
@@ -11803,7 +11791,8 @@ era:NonLinearElement rdf:type owl:Class ;
                      dcterms:created "2024-11-29"^^xsd:date ;
                      rdfs:comment "Represents a non-linear element in the network."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                     rdfs:label "Non-Linear Element"@en .
+                     rdfs:label "Non-Linear Element"@en ;
+                     skos:scopeNote "Non-linear elements complement the linear structure by serving as connection or interaction points. They represent features such as stations, depots, or complex junctions. They often serve as aggregation points for linear elements, where multiple tracks meet or like logical entities that support operations like passenger boarding or train storage. These elements may optionally aggregate linear elements."@en .
 
 
 ###  http://data.europa.eu/949/OperationalPoint
@@ -11867,7 +11856,11 @@ era:PlatformEdge rdf:type owl:Class ;
 
 ###  http://data.europa.eu/949/PrimaryLocation
 era:PrimaryLocation rdf:type owl:Class ;
-                    rdfs:subClassOf era:SpotLocation ;
+                    rdfs:subClassOf era:InfrastructureElement ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty era:netReference ;
+                                      owl:allValuesFrom era:NetPointReference
+                                    ] ;
                     owl:disjointWith era:RadioBlockCenter ;
                     dcterms:modified "2024-10-28"^^xsd:date ;
                     rdfs:comment """Primary Location is a place used by IM to define a path for a train in TAF/TAP TSI framework/messages. This location is a rail point inside the rail network where train starts, ends, stops, or runs through or change line. This location must be managed by an Infrastructure Manager (IM) identified by company code.
@@ -11936,6 +11929,11 @@ era:RunningTrack rdf:type owl:Class ;
 ###  http://data.europa.eu/949/SectionOfLine
 era:SectionOfLine rdf:type owl:Class ;
                   rdfs:subClassOf era:AggregatedElement ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty era:nationalLine ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onClass era:LinearPositioningSystem
+                                  ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty era:opEnd ;
                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -12042,16 +12040,6 @@ era:SpecialTunnelArea rdf:type owl:Class ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                       rdfs:label "Special tunnel area"@en ;
                       vs:term_status "stable" .
-
-
-###  http://data.europa.eu/949/SpotLocation
-era:SpotLocation rdf:type owl:Class ;
-                 rdfs:subClassOf era:BaseLocation ;
-                 dcterms:isReplacedBy era:NetPointReference ;
-                 dcterms:modified "2024-11-29"^^xsd:date ;
-                 rdfs:comment "Geographical representation of elements which are located as a point of the ground."@en ;
-                 rdfs:label "CHECK: Spot Location"@en ;
-                 skos:example "Example: signal"@en .
 
 
 ###  http://data.europa.eu/949/SubsidiaryLocation
@@ -12524,16 +12512,6 @@ foaf:Person rdf:type owl:Class ;
             vs:term_status "stable" .
 
 
-#################################################################
-#    General axioms
-#################################################################
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( era:AreaLocation
-                era:LinearLocation
-                era:SpotLocation
-              )
-] .
 
 
 ###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
