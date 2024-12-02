@@ -222,32 +222,6 @@ era-sh:EtcsLevelTypeSKOS
 	}
 """ .
 
-
-# OnlyApplicableIfConstraintComponent
-era-sh:OnlyApplicableIfConstraintComponent a sh:ConstraintComponent ;
-	sh:parameter [
-		sh:path era-sh:conditionalTypeProperty;
-		sh:nodeKind sh:IRI
-		] ;
-	sh:parameter [
-		sh:path era-sh:conditionalValue ;
-		sh:nodeKind sh:IRI;
-		sh:optional true
-		] ;
-	sh:propertyValidator era-sh:OnlyApplicableIfSelectValidator .
-
-era-sh:OnlyApplicableIfSelectValidator a sh:SPARQLSelectValidator ;
-	sh:select """
-    PREFIX era: <http://data.europa.eu/949/>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
-			WHERE {
-                 $this $conditionalTypeProperty $conditionalValue .
-				OPTIONAL{$this rdfs:label ?thisLabel} .
-                FILTER NOT EXISTS {$this $PATH ?value} . 
-            }
-			""" .
-
 # etcsTransmitsTrackConditions: 1.1.1.3.2.12, 1.2.1.1.1.12
 era-sh:trackShape sh:property era-sh:etcsTransmitsTrackConditions.
 era-sh:commonCharacteristicsSubsetShape sh:property era-sh:etcsTransmitsTrackConditions.
@@ -337,7 +311,7 @@ era-sh:etcsTransmittedTrackConditionsApplicability
 	era:scope "local";     
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)." ;
 	era:rinfIndex "1.1.1.3.2.12.1" , "1.2.1.1.1.12.1" ;
-	:severity sh:Violation ;
+	sh:severity sh:Violation ;
 	sh:message "etcsTransmittedTrackConditions (1.1.1.3.2.12.1, 1.2.1.1.1.12.1): The ETCS {$this} ({?thisLabel}), has a ETCS level type which makes the etcsTransmittedTrackConditions parameter applicable. This error is due to {$this} not having a value for such a parameter."@en ; 
 	sh:prefixes era:;
 	sh:select """
