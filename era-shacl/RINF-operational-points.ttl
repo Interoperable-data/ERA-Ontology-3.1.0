@@ -219,28 +219,21 @@ era-sh:hasSchematicOverviewOPDigitalForm
  	sh:severity sh:Violation ;
  	sh:message "hasPart from an operational point : The Operational Point may have a siding (hasPart) reference that is a Siding object or a track (hasPart) reference that is a Track object. This error mey be due to a hasPart relationship from an operational point that is not a Siding nor a Track."@en .
 
-# primaryLocation
-era-sh:operationalpointsShape sh:property era-sh:primaryLocation .
+# parameterApplicability
+era-sh:operationalpointsShape sh:property era-sh:parameterApplicability .
 era-sh:parameterApplicability
 	a sh:PropertyShape;
     era:affectedClass era:OperationalPoint;
-    era:affectedClass era:PrimaryLocation;
+    era:affectedClass era:ParameterApplicability;
     era:affectedProperty era:primaryLocation ;
     era:scope "local";
-	rdfs:comment "Place used by IM to define a path for a train in TAF/TAP TSI framework/messages. This location is a rail point inside the rail network where train starts, ends, stops, or runs through or change line. This location must be managed by an Infrastructure Manager (IM) identified by company code.." ;
-	sh:path era:primaryLocation ;
-	sh:class era:PrimaryLocation;
+	rdfs:comment "Relates an infrastructure element or a common characteristics subset with the applicability of a certain parameter." ;
+	sh:path era:parameterApplicability ;
+	sh:class era:ParameterApplicability;
 	sh:severity sh:Violation ;
-	sh:message "primaryLocation: The operational point may have a primaryLocation reference that must be an instance of PrimaryLocation. This error is due to having having a value that is not an instance of PrimaryLocation."@en .
+	sh:message "parameterApplicability: The operational point may have a parameterApplicability reference that must be an instance of ParameterApplicability. This error is due to having having a value that is not an instance of ParameterApplicability."@en .
 
-# uopid: # 1.2.0.0.0.2 enforce the border point constraint, if an OP is a border point, it should point to ReferenceBorderPoint
-
-
-
-
-
-
-
+# fixed temporarily
 # uopid: # 1.2.0.0.0.2 enforce the border point constraint, if an OP is a border point, it should point to ReferenceBorderPoint and its uopid but be the code in the RefenreceBorderPoint class.
  era-sh:operationalpointsShape sh:sparql era-sh:borderPointValidCode .
  era-sh:borderPointValidCode
@@ -262,8 +255,8 @@ era-sh:parameterApplicability
                OPTIONAL {$this rdfs:label ?opLabel} .
                $this era:uopid ?uopid .
                $this era:opType <http://data.europa.eu/949/concepts/op-types/90> .
-               FILTER (NOT EXISTS {$this era:referenceBorderPoint era:ReferenceBorderPoint} ||
-               (?uopid != era:borderPointId) .
+               $this era:referenceBorderPoint era:ReferenceBorderPoint .
+               FILTER (?uopid != era:borderPointId) .
 			}
 			""" .
 
