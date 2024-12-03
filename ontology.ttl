@@ -23,15 +23,15 @@
                                                   ] ,
                                                   [ foaf:name "Oscar Corcho"
                                                   ] ,
+                                                  [ foaf:name "Edna Ruckhaus"
+                                                  ] ,
+                                                  [ foaf:name "Maarten Duhoux" ;
+                                                    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+                                                  ] ,
                                                   [ foaf:name "Polymnia Vasilopoulou" ;
                                                     org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                                   ] ,
                                                   [ foaf:name "Marina Aguado" ;
-                                                    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
-                                                  ] ,
-                                                  [ foaf:name "Edna Ruckhaus"
-                                                  ] ,
-                                                  [ foaf:name "Maarten Duhoux" ;
                                                     org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                                   ] ;
                               dcterms:creator [ foaf:name "Ghislain Atemezing" ;
@@ -66,7 +66,8 @@
                                                "2024-11-22"^^xsd:date ,
                                                "2024-11-26"^^xsd:date ,
                                                "2024-11-27"^^xsd:date ,
-                                               "2024-12-02"^^xsd:date ;
+                                               "2024-12-02"^^xsd:date ,
+                                               "2024-12-03"^^xsd:date ;
                               dcterms:publisher "European Union Agency for Railways" ;
                               dcterms:title "ERA Ontology"@en ;
                               rdfs:comment """This is the human and machine readable Ontology governed by the European Union Agency for Railways (https://www.era.europa.eu/). It represents the concepts and relationships linked to the sectorial legal framework and the use cases under the AgencyÂ´s remit, as described in the Commission Implementing Regulation (EU) [to be updated after publication] on the common specifications for the register of railway infrastructure [to be updated after publication].
@@ -82,6 +83,9 @@ The Ontology also includes the routebook concepts described in appendix D2 \"Ele
                               owl:versionInfo "v3.1.0" ;
                               owl:versionURI <https://github.com/Interoperable-data/ERA_vocabulary/releases/releases/v3.1.0> ;
                               skos:changeNote """
+Revision 02-12-2024:
+  - fix explicit definition of the primary and subsidiary locations.
+
 Revision 02-12-2024:
   - added the Turtle file generated from excel file annotated by ERA.
   - added annotation era:dependencyNote + language tag @en for corresponding annotations
@@ -374,12 +378,12 @@ Additionally, SoLs point to the canonical URIs of their start OP and end OP."""@
 
 ###  http://data.europa.eu/949/dependencyNote
 era:dependencyNote rdf:type owl:AnnotationProperty ;
-               dcterms:created "2024-12-02"^^xsd:date ;
-               rdfs:comment "This property is used to specify dependencies in natural language not covered by skos:scopeNote"@en ;
-               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-               rdfs:label "dependency note"@en ;
-               vs:term_status "stable" ;
-               rdfs:range xsd:string .
+                   dcterms:created "2024-12-02"^^xsd:date ;
+                   rdfs:comment "This property is used to specify dependencies in natural language not covered by skos:scopeNote"@en ;
+                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                   rdfs:label "dependency note"@en ;
+                   vs:term_status "stable" ;
+                   rdfs:range xsd:string .
 
 
 ###  http://data.europa.eu/949/eratvIndex
@@ -392,7 +396,6 @@ era:eratvIndex rdf:type owl:AnnotationProperty ;
                rdfs:label "ERATV index"@en ;
                vs:term_status "stable" ;
                rdfs:range xsd:string .
-
 
 
 ###  http://data.europa.eu/949/hashSource
@@ -1711,7 +1714,7 @@ era:etcsBaseline rdf:type owl:ObjectProperty ;
                  era:XMLName "CPE_Baseline" ;
                  era:applicable "Y/N" ,
                                 "Y/N/NYA" ;
-                 era:dependencyNote "A value has to be provided when ETCS is present (a value is provided on 1.1.1.3.2.1)."@en;
+                 era:dependencyNote "A value has to be provided when ETCS is present (a value is provided on 1.1.1.3.2.1)."@en ;
                  era:eratvIndex "4.13.1.2" ;
                  era:inSkosConceptScheme <http://data.europa.eu/949/concepts/etcs-baselines/ETCSBaselines> ;
                  era:legalDeadline "12 months after publication of Article 7 Guide"@en ,
@@ -2344,7 +2347,7 @@ era:gsmRActiveMobiles rdf:type owl:ObjectProperty ;
                       era:applicable "Y/N" ,
                                      "Y/N/NYA" ;
                       era:dependencyNote """GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable. ,
-                                         "GSM-R and ETCS level 2 must be installed for this parameter to be applicable."""@en ;
+                                         \"GSM-R and ETCS level 2 must be installed for this parameter to be applicable."""@en ;
                       era:inSkosConceptScheme <http://data.europa.eu/949/concepts/gsmr-number-active-mobiles/NumberActiveMobiles> ;
                       era:legalDeadline "12 months after publication of Article 7 Guide"@en ,
                                         "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
@@ -2385,8 +2388,8 @@ era:gsmRAdditionalInfo rdf:type owl:ObjectProperty ;
                                       "Y/N/NYA" ;
                        era:dependencyNote """GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable ,
                                           GSM-R must be installed for this parameter to be applicable"""@en ;
-                       era:legalDeadline "12 months after publication of Article 7 Guide"@en ,
-                                         "10 January 2021"@en ;
+                       era:legalDeadline "10 January 2021"@en ,
+                                         "12 months after publication of Article 7 Guide"@en ;
                        era:rinfIndex "1.1.1.3.3.3.1" ,
                                      "1.2.1.1.2.3.1" ;
                        dcterms:created "2021-08-08"^^xsd:date ;
@@ -2513,8 +2516,8 @@ era:gsmRVersion rdf:type owl:ObjectProperty ;
                 era:XMLName "CRG_Version" ;
                 era:applicable "Y/N" ,
                                "Y/N/NYA" ;
-                era:dependencyNote"""GSM-R must be installed for this parameter to be applicable and a value to be provided. If this property is not used, all GSM-R related properties should not be used either. ,
-                                   GSM-R must be installed for this parameter to be applicable. If this property is not used, all GSM-R related properties should not be used either."""@en;
+                era:dependencyNote """GSM-R must be installed for this parameter to be applicable and a value to be provided. If this property is not used, all GSM-R related properties should not be used either. ,
+                                   GSM-R must be installed for this parameter to be applicable. If this property is not used, all GSM-R related properties should not be used either."""@en ;
                 era:eratvIndex "4.13.2.1" ;
                 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/gsmr-versions/GSMRVersions> ;
                 era:legalDeadline "12 months after publication of Article 7 Guide"@en ,
@@ -2552,7 +2555,7 @@ era:gsmrConstraintsOperateOnlyInCircuitSwitch rdf:type owl:ObjectProperty ;
                                               rdfs:range skos:Concept ;
                                               era:XMLName "CRG_ConstraintsCS" ;
                                               era:applicable "Y/N/NYA" ;
-                                              era:dependencyNote """GSM-R and ETCS L2 must be installed for this parameter to be applicable. Multiple values are allowed."""@en ;
+                                              era:dependencyNote "GSM-R and ETCS L2 must be installed for this parameter to be applicable. Multiple values are allowed."@en ;
                                               era:inSkosConceptScheme <http://data.europa.eu/949/concepts/gsmr-cs-constraints/GSMRConstraints> ;
                                               era:legalDeadline "12 months after publication of Article 7 Guide"@en ;
                                               era:rinfIndex "1.2.1.1.2.12" ;
@@ -3282,7 +3285,7 @@ era:magneticBrakingConditionsDocument rdf:type owl:ObjectProperty ;
                                       rdfs:range era:Document ;
                                       era:XMLName "ILR_MBDocRef" ;
                                       era:applicable "Y/N" ;
-                                      era:dependencyNote "Mandatory value to be provided when 1.1.1.1.6.3 / Use of magnetic brakes is �allowed under conditions or allowed under conditions only for emergency brake."@en;
+                                      era:dependencyNote "Mandatory value to be provided when 1.1.1.1.6.3 / Use of magnetic brakes is �allowed under conditions or allowed under conditions only for emergency brake."@en ;
                                       era:legalDeadline "16 January 2020"@en ;
                                       era:rinfIndex "1.1.1.1.6.5" ;
                                       era:tsiOPEAppendixD2Index "3.4.6" ;
@@ -3300,6 +3303,16 @@ era:magneticBrakingConditionsDocument rdf:type owl:ObjectProperty ;
                                       skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en ;
                                       skos:scopeNote """If there exist conditions to allow the use of magnetic brakes.
 The document itself has to be upload by the IM via the �reference document management� functionality. The reference of the document is provided for the parameter using the characterstring format."""@en .
+
+
+###  http://data.europa.eu/949/managedBy
+era:managedBy rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              rdfs:domain era:PrimaryLocation ;
+              rdfs:range era:OrganisationRole ;
+              dcterms:created "2024-12-03"^^xsd:date ;
+              rdfs:comment "the reference to the organisation with a role to manage the primary location"@en ;
+              rdfs:label "managed by"@en .
 
 
 ###  http://data.europa.eu/949/manufacturer
@@ -3438,11 +3451,6 @@ For a Section of Line: unique line identification or unique line number within M
 era:navigability rdf:type owl:ObjectProperty ;
                  rdfs:domain era:NetRelation ;
                  rdfs:range skos:Concept ;
-                 skos:scopeNote  """•	AB: Trains can move from element A to element B.
-•	BA: Trains can move from element B to element A.
-•	Both: Movement is bidirectional.
-•	None: No movement is allowed between the two elements.
-"""@en ;
                  era:inSkosConceptScheme <http://data.europa.eu/949/concepts/navigabilities/Navigabilities> ;
                  era:rinfIndex "1.1.1.0.1.2" ,
                                "1.2.4.1" ;
@@ -3453,7 +3461,12 @@ era:navigability rdf:type owl:ObjectProperty ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "Navigability"@en ;
                  vs:term_status "stable" ;
-                 skos:altLabel "Internal connection"@en .
+                 skos:altLabel "Internal connection"@en ;
+                 skos:scopeNote """•	AB: Trains can move from element A to element B.
+•	BA: Trains can move from element B to element A.
+•	Both: Movement is bidirectional.
+•	None: No movement is allowed between the two elements.
+"""@en .
 
 
 ###  http://data.europa.eu/949/netElement
@@ -3823,7 +3836,7 @@ era:otherTrainProtection rdf:type owl:ObjectProperty ;
                          era:applicable "Y/N" ,
                                         "Y/N/NYA" ;
                          era:dependencyNote """Only applicable when for parameter 1.1.1.3.10.1 \"none\" value was selected. ,
-                                            "Only applicable when for parameter 1.1.1.3.10.1 \"none\" was selected."""@en ;
+                                            \"Only applicable when for parameter 1.1.1.3.10.1 \"none\" was selected."""@en ;
                          era:inSkosConceptScheme <http://data.europa.eu/949/concepts/other-protection-control-warning/OtherProtectionControlWarnings> ;
                          era:legalDeadline "12 months after publication of Article 7 Guide"@en ,
                                            "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
@@ -4015,9 +4028,14 @@ era:previousVehicleType rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/primaryLocation
 era:primaryLocation rdf:type owl:ObjectProperty ;
-                    rdfs:domain era:OperationalPoint ;
+                    rdfs:domain era:AggregatedElement ;
                     rdfs:range era:PrimaryLocation ;
-                    rdfs:comment "Relates an operational point with its primary location."@en ;
+                    era:XMLName "OPTafTapCode" ;
+                    era:rinfIndex "1.2.0.0.0.3" ;
+                    era:tsiOPEAppendixD2Index "2.2.2" ;
+                    dcterms:modified "2024-12-03"^^xsd:date ;
+                    dcterms:replaces era:tafTAPCode ;
+                    rdfs:comment "Primary location code developed for information exchange in accordance with the TSIs relating to the telematics applications subsystem."@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "primary location"@en .
 
@@ -4686,12 +4704,13 @@ era:subsetOf rdf:type owl:ObjectProperty ,
 
 ###  http://data.europa.eu/949/subsidiaryLocation
 era:subsidiaryLocation rdf:type owl:ObjectProperty ;
-                       rdfs:domain era:InfrastructureElement ;
+                       rdfs:domain era:BasicElement ;
                        rdfs:range era:SubsidiaryLocation ;
                        dcterms:created "2024-05-24"^^xsd:date ;
-                       rdfs:comment "Relates an infrastructure element with a subsidiary location."@en ;
+                       rdfs:comment "Relates a basic element with a subsidiary location."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                       rdfs:label "has subsidiary location"@en .
+                       rdfs:label "has subsidiary location"@en ;
+                       rdfs:modified "2024-12-03"^^xsd:date .
 
 
 ###  http://data.europa.eu/949/subsidiaryLocationType
@@ -10667,7 +10686,7 @@ era:primaryLocationCode rdf:type owl:DatatypeProperty ;
                         era:rinfIndex "1.2.0.0.0.3" ;
                         era:tsiOPEAppendixD2Index "2.2.2" ;
                         dcterms:created "2024-06-03"^^xsd:date ;
-                        dcterms:replaces era:tafTAPCode ;
+                        dcterms:modified "2024-12-03"^^xsd:date ;
                         rdfs:comment "Primary location code developed for information exchange in accordance with the TSIs relating to the telematics applications subsystem."@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "primary location code"@en ;
@@ -11713,10 +11732,10 @@ era:tafTAPCode rdf:type owl:DatatypeProperty ;
                era:rinfIndex "1.2.0.0.0.3" ;
                era:tsiOPEAppendixD2Index "2.2.2" ;
                dcterms:created "2020-07-29"^^xsd:date ;
-               dcterms:isReplacedBy era:primaryLocationCode ;
+               dcterms:isReplacedBy era:primaryLocation ;
                dcterms:modified "2024-01-08"^^xsd:date ,
                                 "2024-06-03"^^xsd:date ;
-               rdfs:comment "Not used anymore. It has been replaced by era:primaryLocationCode."@en ,
+               rdfs:comment "Not used anymore. It has been replaced by era:primaryLocation."@en ,
                             "Primary location code developed for information exchange in accordance with the TSIs relating to the telematics applications subsystem"@en ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                rdfs:label "OP primary location code"@en ;
@@ -12801,8 +12820,7 @@ era:Body rdf:type owl:Class ;
 ###  http://data.europa.eu/949/Bridge
 era:Bridge rdf:type owl:Class ;
            rdfs:subClassOf era:BasicElement ;
-           owl:disjointWith 
-                            era:LevelCrossing ,
+           owl:disjointWith era:LevelCrossing ,
                             era:PlatformEdge ,
                             era:RunningTrack ,
                             era:Siding ,
@@ -12909,7 +12927,6 @@ era:InfrastructureManager rdf:type owl:Class ;
                           rdfs:label "Infrastructure manager"@en ;
                           owl:deprecated "true"^^xsd:boolean ;
                           skos:scopeNote "See point (2) of Article 3 of Directive 2012/34/EU of the European Parliament and of the Council establishing a single European railway area."@en .
-
 
 
 ###  http://data.europa.eu/949/KilometricPost
@@ -13085,7 +13102,6 @@ Per Voltage:
 ###  http://data.europa.eu/949/NationalRailwayLine
 era:NationalRailwayLine rdf:type owl:Class ;
                         rdfs:subClassOf era:InfrastructureElement ;
-                        owl:disjointWith era:PrimaryLocation ;
                         dcterms:created "2021-01-25"^^xsd:date ;
                         dcterms:modified "2021-08-03"^^xsd:date ,
                                          "2024-11-29"^^xsd:date ;
