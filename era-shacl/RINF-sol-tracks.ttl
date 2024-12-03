@@ -298,7 +298,7 @@ era-sh:StructureCheckLocation
 	era:rinfIndex "1.1.1.1.2.4.3" ;
 	sh:path (era:hasPart era:structureCheckLocation) ;
 	sh:datatype xsd:double ;
-	sh:pattern "^([1-9]\\d{1,2}|[0-9])\\.\\d{1,3}$" ;
+	sh:pattern "^(\+|\-)?([1-9]\\d{1,3}|[0-9])\\.\\d{1,3}$" ;
 	sh:severity sh:Violation ;
 	sh:message "structureCheckLocation (1.1.1.1.2.4.3): The track has a location of the structure check value that must be a double (real) number and follow the format [±NNNN.NNN]. This error may be due to the track having a value that does not follow the pattern or is not a double (real) number."@en .
 
@@ -540,7 +540,7 @@ era-sh:CantDeficiency
 	sh:path (era:hasPart era:cantDeficiency) ;
 	sh:maxCount 1 ;
 	sh:datatype xsd:integer ;
-	sh:pattern "^(\\+|\\-)*([0-9]\\d{0,3})$" ;
+	sh:pattern "^(\\+|\\-)?([0-9]\\d{0,3})$" ;
 	sh:severity sh:Violation ;
 	sh:message "cantDeficiency (1.1.1.1.4.2): The track must have at most one cant deficiency value that is an integer. This error may be due to the track having more than one cant deficiency value or to having a value that is not an int."@en .
 
@@ -634,6 +634,7 @@ era-sh:MinimumWheelDiameter
 	era:rinfIndex "1.1.1.1.5.2" ;
 	sh:path (era:hasPart era:minimumWheelDiameter) ;
 	sh:maxCount 1 ;
+	sh:minInclusive 330 ;
 	sh:datatype xsd:integer ;
 	sh:pattern "^([1-9]\\d{1,2}|[0-9])$" ;
 	sh:severity sh:Violation ;
@@ -908,7 +909,7 @@ era-sh:HotAxleBoxDetectorLocation
 	era:rinfIndex "1.1.1.1.7.8" ;
 	sh:path (era:hasPart era:hotAxleBoxDetectorLocation) ;
 	sh:datatype xsd:double ;
-	sh:pattern "^([1-9]\\d{1,3}|[0-9])\\.\\d{1,3}$" ;
+	sh:pattern "^(\+|\-)?([1-9]\\d{1,3}|[0-9])\\.\\d{1,3}$" ;
 	sh:severity sh:Violation ;
 	sh:message "hotAxleBoxDetectorLocation (1.1.1.1.7.8): The track has a location of the hot axle box detector(s) vallue that must be a double (real) number with format [±NNNN.NNN]. This error may be due to having a value that is not a double (real) number or does not follow the pattern [±NNNN.NNN]."@en .
 
@@ -999,7 +1000,7 @@ era-sh:VerificationENE
 	sh:path (era:hasPart era:verificationENE) ;
 	
 	sh:datatype xsd:string ;
-	sh:pattern "^[A-Z]{2}/.{14}/(19[0-9][0-9]|20[0-9][0-9]|2100)/[0-9]{6}$";
+	sh:pattern "^[A-Z]{2}\\/.{14}\\/(19[0-9][0-9]|20[0-9][0-9]|2100)\\/[0-9]{6}$";
 	sh:severity sh:Violation ;
 	sh:message "verificationENE (1.1.1.2.1.1): The track has a number for EC declarations that must follow format CC/XXXXXXXXXXXXXX/YYYY/NNNNNN where CC is country code, XXXXX... is a number, YYYY is a year between 1900 and 2100, NNNNNN is the number for the EC declaration. This error may be due to the track having a value that does not follow the pattern."@en .
 
@@ -1012,7 +1013,7 @@ era-sh:DemonstrationENE
 	era:rinfIndex "1.1.1.2.1.2" ;
 	sh:path (era:hasPart era:demonstrationENE) ;
 	sh:datatype xsd:string ;
-	sh:pattern "^[A-Z]{2}/.{14}/(19[0-9][0-9]|20[0-9][0-9]|2100)/[0-9]{6}$";
+	sh:pattern "^[A-Z]{2}\\/.{14}\\/(19[0-9][0-9]|20[0-9][0-9]|2100)\\/[0-9]{6}$";
 	sh:severity sh:Violation ;
 	sh:message "demonstrationENE (1.1.1.2.1.2): The track has a number for EI declarations that must follow format CC/XXXXXXXXXXXXXX/YYYY/NNNNNN where CC is country code, XXXXX... is a number, YYYY is a year between 1900 and 2100, NNNNNN is the number for the EI declaration. This error may be due to the track having a value that is not a tring or that does not follow the pattern."@en .
 
@@ -1026,9 +1027,9 @@ era-sh:MaximumContactWireHeight
 	sh:path (era:hasPart era:maximumContactWireHeight) ;
 	sh:maxCount 1 ;
 	sh:datatype xsd:double ;
-	sh:pattern "^[0-9]\\.\\d{1,2}$" ;
+	sh:pattern "^([0-9]\\.\\d{1,2}|0)$" ;
 	sh:severity sh:Violation ;
-	sh:message "maximumContactWireHeight (1.1.1.2.2.5): The track must have at most one indication of the maximum contact wire height expressed in meters value that is a double (real) number with format [N.NN]. This error may be due to having more than one value or having a value that is not a doucle (real) number."@en .
+	sh:message "maximumContactWireHeight (1.1.1.2.2.5): The track must have at most one indication of the maximum contact wire height expressed in meters value that is a double (real) number with format [N.NN]. This error may be due to having more than one value or having a value that is not a double (real) number."@en .
 
 
 # minimumContactWireHeight: # 1.1.1.2.2.6
@@ -1042,7 +1043,7 @@ era-sh:MinimumContactWireHeight
 
 	sh:maxCount 1 ;
 	sh:datatype xsd:double ;
-	sh:pattern "^[0-9]\\.\\d{1,2}$" ;
+	sh:pattern "^([0-9]\\.\\d{1,2}|0)$" ;
 	sh:severity sh:Violation ;
 	sh:message "minimumContactWireHeight (1.1.1.2.2.6): The track must have at most one indication of the minimum contact wire height expressed in meters value that is a double (real) number with format [N.NN]. This error may be due to having more than one value or having a value that is not a doucle (real) number."@en .
 
@@ -1402,7 +1403,7 @@ era-sh:VerificationCCS
 	era:rinfIndex "1.1.1.3.1.1" ;
 	sh:path (era:hasPart era:verificationCCS) ;
 	sh:datatype xsd:string ;
-	sh:pattern "^[A-Z]{2}/.{14}/(19[0-9][0-9]|20[0-9][0-9]|2100)/[0-9]{6}$";
+	sh:pattern "^[A-Z]{2}\\/.{14}\\/(19[0-9][0-9]|20[0-9][0-9]|2100)\\/[0-9]{6}$";
 	sh:severity sh:Violation ;
 	sh:message "verificationCCS (1.1.1.3.1.1): The track defines the unique number for EC declarations following format requirements specified in the 'Document about practical arrangements for transmitting interoperability documents; the value must be a string that follows the pattern [CC/RRRRRRRRRRRRRR/YYYY/NNNNNN] where the YYYY characters must be a number between 1900 and 2100, and the NNNNNN characters must be digits. This error is due to having a value that does not follow the pattern."@en .
 
@@ -1927,7 +1928,7 @@ era-sh:distSignToPhaseEnd
 	sh:path (era:hasPart era:distSignToPhaseEnd) ;
 	sh:maxCount 1 ;
 	sh:datatype xsd:integer ;
-	sh:pattern "^([0-9]\\d{1,3}|[0-9])$" ;
+	sh:pattern "^([0-9]\\d{1,2}|[0-9])$" ;
 	sh:severity sh:Violation ;
 	sh:message "distSignToPhaseEnd (1.1.1.2.4.3): The track may have a distance between signboard and phase separation ending value that is an integer. This error may be due to the track having more than one value or having a value that is not an integer."@en .
 
