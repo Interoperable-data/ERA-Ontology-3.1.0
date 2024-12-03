@@ -22,19 +22,19 @@
 
 <http://data.europa.eu/949/> rdf:type owl:Ontology ;
                               cc:license <https://creativecommons.org/licenses/by/4.0/> ;
-                              dcterms:contributor [ foaf:name "Oscar Corcho"
+                              dcterms:contributor [ foaf:name "Designated RINF Topical Working Groups"@en
+                                                  ] ,
+                                                  [ foaf:name "Edna Ruckhaus"
+                                                  ] ,
+                                                  [ foaf:name "Oscar Corcho"
+                                                  ] ,
+                                                  [ foaf:name "Marina Aguado" ;
+                                                    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                                   ] ,
                                                   [ foaf:name "Maarten Duhoux" ;
                                                     org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                                   ] ,
                                                   [ foaf:name "Polymnia Vasilopoulou" ;
-                                                    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
-                                                  ] ,
-                                                  [ foaf:name "Designated RINF Topical Working Groups"@en
-                                                  ] ,
-                                                  [ foaf:name "Edna Ruckhaus"
-                                                  ] ,
-                                                  [ foaf:name "Marina Aguado" ;
                                                     org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                                   ] ;
                               dcterms:creator [ foaf:name "Ghislain Atemezing" ;
@@ -1042,10 +1042,6 @@ a) The “Cant Deficiency” SSP categories: the cant deficiency value assigned 
                            rdfs:comment "Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with  parameter \"Other Cant Deficiency train categories for which the ETCS trackside is configured to provide SSP\"."@en ,
                                         """Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with 1.1.1.3.2.14.1
 According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                                        """Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with 1.1.1.3.2.14.1
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                                        """Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with 1.2.1.1.1.14.1
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
                                         """Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with 1.2.1.1.1.14.1
 According to the specification referenced in Appendix A-1, index [C]"""@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -1053,8 +1049,6 @@ According to the specification referenced in Appendix A-1, index [C]"""@en ;
                                       "cant deficiency used for the basic SSP"@en ;
                            vs:term_status "stable" ;
                            skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ,
-                                          """Subset-026 (3.11.3.2.1.1) definition:
-a) The “Cant Deficiency” SSP categories: the cant deficiency value assigned to one category shall define the maximum speed, determined by suspension design, at which a particular train can traverse a curve and thus can be used to set a specific speed limit in a curve with regards to this category."""@en ,
                                           """Subset-026 (3.11.3.2.1.1) definition:
 a) The “Cant Deficiency” SSP categories: the cant deficiency value assigned to one category shall define the maximum speed, determined by suspension design, at which a particular train can traverse a curve and thus can be used to set a specific speed limit in a curve with regards to this category."""@en .
 
@@ -1373,10 +1367,6 @@ In case the value “Not Defined” or “RSC-EU-0” is used, repetitions with 
                                      "https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf"^^xsd:anyURI ;
                         vs:term_status "stable" ;
                         skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en ,
-                                       """Information on RSC data requirements per country.
-
-Vehicles are considered compatible with the infrastructure regarding this parameter, if any of the values declared matches. 
-In case the value “Not Defined” or “RSC-EU-0” is used, repetitions with additional values are not expected."""@en ,
                                        """Information on RSC data requirements per country.
 
 Vehicles are considered compatible with the infrastructure regarding this parameter, if any of the values declared matches. 
@@ -1910,18 +1900,6 @@ In those cases, this parameter should be filled relevant ETCS Level and repeated
   
 If the line is only equipped with Class B, this should be reflected in Parameter 1.1.1.3.5.3, and this parameter etcsLevelType should not be used. 
 
-See: TSI CCS (Subset-026, Chapter 2, 2.6)"""@en ,
-                                 """The different ERTMS / ETCS application levels are a way to express the possible operating relationships between track and train. 
-  
-Level definitions are principally related to the track side equipment used, to the way the track side information reaches the on-board units and to which functions are processed in the track side and in the on-board equipment respectively.
-
-If ETCS is on the trackside (one or more levels are selected), all other ETCS parameters (from 1.1.1.3.2.2 to 1.1.1.3.2.10) are applicable.
-  
-The ETCS value NTC is only relevant when the line is dual equipped with ETCS (i.e., balises are placed in the track) and Class B system, and both systems are in operation at the same time. 
-In those cases, this parameter should be filled relevant ETCS Level and repeated with the value NTC.
-  
-If the line is only equipped with Class B, this should be reflected in Parameter 1.1.1.3.5.3, and this parameter etcsLevelType should not be used. 
-
 See: TSI CCS (Subset-026, Chapter 2, 2.6)"""@en .
 
 
@@ -2069,36 +2047,6 @@ The ESC Types shall only be used when published with status ‘Valid’ in the A
                                          "https://www.era.europa.eu/system/files/2023-05/esc-rsc_technical_document_en.pdf"^^xsd:anyURI ;
                             vs:term_status "stable" ;
                             skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ,
-                                           """The Values \"Not defined\" or \"ESC-EU-0\" should not be combined with other values.
-
-For application in CCS Onboard:
-The vehicles are considered compatible with the infrastructure for this parameter, if their parameter value matches any of the values declared on the trackside. 
-
-For application in CCS Trackside:
-The Infrastructure Manager is responsible for defining the ESC type(s). All sections of the Union network which require the same set of checks for the demonstration of ESC shall have the same ESC type.
-
-See: TSI CCS, Appendix A, Table A 1, 4.2.17 a.
-The list of ESC Types is published and maintained by the European Union Agency for Railways in the technical document \" ESC/RSC technical document, TD/011REC1028\" . 
-The Agency shall assess the checks unless they have been assessed by a NoBo as required in Table 6.3 row 10. 
-The assessment by the Agency shall be done within 2 months of receipt thereof, unless a longer period is agreed between the Agency and the Infrastructure Manager but not exceeding 4 months in total. 
-The technical document will be updated within 10 working days after positive assessment.
-
-The ESC Types shall only be used when published with status \" Valid\"  in the Agency Technical document referred above."""@en ,
-                                           """The Values \"Not defined\" or \"ESC-EU-0\" should not be combined with other values.
-
-For application in CCS Onboard:
-The vehicles are considered compatible with the infrastructure for this parameter, if their parameter value matches any of the values declared on the trackside. 
-
-For application in CCS Trackside:
-The Infrastructure Manager is responsible for defining the ESC type(s). All sections of the Union network which require the same set of checks for the demonstration of ESC shall have the same ESC type.
-
-See: TSI CCS, Appendix A, Table A 1, 4.2.17 a.
-The list of ESC Types is published and maintained by the European Union Agency for Railways in the technical document \"ESC/RSC technical document, TD/011REC1028\". 
-The Agency shall assess the checks unless they have been assessed by a NoBo as required in Table 6.3 row 10. 
-The assessment by the Agency shall be done within 2 months of receipt thereof, unless a longer period is agreed between the Agency and the Infrastructure Manager but not exceeding 4 months in total. 
-The technical document will be updated within 10 working days after positive assessment.
-
-The ESC Types shall only be used when published with status \"Valid\" in the Agency Technical document referred above."""@en ,
                                            """The Values \"Not defined\" or \"ESC-EU-0\" should not be combined with other values.
 
 For application in CCS Onboard:
@@ -2298,11 +2246,6 @@ Multiple selection from a predefined list:
 
 Multiple selection from a predefined list:
 - Axle Counters: bands A1-A3
-- Track circuits: bands A1-A8"""@en ,
-                                              """Verification of compliance with TSI includes application of notified national rules (when they exist).
-
-Multiple selection from a predefined list:
-- Axle Counters: bands A1-A3
 - Track circuits: bands A1-A8"""@en .
 
 
@@ -2419,11 +2362,6 @@ Please select ”1” or “2”, taking into account that TSI compliant trains 
 In case there is ETCS Level 2 in the line, the minimum number of EDOR required on board would be 1. 
 In case ETCS baseline 3 release 2 or baseline 4 is selected, select \"2\" .
 Please select \" 1\"  or \"2\" , taking into account that TSI compliant trains may only be fitted with 1 EDOR.
-"""@en ,
-                                     """In case there is no ETCS Level 2 in the line, do not use this property.
-In case there is ETCS Level 2 in the line, the minimum number of EDOR required on board would be 1. 
-In case ETCS baseline 3 release 2 or baseline 4 is selected, select \"2\" .
-Please select \" 1\"  or \"2\" , taking into account that TSI compliant trains may only be fitted with 1 EDOR.
 """@en .
 
 
@@ -2463,9 +2401,6 @@ The document(s) itself has(have) to be upload by the NRE via the “reference do
                        vs:term_status "stable" ;
                        skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en ;
                        skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable"@en ,
-                                      """Please use this field to indicate any additional information on the GSM-R network. 
-
-The document(s) itself has(have) to be upload by the NRE via the \"reference document management\"  functionality. The reference of the document(s) is(are) provided as (a) link(s)."""@en ,
                                       """Please use this field to indicate any additional information on the GSM-R network. 
 
 The document(s) itself has(have) to be upload by the NRE via the \"reference document management\"  functionality. The reference of the document(s) is(are) provided as (a) link(s)."""@en .
@@ -2521,29 +2456,6 @@ In case there is a balise used to announce the change of the network, or if ther
                           rdfs:label "Optional GSM-R functions"@en ;
                           vs:term_status "stable" ;
                           skos:scopeNote """(*1) These inputs refer to the expected behaviour by the network, i.e. if there is any area or point where an automatic selection of network should be done or if there is any location where balises to instruct a change of radio network have been installed. 
-In order to be able to attend to these indications (automatic network, network change by balise) some configuration is needed in the mobile.
-In case there is a balise used to announce the change of the network, or if there are locations where the network selection is planned by the IM to be done automatically (and not manually, as stated in the requirements). It should be considered as an item that is related to the design of the infrastructure.
-
-(*2) the possibility to dial 112 is something specific to the network that should be communicated to the vehicles accessing it.
-
-(*3) the use of broadcast calls is something specific to the network that has to be configured in it.
-
-(*4) it is something specific to the network that has to be configured in it if the service is provided.
-
-(*5) it is something specific to the network that has to be configured in it if the service is provided; something may need to be configured on the network but also in the mobile subscriber data if it wants to use the service. What is requested here is the information of the network capability.
-
-(*6) if they are configured on the network. Please indicate which in the \"Other information\"  box.
-
-(*7) To be selected if other data applications, different from ETCS L2, can be used within the network - 
-
-(*8) if it is configured on the network.
- \"GSM-R Shunting used\"  in order to make public if the GSM-R is used in the network for shunting activities. 
-
-(*9) Please specify in the \"Other information\" box for which services /applications are they planned and which are the frequencies in use.
-
-(*11) Please use this field to indicate any additional information on network characteristics, e.g.; interference level, leading to the need of additional on-board protection; areas where GPRS for ETCS can be used;
-"""@en ,
-                                         """(*1) These inputs refer to the expected behaviour by the network, i.e. if there is any area or point where an automatic selection of network should be done or if there is any location where balises to instruct a change of radio network have been installed. 
 In order to be able to attend to these indications (automatic network, network change by balise) some configuration is needed in the mobile.
 In case there is a balise used to announce the change of the network, or if there are locations where the network selection is planned by the IM to be done automatically (and not manually, as stated in the requirements). It should be considered as an item that is related to the design of the infrastructure.
 
@@ -2625,9 +2537,6 @@ Since more than one version may be installed in different areas, this property c
                 skos:scopeNote """GSM-R functional requirements specification and system requirements specification in accordance with the specification respectively referenced in TSI CCS (Annex ), version number installed lineside.
                 
 Since more than one version may be installed in different areas, this property can have multiple values."""@en ,
-                               """GSM-R functional requirements specification and system requirements specification in accordance with the specification respectively referenced in TSI CCS (Annex ), version number installed lineside.
-                
-Since more than one version may be installed in different areas, this property can have multiple values."""@en ,
                                "GSM-R must be installed for this parameter to be applicable. If this property is not used, all GSM-R related properties should not be used either."@en .
 
 
@@ -2697,10 +2606,6 @@ For voice services, roaming for CS is applicable.  For ETCS, as long as roaming 
                         rdfs:label "GSM-R networks covered by a roaming agreement"@en ;
                         vs:term_status "stable" ;
                         skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en ,
-                                       """Name of the own GSM-R network and list of GSM-R networks which are covered by a roaming agreement for CS services. 
-This list is managed by UIC. The Agency will monitor it in order to update the list of possible values when necessary. 
-For Route Compatibility purposes and simplicity, the own network needs to be declared by the IM, so the RUs can systematically check the compatibility.
-For voice services, roaming for CS is applicable.  For ETCS, as long as roaming for CS is ensured, the interoperability will be guaranteed."""@en ,
                                        """Name of the own GSM-R network and list of GSM-R networks which are covered by a roaming agreement for CS services. 
 This list is managed by UIC. The Agency will monitor it in order to update the list of possible values when necessary. 
 For Route Compatibility purposes and simplicity, the own network needs to be declared by the IM, so the RUs can systematically check the compatibility.
@@ -3030,16 +2935,16 @@ TSI categories of line shall be used for the classification of existing lines to
 Then, the TSI category of line for this case would simply be P2-P5-F1.""" ;
                  skos:scopeNote """INF TSI (4.2.1) classifies lines based on the type of traffic (traffic code).
 
+TSI categories of line shall be used for the classification of existing lines to define a target system so that the relevant performance parameters will be met."""@en ,
+                                """INF TSI (4.2.1) classifies lines based on the type of traffic (traffic code).
+
 TSI categories of line shall be used for the classification of existing lines to define a target system so that the relevant performance parameters will be met.
 
 The TSI category of line is a combination of traffic codes. For lines where only one type of traffic is carried (for example a freight only line), a single code can be used to describe the requirements; where mixed traffic runs the category will be described by one or more codes for passenger and freight in case of two types of traffic. Then the parameter is repeated if relevant. The combined traffic codes describe the envelope within which the desired mix of traffic can be accommodated.
 
 Technical scope of the INF TSI now includes all the networks (TEN and off-TEN) for nominal track gauges 1435, 1520, 1524, 1600 and 1668 mm.
 It is not applicable when track is not included in technical scope of the TSI. 
-When more than one value of the parameter has to be published, then parameter has to be repeated as many times as many values of the parameter will be published."""@en ,
-                                """INF TSI (4.2.1) classifies lines based on the type of traffic (traffic code).
-
-TSI categories of line shall be used for the classification of existing lines to define a target system so that the relevant performance parameters will be met."""@en .
+When more than one value of the parameter has to be published, then parameter has to be repeated as many times as many values of the parameter will be published."""@en .
 
 
 ###  http://data.europa.eu/949/lineLayoutObjParameter
@@ -3316,8 +3221,6 @@ era:mNvcontact rdf:type owl:ObjectProperty ;
                dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                rdfs:comment "On-Board system reaction when T_NVCONTACT expires"@en ,
                             """On-Board system reaction when T_NVCONTACT expires
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                            """On-Board system reaction when T_NVCONTACT expires
 According to the specification referenced in Appendix A-1, index [C]"""@en ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                rdfs:label "M_NVCONTACT"@en ,
@@ -3388,8 +3291,6 @@ era:magneticBrakingConditionsDocument rdf:type owl:ObjectProperty ;
                                       vs:term_status "stable" ;
                                       skos:changeNote "Change from datatype property to object property in order to point to the class Document (reference document)"@en ;
                                       skos:scopeNote """If there exist conditions to allow the use of magnetic brakes.
-The document itself has to be upload by the IM via the  reference document management  functionality. The reference of the document is provided for the parameter using the characterstring format."""@en ,
-                                                     """If there exist conditions to allow the use of magnetic brakes.
 The document itself has to be upload by the IM via the  reference document management  functionality. The reference of the document is provided for the parameter using the characterstring format."""@en .
 
 
@@ -3481,8 +3382,6 @@ era:minVehicleImpedance rdf:type owl:ObjectProperty ;
                         era:applicable "Y/N" ,
                                        "Y/N/NYA" ;
                         era:legalDeadline "12 months after publication of Article 7 Guide"@en ,
-                                          """For train detection system compliant with TSIs, 12 months after publication of Article 7 Guide.
-For train detection system not TSI compliant: in relation to article 13 of TSI CCS"""@en ,
                                           """For train detection system compliant with TSIs, 12 months after publication of Article 7 Guide.
 For train detection system not TSI compliant: in relation to article 13 of TSI CCS"""@en ;
                         era:rinfIndex "1.1.1.3.4.2.2" ,
@@ -3842,10 +3741,6 @@ era:otherCantDeficiencyBasicSSP rdf:type owl:ObjectProperty ;
                                                <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                 rdfs:comment """Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with 1.1.1.3.2.14.
 According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                                             """Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with 1.1.1.3.2.14.
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                                             """Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with 1.2.1.1.1.14.
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
                                              """Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with 1.2.1.1.1.14.
 According to the specification referenced in Appendix A-1, index [C]"""@en ,
                                              "Essential information for drivers of trains with a worse (lower) tolerated cant deficiency than those for which the ETCS trackside provides SSP (Static Speed Profiles) in conjunction with parameter \"Cant Deficiency used for the basic SSP\"\"\". "@en ;
@@ -3890,10 +3785,6 @@ See: 7.3.2.14 (TSI LOC&PAS, specific cases)"""@en ;
                         rdfs:seeAlso "EN 50367:2020+A1:2022: Annex B3" ;
                         vs:term_status "stable" ;
                         skos:scopeNote """The parameter may contain more than one type of the pantograph head - all of them shall be indicated by repetition of the parameter with different single selections.
-Option \" other\"  shall be selected for types of pantograph heads not specified in the predefined list.
-
-See: 7.3.2.14 (TSI LOC&PAS, specific cases)"""@en ,
-                                       """The parameter may contain more than one type of the pantograph head - all of them shall be indicated by repetition of the parameter with different single selections.
 Option \" other\"  shall be selected for types of pantograph heads not specified in the predefined list.
 
 See: 7.3.2.14 (TSI LOC&PAS, specific cases)"""@en .
@@ -4248,8 +4139,6 @@ era:qNvdriverAdhes rdf:type owl:ObjectProperty ;
                                   <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                    rdfs:comment "Qualifier determining whether the driver is allowed to modify the adhesion factor used by the ETCS on-board to calculate the braking curves"@en ,
                                 """Qualifier determining whether the driver is allowed to modify the adhesion factor used by the ETCS on-board to calculate the braking curves
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                                """Qualifier determining whether the driver is allowed to modify the adhesion factor used by the ETCS on-board to calculate the braking curves
 According to the specification referenced in Appendix A-1, index [C]"""@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    rdfs:label "Q_NVDRIVER_ADHES"@en ,
@@ -4283,8 +4172,6 @@ era:qNvemrrls rdf:type owl:ObjectProperty ;
               dcterms:relation era:etcsLevelType ;
               dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
               rdfs:comment "Qualifier defining whether the application of the emergency brake for reasons other than a trip can be revoked as soon as the conditions for it have disappeared or after the train has come to a complete standstill."@en ,
-                           """Qualifier defining whether the application of the emergency brake for reasons other than a trip can be revoked as soon as the conditions for it have disappeared or after the train has come to a complete standstill.
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
                            """Qualifier defining whether the application of the emergency brake for reasons other than a trip can be revoked as soon as the conditions for it have disappeared or after the train has come to a complete standstill.
 According to the specification referenced in Appendix A-1, index [C]"""@en ;
               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -4876,8 +4763,6 @@ era:tdsMaximumMagneticField rdf:type owl:ObjectProperty ;
                                            "Y/N/NYA" ;
                             era:legalDeadline "12 months after publication of Article 7 Guide"@en ,
                                               """For train detection system compliant with TSIs, 12 months after publication of Article 7 Guide.
-For train detection system not TSI compliant: in relation to article 13 of TSI CCS"""@en ,
-                                              """For train detection system compliant with TSIs, 12 months after publication of Article 7 Guide.
 For train detection system not TSI compliant: in relation to article 13 of TSI CCS"""@en ;
                             era:rinfIndex "1.1.1.3.4.2.3" ,
                                           "1.2.1.1.3.2.3" ;
@@ -4891,8 +4776,6 @@ For train detection system not TSI compliant: in relation to article 13 of TSI C
                                            <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
                             rdfs:comment """The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band.
 It should be provided in 3 directions."""@en ,
-                                         """The maximum magnetic field limits allowed for axle counters (in dB?A/m) for a defined frequency band.
-It should be provided in 3 directions"""@en ,
                                          """The maximum magnetic field limits allowed for axle counters (in dB?A/m) for a defined frequency band.
 It should be provided in 3 directions"""@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -5153,13 +5036,6 @@ As for different speeds different combinations of number of pantographs and dist
 
 The raised pantographs distance and speed is the indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed. 
 
-See 4.2.13 (TSI ENE) and 4.2.8.2.9.7 (TSI LOC&PAS)"""@en ,
-                                                          """This parameter gives the information about the number of pantographs and the distance between them at a given speed for which the Overhead Contact Line (OCL) has been designed.
-
-As for different speeds different combinations of number of pantographs and distance between them may exist, so this parameter can be repeated to present all of them.
-
-The raised pantographs distance and speed is the indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed. 
-
 See 4.2.13 (TSI ENE) and 4.2.8.2.9.7 (TSI LOC&PAS)"""@en .
 
 
@@ -5323,13 +5199,7 @@ The option of ‘wheel detector’ has to be also selected for: wheel sensor for
                              vs:term_status "stable" ;
                              skos:scopeNote """Explanation on data presentation: 
 The option of \"wheel detector\" has to be also selected for: wheel sensor for axle counter, pedal or treadle."""@en ,
-                                            """Explanation on data presentation: 
-The option of \"wheel detector\" has to be also selected for: wheel sensor for axle counter, pedal or treadle."""@en ,
                                             "Not all parameters are applicable to all types of train detection systems; it depends on the applicability condition."@en ,
-                                            """Verification of compliance with TSI includes application of notified national rules (when they exist).
-
-Explanation on data presentation: 
-The option of \"wheel detector\" has to be also selected for: wheel sensor for axle counter, pedal or treadle."""@en ,
                                             """Verification of compliance with TSI includes application of notified national rules (when they exist).
 
 Explanation on data presentation: 
@@ -5573,11 +5443,6 @@ If declaring acceptance of pantograph heads 1950 (type 1), both insulated and co
 The head geometry of pantograph type 1600 mm is as depicted in the points 4.2.8.2.9.2.1 of LOC&PAS TSI which refers to EN 50367:2020+A1:2022 Annex A.2 Figure A.6.
 The head geometry of pantograph type 1950 mm is as depicted in the points 4.2.8.2.9.2.2 of LOC&PAS TSI which refers to EN 50367:2020+A1:2022 Annex A.2 Figure A.7.
 The head geometry for pantograph type 2000/2260 mm is depicted in the point 4.2.8.2.9.2.3 of LOC&PAS TSI."""@en ,
-                                     """The parameter can contain more than one pantograph defined in LOC&PAS TSI. Presentation of those pantographs is done by repetition of the parameter with a single selection. 
-If declaring acceptance of pantograph heads 1950 (type 1), both insulated and conductive horns shall be accepted. 
-The head geometry of pantograph type 1600 mm is as depicted in the points 4.2.8.2.9.2.1 of LOC&PAS TSI which refers to EN 50367:2020+A1:2022 Annex A.2 Figure A.6.
-The head geometry of pantograph type 1950 mm is as depicted in the points 4.2.8.2.9.2.2 of LOC&PAS TSI which refers to EN 50367:2020+A1:2022 Annex A.2 Figure A.7.
-The head geometry for pantograph type 2000/2260 mm is depicted in the point 4.2.8.2.9.2.3 of LOC&PAS TSI."""@en ,
                                      "When `not electrified` is chosen in parameter 1.1.1.2.2.1.1, then this parameter is not applicable."@en .
 
 
@@ -5752,10 +5617,6 @@ era:voiceRadioCompatible rdf:type owl:ObjectProperty ;
                                         "Y/N/NYA" ;
                          era:dependencyNote """GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable.
 In case of RSC-EU-0 or None, no other values are allowed."""@en ,
-                                            """GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable.
-In case of RSC-EU-0 or None, no other values are allowed."""@en ,
-                                            """GSM-R must be installed for this parameter to be applicable.
-In case of RSC-EU-0 or None, no other values are allowed."""@en ,
                                             """GSM-R must be installed for this parameter to be applicable.
 In case of RSC-EU-0 or None, no other values are allowed."""@en ;
                          era:eratvIndex "4.13.2.5" ;
@@ -5784,12 +5645,6 @@ In case the value “Not Defined” or “RSC-EU-0” is used, repetitions with 
                          vs:term_status "stable" ;
                          skos:scopeNote """GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable.
 In case of RSC-EU-0 or None, no other values are allowed."""@en ,
-                                        """The allowed values for this property belong to a SKOS Concept Scheme. This concept scheme is temporarily non-deferenceable.
- 
-Information on RSC voice requirements per country is given in the refered document.
-
-Vehicles are considered compatible with the infrastructure regarding this parameter, if any of the values declared matches. 
-In case the value “Not Defined” or “RSC-EU-0” is used, repetitions with additional values are not expected."""@en ,
                                         """The allowed values for this property belong to a SKOS Concept Scheme. This concept scheme is temporarily non-deferenceable.
  
 Information on RSC voice requirements per country is given in the refered document.
@@ -6163,16 +6018,6 @@ era:brakeWeightPercentage rdf:type owl:DatatypeProperty ;
                           vs:term_status "stable" .
 
 
-###  http://data.europa.eu/949/bridge
-era:bridge rdf:type owl:DatatypeProperty ;
-           rdfs:domain era:RunningTrack ;
-           rdfs:range xsd:boolean ;
-           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-           rdfs:label "Is bridge"@en ;
-           vs:term_status "stable" ;
-           skos:definition "Whether or not a track is associated with a bridge."@en .
-
-
 ###  http://data.europa.eu/949/cantDefficiency
 era:cantDefficiency rdf:type owl:DatatypeProperty ;
                     rdfs:subPropertyOf era:vehicleTypeTechnicalDataCharacteristic ;
@@ -6353,11 +6198,9 @@ era:conditionsSwitchTrainProtectionSystems rdf:type owl:DatatypeProperty ;
                                            dcterms:relation era:switchProtectControlWarning ;
                                            dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ,
                                                           <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                                           rdfs:comment "Conditions to switch over between different class B train protection, control and warning systems"@en ,
-                                                        "Conditions to switch over between different class B train protection, control and warning systems."@en ;
+                                           rdfs:comment "Conditions to switch over between different class B train protection, control and warning systems."@en ;
                                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                           rdfs:label "\"Special conditions to switch over between different class B train protection, control and warning systems\""@en ,
-                                                      "Special conditions to switch over between different class B train protection, control and warning systems"@en ;
+                                           rdfs:label "Special conditions to switch over between different class B train protection, control and warning systems"@en ;
                                            vs:term_status "stable" ;
                                            skos:scopeNote "Applicable (‘Y’) when at least two different protection, control and warning systems exist."@en ,
                                                           "Switch over between different systems whilst running. Installation depends on local conditions. "@en .
@@ -6452,9 +6295,6 @@ era:crossSectionArea rdf:type owl:DatatypeProperty ;
 Applicable if the speed of the line is equal or greater than 200km/h """@en ,
                                     """Smallest real cross section area (expressed in square metres) of the tunnel.
 
-Reference: 4.2.10.1 of INF TSI on Maximum pressure variations in tunnels."""@en ,
-                                    """Smallest real cross section area (expressed in square metres) of the tunnel.
-
 Reference: 4.2.10.1 of INF TSI on Maximum pressure variations in tunnels."""@en .
 
 
@@ -6520,18 +6360,12 @@ In Subset 26, chapter 7. 7.5.1.15 D_NVOVTRP."""@en ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                             <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
              rdfs:comment """Maximum distance for overriding the train trip in metres
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                          """Maximum distance for overriding the train trip in metres
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                          "Maximum distance for overriding the train trip in metres."@en ;
+According to the specification referenced in Appendix A-1, index [C]"""@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "D_NVOVTRP"@en ;
              rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
              vs:term_status "stable" ;
              skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ,
-                            """Precision: [NNNNNN.N] with N a decimal number (0÷9) 
-
-In Subset 26, chapter 7. 7.5.1.15 D_NVOVTRP."""@en ,
                             """Precision: [NNNNNN.N] with N a decimal number (0÷9) 
 
 In Subset 26, chapter 7. 7.5.1.15 D_NVOVTRP."""@en .
@@ -6564,10 +6398,7 @@ See: TSI CCS (Subset 26, chapter 7. 7.5.1.16 D_NVPOTRP)"""@en ;
              dcterms:relation era:etcsLevelType ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                             <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-             rdfs:comment "Maximum distance for reversing in Post Trip mode in metres."@en ,
-                          """Maximum distance for reversing in Post Trip mode in metres.
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                          """Maximum distance for reversing in Post Trip mode in metres.
+             rdfs:comment """Maximum distance for reversing in Post Trip mode in metres.
 According to the specification referenced in Appendix A-1, index [C]"""@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "D_NVPOTRP"@en ,
@@ -6575,9 +6406,6 @@ According to the specification referenced in Appendix A-1, index [C]"""@en ;
              rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
              vs:term_status "stable" ;
              skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ,
-                            """Precision: [NNNNNN.N], with N a decimal number (0÷9)
-
-See: TSI CCS (Subset 26, chapter 7. 7.5.1.16 D_NVPOTRP)"""@en ,
                             """Precision: [NNNNNN.N], with N a decimal number (0÷9)
 
 See: TSI CCS (Subset 26, chapter 7. 7.5.1.16 D_NVPOTRP)"""@en .
@@ -6611,18 +6439,12 @@ See: TSI CCS (Subset 26, chapter 7. 7.5.1.17 D_NVROLL)"""@en ;
             dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                            <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
             rdfs:comment """Parameter used by the ETCS on-board to supervise the distance allowed to be travelled under the roll-away protection and the reverse movement protection, in metres
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                         """Parameter used by the ETCS on-board to supervise the distance allowed to be travelled under the roll-away protection and the reverse movement protection, in metres
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                         "Parameter used by the ETCS on-board to supervise the distance allowed to be travelled under the roll-away protection and the reverse movement protection, in metres."@en ;
+According to the specification referenced in Appendix A-1, index [C]"""@en ;
             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
             rdfs:label "D_NVROLL"@en ;
             rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
             vs:term_status "stable" ;
             skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ,
-                           """Precision: [NNNNNN.N], with N a decimal number (0 9).
-
-See: TSI CCS (Subset 26, chapter 7. 7.5.1.17 D_NVROLL)"""@en ,
                            """Precision: [NNNNNN.N], with N a decimal number (0 9).
 
 See: TSI CCS (Subset 26, chapter 7. 7.5.1.17 D_NVROLL)"""@en .
@@ -6702,14 +6524,6 @@ The procedure for demonstration that existing network fits to requirements of th
 It may happen that several EI declarations were issued - then parameter has to be repeated as many times as many declarations were issued.
 
 The procedure for demonstration that existing network fits to requirements of the TSIs is executed on voluntary basis, so when EI declaration do not exist then the parameter is optional. If EI declaration was not issued, then field shall be left empty. """@en ,
-                                    """EI declaration of demonstration (as defined Commission 2014/881/EU) for track relating to compliance with the requirements from TSIs applicable to infrastructure subsystem.
-
-It may happen that several EI declarations were issued - then parameter has to be repeated as many times as many declarations were issued.
-
-The procedure for demonstration that existing network fits to requirements of the TSIs is executed on voluntary basis, so when EI declaration do not exist then the parameter is optional. If EI declaration was not issued, then field shall be left empty. """@en ,
-                                    """It may happen that several EI declarations were issued - then parameter has to be repeated as many times as many declarations were issued.
-
-The procedure for demonstration that existing network fits to requirements of the TSIs is executed on voluntary basis, so when EI declaration do not exist then the parameter is optional. If EI declaration was not issued, then field shall be left empty. """@en ,
                                     """It may happen that several EI declarations were issued - then parameter has to be repeated as many times as many declarations were issued.
 
 The procedure for demonstration that existing network fits to requirements of the TSIs is executed on voluntary basis, so when EI declaration do not exist then the parameter is optional. If EI declaration was not issued, then field shall be left empty. """@en .
@@ -6727,9 +6541,6 @@ era:demonstrationSRT rdf:type owl:DatatypeProperty ;
                      era:XMLName "ITU_EIDemonstration" ;
                      era:applicable "Y/N" ;
                      era:dependencyNote """ Applicable in case when the demonstration was executed and EI declaration was issued.
- 
-The procedure for demonstration that existing network fits to requirements of the TSIs is executed on voluntary bases, so when EI declaration do not exist then the parameter is optional."""@en ,
-                                        """ Applicable in case when the demonstration was executed and EI declaration was issued.
  
 The procedure for demonstration that existing network fits to requirements of the TSIs is executed on voluntary bases, so when EI declaration do not exist then the parameter is optional."""@en ;
                      era:formatNote "CC/RRRRRRRRRRRRRR/YYYY/NNNNNN" ;
@@ -6755,16 +6566,6 @@ Pattern [CC/RRRRRRRRRRRRRR/YYYY/NNNNNN]
                                 "EI declaration of demonstration (as defined in Recommendation 2014/881/EU) relating to compliance with the requirements from TSIs applicable to railway tunnel"@en ;
                      vs:term_status "stable" ;
                      skos:scopeNote """(SRT) in title means that here we include only declarations concerning requirements of SRT TSI for infrastructure system on the specific track.
-
-Parameter shall be repeated when different EI declarations were issued for different elements of infrastructure subsystem on the specific track in the tunnel.
-
-Pattern [CC/RRRRRRRRRRRRRR/YYYY/NNNNNN]
-"""@en ,
-                                    """(SRT) in title means that here we include only declarations concerning requirements of SRT TSI for infrastructure system on the specific track.
-Parameter shall be repeated when different EI declarations were issued for different elements of infrastructure subsystem on the specific track in the tunnel.
-It may happen that several EI declarations were issued   then parameter has to be repeated as many times as many declarations were issued.
-The procedure for demonstration that existing network fits to requirements of the TSIs is executed on voluntary bases, so when EI declaration do not exist then the parameter is optional. """@en ,
-                                    """(SRT) in title means that here we include only declarations concerning requirements of SRT TSI for infrastructure system on the specific track.
 
 Parameter shall be repeated when different EI declarations were issued for different elements of infrastructure subsystem on the specific track in the tunnel.
 
@@ -6887,9 +6688,7 @@ era:distSignToPhaseEnd rdf:type owl:DatatypeProperty ;
                        rdfs:comment """Specific for route compatibility check on French network.
 Distance between the signboard authorizing the driver to  raise pantograph  or  close the circuit breaker  after passing the phase separation and the end of the phase separation section."""@en ,
                                     """Specific for route compatibility check on French network.
-Distance between the signboard authorizing the driver to ‘raise pantograph’ or ‘close the circuit breaker’ after passing the phase separation and the end of the phase separation section."""@en ,
-                                    """Specific for route compatibility check on French network.
-Distance between the signboard authorizing the driver to  raise pantograph  or  close the circuit breaker  after passing the phase separation and the end of the phase separation section."""@en ;
+Distance between the signboard authorizing the driver to ‘raise pantograph’ or ‘close the circuit breaker’ after passing the phase separation and the end of the phase separation section."""@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Distance between signboard and phase separation ending"@en ;
                        vs:term_status "stable" .
@@ -7139,8 +6938,7 @@ era:etcsImplementsLevelCrossingProcedure rdf:type owl:DatatypeProperty ;
                                          dcterms:modified "2024-04-18"^^xsd:date ;
                                          dcterms:relation era:etcsLevelType ;
                                          dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                                         rdfs:comment "If the trackside does not implement any solution to cover defective LXs (which are normally protected by means of a technical system), then drivers will be required to comply with instructions received from other sources"@en ,
-                                                      "If the trackside does not implement any solution to cover defective LXs (which are normally protected by means of a technical system), then drivers will be required to comply with instructions received from other sources."@en ;
+                                         rdfs:comment "If the trackside does not implement any solution to cover defective LXs (which are normally protected by means of a technical system), then drivers will be required to comply with instructions received from other sources."@en ;
                                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                          rdfs:label "ETCS trackside implements level crossing procedure or an equivalent solution"@en ;
                                          rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
@@ -7178,9 +6976,6 @@ See: TSI CCS 7.2.9.1 & 4.2.3 """@en ;
                          rdfs:label "ETCS infill necessary for line access"@en ;
                          vs:term_status "stable" ;
                          skos:scopeNote """As indicated in CCS TSI section 7.2.9.1, an ETCS Level 1 trackside application may require that the on-board is equipped with the corresponding in-fill data transmission (Euroloop or radio) if the release speed is set to zero for safety reasons.
-                         
-See: TSI CCS 7.2.9.1 & 4.2.3 """@en ,
-                                        """As indicated in CCS TSI section 7.2.9.1, an ETCS Level 1 trackside application may require that the on-board is equipped with the corresponding in-fill data transmission (Euroloop or radio) if the release speed is set to zero for safety reasons.
                          
 See: TSI CCS 7.2.9.1 & 4.2.3 """@en ,
                                         "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
@@ -7248,12 +7043,6 @@ See: TSI CCS (7.4.3 & 6.2.4.2)"""@en ;
 Packets 44 are the means to transmit data for national applications between train and track and vice versa, using the data transmission facilities included within the ETCS. 
 NID_XUSER values managed by ERA in a document about ETCS variables available on ERA website. 
 
-See: TSI CCS (7.4.3 & 6.2.4.2)"""@en ,
-                                        """Value can be `false` or a link to the implemented functions.
-
-Packets 44 are the means to transmit data for national applications between train and track and vice versa, using the data transmission facilities included within the ETCS. 
-NID_XUSER values managed by ERA in a document about ETCS variables available on ERA website. 
-
 See: TSI CCS (7.4.3 & 6.2.4.2)"""@en .
 
 
@@ -7312,39 +7101,6 @@ era:etcsSystemFunctionalitiesNextFiveYears rdf:type owl:DatatypeProperty ;
                                                       "ETCS system version 2.2 or 3.0 functionalities to be required in the next 5 years. Deprecated with TWG RINF CCS 2024."@en ;
                                            owl:deprecated "true"^^xsd:boolean ;
                                            vs:term_status "stable" .
-
-
-###  http://data.europa.eu/949/etcsTransmitsTrackConditions
-era:etcsTransmitsTrackConditions rdf:type owl:DatatypeProperty ;
-                                 rdfs:subPropertyOf era:tsiCompliantTrainProtectionSystemDataParameter ;
-                                 rdf:type owl:FunctionalProperty ;
-                                 rdfs:domain era:ETCS ;
-                                 rdfs:range xsd:boolean ;
-                                 era:XMLName "CPE_CanTransmitTCs" ;
-                                 era:applicable "Y/N/NYA" ;
-                                 era:legalDeadline "12 months after publication of Article 7 Guide"@en ;
-                                 era:rinfIndex "1.1.1.3.2.12" ,
-                                               "1.2.1.1.1.12" ;
-                                 era:tsiOPEAppendixD3Index "1.1" ;
-                                 dcterms:created "2022-11-04"^^xsd:date ;
-                                 dcterms:modified "2023-03-14"^^xsd:date ,
-                                                  "2024-04-18"^^xsd:date ;
-                                 dcterms:relation era:etcsLevelType ;
-                                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                                 rdfs:comment """According to the specification referenced in Appendix A-1, index [C]
-If the trackside does not provide Track Conditions, the driver will need to be informed about such conditions via alternative methods"""@en ,
-                                              """According to the specification referenced in Appendix A-1, index [C]
-If the trackside does not provide Track Conditions, the driver will need to be informed about such conditions via alternative methods"""@en ,
-                                              """If the trackside does not provide Track Conditions, the driver will need to be informed about such conditions via alternative methods
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                                              """If the trackside does not provide Track Conditions, the driver will need to be informed about such conditions via alternative methods
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                                              "If the trackside does not provide Track Conditions, the driver will need to be informed about such conditions via alternative methods."@en ;
-                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                 rdfs:label "Is the ETCS trackside engineered to transmit Track Conditions"@en ;
-                                 rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
-                                 vs:term_status "stable" ;
-                                 skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/ferromagneticWheelMaterial
@@ -7488,22 +7244,9 @@ This parameter could be also applicable when the gauge is infringed. This means 
 
 The railway location identifies the location of the structure in the system of reference of the line to which the track belongs.
 The location (generally the distance from the origin of the line to the centre) on a line is given in kilometres with decimals (precision of 0.001). Contrary to the regulation, the reference to the line is not needed: the parameter is still attached to the track of the line."""@en ,
-                                        """This parameter is applicable when the conditions for the application of the gauge are not fulfilled (for example when the radius is 125 m and the minimum radius admitted for the gauge GC is 150 m). 
-It can also be applicable when the IM wants to highlight also on a particular point and provide info via parameter 1.1.1.1.3.1.3
-This parameter could be also applicable when the gauge is infringed. This means that the obstacles are inside the infrastructure gauge. This case could happen for example for platforms where the platform does not fulfill the gauge. 
-
-The railway location identifies the location of the structure in the system of reference of the line to which the track belongs.
-The location (generally the distance from the origin of the line to the centre) on a line is given in kilometres with decimals (precision of 0.001). Contrary to the regulation, the reference to the line is not needed: the parameter is still attached to the track of the line."""@en ,
                                         """This parameter is applicable when the conditions for the application of the gauge are not fulfilled (for example when the radius is 125 m and the minimum radius admitted for the gauge GC is 150 m). It can also be applicable when the IM wants to highlight also on a particular point and provide info via parameter 1.1.1.1.3.1.3
 
 This parameter could be also applicable when the gauge is infringed. This means that the obstacles are inside the infrastructure gauge. This case could happen for example for platforms where the platform does not fulfill the gauge."""@en ,
-                                        """This parameter is applicable when the conditions for the application of the gauge are not fulfilled (for example when the radius is 125 m and the minimum radius admitted for the gauge GC is 150 m). It can also be applicable when the IM wants to highlight also on a particular point and provide info via parameter 1.2.1.0.3.5
-
-This parameter could be also applicable when the gauge is infringed. This means that the obstacles are inside the infrastructure gauge. This case could happen for example for platforms where the platform does not fulfill the gauge.
-
-The railway location identifies the location of the structure in the system of reference of the line to which the track belongs.
-
-The location (generally the distance from the origin of the line to the centre) on a line is given in kilometres with decimals (precision of 0.001).  Contrary to the regulation, the reference to the line is not needed: the parameter is still attached to the track of the line."""@en ,
                                         """This parameter is applicable when the conditions for the application of the gauge are not fulfilled (for example when the radius is 125 m and the minimum radius admitted for the gauge GC is 150 m). It can also be applicable when the IM wants to highlight also on a particular point and provide info via parameter 1.2.1.0.3.5
 
 This parameter could be also applicable when the gauge is infringed. This means that the obstacles are inside the infrastructure gauge. This case could happen for example for platforms where the platform does not fulfill the gauge.
@@ -7540,8 +7283,7 @@ era:gprsForETCS rdf:type owl:DatatypeProperty ;
                 dcterms:relation era:etcsLevelType ,
                                  era:gprsForETCS ;
                 dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                rdfs:comment "Indication if GPRS can be used for ETCS"@en ,
-                             "Indication if GPRS can be used for ETCS."@en ;
+                rdfs:comment "Indication if GPRS can be used for ETCS."@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "GPRS for ETCS"@en ;
                 vs:term_status "stable" ;
@@ -7561,10 +7303,7 @@ era:gprsImplementationArea rdf:type owl:DatatypeProperty ;
                            era:XMLName "CRG_GPRSAreaOfImpl" ;
                            era:applicable "Y/N" ,
                                           "Y/N/NYA" ;
-                           era:dependencyNote "GSM-R (parameter 1.1.1.3.3.1), ETCS L2 (parameter 1.1.1.3.2.1) and GPRS for ETCS (parameter 1.1.1.3.3.3.2) must be installed for this parameter to be applicable."@en ,
-                                              "GSM-R, ETCS L2 and GPRS for ETCS must be installed for this parameter to be applicable."@en ,
-                                              "GSM-R (parameter 1.1.1.3.3.1), ETCS L2 (parameter 1.1.1.3.2.1) and GPRS for ETCS (parameter 1.1.1.3.3.3.2) must be installed for this parameter to be applicable." ,
-                                              "GSM-R, ETCS L2 and GPRS for ETCS must be installed for this parameter to be applicable." ;
+                           era:dependencyNote "GSM-R (parameter 1.1.1.3.3.1), ETCS L2 (parameter 1.1.1.3.2.1) and GPRS for ETCS (parameter 1.1.1.3.3.3.2) must be installed for this parameter to be applicable."@en ;
                            era:legalDeadline "1 January 2021"@en ,
                                              "12 months after publication of Article 7 Guide"@en ,
                                              "16 January 2021"@en ;
@@ -7578,15 +7317,12 @@ era:gprsImplementationArea rdf:type owl:DatatypeProperty ;
                            dcterms:relation era:etcsLevelType ,
                                             era:gprsForETCS ;
                            dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                           rdfs:comment "Indication of the area in which GPRS can be used for ETCS"@en ,
-                                        "Indication of the area in which GPRS can be used for ETCS, expressed as a list of GPRS-enabled RBC's."@en ;
+                           rdfs:comment "Indication of the area in which GPRS can be used for ETCS, expressed as a list of GPRS-enabled RBC's."@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "Area of implementation of GPRS"@en ;
                            vs:term_status "stable" ;
                            skos:editorialNote "See issue https://citnet.tech.ec.europa.eu/CITnet/jira/browse/LD4RAIL-1238, this parameter should be an rbcProperty" ;
-                           skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1), ETCS L2 (parameter 1.1.1.3.2.1) and GPRS for ETCS (parameter 1.1.1.3.3.3.2) must be installed for this parameter to be applicable."@en ,
-                                          "Since GPRS can be used for ETCS, indicate in which areas it is implemented (e.g: whole section, only between two signals, at the station)"@en ,
-                                          "Since GPRS can be used for ETCS, indicate in which areas it is implemented (e.g: whole section, only between two signals, at the station…)"@en .
+                           skos:scopeNote "Since GPRS can be used for ETCS, indicate in which areas it is implemented (e.g: whole section, only between two signals, at the station…)"@en .
 
 
 ###  http://data.europa.eu/949/gradient
@@ -7669,21 +7405,6 @@ The sequence shall follow the increasing kilometres of the line, and this not ta
 
 Changes in gradient shall be registered only as far as necessary for train running calculations (minimum length of constant gradient shall be 500 m, the minimum change of gradient value shall be 0,5 mm/m).
 
-The required precision for gradient value is 0,5 mm/m, the required precision of location of the points of change of gradient is 10 m. The points of change of gradient are the points of vertical intersection of each vertical curve."""@en ,
-                                   """Data on the values of gradient along a SoL is given as a chain of information:
-
-Gradient (location) The first location corresponding to the start of the first value of the gradient is the centre point of start OP. If there are different values of the gradient, the parameter will be repeated. The last location will correspond to the point where the last value of the gradient starts. This value will be available until the centre point of the end OP. 
-
-If there is only one value for the gradient along the track, then the location is not required, only the +/-NN.N value is expected.
-
-Gradient is expressed in mm/m; location is expressed in km of the line.
-
-Positive gradient (uphill) is marked with \"+\" and negative gradient (downhill) is marked by \"-\".
-
-The sequence shall follow the increasing kilometres of the line, and this not take into consideration the running direction of the specific track. This will make the profile easier to read.
-
-Changes in gradient shall be registered only as far as necessary for train running calculations (minimum length of constant gradient shall be 500 m, the minimum change of gradient value shall be 0,5 mm/m).
-
 The required precision for gradient value is 0,5 mm/m, the required precision of location of the points of change of gradient is 10 m. The points of change of gradient are the points of vertical intersection of each vertical curve."""@en .
 
 
@@ -7714,15 +7435,11 @@ Another possible use is the declaration of a temporary situation where, although
 for replacement of the radio (i.e. a section that will not be covered with GSM-R for half a year or longer)."""@en ;
                    dcterms:modified "2021-09-12"^^xsd:date ,
                                     "2024-09-19"^^xsd:date ;
-                   rdfs:comment "Indication if there is a no GSMR coverage"@en ,
-                                "Indication if there is no GSMR coverage."@en ;
+                   rdfs:comment "Indication if there is no GSMR coverage."@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    rdfs:label "No GSMR coverage"@en ;
                    vs:term_status "stable" ;
                    skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) must be installed for this parameter to be applicable."@en ,
-                                  """If GSM-R is not installed, this parameter should not be used.
-This parameter is mainly to capture the case of Radio Hole functionality (lack of GSM-R coverage), that is foreseen in the ETCS specifications as packet 68. 
-Another possible use is the declaration of a temporary situation where, although the area is in principle covered by GSM-R, there is a long-term outage or a project for replacement of the radio (i.e. a section that will not be covered with GSM-R for half a year or longer)."""@en ,
                                   """If GSM-R is not installed, this parameter should not be used.
 This parameter is mainly to capture the case of Radio Hole functionality (lack of GSM-R coverage), that is foreseen in the ETCS specifications as packet 68. 
 Another possible use is the declaration of a temporary situation where, although the area is in principle covered by GSM-R, there is a long-term outage or a project for replacement of the radio (i.e. a section that will not be covered with GSM-R for half a year or longer)."""@en .
@@ -7769,8 +7486,7 @@ era:gsmrForcedDeregistrationFunctionalNumber rdf:type owl:DatatypeProperty ;
                                              rdfs:range xsd:boolean ;
                                              era:XMLName "CRG_ForcedDeReg" ;
                                              era:applicable "Y/N/NYA" ;
-                                             era:dependencyNote "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en ,
-                                                                "GSM-R and ETCS L2 must be installed for this parameter to be applicable."@en ;
+                                             era:dependencyNote "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en ;
                                              era:legalDeadline "12 months after publication of Article 7 Guide"@en ;
                                              era:rinfIndex "1.1.1.3.3.11" ,
                                                            "1.2.1.1.2.11" ;
@@ -7780,8 +7496,7 @@ era:gsmrForcedDeregistrationFunctionalNumber rdf:type owl:DatatypeProperty ;
                                                               "2024-04-18"^^xsd:date ;
                                              dcterms:relation era:etcsLevelType ;
                                              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                                             rdfs:comment "This feature will condition the applicable operational rules for drivers and signallers when dealing with cab radios registered under wrong numbers"@en ,
-                                                          "This feature will determine the applicable operational rules for drivers and signallers when dealing with cab radios registered under wrong numbers."@en ;
+                                             rdfs:comment "This feature will determine the applicable operational rules for drivers and signallers when dealing with cab radios registered under wrong numbers."@en ;
                                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                              rdfs:label "GSM-R network configured to allow forced de-registration of a functional number by another driver"@en ,
                                                         "GSM-R network is configured to allow forced de-registration of a functional number by another driver"@en ;
@@ -7794,6 +7509,7 @@ era:handoverPointFlag rdf:type owl:DatatypeProperty ;
                       rdfs:domain era:PrimaryLocation ;
                       rdfs:range xsd:boolean ;
                       dcterms:created "2024-06-03"^^xsd:date ;
+                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                       rdfs:label "handover point flag"@en .
 
 
@@ -7814,8 +7530,7 @@ era:hasAdditionalBrakingInformation rdf:type owl:DatatypeProperty ;
                                     era:usedInRCCCalculations "true"^^xsd:boolean ;
                                     dcterms:created "2020-08-24"^^xsd:date ;
                                     dcterms:modified "2024-01-08"^^xsd:date ;
-                                    rdfs:comment "Availability by the IM of additional information as defined in point (2) of point 4.2.2.6.2 of TSI OPE"@en ,
-                                                 "Availability by the IM of additional information as defined in point (2) of point 4.2.2.6.2 of TSI OPE."@en ;
+                                    rdfs:comment "Availability by the IM of additional information as defined in point (2) of point 4.2.2.6.2 of TSI OPE."@en ;
                                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                     rdfs:label "Availability by the IM of additional information"@en ;
                                     vs:term_status "stable" .
@@ -7862,11 +7577,18 @@ era:hasBallast rdf:type owl:DatatypeProperty ;
                skos:scopeNote """This parameter is related to phenomena of ballast pick-up observed for the high speed traffic.
 Requirements regarding ballast pick-up reduction at infrastructure subsystem level only applies to lines intented to be operated at speed greater than 250 km/h and is an open point in INF TSI: 4.2.10.3
 The parameter is about the phenomenon, but not about the ballast itself. 
-As so far any specifications for mitigation of the problem were disclosed, the only information from RINF will be data about the network where the problems may be faced."""@en ,
-                              """This parameter is related to phenomena of ballast pick-up observed for the high speed traffic.
-Requirements regarding ballast pick-up reduction at infrastructure subsystem level only applies to lines intented to be operated at speed greater than 250 km/h and is an open point in INF TSI: 4.2.10.3
-The parameter is about the phenomenon, but not about the ballast itself. 
 As so far any specifications for mitigation of the problem were disclosed, the only information from RINF will be data about the network where the problems may be faced."""@en .
+
+
+###  http://data.europa.eu/949/hasBridge
+era:hasBridge rdf:type owl:DatatypeProperty ;
+              rdfs:domain era:RunningTrack ;
+              rdfs:range xsd:boolean ;
+              dcterms:created "2024-12-03"^^xsd:date ;
+              rdfs:comment "Whether or not a track is associated with a bridge."@en ;
+              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+              rdfs:label "Has bridge"@en ;
+              vs:term_status "stable" .
 
 
 ###  http://data.europa.eu/949/hasCantDefficiencyCompensation
@@ -7926,8 +7648,7 @@ and deviations – Guidelines for using the ERA template) with the following lin
                                   dcterms:relation era:etcsLevelType ;
                                   dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                                                  <https://www.era.europa.eu/content/certification-issues> ;
-                                  rdfs:comment "Indication whether restrictions or conditions due to partial compliance with the TSI CCS exist"@en ,
-                                               "Indication whether restrictions or conditions due to partial compliance with the TSI CCS exist."@en ;
+                                  rdfs:comment "Indication whether restrictions or conditions due to partial compliance with the TSI CCS exist."@en ;
                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                   rdfs:label "Existence of operating restrictions or conditions"@en ;
                                   rdfs:seeAlso "https://www.era.europa.eu/content/certification-issues"^^xsd:anyURI ,
@@ -7937,11 +7658,33 @@ and deviations – Guidelines for using the ERA template) with the following lin
                                   
 These conditions and restrictions of use are considered in section 6.4 of the CCS TSI. They should be described using the template available on Agency website (Certification 
 and deviations - Guidelines for using the ERA template) with the following link."""@en ,
-                                                 """If not `false`, a link to the conditions must be provided. The RU has to contact the IM to be informed about these conditions.
-                                  
-These conditions and restrictions of use are considered in section 6.4 of the CCS TSI. They should be described using the template available on Agency website (Certification 
-and deviations - Guidelines for using the ERA template) with the following link."""@en ,
                                                  "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
+
+
+###  http://data.europa.eu/949/hasETCSTransmitsTrackConditions
+era:hasETCSTransmitsTrackConditions rdf:type owl:DatatypeProperty ;
+                                    rdfs:subPropertyOf era:tsiCompliantTrainProtectionSystemDataParameter ;
+                                    rdf:type owl:FunctionalProperty ;
+                                    rdfs:domain era:ETCS ;
+                                    rdfs:range xsd:boolean ;
+                                    era:XMLName "CPE_CanTransmitTCs" ;
+                                    era:applicable "Y/N/NYA" ;
+                                    era:legalDeadline "12 months after publication of Article 7 Guide"@en ;
+                                    era:rinfIndex "1.1.1.3.2.12" ,
+                                                  "1.2.1.1.1.12" ;
+                                    era:tsiOPEAppendixD3Index "1.1" ;
+                                    dcterms:created "2022-11-04"^^xsd:date ;
+                                    dcterms:modified "2023-03-14"^^xsd:date ,
+                                                     "2024-04-18"^^xsd:date ;
+                                    dcterms:relation era:etcsLevelType ;
+                                    dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
+                                    rdfs:comment """According to the specification referenced in Appendix A-1, index [C]
+If the trackside does not provide Track Conditions, the driver will need to be informed about such conditions via alternative methods"""@en ;
+                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                    rdfs:label "Has ETCS trackside engineered to transmit Track Conditions"@en ;
+                                    rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
+                                    vs:term_status "stable" ;
+                                    skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/hasElectricShoreSupply
@@ -7961,8 +7704,7 @@ era:hasElectricShoreSupply rdf:type owl:DatatypeProperty ,
                            dcterms:modified "2021-08-10"^^xsd:date ,
                                             "2024-09-19"^^xsd:date ;
                            dcterms:source <http://data.europa.eu/eli/reg/2014/1299/2023-09-28> ;
-                           rdfs:comment "Indication whether an installation for electric shore supply exists (fixed installation for servicing trains)."@en ,
-                                        "Indication whether exists an installation of electric shore supply (fixed installation for servicing trains)."@en ;
+                           rdfs:comment "Indication whether an installation for electric shore supply exists (fixed installation for servicing trains)."@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "Existence of electric shore supply"@en ;
                            vs:term_status "stable" .
@@ -8002,15 +7744,6 @@ OPE TSI: 4.2.3.7"""@en ;
 Emergency plan has to be a document developed for each tunnel under the direction of the IM, in co-operation, where appropriate, with RUs, Rescue services and relevant authorities. It shall be consistent with the self-rescue, evacuation and rescue facilities provided.
 It ispplicable for tunnels longer than 1 km, in accordance with section 4.4.2 of SRT TSI, the emergency plan is mandatory only for tunnel length of more than 1km.
 Not applicable will be selected for short tunnels of less than 1 km, as for them the fire category according SRT TSI does not exist."""@en ,
-                                    """A value may not be applicable for tunnels shorter than 1 km, as for them the fire category according SRT TSI does not exist
-Emergency plan has to be a document developed for each tunnel under the direction of the IM, in co-operation, where appropriate, with RUs, Rescue services and relevant authorities. It shall be consistent with the self-rescue, evacuation and rescue facilities provided.
-It ispplicable for tunnels longer than 1 km, in accordance with section 4.4.2 of SRT TSI, the emergency plan is mandatory only for tunnel length of more than 1km.
-Not applicable will be selected for short tunnels of less than 1 km, as for them the fire category according SRT TSI does not exist."""@en ,
-                                    """Emergency plan has to be a document developed for each tunnel under the direction of the IM, in co-operation, where appropriate, with RUs, Rescue services and relevant authorities. 
-It shall be consistent with the self-rescue, evacuation and rescue facilities provided.
-                     
-SRT TSI: 4.4.2
-OPE TSI: 4.2.3.7"""@en ,
                                     """Emergency plan has to be a document developed for each tunnel under the direction of the IM, in co-operation, where appropriate, with RUs, Rescue services and relevant authorities. 
 It shall be consistent with the self-rescue, evacuation and rescue facilities provided.
                      
@@ -8098,8 +7831,7 @@ era:hasExternalCleaning rdf:type owl:DatatypeProperty ,
                         dcterms:modified "2024-01-08"^^xsd:date ,
                                          "2024-09-19"^^xsd:date ;
                         dcterms:source <http://data.europa.eu/eli/reg/2014/1299/2023-09-28> ;
-                        rdfs:comment "Indication whether exists an installation for external cleaning facility (fixed installation for servicing trains) as defined in TSI INF."@en ,
-                                     "Indication whether exists an installation of external cleaning facility (fixed installation for servicing trains) as defined in TSI INF"@en ;
+                        rdfs:comment "Indication whether exists an installation for external cleaning facility (fixed installation for servicing trains) as defined in TSI INF."@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "Existence of external cleaning facilities"@en ;
                         vs:term_status "stable" .
@@ -8230,8 +7962,7 @@ era:hasPlatformCurvature rdf:type owl:DatatypeProperty ;
                          dcterms:created "2022-10-27"^^xsd:date ;
                          dcterms:modified "2023-03-14"^^xsd:date ;
                          dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
-                         rdfs:comment "Indication of the existence of the curvature of the platform"@en ,
-                                      "Indication of the existence of the curvature of the platform."@en ;
+                         rdfs:comment "Indication of the existence of the curvature of the platform"@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Curvature of the platform"@en ;
                          vs:term_status "stable" .
@@ -8254,8 +7985,7 @@ era:hasRefuelling rdf:type owl:DatatypeProperty ,
                   dcterms:modified "2024-01-08"^^xsd:date ,
                                    "2024-09-19"^^xsd:date ;
                   dcterms:source <http://data.europa.eu/eli/reg/2014/1299/2023-09-28> ;
-                  rdfs:comment "Indication whether exists an installation for refuelling (fixed installation for servicing trains) as defined in TSI INF."@en ,
-                               "Indication whether exists an installation of refuelling (fixed installation for servicing trains) as defined in TSI INF."@en ;
+                  rdfs:comment "Indication whether exists an installation of refuelling (fixed installation for servicing trains) as defined in TSI INF."@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "Existence of refuelling"@en ;
                   vs:term_status "stable" .
@@ -8290,8 +8020,7 @@ era:hasSandRestocking rdf:type owl:DatatypeProperty ,
                       era:rinfIndex "1.2.2.0.4.5" ;
                       dcterms:created "2021-08-10"^^xsd:date ;
                       dcterms:modified "2021-08-10"^^xsd:date ;
-                      rdfs:comment "Indication whether an installation for sand restocking exists (fixed installation for servicing trains)."@en ,
-                                   "Indication whether an installation of sand restocking exists (fixed installation for servicing trains)."@en ;
+                      rdfs:comment "Indication whether an installation of sand restocking exists (fixed installation for servicing trains)."@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                       rdfs:label "Existence of sand restocking"@en ;
                       vs:term_status "stable" .
@@ -8321,8 +8050,7 @@ era:hasSchematicOverviewOPDigitalForm rdf:type owl:DatatypeProperty ;
                                       era:tsiOPEAppendixD2Index "2.1" ;
                                       dcterms:created "2023-03-14"^^xsd:date ;
                                       dcterms:modified "2024-01-08"^^xsd:date ;
-                                      rdfs:comment "The existence of a schematic overview of the operational point in digital form"@en ,
-                                                   "The existence of a schematic overview of the operational point in digital form."@en ;
+                                      rdfs:comment "The existence of a schematic overview of the operational point in digital form."@en ;
                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                       rdfs:label "Schematic overview of the operational point in digital form"@en ;
                                       vs:term_status "stable" .
@@ -8359,13 +8087,6 @@ To be noted: It is not required to precise the categorisation S1, S2 or S3 as me
                                rdfs:label "Existence of severe climatic conditions"@en ;
                                vs:term_status "stable" ;
                                skos:scopeNote """Value 'true' shall be selected in case there are possible severe climatic conditions to be expected, i.e. a significant amount of snow or ice is to be expected during winter and vehicle should be designed accordingly to be able to run in such conditions. (compliance to 4.2.6.1.2(3),(4) of TSI Loc&Pas required). \" N\"  to be selected otherwise.
-
-Nominal and severe conditions are defined at TSI Loc&Pas level, section 4.2.6.1.2, which requires that the applicant declares to which snow conditions a vehicle complies with : either \"nominal\"  or \"severe\"  conditions. This technical aspect is reflected in the parameter 4.3.3 \"Snow, ice and hail conditions\"  of ERATV , which will provide the two possible values:
-- Nominal conditions correspond to compliance with clause 4.7 of EN 50125 as referred in the §4.2.6.1.2 (1) of TSI Loc&Pas.
-To be noted: It is not required to precise the categorisation S1, S2 or S3 as mentioned in the EN 50125.
-
-- Severe conditions correspond to compliance with §4.2.6.1.2 (3) and (4) : the applicant designs and tests its vehicle according to the different scenarios mentioned in the TSI §4.2.6.1.2 (3) (snowdrift, powder snow, temperature gradient, etc.) and set the related provisions to achieve this as required by §4.2.6.1.2 (4) (obstacle deflector of sufficient size, effect of ice and snow on running gear and brake function, etc.)."""@en ,
-                                              """Value 'true' shall be selected in case there are possible severe climatic conditions to be expected, i.e. a significant amount of snow or ice is to be expected during winter and vehicle should be designed accordingly to be able to run in such conditions. (compliance to 4.2.6.1.2(3),(4) of TSI Loc&Pas required). \" N\"  to be selected otherwise.
 
 Nominal and severe conditions are defined at TSI Loc&Pas level, section 4.2.6.1.2, which requires that the applicant declares to which snow conditions a vehicle complies with : either \"nominal\"  or \"severe\"  conditions. This technical aspect is reflected in the parameter 4.3.3 \"Snow, ice and hail conditions\"  of ERATV , which will provide the two possible values:
 - Nominal conditions correspond to compliance with clause 4.7 of EN 50125 as referred in the §4.2.6.1.2 (1) of TSI Loc&Pas.
@@ -8438,14 +8159,10 @@ See: (Annex I, Appendix A, Table A.2 -Index 77)."""@en ;
                                         <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
                          rdfs:comment "Indication if there is any train detection system installed and fully compliant with the TSI CCS"@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                         rdfs:label "Existence of train detection system fully compliant with the TSI"@en ,
-                                    "Existence of train detection system fully compliant with the TSI:"@en ;
+                         rdfs:label "Existence of train detection system fully compliant with the TSI"@en ;
                          rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                          vs:term_status "stable" ;
                          skos:scopeNote """Verification of compliance with TSI includes application of notified national rules (when they exist).
-                         
-See: (Annex I, Appendix A, Table A.2 -Index 77)."""@en ,
-                                        """Verification of compliance with TSI includes application of notified national rules (when they exist).
                          
 See: (Annex I, Appendix A, Table A.2 -Index 77)."""@en .
 
@@ -8467,8 +8184,7 @@ era:hasToiletDischarge rdf:type owl:DatatypeProperty ,
                        dcterms:modified "2024-01-08"^^xsd:date ,
                                         "2024-09-19"^^xsd:date ;
                        dcterms:source <http://data.europa.eu/eli/reg/2014/1299/2023-09-28> ;
-                       rdfs:comment "Indication whether exists an installation for toilet discharge (fixed installation for servicing trains) as defined in TSI INF."@en ,
-                                    "Indication whether exists an installation of toilet discharge (fixed installation for servicing trains) as defined in TSI INF"@en ;
+                       rdfs:comment "Indication whether exists an installation for toilet discharge (fixed installation for servicing trains) as defined in TSI INF."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Existence of toilet discharge"@en ;
                        vs:term_status "stable" .
@@ -8510,27 +8226,12 @@ If =Y then TSI-Compliant OR NON-TSI-Compliant""" ;
                dcterms:modified "2023-03-14"^^xsd:date ,
                                 "2024-09-19"^^xsd:date ;
                dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
-               rdfs:comment "Indication of existence of walkways"@en ,
-                            "Indication of existence of walkways."@en ;
+               rdfs:comment "Indication of existence of walkways. - OP/RT/SID/Tunnel"@en ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-               rdfs:label "Existence of walkways"@en ,
-                          "Existence of walkways - OP/RT/Tunnel"@en ,
-                          "Existence of walkways - OP/SID/Tunnel"@en ,
-                          "Existence of walkways - SOL/RT/Tunnel"@en ;
+               rdfs:label "Existence of walkways "@en ;
                rdfs:seeAlso "Point 4.2.1.6.  \"Escape walkways\" of the Commission Regulation (EU) No 1303/2014 of 18 November 2014 concerning the technical specification for interoperability relating to safety in railway tunnels of the rail system of the European Union|https://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1566396648532&uri=CELEX%3A02014R1303-20190616 "^^xsd:anyURI ;
-               vs:term_status "stable" ;
+               vs:term_status "unstable" ;
                skos:scopeNote """Indicates the existence of \"Escape walkways\", if the tunnel is longer than 0.5km then definition from Section 4.2.1.6 of TSI SRT applies.
-If the selected value is \"true\", provide the boolean value for \"Is TSI compliant\".
-On top of the requirements set out in the TSI SRT, the application guide to the TSI allows to use a ballastless track as a walkway. So a Yes in this parameters might not result in a physical stand alone walkway."""@en ,
-                              """Indicates the existence of \"Escape walkways\", if the tunnel is longer than 0.5km then definition from Section 4.2.1.6 of TSI SRT applies.
-If the selected value is \"true\", provide the boolean value for \"Is TSI compliant\".
-On top of the requirements set out in the TSI SRT, the application guide to the TSI allows to use a ballastless track as a walkway. So a Yes in this parameters might not result in a physical stand alone walkway.
-
-For Siding the mechanism to locate a specific object is different depending on the member state. The TWG is still working on it."""@en ,
-                              """Indicates the existence of \"Escape walkways\", if the tunnel is longer than 0.5km then definition from Section 4.2.1.6 of TSI SRT applies.
-If the selected value is \"true\", provide the boolean value for \"Is TSI compliant\".
-On top of the requirements set out in the TSI SRT, the application guide to the TSI allows to use a ballastless track as a walkway. So a Yes in this parameters might not result in a physical stand alone walkway."""@en ,
-                              """Indicates the existence of \"Escape walkways\", if the tunnel is longer than 0.5km then definition from Section 4.2.1.6 of TSI SRT applies.
 If the selected value is \"true\", provide the boolean value for \"Is TSI compliant\".
 On top of the requirements set out in the TSI SRT, the application guide to the TSI allows to use a ballastless track as a walkway. So a Yes in this parameters might not result in a physical stand alone walkway.
 
@@ -8555,8 +8256,7 @@ era:hasWaterRestocking rdf:type owl:DatatypeProperty ,
                        dcterms:modified "2024-01-08"^^xsd:date ,
                                         "2024-09-19"^^xsd:date ;
                        dcterms:source <http://data.europa.eu/eli/reg/2014/1299/2023-09-28> ;
-                       rdfs:comment "Indication whether exists an installation for water restocking (fixed installation for servicing trains) as defined in TSI INF."@en ,
-                                    "Indication whether exists an installation of water restocking (fixed installation for servicing trains) as defined in TSI INF"@en ;
+                       rdfs:comment "Indication whether exists an installation for water restocking (fixed installation for servicing trains) as defined in TSI INF."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Existence of water restocking"@en ;
                        vs:term_status "stable" .
@@ -8633,8 +8333,6 @@ era:hotAxleBoxDetectorGeneration rdf:type owl:DatatypeProperty ;
                                  dcterms:created "2020-08-24"^^xsd:date ;
                                  dcterms:modified "2021-09-11"^^xsd:date ;
                                  rdfs:comment """Specific for the French Italian and Swedish networks.
-Generation of trackside hot axle box detector."""@en ,
-                                              """Specific for the French Italian and Swedish networks.
 Generation of trackside hot axle box detector."""@en ;
                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                  rdfs:label "Generation of trackside HABD"@en ;
@@ -8661,8 +8359,6 @@ era:hotAxleBoxDetectorIdentification rdf:type owl:DatatypeProperty ;
                                      dcterms:created "2020-08-24"^^xsd:date ;
                                      dcterms:modified "2021-09-11"^^xsd:date ;
                                      rdfs:comment """Specific for the French, Italian and Swedish networks.
-Applicable if trackside HABD is not TSI compliant, identification of trackside hot axle box detector."""@en ,
-                                                  """Specific for the French, Italian and Swedish networks.
 Applicable if trackside HABD is not TSI compliant, identification of trackside hot axle box detector."""@en ;
                                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                      rdfs:label "Identification of trackside HABD"@en ;
@@ -8687,8 +8383,6 @@ era:hotAxleBoxDetectorLocation rdf:type owl:DatatypeProperty ;
                                dcterms:created "2020-08-24"^^xsd:date ;
                                dcterms:modified "2021-09-11"^^xsd:date ;
                                rdfs:comment """Specific for the French Italian and Swedish networks.
-Applicable if trackside HABD is not TSI compliant, localisation of trackside hot axle box detector."""@en ,
-                                            """Specific for the French Italian and Swedish networks.
 Applicable if trackside HABD is not TSI compliant, localisation of trackside hot axle box detector."""@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "Railway location of trackside HABD"@en ;
@@ -8718,11 +8412,7 @@ Trackside HABD compliant to TSI means that the HABD Trackside is compliant with:
 - EN 15437-1:2009 referred in TSIs (LOC&PAS: 4.2.3.3.2.2, WAG TSI: 4.2.3.4),
 - Specific cases mentioned in TSIs (LOC&PAS TSI, WAG TSI)."""@en ,
                                                 """Specific for the French, Italian and Swedish networks.
-Trackside hot axle box detector TSI compliant."""@en ,
-                                                """Specific for the French, Italian and Swedish networks.
-Trackside HABD compliant to TSI means that the HABD Trackside is compliant with:
-- EN 15437-1:2009 referred in TSIs (LOC&PAS: 4.2.3.3.2.2, WAG TSI: 4.2.3.4),
-- Specific cases mentioned in TSIs (LOC&PAS TSI, WAG TSI)."""@en ;
+Trackside hot axle box detector TSI compliant."""@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                    rdfs:label "Trackside HABD TSI compliant"@en ;
                                    vs:term_status "stable" .
@@ -8868,8 +8558,6 @@ era:isQuietRoute rdf:type owl:DatatypeProperty ;
                  rdfs:label "Belonging to a quieter route"@en ;
                  vs:term_status "stable" ;
                  skos:scopeNote """Art 5B: A  quieter route  means a part of the railway infrastructure with a minimum length of 20 km on which the average number of daily operated freight trains during the night-time as defined in national legislation transposing Directive 2002/49/EC of the European Parliament and of the Council (5) was higher than 12. The freight traffic in the years 2015, 2016 and 2017 shall be the basis for the calculation of that average number. In case the freight traffic due to exceptional circumstances diverges in a given year from that average number by more than 25 %, the Member State concerned can calculate the average number on the basis of the remaining two years
-Art 5.C 1:   Member States shall designate quieter routes in accordance with Article 5b and the procedure set out in Appendix D.1 of the Annex. They shall provide the European Union Agency for Railways ( the Agency ) with a list of quieter routes six months after the date of publication of this Regulation at the latest. The Agency shall publish those lists on its website."""@en ,
-                                """Art 5B: A  quieter route  means a part of the railway infrastructure with a minimum length of 20 km on which the average number of daily operated freight trains during the night-time as defined in national legislation transposing Directive 2002/49/EC of the European Parliament and of the Council (5) was higher than 12. The freight traffic in the years 2015, 2016 and 2017 shall be the basis for the calculation of that average number. In case the freight traffic due to exceptional circumstances diverges in a given year from that average number by more than 25 %, the Member State concerned can calculate the average number on the basis of the remaining two years
 Art 5.C 1:   Member States shall designate quieter routes in accordance with Article 5b and the procedure set out in Appendix D.1 of the Annex. They shall provide the European Union Agency for Railways ( the Agency ) with a list of quieter routes six months after the date of publication of this Regulation at the latest. The Agency shall publish those lists on its website."""@en .
 
 
@@ -8909,9 +8597,6 @@ For signals: Relative position to the line identified under parameter 1.1.0.0.0.
               vs:term_status "stable" ;
               skos:scopeNote """For walkways: Value provided in Kilometric point of the start of the walkway and the length in m. Repeatable values for each location.
 For rescue points: Value provided in Kilometric point of the start of the point of evacuation and rescue point and the length in m. Repeatable values for each location.
-For signals: Relative position to the line identified under parameter 1.1.0.0.0.2, given in km ([reference point, via era:referent] / [NNN.NNN] )."""@en ,
-                             """For walkways: Value provided in Kilometric point of the start of the walkway and the length in m. Repeatable values for each location.
-For rescue points: Value provided in Kilometric point of the start of the point of evacuation and rescue point and the length in m. Repeatable values for each location.
 For signals: Relative position to the line identified under parameter 1.1.0.0.0.2, given in km ([reference point, via era:referent] / [NNN.NNN] )."""@en .
 
 
@@ -8928,8 +8613,11 @@ era:kilometerNumber rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/kmPostName
 era:kmPostName rdf:type owl:DatatypeProperty ;
-               rdfs:domain era:KilometricPost ,
-                           era:LinearPositioningSystem ;
+               rdfs:domain [ rdf:type owl:Class ;
+                             owl:unionOf ( era:KilometricPost
+                                           era:LinearPositioningSystem
+                                         )
+                           ] ;
                rdfs:range xsd:string ;
                dcterms:created "2024-05-24"^^xsd:date ;
                dcterms:modified "2024-10-24"^^xsd:date ,
@@ -8960,24 +8648,12 @@ era:length rdf:type owl:DatatypeProperty ;
            dcterms:modified "2024-01-08"^^xsd:date ,
                             "2024-11-04"^^xsd:date ;
            dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
-           rdfs:comment "Length of a tunnel in metres from entrance portal to exit portal."@en ,
-                        """Length of an infrastructure element.
-Length of a vehicle."""@en ,
-                        "The length where is forbidden to stop the vehicle, value provided in meters"@en ,
-                        "Value provided in Kilometric point of the start of the evacuation and rescue point and the length in m. Repeatable values for each location"@en ,
-                        "Value provided in Kilometric point of the start of the point of evacuation and rescue point and the length in m. Repeatable values for each location"@en ,
+           rdfs:comment "The length where is forbidden to stop the vehicle, value provided in meters"@en ,
                         "Value provided in Kilometric point of the start of the walkway and the length in m. Repeatable values for each location"@en ;
            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-           rdfs:label "Length"@en ,
-                      "Length of the non-stopping area"@en ,
-                      "Length of tunnel"@en ,
-                      "Location of evacuation and rescue points"@en ,
-                      "Location of walkways - SOL/RT/Tunnel"@en ;
-           rdfs:seeAlso "ERA" ;
+           rdfs:label "Length"@en ;
            vs:term_status "stable" ;
            skos:scopeNote """Position of the start of the walkway:  [integer] m (from the same origin point of the kilometer post.)
-Lenght of the walkway: [integer] m"""@en ,
-                          """Position of the start of the walkway:  [integer] m (from the same origin point of the kilometer post.)
 Lenght of the walkway: [integer] m"""@en ,
                           """The length can be 
 - a section of line (For operational length, use era:lengthOfSectionOfLine), 
@@ -9064,8 +8740,7 @@ era:lengthOfSiding rdf:type owl:DatatypeProperty ;
                    dcterms:created "2024-05-16"^^xsd:date ;
                    dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
                    rdfs:comment """Total length of the siding/stabling track expressed in metres
-where trains can be parked safely."""@en ,
-                                "Total length of the siding/stabling track expressed in metres where trains can be parked safely."@en ;
+where trains can be parked safely."""@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    rdfs:label "Usable length of siding"@en ;
                    vs:term_status "stable" .
@@ -9245,8 +8920,7 @@ era:localRulesOrRestrictions rdf:type owl:DatatypeProperty ,
                                            "1.2.3.1" ;
                              dcterms:created "2021-08-09"^^xsd:date ;
                              dcterms:modified "2021-09-12"^^xsd:date ;
-                             rdfs:comment "Existence of rules and restrictions of a strictly local nature"@en ,
-                                          "Existence of rules and restrictions of a strictly local nature."@en ;
+                             rdfs:comment "Existence of rules and restrictions of a strictly local nature."@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "Existence of rules and restrictions of a strictly local nature"@en ;
                              vs:term_status "stable" .
@@ -9275,8 +8949,7 @@ era:mNvderun rdf:type owl:DatatypeProperty ;
              dcterms:relation era:etcsLevelType ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                             <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-             rdfs:comment "Entry of Driver ID permitted while running"@en ,
-                          "Entry of Driver ID permitted while running According to the specification referenced in Appendix A-1, index [C]"@en ;
+             rdfs:comment "Entry of Driver ID permitted while running According to the specification referenced in Appendix A-1, index [C]"@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "M_NVDERUN"@en ,
                         "M_NVDERUN -"@en ;
@@ -9493,9 +9166,6 @@ The value of the parameter shall be given in metres, with tolerance of +/-100m."
                     vs:term_status "stable" ;
                     skos:scopeNote """Normaal Amsterdams Peil (NAP), called also Amsterdam Ordnance Datum, it is a vertical datum commonly in use in Europe as reference level for the description of the height of objects in relation to the sea level.
 
-The value of the parameter shall be given in metres, with tolerance of +/-100m."""@en ,
-                                   """Normaal Amsterdams Peil (NAP), called also Amsterdam Ordnance Datum, it is a vertical datum commonly in use in Europe as reference level for the description of the height of objects in relation to the sea level.
-
 The value of the parameter shall be given in metres, with tolerance of +/-100m."""@en .
 
 
@@ -9562,21 +9232,11 @@ See also:
                                             "2024-09-19"^^xsd:date ;
                            dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ,
                                           <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                           rdfs:comment "The maximum value of the braking distance [in meters] of a train shall be given for the maximum line speed."@en ,
-                                        "The maximum value of the braking distance [in metres] of a train shall be given for the maximum line speed."@en ;
+                           rdfs:comment "The maximum value of the braking distance [in metres] of a train shall be given for the maximum line speed."@en ;
                            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                            rdfs:label "Maximum braking distance requested"@en ;
                            vs:term_status "stable" ;
                            skos:scopeNote """This distance corresponds to the smallest physical distance between signals of the section of line at V max, taking into account the effect of gradient, minus the value of the safety margin used by the IM.
-
-The braking capability of a train allows it to respect this braking distance.
-
-Note that the OPE TSI provides for an exchange of detailed information between the infrastructure manager and the railway undertaking to ensure safe operation.
-
-See also: 
-- OPE TSI: 4.2.2.6 
-- CCS TSI: 4.2.2"""@en ,
-                                          """This distance corresponds to the smallest physical distance between signals of the section of line at V max, taking into account the effect of gradient, minus the value of the safety margin used by the IM.
 
 The braking capability of a train allows it to respect this braking distance.
 
@@ -9618,9 +9278,6 @@ Values shall be given in metres with precision of 0.01 m."""@en ;
                              vs:term_status "stable" ;
                              skos:scopeNote """The value given can be design value or the last known measured value. If there is no change in height, nominal value will be given. 
 
-Values shall be given in metres with precision of 0.01 m."""@en ,
-                                            """The value given can be design value or the last known measured value. If there is no change in height, nominal value will be given. 
-
 Values shall be given in metres with precision of 0.01 m."""@en .
 
 
@@ -9653,8 +9310,6 @@ era:maximumInterferenceCurrent rdf:type owl:DatatypeProperty ;
                                                   " Evaluation parameters must be added if preferred bands are not used." ;
                                era:legalDeadline "12 months after publication of Article 7 Guide"@en ,
                                                  """For train detection system compliant with TSIs: 12 months after publication of Article 7 Guide.
-For train detection system not TSI compliant: in relation to article 13 of TSI CCS"""@en ,
-                                                 """For train detection system compliant with TSIs: 12 months after publication of Article 7 Guide.
 For train detection system not TSI compliant: in relation to article 13 of TSI CCS"""@en ;
                                era:rinfIndex "1.1.1.3.4.2.1" ,
                                              "1.2.1.1.3.2.1" ;
@@ -9670,17 +9325,13 @@ Evaluation parameters must be added if preferred bands are not used. """@en ;
                                dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                                               <https://eur-lex.europa.eu/eli/reg_impl/2023/1695/oj> ,
                                               <https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf> ;
-                               rdfs:comment "Maximum interference current limits allowed for track circuits for a defined frequency band"@en ,
-                                            "Maximum interference current limits allowed for track circuits for a defined frequency band."@en ;
+                               rdfs:comment "Maximum interference current limits allowed for track circuits for a defined frequency band."@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "Maximum interference current"@en ,
                                           "maximum interference current"@en ;
                                rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                                vs:term_status "stable" ;
                                skos:scopeNote """To be expressed in A/m. Verification of compliance with TSI includes application of notified national rules (when they exist). 
-                               
-Evaluation parameters must be added if preferred bands are not used. """@en ,
-                                              """To be expressed in A/m. Verification of compliance with TSI includes application of notified national rules (when they exist). 
                                
 Evaluation parameters must be added if preferred bands are not used. """@en .
 
@@ -9814,8 +9465,6 @@ era:maximumPermittedSpeed rdf:type owl:DatatypeProperty ;
 When INF allows 160 km/h, ENE allows 100 km/h and CCS allows 120 km/h, the max permitted speed on this track of this section of line is 100 km/h.
 When for freight trains operation the maximum permitted speed is 100 km/h, and for passenger trains it is 160 km/h, as the value of maximum permitted speed shall be presented 160 km/h only."""@en ,
                                        """When INF allows 160 km/h, ENE allows 100 km/h and CCS allows 120 km/h, the max permitted speed on this track of this section of line is 100 km/h.
-When for freight trains operation the maximum permitted speed is 100 km/h, and for passenger trains it is 160 km/h, as the value of maximum permitted speed shall be presented 160 km/h only.""" ,
-                                       """When INF allows 160 km/h, ENE allows 100 km/h and CCS allows 120 km/h, the max permitted speed on this track of this section of line is 100 km/h.
 When for freight trains operation the maximum permitted speed is 100 km/h, and for passenger trains it is 160 km/h, as the value of maximum permitted speed shall be presented 160 km/h only.""" ;
                           skos:scopeNote "\"Speed on the line\" shall be understood as speed on the track of the section of line in question. "@en .
 
@@ -9913,10 +9562,6 @@ era:maximumTrainDeceleration rdf:type owl:DatatypeProperty ;
                              rdfs:label "Maximum train deceleration"@en ;
                              vs:term_status "stable" ;
                              skos:scopeNote """New lines are assumed to be compliant with the TSI INF.
-For TSI compliant lines the default value of 2.5 m/s2 shall be presented.
-
-If for the design of the track the braking forces were assumed on basis of the deceleration lower value than 2.5 m/s2, the applied value of the deceleration has to be specified."""@en ,
-                                            """New lines are assumed to be compliant with the TSI INF.
 For TSI compliant lines the default value of 2.5 m/s2 shall be presented.
 
 If for the design of the track the braking forces were assumed on basis of the deceleration lower value than 2.5 m/s2, the applied value of the deceleration has to be specified."""@en .
@@ -10159,9 +9804,6 @@ Values shall be given in metres with precision of 0.01 m."""@en ;
                              vs:term_status "stable" ;
                              skos:scopeNote """The value given can be design value or the last known measured value. If there is no change in height, nominal value will be given. 
 
-Values shall be given in metres with precision of 0.01 m."""@en ,
-                                            """The value given can be design value or the last known measured value. If there is no change in height, nominal value will be given. 
-
 Values shall be given in metres with precision of 0.01 m."""@en .
 
 
@@ -10214,9 +9856,6 @@ era:minimumHorizontalRadius rdf:type owl:DatatypeProperty ;
                             rdfs:label "Minimum radius of horizontal curve"@en ;
                             vs:term_status "stable" ;
                             skos:scopeNote "To describe a straight section of line value \" 99999\" shall be used."@en ,
-                                           """To describe a straight section of line value \"99999\" shall be used.
-                            
-"""@en ,
                                            """To describe a straight section of line value \"99999\" shall be used.
                             
 """@en .
@@ -10334,8 +9973,6 @@ era:minimumWheelDiameter rdf:type owl:DatatypeProperty ;
                          rdfs:label "Minimum wheel diameter for fixed obtuse crossings"@en ;
                          vs:term_status "stable" ;
                          skos:scopeNote """The minimum TSI value is 330 mm and this shall be used as a default value unless advised otherwise. If the value of the wheel diameter is bigger than 330 mm, it has to be specified.
-New lines are assumed to be compliant with the TSI INF. When the line is compliant to TSI the default value of 330 mm has to be presented."""@en ,
-                                        """The minimum TSI value is 330 mm and this shall be used as a default value unless advised otherwise. If the value of the wheel diameter is bigger than 330 mm, it has to be specified.
 New lines are assumed to be compliant with the TSI INF. When the line is compliant to TSI the default value of 330 mm has to be presented."""@en .
 
 
@@ -10410,9 +10047,6 @@ era:nationalRollingStockFireCategory rdf:type owl:DatatypeProperty ;
                                                     """Data shall include both the category and brief name of the document introducing the categorisation.
 A value is mandatory only for tunnels when the value of the parameter 1.1.1.1.8.10 is  none  and national rules exist.
 It may be not applicable when respective national rules do not exist"""@en ,
-                                                    """Data shall include both the category and brief name of the document introducing the categorisation.
-A value is mandatory only for tunnels when the value of the parameter 1.1.1.1.8.10 is  none  and national rules exist.
-It may be not applicable when respective national rules do not exist"""@en ,
                                                     """Parameters of this group (from 1.1.1.1.8.1 to 1.1.1.1.8.13) are only applicable if tunnels exist on the SoL
                                      
 Applicable only for tunnels when for the parameter 1.1.1.1.8.10 the option ‘none’ was selected and national rules exist.
@@ -10442,11 +10076,7 @@ era:nationalValuesBrakeModel rdf:type owl:DatatypeProperty ;
                              dcterms:relation era:etcsLevelType ;
                              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                              rdfs:comment """Set of parameters for adapting the braking curves calculated by the ETCS on-board system to match accuracy, performance and safety margins imposed by the infrastructure manager.
-It copies the content of Packet 3 or of Packet 203 as defined in the specification referenced in Appendix A-1, index [C]"""@en ,
-                                          """Set of parameters for adapting the braking curves calculated by the ETCS on-board system to match accuracy, performance and safety margins imposed by the infrastructure manager.
-It copies the content of Packet 3 or of Packet 203 as defined in the specification referenced in TSI CCS (Annex I, Appendix A, Table A.2 -Subset-026)."""@en ,
-                                          """Set of parameters for adapting the braking curves calculated by the ETCS on-board system to match accuracy, performance and safety margins imposed by the infrastructure manager.
-It copies the content of Packet 3 or of Packet 203 as defined in the specification referenced in Appendix A-1, index [C]"""@en ;
+It copies the content of Packet 3 or of Packet 203 as defined in the specification referenced in TSI CCS (Annex I, Appendix A, Table A.2 -Subset-026)."""@en ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "National Values used for the brake model"@en ;
                              vs:term_status "stable" ;
@@ -10566,8 +10196,7 @@ era:opName rdf:type owl:DatatypeProperty ,
            dcterms:created "2021-09-13"^^xsd:date ;
            dcterms:modified "2021-09-13"^^xsd:date ;
            dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
-           rdfs:comment "Name normally related to the town or village or to traffic control purpose"@en ,
-                        "Name normally related to the town or village or to traffic control purpose."@en ;
+           rdfs:comment "Name normally related to the town or village or to traffic control purpose."@en ;
            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
            rdfs:label "Name of operational point"@en ;
            vs:term_status "stable" .
@@ -10585,8 +10214,7 @@ era:opTypeGaugeChangeover rdf:type owl:DatatypeProperty ,
                           era:usedInRCCCalculations "true"^^xsd:boolean ;
                           dcterms:created "2021-08-11"^^xsd:date ;
                           dcterms:modified "2021-08-11"^^xsd:date ;
-                          rdfs:comment "Type of track gauge changeover facility"@en ,
-                                       "Type of track gauge changeover facility."@en ;
+                          rdfs:comment "Type of track gauge changeover facility."@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "Type of track gauge changeover facility"@en ;
                           vs:term_status "stable" .
@@ -10630,12 +10258,9 @@ Each Section of Line may concern only one IM."""@en ;
                      rdfs:comment """Four alpha-numeric code allocated by ERA to a body. It represent's the Infrastructure Manager (IM) code in RINF.
 Infrastructure manager means any body or firm responsible in particular for establishing, managing and maintaining railway infrastructure, including traffic management and control-command and signalling; 
 the functions of the infrastructure manager on a network or part of a network may be allocated to different bodies or firms. Definition in (Article 3(2))"""@en ,
-                                  "Infrastructure Manager means anybody or undertaking that is responsible in particular for establishing and maintaining railway infrastructure or a part thereof."@en ,
-                                  "Infrastructure manager means any body or undertaking that is responsible in particular for establishing and maintaining railway infrastructure or a part thereof."@en ,
-                                  "Infrastructure manager means anybody or undertaking that is responsible in particular for establishing and maintaining railway infrastructure or a part thereof."@en ;
+                                  "Infrastructure manager means any body or undertaking that is responsible in particular for establishing and maintaining railway infrastructure or a part thereof."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                     rdfs:label "IM's code"@en ,
-                                "Infrastructure manager (IM)'s code"@en ,
+                     rdfs:label "Infrastructure manager (IM)'s code"@en ,
                                 "organisation code" ;
                      rdfs:seeAlso "https://eur-lex.europa.eu/eli/dir/2012/34/oj#d1e885-32-1"^^xsd:anyURI ;
                      skos:example """Simplified exmaple:
@@ -10647,34 +10272,8 @@ the functions of the infrastructure manager on a network or part of a network ma
 	era:infrastructureManager :ABCD_IM.
 
 :track1 a era:Track;
-	era:belongsTo :imNetwork.""" ,
-                                  """Simplified exmaple:
-:ABCD_IM a era:OrganisationRole;
-	era:hasOrganisationRole era-skos:InfrastructureManager.
-	era:organisationCode \"ABCD\".
-
-:imNetwork a era:SubsetWithCommonCharacteristics;
-	era:infrastructureManager :ABCD_IM.
-
-:track1 a era:Track;
 	era:belongsTo :imNetwork.""" ;
                      skos:scopeNote """The Code is a unique identifier for the Infrastructure Manager and it shall be verified on national level. 
--	If the IM is subject to TAF/TAP TSIs, it corresponds to the code used in TAF/TAP TSIs. 
--	In other cases, it corresponds to the \"organisation code  assigned by the Agency for the specific needs of the RINF"""@en ,
-                                    """The Code is a unique identifier for the Infrastructure Manager and it shall be verified on national level. 
-- If the IM is subject to TAF/TAP TSIs, it corresponds to the code used in TAF/TAP TSIs. 
-- In other cases, it corresponds to the \"organisation code\"  assigned by the Agency for the specific needs of the RINF
-Each Section of Line may concern only one IM. """@en ,
-                                    """The Code is a unique identifier for the Infrastructure Manager and it shall be verified on national level. 
-- If the IM is subject to TAF/TAP TSIs, it corresponds to the code used in TAF/TAP TSIs. 
-- In other cases, it corresponds to the \"organisation code\"  assigned by the Agency for the specific needs of the RINF
-Each Section of Line shall concern only one IM. """@en ,
-                                    """The Code is a unique identifier for the Infrastructure Manager and it shall be verified on national level. 
-- If the IM is subject to TAF/TAP TSIs, it corresponds to the code used in TAF/TAP TSIs. 
-- In other cases, it corresponds to the \"organisation code\"  assigned by the Agency for the specific needs of the RINF.
-Each Section of Line may concern only one IM.
-To be able to follow the \"only once\" principle, the infrastructure manager code is a property of the organisation having the role of infrastructuer manager. For data provision, a subset of elements with common characteristics should be created with a the era:infrastructureManager property having as value the instance of the infrastructure mananger role."""@en ,
-                                    """The Code is a unique identifier for the Infrastructure Manager and it shall be verified on national level. 
 -	If the IM is subject to TAF/TAP TSIs, it corresponds to the code used in TAF/TAP TSIs. 
 -	In other cases, it corresponds to the \"organisation code  assigned by the Agency for the specific needs of the RINF"""@en ,
                                     """The Code is a unique identifier for the Infrastructure Manager and it shall be verified on national level. 
@@ -10812,8 +10411,7 @@ era:permissionChargingElectricEnergyTractionStandstill rdf:type owl:DatatypeProp
                                                        era:legalDeadline "30 June 2024 at the latest"@en ;
                                                        era:rinfIndex "1.2.1.0.7.1" ;
                                                        dcterms:created "2023-03-14"^^xsd:date ;
-                                                       rdfs:comment "Point at which IM authorises charging of electric energy storage for traction purposes at standstill"@en ,
-                                                                    "Point at which IM authorises charging of electric energy storage for traction purposes at standstill."@en ;
+                                                       rdfs:comment "Point at which IM authorises charging of electric energy storage for traction purposes at standstill."@en ;
                                                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                                        rdfs:label "Permission for charging electric energy storage for traction purposes at standstill"@en ;
                                                        vs:term_status "stable" .
@@ -11051,6 +10649,8 @@ era:primaryLocationName rdf:type owl:DatatypeProperty ;
                         rdfs:domain era:PrimaryLocation ;
                         rdfs:range xsd:string ;
                         dcterms:created "2024-06-03"^^xsd:date ;
+                        rdfs:comment "A name associated to a primary location"@en ;
+                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "primary location name"@en .
 
 
@@ -11113,10 +10713,6 @@ era:publicNetworkRoaming rdf:type owl:DatatypeProperty ;
 In case of Y, provide the name of the public network under parameter 1.1.1.3.3.7:"""@en ,
                                       """Existence of roaming to a public network
 In case of Y, provide the name of the public network under parameter 1.2.1.1.2.7:"""@en ,
-                                      """Existence of roaming to a public network
-In case of Y, provide the name of the public network under parameter 1.1.1.3.3.7:"""@en ,
-                                      """Existence of roaming to a public network
-In case of Y, provide the name of the public network under parameter 1.2.1.1.2.7:"""@en ,
                                       """Existence of roaming to a public network.
                          
                          In case of Y, provide the name of the public network(s) under parameter \"Details on GSM-R roaming to public networks\"."""@en ;
@@ -11156,10 +10752,7 @@ Please also add if there is any operational restriction for vehicles that cannot
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "Details on GSM-R roaming to public networks"@en ;
                                 vs:term_status "stable" ;
-                                skos:scopeNote "GSM-R (parameter 1.1.1.3.3.1) must be installed and `era:publicNetworkRoaming` 'true', for this parameter to be applicable."@en ,
-                                               """List if any GSM-R functionality is not available when roaming to a public network (e.g. REC, Functional Addressing, Group Calls). 
-Please also add if there is any operational restriction for vehicles that cannot roam into any of the available public networks."""@en ,
-                                               """List if any GSM-R functionality is not available when roaming to a public network (e.g. REC, Functional Addressing, Group Calls). 
+                                skos:scopeNote """List if any GSM-R functionality is not available when roaming to a public network (e.g. REC, Functional Addressing, Group Calls). 
 Please also add if there is any operational restriction for vehicles that cannot roam into any of the available public networks."""@en .
 
 
@@ -11375,11 +10968,9 @@ era:rbcID rdf:type owl:DatatypeProperty ;
           dcterms:description "Format: [NNNN NNNN] with N a decimal number (0÷9)"@en ;
           dcterms:relation era:etcsLevelType ;
           dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-          rdfs:comment "(part) Unique RBC identification (NID_C+NID_RBC) as defined in the specification referenced in TSI CCS."@en ,
-                       "Unique RBC identification (NID_C+NID_RBC)  as defined in the specification referenced in Appendix A-1, index [C]"@en ;
+          rdfs:comment "Unique RBC identification (NID_C+NID_RBC)  as defined in the specification referenced in TSI CCS (Appendix A-1, index [C])"@en ;
           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-          rdfs:label "ERTMS/ETCS Radio Block Center (RBC) identifier"@en ,
-                     "ID  of ERTMS/ETCS Radio Block Center"@en ;
+          rdfs:label "ID  of ERTMS/ETCS Radio Block Center"@en ;
           vs:term_status "stable" ;
           skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
@@ -11401,8 +10992,7 @@ era:rbcPhone rdf:type owl:DatatypeProperty ;
              dcterms:description "Format: [NNNN NNNN NNNN NNNN] with N a decimal number (0÷9)"@en ;
              dcterms:relation era:etcsLevelType ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-             rdfs:comment "(part) Unique RBC calling number (NID_RADIO) as defined in the specification referenced in TSI CCS."@en ,
-                          "Unique calling number (NID_RADIO) as defined in the specification referenced in Appendix A-1, index [C]"@en ;
+             rdfs:comment "Unique RBC calling number (NID_RADIO) as defined in the specification referenced in TSI CCS (Appendix A-1, index [C])."@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "ERTMS/ETCS Radio Block Center (RBC) phone number"@en ,
                         "Phone number of ERTMS/ETCS Radio Block Center"@en ;
@@ -11433,12 +11023,6 @@ era:redLightsRequired rdf:type owl:DatatypeProperty ;
                       rdfs:label "Steady red lights required"@en ;
                       vs:term_status "stable" ;
                       skos:scopeNote """Regulation (EU) 2019/773 says:
-Specific case: 
-Belgium, France, Italy, Portugal, Spain and UK may continue to apply notified national rules that require freight trains to be equipped with 2 steady red lights as a condition to run on sections of their network, where this is justified by operating practices already in place and/or national rules notified before end of January 2019.
-Cooperation with neighbouring countries:
-In the meantime Member States concerned, in particular at the request of the railway undertakings, shall perform an assessment with a view to accept the use of 2 reflective plates in one or more sections of their network if the result of the assessment is positive and define appropriate conditions, which shall be based upon an assessment of the risks and operational requirements. This assessment shall be completed within a maximum period of 6 months after receiving the railway undertaking's request. The acceptance of reflective plates shall be granted, unless the Member State can duly justify the refusal based on the negative result of the assessment.
-Member States shall in particular endeavour to permit the use of reflective plates on rail freight corridors, with a view to prioritise the current bottlenecks. These sections and details of any conditions pertaining to them shall be recorded in the RINF. Until the information is encoded in RINF, the infrastructure manager shall ensure the information is communicated to railway undertakings by other appropriate means. The infrastructure manager shall identify the sections of lines on which 2 steady red lights are required in the RINF."""@en ,
-                                     """Regulation (EU) 2019/773 says:
 Specific case: 
 Belgium, France, Italy, Portugal, Spain and UK may continue to apply notified national rules that require freight trains to be equipped with 2 steady red lights as a condition to run on sections of their network, where this is justified by operating practices already in place and/or national rules notified before end of January 2019.
 Cooperation with neighbouring countries:
@@ -11485,8 +11069,7 @@ era:relativeDistanceDangerPoint rdf:type owl:DatatypeProperty ;
                                                   <https://qudt.org/vocab/unit/M> ;
                                 dcterms:created "2023-03-14"^^xsd:date ;
                                 dcterms:modified "2024-04-18"^^xsd:date ;
-                                rdfs:comment "Distance in meters to the danger point"@en ,
-                                             "Distance in meters to the danger point."@en ;
+                                rdfs:comment "Distance in meters to the danger point."@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "Relative distance of the danger point"@en ;
                                 vs:term_status "stable" .
@@ -11540,8 +11123,7 @@ era:schematicOverviewOP rdf:type owl:DatatypeProperty ;
                         era:rinfIndex "1.2.0.0.0.7.1" ;
                         era:tsiOPEAppendixD2Index "2.1" ;
                         dcterms:created "2023-03-14"^^xsd:date ;
-                        rdfs:comment "Document providing the schematic overview of the  operational point."@en ,
-                                     "Document providing the schematic overview of the operational point"@en ;
+                        rdfs:comment "Document providing the schematic overview of the  operational point."@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "Schematic overview of the operational point"@en ;
                         vs:term_status "stable" .
@@ -11576,8 +11158,7 @@ era:sidingId rdf:type owl:DatatypeProperty ;
              dcterms:created "2021-09-13"^^xsd:date ;
              dcterms:modified "2023-03-14"^^xsd:date ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
-             rdfs:comment "Unique siding identification or number within an Operational Point."@en ,
-                          "Unique siding identification or unique siding number within OP"@en ;
+             rdfs:comment "Unique siding identification or number within an Operational Point."@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "Identification of siding"@en ;
              vs:term_status "stable" .
@@ -11608,10 +11189,9 @@ era:signalId rdf:type owl:DatatypeProperty ;
              dcterms:created "2023-03-14"^^xsd:date ;
              dcterms:description "Operational identifier of the signal (on the track or in OP), as in the operational and maintenance provisions."@en ;
              dcterms:modified "2024-04-18"^^xsd:date ;
-             rdfs:comment "Identifier of signal"@en ,
-                          "Identifier of signal."@en ;
+             rdfs:comment "Identifier of signal."@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-             rdfs:label "Name of signal"@en ;
+             rdfs:label "Identification of signal"@en ;
              vs:term_status "stable" ;
              skos:scopeNote "Operational identifier of the signal (on the track or in OP), as in the operational and maintenance provisions."@en .
 
@@ -11791,9 +11371,6 @@ Please Note that this is a hypothetic example, as the Agency doesn’t know the 
 It could be those bridges that have not been designed according to the HSLM dynamic load model."""@en ,
                                         """The IM A knows that its bridge X might have problems with combination of speed and load above a certain limit values Z, and for that the IM A has a specific procedure W for the check to be done; if the vehicle operation is intended to be within this case (above the limit Z), then RU shall proceed in accordance to the procedure W; therefore the bridge X shall be referred to in the parameter of the RINF:  1.1.1.1.2.4.3 / Railway location of structures requiring specific checks.
 Please Note that this is a hypothetic example, as the Agency doesn't know the specific procedures of the IMs.
-It could be those bridges that have not been designed according to the HSLM dynamic load model.""" ,
-                                        """The IM A knows that its bridge X might have problems with combination of speed and load above a certain limit values Z, and for that the IM A has a specific procedure W for the check to be done; if the vehicle operation is intended to be within this case (above the limit Z), then RU shall proceed in accordance to the procedure W; therefore the bridge X shall be referred to in the parameter of the RINF:  1.1.1.1.2.4.3 / Railway location of structures requiring specific checks.
-Please Note that this is a hypothetic example, as the Agency doesn't know the specific procedures of the IMs.
 It could be those bridges that have not been designed according to the HSLM dynamic load model.""" ;
                            skos:scopeNote "The railway location identifies the location of the structure in the system of reference of the line to which the track belongs."@en .
 
@@ -11803,10 +11380,11 @@ era:subsetName rdf:type owl:DatatypeProperty ;
                rdfs:domain era:CommonCharacteristicsSubset ;
                rdfs:range xsd:string ;
                dcterms:created "2023-03-14"^^xsd:date ;
-               rdfs:comment "TODO (to deprecate) A subset of common characteristics is identified with a unique name/id. These characteristics will be the same for a part of the network (set of tracks)."@en ;
+               rdfs:comment "A subset of common characteristics is identified with a unique name/id. These characteristics will be the same for a part of the network (set of tracks)."@en ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                rdfs:label "Name of a subset with common characteristics"@en ;
                vs:term_status "stable" ;
+               skos:editorialNote "TODO - check if  to deprecate"@en ;
                skos:example "Example: \"ETCSbaseline2\": describes all ETCS National values (1.1.1.3.2.16 group) "@en .
 
 
@@ -11854,8 +11432,7 @@ era:switchProtectControlWarning rdf:type owl:DatatypeProperty ;
                                 dcterms:relation era:conditionsSwitchTrainProtectionSystems ;
                                 dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ,
                                                <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                                rdfs:comment "Indication whether a switch over between different systems whilst running exist"@en ,
-                                             "Indication whether a switch over between different systems whilst running exists."@en ;
+                                rdfs:comment "Indication whether a switch over between different systems whilst running exists."@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "Existence of switch over between different protection, control and warning systems while running"@en ;
                                 rdfs:modified "2021-09-12"^^xsd:date ;
@@ -11891,19 +11468,11 @@ era:switchRadioSystem rdf:type owl:DatatypeProperty ;
                       dcterms:relation era:legacyRadioSystem ;
                       dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ,
                                      <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                      rdfs:comment "Indication whether a switch over between different radio systems and no communication system whilst running exist"@en ,
-                                   "Indication whether a switch over between different radio systems and no communication system whilst running exists."@en ;
+                      rdfs:comment "Indication whether a switch over between different radio systems and no communication system whilst running exists."@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                      rdfs:label "Existence of switch over between different radio systems"@en ,
-                                 "Existence of switch over between different radio systems" ;
+                      rdfs:label "Existence of switch over between different radio systems" ;
                       vs:term_status "stable" ;
                       skos:scopeNote "Applicable (‘Y’) when at least two different radio systems exist. "@en ,
-                                     """Switch over between different radio systems and no communication system whilst running. Installation depends on local conditions. 
-
-The \"Indication if other radio systems in normal operation are installed line-side\" is given in parameter 1.1.1.3.6.1 / SOL Track Parameter CRS_Installed"""@en ,
-                                     """Switch over between different radio systems and no communication system whilst running. Installation depends on local conditions. 
-  
-  The “Indication if other radio systems in normal operation are installed line-side” is given in parameter 1.1.1.3.6.1 / SOL Track Parameter CRS_Installed”."""@en ,
                                      """Switch over between different radio systems and no communication system whilst running. Installation depends on local conditions. 
 
 The \"Indication if other radio systems in normal operation are installed line-side\" is given in parameter 1.1.1.3.6.1 / SOL Track Parameter CRS_Installed"""@en ,
@@ -12049,10 +11618,7 @@ See: TSI CCS (Subset 26, chapter 7. 7.5.1.148 T_NVCONTACT)"""@en ;
                dcterms:relation era:etcsLevelType ;
                dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                               <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-               rdfs:comment "Maximum time without a safe message from Radio Block Center before train reacts in seconds."@en ,
-                            """Maximum time without a safe message from Radio Block Center before train reacts in seconds.
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                            """Maximum time without a safe message from Radio Block Center before train reacts in seconds.
+               rdfs:comment """Maximum time without a safe message from Radio Block Center before train reacts in seconds.
 According to the specification referenced in Appendix A-1, index [C]"""@en ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                rdfs:label "T_NVCONTACT"@en ,
@@ -12060,9 +11626,6 @@ According to the specification referenced in Appendix A-1, index [C]"""@en ;
                rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
                vs:term_status "stable" ;
                skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ,
-                              """Precision: [NNN], with N a decimal number (0÷9), NNN = 255 means ∞ seconds, so values cannot be higher.
-
-See: TSI CCS (Subset 26, chapter 7. 7.5.1.148 T_NVCONTACT)"""@en ,
                               """Precision: [NNN], with N a decimal number (0÷9), NNN = 255 means ∞ seconds, so values cannot be higher.
 
 See: TSI CCS (Subset 26, chapter 7. 7.5.1.148 T_NVCONTACT)"""@en .
@@ -12096,19 +11659,13 @@ See: TSI CCS (Subset 26, chapter 7. 7.5.1.149 T_NVOVTRP)"""@en ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                             <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
              rdfs:comment """Maximum time for overriding the train trip in seconds
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                          """Maximum time for overriding the train trip in seconds
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                          "Maximum time for overriding the train trip in seconds."@en ;
+According to the specification referenced in Appendix A-1, index [C]"""@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "T_NVOVTRP"@en ,
                         "T_NVOVTRP "@en ;
              rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
              vs:term_status "stable" ;
              skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ,
-                            """Precision: [NNN], with N a decimal number (0÷9)
-
-See: TSI CCS (Subset 26, chapter 7. 7.5.1.149 T_NVOVTRP)"""@en ,
                             """Precision: [NNN], with N a decimal number (0÷9)
 
 See: TSI CCS (Subset 26, chapter 7. 7.5.1.149 T_NVOVTRP)"""@en .
@@ -12164,9 +11721,6 @@ era:tenGISId rdf:type owl:DatatypeProperty ;
              rdfs:seeAlso "https://transport.ec.europa.eu/transport-themes/infrastructure-and-investment/trans-european-transport-network-ten-t_en"^^xsd:anyURI ;
              vs:term_status "stable" ;
              skos:scopeNote """TENtec is the European Commission's information system to coordinate and support the Trans-European Transport Network Policy (TEN-T). For more details about the system and the legal background please follow the link to the TENtec Public Portal.
-
-The list of sections of the TEN network with their GIS IDs can be requested via MOVE-TENTEC-PUBLIC@ec.europa.eu"""@en ,
-                            """TENtec is the European Commission's information system to coordinate and support the Trans-European Transport Network Policy (TEN-T). For more details about the system and the legal background please follow the link to the TENtec Public Portal.
 
 The list of sections of the TEN network with their GIS IDs can be requested via MOVE-TENTEC-PUBLIC@ec.europa.eu"""@en .
 
@@ -12286,15 +11840,11 @@ era:trackId rdf:type owl:DatatypeProperty ;
             dcterms:modified "2024-01-08"^^xsd:date ,
                              "2024-09-19"^^xsd:date ;
             dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
-            rdfs:comment "Unique track identification or unique track number within OP"@en ,
-                         "Unique track identification or unique track number within an OP or a section of line."@en ,
-                         "Unique track identification or unique track number within section of line"@en ;
+            rdfs:comment "Unique track identification or unique track number within an OP or a section of line."@en ;
             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
             rdfs:label "Identification of track"@en ;
             vs:term_status "stable" ;
             skos:scopeNote "Each track shall have unique identification or number within the SoL. This number cannot be used for naming any other track in the same SoL."@en ,
-                           """Each track shall have unique identification or number within the SoL. This number cannot be used for naming any other track in the same SoL.
-The check regarding the uniqueness of the ID within the SoL has to be done on national level (preferably by IM)."""@en ,
                            """Each track shall have unique identification or number within the SoL. This number cannot be used for naming any other track in the same SoL.
 The check regarding the uniqueness of the ID within the SoL has to be done on national level (preferably by IM)."""@en ,
                            "The check regarding the uniqueness of the ID within the SoL has to be done on national level (preferably by IM)."@en .
@@ -12376,8 +11926,6 @@ See also: TSI CCS BDC 4.2.2 (Managing information about the completeness of the 
                                   rdfs:label "Train integrity confirmation from on-board (not from driver) necessary for line access"@en ;
                                   vs:term_status "stable" ;
                                   skos:scopeNote """In hybrid operation, the confirmation can be optional. 
-See also: TSI CCS BDC 4.2.2 (Managing information about the completeness of the train (not from driver))"""@en ,
-                                                 """In hybrid operation, the confirmation can be optional. 
 See also: TSI CCS BDC 4.2.2 (Managing information about the completeness of the train (not from driver))"""@en ,
                                                  "Parameter only applicable when ETCS Baseline > 4 MR1 with operation requiring train integrity."@en .
 
@@ -12572,9 +12120,7 @@ era:tunnelIdentification rdf:type owl:DatatypeProperty ;
                          dcterms:modified "2021-09-13"^^xsd:date ,
                                           "2024-09-19"^^xsd:date ;
                          dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
-                         rdfs:comment "Unique tunnel identification or unique number within Member State"@en ,
-                                      "Unique tunnel identification or unique number within Member State."@en ,
-                                      "Unique tunnel identification or unique tunnel number within MS"@en ;
+                         rdfs:comment "Unique tunnel identification or unique number within Member State"@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Tunnel identification"@en ;
                          vs:term_status "stable" ;
@@ -12690,8 +12236,7 @@ era:usesGroup555 rdf:type owl:DatatypeProperty ;
                  era:XMLName "CRG_Needof555" ;
                  era:applicable "Y/N" ,
                                 "Y/N/NYA" ;
-                 era:dependencyNote "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en ,
-                                    "GSM-R and ETCS L2 must be installed for this parameter to be applicable."@en ;
+                 era:dependencyNote "GSM-R (parameter 1.1.1.3.3.1) and ETCS L2 (parameter 1.1.1.3.2.1) must be installed for this parameter to be applicable."@en ;
                  era:eratvIndex "4.13.2.12" ;
                  era:legalDeadline "12 months after publication of Article 7 Guide"@en ,
                                    "16 January 2020"@en ;
@@ -12702,8 +12247,7 @@ era:usesGroup555 rdf:type owl:DatatypeProperty ;
                  dcterms:modified "2021-09-12"^^xsd:date ,
                                   "2024-04-18"^^xsd:date ;
                  dcterms:relation era:etcsLevelType ;
-                 rdfs:comment "Indication if group 555 is used"@en ,
-                              "Indication if group 555 is used."@en ;
+                 rdfs:comment "Indication if group 555 is used."@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "GSM-R use of group 555"@en ;
                  vs:term_status "stable" ;
@@ -12738,19 +12282,13 @@ See: TSI CCS (Subset-026, Chapter 7. 7.5.1.161)"""@en ;
                   dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                                  <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                   rdfs:comment """Speed limit allowing the driver to select the  override  function in km/h
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                               """Speed limit allowing the driver to select the  override  function in km/h
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                               "Speed limit allowing the driver to select the “override” function in km/h."@en ;
+According to the specification referenced in Appendix A-1, index [C]"""@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "V_NVALLOWOVTRP"@en ,
                              "V_NVALLOWOVTRP "@en ;
                   rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
                   vs:term_status "stable" ;
                   skos:scopeNote """Format: [NNF], with N a decimal number (0÷9), [NNF] must be divisible by 5, so F=(0|5), max. `600`.
-
-See: TSI CCS (Subset-026, Chapter 7. 7.5.1.161)"""@en ,
-                                 """Format: [NNF], with N a decimal number (0÷9), [NNF] must be divisible by 5, so F=(0|5), max. `600`.
 
 See: TSI CCS (Subset-026, Chapter 7. 7.5.1.161)"""@en ,
                                  "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
@@ -12783,19 +12321,13 @@ See: TSI CCS (Subset-026, chapter 7. 7.5.1.163 V_NVSUPOVTRP)"""@en ;
                 dcterms:relation era:etcsLevelType ;
                 dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                 rdfs:comment """Override speed limit to be supervised when the  override  function is active in km/h
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                             """Override speed limit to be supervised when the  override  function is active in km/h
-According to the specification referenced in Appendix A-1, index [C]"""@en ,
-                             "Override speed limit to be supervised when the “override” function is active in km/h."@en ;
+According to the specification referenced in Appendix A-1, index [C]"""@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "V_NVSUPOVTRP"@en ,
                            "V_NVSUPOVTRP "@en ;
                 rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
                 vs:term_status "stable" ;
                 skos:scopeNote """Format: [NNF], with N a decimal number (0÷9), [NNF] is divisible by 5 so F=(0|5), max. `600`.
-
-See: TSI CCS (Subset-026, chapter 7. 7.5.1.163 V_NVSUPOVTRP)"""@en ,
-                               """Format: [NNF], with N a decimal number (0÷9), [NNF] is divisible by 5 so F=(0|5), max. `600`.
 
 See: TSI CCS (Subset-026, chapter 7. 7.5.1.163 V_NVSUPOVTRP)"""@en ,
                                "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
@@ -12974,8 +12506,7 @@ era:verificationCCS rdf:type owl:DatatypeProperty ;
                     dcterms:created "2021-08-08"^^xsd:date ;
                     dcterms:modified "2024-01-08"^^xsd:date ;
                     dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                    rdfs:comment "Unique number for EC declarations in accordance with Commission Implementing Regulation (EU) 2019/250"@en ,
-                                 "Unique number for EC declarations in accordance with Commission Implementing Regulation (EU) 2019/250."@en ;
+                    rdfs:comment "Unique number for EC declarations in accordance with Commission Implementing Regulation (EU) 2019/250."@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "EC declaration of verification for track relating to compliance with the requirements from TSIs applicable to control, command signalling subsystem"@en ;
                     vs:term_status "stable" .
@@ -13031,8 +12562,6 @@ era:verificationINF rdf:type owl:DatatypeProperty ;
                                "EC declaration of verification for track relating to compliance with the requirements from technical specifications for interoperability (TSIs) applicable to infrastructure subsystem"@en ;
                     vs:term_status "stable" ;
                     skos:scopeNote """The parameter may be repeated only when several EC declarations were issued related to the INF subsystem 
-With the extension of scope according to the IOD, geographical scope of the INF TSI now includes all the networks (TEN and off-TEN) with the following nominal track gauges: 1435, 1520, 1524, 1600 and 1668 mm"""@en ,
-                                   """The parameter may be repeated only when several EC declarations were issued related to the INF subsystem 
 With the extension of scope according to the IOD, geographical scope of the INF TSI now includes all the networks (TEN and off-TEN) with the following nominal track gauges: 1435, 1520, 1524, 1600 and 1668 mm"""@en .
 
 
@@ -13062,9 +12591,6 @@ era:verificationSRT rdf:type owl:DatatypeProperty ;
                                "EC declaration of verification relating to compliance with the requirements from TSIs applicable to railway tunnel"@en ;
                     vs:term_status "stable" ;
                     skos:scopeNote """(SRT) in title means that here we include only declarations concerning requirements of SRT TSI for infrastructure system on the specific track.
-Parameter shall be repeated when different EC declarations were issued for different elements of infrastructure subsystem on the specific track in the tunnel.
-With the extension of scope according to Interoperability Directive 2016/797, geographical scope of the INF, ENE and CCS TSIs now includes all the networks (TEN and off-TEN) with the following nominal track gauges: 1435, 1520, 1524, 1600 and 1668 mm """@en ,
-                                   """(SRT) in title means that here we include only declarations concerning requirements of SRT TSI for infrastructure system on the specific track.
 Parameter shall be repeated when different EC declarations were issued for different elements of infrastructure subsystem on the specific track in the tunnel.
 With the extension of scope according to Interoperability Directive 2016/797, geographical scope of the INF, ENE and CCS TSIs now includes all the networks (TEN and off-TEN) with the following nominal track gauges: 1435, 1520, 1524, 1600 and 1668 mm """@en ,
                                    "Parameters of this group (from 1.1.1.1.8.1 to 1.1.1.1.8.13) are only applicable if tunnels exist on the SoL"@en .
