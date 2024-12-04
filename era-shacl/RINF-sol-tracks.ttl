@@ -298,7 +298,7 @@ era-sh:StructureCheckLocation
 	era:rinfIndex "1.1.1.1.2.4.3" ;
 	sh:path (era:hasPart era:structureCheckLocation) ;
 	sh:datatype xsd:double ;
-	sh:pattern "^(\+|\-)?([1-9]\\d{1,3}|[0-9])\\.\\d{1,3}$" ;
+	sh:pattern "^(\\+|\\-)?([1-9]\\d{1,3}|[0-9])\\.\\d{1,3}$" ;
 	sh:severity sh:Violation ;
 	sh:message "structureCheckLocation (1.1.1.1.2.4.3): The track has a location of the structure check value that must be a double (real) number and follow the format [±NNNN.NNN]. This error may be due to the track having a value that does not follow the pattern or is not a double (real) number."@en .
 
@@ -502,7 +502,7 @@ era-sh:GradientProfile
 	sh:path (era:hasPart era:gradientProfile) ;
 	
 	sh:datatype xsd:string ;
-  	sh:pattern "^((\\+|\\-)([1-9]\\d{1}|[0-9]|00)\\.\\d{1,3}(\\((\\+|\\-)?([1-9]\\d{1,2}|[0-9])\\.\\d{1,3}\\))?)(,(\\+|\\-)([1-9]\\d{1}|[0-9])\\.\\d{1,3}(\\((\\+|\\-)?([1-9]\\d{1,2}|[0-9])\\.\\d{1,3}\\))?)*$".
+  	sh:pattern "^((\\+|\\-)([1-9]\\d{1}|[0-9]|00)\\.\\d{1,3}(\\((\\+|\\-)?([1-9]\\d{1,2}|[0-9])\\.\\d{1,3}\\))?)(,(\\+|\\-)([1-9]\\d{1}|[0-9])\\.\\d{1,3}(\\((\\+|\\-)?([1-9]\\d{1,2}|[0-9])\\.\\d{1,3}\\))?)*$" ;
 	sh:severity sh:Violation ;
 	sh:message "gradientProfile (1.1.1.1.3.6): The track has a gradient profile value that must be a string with a sequence of values in the format [+/-][NN.N]([+/-][NNNN.NNN]). This error may be due to having a sequence of values that are not a string or that do not follow the pattern."@en .
 
@@ -909,7 +909,7 @@ era-sh:HotAxleBoxDetectorLocation
 	era:rinfIndex "1.1.1.1.7.8" ;
 	sh:path (era:hasPart era:hotAxleBoxDetectorLocation) ;
 	sh:datatype xsd:double ;
-	sh:pattern "^(\+|\-)?([1-9]\\d{1,3}|[0-9])\\.\\d{1,3}$" ;
+	sh:pattern "^(\\+|\\-)?([1-9]\\d{1,3}|[0-9])\\.\\d{1,3}$" ;
 	sh:severity sh:Violation ;
 	sh:message "hotAxleBoxDetectorLocation (1.1.1.1.7.8): The track has a location of the hot axle box detector(s) vallue that must be a double (real) number with format [±NNNN.NNN]. This error may be due to having a value that is not a double (real) number or does not follow the pattern [±NNNN.NNN]."@en .
 
