@@ -1,0 +1,233 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix era-ph: <http://data.europa.eu/949/concepts/platform-heights/> .
+#############################
+# Rules for platform
+#############################
+
+#
+# platform
+#
+era-sh:platformsShape
+	a sh:NodeShape ;
+	sh:targetClass era:PlatformEdge .
+
+era-sh:operationalPointShape
+	a sh:NodeShape ;
+	sh:targetClass era:OperationalPoint .
+
+era-sh:commonCharacteristicsSubsetShape
+	a sh:NodeShape ;
+	sh:targetClass era:CommonCharacteristicsSubset .  # Applies to all Common Characteritics Subset  with platform parameters 
+
+
+
+# platformId: # 1.2.1.0.6.2
+era-sh:platformsShape sh:property era-sh:platformId .
+era-sh:platformId
+	a sh:PropertyShape;
+    era:affectedProperty era:platformId;
+    era:affectedClass era:PlatformEdge;
+    era:scope "local";
+    rdfs:comment "Unique platform identification or unique platform number within OP." ;
+	era:rinfIndex "1.2.1.0.6.2" ;
+	sh:path era:platformId ;
+	sh:minCount 1 ;
+    sh:maxCount 1 ;
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation ;
+	sh:message "platformId (1.2.1.0.6.2): Each Platform must have exactly one platformId. This error may be due to having a platform without or with more than one platformId or it value is not a string."@en .
+
+# platformId: # 1.2.1.0.6.2 Unique platform id within OP
+era-sh:operationalPointShape sh:sparql era-sh:NoRepeatedPlatformIdsOP.
+era-sh:NoRepeatedPlatformIdsOP 
+    a sh:SPARQLConstraint ; 
+    era:affectedProperty era:platformId;
+    era:affectedClass era:PlatformEdge;
+    era:affectedClass era:OperationalPoint;
+    era:scope "global";
+    rdfs:comment "Each platform shall have unique identification or number within the OP. This number cannot be used for naming any other platform in the same OP." ;
+    era:rinfIndex "1.2.1.0.6.2" ;
+    sh:severity sh:Violation ;
+    sh:message "platformId (1.2.1.0.6.2):: Each platform shall have unique identification or number within the OP. This number cannot be used for naming any other platform in the same OP. There is a problem with OP {$this} ({?opLabel}) and platforms {?platform1} ({?platform1Label}) and {?platform2} ({?platform2Label}), since they have the same identifier: {?value}."@en ;
+    sh:prefixes era:;
+    sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this ?opLabel ?platform1 ?platform1Label ?platform2 ?platform2Label ?value
+			WHERE {
+                $this era:hasPart ?platform1 .
+                $this era:hasPart ?platform2 .
+                ?platform1 era:platformId ?value .
+                ?platform2 era:platformId ?value .
+                FILTER(?platform1 != ?platform2) . 
+				OPTIONAL{$this rdfs:label ?opLabel} .
+				OPTIONAL{?platform1 rdfs:label ?platform1Label} .
+				OPTIONAL{?platform2 rdfs:label ?platform2Label} .
+			}
+			""" .
+
+
+# tenClassification: # 1.2.1.0.6.3
+era-sh:platformsShape sh:property era-sh:tenClassificationP .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:tenClassificationP .
+era-sh:tenClassificationP
+	a sh:PropertyShape;
+    era:affectedProperty era:tenClassification;
+    era:affectedClass era:PlatformEdge;
+    era:scope "local";   
+    rdfs:comment "Indicates the part of the trans-European network the platform belongs to." ;
+	era:rinfIndex "1.2.1.0.6.3" ;
+	sh:path era:tenClassification ;
+	sh:nodeKind sh:IRI;
+	sh:severity sh:Violation ;
+	sh:message "TEN classification (1.2.1.0.6.3): This error may be due to having a Platform with a TEN classification that is not an URI."@en .
+
+#tenClassification: # 1.2.1.0.6.3
+era-sh:platformsShape sh:sparql era-sh:TenClassificationSKOSP .
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:TenClassificationSKOSP .
+era-sh:TenClassificationSKOSP
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:tenClassification;
+    era:affectedClass era:PlatformEdge;
+    era:scope "local";    
+	rdfs:comment "Indicates the part of the trans-European network the platform belongs to." ;
+	era:rinfIndex "1.2.1.0.6.3" ;
+	sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "TEN classification (1.2.1.0.6.3): The platform {$this} with label {?label} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/ten-classifications/TENClassifications."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept ?label
+    WHERE {
+        OPTIONAL {$this rdfs:label ?label} .
+        $this era:tenClassification ?concept .
+        era:tenClassification era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+
+# lengthOfPlatform: # 1.2.1.0.6.4
+era-sh:platformsShape sh:property era-sh:lengthP .
+era-sh:lengthP
+	a sh:PropertyShape;
+    era:affectedProperty era:lengthOfPlatform;
+    era:affectedClass era:PlatformEdge;
+    era:scope "local";   
+    rdfs:comment "The maximum continuous length (expressed in metres) of that part of platform in front of which a train is intended to remain stationary in normal operating conditions for passengers to board and alight from the train, making appropriate allowance for stopping tolerances." ;
+	era:rinfIndex "1.2.1.0.6.4" ;
+	sh:path era:lengthOfPlatform ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:double ;
+	sh:severity sh:Violation ;
+	sh:message "length (1.2.1.0.6.4): Each Platform must have at most one length. This error may be caused due to having a platform with more than one length or having a value that is not a Real number."@en .
+	
+
+
+# platformHeight: # 1.2.1.0.6.5
+era-sh:platformsShape sh:property era-sh:platformHeightP .
+ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:platformHeightP .
+era-sh:platformHeightP
+	a sh:PropertyShape;
+    era:affectedProperty era:platformHeight;
+    era:affectedClass era:PlatformEdge;
+    era:scope "local";   
+    rdfs:comment "Distance between the upper surface of platform and running surface of the neighbouring track. It is the nominal value expressed in millimetres." ;
+	era:rinfIndex "1.2.1.0.6.5" ;
+	sh:path era:platformHeight ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI;
+	sh:severity sh:Violation ;
+	sh:message "platformHeight (1.2.1.0.6.5): Each Platform must have at most  one height. This error may be due to having a platform with more than one height, or having a value that is not an URI."@en .
+
+# platformHeight: # 1.2.1.0.6.5
+era-sh:platformsShape sh:sparql era-sh:PlatformHeightSKOS .
+ era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:PlatformHeightSKOS .
+era-sh:PlatformHeightSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:platformHeight;
+    era:affectedClass era:PlatformEdge;
+    era:scope "local";   
+	rdfs:comment "Distance between the upper surface of platform and running surface of the neighbouring track. It is the nominal value expressed in millimetres." ;
+	era:rinfIndex "1.2.1.0.6.5" ;
+	sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "Platform height (1.2.1.0.6.5): The platform {$this} with label {?label} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/platform-heights/PlatformHeights."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept ?label
+    WHERE {
+        OPTIONAL {$this rdfs:label ?label} .
+        $this era:platformHeight ?concept .
+        era:platformHeight era:inSkosConceptScheme ?conceptScheme .
+		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
+	}
+""" .
+
+
+# assistanceStartingTrain: # 1.2.1.0.6.6
+era-sh:platformsShape sh:property era-sh:assistanceStartingTrain .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:assistanceStartingTrain  .
+era-sh:assistanceStartingTrain
+	a sh:PropertyShape;
+    era:affectedProperty era:assistanceStartingTrain;
+    era:affectedClass era:PlatformEdge;
+    era:scope "local";   
+    rdfs:comment "Indication of existence of equipment or staff supporting the train crew in starting the train.\nFixed equipment (for example mirrors or CCTV cameras) or station staff indicating to train crew or driver when to close doors and whether this has been done successfully." ;
+	era:rinfIndex "1.2.1.0.6.6" ;
+	sh:path era:assistanceStartingTrain ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "assistanceStartingTrain (1.2.1.0.6.6): Each Platform must have at most one assistanceStartingTrain declaration. This error may be caused due to having a platform with having more than one assistanceStartingTrain, or its value is not Y/N (boolean)."@en .
+	
+# areaBoardingAid: # 1.2.1.0.6.7
+era-sh:platformsShape sh:property era-sh:areaBoardingAid .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:areaBoardingAid .
+era-sh:areaBoardingAid
+	a sh:PropertyShape;
+    era:affectedProperty era:areaBoardingAid;
+    era:affectedClass era:PlatformEdge;
+    era:scope "local";
+    rdfs:comment "Information of the train access level for which the boarding aid can be used." ;
+	era:rinfIndex "1.2.1.0.6.7" ;
+	sh:path era:areaBoardingAid ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:integer ;
+	sh:severity sh:Violation ;
+	sh:message "areaBoardingAid (1.2.1.0.6.7): Each Platform must have at most one areaBoardingAid value. This error may be caused due to having a platform with multiple areaBoardingAid values or having a value that is not an integer."@en .
+
+# hasPlatformCurvature: # 1.2.1.0.6.8 
+era-sh:platformsShape sh:property era-sh:hasPlatformCurvature .
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasPlatformCurvature .
+era-sh:hasPlatformCurvature
+	a sh:PropertyShape;
+    era:affectedProperty era:hasPlatformCurvature;
+    era:affectedClass era:PlatformEdge;
+    era:scope "local";
+    rdfs:comment "Indication of the existence of the curvature of the platform." ;
+	era:rinfIndex "1.2.1.0.6.8 " ;
+	sh:path era:hasPlatformCurvature ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "hasPlatformCurvature (1.2.1.0.6.8): Each Platform must have at most one hasPlatformCurvature value. This error may be caused due to having a platform with multiple hasPlatformCurvature values or having a value that is not a boolean."@en .
+	

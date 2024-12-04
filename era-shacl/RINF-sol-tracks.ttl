@@ -1,0 +1,2734 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
+@prefix era-ph: <http://data.europa.eu/949/concepts/platform-heights/> .
+@prefix era-tenclass: <http://data.europa.eu/949/concepts/ten-classifications/> .
+@prefix era-gaugings: <http://data.europa.eu/949/concepts/gaugings/> .
+@prefix era-ntg: <http://data.europa.eu/949/concepts/nominal-track-gauges/> .
+@prefix era-tds: <http://data.europa.eu/949/concepts/train-detection/> .
+@prefix era-tdssc: <http://data.europa.eu/949/concepts/train-detection-specific-checks/> .
+@prefix era-tsi: <http://data.europa.eu/949/concepts/tsi-compliances/> .
+@prefix era-malvc: <http://data.europa.eu/949/concepts/min-axle-loads-per-vehicle-category/> .
+@prefix era-mas: <http://data.europa.eu/949/concepts/max-amount-sandings/> .
+@prefix era-lc: <http://data.europa.eu/949/concepts/load-capabilities/> .
+@prefix era-pnsb: <http://data.europa.eu/949/concepts/profile-num-swap-bodies/> .
+@prefix era-pnst: <http://data.europa.eu/949/concepts/profile-num-semi-trailers/> .
+@prefix era-ri: <http://data.europa.eu/949/concepts/rail-inclinations/> .
+@prefix era-mb: <http://data.europa.eu/949/concepts/magnetic-braking/> .
+@prefix era-pth: <http://data.europa.eu/949/concepts/pantograph-heads/> .
+@prefix era-csm: <http://data.europa.eu/949/concepts/contact-strip-materials/> .
+@prefix era-etcsinfill: <http://data.europa.eu/949/concepts/etcs-infills/> .
+@prefix era-esc: <http://data.europa.eu/949/concepts/etcs-system-compatibilities/> .
+@prefix era-etcsmvers: <http://data.europa.eu/949/concepts/etcs-m-versions/> .
+@prefix era-gsmrv: <http://data.europa.eu/949/concepts/gsmr-versions/> .
+@prefix era-gsmrnumactivemob: <http://data.europa.eu/949/concepts/gsmr-number-active-mobiles/> .
+@prefix era-gsmroptfunc: <http://data.europa.eu/949/concepts/gsmr-optional-functions/> .
+@prefix era-gsmr: <http://data.europa.eu/949/concepts/gsmr-networks/> .
+@prefix era-rsc: <http://data.europa.eu/949/concepts/radio-system-compatibilities/> .
+@prefix era-vrsc: <http://data.europa.eu/949/concepts/voice-radio-system-compatibilities/> .
+@prefix era-rscd: <http://data.europa.eu/949/concepts/radio-system-compatibilities-data/> .
+@prefix era-tpls: <http://data.europa.eu/949/concepts/train-protection-legacy-systems/> .
+@prefix era-lrs: <http://data.europa.eu/949/concepts/legacy-radio-systems/> .
+@prefix era-etcssituation: <http://data.europa.eu/949/concepts/etcs-situation/> .
+@prefix era-opcw: <http://data.europa.eu/949/concepts/other-protection-control-warning/> .
+@prefix era-trd: <http://data.europa.eu/949/concepts/track-running-directions/> .
+@prefix era-ec: <http://data.europa.eu/949/concepts/eddy-current-braking/> .
+@prefix era-ha: <http://data.europa.eu/949/concepts/hot-axle/> .
+@prefix era-cls: <http://data.europa.eu/949/concepts/contact-line-systems/> .
+@prefix era-cph: <http://data.europa.eu/949/concepts/compliant-pantograph-heads/> .
+@prefix era-oph: <http://data.europa.eu/949/concepts/other-pantograph-heads/> .
+@prefix era-lclc: <http://data.europa.eu/949/concepts/load-capability-line-categories/> .
+
+####################################
+# Rules for Sections of Line - tracks
+####################################
+
+era-sh:SectionOfLineShape  
+    a sh:NodeShape ;
+    sh:targetClass era:SectionOfLine .
+
+era-sh:commonCharacteristicsSubsetShape
+	a sh:NodeShape ;
+	sh:targetClass era:CommonCharacteristicsSubset .  # Applies to all Common Characteritics Subset  with sidings parameters 
+
+
+
+# trackId: # 1.1.1.0.0.1  
+era-sh:SectionOfLineShape sh:sparql era-sh:NoRepeatedTrackIdsSoL.
+era-sh:NoRepeatedTrackIdsSoL 
+    a sh:SPARQLConstraint ; 
+    era:affectedProperty era:trackId;
+    era:affectedClass  era:SectionOfLine;
+    era:affectedClass  era:RunningTrack;
+    era:scope "global";
+    rdfs:comment "Each track shall have unique identification or number within the SoL. This number cannot be used for naming any other track in the same SoL." ;
+    era:rinfIndex "1.1.1.0.0.1" ;
+    sh:severity sh:Violation ;
+    sh:message "trackId (1.1.1.0.0.1): Each track shall have unique identification or number within the SoL. This number cannot be used for naming any other track in the same SoL. There is a problem with SoL {$this} ({?solLabel}) and tracks {?track1} ({?track1Label}) and {?track2} ({?track2Label}), since they have the same identifier: {?value}."@en ;
+    sh:prefixes era:;
+    sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this ?solLabel ?track1 ?track1Label ?track2 ?track2Label ?value
+			WHERE {
+                $this era:hasPart ?track1 .
+                $this era:hasPart ?track2 .
+                ?track1 era:trackId ?value .
+                ?track2 era:trackId ?value .
+                FILTER(?track1 != ?track2) . 
+				OPTIONAL{$this rdfs:label ?solLabel} .
+				OPTIONAL{?track1 rdfs:label ?track1Label} .
+				OPTIONAL{?track2 rdfs:label ?track2Label} .
+			}
+			""" .
+
+# 1.1.1.0.0.2 trackDirection
+ era-sh:SectionOfLineShape sh:sparql era-sh:SoLTrackDirectionMinCount.
+ era-sh:SoLTrackDirectionMinCount 
+    a sh:SPARQLConstraint ; 
+    era:affectedProperty era:trackDirection;
+    era:affectedClass era:RunningTrack;
+    era:affectedClass era:SectionOfLine;
+    era:scope "local";   
+    rdfs:comment "The normal running direction is: 1) the same as the direction defined by the start and end of the SoL 2) the opposite to the direction defined by the start and end of the SoL 3) both directions defined for SoL." ;
+    era:rinfIndex "1.1.1.0.0.2" ;
+    sh:severity sh:Violation ;
+     sh:message "There should be at least one Track Direction. There is a problem with SoL {$this} ({?solLabel}) and its track {?track} ({?trackLabel}). This track has no values for this property"@en ;
+     sh:prefixes era:;
+     sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+     SELECT DISTINCT $this ?solLabel ?track ?trackLabel ?value
+	 		WHERE {
+                 $this era:hasPart ?track .
+     			OPTIONAL{?track rdfs:label ?trackLabel} .
+	 			OPTIONAL{$this rdfs:label ?solLabel} .
+                FILTER NOT EXISTS{?track era:trackDirection ?value} .
+   	 		}
+	 		""" .
+# 1.1.1.0.0.2 trackDirection
+era-sh:SectionOfLineShape sh:sparql era-sh:SoLTrackDirectionMaxCount.
+era-sh:SoLTrackDirectionMaxCount 
+   a sh:SPARQLConstraint ;
+   era:affectedProperty era:trackDirection;
+    era:affectedClass era:RunningTrack;
+    era:affectedClass era:SectionOfLine;
+    era:scope "local";   
+   rdfs:comment "The normal running direction is: 1) the same as the direction defined by the start and end of the SoL 2) the opposite to the direction defined by the start and end of the SoL 3) both directions defined for SoL." ;
+   era:rinfIndex "1.1.1.0.0.2" ;
+     sh:severity sh:Violation ;
+     sh:message "There should be at most one Track Direction. There is a problem with SoL {$this} ({?solLabel}) and its track {?track} ({?trackLabel}). This track has at least two different values for this property: {?value1} and {?value2}"@en ;
+     sh:prefixes era:;
+     sh:select """
+     PREFIX era: <http://data.europa.eu/949/>
+     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+     SELECT DISTINCT $this ?solLabel ?track ?trackLabel ?value1 ?value2
+	 		WHERE {
+                $this era:hasPart ?track .
+     			OPTIONAL{?track rdfs:label ?trackLabel} .
+	 			OPTIONAL{$this rdfs:label ?solLabel} .
+                ?track era:trackDirection ?value1 .
+                 ?track era:trackDirection ?value2 .
+                 FILTER(?value1 < ?value2) .
+   	 	}
+		 	""" .
+
+
+# trackDirection: # 1.1.1.0.0.2
+era-sh:SectionOfLineShape sh:sparql era-sh:TrackDirectionSKOS.
+era-sh:TrackDirectionSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:trackDirection;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";  
+    rdfs:comment "The normal running direction is: 1) the same as the direction defined by the start and end of the SoL 2) the opposite to the direction defined by the start and end of the SoL 3) both directions defined for SoL." ;
+	era:rinfIndex "1.1.1.0.0.2" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the trackDirection (1.1.1.0.0.2):): The track {?track} in the Section of Line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/track-running-directions/TrackRunningDirections."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+        $this era:hasPart ?track .
+        ?track era:trackDirection ?concept .
+        era:trackDirection era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+
+
+
+
+
+
+# tenGISId: # 1.1.1.1.2.1.2
+era-sh:SectionOfLineShape sh:property era-sh:TenGISId.
+era-sh:TenGISId
+	a sh:PropertyShape ; 
+    era:affectedProperty era:tenGISId;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local"; 
+	rdfs:comment "Indication of the GIS identity (GIS ID) of the section of TEN-T database to which the track belongs." ;
+	era:rinfIndex "1.1.1.1.2.1.2" ;
+	sh:path (era:hasPart era:tenGISId) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation ;
+	sh:message "tenGISId (1.1.1.1.2.1.2): The track must have at most one character string value (GIS Id) of the section of TEN-T database to which the track belongs. This error may be due to having a track with more than one TEN GIS identity or that the value is not a string."@en .
+
+# loadCapabilitySpeed: # 1.1.1.1.2.4
+ era-sh:SectionOfLineShape sh:property era-sh:LoadCapabilitySpeed.
+ era-sh:LoadCapabilitySpeed
+	a sh:PropertyShape ; 
+    era:affectedProperty era:loadCapabilitySpeed;
+    era:affectedClass  era:RunningTrack;
+    era:affectedClass  era:LoadCapability;
+    era:scope "local";   
+	rdfs:comment "Load capability is a combination of the line category and speed at the weakest point of the track.";
+	era:rinfIndex "1.1.1.1.2.4" ;
+	sh:path (era:hasPart era:trackLoadCapability era:loadCapabilitySpeed) ;	
+	sh:datatype xsd:integer ;
+    sh:maxCount 1;
+	sh:severity sh:Violation ;
+	sh:message "loadCapabilitySpeed (1.1.1.1.2.4): The track must have a load capability with a value of speed that is an integer. This error may be due to havong an instance of Load capability mith more than one value of speed that the value is not an integer."@en .
+
+# loadCapabilityLineCategory: # 1.1.1.1.2.4
+ era-sh:SectionOfLineShape sh:property era-sh:LoadCapabilityLineCategory.
+ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:LoadCapabilityLineCategory.
+ era-sh:LoadCapabilityLineCategory
+	a sh:PropertyShape ; 
+    era:affectedProperty era:loadCapabilityLineCategory;
+    era:affectedClass  era:RunningTrack;
+    era:affectedClass  era:LoadCapability;
+    era:scope "local";   
+	rdfs:comment "Load capability is a combination of the line category and speed at the weakest point of the track.";
+	era:rinfIndex "1.1.1.1.2.4" ;
+	sh:path (era:hasPart era:trackLoadCapability era:loadCapabilityLineCategory) ;
+	sh:nodeKind sh:IRI ;
+    sh:maxCount 1;
+	sh:severity sh:Violation ;
+	sh:message "loadCapabilityLineCategory (1.1.1.1.2.4): The track must have a load capability with a value of line category that is an URI. This error may be due to having an instance of Load capability mith more than one value of a load capability line category, or a value that is not an URI."@en .
+
+# loadCapabilityLineCategory: # 1.1.1.1.2.4
+era-sh:SectionOfLineShape sh:sparql era-sh:LoadCapabilityLineCategorySKOS.
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:LoadCapabilityLineCategorySKOS.
+era-sh:LoadCapabilityLineCategorySKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:loadCapabilityLineCategory;
+    era:affectedClass  era:RunningTrack;
+    era:affectedClass  era:LoadCapability;
+    era:scope "local";   
+    rdfs:comment "Load capability is a combination of the line category and speed at the weakest point of the track.";
+	era:rinfIndex "1.1.1.1.2.4" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the load capability line category (1.1.1.1.2.4):): The track {?track}  of section of line {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/load-capability-line-categories/LoadCapabilityLineCategories."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+	    $this era:hasPart ?track .
+        ?track era:trackLoadCapability ?loadCapability .
+        ?loadCapability era:loadCapabilityLineCategory ?concept .
+        era:loadCapabilityLineCategory era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+
+# nationalLoadCapability: # 1.1.1.1.2.4.1
+era-sh:SectionOfLineShape sh:property era-sh:NationalLoadCapability.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:NationalLoadCapability.
+era-sh:NationalLoadCapability
+	a sh:PropertyShape ; 
+    era:affectedProperty era:nationalLoadCapability;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";   
+	rdfs:comment "National classification for load capability." ;
+	era:rinfIndex "1.1.1.1.2.4.1" ;
+	sh:path (era:hasPart era:nationalLoadCapability) ;
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation ;
+	sh:message "nationalLoadCapability (1.1.1.1.2.4.1): The track has a national load capability value that must be  a string. This error may be due to the track having a value of national load capability that is not a character string."@en .
+
+# highSpeedLoadModelCompliance: # 1.1.1.1.2.4.2
+era-sh:SectionOfLineShape sh:property era-sh:HighSpeedLoadModelCompliance.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:HighSpeedLoadModelCompliance.
+era-sh:HighSpeedLoadModelCompliance
+	a sh:PropertyShape ; 
+    era:affectedProperty era:highSpeedLoadModelCompliance;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";    
+	rdfs:comment "National classification for load capability." ;
+	rdfs:comment "For sections of line with a maximum permitted speed of 200km/h or more information regarding the procedure to be used to perform the dynamic compatibility check" ;
+	era:rinfIndex "1.1.1.1.2.4.2" ;
+	sh:path (era:hasPart era:highSpeedLoadModelCompliance) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "highSpeedLoadModelCompliance (1.1.1.1.2.4.2): The track must have at most one high speed load model compliance value that must be Y/N (boolean). This error may be due to the track having more than one value or having a value of high speed load model compliance that is not Y/N."@en .
+
+# structureCheckLocation: # 1.1.1.1.2.4.3
+era-sh:SectionOfLineShape sh:property era-sh:StructureCheckLocation.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:StructureCheckLocation.
+era-sh:StructureCheckLocation
+	a sh:PropertyShape ; 
+    era:affectedProperty era:structureCheckLocation;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";  
+	rdfs:comment "Localisation of structures requiring specific checks." ;
+	era:rinfIndex "1.1.1.1.2.4.3" ;
+	sh:path (era:hasPart era:structureCheckLocation) ;
+	sh:datatype xsd:double ;
+	sh:pattern "^(\+|\-)?([1-9]\\d{1,3}|[0-9])\\.\\d{1,3}$" ;
+	sh:severity sh:Violation ;
+	sh:message "structureCheckLocation (1.1.1.1.2.4.3): The track has a location of the structure check value that must be a double (real) number and follow the format [±NNNN.NNN]. This error may be due to the track having a value that does not follow the pattern or is not a double (real) number."@en .
+
+# compatibilityProcedureDocument: # 1.1.1.1.2.4.4
+era-sh:SectionOfLineShape sh:property era-sh:CompatibilityProcedureDocument.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:CompatibilityProcedureDocument.
+era-sh:CompatibilityProcedureDocument
+	a sh:PropertyShape ; 
+    era:affectedProperty era:compatibilityProcedureDocument;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";  
+	rdfs:comment "Document with the procedure for static and dynamic compatibility checks." ;
+	era:rinfIndex "1.1.1.1.2.4.4" ;
+	sh:path (era:hasPart era:compatibilityProcedureDocument) ;
+    sh:class era:Document ;
+	sh:severity sh:Violation ;
+	sh:message "compatibilityProcedureDocument (1.1.1.1.2.4.4): The track has a name of the compatibility procedure document that must be a Document."@en .
+
+# maximumPermittedSpeed: # 1.1.1.1.2.5
+era-sh:SectionOfLineShape sh:property era-sh:MaximumPermittedSpeed.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:MaximumPermittedSpeed.
+era-sh:MaximumPermittedSpeed
+	a sh:PropertyShape ; 
+    era:affectedProperty era:maximumPermittedSpeed;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";   
+	rdfs:comment "Maximum permitted speed." ;
+	era:rinfIndex "1.1.1.1.2.5" ;
+	sh:path (era:hasPart era:maximumPermittedSpeed) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:integer ;
+	sh:minInclusive 0 ;
+	sh:maxInclusive 500 ;
+	sh:severity sh:Violation ;
+	sh:message "maximumPermittedSpeed (1.1.1.1.2.5): The track must have at most one value of maximum permitted speed that is  an integer that lies within the range 0 to 500. This error may be due to the track having more than one value of maximum permitted speed, that the value does not lie within the range, or that the value is not an integer."@en .
+
+#temperatureRange: # 1.1.1.1.2.6
+era-sh:SectionOfLineShape sh:property era-sh:TemperatureRange.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:TemperatureRange.
+era-sh:TemperatureRange
+	a sh:PropertyShape ; 
+    era:affectedProperty era:temperatureRange;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";   
+	rdfs:comment "Indication of the temperature range of track." ;
+	era:rinfIndex "1.1.1.1.2.6" ;
+	sh:path (era:hasPart era:temperatureRange) ;
+    sh:nodeKind sh:IRI ;
+    sh:maxCount 1;
+	sh:severity sh:Violation ;
+	sh:message "temperatureRange (1.1.1.1.2.6): Each track may have exactly one temperature range value that must be an IRI. This error may be due to the track not having a temperature range, or having more than one temperature range."@en .
+
+#temperatureRange: # 1.1.1.1.2.6
+era-sh:SectionOfLineShape sh:sparql era-sh:TemperatureRangeSKOS.
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:TemperatureRangeSKOS.
+era-sh:TemperatureRangeSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:temperatureRange;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";    
+    rdfs:comment "Indication of the temperature range of track." ;
+	era:rinfIndex "1.1.1.1.2.6" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the temperature range (1.1.1.1.2.6):): The track {?track} of the section of line {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/temperature-ranges/TemperatureRanges."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+	    $this era:hasPart ?track .
+        ?track era:temperatureRange ?concept .
+        era:temperatureRange era:inSkosConceptScheme ?conceptScheme .
+		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
+	}
+""" .
+
+
+
+# maximumAltitude: # 1.1.1.1.2.7
+era-sh:SectionOfLineShape sh:property era-sh:MaximumAltitude.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:MaximumAltitude.
+era-sh:MaximumAltitude
+	a sh:PropertyShape ; 
+    era:affectedProperty era:maximumAltitude;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";    
+	rdfs:comment "Highest point of the section of line above sea level in reference to Normal Amsterdam's Peil (NAP)." ;
+	era:rinfIndex "1.1.1.1.2.7" ;
+	sh:path (era:hasPart era:maximumAltitude) ;
+	
+	sh:maxCount 1 ;
+	#sh:datatype xsd:double ; Pending fix in mappings
+	sh:pattern "^(\\+|\\-)\\d{1,4}$" ;
+	sh:severity sh:Violation ;
+	sh:message "maximumAltitude (1.1.1.1.2.7): The track must define at most one maximum altitude value that must be a double (real) number with format[±NNNN]. This error may be due to the track having more than one value of maximum altitude or that the value is not a double (real) number."@en .
+
+# hasSevereWeatherConditions: # 1.1.1.1.2.8
+era-sh:SectionOfLineShape sh:property era-sh:HasSevereWeatherConditions.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:HasSevereWeatherConditions.
+era-sh:HasSevereWeatherConditions
+	a sh:PropertyShape ; 
+    era:affectedProperty era:hasSevereWeatherConditions;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";    
+	rdfs:comment "Climatic conditions on the line are severe according to European standard." ;
+	era:rinfIndex "1.1.1.1.2.8" ;
+	sh:path (era:hasPart era:hasSevereWeatherConditions) ;
+	sh:datatype xsd:boolean ;
+	sh:maxCount 1 ;
+	sh:severity sh:Violation ;
+	sh:message "hasSevereWeatherConditions (1.1.1.1.2.8): The track must have at most one existence of severe weather conditions value that must be Y/N (boolean). This error may be due to the track having more than one value of has severe weather conditions or that the value is not Y/N (boolean)."@en .
+
+
+# profileNumberSwapBodies: # 1.1.1.1.3.4
+era-sh:SectionOfLineShape sh:sparql era-sh:ProfileNumberSwapBodiesSKOS.
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:ProfileNumberSwapBodiesSKOS.
+era-sh:ProfileNumberSwapBodiesSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:profileNumberSwapBodies;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";
+    rdfs:comment "Coding for combined transport with swap bodies as defined in UIC Code." ;
+	era:rinfIndex "1.1.1.1.3.4" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the profileNumberSwapBodies(1.1.1.1.3.4):): The track {?track} of the section of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/profile-num-swap-bodies/ProfileNumbersSwapBodies."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+	    $this era:hasPart ?track .
+        ?track era:profileNumberSwapBodies ?concept .
+        era:profileNumberSwapBodies era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+
+# profileNumberSemiTrailers: # 1.1.1.1.3.5
+era-sh:SectionOfLineShape sh:sparql era-sh:ProfileNumberSemiTrailersSKOS.
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:ProfileNumberSemiTrailersSKOS.
+era-sh:ProfileNumberSemiTrailersSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:profileNumberSemiTrailers;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";  
+    rdfs:comment "Coding for combined transport with semi-trailers as defined in UIC Code." ;
+	era:rinfIndex "1.1.1.1.3.5" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the profileNumberSemiTrailers(1.1.1.1.3.5):): The track {?track} of the section} of line {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/profile-num-semi-trailers/ProfileNumbersSemiTrailers."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+        $this era:hasPart ?track .
+	    ?track era:profileNumberSemiTrailers ?concept .
+        era:profileNumberSemiTrailers era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+
+
+# specificInformation: #  1.1.1.1.3.5.1
+era-sh:SectionOfLineShape sh:property era-sh:SpecificInformation.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:SpecificInformation.
+era-sh:SpecificInformation
+	a sh:PropertyShape ; 
+    era:affectedProperty era:specificInformation;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";
+    
+	rdfs:comment "Any specific information from the IM." ;
+	era:rinfIndex "1.1.1.1.3.5.1" ;
+	sh:path era:specificInformation; 
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation ;
+	sh:message "specificInformation (1.1.1.1.3.5.1): The track has a specific information value that must be a  string. This error may be due to having a value of specific information from the IM that is not a character string."@en .
+
+# gradientProfile: # 1.1.1.1.3.6
+era-sh:SectionOfLineShape sh:property era-sh:GradientProfile.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:GradientProfile.
+era-sh:GradientProfile
+	a sh:PropertyShape ; 
+    era:affectedProperty era:gradientProfile;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";    
+	rdfs:comment "Sequence of gradient values and locations of change in gradient." ;
+	era:rinfIndex "1.1.1.1.3.6" ;
+	sh:path (era:hasPart era:gradientProfile) ;
+	
+	sh:datatype xsd:string ;
+	#sh:pattern "^((\\+|\\-)([1-9]\\d{1}|[0-9]|00)\\.\\d{1,3}(\\((\\+|\\-)?([1-9]\\d{1,2}|[0-9])\\.\\d{1,3}\\))?)(\\s\\s(\\+|\\-)([1-9]\\d{1}|[0-9])\\.\\d{1,3}(\\((\\+|\\-)?([1-9]\\d{1,2}|[0-9])\\.\\d{1,3}\\))?)*$" ;
+	sh:severity sh:Violation ;
+	sh:message "gradientProfile (1.1.1.1.3.6): The track has a gradient profile value that must be a string with a sequence of values in the format [+/-][NN.N]([+/-][NNNN.NNN]). This error may be due to having a sequence of values that are not a string or that do not follow the pattern."@en .
+
+# minimumHorizontalRadius: # 1.1.1.1.3.7
+era-sh:SectionOfLineShape sh:property era-sh:MinimumHorizontalRadius.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:MinimumHorizontalRadius.
+era-sh:MinimumHorizontalRadius
+	a sh:PropertyShape ; 
+    era:affectedProperty era:minimumHorizontalRadius;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";
+    
+	rdfs:comment "Radius of the smallest horizontal curve of the track in meters." ;
+	era:rinfIndex "1.1.1.1.3.7" ;
+	sh:path era:minimumHorizontalRadius ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:integer;
+	sh:pattern "^([0-9]\\d{1,4}|[0-9])$" ;
+	sh:severity sh:Violation ;
+	sh:message "minimumHorizontalRadius (1.1.1.1.3.7): The track must have at most one minimum horizontal radius value that is an integer. This error may be due to the track having more than one minimum horizontal radius value or to having a value that is not an integer."@en .
+
+
+
+# cantDeficiency: # 1.1.1.1.4.2 
+era-sh:SectionsOfLineShape sh:property era-sh:CantDeficiency.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:CantDeficiency.
+era-sh:CantDeficiency
+	a sh:PropertyShape ; 
+    era:affectedProperty era:cantDeficiency;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";
+    
+	rdfs:comment "Maximum cant deficiency expressed in millimeters defined as difference between the applied cant and a higher equilibrium cant the line has been designed for." ;
+	era:rinfIndex "1.1.1.1.4.2" ;
+	sh:path (era:hasPart era:cantDeficiency) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:integer ;
+	sh:pattern "^(\\+|\\-)?([0-9]\\d{0,3})$" ;
+	sh:severity sh:Violation ;
+	sh:message "cantDeficiency (1.1.1.1.4.2): The track must have at most one cant deficiency value that is an integer. This error may be due to the track having more than one cant deficiency value or to having a value that is not an int."@en .
+
+
+# railInclination: #1.1.1.1.4.3
+era-sh:SectionOfLineShape sh:property era-sh:RailInclination.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:RailInclination.
+era-sh:RailInclination
+	a sh:PropertyShape ; 
+    era:affectedProperty era:railInclination;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";
+    
+	rdfs:comment "An angle defining the inclination of the head of a rail relatie to the running surface." ;
+	era:rinfIndex "1.1.1.1.4.3" ;
+	sh:path era:railInclination ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "railInclination (1.1.1.1.4.3): The track must have at most one rail inclination measurement value that is an IRI. This error may be due to the track having more than one rail inclination measurement value or to having a value that is not an IRI."@en .
+
+# railInclination: #1.1.1.1.4.3
+era-sh:SectionOfLineShape sh:sparql era-sh:RailInclinationSKOS.
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:RailInclinationSKOS.
+era-sh:RailInclinationSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:railInclination;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";
+    
+    rdfs:comment "An angle defining the inclination of the head of a rail relatie to the running surface." ;
+	era:rinfIndex "1.1.1.1.4.3" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the rail inclination (1.1.1.1.4.3):): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/rail-inclinations/RailInclinations."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+	    $this era:hasPart ?track .
+        ?track era:railInclination ?concept .
+        era:railInclination era:inSkosConceptScheme ?conceptScheme .
+		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
+	}
+""" .
+
+
+# hasBallast: # 1.1.1.1.4.4
+era-sh:SectionOfLineShape sh:property era-sh:HasBallast.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:HasBallast.
+era-sh:HasBallast
+	a sh:PropertyShape ; 
+    era:affectedProperty era:hasBallast ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";    
+	rdfs:comment "Specifies whether the track construction is with sleepers embedded in ballast or not." ;
+	era:rinfIndex "1.1.1.1.4.4" ;
+	sh:path (era:hasPart era:hasBallast) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "hasBallast (1.1.1.1.4.4): The track must have at most one existence of ballast value that is Y/N (boolean). This error may be due to the track having more than one has ballast value or to having a value that is not Y/N (boolean)."@en .
+
+# tsiSwitchCrossing: # 1.1.1.1.5.1
+era-sh:SectionOfLineShape sh:property era-sh:TSISwitchCrossing.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:TSISwitchCrossing.
+era-sh:TSISwitchCrossing
+	a sh:PropertyShape ; 
+    era:affectedProperty era:tsiSwitchCrossing ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";    
+	rdfs:comment "Switches and crossings are maintained to in service limit dimension as specified in TSI." ;
+	era:rinfIndex "1.1.1.1.5.1" ;
+	sh:path (era:hasPart era:tsiSwitchCrossing) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "tsiSwitchCrossing (1.1.1.1.5.1): The track must have at most one existence of TSI switches and crossing value that is Y/N (boolean). This error may be due to the track having more than one tsi swith crossing value or to having a value that is not Y/N (boolean)."@en .
+
+# minimumWheelDiameter: # 1.1.1.1.5.2
+era-sh:SectionOfLineShape sh:property era-sh:MinimumWheelDiameter.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:MinimumWheelDiameter.
+era-sh:MinimumWheelDiameter
+	a sh:PropertyShape ; 
+    era:affectedProperty era:minimumWheelDiameter ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";   
+	rdfs:comment "Maximum unguided length of fixed obtuse crossings is based on a minimum wheel diameter in service expressed in millimiters." ;
+	era:rinfIndex "1.1.1.1.5.2" ;
+	sh:path (era:hasPart era:minimumWheelDiameter) ;
+	sh:maxCount 1 ;
+	sh:minInclusive 330 ;
+	sh:datatype xsd:integer ;
+	sh:pattern "^([1-9]\\d{1,2}|[0-9])$" ;
+	sh:severity sh:Violation ;
+	sh:message "minimumWheelDiameter (1.1.1.1.5.2): The track must have at most one minimum wheel diameter value that is an integer. This error may be due to the track having more than one minimum wheel diameter value or to having a value that is not an integer."@en .
+
+# maximumTrainDeceleration: # 1.1.1.1.6.1
+era-sh:SectionOfLineShape sh:property era-sh:MaximumTrainDeceleration.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:MaximumTrainDeceleration.
+era-sh:MaximumTrainDeceleration
+	a sh:PropertyShape ; 
+    era:affectedProperty era:maximumTrainDeceleration ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";   
+	rdfs:comment "Limit for longitudinal track resistance given as a maximum allowed train deceleration and expressed in m/s2." ;
+	era:rinfIndex "1.1.1.1.6.1" ;
+	sh:path (era:hasPart era:maximumTrainDeceleration) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:double ;
+	sh:pattern "^[0-9]\\.[0-9]$" ;
+	sh:severity sh:Violation ;
+	sh:message "maximumTrainDeceleration (1.1.1.1.6.1): The track must have at most one maximum train deceleration value that is a double (real) number . This error may be due to the track having more than one maximum train deceleration value or to having a value that is not a real (double) number."@en .
+
+
+# eddyCurrentBraking: # 1.1.1.1.6.2 # Pass to track-sol-op
+era-sh:SectionOfLineShape sh:property era-sh:EddyCurrentBraking.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:EddyCurrentBraking.
+era-sh:EddyCurrentBraking
+	a sh:PropertyShape ; 
+    era:affectedProperty era:eddyCurrentBraking ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";  
+	rdfs:comment "Indication of limitations on the use of eddy current brakes." ;	
+    era:rinfIndex "1.1.1.1.6.2" ;	
+    sh:path (era:hasPart era:eddyCurrentBraking) ;
+	sh:maxCount 1 ;	
+    sh:nodeKind sh:IRI ;
+ 	sh:severity sh:Violation ;
+ 	sh:message "eddyCurrentBraking (1.1.1.1.6.2): The track must have at most one eddy current braking value that is an IRI. This error may be due to the track having more than one eddy current braking value or having a value that is not an IRI."@en .
+
+# eddyCurrentBraking: # 1.1.1.1.6.2 # Pass to track-sol-op
+era-sh:SectionOfLineShape sh:sparql era-sh:EddyCurrentBrakingSKOS.
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:EddyCurrentBrakingSKOS.
+era-sh:EddyCurrentBrakingSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:eddyCurrentBraking ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";
+    rdfs:comment "Indication of limitations on the use of eddy current brakes." ;
+	era:rinfIndex "1.1.1.1.6.2" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the eddyCurrentBraking (1.1.1.1.6.2):): The track {?track} of the section of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/eddy-current-braking/EddyCurrentBraking."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+        $this era:hasPart ?track .
+        ?track era:eddyCurrentBraking ?concept .
+        era:eddyCurrentBraking era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+
+
+
+
+
+
+# magneticBraking: # 1.1.1.1.6.3
+era-sh:SectionOfLineShape sh:property era-sh:MagneticBraking.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:MagneticBraking.
+era-sh:MagneticBraking
+	a sh:PropertyShape ; 
+    era:affectedProperty era:magneticBraking ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";
+   
+	rdfs:comment "Indication of limitations of the use of magnetic brakes." ;
+	era:rinfIndex "1.1.1.1.6.3" ;
+	sh:path (era:hasPart era:magneticBraking) ;
+    sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;   
+	sh:severity sh:Violation ;
+	sh:message "magneticBraking (1.1.1.1.6.3): The track must have at most  one magnetic braking value that is an IRI. This error may be due to the track having more than one magnetic braking value."@en .
+
+# magneticBraking: # 1.1.1.1.6.3
+era-sh:SectionOfLineShape sh:sparql era-sh:MagneticBrakingSKOS.
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:MagneticBrakingSKOS.
+era-sh:MagneticBrakingSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:magneticBraking ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";    
+    rdfs:comment "Indication of limitations of the use of magnetic brakes" ;
+	era:rinfIndex "1.1.1.1.6.3" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the magneticBraking (1.1.1.1.6.3):): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/magnetic-braking/MagneticBraking."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+	    $this era:hasPart ?track .
+        ?track era:magneticBraking ?concept .
+        era:magneticBraking era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+
+
+# eddyCurrentBrakingConditionsDocument: # 1.1.1.1.6.4
+era-sh:SectionOfLineShape sh:property era-sh:EddyCurrentBrakingConditionsDocument.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:EddyCurrentBrakingConditionsDocument.
+era-sh:EddyCurrentBrakingConditionsDocument
+	a sh:PropertyShape ; 
+    era:affectedProperty era:eddyCurrentBrakingConditionsDocument ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";   
+	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency with conditions for the use of eddy current brakes identified in 1.1.1.1.6.2." ;
+	era:rinfIndex "1.1.1.1.6.4" ;
+	sh:path (era:hasPart era:eddyCurrentBrakingConditionsDocument) ;
+    sh:class era:Document;
+	sh:severity sh:Violation ;
+	sh:message "eddyCurrentBrakingConditionsDocument (1.1.1.1.6.4): The track has an eddy current braking conditions document value that must be a Document."@en .
+
+# magneticBrakingConditionsDocument: # 1.1.1.1.6.5
+era-sh:SectionOfLineShape sh:property era-sh:MagneticBrakingConditionsDocument.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:MagneticBrakingConditionsDocument.
+era-sh:MagneticBrakingConditionsDocument
+	a sh:PropertyShape ; 
+    era:affectedProperty era:magneticBrakingConditionsDocument ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";   
+	rdfs:comment "Electronic documents available in two EU languages from the IM stored by the Agency with conditions for the use of magnetic brakes identified in 1.1.1.1.6.3." ;
+	era:rinfIndex "1.1.1.1.6.5" ;
+	sh:path (era:hasPart era:magneticBrakingConditionsDocument) ;
+    sh:class era:Document;
+	sh:severity sh:Violation ;
+	sh:message "magneticBrakingConditionsDocument (1.1.1.1.6.5): The track has a magnetic braking conditions document value that must be a Document."@en .
+
+# flangeLubeForbidden: # 1.1.1.1.7.1
+era-sh:SectionOfLineShape sh:property era-sh:FlangeLubeForbidden.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:FlangeLubeForbidden.
+era-sh:FlangeLubeForbidden
+	a sh:PropertyShape ; 
+    era:affectedProperty era:flangeLubeForbidden ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";  
+	rdfs:comment "Indication whether the use of on-board device for flange lubrication is forbidden." ;
+	era:rinfIndex "1.1.1.1.7.1" ;
+	sh:path (era:hasPart era:flangeLubeForbidden) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "flangeLubeForbidden (1.1.1.1.7.1): The track must have at most one flange lube forbidden value that is Y/N (boolean). This error may be due to having more than one value or having a value that is not Y/N (boolean)."@en .
+
+# hasLevelCrossings: # 1.1.1.1.7.2
+era-sh:SectionOfLineShape sh:property era-sh:HasLevelCrossings.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:HasLevelCrossings.
+era-sh:HasLevelCrossings
+	a sh:PropertyShape ; 
+    era:affectedProperty era:hasLevelCrossings ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";  
+	rdfs:comment "Indication whether level crossings (including pedestrian track crossing) exist onf the section line." ;
+	era:rinfIndex "1.1.1.1.7.2" ;
+	sh:path (era:hasPart era:hasLevelCrossings) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "hasLevelCrossings (1.1.1.1.7.2): The track must have at most one existence of level crossings value that is Y/N (boolean). This error may be due to having more than one value or having a value that is not Y/N (boolean)."@en .
+
+# accelerationLevelCrossing: # 1.1.1.1.7.3
+era-sh:SectionOfLineShape sh:property era-sh:AccelerationLevelCrossing.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:AccelerationLevelCrossing.
+era-sh:AccelerationLevelCrossing
+	a sh:PropertyShape ; 
+    era:affectedProperty era:accelerationLevelCrossing ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";   
+	rdfs:comment "Existence of limit for acceleration of train if stopping or recovering speed close to a level crossing expressed in a specific reference acceleration curve." ;
+	era:rinfIndex "1.1.1.1.7.3" ;
+	sh:path (era:hasPart era:accelerationLevelCrossing) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation ;
+	sh:message "accelerationLevelCrossing (1.1.1.1.7.3): The track must have at most one acceleration level crossing value that is a character string. This error may be due to having more than one value or having a value that is not a string."@en .
+
+# hasHotAxleBoxDetector: # 1.1.1.1.7.4
+era-sh:SectionOfLineShape sh:property era-sh:HasHotAxleBoxDetector.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:HasHotAxleBoxDetector.
+era-sh:HasHotAxleBoxDetector
+	a sh:PropertyShape ; 
+    era:affectedProperty era:hasHotAxleBoxDetector ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";    
+	rdfs:comment "Existence of trackside hot axle box detector." ;
+	era:rinfIndex "1.1.1.1.7.4" ;
+	sh:path (era:hasPart era:hasHotAxleBoxDetector) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "hasHotAxleBoxDetector (1.1.1.1.7.4): The track must have at most one existence of hot axle box detector value that is Y/N (boolean)."@en .
+
+# hotAxleBoxDetectorTSICompliant: # 1.1.1.1.7.5
+era-sh:SectionOfLineShape sh:property era-sh:HotAxleBoxDetectorTSICompliant.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:HotAxleBoxDetectorTSICompliant.
+era-sh:HotAxleBoxDetectorTSICompliant
+	a sh:PropertyShape ; 
+    era:affectedProperty era:hotAxleBoxDetectorTSICompliant ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";  
+	rdfs:comment "Trackside HABD compilant to TSI means that the HABD is compliant with EN 15437:2009 and specific cases mentioned in TSIs." ;
+	era:rinfIndex "1.1.1.1.7.5" ;
+	sh:path (era:hasPart era:hotAxleBoxDetectorTSICompliant) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "hotAxleBoxDetectorTSICompliant (1.1.1.1.7.5): The track must have at most one value that defines if the hot axle box detector is TSI compliant and the value is Y/N (boolean). This error may be due to having more than one value or having a value that is not Y/N (boolean)."@en .
+
+# hotAxleBoxDetectorIdentification: # 1.1.1.1.7.6
+era-sh:SectionOfLineShape sh:property era-sh:HotAxleBoxDetectorIdentification.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:HotAxleBoxDetectorIdentification.
+era-sh:HotAxleBoxDetectorIdentification
+	a sh:PropertyShape ; 
+    era:affectedProperty era:hotAxleBoxDetectorIdentification ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";    
+	rdfs:comment "Applicable if trackside HABD is not TSI compliant. Identification of the trackside HABD." ;
+	era:rinfIndex "1.1.1.1.7.6" ;
+	sh:path (era:hasPart era:hotAxleBoxDetectorIdentification) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation ;
+	sh:message "hotAxleBoxDetectorIdentification (1.1.1.1.7.6): The track must have at most one value that defines the identification of the hot axle box detector and the value is a character string. This error may be due to having more than one value or having a value that is not a string."@en .
+
+# hotAxleBoxDetectorGeneration: # 1.1.1.1.7.7
+era-sh:SectionOfLineShape sh:property era-sh:HotAxleBoxDetectorGeneration.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:HotAxleBoxDetectorGeneration.
+era-sh:HotAxleBoxDetectorGeneration
+	a sh:PropertyShape ; 
+    era:affectedProperty era:hotAxleBoxDetectorGeneration ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";   
+	rdfs:comment "Applicable if trackside HABD is not TSI compliant. Generation of the trackside HABD." ;
+	era:rinfIndex "1.1.1.1.7.7" ;
+	sh:path (era:hasPart era:hotAxleBoxDetectorGeneration) ;
+	sh:maxCount 1 ;
+	#TODO: Single selection from predefined list (waiting for update of documentation)
+	sh:severity sh:Violation ;
+	sh:message "hotAxleBoxDetectorGeneration (1.1.1.1.7.7): The track must have at most one generation of the hot axle box detector value that is Y/N (boolean). This error may be due to having more than one value or having a value that is not Y/N (boolean)."@en .
+
+# hotAxleBoxDetectorLocation: # 1.1.1.1.7.8
+era-sh:SectionOfLineShape sh:property era-sh:HotAxleBoxDetectorLocation.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:HotAxleBoxDetectorLocation.
+era-sh:HotAxleBoxDetectorLocation
+	a sh:PropertyShape ; 
+    era:affectedProperty era:hotAxleBoxDetectorLocation  ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";   
+	rdfs:comment "Applicable if trackside HABD is not TSI compliant. Location of the trackside HABD." ;
+	era:rinfIndex "1.1.1.1.7.8" ;
+	sh:path (era:hasPart era:hotAxleBoxDetectorLocation) ;
+	sh:datatype xsd:double ;
+	sh:pattern "^(\+|\-)?([1-9]\\d{1,3}|[0-9])\\.\\d{1,3}$" ;
+	sh:severity sh:Violation ;
+	sh:message "hotAxleBoxDetectorLocation (1.1.1.1.7.8): The track has a location of the hot axle box detector(s) vallue that must be a double (real) number with format [±NNNN.NNN]. This error may be due to having a value that is not a double (real) number or does not follow the pattern [±NNNN.NNN]."@en .
+
+# hotAxleBoxDetectorDirection: # 1.1.1.1.7.9
+era-sh:SectionOfLineShape sh:property era-sh:HotAxleBoxDetectorDirection.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:HotAxleBoxDetectorDirection.
+era-sh:HotAxleBoxDetectorDirection
+	a sh:PropertyShape ; 
+    era:affectedProperty era:hotAxleBoxDetectorDirection  ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Direction of measurement of the trackside HABD." ;
+	era:rinfIndex "1.1.1.1.7.9" ;
+	sh:path (era:hasPart era:hotAxleBoxDetectorDirection) ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+    sh:severity sh:Violation ;
+	sh:message "hotAxleBoxDetectorDirection (1.1.1.1.7.9): The track must have at most one direction of measurement of the hot axle box detector value that is an IRI. This error may be due to the track having more than one value of hot axle box detector direction."@en .
+
+# hotAxleBoxDetectorDirection: # 1.1.1.1.7.9
+era-sh:SectionOfLineShape sh:sparql era-sh:HotAxleBoxDetectorDirectionSKOS.
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:HotAxleBoxDetectorDirectionSKOS.
+era-sh:HotAxleBoxDetectorDirectionSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:hotAxleBoxDetectorDirection  ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";
+    
+    rdfs:comment "Direction of measurement of the trackside HABD." ;
+	era:rinfIndex "1.1.1.1.7.9" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the hotAxleBoxDetectorDirection (1.1.1.1.7.9):): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/hot-axle-box-detector-direction/HotAxleBoxDetectorDirections."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+	    $this era:hasPart ?track .
+        ?track era:hotAxleBoxDetectorDirection ?concept .
+        era:hotAxleBoxDetectorDirection era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+
+
+
+# redLightsRequired: # 1.1.1.1.7.10 
+era-sh:SectionOfLineShape sh:property era-sh:RedLightsRequired.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:RedLightsRequired.
+era-sh:RedLightsRequired
+	a sh:PropertyShape ; 
+    era:affectedProperty era:redLightsRequired  ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";   
+	rdfs:comment "Sections where two steady red lights are required in accordance with Implementing Regulations (EU) 2019/773." ;
+	era:rinfIndex "1.1.1.1.7.10" ;
+	sh:path (era:hasPart era:redLightsRequired) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "redLightsRequired (1.1.1.1.7.10): The track must have at most one value that defines if two steady red lights are required and the value must be Y/N (boolean). This error may be due to having more than one value or having a value that is not Y/N (boolean)."@en .
+
+# isQuietRoute: # 1.1.1.1.7.11
+era-sh:SectionOfLineShape sh:property era-sh:IsQuietRoute.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:IsQuietRoute.
+era-sh:IsQuietRoute
+	a sh:PropertyShape ; era:affectedProperty era:isQuietRoute  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Belonging to a 'quiet route' in accordance with Article 5b of Regulation (EU) 1304/2014." ;
+	era:rinfIndex "1.1.1.1.7.11" ;
+	sh:path (era:hasPart era:isQuietRoute) ;	
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "isQuietRoute (1.1.1.1.7.11): The track must have at most one value that defines if it belongs to a 'quiet route' and the value must be Y/N (boolean). This error may be due to having more than one value or having a value that is not Y/N (boolean)."@en .
+
+# verificationENE: # 1.1.1.2.1.1
+era-sh:SectionOfLineShape sh:property era-sh:VerificationENE.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:VerificationENE.
+era-sh:VerificationENE
+	a sh:PropertyShape ; era:affectedProperty era:verificationENE  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Unique number for EC declarations following format requirements specified in the 'Document about practical arrangents for transmitting interoperability documents' ." ;
+	era:rinfIndex "1.1.1.2.1.1" ;
+	sh:path (era:hasPart era:verificationENE) ;
+	
+	sh:datatype xsd:string ;
+	sh:pattern "^[A-Z]{2}\\/.{14}\\/(19[0-9][0-9]|20[0-9][0-9]|2100)\\/[0-9]{6}$";
+	sh:severity sh:Violation ;
+	sh:message "verificationENE (1.1.1.2.1.1): The track has a number for EC declarations that must follow format CC/XXXXXXXXXXXXXX/YYYY/NNNNNN where CC is country code, XXXXX... is a number, YYYY is a year between 1900 and 2100, NNNNNN is the number for the EC declaration. This error may be due to the track having a value that does not follow the pattern."@en .
+
+# demonstrationENE: #1.1.1.2.1.2
+era-sh:SectionOfLineShape sh:property era-sh:DemonstrationENE.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:DemonstrationENE.
+era-sh:DemonstrationENE
+	a sh:PropertyShape ; era:affectedProperty era:demonstrationENE  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Unique number for EI declarations following the same format requirements as specified in the 'Document about practical arrangents for transmitting interoperability documents'." ;
+	era:rinfIndex "1.1.1.2.1.2" ;
+	sh:path (era:hasPart era:demonstrationENE) ;
+	sh:datatype xsd:string ;
+	sh:pattern "^[A-Z]{2}\\/.{14}\\/(19[0-9][0-9]|20[0-9][0-9]|2100)\\/[0-9]{6}$";
+	sh:severity sh:Violation ;
+	sh:message "demonstrationENE (1.1.1.2.1.2): The track has a number for EI declarations that must follow format CC/XXXXXXXXXXXXXX/YYYY/NNNNNN where CC is country code, XXXXX... is a number, YYYY is a year between 1900 and 2100, NNNNNN is the number for the EI declaration. This error may be due to the track having a value that is not a tring or that does not follow the pattern."@en .
+
+# maximumContactWireHeight: # 1.1.1.2.2.5 
+era-sh:SectionOfLineShape sh:property era-sh:MaximumContactWireHeight.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:MaximumContactWireHeight.
+era-sh:MaximumContactWireHeight
+	a sh:PropertyShape ; era:affectedProperty era:maximumContactWireHeight  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication of the maximum contact wire height expressed in meters." ;
+	era:rinfIndex "1.1.1.2.2.5" ;
+	sh:path (era:hasPart era:maximumContactWireHeight) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:double ;
+	sh:pattern "^([0-9]\\.\\d{1,2}|0)$" ;
+	sh:severity sh:Violation ;
+	sh:message "maximumContactWireHeight (1.1.1.2.2.5): The track must have at most one indication of the maximum contact wire height expressed in meters value that is a double (real) number with format [N.NN]. This error may be due to having more than one value or having a value that is not a double (real) number."@en .
+
+
+# minimumContactWireHeight: # 1.1.1.2.2.6
+era-sh:SectionOfLineShape sh:property era-sh:MinimumContactWireHeight.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:MinimumContactWireHeight.
+era-sh:MinimumContactWireHeight
+	a sh:PropertyShape ; era:affectedProperty era:minimumContactWireHeight  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication of the minimum contact wire height expressed in meters." ;
+	era:rinfIndex "1.1.1.2.2.6" ;
+	sh:path (era:hasPart era:minimumContactWireHeight) ;
+
+	sh:maxCount 1 ;
+	sh:datatype xsd:double ;
+	sh:pattern "^([0-9]\\.\\d{1,2}|0)$" ;
+	sh:severity sh:Violation ;
+	sh:message "minimumContactWireHeight (1.1.1.2.2.6): The track must have at most one indication of the minimum contact wire height expressed in meters value that is a double (real) number with format [N.NN]. This error may be due to having more than one value or having a value that is not a doucle (real) number."@en .
+
+# tsiPantographHead: # 1.1.1.2.3.1
+era-sh:SectionOfLineShape sh:sparql era-sh:TsiPantographHeadSKOS.
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:TsiPantographHeadSKOS.
+era-sh:TsiPantographHeadSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:tsiPantographHead  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    rdfs:comment "Accepted TSI compliant pantograph heads." ;
+	era:rinfIndex "1.1.1.2.3.1" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the tsiPantographHead (1.1.1.2.3.1):): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/compliant-pantograph-heads/CompliantPantographHeads."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+	    $this era:hasPart ?track .
+        ?track era:tsiPantographHead ?concept .
+        era:tsiPantographHead era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+# otherPantographHead: # 1.1.1.2.3.2
+era-sh:SectionOfLineShape sh:sparql era-sh:OtherPantographHeadSKOS.
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:OtherPantographHeadSKOS.
+era-sh:OtherPantographHeadSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:otherPantographHea  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    rdfs:comment "Indication of which other pantograph heads are allowed to be used." ;
+	era:rinfIndex "1.1.1.2.3.2" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the otherPantographHead (1.1.1.2.3.2):): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/other-pantograph-heads/OtherPantographHeads."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+	    $this era:hasPart ?track .
+        ?track era:otherPantographHead ?concept .
+        era:otherPantographHead era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+
+# raisedPantographsDistance: # 1.1.1.2.3.3
+ era-sh:SectionOfLineShape sh:property era-sh:RaisedPantographsDistance.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:RaisedPantographsDistance.
+ era-sh:RaisedPantographsDistance
+	a sh:PropertyShape ; era:affectedProperty era:raisedPantographsDistance  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    era:affectedClass  era:RaisedPantographsDistanceAndSpeed;
+	rdfs:comment "Indication of maximum number of raised pantographs per train allowed and minumum spacing centre line to centre line of adjacent pantograph heads, expressed in meters, at the given speed." ;
+	era:rinfIndex "1.1.1.2.3.3" ;
+	sh:path (era:hasPart era:trackRaisedPantographsDistanceAndSpeed era:raisedPantographsDistance) ;
+	sh:maxCount 1;
+	sh:datatype xsd:integer ;
+	sh:severity sh:Violation ;
+	sh:message "Raised pantographs distance  (1.1.1.2.3.3): The track must have a raised pantographs distance and speed with a value of distance that is an integer. This error is due to the track having a RaisedPantographDistanceAndSpeed with more than one value of distance or having a value that is not an integer."@en .
+
+# raisedPantographsSpeed: # 1.1.1.2.3.3
+ era-sh:SectionOfLineShape sh:property era-sh:RaisedPantographsSpeed.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:RaisedPantographsSpeed.
+ era-sh:RaisedPantographsSpeed
+	a sh:PropertyShape ; era:affectedProperty era:raisedPantographsSpeed  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    era:affectedClass  era:RaisedPantographsDistanceAndSpeed;
+	rdfs:comment "Indication of maximum number of raised pantographs per train allowed and minumum spacing centre line to centre line of adjacent pantograph heads, expressed in meters, at the given speed." ;
+	era:rinfIndex "1.1.1.2.3.3" ;
+    sh:maxCount 1;
+	sh:path (era:hasPart era:trackRaisedPantographsDistanceAndSpeed era:raisedPantographsSpeed) ;
+	sh:datatype xsd:integer ;
+	sh:severity sh:Violation ;
+	sh:message "Raised pantographs speed (1.1.1.2.3.3): The track must have a raised pantographs distance and speed with a value of speed that is an integer. This error is due to having a RaisedPantographDistanceAndSpeed with more than one value of speed or having a value that is not an integer."@en .
+
+# raisedPantographsNumber: # 1.1.1.2.3.3
+ era-sh:SectionOfLineShape sh:property era-sh:RaisedPantographsNumber.
+ era-sh:RaisedPantographsNumber
+	a sh:PropertyShape ; era:affectedProperty era-sh:RaisedPantographsNumber ;    era:affectedClass  era:RunningTrack;     era:scope "local";     
+    era:affectedClass  era:RaisedPantographsDistanceAndSpeed;
+	rdfs:comment "Indication of maximum number of raised pantographs per train allowed and minumum spacing centre line to centre line of adjacent pantograph heads, expressed in meters, at the given speed." ;
+	era:rinfIndex "1.1.1.2.3.3" ;
+	sh:path (era:hasPart era:trackRaisedPantographsDistanceAndSpeed era:raisedPantographsNumber) ;
+	sh:maxCount 1;
+	sh:datatype xsd:integer ;
+	sh:severity sh:Violation ;
+	sh:message "Raised pantographs number (1.1.1.2.3.3): The track must have a raised pantographs distance and number with a value of speed that is an integer. This error is due to having a RaisedPantographDistanceAndSpeed with more than one value of number or having a value that is not an integer."@en .
+
+ 
+# contactStripMaterial: # 1.1.1.2.3.4
+era-sh:SectionOfLineShape sh:sparql era-sh:ContactStripMaterialSKOS.
+era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:ContactStripMaterialSKOS.
+era-sh:ContactStripMaterialSKOS
+	a sh:SPARQLConstraint ;
+era:affectedProperty era:contactStripMaterial  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+   rdfs:comment "Indication of the material of the contact strip." ;
+	era:rinfIndex "1.1.1.2.3.4" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the contactStripMaterial (1.1.1.2.3.4):): The track {?track} in the section of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/contact-strip-materials/ContactStripMaterials."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+	    $this era:hasPart ?track .
+        ?track era:hasPart ?track .
+        ?track era:contactStripMaterial ?concept .
+        era:contactStripMaterial era:inSkosConceptScheme ?conceptScheme .
+		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
+	}
+""" .
+
+
+# contactStripMaterialMetallicContent: # 1.1.1.2.3.4
+era-sh:SectionOfLineShape sh:property era-sh:ContactStripMaterialMetallicContent.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:ContactStripMaterialMetallicContent.
+era-sh:ContactStripMaterialMetallicContent
+	a sh:PropertyShape ; era:affectedProperty era:contactStripMaterialMetallicContent  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "In case that the value of the property era:contactStripMaterial is impregnated carbon, it is the metallic content, the maximum percentage allowed." ;
+	era:rinfIndex "1.1.1.2.3.4" ;
+	sh:path (era:hasPart era:contactStripMaterialMetallicContent) ;
+	sh:datatype xsd:integer ;
+	sh:severity sh:Violation ;
+	sh:message "contactStripMaterialMetallicContent (1.1.1.2.3.4): The track has an indication of the material of the contact strip that must be an integer. This error may be due to the track having a value that is not an integer."@en .
+
+# phaseSeparation: # 1.1.1.2.4.1.1
+ era-sh:SectionOfLineShape sh:property era-sh:hasPhaseSeparation.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasPhaseSeparation.
+ era-sh:hasPhaseSeparation
+    a sh:PropertyShape ; era:affectedProperty era:hasPhaseSeparation ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication of existence of phase separation and required information." ;
+	era:rinfIndex "1.1.1.2.4.1.1" ;
+	sh:path (era:hasPart era:hasPhaseSeparation) ;
+    sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "hasPhaseSeparation (1.1.1.2.4.1.1): The track defines at most one existence of phase separation and required information value that is Y/N (boolean). This error may be due to the track having more than one value or having a value that is not Y/N (boolean). "@en .
+
+
+
+
+# phaseInfoKm: # 1.1.1.2.4.1.2 
+era-sh:SectionOfLineShape sh:property era-sh:PhaseInfoKm.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:PhaseInfoKm.
+ era-sh:PhaseInfoKm
+	a sh:PropertyShape ; era:affectedProperty era:phaseInfoKm  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    era:affectedClass  era:PhaseInfo;
+	rdfs:comment "Indication of existence of phase separation and required information." ;
+	sh:path (era:hasPart era:trackPhaseInfo era:phaseInfoKm) ;
+    era:rinfIndex "1.1.1.2.4.1.2" ;
+	
+ 	sh:datatype xsd:double ;
+ 	sh:severity sh:Violation ;
+ 	sh:message "Phase info km (1.1.1.2.4.1.2): The track has a phase info with the location from the start of the line value (km), that must be a double. This error may be due to the track having a value that is not a double (real) number."@en .
+
+# phaseInfoDistanceType: # 1.1.1.2.4.1.2 
+ era-sh:SectionOfLineShape sh:property era-sh:PhaseInfoDistanceType.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:PhaseInfoDistanceType.
+ era-sh:PhaseInfoDistanceType 
+    a sh:PropertyShape ; era:affectedProperty era:phaseInfoDistanceType  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    era:affectedClass  era:PhaseInfo;
+	rdfs:comment "Indication of existence of phase separation and required information." ;
+	sh:path (era:hasPart era:trackPhaseInfo era:phaseInfoDistanceType) ;
+    era:rinfIndex "1.1.1.2.4.1.2" ;
+	
+ 	sh:datatype xsd:string ;
+    sh:or (
+        [sh:hasValue "MIN"]
+        [sh:hasValue "MAX"]
+    );
+ 	sh:severity sh:Violation ;
+ 	sh:message "Phase info distance type (1.1.1.2.4.1.2): The track has a phase info with the single selection of 'MIN=minimum' or 'MAX=maximum' to show whether the length is a minimum distance between the inner contact strips of the pantographs or a maximum distance between the outer contact strips of the pantographs, that must be the string MIN or MAX. This error may be due to the track having a value that is not one of the strings MIN or MAX."@en .
+
+
+
+# phaseInfoLength: # 1.1.1.2.4.1.2
+ era-sh:SectionOfLineShape sh:property era-sh:PhaseInfoLength.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:PhaseInfoLength.
+ era-sh:PhaseInfoLength
+	a sh:PropertyShape ; era:affectedProperty era:phaseInfoLength  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    era:affectedClass  era:PhaseInfo;
+	rdfs:comment "Indication of existence of phase separation and required information." ;
+    era:rinfIndex "1.1.1.2.4.1.2" ;
+	sh:path (era:hasPart era:trackPhaseInfo era:phaseInfoLength) ;
+	sh:datatype xsd:integer ;
+	sh:severity sh:Violation ;
+	sh:message "Phase infolength (1.1.1.2.4.1.2): The track has a phase info with the length of the phase separation value (length), that must be an integer. This error may be due to the track having a value that is not an integer."@en .
+
+# phaseInfoPantographLowered: # 1.1.1.2.4.1.2
+ era-sh:SectionOfLineShape sh:property era-sh:PhaseInfoPantographLowered.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:PhaseInfoPantographLowered.
+ era-sh:PhaseInfoPantographLowered
+	a sh:PropertyShape ; era:affectedProperty era:phaseInfoPantographLowered  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    era:affectedClass  era:PhaseInfo;
+	rdfs:comment "Indication of existence of phase separation and required information." ;
+	sh:path (era:hasPart era:trackPhaseInfo era:phaseInfoPantographLowered) ;
+	
+    era:rinfIndex "1.1.1.2.4.1.2" ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "Phase info (1.1.1.2.4.1.2): The track has the phase info with the indication whether the pantograph is lowered value, that must be Y/N (boolean).  This error may be due to the track having a value that is not Y/N (boolean)."@en .
+
+# phaseInfoSwitchOffBreaker: # 1.1.1.2.4.1.2
+ era-sh:SectionOfLineShape sh:property era-sh:PhaseInfoSwitchOffBreaker.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:PhaseInfoSwitchOffBreaker.
+ era-sh:PhaseInfoSwitchOffBreaker
+	a sh:PropertyShape ; era:affectedProperty era:phaseInfoSwitchOffBreaker  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    era:affectedClass  era:PhaseInfo;
+	rdfs:comment "Indication of existence of phase separation and required information." ;
+	sh:path (era:hasPart era:trackPhaseInfo era:phaseInfoSwitchOffBreaker) ;
+	
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "Phase info switchOffBreaker (1.1.1.2.4.1.2): The track has the phase info with the indication whether the breaker may be switched off value, that must be Y/N (boolean). This error may be due to the track having a value that is not Y/N (boolean)."@en .
+
+# hasSystemSeparation: # 1.1.1.2.4.2.1
+era-sh:SectionOfLineShape sh:property era-sh:HasSystemSeparation.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:HasSystemSeparation.
+era-sh:HasSystemSeparation
+	a sh:PropertyShape ; era:affectedProperty era:hasSystemSeparation  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication of existence of system separation." ;
+	era:rinfIndex "1.1.1.2.4.2.1" ;
+	sh:path (era:hasPart era:hasSystemSeparation) ;	
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "hasSystemSeparation (1.1.1.2.4.2.1): The track has at most one existence of system separation value that must be Y/N (boolean). This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
+
+
+# systemSeparationInfoKm: # 1.1.1.2.4.2.2
+ era-sh:SectionOfLineShape sh:property era-sh:SystemSeparationInfoKm.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:SystemSeparationInfoKm.
+ era-sh:SystemSeparationInfoKm
+	a sh:PropertyShape ; era:affectedProperty era:SystemSeparationInfoKm  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    era:affectedClass  era:SystemSeparationInfo;
+	rdfs:comment "Indication of required several information on system separation." ;
+	sh:path (era:hasPart era:trackSystemSeparationInfo era:SystemSeparationInfoKm) ;
+	
+    era:rinfIndex "1.1.1.2.4.2.2" ;
+	sh:datatype xsd:double ;
+	sh:severity sh:Violation ;
+	sh:message "System separation info km (1.1.1.2.4.2.2): The track has a system separation info with the location from the start of the line value (km), that must be a double.This error may be due to the track having  a value that is not a double (real) number. "@en .
+
+# systemSeparationInfoLength: # 1.1.1.2.4.2.2
+ era-sh:SectionOfLineShape sh:property era-sh:SystemSeparationInfoLength.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:SystemSeparationInfoLength.
+ era-sh:SystemSeparationInfoLength
+	a sh:PropertyShape ; era:affectedProperty era:SystemSeparationInfoLength  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    era:affectedClass  era:SystemSeparationInfo;
+	rdfs:comment "Indication of required several information on system separation." ;
+	sh:path (era:hasPart era:trackSystemSeparationInfo era:SystemSeparationInfoLength) ;
+    era:rinfIndex "1.1.1.2.4.2.2" ;
+	sh:datatype xsd:integer ;
+	sh:severity sh:Violation ;
+	sh:message "System separation info length (1.1.1.2.4.2.2): The track has a system separatione info with the length of the system separation value (length), that must be an integer. This error may be due to the track having  a value that is not an integer."@en .
+
+ # systemSeparationInfoPantographLowered: # 1.1.1.2.4.2.2
+ era-sh:SectionOfLineShape sh:property era-sh:SystemSeparationInfoPantographLowered.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:SystemSeparationInfoPantographLowered.
+ era-sh:SystemSeparationInfoPantographLowered
+	a sh:PropertyShape ; era:affectedProperty era:SystemSeparationInfoPantographLowered  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    era:affectedClass  era:SystemSeparationInfo;
+	rdfs:comment "Indication of required several information on system separation." ;
+	sh:path (era:hasPart era:trackSystemSeparationInfo era:SystemSeparationInfoPantographLowered) ;
+	
+    era:rinfIndex "1.1.1.2.4.2.2" ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "System separation info pantograph lowered (1.1.1.2.4.2.2): The track has the system separation info with the indication whether the pantograph is lowered value, that must be Y/N (boolean). This error may be due to the track having  a value that is not Y/N (boolean)."@en .
+
+# systemSeparationInfoSwitchOffBreaker: # 1.1.1.2.4.2.2
+ era-sh:SectionOfLineShape sh:property era-sh:SystemSeparationInfoSwitchOffBreaker.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:SystemSeparationInfoSwitchOffBreaker.
+ era-sh:SystemSeparationInfoSwitchOffBreaker
+	a sh:PropertyShape ; era:affectedProperty era:SystemSeparationInfoSwitchOffBreaker  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication of required several information on system separation." ;
+	sh:path (era:hasPart era:trackSystemSeparationInfo era:SystemSeparationInfoSwitchOffBreaker) ;
+    era:affectedClass  era:SystemSeparationInfo;
+	
+    era:rinfIndex "1.1.1.2.4.2.2" ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "System separation info switchOffBreaker (1.1.1.2.4.2.2): The track has the system separation info with the indication whther the breaker may be switched off value, that must be Y/N (boolean). This error is due to the track having a value that is not Y/N (boolean)."@en .
+
+# systemSeparationInfoChangeSupplySystem: # 1.1.1.2.4.2.2
+ era-sh:SectionOfLineShape sh:property era-sh:SystemSeparationInfoChangeSupplySystem.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:SystemSeparationInfoChangeSupplySystem.
+ era-sh:SystemSeparationInfoChangeSupplySystem
+	a sh:PropertyShape ; era:affectedProperty era:SystemSeparationInfoChangeSupplySystem  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    era:affectedClass  era:SystemSeparationInfo;
+	rdfs:comment "Indication of required several information on system separation." ;
+	sh:path (era:hasPart era:trackSystemSeparationInfo era:SystemSeparationInfoChangeSupplySystem) ;
+	
+    era:rinfIndex "1.1.1.2.4.2.2" ;
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation ;
+	sh:message "System separation info changeSupplySystem (1.1.1.2.4.2.2): The track has the system separation info with the indication whether the supply system has to be changed value, that must be a character string. This error is due to the track having a value that is not a string."@en .
+
+
+# distSignToPhaseEnd: # 1.1.1.2.4.3
+era-sh:SectionOfLineShape sh:property era-sh:DistSignToPhaseEnd.
+era-sh:commonCharacteristicsSubsetShape sh:property era-sh:DistSignToPhaseEnd.
+era-sh:DistSignToPhaseEnd
+	a sh:PropertyShape ; era:affectedProperty era:distSignToPhaseEnd  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Specific for route compatibility check on French network. Distance between the signboard authorizing the driver to 'raise pantograph' or 'close the circuit breaker' after passing the phase separation and the end of the phase separation section." ;
+	era:rinfIndex "1.1.1.2.4.3" ;
+	sh:path (era:hasPart era:distSignToPhaseEnd) ;
+	
+	sh:maxCount 1 ;
+	sh:datatype xsd:integer ;
+	sh:pattern "^([1-9]\\d{1,2}|[0-9])$" ;
+	sh:severity sh:Violation ;
+	sh:message "distSignToPhaseEnd (1.1.1.2.4.3): The track must have at most one value of the distance between the signboard authorizing the driver to 'raise pantograph' or 'close the circuit breaker' after passing the phase separation and the end of the phase separation section, and the value is an integer. This error is due to the track having more than one value or to having a value that is not an integer."@en .
+
+# permittedContactForce: # 1.1.1.2.5.2
+era-sh:SectionOfLineShape sh:property era-sh:PermittedContactForce.
+era-sh:PermittedContactForce
+	a sh:PropertyShape ; era:affectedProperty era:permittedContactForce  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication of contact force allowed expressed in newtons." ;
+	era:rinfIndex "1.1.1.2.5.2" ;
+	sh:path (era:hasPart era:permittedContactForce) ;
+	
+	sh:maxCount 1 ;
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation ;
+	sh:message "permittedContactForce (1.1.1.2.5.2): The track must have at most one value of the contact force allowed expressed in newtons. This error is due to the track having more than one value or to having a value that is not a character string."@en .
+
+# automaticDroppingDeviceRequired: # 1.1.1.2.5.3
+era-sh:SectionsOfLineShape sh:property era-sh:AutomaticDroppingDeviceRequired.
+era-sh:AutomaticDroppingDeviceRequired
+	a sh:PropertyShape ; era:affectedProperty era:automaticDroppingDeviceRequired  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication of the requirement of automatic dropping device." ;
+	era:rinfIndex "1.1.1.2.5.3" ;
+	sh:path (era:hasPart era:automaticDroppingDeviceRequired) ;
+	
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "automaticDroppingDeviceRequired (1.1.1.2.5.3): The track must have at most one value of the requirement of automatic dropping device and it is Y/N (boolean). This error is due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
+
+# verificationCCS: # 1.1.1.3.1.1
+era-sh:SectionOfLineShape sh:property era-sh:VerificationCCS.
+era-sh:VerificationCCS
+	a sh:PropertyShape ; era:affectedProperty era:verificationCCS  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Unique number for EC declarations following format requirements specified in the 'Document about practical arrangements for transmitting interoperability documents'." ;
+	era:rinfIndex "1.1.1.3.1.1" ;
+	sh:path (era:hasPart era:verificationCCS) ;
+	sh:datatype xsd:string ;
+	sh:pattern "^[A-Z]{2}\\/.{14}\\/(19[0-9][0-9]|20[0-9][0-9]|2100)\\/[0-9]{6}$";
+	sh:severity sh:Violation ;
+	sh:message "verificationCCS (1.1.1.3.1.1): The track defines the unique number for EC declarations following format requirements specified in the 'Document about practical arrangements for transmitting interoperability documents; the value must be a string that follows the pattern [CC/RRRRRRRRRRRRRR/YYYY/NNNNNN] where the YYYY characters must be a number between 1900 and 2100, and the NNNNNN characters must be digits. This error is due to having a value that does not follow the pattern."@en .
+
+# etcsInfillLineAccess: # 1.1.1.3.2.3
+era-sh:SectionOfLineShape sh:property era-sh:EtcsInfillLineAccess.
+era-sh:EtcsInfillLineAccess
+	a sh:PropertyShape ; era:affectedProperty era:etcsInfillLineAccess  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication of the access to the ETCS infill line." ;
+	era:rinfIndex "1.1.1.3.2.3" ;
+	sh:path (era:hasPart era:etcsInfillLineAccess) ;
+	
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "etcsInfillLineAccess (1.1.1.3.2.3): The track has at most one value of the access to the ETCS infill line and it must be Y/N (boolean). This error is due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
+
+# etcsInfill: # 1.1.1.3.2.4
+era-sh:SectionOfLineShape sh:property era-sh:EtcsInfill.
+era-sh:EtcsInfill
+	a sh:PropertyShape ; era:affectedProperty era:etcsInfill  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Information about installed trackside equipment capable to transmit infill information by loop or GSM-R for level 1 installation." ;
+	era:rinfIndex "1.1.1.3.2.4" ;
+	sh:path (era:hasPart era:etcsInfill) ;
+	
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "etcsInfill (1.1.1.3.2.4): The track has at most one value the information about installed trackside equipment capable to transmit infill information by loop or GSM-R for level 1 installation and the value is aan IRI. This error is due to the track having more than one value."@en .
+
+# etcsInfill: # 1.1.1.3.2.4
+era-sh:SectionOfLineShape sh:sparql era-sh:EtcsInfillSKOS.
+era-sh:EtcsInfillSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:etcsInfill  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    rdfs:comment "Information about installed trackside equipment capable to transmit infill information by loop or GSM-R for level 1 installation." ;
+	era:rinfIndex "1.1.1.3.2.4" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the etcsInfill (1.1.1.3.2.4):): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/etcs-infills/ETCSInfills."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+	    $this era:hasPart ?track .
+        ?track era:etcsInfill ?concept .
+        era:etcsInfill era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+
+
+# etcsNationalPacket44: # 1.1.1.3.2.5
+era-sh:SectionOfLineShape sh:property era-sh:EtcsNationalPacket44.
+era-sh:EtcsNationalPacket44
+	a sh:PropertyShape ; era:affectedProperty era:etcsNationalPacket44  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication whether data for national application is transmitted between track and train." ;
+	era:rinfIndex "1.1.1.3.2.5" ;
+	sh:path (era:hasPart era:etcsNationalPacket44) ;
+
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "etcsNationalPacket44 (1.1.1.3.2.5): The track has at most one value of the indication whether data for national application is transmitted between track and train and it must be truye/false (boolean). This error is due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
+
+# hasETCSRestrictionsConditions: # 1.1.1.3.2.6
+era-sh:sectionOfLineShape sh:property era-sh:HasETCSRestrictionsConditions.
+era-sh:HasETCSRestrictionsConditions
+	a sh:PropertyShape ; era:affectedProperty era:hasETCSRestrictionsConditions  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication whether restrictions or conditions due to partial compilance with the CCS TSI exist." ;
+	era:rinfIndex "1.1.1.3.2.6" ;
+	sh:path (era:hasPart era:hasETCSRestrictionsConditions) ;
+	
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "hasETCSRestrictionsConditions (1.1.1.3.2.6): The track has at most one value of the indication whether restrictions or conditions due to partial compliance with the CCS TSI exist and the value is Y/N (boolean). This error is due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
+
+# trainIntegrityOnBoardRequired: # 1.1.1.3.2.8
+era-sh:SectionOfLineShape sh:property era-sh:TrainIntegrityOnBoardRequired.
+era-sh:TrainIntegrityOnBoardRequired
+	a sh:PropertyShape ; era:affectedProperty era:trainIntegrityOnBoardRequired ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication whether TIMS is required to access the line for safety reasons." ;
+	era:rinfIndex "1.1.1.3.2.8" ;
+	sh:path (era:hasPart era:trainIntegrityOnBoardRequired) ;
+	
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "trainIntegrityOnBoardRequired (1.1.1.3.2.8): The track has at most one value of the indication whether TIMS is required to access the line for safety reasons and the vaalue is Y/N (boolean). This error is due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
+
+# etcsSystemCompatibility: # 1.1.1.3.2.9
+era-sh:SectionOfLineShape sh:property era-sh:EtcsSystemCompatibility.
+era-sh:EtcsSystemCompatibility
+	a sh:PropertyShape ; era:affectedProperty era:etcsSystemCompatibility  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "ETCS requirements used for demonstrating technical compatibility." ;
+	era:rinfIndex "1.1.1.3.2.9" ;
+	sh:path era:etcsSystemCompatibility ;
+	sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "etcsSystemCompatibility (1.1.1.3.2.9): The track defines at most one value of the requirements of the ETCS system compatibility and the value is an IRI. This error is due to the track having more than one value."@en .
+
+# etcsSystemCompatibility: # 1.1.1.3.2.9
+era-sh:SectionOfLineShape sh:sparql era-sh:EtcsSystemCompatibilitySKOS.
+era-sh:EtcsSystemCompatibilitySKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:etcsSystemCompatibility  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    rdfs:comment "ETCS requirements used for demonstrating technical compatibility." ;
+	era:rinfIndex "1.1.1.3.2.9" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the etcsSystemCompatibility (1.1.1.3.2.9):): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/etcs-system-compatibilities/ETCSSystemCompatibilities."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+	    $this era:hasPart ?track .
+        ?track era:etcsSystemCompatibility ?concept .
+        era:etcsSystemCompatibility era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+
+
+# etcsMVersion: # 1.1.1.3.2.10
+era-sh:SectionOfLineShape sh:property era-sh:EtcsMVersion.
+era-sh:EtcsMVersion
+	a sh:PropertyShape ; era:affectedProperty era:etcsMVersion  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "ETCS_M version according to SRS 7.5.1.9" ;
+	era:rinfIndex "1.1.1.3.2.10" ;
+	sh:path (era:hasPart era:etcsMVersion) ;	
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "etcsMVersion (1.1.1.3.2.10): The track has at most one ETCS_M version value and it must be an IRI. This error is due to the track having more than one value."@en .
+
+# etcsMVersion: # 1.1.1.3.2.10
+era-sh:SectionOfLineShape sh:sparql era-sh:EtcsMVersionSKOS.
+era-sh:EtcsMVersionSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:etcsMVersion  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    rdfs:comment "ETCS_M version according to SRS 7.5.1.9" ;
+	era:rinfIndex "1.1.1.3.2.10" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the etcsMVersion (1.1.1.3.2.101.1.1.3.2.10):): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/etcs-m-versions/ETCSMVersions."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+	    $this era:hasPart ?track .
+        ?track era:etcsMVersion ?concept .
+        era:etcsMVersion era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+
+
+
+
+
+# gsmRAdditionalInfo: # 1.1.1.3.3.3.1
+era-sh:SectionOfLineShape sh:property era-sh:GsmRAdditionalInfo.
+era-sh:GsmRAdditionalInfo
+	a sh:PropertyShape ; era:affectedProperty era:gsmRAdditionalInfo  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Additional information on network characteristics." ;
+	era:rinfIndex "1.1.1.3.3.3.1" ;
+	sh:path (era:hasPart era:gsmRAdditionalInfo) ;
+    sh:class era:Document;
+	sh:severity sh:Violation ;
+	sh:message "gsmRAdditionalInfo (1.1.1.3.3.3.1): The track defines an additional information on network characteristics value that must be a Document."@en .
+
+# gprsForETCS: # 1.1.1.3.3.3.2
+era-sh:SectionOfLineShape sh:property era-sh:GprsForETCS.
+era-sh:GprsForETCS
+	a sh:PropertyShape ; era:affectedProperty era:gprsForETCS  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication if GPRS can be used for ETCS." ;
+	era:rinfIndex "1.1.1.3.3.3.2" ;
+	sh:path (era:hasPart era:gprsForETCS) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "gprsForETCS (1.1.1.3.3.3.2): The track must define at most one  use of GPRS for ETCS value that is Y/N (boolean). This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
+
+# gprsImplementationArea: # 1.1.1.3.3.3.3
+era-sh:SectionOfLineShape sh:property era-sh:GprsImplementationArea.
+era-sh:GprsImplementationArea
+	a sh:PropertyShape ; era:affectedProperty era:gprsImplementationArea  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication of the area in which GPRS can be used for ETCS." ;
+	era:rinfIndex "1.1.1.3.3.3.3" ;
+	sh:path (era:hasPart era:gprsImplementationArea) ;
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation ;
+	sh:message "gprsImplementationArea (1.1.1.3.3.3.3): The track defines the area in which GPRS can be used for ETCS value that must be a string. This error may be due to the track having  a value that is not a string."@en .
+
+# usesGroup555: # 1.1.1.3.3.4
+era-sh:SectionOfLineShape sh:property era-sh:UsesGroup555.
+era-sh:UsesGroup555
+	a sh:PropertyShape ; era:affectedProperty era:usesGroup555  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication if group 555 is needed." ;
+	era:rinfIndex "1.1.1.3.3.4" ;
+	sh:path (era:haPart era:usesGroup555) ;
+	
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "usesGroup555 (1.1.1.3.3.3.4): The track defines at most one use of group 555 value that is Y/N (boolean). This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
+
+
+
+# publicNetworkRoaming: # 1.1.1.3.3.6
+era-sh:SectionOfLineShape sh:property era-sh:PublicNetworkRoaming.
+era-sh:PublicNetworkRoaming
+	a sh:PropertyShape ; era:affectedProperty era:publicNetworkRoaming  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Existence of roaming to a public network (if roaming to a public network is configured, please indicate so)." ;
+	era:rinfIndex "1.1.1.3.3.6" ;
+	sh:path (era:hasPart era:publicNetworkRoaming) ;
+	
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "publicNetworkRoaming (1.1.1.3.3.6): The track has at most one existence of roaming to a public network value and it is Y/N (boolean). This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
+
+# publicNetworkRoamingDetails: # 1.1.1.3.3.7
+era-sh:SectionOfLineShape sh:property era-sh:PublicNetworkRoamingDetails.
+era-sh:PublicNetworkRoamingDetails
+	a sh:PropertyShape ; era:affectedProperty era:publicNetworkRoamingDetails ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "If roaming to public networks is configured, please indicate to which networks, for which users and in which areas." ;
+	era:rinfIndex "1.1.1.3.3.7" ;
+	sh:path (era:hasPart era:publicNetworkRoamingDetails) ;	
+	sh:maxCount 1 ;
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation ;
+	sh:message "publicNetworkRoamingDetails (1.1.1.3.3.7): The track has at most one existence of roaming to a public network value and it is a string. This error may be due to the track having more than one value or to having a value that is not a string."@en .
+
+# gsmRNoCoverage: # 1.1.1.3.3.8
+era-sh:SectionOfLineShape sh:property era-sh:GsmRNoCoverage.
+era-sh:GsmRNoCoverage
+	a sh:PropertyShape ; era:affectedProperty era:gsmRNoCoverage  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication if there is a no GSM-R coverage." ;
+	era:rinfIndex "1.1.1.3.3.8" ;
+	sh:path (era:hasPart era:gsmRNoCoverage) ;
+	
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "gsmRNoCoverage (1.1.1.3.3.8): The track has at most one indication if there is a no GSM-R coverage value and it is Y/N (boolean). This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
+
+
+
+# hasTSITrainDetection: # 1.1.1.3.4.1
+era-sh:SectionOfLineShape sh:property era-sh:HasTSITrainDetection.
+era-sh:HasTSITrainDetection
+	a sh:PropertyShape ; era:affectedProperty era:hasTSITrainDetection  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication if there is any train detection system installed and fully compilant with the CCS TSI requirements." ;
+	era:rinfIndex "1.1.1.3.4.1" ;
+	sh:path (era:hasPart era:hasTSITrainDetection );
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "hasTSITrainDetection (1.1.1.3.4.1): The track has at most one value of the indication if there is any train detection system installed and fully compilant with the CCS TSI requirements and the value must be Y/N (boolean). This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
+
+
+# protectionLegacySystem: # 1.1.1.3.5.3
+era-sh:SectionOfLineShape sh:sparql era-sh:ProtectionLegacySystemSKOS.
+era-sh:ProtectionLegacySystemSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:protectionLegacySystem  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    rdfs:comment "Indication of which class B system is installed." ;
+	era:rinfIndex "1.1.1.3.5.3" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the protectionLegacySystem (1.1.1.3.5.3): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list:  http://data.europa.eu/949/concepts/train-protection-legacy-systems/TrainProtectionLegacySystems."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+		$this era:hasPart ?track .
+        ?track era:protectionLegacySystem ?concept .
+        era:protectionLegacySystem era:inSkosConceptScheme ?conceptScheme .
+		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
+	}
+""" .
+
+
+# frenchTrainDetectionSystemLimitationNumber: # 1.1.1.3.7.1.4
+era-sh:SectionOfLineShape sh:sparql era-sh:FrenchTrainDetectionSystemLimitationNumberSKOS.
+era-sh:FrenchTrainDetectionSystemLimitationNumberSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:frenchTrainDetectionSystemLimitationNumber  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    rdfs:comment "Section with train detection limitation." ;
+	era:rinfIndex "1.1.1.3.7.1.4" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the frenchTrainDetectionSystemLimitationNumber (1.1.1.3.7.1.4): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list:   ttp://data.europa.eu/949/concepts/train-detection-numbers/FrenchTrainDetectionSystemLimitationNumbers."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+	    $this era:hasPart ?track .
+        ?track era:frenchTrainDetectionSystemLimitationNumber ?concept .
+        era:frenchTrainDetectionSystemLimitationNumber era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+
+
+# switchProtectControlWarning: # 1.1.1.3.8.1
+era-sh:SectionOfLineShape sh:property era-sh:SwitchProtectControlWarning.
+era-sh:SwitchProtectControlWarning
+	a sh:PropertyShape ; era:affectedProperty era:switchProtectControlWarning  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication whether a switch over between different systems whilst running exist." ;
+	era:rinfIndex "1.1.1.3.8.1" ;
+	sh:path (era:hasPart era:switchProtectControlWarning) ;
+	
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "switchProtectControlWarning (1.1.1.3.8.1): The track must define at most one value of the indication whether a switch over between different systems whilst running exist and the value must be Y/N (boolean). This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
+
+# switchRadioSystem: # 1.1.1.3.8.2
+era-sh:SectionOfLineShape sh:property era-sh:SwitchRadioSystem.
+era-sh:SwitchRadioSystem
+	a sh:PropertyShape ; era:affectedProperty era:switchRadioSystem  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication whether a switch over between different radio systems and no communication system whilst running exist." ;
+	era:rinfIndex "1.1.1.3.8.2" ;
+	sh:path (era:hasPart era:switchRadioSystem);
+	
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "switchRadioSystem (1.1.1.3.8.2): The track must define at most one value of the indication whether a switch over between different radio systems and no communication system whilst running exist, and the value must be Y/N (boolean). This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
+
+
+# etcsDegradedSituation: # 1.1.1.3.10.1
+era-sh:SectionOfLineShape sh:sparql era-sh:EtcsDegradedSituationSKOS.
+era-sh:EtcsDegradedSituationSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:etcsDegradedSituation  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+    rdfs:comment "ERTMS/ ETCS application level for degraded situation related to the track side equipment." ;
+	era:rinfIndex "1.1.1.3.10.1" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the etcsDegradedSituation (1.1.1.3.10.1): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list:  http://data.europa.eu/949/concepts/tsi-existence-and-compliances/TSIExistenceAndCompliances."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+		$this era:hasPart ?track .
+        ?track era:etcsDegradedSituation ?concept .
+        era:etcsDegradedSituation era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+
+# otherTrainProtection: # 1.1.1.3.10.2
+era-sh:SectionOfLineShape sh:property era-sh:OtherTrainProtection.
+era-sh:OtherTrainProtection
+	a sh:PropertyShape ; era:affectedProperty era:otherTrainProtection  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication of existence of other systems than ETCS for degraded situation." ;
+	era:rinfIndex "1.1.1.3.10.2" ;
+	sh:path (era:hasPart era:otherTrainProtection) ;
+	
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "otherTrainProtection (1.1.1.3.10.2): The track must define at most one value of the indication of existence of other systems than ETCS for degraded situation and it is an IRI. This error may be due to the track having more than one value."@en .
+
+# otherTrainProtection: # 1.1.1.3.10.2
+era-sh:SectionOfLineShape sh:sparql era-sh:OtherTrainProtectionSKOS.
+era-sh:OtherTrainProtectionSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:otherTrainProtection  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+   rdfs:comment "Indication of existence of other systems than ETCS for degraded situation." ;
+	era:rinfIndex "1.1.1.3.10.2" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the otherTrainProtection (1.1.1.3.10.2): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list:  http://data.europa.eu/949/concepts/other-protection-control-warning/OtherProtectionControlWarnings."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+		$this era:hasPart ?track .
+        ?track era:otherTrainProtection ?concept .
+        era:otherTrainProtection era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+
+
+# maximumBrakingDistance: # 1.1.1.3.11.1
+era-sh:SectionOfLineShape sh:property era-sh:MaximumBrakingDistance.
+era-sh:MaximumBrakingDistance
+	a sh:PropertyShape ; era:affectedProperty era:maximumBrakingDistance  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "The maximum value of the braking distance [in metres] of a train shall be given for the maximum line speed." ;
+	era:rinfIndex "1.1.1.3.11.1" ;
+	sh:path (era:hasPart era:maximumBrakingDistance) ;
+
+	sh:maxCount 1 ;
+	sh:datatype xsd:integer ;
+	sh:pattern "^([1-9]\\d{1,4}|[0-9])$" ;
+	sh:severity sh:Violation ;
+	sh:message "maximumBrakingDistance (1.1.1.3.11.1): The track must define at most one value of the maximum value of the braking distance [in metres] of a train and it is an integer. This error may be due to the track having more than one value or to having a value that is not an integer."@en .
+
+# hasAdditionalBrakingInformation: # 1.1.1.3.11.2
+era-sh:SectionOfLineShape sh:property era-sh:HasAdditionalBrakingInformation.
+era-sh:HasAdditionalBrakingInformation
+	a sh:PropertyShape ; era:affectedProperty era:hasAdditionalBrakingInformation  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Availability by the IM of additional information as defined in 4.2.2.6.2 (2) Regulation XXX-OPE TSI." ;
+	era:rinfIndex "1.1.1.3.11.2" ;
+	sh:path (era:hasPart era:hasAdditionalBrakingInformation) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "hasAdditionalBrakingInformation (1.1.1.3.11.2): The track must define at most one value of the availability by the IM of additional information and it is Y/N (boolean). This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
+
+# additionalBrakingInformationDocument: # 1.1.1.3.11.3
+era-sh:SectionsOfLineShape sh:property era-sh:AdditionalBrakingInformationDocument.
+era-sh:AdditionalBrakingInformationDocument
+	a sh:PropertyShape ; era:affectedProperty era:additionalBrakingInformationDocument  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Documents available by the IM relating to braking performance." ;
+	era:rinfIndex "1.1.1.3.11.3" ;
+	sh:path (era:hasPart era:additionalBrakingInformationDocument) ;		
+    sh:class era:Document;
+	sh:severity sh:Violation ;
+	sh:message "additionalBrakingInformationDocument (1.1.1.3.11.3): The track defines the documents available by the IM relating to braking performance value and it must be a Document."@en .
+
+
+# tiltingSupported: # 1.1.1.3.12.1
+era-sh:SectionOfLineShape sh:property era-sh:TiltingSupported.
+era-sh:TiltingSupported
+	a sh:PropertyShape ; era:affectedProperty era:tiltingSupported  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication whether tilting functions are supported by the track." ;
+	era:rinfIndex "1.1.1.3.12.1" ;
+	sh:path (era:hasPart era:tiltingSupported) ;
+	
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "tiltingSupported (1.1.1.3.12.1): The track must define at most one value of the indication whether tilting functions are supported by the track and it is Y/N (boolean).This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
+
+# localRulesOrRestrictions: # 1.1.1.4.1
+era-sh:SectionOfLineShape sh:property era-sh:LocalRulesOrRestrictions.
+era-sh:LocalRulesOrRestrictions
+	a sh:PropertyShape ; era:affectedProperty era:localRulesOrRestrictions  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Existence of rules and restrictions of a strictly local nature." ;
+	era:rinfIndex "1.1.1.4.1" ;
+	sh:path (era:hasPart era:localRulesOrRestrictions) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "localRulesOrRestrictions (1.1.1.4.1): The track must define t most one value of the existence of rules and restrictions of a strictly local nature and it must be Y/N (boolean). This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
+
+# localRulesOrRestrictionsDoc: # 1.1.1.4.2
+era-sh:SectionOfLineShape sh:property era-sh:LocalRulesOrRestrictionsDoc.
+era-sh:LocalRulesOrRestrictionsDoc
+	a sh:PropertyShape ; era:affectedProperty era:localRulesOrRestrictionsDoc  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Documents regarding the rules or restrictions of a strictly local nature available by the IM." ;
+	era:rinfIndex "1.1.1.4.2" ;
+	sh:path (era:hasPart era:localRulesOrRestrictionsDoc) ;
+	#sh:datatype xsd:string ;
+    sh:class era:Document;
+	sh:severity sh:Violation ;
+	sh:message "localRulesOrRestrictionsDoc (1.1.1.4.2): The track defines the value of the documents regarding the rules or restrictions of a strictly local nature available by the IM and this value must be a Document."@en .
+
+# contactLineSystem class ContactLineSystem
+
+# currentLimitationRequired: # 1.1.1.2.5.1
+era-sh:SectionsOfLineShape sh:property era-sh:currentLimitationRequired.
+era-sh:currentLimitationRequired
+	a sh:PropertyShape ; 
+    era:affectedProperty era:currentLimitationRequired;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Indication of whether an on board current or power limitation function on vehicles is required." ;
+	era:rinfIndex "1.1.1.2.5.1" ;
+	sh:path (era:hasPart era:currentLimitationRequired) ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "currentLimitationRequired (1.1.1.2.5.1): The track may have a current limitation required value that is a boolean. This error may be due to the track having a value that is not a boolean."@en .
+
+# distSignToPhaseEnd: # 1.1.1.2.4.3
+era-sh:SectionsOfLineShape sh:property era-sh:distSignToPhaseEnd.
+era-sh:distSignToPhaseEnd
+	a sh:PropertyShape ; 
+    era:affectedProperty era:distSignToPhaseEnd;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Distance between the signboard authorizing the driver to “raise pantograph” or “close the circuit breaker” after passing the phase separation and the end of the phase separation section." ;
+	era:rinfIndex "1.1.1.2.4.3" ;
+	sh:path (era:hasPart era:distSignToPhaseEnd) ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:integer ;
+	sh:pattern "^([0-9]\\d{1,2}|[0-9])$" ;
+	sh:severity sh:Violation ;
+	sh:message "distSignToPhaseEnd (1.1.1.2.4.3): The track may have a distance between signboard and phase separation ending value that is an integer. This error may be due to the track having more than one value or having a value that is not an integer."@en .
+
+# documentRestrictionPositionContactLineSeparation: # 1.1.1.2.5.5
+era-sh:SectionsOfLineShape sh:property era-sh:documentRestrictionPositionContactLineSeparation.
+era-sh:documentRestrictionPositionContactLineSeparation
+	a sh:PropertyShape ; 
+    era:affectedProperty era:documentRestrictionPositionContactLineSeparation;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Document with restriction related to the position of Multiple Traction unit(s) to comply with contact line separation." ;
+	era:rinfIndex "1.1.1.2.5.5" ;
+	sh:path (era:hasPart era:documentRestrictionPositionContactLineSeparation) ;
+	sh:class era:Document;
+	sh:severity sh:Violation ;
+	sh:message "documentRestrictionPositionContactLineSeparation (1.1.1.2.5.5): The track may have a Document with restriction related to the position of Multiple Traction unit(s) to comply with contact line separation value that is a Document. This error may be due to the track having a value that is not a Document."@en .
+
+# documentRestrictionPowerConsumption: # 1.1.1.2.5.4
+era-sh:SectionsOfLineShape sh:property era-sh:documentRestrictionPowerConsumption.
+era-sh:documentRestrictionPowerConsumption
+	a sh:PropertyShape ; 
+    era:affectedProperty era:documentRestrictionPowerConsumption;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Document with restriction related to power consumption of specific electric traction unit(s)." ;
+	era:rinfIndex "1.1.1.2.5.4" ;
+	sh:path (era:hasPart era:documentRestrictionPowerConsumption) ;
+	sh:class era:Document;
+	sh:severity sh:Violation ;
+	sh:message "documentRestrictionPowerConsumption (1.1.1.2.5.4): The track may have a Document with restriction related to power consumption of specific electric traction unit(s) value that is a Document. This error may be due to the track having a value that is not a Document."@en .
+			 
+
+			 
+# linesideDistanceIndicationPositioning: # 1.1.1.0.0.3
+era-sh:SectionOfLineShape sh:property era-sh:linesideDistanceIndicationPositioning.
+era-sh:linesideDistanceIndicationPositioning
+	a sh:PropertyShape ; era:affectedProperty era:linesideDistanceIndicationPositioning  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication of the side along the track where the lineside indication is positioned (left or right)." ;
+	era:rinfIndex "1.1.1.0.0.3" ;
+	sh:path (era:hasPart era:linesideDistanceIndicationPositioning );
+    sh:minCount 1 ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI;
+	sh:severity sh:Violation ;
+	sh:message "LinesideDistanceIndicationPositioning (1.1.1.0.0.3): The track must have at most one value of the lineside distance indication positioning. This error may be due to the track having no value, more than one value or to having a value that is not an IRI."@en .
+
+# linesideDistanceIndicationPositioning: # 1.1.1.0.0.3
+era-sh:SectionOfLineShape sh:sparql era-sh:linesideDistanceIndicationPositioningSKOS.
+era-sh:linesideDistanceIndicationPositioningSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:linesideDistanceIndicationPositioning  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+   rdfs:comment "Indication of the side along the track where the lineside indication is positioned (left or right)." ;
+	era:rinfIndex "1.1.1.0.0.3" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the linesideDistanceIndicationPositioning (1.1.1.0.0.3): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list:  http://data.europa.eu/949/concepts/lineside-distance-indication-positioning/LinesideDistanceIndicationPositioning."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+		$this era:hasPart ?track .
+        ?track era:linesideDistanceIndicationPositioning ?concept .
+        era:linesideDistanceIndicationPositioning era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+# linesideDistanceIndicationAppearance: # 1.1.1.0.0.3
+era-sh:SectionOfLineShape sh:property era-sh:linesideDistanceIndicationAppearance.
+era-sh:linesideDistanceIndicationAppearance
+	a sh:PropertyShape ; era:affectedProperty era:linesideDistanceIndicationAppearance  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication of types of appearance of track lineside distance indications." ;
+	era:rinfIndex "1.1.1.0.0.3" ;
+	sh:path (era:hasPart era:linesideDistanceIndicationAppearance );
+    sh:minCount 1 ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI;
+	sh:severity sh:Violation ;
+	sh:message "linesideDistanceIndicationAppearance (1.1.1.0.0.3): The track must have at most one value of the lineside distance indication appearance. This error may be due to the track having no value, more than one value or to having a value that is not an IRI."@en .
+
+# linesideDistanceIndicationAppearance: # 1.1.1.0.0.3
+era-sh:SectionOfLineShape sh:sparql era-sh:linesideDistanceIndicationAppearanceSKOS.
+era-sh:linesideDistanceIndicationAppearanceSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:linesideDistanceIndicationAppearance  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+   rdfs:comment "Indication of types of appearance of track lineside distance indications." ;
+	era:rinfIndex "1.1.1.0.0.3" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the linesideDistanceIndicationAppearance (1.1.1.0.0.3): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list:  http://data.europa.eu/949/concepts/lineside-distance-indication-appearance/LinesideDistanceIndicationAppearance."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+		$this era:hasPart ?track .
+        ?track era:linesideDistanceIndicationAppearance ?concept .
+        era:linesideDistanceIndicationAppearance era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+# linesideDistanceIndicationFrequency: # 1.1.1.0.0.3
+era-sh:SectionOfLineShape sh:property era-sh:linesideDistanceIndicationFrequency.
+era-sh:linesideDistanceIndicationFrequency
+	a sh:PropertyShape ; era:affectedProperty era:linesideDistanceIndicationFrequency  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Frequency of track lineside distance indications.." ;
+	era:rinfIndex "1.1.1.0.0.3" ;
+	sh:path (era:hasPart era:linesideDistanceIndicationFrequency );
+    sh:minCount 1 ;
+	sh:maxCount 1 ;
+	sh:datatype xsd:integer;
+	sh:severity sh:Violation ;
+	sh:message "linesideDistanceIndicationFrequency (1.1.1.0.0.3): The track must have at most one value of the lineside distance indication frequency. This error may be due to the track having no value, more than one value or to having a value that is not an integer."@en .
+
+# 1.1.1.2.4.1.2 phaseInfoChangesupplySystem
+era-sh:SectionsOfLineShape sh:property era-sh:phaseInfoChangesupplySystem.
+era-sh:phaseInfoChangesupplySystem
+	a sh:PropertyShape ; 
+    era:affectedProperty era:phaseInfoChangesupplySystem;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Part of the phase info of a track that corresponds to the single selection of Y=yes or N=no to show if the energy supply system changes" ;
+	era:rinfIndex "1.1.1.2.4.1.2" ;
+	sh:path (era:hasPart era:phaseInfoChangesupplySystem) ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "phaseInfoChangesupplySystem (1.1.1.2.4.1.2): The track may have a phase info change supply system value that is a boolean. This error may be due to the track having a value that is not a boolean."@en .
+			 
+
+
+
+# trackRaisedPantographsDistanceAndSpeed: # 1.1.1.2.3.3
+era-sh:SectionOfLineShape sh:property era-sh:trackRaisedPantographsDistanceAndSpeed.
+era-sh:trackRaisedPantographsDistanceAndSpeed
+	a sh:PropertyShape ; era:affectedProperty era:trackRaisedPantographsDistanceAndSpeed  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Relates the track with the class RaisedPantporaphsDistanceAndSpeed. Indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed." ;
+	era:rinfIndex "1.1.1.2.3.3" ;
+	sh:path (era:hasPart era:trackRaisedPantographsDistanceAndSpeed) ;
+    sh:class era:RaisedPantographsDistanceAndSpeed;
+	sh:severity sh:Violation ;
+	sh:message "trackRaisedPantographsDistanceAndSpeed (1.1.1.2.3.3): The track defines a raised pantographs distance and speed value that must be an instance of RaisedPantographsDistanceAndSpeed."@en .
+
+# trackPhaseInfo: # 1.1.1.2.4.1.2
+era-sh:SectionOfLineShape sh:property era-sh:trackPhaseInfo.
+era-sh:trackPhaseInfo
+	a sh:PropertyShape ; era:affectedProperty era:trackPhaseInfo  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Relates the Track with PhaseInfo. Indication of required several information on phase separation." ;
+	era:rinfIndex "1.1.1.2.4.1.2" ;
+	sh:path (era:hasPart era:trackPhaseInfo) ;
+    sh:class era:PhaseInfo;
+	sh:severity sh:Violation ;
+	sh:message "trackPhaseInfo (1.1.1.2.4.1.2): The track defines a track phase info value that must be an instance of PhaseInfo."@en .
+
+# trackSystemSeparationInfo: # 1.1.1.2.4.2.2
+era-sh:SectionOfLineShape sh:property era-sh:trackSystemSeparationInfo.
+era-sh:trackSystemSeparationInfo
+	a sh:PropertyShape ; era:affectedProperty era:trackSystemSeparationInfo  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Relates the Track with the SystemSeparationInfo. Indication of required several information on system separation." ;
+	era:rinfIndex "1.1.1.2.4.2.2" ;
+	sh:path (era:hasPart era:trackSystemSeparationInfo) ;
+    sh:class era:SystemSeparationInfo;
+	sh:severity sh:Violation ;
+	sh:message "trackSystemSeparationInfo (1.1.1.2.4.2.2): The track defines a system separation info value that must be an instance of SystemSeparationInfo."@en .
+
+
+#  1.1.1.1.2.4 trackLoadCapability
+era-sh:SectionOfLineShape sh:property era-sh:trackLoadCapability.
+era-sh:trackLoadCapability
+	a sh:PropertyShape ; era:affectedProperty era:trackLoadCapability  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Relates the track with the class LoadCapability. A combination of the line category and speed at the weakest point of the track." ;
+	era:rinfIndex "1.1.1.1.2.4" ;
+	sh:path (era:hasPart era:trackLoadCapability) ;
+    sh:class era:LoadCapability;
+	sh:severity sh:Violation ;
+	sh:message "trackLoadCapability (1.1.1.1.2.4): The track defines a load capability value that must be an instance of LoadCapability."@en .
+
+
+# 1.1.1.1.7.7	hotAxleBoxDetectorGeneration applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:hotAxleBoxDetectorGenerationApplicability .
+era-sh:hotAxleBoxDetectorGenerationApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:hotAxleBoxDetectorGeneration;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Specific for the French Italian and Swedish networks. Generation of trackside hot axle box detector. “Y” if the answer to parameter 1.1.1.1.7.5 is “N”" ;
+	era:rinfIndex "1.1.1.1.7.7" ;
+	sh:severity sh:Violation ;
+    sh:message "hotAxleBoxDetectorGeneration (1.1.1.1.7.7): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: “Y” if the answer to parameter 1.1.1.1.7.5 is “N”"@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:hotAxleBoxDetectorTSICompliant "0"^^xsd:boolean .				
+                FILTER NOT EXISTS {$this era:hotAxleBoxDetectorGeneration ?value} . 
+            }
+			""" .
+
+# 1.1.1.1.7.9	hotAxleBoxDetectorDirection applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:hotAxleBoxDetectorDirectionApplicability .
+era-sh:hotAxleBoxDetectorDirectionApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:hotAxleBoxDetectorDirection;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Specific for the French Italian and Swedish networks. If the direction of measurement is: - the same as the direction defined by the start and end of the SoL: (N); - the opposite to the direction defined by the start and end of the SoL: (O); - both directions: (B). “Y” if the answer to parameter 1.1.1.1.7.5 is “N”." ;
+	era:rinfIndex "1.1.1.1.7.9" ;
+	sh:severity sh:Violation ;
+    sh:message "hotAxleBoxDetectorDirection (1.1.1.1.7.9): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: “Y” if the answer to parameter 1.1.1.1.7.5 is “N”"@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:hotAxleBoxDetectorTSICompliant "0"^^xsd:boolean .				
+                FILTER NOT EXISTS {$this era:hotAxleBoxDetectorDirection ?value} . 
+            }
+			""" .
+
+# 1.1.1.1.7.6	hotAxleBoxDetectorIdentification applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:hotAxleBoxDetectorIdentificationApplicability .
+era-sh:hotAxleBoxDetectorIdentificationApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:hotAxleBoxDetectorIdentification;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Specific for the French Italian and Swedish networks. Applicable if trackside HABD is not TSI compliant, identification of trackside hot axle box detector.";
+	era:rinfIndex "1.1.1.1.7.6" ;
+	sh:severity sh:Violation ;
+    sh:message "hotAxleBoxDetectorIdentification (1.1.1.1.7.6): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: “Y” if the answer to parameter 1.1.1.1.7.5 is “N”"@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:hotAxleBoxDetectorTSICompliant "0"^^xsd:boolean .				
+                FILTER NOT EXISTS {$this era:hotAxleBoxDetectorIdentification ?value} . 
+            }
+			""" .
+
+# 1.1.1.1.7.8	hotAxleBoxDetectorLocation applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:hotAxleBoxDetectorLocationApplicability .
+era-sh:hotAxleBoxDetectorLocationApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:hotAxleBoxDetectorLocation;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Specific for the French Italian and Swedish networks. Applicable if trackside HABD is not TSI compliant, localisation of trackside hot axle box detector.";
+	era:rinfIndex "1.1.1.1.7.8" ;
+	sh:severity sh:Violation ;
+    sh:message "hotAxleBoxDetectorLocation (1.1.1.1.7.8): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: “Y” if the answer to parameter 1.1.1.1.7.5 is “N”"@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:hotAxleBoxDetectorTSICompliant "0"^^xsd:boolean .				
+                FILTER NOT EXISTS {$this era:hotAxleBoxDetectorLocation ?value} . 
+            }
+			""" .
+
+# 1.1.1.1.7.3	accelerationLevelCrossing applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:accelerationLevelCrossingApplicability .
+era-sh:accelerationLevelCrossingApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:accelerationLevelCrossing;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Existence of limit for acceleration of train if stopping or recovering speed close to a level crossing expressed in a specific reference acceleration curve.";
+	era:rinfIndex "1.1.1.1.7.3" ;
+	sh:severity sh:Violation ;
+    sh:message "accelerationLevelCrossing (1.1.1.1.7.3): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: Applicable only when selected value of parameter 1.1.1.1.7.2 is ‘Y’"@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                FILTER EXISTS {$this era:hasLevelCrossings ?value} .  			
+                FILTER NOT EXISTS {$this era:accelerationLevelCrossing ?value} . 
+            }
+			""" .
+
+# 1.1.1.2.4.1.2	trackPhaseInfo applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:trackPhaseInfoApplicability .
+era-sh:trackPhaseInfoApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:trackPhaseInfo;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Relates the Track with PhaseInfo. Indication of required several information on phase separation.";
+	era:rinfIndex "1.1.1.2.4.1.2" ;
+	sh:severity sh:Violation ;
+    sh:message "trackPhaseInfo (1.1.1.2.4.1.2): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: Applicable when in parameter 1.1.1.2.4.1.1 selected option is ‘Y’"@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:hasPhaseSeparation "1"^^xsd:boolean .			
+                FILTER NOT EXISTS {$this era:trackPhaseInfo ?value} . 
+            }
+			""" .
+
+# 1.1.1.2.4.2.2	trackSystemSeparationInfo applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:trackSystemSeparationInfoApplicability .
+era-sh:trackSystemSeparationInfoApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:trackSystemSeparationInfo;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Relates the Track with the SystemSeparationInfo. Indication of required several information on system separation.";
+	era:rinfIndex "1.1.1.2.4.2.2" ;
+	sh:severity sh:Violation ;
+    sh:message "trackSystemSeparationInfo (1.1.1.2.4.2.2): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: Applicable when in parameter 1.1.1.2.4.2.1 selected option is ‘Y’"@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:hasSystemSeparation "1"^^xsd:boolean .			
+                FILTER NOT EXISTS {$this era:trackSystemSeparationInfo ?value} . 
+            }
+			""" .
+   
+# 1.1.1.2.3.1	tsiPantographHead applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:tsiPantographHeadApplicability .
+era-sh:tsiPantographHeadApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:tsiPantographHead;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Indication of TSI compliant pantograph heads which are allowed to be used.";
+	era:rinfIndex "1.1.1.2.3.1" ;
+	sh:severity sh:Violation ;
+    sh:message "tsiPantographHead (1.1.1.2.3.1): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:contactLineSystem ?cls .
+                ?cls era:contactLineSystemType ?clsType .
+                FILTER (?clsType  != <http://data.europa.eu/949/concepts/contact-line-systems/10>) 	
+                FILTER EXISTS {$this era:tsiPantographHead ?value} . 
+            }
+			""" .
+
+
+# 1.1.1.2.3.3	trackRaisedPantographDistanceAndSpeed applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:trackRaisedPantographDistanceAndSpeedApplicability .
+era-sh:trackRaisedPantographDistanceAndSpeedApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:trackRaisedPantographDistanceAndSpeed;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Relates the track with the class RaisedPantographsDistanceAndSpeed. Indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed.";
+	era:rinfIndex "1.1.1.2.3.3" ;
+	sh:severity sh:Violation ;
+    sh:message "trackRaisedPantographDistanceAndSpeed (1.1.1.2.3.3): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:contactLineSystem ?cls .
+                ?cls era:contactLineSystemType ?clsType .
+                FILTER (?clsType  != <http://data.europa.eu/949/concepts/contact-line-systems/10>) .	
+                FILTER EXISTS {$this era:trackRaisedPantographDistanceAndSpeed ?value} . 
+            }
+			""" .
+
+# 1.1.1.2.4.1.1	hasPhaseSeparation applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:hasPhaseSeparationApplicability .
+era-sh:hasPhaseSeparationApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:hasPhaseSeparation;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Indication of existence of phase separation and required information.";
+	era:rinfIndex "1.1.1.2.4.1.1" ;
+	sh:severity sh:Violation ;
+    sh:message "hasPhaseSeparation (1.1.1.2.4.1.1): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:contactLineSystem ?cls .
+                ?cls era:contactLineSystemType ?clsType .
+                FILTER (?clsType  != <http://data.europa.eu/949/concepts/contact-line-systems/10>) .			
+                FILTER EXISTS {$this era:hasPhaseSeparation ?value} . 
+            }
+			""" .
+
+# 1.1.1.2.3.4	contactStripMaterial applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:contactStripMaterialApplicability .
+era-sh:contactStripMaterialApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:contactStripMaterial;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Indication of which contact strip materials are permitted to be used.";
+	era:rinfIndex "1.1.1.2.3.4" ;
+	sh:severity sh:Violation ;
+    sh:message "contactStripMaterial (1.1.1.2.3.4): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:contactLineSystem ?cls .
+                ?cls era:contactLineSystemType ?clsType .
+                FILTER (?clsType  != <http://data.europa.eu/949/concepts/contact-line-systems/10>) .			
+                FILTER EXISTS {$this era:contactStripMaterial ?value} . 
+            }
+			""" .
+
+# 1.1.1.2.3.2	otherPantographHead applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:otherPantographHeadApplicability .
+era-sh:otherPantographHeadApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:otherPantographHead;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Indication of pantograph heads which are allowed to be used.";
+	era:rinfIndex "1.1.1.2.3.2" ;
+	sh:severity sh:Violation ;
+    sh:message "otherPantographHead (1.1.1.2.3.2): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:contactLineSystem ?cls .
+                ?cls era:contactLineSystemType ?clsType .
+                FILTER (?clsType  != <http://data.europa.eu/949/concepts/contact-line-systems/10>) .			
+                FILTER EXISTS {$this era:otherPantographHead ?value} . 
+            }
+			""" .
+
+# 1.1.1.2.4.2.1	hasSystemSeparation applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:hasSystemSeparationApplicability .
+era-sh:hasSystemSeparationApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:hasSystemSeparation;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Indication of existence of system separation.";
+	era:rinfIndex "1.1.1.2.4.2.1" ;
+	sh:severity sh:Violation ;
+    sh:message "hasSystemSeparation (1.1.1.2.4.2.1): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:contactLineSystem ?cls .
+                ?cls era:contactLineSystemType ?clsType .
+                FILTER (?clsType  != <http://data.europa.eu/949/concepts/contact-line-systems/10>) .		
+                FILTER EXISTS {$this era:hasSystemSeparation ?value} . 
+            }
+			""" .
+
+# 1.1.1.2.5.2	permittedContactForce applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:permittedContactForceApplicability .
+era-sh:permittedContactForceApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:permittedContactForce;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Indication of contact force allowed expressed in newton.";
+	era:rinfIndex "1.1.1.2.5.2" ;
+	sh:severity sh:Violation ;
+    sh:message "permittedContactForce (1.1.1.2.5.2): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:contactLineSystem ?cls .
+                ?cls era:contactLineSystemType ?clsType .
+                FILTER (?clsType  != <http://data.europa.eu/949/concepts/contact-line-systems/10>) .		
+                FILTER EXISTS {$this era:permittedContactForce ?value} . 
+            }
+			""" .
+
+# 1.1.1.2.5.3	automaticDroppingDeviceRequired applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:automaticDroppingDeviceRequiredApplicability .
+era-sh:automaticDroppingDeviceRequiredApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:automaticDroppingDeviceRequired;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Indication of whether an automatic dropping device (ADD) required on the vehicle.";
+	era:rinfIndex "1.1.1.2.5.3" ;
+	sh:severity sh:Violation ;
+    sh:message "automaticDroppingDeviceRequired (1.1.1.2.5.3): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:contactLineSystem ?cls .
+                ?cls era:contactLineSystemType ?clsType .
+                FILTER (?clsType  != <http://data.europa.eu/949/concepts/contact-line-systems/10>) .			
+                FILTER EXISTS {$this era:automaticDroppingDeviceRequired ?value} . 
+            }
+			""" .
+
+# 1.1.1.2.5.1	currentLimitationRequired applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:currentLimitationRequiredApplicability .
+era-sh:currentLimitationRequiredApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:currentLimitationRequired;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Indication of whether an on board current or power limitation function on vehicles is required.";
+	era:rinfIndex "1.1.1.2.5.1" ;
+	sh:severity sh:Violation ;
+    sh:message "currentLimitationRequired (1.1.1.2.5.1): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: When 'not electrified' is chosen in parameter 1.1.1.2.2.1.1, then this parameter is not applicable selection ‘N’."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:contactLineSystem ?cls .
+                ?cls era:contactLineSystemType ?clsType .
+                FILTER (?clsType  = <http://data.europa.eu/949/concepts/contact-line-systems/40>) .			
+                FILTER EXISTS {$this era:currentLimitationRequired ?value} . 
+            }
+			""" .
+
+# 1.1.1.1.4.4	hasBallast aaplicability
+era-sh:SectionOfLineShape sh:sparql era-sh:hasBallastApplicability .
+era-sh:hasBallastApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:hasBallast;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Specifies whether track construction is with sleepers embedded in ballast or not.";
+	era:rinfIndex "1.1.1.1.4.4" ;
+	sh:severity sh:Violation ;
+    sh:message "hasBallast (1.1.1.1.4.4): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: Y for tracks with permitted speed (parameter 1.1.1.1.2.5) greater than 250km/h."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:maximumPermittedSpeed ?mps .
+                FILTER (?mps > 250) .			
+                FILTER NOT EXISTS {$this era:hasBallast ?value} . 
+            }
+			""" .
+
+# 1.1.1.1.6.5	magneticBrakingConditionsDocument applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:magneticBrakingConditionsDocumentApplicability .
+era-sh:magneticBrakingConditionsDocumentApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:magneticBrakingConditionsDocument;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency with conditions for the use of magnetic brakes identified in 1.1.1.1.6.3.";
+	era:rinfIndex "1.1.1.1.6.5" ;
+	sh:severity sh:Violation ;
+    sh:message "magneticBrakingConditionsDocument (1.1.1.1.6.5): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: Y if the answer to 1.1.1.1.6.3 / Use of magnetic brakes is “allowed under conditions” or “allowed under conditions only for emergency brake”."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:magneticBraking ?mb .
+                FILTER (?mb = <http://data.europa.eu/949/concepts/magnetic-braking/20> || ?mb = <http://data.europa.eu/949/concepts/magnetic-braking/30> ) .		
+                FILTER NOT EXISTS {$this era:magneticBrakingConditionsDocument ?value} . 
+            }
+			""" .
+
+# 1.1.1.1.2.1.2	tenGISId applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:tenGISIdApplicability .
+era-sh:tenGISIdApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:tenGISId;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Indication of the GIS identity (GIS ID) of the section of TEN-T database to which the track belongs.";
+	era:rinfIndex "1.1.1.1.2.1.2" ;
+	sh:severity sh:Violation ;
+    sh:message "tenGISId (1.1.1.1.2.1.2): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: Y if the answer to parameter 1.1.1.1.2.1 is not off TEN."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:tenClassification ?tc .
+                FILTER (?tc != <http://data.europa.eu/949/concepts/ten-classifications/40>) .		
+                FILTER NOT EXISTS {$this era:tenGISId ?value} . 
+            }
+			""" .
+
+# 1.1.1.3.11.3	additionalBrakingInformationDocument applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:additionalBrakingInformationDocumentApplicability .
+era-sh:additionalBrakingInformationDocumentApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:additionalBrakingInformationDocument;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency providing additional information as defined in point (2) of point 4.2.2.6.2 of TSI OPE.";
+	era:rinfIndex "1.1.1.3.11.3" ;
+	sh:severity sh:Violation ;
+    sh:message "additionalBrakingInformationDocument (1.1.1.3.11.3): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: Y in case of Y for 1.1.1.3.11.2."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:hasAdditionalBrakingInformation "1"^^xsd:boolean .		
+                FILTER NOT EXISTS {$this era:additionalBrakingInformationDocument ?value} . 
+            }
+			""" .
+
+# 1.1.1.1.6.4	eddyCurrentBrakingConditionsDocument applicability
+era-sh:SectionOfLineShape sh:sparql era-sh:eddyCurrentBrakingConditionsDocumentApplicability .
+era-sh:eddyCurrentBrakingConditionsDocumentApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:eddyCurrentBrakingConditionsDocument;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency with conditions for the use of eddy current brakes identified in 1.1.1.1.6.2.";
+	era:rinfIndex "1.1.1.1.6.4" ;
+	sh:severity sh:Violation ;
+    sh:message "eddyCurrentBrakingConditionsDocument (1.1.1.1.6.4): This error is due to the track {?trackLabel} of the section of line with label {?thisLabel}, violating the rule: Y in case of Y for 1.1.1.1.6.2 Use of eddy current brakes is “allowed under conditions” or “allowed under conditions only for emergency brake””."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this rdfs:label ?thisLabel .
+                $this era:hasPart ?track .
+                ?track rdfs:label ?trackLabel .
+                ?track era:eddyCurrentBraking ?ecb .
+                FILTER (?ecb = <http://data.europa.eu/949/concepts/magnetic-braking/20> || ?ecb = <http://data.europa.eu/949/concepts/magnetic-braking/40> ) .		
+                FILTER NOT EXISTS {$this era:eddyCurrentBrakingConditionsDocument ?value} . 
+            }
+			""" .
+
+#   1.1.1.1.2.4 trackLoadCapability
+era-sh:SectionOfLineShape sh:sparql era-sh:trackLoadCapabilityProps .
+era-sh:trackLoadCapabilityProps
+	a sh:SPARQLConstraint ;;
+    era:affectedClass era:RunningTrack;
+    era:affectedProperty era:trackLoadCapability ;
+    era:affectedProperty era:loadCapabilitySpeed ;
+    era:affectedProperty era:loadCapabilityLineCategory ;
+    era:scope "local";
+	rdfs:comment "Relates the track with the class LoadCapability. A combination of the line category and speed at the weakest point of the track." ;
+	era:rinfIndex "1.1.1.3.7.1.4" , "1.2.1.1.6.3" ;
+	sh:severity sh:Violation ;
+	sh:message "trackLoadCapability (1.1.1.1.2.4): The track {?trackLabel} of section of line {?thisLabel}  has a load capability reference {?tlc} that must have both a speed value and a line category value. This error may be due to not having all parts of the data presentation."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT DISTINCT $thisLabel ?trackLabel ?tlc
+			WHERE {
+                $this era:hasPart ?track .
+                ?track era:trackLoadCapability ?tlc .
+                $this rdfs:label ?thisLabel .
+                ?track rdfs:label ?trackLabel .
+                {FILTER NOT EXISTS {?tlc era:loadCapabilitySpeed ?value1}} UNION
+                {FILTER NOT EXISTS {?tlc era:loadCapabilityLineCategory ?value2}}
+            
+  }
+			""" .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			 
+			 
+
+
+
+
+
