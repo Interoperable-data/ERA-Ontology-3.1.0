@@ -8,7 +8,7 @@ The previous version of the ERA ontology is [here](https://data-interop.era.euro
 
 ## Documentation
 
-[Current documentation](https://linkedvocabs.org/data/era-ontology/3.1.0/doc/index-en.html)
+[Current documentation](https://linkedvocabs.org/data/era-ontology/3.1.0/dev/index-en.html)
 
 ## Legal context
 

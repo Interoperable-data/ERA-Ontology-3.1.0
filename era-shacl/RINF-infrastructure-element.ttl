@@ -1,0 +1,193 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+
+###################################
+# Rules for infrastructure elements
+###################################
+
+era-sh:commonCharacteristicsSubsetShape
+	a sh:NodeShape ;
+	sh:targetClass era:CommonCharacteristicsSubset .  
+
+
+era-sh:InfrastructureElementShape
+	a sh:NodeShape ;
+	sh:targetClass era:InfrastructureElement .  
+
+
+# organisationCode: # 1.2.1.0.6.1, 1.1.0.0.0.1, 1.1.1.1.8.1, 1.2.1.0.0.1, 1.2.1.0.5.1, 1.2.2.0.0.1, 1.2.2.0.5.1 Check that the organisationRole instance points to the skos value for infrastructure manager.
+era-sh:infrastructureElementShape sh:sparql era-sh:infrastructureManagerSKOSValue .
+era-sh:infrastructureManagerSKOSValue
+	a sh:SPARQLConstraint;
+    era:affectedProperty era:hasOrganisationRole;
+    era:affectedProperty era:infrastructureManager;
+    era:affectedProperty era:belongsTo;
+    era:affectedClass era:InfrastructureElement;
+    era:affectedClass era:CommonCharacteristicsSubset;
+    era:affectedClass era:OrganisationRole;
+    era:scope "local";   
+	rdfs:comment "Each infrastructure element can only be submitted by one infrastructure manager, represented by a four-digit code." ;
+	era:rinfIndex "1.2.1.0.6.1" ;
+    era:rinfIndex "1.1.0.0.0.1" ;
+    era:rinfIndex "1.1.1.1.8.1" ;
+    era:rinfIndex "1.2.1.0.0.1" ;
+    era:rinfIndex "1.2.1.0.5.1" ;
+    era:rinfIndex "1.2.2.0.0.1" ;
+    era:rinfIndex "1.2.2.0.5.1" ;
+    sh:message "imCode (1.2.1.0.6.1): Each infrastructure element {$this} with label {?label} refers to a network (subset with common characteristics), that in turn refers to an instance of an OrganisationRole. This instance must have an era:organisationRole pointing to the value era-organisation-roles:IM in the orgRoles SKOS concept scheme. The error is due to a {?value} different from <http://data.europa.eu/949/concepts/organisation-roles/IM>"@en ;
+    sh:prefixes era:;
+    sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this ?label ?value
+			WHERE {
+                $this a era:InfrastructureElement .
+                $this era:belongsTo ?subset .
+                ?subset era:infrastructureManager ?orgRole .
+                ?orgRole era:hasOrganisationRole ?value .
+                OPTIONAL{$this rdfs:label ?label} .
+                FILTER(?value != <http://data.europa.eu/949/concepts/organisation-roles/IM>) . 
+				
+			}
+			""" .
+
+# inCountry 
+era-sh:infrastructureElementShape sh:property era-sh:inCountry .
+era-sh:inCountry
+	a sh:PropertyShape;
+    era:affectedProperty era:inCountry;
+    era:affectedClass era:InfrastructureElement;
+    era:scope "local";
+	rdfs:comment "Indicates the country to which the infrastructure element belongs" ; 
+	sh:path era:inCountry ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI;
+	sh:severity sh:Violation ;
+	sh:message "inCountry:  Each infrastructure element must have exactly one country. This error may be due to having an infrast without or with more than one country or it value is not a Concept."@en .
+
+# inCountry
+era-sh:infrastructureElementShape sh:sparql era-sh:inCountrySKOS .
+era-sh:inCountrySKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:inCountry;
+    era:affectedClass era:InfrastructureElement;
+    era:scope "local";
+	rdfs:comment "Indicates the country to which the infrastructure element belongs" ; 
+	sh:severity sh:Violation ;
+	sh:message "The infrastructure element {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://publications.europa.eu/resource/authority/country."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    SELECT $this ?concept
+    WHERE {
+ 		$this era:inCountry ?concept .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme <http://publications.europa.eu/resource/authority/country> .
+		}
+	}
+""" .
+
+# parameterApplicability
+era-sh:InfrastructureElementShape sh:property era-sh:parameterApplicability .
+era-sh:parameterApplicability
+	a sh:PropertyShape;
+    era:affectedClass era:InfrastructureElement;
+    era:affectedClass era:ParameterApplicability;
+    era:affectedProperty era:parameterApplicability ;
+    era:scope "local";
+	rdfs:comment "Applicability interval that defines the date interval in which a characteristic of an infrastructure element is applicable. This interval can be applied for any of the technical characteristics or general information of infrastructure elements. This helps identifying planned changes applied to technical parameters over time." ;
+	sh:path era:parameterApplicability ;
+	sh:class era:ParameterApplicability;
+	sh:severity sh:Violation ;
+	sh:message "parameterApplicability: The infratructure element may have a parameterApplicability reference that must be an instance of ParameterApplicability. This error is due to having having a value that is not an instance of ParameterApplicability."@en .
+
+# subsidiaryLocation
+era-sh:InfrastructureElementShape sh:property era-sh:subsidiaryLocation .
+era-sh:subsidiaryLocation
+	a sh:PropertyShape;
+    era:affectedClass era:InfrastructureElement;
+    era:affectedClass era:SubsidiaryLocation;
+    era:affectedProperty era:subsidiaryLocation ;
+    era:scope "local";
+	rdfs:comment "Subsidiary location must be linked to a Primary Location and specifies in more detailed way part, attributes, or usage of Primary location. It may be also a non-rail point or a rail point that is not managed by an Infrastructure Manager (IM). It may be defined by entity having company code according to their needs. The Subsidiary location is optional and dependent upon business needs." ;
+	sh:path era:subsidiaryLocation ;
+	sh:class era:SubsidiaryLocation;
+	sh:severity sh:Violation ;
+	sh:message "subsidiaryLocation: The infratructure element may have a subsidiaryLocation reference that must be an instance of SubsidiaryLocation. This error is due to having having a value that is not an instance of SubsidiaryLocation."@en .
+
+# belongsTo, organisationCode, infrastructureElement
+era-sh:InfrastructureElementShape sh:sparql era-sh:belongsToUniqueIM .
+era-sh:belongsToUniqueIM
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:belongsTo;
+    era:affectedProperty era:organisationCode;
+    era:affectedProperty era:infrastructureElement;
+    era:affectedClass era:InfrastructureElement;
+    era:affectedClass era:CommonCharacteristicsSubset;
+    era:affectedClass era:OrganisationRole;
+    era:scope "local";
+	rdfs:comment "Each infrastructure element may belong to several common characteristics subsets, and each of them must point to the same infrastructure manager (same organisationCode in the class organisationRole)." ;
+	sh:severity sh:Violation ;
+	sh:message "belongsTo, organisationCode, infrastructureElement: This error is due to {$this} belonging to several common characteristics subsets, {?subset1Label}, {?subset2Label} that do not point to the same infrastructure manager (different organisationCodes), {?orgCode1}, {?orgCode2}."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+     SELECT $this ?subset1Label ?subset2Label ?orgCode1 ?orgCode2
+			WHERE {
+                $this era:belongsTo ?subset1 .
+                $this era:belongsTo ?subset2 .
+                ?subset1 era:infrastructureManager ?orgRole1.
+                ?subset2 era:infrastructureManager ?orgRole2.
+                ?orgRole1 era:organisationCode ?orgCode1.
+                ?orgRole1 era:organisationCode ?orgCode2.
+                FILTER(?orgCode1 != ?orgCode2) . 
+				OPTIONAL{?subset1 rdfs:label ?subset1Label} .
+				OPTIONAL{?subset2 rdfs:label ?subset2Label} .
+			}
+			""" .
+
+# belongsTo
+era-sh:InfrastructureElementShape sh:property era-sh:belongsTo .
+era-sh:belongsTo
+	a sh:PropertyShape;
+    era:affectedClass era:InfrastructureElement;
+    era:affectedProperty era:parameterApplicability ;
+    era:scope "local";
+	rdfs:comment "Relationship between an infratructure element and a common characteristics subset." ;
+	sh:path era:belongsTo ;
+	sh:class era:CommonCharacteristicsSubset;
+    sh:minCount 1;
+	sh:severity sh:Violation ;
+	sh:message "belongsTo: The infratructure element must belong to at least one common characteristics subset, a reference that must be an instance of CommonCharacteristicsSubset. This error is due to not having a value of belongsTo, or having a value that is not an instance of CommonCharacteristicsSubset."@en .
+
+# contains - inverse of belongsTo
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:contains .
+era-sh:contains
+	a sh:PropertyShape;
+    era:affectedClass era:CommonCharacteristicsSubset;
+    era:affectedClass era:InfrastructureElement;
+    era:affectedProperty era:contains ;
+    era:scope "local";
+	rdfs:comment "Relationship between an a common characteristics subset and an infrastructure element (inverse of belongsTo)." ;
+	sh:path era:contains ;
+	sh:class era:InfrastructureElement;
+    sh:minCount 1;
+	sh:severity sh:Violation ;
+	sh:message "contains: The subset with common characteristics must contain at least one infrastructure element, a reference that must be an instance of InfrastructureElement. This error is due to not having a value of contains, or having a value that is not an instance of InfrastructureElement."@en .
+
+
+
+
+
+

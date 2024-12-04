@@ -1,0 +1,99 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+
+era-sh:OrganisationRoleShape
+	a sh:NodeShape ;
+	sh:targetClass era:OrganisationRole.
+
+
+
+# organisationCode "1.2.1.0.6.1, 1.1.0.0.0.1, 1.1.1.1.8.1, 1.2.1.0.0.1, 1.2.1.0.5.1, 1.2.2.0.0.1, 1.2.2.0.5.1"
+era-sh:OrganisationRoleShape sh:property era-sh:organisationCode .
+era-sh:organisationCode
+	a sh:PropertyShape;
+    era:affectedClass era:OrganisationRole;
+    era:affectedProperty era:organisationCode ;
+    era:scope "local";
+	rdfs:comment "Four alpha-numeric code allocated by ERA to a body. It represent's the Infrastructure Manager (IM) code in RINF. Infrastructure manager means any body or firm responsible in particular for establishing, managing and maintaining railway infrastructure, including traffic management and control-command and signalling; the functions of the infrastructure manager on a network or part of a network may be allocated to different bodies or firms. Definition in (Article 3(2))."@en ;
+    era:rinfIndex "1.2.1.0.6.1";
+    era:rinfIndex "1.1.0.0.0.1";
+    era:rinfIndex "1.1.1.1.8.1";
+    era:rinfIndex "1.2.1.0.0.1";
+    era:rinfIndex "1.2.1.0.5.1";
+    era:rinfIndex "1.2.2.0.0.1";
+    era:rinfIndex "1.2.2.0.5.1";
+	sh:path era:organisationCode ;
+    sh:datatype xsd:string ;
+    sh:minCount 1; 
+    sh:maxCount 1 ;
+    sh:minLength 4 ;
+    sh:maxLength 4 ;
+	sh:severity sh:Violation ;
+	sh:message "organisationCode (1.2.1.0.6.1, 1.1.0.0.0.1, 1.1.1.1.8.1, 1.2.1.0.0.1, 1.2.1.0.5.1, 1.2.2.0.0.1, 1.2.2.0.5.1): An OrganisationRole must have exactly one value of organisationCode. This error may be due to not having a value, having more than one value, having a value that is not a string or having a value that is not a four character code"@en .
+
+# roleOf
+era-sh:OrganisationRoleShape sh:property era-sh:roleOf .
+era-sh:roleOf
+	a sh:PropertyShape;
+    era:affectedClass era:OrganisationRole;
+    era:affectedProperty era:roleOf ;
+    era:scope "local";
+	rdfs:comment "Role of."@en ;
+	sh:path era:roleOf ;
+    sh:class era:Body;
+    sh:minCount 1;
+    sh:maxCount 1;
+	sh:severity sh:Violation ;
+	sh:message "roleOf: Each instance of Organization Role points thorugh roleOf to exactly one instance of Body. This error mae be due to having no value, or having more than one value."@en .
+
+# hasOrganisationRole
+era-sh:OrganisationRoleShape sh:property era-sh:hasOrganisationRole .
+era-sh:hasOrganisationRole
+	a sh:PropertyShape;
+    era:affectedClass era:OrganisationRole;
+    era:affectedProperty era:hasOrganisationRole ;
+    era:scope "local";
+	rdfs:comment "The role played in an n-ary relationship between a Body and a specific concept in the concept scheme of organisation roles."@en ;
+	sh:path era:hasOrganisationRole ;
+    sh:minCount 1;
+    sh:maxCount 1;
+	sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "hasOrganisationRole: The organisation role must be represented as an IRI. This error may be due to not having a value, having more than one value, or having a value that is not an IRI."@en .
+
+
+# hasOrganisationRole
+era-sh:OrganisationRoleShape sh:sparql era-sh:hasOrganisationRoleSKOS.
+era-sh:hasOrganisationRoleSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:hasOrganisationRole;
+    era:affectedClass  era:OrganisationRole;
+    era:scope "local";
+    rdfs:comment "The role played in an n-ary relationship between a Body and a specific concept in the concept scheme of organisation roles." ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the hasOrganisationRole: The OrganisationRole {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/organisation-roles/."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+        $this era:hasOrganisationRole ?concept .
+        era:hasOrganisationRole era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+

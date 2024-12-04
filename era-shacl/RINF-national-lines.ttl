@@ -1,0 +1,38 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-linecat: <http://data.europa.eu/949/concepts/line-category/> .
+@prefix era-fc: <http://data.europa.eu/949/concepts/freight-corridor/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+#############################
+# Rules for national-lines
+#############################
+
+#
+# national-lines
+#
+era-sh:nationallinesShape
+	a sh:NodeShape ;
+	sh:targetClass era:NationalRailwayLine .
+
+# nationalLineId
+era-sh:nationallinesShape sh:property era-sh:nationalLineId .
+era-sh:nationalLineId
+	a sh:PropertyShape ;
+    era:affectedProperty era:nationalLineId;
+    era:affectedClass era:NationalRailwayLine;
+    era:scope "local";
+	rdfs:comment "Unique line identification or unique line number within Member State" ; 
+	# era:rinfIndex "" ; # Not available
+	sh:path era:nationalLineId ;
+	sh:datatype xsd:string ;
+    sh:minCount 1;
+    sh:maxCount  1;
+	sh:severity sh:Violation ;
+	sh:message "nationalLineId: The national railway line defines a national line identification. This error is due to having no value for national line identification,  more than one value, or having a value that is not a text (string)."@en . 
+
