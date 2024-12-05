@@ -861,8 +861,8 @@ era:atoCommunicationSystem rdf:type owl:ObjectProperty ;
                                          "1.2.1.1.10.3" ;
                            era:tsiOPEAppendixD2Index "3.4.9" ;
                            dcterms:created "2023-03-14"^^xsd:date ;
-                           dcterms:description "ATO system communication system to the specification referenced in TSI CCS (4.2.4 & 4.2.19)."@en ;
-                           dcterms:modified "2024-04-18"^^xsd:date ;
+                           dcterms:description "ATO system communication system to the specification referenced in Appendix A-1, index [C]."@en ;
+                           dcterms:modified "2024-04-18"^^xsd:date , "2024-12-05"^^xsd:date ;
                            dcterms:relation era:atoGradeAutomation ,
                                             era:etcsBaseline ;
                            dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -929,11 +929,11 @@ era:atoSystemVersion rdf:type owl:ObjectProperty ;
                      dcterms:relation era:atoGradeAutomation ,
                                       era:etcsBaseline ;
                      dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                     rdfs:comment "ATO system version according to the specification referenced in TSI CCS (4.2.4 & 4.2.19) or Appendix A-1, index [C]"@en ;
+                     rdfs:comment "ATO system version according to the specification referenced in Appendix A-1, index [C]"@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "ATO System version"@en ;
                      vs:term_status "stable" ;
-                     skos:scopeNote "Parameter only applicable when ETCS Baseline > 4 MR1 and ATO is implemented"@en .
+                     skos:scopeNote "See: TSI CCS (4.2.4 & 4.2.19). Parameter only applicable when ETCS Baseline > 4 MR1 and ATO is implemented"@en .
 
 
 ###  http://data.europa.eu/949/authorizedCountry
@@ -4083,7 +4083,7 @@ era:qNvemrrls rdf:type owl:ObjectProperty ;
                             "1.2.1.1.1.16.2" ;
               era:tsiOPEAppendixD3Index "1.5.2" ;
               dcterms:created "2023-03-14"^^xsd:date ;
-              dcterms:description "According to the specification referenced in TSI CCS (Subset-026, chapter 7, 7.5.1.123 Q_NVEMRRLS)"@en ;
+              dcterms:description "According to the specification referenced in Appendix A-1, index [C]"@en ;
               dcterms:modified "2024-04-18"^^xsd:date ;
               dcterms:relation era:etcsLevelType ;
               dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -4165,9 +4165,8 @@ era:reasonsEtcsRadioBlockCenterReject rdf:type owl:ObjectProperty ;
                                                        "2024-09-19"^^xsd:date ;
                                       dcterms:relation era:etcsLevelType ;
                                       dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                                      rdfs:comment """List of cases subject to system design choices made by the infrastructure manager according to the specification referenced in TSI CCS. 
-
-See: Subset 26, Chapter 5 5.4 Procedure start of mission."""@en ;
+                                      rdfs:comment "List of cases subject to system design choices made by the infrastructure manager according to the specification referenced in Appendix A-1, index [C]."@en ; 
+                                      dcterms:description "See: Subset 26, Chapter 5 5.4 Procedure start of mission."@en ;
                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                       rdfs:label "Reasons for which an ETCS Radio Block Center can reject a train"@en ;
                                       vs:term_status "stable" ;
@@ -6241,34 +6240,41 @@ era:dNvovtrp rdf:type owl:DatatypeProperty ;
                                          era:RunningTrack
                                        )
                          ] ;
-             rdfs:range xsd:double ;
+             rdfs:range [ rdf:type rdfs:Datatype ;
+                          owl:onDatatype xsd:decimal ;
+                          owl:withRestrictions ( [ xsd:minInclusive "0.0"^^xsd:decimal
+                                                 ]
+                                                 [ xsd:maxInclusive "327670.0"^^xsd:decimal
+                                                 ]
+                                                )
+                         ] ;
              era:XMLName "CPE_DNVOVTRP" ;
              era:applicable "Y/N/NYA" ;
-             era:formatNote "NNNNNN.N with N a decimal number (0÷9)" ;
+             era:formatNote "NNNNNNN.N whereby the last digit is only used when Q_SCALE = 10 CM" ;
              era:legalDeadline "12 months after publication of Article 7 Guide"@en ;
              era:rinfIndex "1.1.1.3.2.16.5" ,
                            "1.2.1.1.1.16.5" ;
              era:tsiOPEAppendixD3Index "1.5.5" ;
              era:unitOfMeasure unit:M ;
              dcterms:created "2022-11-07"^^xsd:date ;
-             dcterms:description """Precision: [NNNNNN.N] with N a decimal number (0÷9) 
+             dcterms:description """Precision: the value must be expressed in meter. 
+             
+Depending on the chosen Q_SCALE, the maximal value will be: +327670 M, +32767 M or +3276.7 M.
 
-In Subset 26, chapter 7. 7.5.1.15 D_NVOVTRP."""@en ;
+As in TSI CCS Subset 26, chapter 7. 7.5.1.15 D_NVOVTRP."""@en ;
              dcterms:modified "2024-01-08"^^xsd:date ,
-                              "2024-04-18"^^xsd:date ;
+                              "2024-04-18"^^xsd:date ,
+                              "2024-12-05"^^xsd:date;
              dcterms:relation era:etcsLevelType ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                             <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-             rdfs:comment """Maximum distance for overriding the train trip in metres,
-according to the specification referenced in Appendix A-1, index [C]"""@en ;
+             rdfs:comment """Maximum distance for overriding the train trip in metres, according to the specification referenced in Appendix A-1, index [C]."""@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "D_NVOVTRP"@en ;
              rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
              vs:term_status "stable" ;
              skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ,
-                            """Precision: [NNNNNN.N] with N a decimal number (0÷9) 
-
-In Subset 26, chapter 7. 7.5.1.15 D_NVOVTRP."""@en .
+                            """Precision: [NNNNNN.N] with N a decimal number (0÷9). See TSI CCS Subset 26, chapter 7. 7.5.1.15 D_NVOVTRP."""@en .
 
 
 ###  http://data.europa.eu/949/dNvpotrp
@@ -6280,27 +6286,35 @@ era:dNvpotrp rdf:type owl:DatatypeProperty ;
                                          era:RunningTrack
                                        )
                          ] ;
-             rdfs:range xsd:double ;
+             rdfs:range [ rdf:type rdfs:Datatype ;
+                          owl:onDatatype xsd:decimal ;
+                          owl:withRestrictions ( [ xsd:minInclusive "0.0"^^xsd:decimal
+                                                 ]
+                                                 [ xsd:maxInclusive "327670.0"^^xsd:decimal
+                                                 ]
+                                                )
+                         ] ;
              era:XMLName "CPE_DNVPOTRP" ;
              era:applicable "Y/N/NYA" ;
-             era:formatNote "NNNNNN.N" ;
+             era:formatNote "NNNNNNN.N whereby the last digit is only used when Q_SCALE = 10 CM" ;
              era:legalDeadline "12 months after publication of Article 7 Guide"@en ;
              era:rinfIndex "1.1.1.3.2.16.7" ,
                            "1.2.1.1.1.16.7" ;
              era:tsiOPEAppendixD3Index "1.5.7" ;
              era:unitOfMeasure unit:M ;
              dcterms:created "2022-11-07"^^xsd:date ;
-             dcterms:description """Precision: [NNNNNN.N], with N a decimal number (0÷9)
+             dcterms:description """Precision: the value must be expressed in meter. 
+             
+Depending on the chosen Q_SCALE, the maximal value will be: +327670 M, +32767 M or +3276.7 M.
 
 See: TSI CCS (Subset 26, chapter 7. 7.5.1.16 D_NVPOTRP)"""@en ;
              dcterms:modified "2023-03-14"^^xsd:date ,
-                              "2024-04-18"^^xsd:date ;
+                              "2024-04-18"^^xsd:date ,
+                              "2024-12-05"^^xsd:date;
              dcterms:relation era:etcsLevelType ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                             <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-             rdfs:comment "Maximum distance for reversing in Post Trip mode in metres."@en ,
-                          """Maximum distance for reversing in Post Trip mode in metres.
-According to the specification referenced in Appendix A-1, index [C]"""@en ;
+             rdfs:comment """Maximum distance for reversing in Post Trip mode in metres, according to the specification referenced in Appendix A-1, index [C]."""@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "D_NVPOTRP "@en ;
              rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
@@ -6320,21 +6334,33 @@ era:dNvroll rdf:type owl:DatatypeProperty ;
                                         era:RunningTrack
                                       )
                         ] ;
-            rdfs:range xsd:double ;
+            rdfs:range [ rdf:type rdfs:Datatype ;
+                         owl:onDatatype xsd:decimal ;
+                         owl:withRestrictions ( [ xsd:minInclusive "0.0"^^xsd:decimal
+                                                ]
+                                                [ xsd:maxInclusive "327660"^^xsd:decimal
+                                                ]
+                                               )
+                        ] , 
+                        [ rdf:type rdfs:Datatype ;
+                          owl:onDatatype xsd:float ;
+                          owl:withRestriction [ xsd:minInclusive "INF"^^xsd:float ] 
+                        ];
             era:XMLName "CPE_DNVROLL" ;
             era:applicable "Y/N/NYA" ;
-            era:formatNote "NNNNNN.N" ;
+            era:formatNote "NNNNNN.N | INF" ;
             era:legalDeadline "12 months after publication of Article 7 Guide"@en ;
             era:rinfIndex "1.1.1.3.2.16.1" ,
                           "1.2.1.1.1.16.1" ;
             era:tsiOPEAppendixD3Index "1.5.1" ;
             era:unitOfMeasure unit:M ;
             dcterms:created "2022-11-07"^^xsd:date ;
-            dcterms:description """Precision: [NNNNNN.N], with N a decimal number (0÷9).
+            dcterms:description """Precision: [NNNNNN.N], with N a decimal number (0÷9) or INF if the value is infinite. 
 
 See: TSI CCS (Subset 26, chapter 7. 7.5.1.17 D_NVROLL)"""@en ;
             dcterms:modified "2023-03-14"^^xsd:date ,
-                             "2024-04-18"^^xsd:date ;
+                             "2024-04-18"^^xsd:date ,
+                             "2024-12-05"^^xsd:date;
             dcterms:relation era:etcsLevelType ;
             dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                            <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -8324,10 +8350,10 @@ era:idPhoneErtmsRadioBlockCenter rdf:type owl:DatatypeProperty ;
                                  dcterms:created "2023-03-14"^^xsd:date ;
                                  dcterms:isReplacedBy era:rbcID ,
                                                       era:rbcPhone ;
-                                 dcterms:modified "2024-04-18"^^xsd:date ;
+                                 dcterms:modified "2024-04-18"^^xsd:date , "2024-12-05"^^xsd:date ;
                                  dcterms:relation era:etcsLevelType ;
                                  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                                 rdfs:comment "Unique RBC identification (NID_C+NID_RBC) and calling number (NID_RADIO) as defined in the specification referenced in TSI CCS."@en ;
+                                 rdfs:comment "Unique RBC identification (NID_C+NID_RBC) and calling number (NID_RADIO) as defined in the specification referenced in Appendix A-1, index [C]."@en ;
                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                  rdfs:label "ID  and phone number of ERTMS/ETCS Radio Block Center"@en ;
                                  owl:deprecated "true"^^xsd:boolean ;
@@ -9955,11 +9981,13 @@ era:nationalValuesBrakeModel rdf:type owl:DatatypeProperty ;
                              dcterms:created "2023-03-14"^^xsd:date ;
                              dcterms:description "Non-harmonisable character string: [Contents of P3/P203]"@en ;
                              dcterms:modified "2024-01-08"^^xsd:date ,
-                                              "2024-04-18"^^xsd:date ;
+                                              "2024-04-18"^^xsd:date , 
+                                              "2024-12-05"^^xsd:date;
                              dcterms:relation era:etcsLevelType ;
                              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                              rdfs:comment """Set of parameters for adapting the braking curves calculated by the ETCS on-board system to match accuracy, performance and safety margins imposed by the infrastructure manager.
-It copies the content of Packet 3 or of Packet 203 as defined in the specification referenced in TSI CCS (Annex I, Appendix A, Table A.2 -Subset-026)."""@en ;
+It copies the content of Packet 3 or of Packet 203 as defined in the specification referenced in Appendix A-1, index [C]."""@en ;
+                             dcterms:description "(TSI CCS, Annex I, Appendix A, Table A.2 - Subset-026)" ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "National Values used for the brake model"@en ;
                              vs:term_status "stable" ;
@@ -10685,12 +10713,11 @@ era:radioNetworkId rdf:type owl:DatatypeProperty ;
                    dcterms:created "2023-03-14"^^xsd:date ;
                    dcterms:description "Format: [NNNNNN] with N a decimal number (0÷9)."@en ;
                    dcterms:modified "2024-04-18"^^xsd:date ,
-                                    "2024-09-19"^^xsd:date ;
+                                    "2024-09-19"^^xsd:date , "2024-12-05"^^xsd:date ;
                    dcterms:relation era:etcsLevelType ,
                                     era:gprsForETCS ;
                    dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                   rdfs:comment "Unique identification of the GSM-R network the calling mobile station has to register with, as defined in the specification referenced in Appendix A-1, index [C]"@en ,
-                                "Unique identification of the GSM-R network the calling mobile station has to register with, as defined in the specification referenced in TSI CCS."@en ;
+                   rdfs:comment "Unique identification of the GSM-R network the calling mobile station has to register with, as defined in the specification referenced in Appendix A-1, index [C]"@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                    rdfs:label "Radio Network ID"@en ;
                    vs:term_status "stable" ;
@@ -10847,9 +10874,10 @@ era:rbcPhone rdf:type owl:DatatypeProperty ;
                            "1.2.1.1.1.17" ;
              era:tsiOPEAppendixD2Index "3.4.7" ;
              dcterms:created "2024-04-18"^^xsd:date ;
+             dcterms:modified "2024-12-05"^^xsd:date ;
              dcterms:relation era:etcsLevelType ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-             rdfs:comment "Unique RBC calling number (NID_RADIO) as defined in the specification referenced in TSI CCS."@en ;
+             rdfs:comment "Unique RBC calling number (NID_RADIO) as defined in the specification referenced in Appendix A-1, index [C]."@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "Phone number of ERTMS/ETCS Radio Block Center"@en ;
              vs:term_status "stable" ;
@@ -11450,21 +11478,31 @@ era:tNvcontact rdf:type owl:DatatypeProperty ;
                                            era:RunningTrack
                                          )
                            ] ;
-               rdfs:range xsd:integer ;
+               rdfs:range [ rdf:type rdfs:Datatype ;
+                            owl:onDatatype xsd:unsignedInt ;
+                            owl:withRestrictions ( [ xsd:minInclusive "0"^^xsd:unsignedInt ]
+                                                   [ xsd:maxInclusive "254"^^xsd:unsignedInt]
+                                               )
+                          ] , 
+                          [ rdf:type rdfs:Datatype ;
+                            owl:onDatatype xsd:float ;
+                            owl:withRestriction [ xsd:minInclusive "INF"^^xsd:float ] 
+                          ];
                era:XMLName "CPE_TNVCONTACT" ;
                era:applicable "Y/N/NYA" ;
-               era:formatNote "NNN" ;
+               era:formatNote "NNN | INF" ;
                era:legalDeadline "12 months after publication of Article 7 Guide"@en ;
                era:rinfIndex "1.1.1.3.2.16.8" ,
                              "1.2.1.1.1.16.8" ;
                era:tsiOPEAppendixD3Index "1.5.8" ;
                era:unitOfMeasure unit:SEC ;
                dcterms:created "2022-11-07"^^xsd:date ;
-               dcterms:description """Precision: [NNN], with N a decimal number (0÷9), NNN = 255 means ∞ seconds, so values cannot be higher.
+               dcterms:description """Precision: [NNN], with N a decimal number (0÷9) < 255. Use 'INF' when the value is infinite.
 
 See: TSI CCS (Subset 26, chapter 7. 7.5.1.148 T_NVCONTACT)"""@en ;
                dcterms:modified "2023-03-14"^^xsd:date ,
-                                "2024-04-18"^^xsd:date ;
+                                "2024-04-18"^^xsd:date ,
+                                "2024-12-05"^^xsd:date;
                dcterms:relation era:etcsLevelType ;
                dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                               <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -11489,21 +11527,31 @@ era:tNvovtrp rdf:type owl:DatatypeProperty ;
                                          era:RunningTrack
                                        )
                          ] ;
-             rdfs:range xsd:integer ;
+             rdfs:range [ rdf:type rdfs:Datatype ;
+                          owl:onDatatype xsd:unsignedInt ;
+                          owl:withRestrictions ( [ xsd:minInclusive "0"^^xsd:unsignedInt ]
+                                                 [ xsd:maxInclusive "254"^^xsd:unsignedInt]
+                                             )
+                        ] , 
+                        [ rdf:type rdfs:Datatype ;
+                          owl:onDatatype xsd:float ;
+                          owl:withRestriction [ xsd:minInclusive "INF"^^xsd:float ] 
+                        ];
              era:XMLName "CPE_TNVOVTRP" ;
              era:applicable "Y/N/NYA" ;
-             era:formatNote "NNN" ;
+             era:formatNote "NNN | INF" ;
              era:legalDeadline "12 months after publication of Article 7 Guide"@en ;
              era:rinfIndex "1.1.1.3.2.16.6" ,
                            "1.2.1.1.1.16.6" ;
              era:tsiOPEAppendixD3Index "1.5.6" ;
              era:unitOfMeasure unit:SEC ;
              dcterms:created "2022-11-07"^^xsd:date ;
-             dcterms:description """Precision: [NNN], with N a decimal number (0÷9)
+             dcterms:description """Precision: [NNN], with N a decimal number (0÷9) < 255, Use INF when Infinite.
 
 See: TSI CCS (Subset 26, chapter 7. 7.5.1.149 T_NVOVTRP)"""@en ;
              dcterms:modified "2023-03-14"^^xsd:date ,
-                              "2024-04-18"^^xsd:date ;
+                              "2024-04-18"^^xsd:date ,
+                              "2024-12-05"^^xsd:date ;
              dcterms:relation era:etcsLevelType ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                             <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -12113,7 +12161,12 @@ era:vNvallowovtrp rdf:type owl:DatatypeProperty ;
                                               era:RunningTrack
                                             )
                               ] ;
-                  rdfs:range xsd:integer ;
+                  rdfs:range [ rdf:type rdfs:Datatype ;
+                               owl:onDatatype xsd:unsignedInt ;
+                               owl:withRestrictions ( [ xsd:minInclusive "0"^^xsd:unsignedInt ]
+                                                      [ xsd:maxInclusive "600"^^xsd:unsignedInt]
+                                                    )
+                             ] ;
                   era:XMLName "CPE_VNVALLOWOVTRP" ;
                   era:applicable "Y/N/NYA" ;
                   era:formatNote "NNF, with N a decimal number (0 9), NNF must be divisible by 5, so F=(0|5), max. `600`" ;
@@ -12127,20 +12180,19 @@ era:vNvallowovtrp rdf:type owl:DatatypeProperty ;
 
 See: TSI CCS (Subset-026, Chapter 7. 7.5.1.161)"""@en ;
                   dcterms:modified "2023-03-14"^^xsd:date ,
-                                   "2024-09-19"^^xsd:date ;
+                                   "2024-09-19"^^xsd:date ,
+                                   "2024-12-05"^^xsd:date ;
                   dcterms:relation era:etcsLevelType ;
                   dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                                  <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                   rdfs:comment """Speed limit allowing the driver to select the override function in km/h
-According to the specification referenced in Appendix A-1, index [C]"""@en ;
+
+According to the specification referenced in Appendix A-1, index [C]."""@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "V_NVALLOWOVTRP"@en ;
                   rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
                   vs:term_status "stable" ;
-                  skos:scopeNote """Format: [NNF], with N a decimal number (0÷9), [NNF] must be divisible by 5, so F=(0|5), max. `600`.
-
-See: TSI CCS (Subset-026, Chapter 7. 7.5.1.161)"""@en ,
-                                 "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
+                  skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/vNvsupovtrp
