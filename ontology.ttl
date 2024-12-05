@@ -6334,18 +6334,25 @@ era:dNvroll rdf:type owl:DatatypeProperty ;
                                         era:RunningTrack
                                       )
                         ] ;
-            rdfs:range [ rdf:type rdfs:Datatype ;
-                         owl:onDatatype xsd:decimal ;
-                         owl:withRestrictions ( [ xsd:minInclusive "0.0"^^xsd:decimal
-                                                ]
-                                                [ xsd:maxInclusive "327660"^^xsd:decimal
-                                                ]
-                                               )
-                        ] , 
-                        [ rdf:type rdfs:Datatype ;
-                          owl:onDatatype xsd:float ;
-                          owl:withRestriction [ xsd:minInclusive "INF"^^xsd:float ] 
-                        ];
+		 rdfs:range [ rdf:type rdfs:Datatype ;
+			  owl:unionOf ( [ rdf:type rdfs:Datatype ;
+					  owl:onDatatype xsd:decimal ;
+					  owl:withRestrictions ( [ xsd:minInclusive "0.0"^^xsd:decimal
+								 ]
+								 [ xsd:maxInclusive "327670.0"^^xsd:decimal
+								 ]
+							       )
+					]
+					[ rdf:type rdfs:Datatype ;
+					  owl:onDatatype xsd:float ;
+					  owl:withRestrictions ( [ xsd:minInclusive "INF"^^xsd:float
+								 ]
+								 [ xsd:maxInclusive "INF"^^xsd:float
+								 ]
+							       )
+					]
+				      )
+		] ;
             era:XMLName "CPE_DNVROLL" ;
             era:applicable "Y/N/NYA" ;
             era:formatNote "NNNNNN.N | INF" ;
@@ -11479,15 +11486,22 @@ era:tNvcontact rdf:type owl:DatatypeProperty ;
                                          )
                            ] ;
                rdfs:range [ rdf:type rdfs:Datatype ;
-                            owl:onDatatype xsd:unsignedInt ;
-                            owl:withRestrictions ( [ xsd:minInclusive "0"^^xsd:unsignedInt ]
-                                                   [ xsd:maxInclusive "254"^^xsd:unsignedInt]
-                                               )
-                          ] , 
-                          [ rdf:type rdfs:Datatype ;
-                            owl:onDatatype xsd:float ;
-                            owl:withRestriction [ xsd:minInclusive "INF"^^xsd:float ] 
-                          ];
+			    owl:unionOf ( [ rdf:type rdfs:Datatype ;
+                                          owl:onDatatype xsd:unsignedInt ;
+                                          owl:withRestrictions ( [ xsd:minInclusive "0"^^xsd:unsignedInt ]
+                                                  		 [ xsd:maxInclusive "254"^^xsd:unsignedInt]
+                                                               )
+                                        ]
+                                        [ rdf:type rdfs:Datatype ;
+                                          owl:onDatatype xsd:float ;
+                                          owl:withRestrictions ( [ xsd:minInclusive "INF"^^xsd:float
+                                                                 ]
+                                                                 [ xsd:maxInclusive "INF"^^xsd:float
+                                                                 ]
+                                                               )
+                                        ]
+                                      )
+                          ] ;
                era:XMLName "CPE_TNVCONTACT" ;
                era:applicable "Y/N/NYA" ;
                era:formatNote "NNN | INF" ;
@@ -11527,16 +11541,23 @@ era:tNvovtrp rdf:type owl:DatatypeProperty ;
                                          era:RunningTrack
                                        )
                          ] ;
-             rdfs:range [ rdf:type rdfs:Datatype ;
-                          owl:onDatatype xsd:unsignedInt ;
-                          owl:withRestrictions ( [ xsd:minInclusive "0"^^xsd:unsignedInt ]
-                                                 [ xsd:maxInclusive "254"^^xsd:unsignedInt]
-                                             )
-                        ] , 
-                        [ rdf:type rdfs:Datatype ;
-                          owl:onDatatype xsd:float ;
-                          owl:withRestriction [ xsd:minInclusive "INF"^^xsd:float ] 
-                        ];
+               rdfs:range [ rdf:type rdfs:Datatype ;
+			    owl:unionOf ( [ rdf:type rdfs:Datatype ;
+                                          owl:onDatatype xsd:unsignedInt ;
+                                          owl:withRestrictions ( [ xsd:minInclusive "0"^^xsd:unsignedInt ]
+                                                  		 [ xsd:maxInclusive "254"^^xsd:unsignedInt]
+                                                               )
+                                        ]
+                                        [ rdf:type rdfs:Datatype ;
+                                          owl:onDatatype xsd:float ;
+                                          owl:withRestrictions ( [ xsd:minInclusive "INF"^^xsd:float
+                                                                 ]
+                                                                 [ xsd:maxInclusive "INF"^^xsd:float
+                                                                 ]
+                                                               )
+                                        ]
+                                      )
+                          ] ;
              era:XMLName "CPE_TNVOVTRP" ;
              era:applicable "Y/N/NYA" ;
              era:formatNote "NNN | INF" ;
