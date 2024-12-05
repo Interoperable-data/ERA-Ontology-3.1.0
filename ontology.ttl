@@ -12225,7 +12225,12 @@ era:vNvsupovtrp rdf:type owl:DatatypeProperty ;
                                             era:RunningTrack
                                           )
                             ] ;
-                rdfs:range xsd:integer ;
+        	rdfs:range [ rdf:type rdfs:Datatype ;
+                             owl:onDatatype xsd:unsignedInt ;
+                             owl:withRestrictions ( [ xsd:minInclusive "0"^^xsd:unsignedInt ]
+                                                    [ xsd:maxInclusive "600"^^xsd:unsignedInt]
+                                                  )
+                           ] ;
                 era:XMLName "CPE_VNVSUPOVTRP" ;
                 era:applicable "Y/N/NYA" ;
                 era:formatNote "NNF, with N a decimal number (0 9), NNF must be divisible by 5, so F=(0|5), max. `600`" ;
@@ -12239,7 +12244,8 @@ era:vNvsupovtrp rdf:type owl:DatatypeProperty ;
 
 See: TSI CCS (Subset-026, chapter 7. 7.5.1.163 V_NVSUPOVTRP)"""@en ;
                 dcterms:modified "2023-03-14"^^xsd:date ,
-                                 "2024-09-19"^^xsd:date ;
+                                 "2024-09-19"^^xsd:date ,
+				 "2024-12-05"^^xsd:date ;
                 dcterms:relation era:etcsLevelType ;
                 dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                 rdfs:comment "Override speed limit to be supervised when the \"override\" function is active in km/h, according to the specification referenced in Appendix A-1, index [C]."@en ;
@@ -12247,10 +12253,7 @@ See: TSI CCS (Subset-026, chapter 7. 7.5.1.163 V_NVSUPOVTRP)"""@en ;
                 rdfs:label "V_NVSUPOVTRP"@en ;
                 rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
                 vs:term_status "stable" ;
-                skos:scopeNote """Format: [NNF], with N a decimal number (0÷9), [NNF] is divisible by 5 so F=(0|5), max. `600`.
-
-See: TSI CCS (Subset-026, chapter 7. 7.5.1.163 V_NVSUPOVTRP)"""@en ,
-                               "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
+                skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en .
 
 
 ###  http://data.europa.eu/949/validityEndDate
