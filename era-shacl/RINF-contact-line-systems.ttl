@@ -12,13 +12,18 @@
 # Rules for contact-line-systems
 #############################
 
-era-sh:contactLineSystemShape  
+era-sh:ContactLineSystemShape  
     a sh:NodeShape ;
     sh:targetClass era:ContactLineSystem .
 
+era-sh:CommonCharacteristicsSubsetShape
+	a sh:NodeShape ;
+	sh:targetClass era:CommonCharacteristicsSubset .  
+
 # contactLineSystemType: # 1.1.1.2.2.1.1
-era-sh:contactLineSystemShape sh:property era-sh:contactLineSystemType .
-era-sh:contactLineSystemType
+era-sh:ContactLineSystemShape sh:property era-sh:ContactLineSystemType .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ContactLineSystemType .
+era-sh:ContactLineSystemType
 	a sh:PropertyShape ;
     era:affectedProperty era:contactLineSystemType;
     era:affectedClass era:ContactLineSystem;
@@ -33,8 +38,9 @@ era-sh:contactLineSystemType
 	sh:message "contactLineSystemType (1.1.1.2.2.1.1): The contact line system must have a contact line system type, and its value must be an IRI. This error is due to the contact line system not having a value for this property, having more than one value for this property, or having a value that is not an IRI."@en .
 
 #contactLineSystemType: # 1.1.1.2.2.1.1
-era-sh:contactLineSystemShape sh:sparql era-sh:contactLineSystemTypeSKOS .
-era-sh:contactLineSystemTypeSKOS
+era-sh:ContactLineSystemShape sh:sparql era-sh:ContactLineSystemTypeSKOS .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:ContactLineSystemTypeSKOS .
+era-sh:ContactLineSystemTypeSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:contactLineSystemType;
     era:affectedClass era:ContactLineSystem;
@@ -58,8 +64,9 @@ era-sh:contactLineSystemTypeSKOS
 """ .
 
 #contactLineSystemType: # 1.1.1.2.2.1.1
-era-sh:contactLineSystemShape sh:sparql era-sh:contactLineSystemTypeNotElectrifiedApplicability .
-era-sh:contactLineSystemTypeNotElectrifiedApplicability
+era-sh:ContactLineSystemShape sh:sparql era-sh:ContactLineSystemTypeNotElectrifiedApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:ContactLineSystemTypeNotElectrifiedApplicability .
+era-sh:ContactLineSystemTypeNotElectrifiedApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:contactLineSystemType;
     era:affectedClass era:ContactLineSystem;
@@ -84,8 +91,9 @@ era-sh:contactLineSystemTypeNotElectrifiedApplicability
 			""" .
 
 #contactLineSystemType: # 1.1.1.2.2.1.1
-era-sh:contactLineSystemShape sh:sparql era-sh:contactLineSystemTypeThirdOrFourthRailApplicability .
-era-sh:contactLineSystemTypeThirdOrFourthRailApplicability
+era-sh:ContactLineSystemShape sh:sparql era-sh:ContactLineSystemTypeThirdOrFourthRailApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:ContactLineSystemTypeThirdOrFourthRailApplicability .
+era-sh:ContactLineSystemTypeThirdOrFourthRailApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:contactLineSystemType;
     era:affectedClass era:ContactLineSystem;
@@ -112,7 +120,8 @@ era-sh:contactLineSystemTypeThirdOrFourthRailApplicability
 			""" .
 
 # energySupplySystem: # 1.1.1.2.2.1.2
-era-sh:contactLineSystemShape sh:property era-sh:EnergySupplySystem .
+era-sh:ContactLineSystemShape sh:property era-sh:EnergySupplySystem .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:EnergySupplySystem .
 era-sh:EnergySupplySystem
 	a sh:PropertyShape ;
     era:affectedProperty era:energySupplySystem;
@@ -127,7 +136,8 @@ era-sh:EnergySupplySystem
 	sh:message "energySupplySystem (1.1.1.2.2.1.2): The contact line system defines the energy supply system.This error is due to a contact line system having more than one value for this property or having a value that is not an IRI."@en .
 
 # energySupplySystem: # 1.1.1.2.2.1.2
-era-sh:contactLineSystemShape sh:sparql era-sh:EnergySupplySystemSKOS .
+era-sh:ContactLineSystemShape sh:sparql era-sh:EnergySupplySystemSKOS .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:EnergySupplySystemSKOS .
 era-sh:EnergySupplySystemSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:energySupplySystem;
@@ -150,8 +160,9 @@ era-sh:EnergySupplySystemSKOS
 """ .
 
 # energySupplySystemTSICompliant: # 1.1.1.2.2.1.2.1
-era-sh:contactLineSystemShape sh:property era-sh:energySupplySystemTSICompliant .
-era-sh:energySupplySystemTSICompliant
+era-sh:ContactLineSystemShape sh:property era-sh:EnergySupplySystemTSICompliant .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:EnergySupplySystemTSICompliant .
+era-sh:EnergySupplySystemTSICompliant
 	a sh:PropertyShape ;
     era:affectedProperty era:energySupplySystemTSICompliant;
     era:affectedClass era:ContactLineSystem;
@@ -167,8 +178,9 @@ era-sh:energySupplySystemTSICompliant
 
 
 # umax2: # 1.1.1.2.2.1.3
-era-sh:contactLineSystemShape sh:property era-sh:umax2 .
-era-sh:umax2
+era-sh:ContactLineSystemShape sh:property era-sh:Umax2 .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:Umax2 .
+era-sh:Umax2
 	a sh:PropertyShape ;
     era:affectedProperty era:umax2;
     era:affectedClass era:ContactLineSystem;
@@ -183,8 +195,9 @@ era-sh:umax2
 	sh:message "umax2 (1.1.1.2.2.1.3): The contact line system defines the Umax2 . This error is due to having more than one value for this property, having a value that is not an integer, or having an integer that does not follow the pattern [NNNNNN]."@en .
 
 # maxTrainCurrent: # 1.1.1.2.2.2
-era-sh:contactLineSystemShape sh:property era-sh:maximumTrainCurrent .
-era-sh:maximumTrainCurrent
+era-sh:ContactLineSystemShape sh:property era-sh:MaximumTrainCurrent .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MaximumTrainCurrent .
+era-sh:MaximumTrainCurrent
 	a sh:PropertyShape ;
     era:affectedProperty era:maxTrainCurrent;
     era:affectedClass era:ContactLineSystem;
@@ -199,8 +212,9 @@ era-sh:maximumTrainCurrent
 	sh:message "maxTrainCurrent (1.1.1.2.2.2): The contact line system defines the maximum allowable train current . This error is due to having more than one value for this property, having a value that is not an integer, or having an integer that does not follow the pattern [NNNN]."@en .
 
 # maxCurrentStandstillPantograph: # 1.1.1.2.2.3, 1.2.2.0.6.1
-era-sh:contactLineSystemShape sh:property era-sh:maxCurrentStandstillPantographCLS .
-era-sh:maxCurrentStandstillPantographCLS
+era-sh:ContactLineSystemShape sh:property era-sh:MaxCurrentStandstillPantograph .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MaxCurrentStandstillPantograph .
+era-sh:MaxCurrentStandstillPantograph
 	a sh:PropertyShape ;
     era:affectedProperty era:maxCurrentStandstillPantograph;
     era:affectedClass era:ContactLineSystem;
@@ -215,8 +229,9 @@ era-sh:maxCurrentStandstillPantographCLS
 	sh:message "maxCurrentStandstillPantograph (1.1.1.2.2.3, 1.2.2.0.6.1): The contact line system defines the maximum allowable current at standstill per pantograph . This error is due to having more than one value for this property, having a value that is not a double (real) number, or having a number that does not follow the pattern [NNN] (with 0 decimals)."@en .
 
 # maxCurrentStandstillPantograph: # 1.1.1.2.2.3, 1.2.2.0.6.1
-era-sh:contactLineSystemShape sh:sparql era-sh:maxCurrentStandstillPantographApplicability .
-era-sh:maxCurrentStandstillPantographApplicability
+era-sh:ContactLineSystemShape sh:sparql era-sh:MaxCurrentStandstillPantographApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:MaxCurrentStandstillPantographApplicability .
+era-sh:MaxCurrentStandstillPantographApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:maxCurrentStandstillPantograph;
     era:affectedClass era:ContactLineSystem;
@@ -238,8 +253,9 @@ era-sh:maxCurrentStandstillPantographApplicability
 			""" .
 
 # conditionalRegenerativeBrake: # 1.1.1.2.2.4
-era-sh:contactLineSystemShape sh:property era-sh:conditionalRegenerativeBrake .
-era-sh:conditionalRegenerativeBrake
+era-sh:ContactLineSystemShape sh:property era-sh:ConditionalRegenerativeBrake .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ConditionalRegenerativeBrake .
+era-sh:ConditionalRegenerativeBrake
 	a sh:PropertyShape ;
     era:affectedProperty era:conditionalRegenerativeBrake;
     era:affectedClass era:ContactLineSystem;
@@ -253,8 +269,9 @@ era-sh:conditionalRegenerativeBrake
 	sh:message "conditionalRegenerativeBrake (1.1.1.2.2.4): The contact line system defines if the regenerative brake is permitted. This error is due to having more than one value for this property or having a value that is not  Y/N (boolean)."@en .
 
 # conditionsAppliedRegenerativeBraking: # 1.1.1.2.2.4.1
-era-sh:contactLineSystemShape sh:property era-sh:conditionsAppliedRegenerativeBraking .
-era-sh:conditionsAppliedRegenerativeBraking
+era-sh:ContactLineSystemShape sh:property era-sh:ConditionsAppliedRegenerativeBraking .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ConditionsAppliedRegenerativeBraking .
+era-sh:ConditionsAppliedRegenerativeBraking
 	a sh:PropertyShape;
     era:affectedClass era:ContactLineSystem;
     era:affectedProperty era:conditionsAppliedRegenerativeBraking ;
@@ -268,8 +285,9 @@ era-sh:conditionsAppliedRegenerativeBraking
 	sh:message "conditionsAppliedRegenerativeBraking (1.1.1.2.2.4.1): The contact line system has a conditionsAppliedRegenerativeBraking reference that must be a Document. This error is due to having more than one value for this property or having a value that is not a Document."@en .
 
 # conditionsAppliedRegenerativeBraking: # 1.1.1.2.2.4.1
-era-sh:contactLineSystemShape sh:sparql era-sh:conditionsAppliedRegenerativeBrakingApplicability .
-era-sh:conditionsAppliedRegenerativeBrakingApplicability
+era-sh:ContactLineSystemShape sh:sparql era-sh:ConditionsAppliedRegenerativeBrakingApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:ConditionsAppliedRegenerativeBrakingApplicability .
+era-sh:ConditionsAppliedRegenerativeBrakingApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:conditionsAppliedRegenerativeBraking;
     era:affectedClass era:ContactLineSystem;
@@ -290,9 +308,10 @@ era-sh:conditionsAppliedRegenerativeBrakingApplicability
             }
 			""" .
 
-# maximumContactWireHeight: # 1.1.1.2.2.5
-era-sh:contactLineSystemShape sh:property era-sh:maximumContactWireHeight .
-era-sh:maximumContactWireHeight
+# maximumContactWireHeight: # 1.1.1.2.2.5 #
+era-sh:ContactLineSystemShape sh:property era-sh:MaximumContactWireHeight .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MaximumContactWireHeight .
+era-sh:MaximumContactWireHeight
 	a sh:PropertyShape ;
     era:affectedProperty era:maximumContactWireHeight;
     era:affectedClass era:ContactLineSystem;
@@ -307,8 +326,9 @@ era-sh:maximumContactWireHeight
 	sh:message "maximumContactWireHeight (1.1.1.2.2.5): The contact line system defines a maximum contact wire height expressed in metres. This error is due to having more than one value for this property, having a value that is not a double (real) number, or having a number that does not follow the pattern [NNN] (with 0 decimals)."@en . # TODO check
 
 # maximumContactWireHeight: # 1.1.1.2.2.5
-era-sh:contactLineSystemShape sh:sparql era-sh:maximumContactWireHeightApplicability .
-era-sh:maximumContactWireHeightApplicability
+era-sh:ContactLineSystemShape sh:sparql era-sh:MaximumContactWireHeightApplicability .
+era-sh:ContactLineSystemShape sh:sparql era-sh:CommonCharacteristicsSubsetShape .
+era-sh:MaximumContactWireHeightApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:maximumContactWireHeight;
     era:affectedClass era:ContactLineSystem;
@@ -329,9 +349,10 @@ era-sh:maximumContactWireHeightApplicability
             }
 			""" .
 
-# minimumContactWireHeight: # 1.1.1.2.2.6
-era-sh:contactLineSystemShape sh:property era-sh:minimumContactWireHeight .
-era-sh:minimumContactWireHeight
+# minimumContactWireHeight: # 1.1.1.2.2.6 #
+era-sh:ContactLineSystemShape sh:property era-sh:MinimumContactWireHeight .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MinimumContactWireHeight .
+era-sh:MinimumContactWireHeight
 	a sh:PropertyShape ;
     era:affectedProperty era:minimumContactWireHeight;
     era:affectedClass era:ContactLineSystem;
@@ -346,8 +367,9 @@ era-sh:minimumContactWireHeight
 	sh:message "minimumContactWireHeight (1.1.1.2.2.6): The contact line system defines a minimum contact wire height expressed in metres. This error is due to having more than one value for this property, having a value that is not a double (real) number, or having a number that does not follow the pattern [NNN] (with 0 decimals)."@en . # TODO check
 
 # minimumContactWireHeight: # 1.1.1.2.2.6
-era-sh:contactLineSystemShape sh:sparql era-sh:minimumContactWireHeightApplicability .
-era-sh:minimumContactWireHeightApplicability
+era-sh:ContactLineSystemShape sh:sparql era-sh:MinimumContactWireHeightApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:MinimumContactWireHeightApplicability .
+era-sh:MinimumContactWireHeightApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:minimumContactWireHeight;
     era:affectedClass era:ContactLineSystem;
@@ -369,8 +391,8 @@ era-sh:minimumContactWireHeightApplicability
 			""" .
 
 # permissionChargingElectricEnergyTractionStandstill # 1.2.1.0.7.1
-era-sh:contactLineSystemShape sh:property era-sh:permissionChargingElectricEnergyTractionStandstill .
-era-sh:permissionChargingElectricEnergyTractionStandstill
+era-sh:ContactLineSystemShape sh:property era-sh:PermissionChargingElectricEnergyTractionStandstill .
+era-sh:PermissionChargingElectricEnergyTractionStandstill
 	a sh:PropertyShape ;
     era:affectedProperty era:permissionChargingElectricEnergyTractionStandstill;
     era:affectedClass era:ContactLineSystem;
@@ -384,8 +406,9 @@ era-sh:permissionChargingElectricEnergyTractionStandstill
 	sh:message "permissionChargingElectricEnergyTractionStandstill (1.2.1.0.7.1): The contact line system defines if charging electric energy storage for traction purposes at standstill is permitted. This error is due to having more than one value for this property or having a value that is not  Y/N (boolean)."@en .
 
 # conditionsChargingElectricEnergyStorage # 1.2.1.0.7.2
-era-sh:contactLineSystemShape sh:property era-sh:conditionsChargingElectricEnergyStorage .
-era-sh:conditionsChargingElectricEnergyStorage
+era-sh:ContactLineSystemShape sh:property era-sh:ConditionsChargingElectricEnergyStorage .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ConditionsChargingElectricEnergyStorage .
+era-sh:ConditionsChargingElectricEnergyStorage
 	a sh:PropertyShape ;
     era:affectedProperty era:conditionsChargingElectricEnergyStorage;
     era:affectedClass era:ContactLineSystem;
