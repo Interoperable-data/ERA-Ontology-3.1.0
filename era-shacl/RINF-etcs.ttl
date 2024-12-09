@@ -17,8 +17,8 @@ era-sh:ETCSShape
     sh:targetClass era:ETCS .
 
 # etcsBaseline: # 1.1.1.3.2.2, 1.2.1.1.1.2
-era-sh:ETCSShape sh:property era-sh:etcsBaseline .
-era-sh:etcsBaseline
+era-sh:ETCSShape sh:property era-sh:EtcsBaseline .
+era-sh:EtcsBaseline
 	a sh:PropertyShape ;
     era:affectedProperty era:etcsBaseline;
     era:affectedClass era:ETCS;
@@ -33,8 +33,8 @@ era-sh:etcsBaseline
 	sh:message "etcsBaseline (1.1.1.3.2.2, 1.2.1.1.1.2): The ETCS may have an ETCS baseline, and its value must be an IRI. This error is due to the ETCS instance having more than one value or having a value that is not an IRI."@en .
 
 # etcsBaseline: # 1.1.1.3.2.2, 1.2.1.1.1.2
-era-sh:ETCSShape sh:sparql era-sh:etcsBaselineSKOS .
-era-sh:etcsBaselineSKOS
+era-sh:ETCSShape sh:sparql era-sh:EtcsBaselineSKOS .
+era-sh:EtcsBaselineSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsBaseline;
     era:affectedClass era:ETCS;
@@ -57,8 +57,8 @@ era-sh:etcsBaselineSKOS
 """ .
 
 # etcsBaseline: # 1.1.1.3.2.2, 1.2.1.1.1.2
-era-sh:ETCSShape sh:sparql era-sh:etcsBaselineApplicability .
-era-sh:etcsBaselineApplicability
+era-sh:ETCSShape sh:sparql era-sh:EtcsBaselineApplicability .
+era-sh:EtcsBaselineApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsBaseline;
     era:affectedClass era:ETCS;
@@ -81,8 +81,8 @@ era-sh:etcsBaselineApplicability
 
 
 # etcsInfill: # 1.1.1.3.2.4, 1.2.1.1.1.4
-era-sh:ETCSShape sh:property era-sh:etcsInfill .
-era-sh:etcsInfill
+era-sh:ETCSShape sh:property era-sh:EtcsInfill .
+era-sh:EtcsInfill
 	a sh:PropertyShape ;
     era:affectedProperty era:etcsInfill;
     era:affectedClass era:ETCS;
@@ -97,8 +97,8 @@ era-sh:etcsInfill
 	sh:message "etcsInfill (1.1.1.3.2.4, 1.2.1.1.1.4): The ETCS may have an ETCS infill, and its value must be an IRI. This error is due to the ETCS instance having more than one value or having a value that is not an IRI."@en .
 
 # etcsInfill: # 1.1.1.3.2.4, 1.2.1.1.1.4
-era-sh:ETCSShape sh:sparql era-sh:etcsInfillSKOS .
-era-sh:etcsInfillSKOS
+era-sh:ETCSShape sh:sparql era-sh:EtcsInfillSKOS .
+era-sh:EtcsInfillSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsInfill;
     era:affectedClass era:ETCS;
@@ -119,6 +119,29 @@ era-sh:etcsInfillSKOS
 		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
 	}
 """ .
+
+# etcsInfill: # 1.1.1.3.2.4, 1.2.1.1.1.4
+era-sh:ETCSShape sh:sparql era-sh:EtcsInfillApplicability .
+era-sh:EtcsInfillApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:etcsInfill;
+    era:affectedClass era:ETCS;
+    era:scope "local";
+	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 contains 1. Related to rule for etcsLevelType" ;
+	era:rinfIndex "1.1.1.3.2.4", "1.2.1.1.1.4" ;
+	sh:severity sh:Violation ;
+	sh:message "etcsInfill (1.1.1.3.2.4, 1.2.1.1.1.4): The ETCS {$this} ({?thisLabel}), has a ETCS level type value of 1 which makes the etcsInfill parameter applicable. This error is due to {$this} not having a value for such a parameter."@en ;
+	sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                 $this era:etcsLevelType <http://data.europa.eu/949/concepts/etcs-levels/20>.
+				OPTIONAL{$this rdfs:label ?thisLabel} .
+                FILTER NOT EXISTS {$this era:etcsInfill ?value} . 
+            }
+			""" . 
 
 # etcsMVersion: # 1.1.1.3.2.10, 1.2.1.1.1.10
 era-sh:ETCSShape sh:property era-sh:EtcsMVersion.
@@ -223,9 +246,8 @@ era-sh:EtcsLevelTypeSKOS
 """ .
 
 # etcsTransmitsTrackConditions: 1.1.1.3.2.12, 1.2.1.1.1.12
-era-sh:trackShape sh:property era-sh:etcsTransmitsTrackConditions.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:etcsTransmitsTrackConditions.
-era-sh:etcsTransmitsTrackConditions
+era-sh:ETCSShape sh:property era-sh:EtcsTransmitsTrackConditions.
+era-sh:EtcsTransmitsTrackConditions
 	a sh:PropertyShape;
     era:affectedProperty era:etcsTransmitsTrackConditions;
     era:affectedClass era:ETCS;
@@ -239,8 +261,8 @@ era-sh:etcsTransmitsTrackConditions
 	sh:message "etcsTransmitsTrackConditions (1.1.1.3.2.12, 1.2.1.1.1.12): Each Track may define the existence of ETCS trackside engineered to transmit Track Conditions. This error is due to having more than one indication of existence of ETCS trackside engineered to transmit Track Conditions value or having an indication of existence of ETCS trackside engineered to transmit Track Conditions value that is not Y/N (boolean)."@en .
 
 # etcsTransmitsTrackConditions: 1.1.1.3.2.12, 1.2.1.1.1.12
-era-sh:ETCSShape sh:sparql era-sh:etcsTransmitsTrackConditionsApplicability.
-era-sh:etcsTransmitsTrackConditionsApplicability
+era-sh:ETCSShape sh:sparql era-sh:EtcsTransmitsTrackConditionsApplicability.
+era-sh:EtcsTransmitsTrackConditionsApplicability
 	a sh:SPARQLConstraint ; 
 	era:affectedProperty era:etcsTransmitsTrackConditions  ;     
 	era:affectedClass  era:ETCS;     
@@ -262,8 +284,8 @@ era-sh:etcsTransmitsTrackConditionsApplicability
 			""" . 
 
 # etcsTransmittedTrackConditions: # 1.1.1.3.2.12.1, 1.2.1.1.1.12.1
-era-sh:ETCSShape sh:property era-sh:etcsTransmittedTrackConditions.
-era-sh:etcsTransmittedTrackConditions
+era-sh:ETCSShape sh:property era-sh:EtcsTransmittedTrackConditions.
+era-sh:EtcsTransmittedTrackConditions
 	a sh:PropertyShape ; 
 	era:affectedProperty era:etcsTransmittedTrackConditions  ;     
 	era:affectedClass  era:ETCS;     
@@ -277,8 +299,8 @@ era-sh:etcsTransmittedTrackConditions
 	sh:message "etcsTransmittedTrackConditions (1.1.1.3.2.12.1, 1.2.1.1.1.12.1): The ETCS has at most one etcsTransmittedTrackConditions value and it must be an IRI. This error is due to the ETCS having more than one value or having a value that is not an IRI."@en .
 
 # etcsTransmittedTrackConditions: # 1.1.1.3.2.12.1, 1.2.1.1.1.12.1
-era-sh:ETCSShape sh:sparql era-sh:etcsTransmittedTrackConditionsSKOS.
-era-sh:etcsTransmittedTrackConditionsSKOS
+era-sh:ETCSShape sh:sparql era-sh:EtcsTransmittedTrackConditionsSKOS.
+era-sh:EtcsTransmittedTrackConditionsSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsTransmittedTrackConditions  ;     
 	era:affectedClass  era:ETCS;     
@@ -303,8 +325,8 @@ era-sh:etcsTransmittedTrackConditionsSKOS
 """ .
 
 # etcsTransmittedTrackConditions: # 1.1.1.3.2.12.1, 1.2.1.1.1.12.1
-era-sh:ETCSShape sh:sparql era-sh:etcsTransmittedTrackConditionsApplicability.
-era-sh:etcsTransmittedTrackConditionsApplicability
+era-sh:ETCSShape sh:sparql era-sh:EtcsTransmittedTrackConditionsApplicability.
+era-sh:EtcsTransmittedTrackConditionsApplicability
 	a sh:SPARQLConstraint ; 
 	era:affectedProperty era:etcsTransmittedTrackConditions  ;     
 	era:affectedClass  era:ETCS;     
@@ -326,8 +348,8 @@ era-sh:etcsTransmittedTrackConditionsApplicability
 			""" . 
 
 # etcsSystemCompatibility: 1.1.1.3.2.9, 1.2.1.1.1.9
-era-sh:ETCSShape sh:property era-sh:etcsSystemCompatibility.
-era-sh:etcsSystemCompatibility
+era-sh:ETCSShape sh:property era-sh:EtcsSystemCompatibility.
+era-sh:EtcsSystemCompatibility
 	a sh:PropertyShape ; 
 	era:affectedProperty era:etcsSystemCompatibility  ;     
 	era:affectedClass  era:ETCS;     
@@ -340,8 +362,8 @@ era-sh:etcsSystemCompatibility
 	sh:message "etcsSystemCompatibility (1.1.1.3.2.9, 1.2.1.1.1.9): The ETCS has a etcsSystemCompatibility value that must be an IRI. This error is due to the ETCS having a value that is not an IRI."@en .
 
 # etcsSystemCompatibility: 1.1.1.3.2.9, 1.2.1.1.1.9
-era-sh:ETCSShape sh:sparql era-sh:etcsSystemCompatibilitySKOS.
-era-sh:etcsSystemCompatibilitySKOS
+era-sh:ETCSShape sh:sparql era-sh:EtcsSystemCompatibilitySKOS.
+era-sh:EtcsSystemCompatibilitySKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsSystemCompatibility  ;     
 	era:affectedClass  era:ETCS;     
@@ -364,8 +386,8 @@ era-sh:etcsSystemCompatibilitySKOS
 """ .
 
 # etcsSystemCompatibility: 1.1.1.3.2.9, 1.2.1.1.1.9
-era-sh:ETCSShape sh:sparql era-sh:etcsSystemCompatibilityApplicability.
-era-sh:etcsSystemCompatibilityApplicability
+era-sh:ETCSShape sh:sparql era-sh:EtcsSystemCompatibilityApplicability.
+era-sh:EtcsSystemCompatibilityApplicability
 	a sh:SPARQLConstraint ; 
 	era:affectedProperty era:etcsSystemCompatibility  ;     
 	era:affectedClass  era:ETCS;     
@@ -383,28 +405,5 @@ era-sh:etcsSystemCompatibilityApplicability
                  $this era:etcsLevelType ?type.
 				OPTIONAL{$this rdfs:label ?thisLabel} .
                 FILTER NOT EXISTS {$this era:etcsSystemCompatibility ?value} . 
-            }
-			""" . 
-
-# etcsInfill: # 1.1.1.3.2.4, 1.2.1.1.1.4
-era-sh:ETCSShape sh:sparql era-sh:etcsInfillApplicability .
-era-sh:etcsInfillApplicability
-	a sh:SPARQLConstraint ;
-    era:affectedProperty era:etcsInfill;
-    era:affectedClass era:ETCS;
-    era:scope "local";
-	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 contains 1. Related to rule for etcsLevelType" ;
-	era:rinfIndex "1.1.1.3.2.4", "1.2.1.1.1.4" ;
-	sh:severity sh:Violation ;
-	sh:message "etcsInfill (1.1.1.3.2.4, 1.2.1.1.1.4): The ETCS {$this} ({?thisLabel}), has a ETCS level type value of 1 which makes the etcsInfill parameter applicable. This error is due to {$this} not having a value for such a parameter."@en ;
-	sh:prefixes era:;
-	sh:select """
-    PREFIX era: <http://data.europa.eu/949/>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
-			WHERE {
-                 $this era:etcsLevelType <http://data.europa.eu/949/concepts/etcs-levels/20>.
-				OPTIONAL{$this rdfs:label ?thisLabel} .
-                FILTER NOT EXISTS {$this era:etcsInfill ?value} . 
             }
 			""" . 

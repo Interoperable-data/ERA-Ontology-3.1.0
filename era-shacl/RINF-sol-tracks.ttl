@@ -1391,46 +1391,6 @@ era-sh:EtcsInfillLineAccess
 	sh:severity sh:Violation ;
 	sh:message "etcsInfillLineAccess (1.1.1.3.2.3): The track has at most one value of the access to the ETCS infill line and it must be Y/N (boolean). This error is due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
 
-# etcsInfill: # 1.1.1.3.2.4
-era-sh:SectionOfLineShape sh:property era-sh:EtcsInfill.
-era-sh:EtcsInfill
-	a sh:PropertyShape ; era:affectedProperty era:etcsInfill  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Information about installed trackside equipment capable to transmit infill information by loop or GSM-R for level 1 installation." ;
-	era:rinfIndex "1.1.1.3.2.4" ;
-	sh:path (era:hasPart era:etcsInfill) ;
-	
-	sh:maxCount 1 ;
-	sh:nodeKind sh:IRI ;
-	sh:severity sh:Violation ;
-	sh:message "etcsInfill (1.1.1.3.2.4): The track has at most one value the information about installed trackside equipment capable to transmit infill information by loop or GSM-R for level 1 installation and the value is aan IRI. This error is due to the track having more than one value."@en .
-
-# etcsInfill: # 1.1.1.3.2.4
-era-sh:SectionOfLineShape sh:sparql era-sh:EtcsInfillSKOS.
-era-sh:EtcsInfillSKOS
-	a sh:SPARQLConstraint ;
-    era:affectedProperty era:etcsInfill  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-    rdfs:comment "Information about installed trackside equipment capable to transmit infill information by loop or GSM-R for level 1 installation." ;
-	era:rinfIndex "1.1.1.3.2.4" ;
-	sh:severity sh:Violation ;
-    sh:message "Indication of the etcsInfill (1.1.1.3.2.4):): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/etcs-infills/ETCSInfills."@en ;
-    sh:prefixes era:;
-	sh:select """
-    PREFIX era: <http://data.europa.eu/949/>
-    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT $this  ?concept
-    WHERE {
-	    $this era:hasPart ?track .
-        ?track era:etcsInfill ?concept .
-        era:etcsInfill era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
-	}
-""" .
-
-
-
 # etcsNationalPacket44: # 1.1.1.3.2.5
 era-sh:SectionOfLineShape sh:property era-sh:EtcsNationalPacket44.
 era-sh:EtcsNationalPacket44
@@ -1469,86 +1429,6 @@ era-sh:TrainIntegrityOnBoardRequired
 	sh:datatype xsd:boolean ;
 	sh:severity sh:Violation ;
 	sh:message "trainIntegrityOnBoardRequired (1.1.1.3.2.8): The track has at most one value of the indication whether TIMS is required to access the line for safety reasons and the vaalue is Y/N (boolean). This error is due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
-
-# etcsSystemCompatibility: # 1.1.1.3.2.9
-era-sh:SectionOfLineShape sh:property era-sh:EtcsSystemCompatibility.
-era-sh:EtcsSystemCompatibility
-	a sh:PropertyShape ; era:affectedProperty era:etcsSystemCompatibility  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "ETCS requirements used for demonstrating technical compatibility." ;
-	era:rinfIndex "1.1.1.3.2.9" ;
-	sh:path era:etcsSystemCompatibility ;
-	sh:nodeKind sh:IRI ;
-	sh:severity sh:Violation ;
-	sh:message "etcsSystemCompatibility (1.1.1.3.2.9): The track defines at most one value of the requirements of the ETCS system compatibility and the value is an IRI. This error is due to the track having more than one value."@en .
-
-# etcsSystemCompatibility: # 1.1.1.3.2.9
-era-sh:SectionOfLineShape sh:sparql era-sh:EtcsSystemCompatibilitySKOS.
-era-sh:EtcsSystemCompatibilitySKOS
-	a sh:SPARQLConstraint ;
-    era:affectedProperty era:etcsSystemCompatibility  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-    rdfs:comment "ETCS requirements used for demonstrating technical compatibility." ;
-	era:rinfIndex "1.1.1.3.2.9" ;
-	sh:severity sh:Violation ;
-    sh:message "Indication of the etcsSystemCompatibility (1.1.1.3.2.9):): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/etcs-system-compatibilities/ETCSSystemCompatibilities."@en ;
-    sh:prefixes era:;
-	sh:select """
-    PREFIX era: <http://data.europa.eu/949/>
-    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT $this  ?concept
-    WHERE {
-	    $this era:hasPart ?track .
-        ?track era:etcsSystemCompatibility ?concept .
-        era:etcsSystemCompatibility era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
-	}
-""" .
-
-
-
-# etcsMVersion: # 1.1.1.3.2.10
-era-sh:SectionOfLineShape sh:property era-sh:EtcsMVersion.
-era-sh:EtcsMVersion
-	a sh:PropertyShape ; era:affectedProperty era:etcsMVersion  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "ETCS_M version according to SRS 7.5.1.9" ;
-	era:rinfIndex "1.1.1.3.2.10" ;
-	sh:path (era:hasPart era:etcsMVersion) ;	
-	sh:maxCount 1 ;
-	sh:nodeKind sh:IRI ;
-	sh:severity sh:Violation ;
-	sh:message "etcsMVersion (1.1.1.3.2.10): The track has at most one ETCS_M version value and it must be an IRI. This error is due to the track having more than one value."@en .
-
-# etcsMVersion: # 1.1.1.3.2.10
-era-sh:SectionOfLineShape sh:sparql era-sh:EtcsMVersionSKOS.
-era-sh:EtcsMVersionSKOS
-	a sh:SPARQLConstraint ;
-    era:affectedProperty era:etcsMVersion  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-    rdfs:comment "ETCS_M version according to SRS 7.5.1.9" ;
-	era:rinfIndex "1.1.1.3.2.10" ;
-	sh:severity sh:Violation ;
-    sh:message "Indication of the etcsMVersion (1.1.1.3.2.101.1.1.3.2.10):): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/etcs-m-versions/ETCSMVersions."@en ;
-    sh:prefixes era:;
-	sh:select """
-    PREFIX era: <http://data.europa.eu/949/>
-    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT $this  ?concept
-    WHERE {
-	    $this era:hasPart ?track .
-        ?track era:etcsMVersion ?concept .
-        era:etcsMVersion era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
-	}
-""" .
-
-
-
-
-
 
 # gsmRAdditionalInfo: # 1.1.1.3.3.3.1
 era-sh:SectionOfLineShape sh:property era-sh:GsmRAdditionalInfo.
