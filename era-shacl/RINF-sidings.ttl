@@ -5,14 +5,10 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix era: <http://data.europa.eu/949/> .
-@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
-@prefix era-ph: <http://data.europa.eu/949/concepts/platform-heights/> .
-@prefix era-tenclass: <http://data.europa.eu/949/concepts/ten-classifications/> .
-@prefix era-gaugings: <http://data.europa.eu/949/concepts/gaugings/> .
-@prefix era-ntg: <http://data.europa.eu/949/concepts/nominal-track-gauges/> .
+
 
 
 #############################
@@ -22,11 +18,11 @@
 #
 # sidings
 #
-era-sh:sidingsShape
+era-sh:SidingsShape
 	a sh:NodeShape ;
 	sh:targetClass era:Siding .   # Applies to all Siding
 
-era-sh:commonCharacteristicsSubsetShape
+era-sh:CommonCharacteristicsSubsetShape
 	a sh:NodeShape ;
 	sh:targetClass era:CommonCharacteristicsSubset .  # Applies to all Common Characteritics Subset  with sidings parameters 
 
@@ -35,8 +31,8 @@ era-sh:OPShape
 	sh:targetClass era:OperationalPoint .   # Applies to all Operational points with sidings
 
 # sidingId: #1.2.2.0.0.2 
-era-sh:sidingsShape sh:property era-sh:sidingId .
-era-sh:sidingId
+era-sh:SidingsShape sh:property era-sh:SidingId .
+era-sh:SidingId
 	a sh:PropertyShape ;
     era:affectedProperty era:sidingId ;
     era:affectedClass era:Siding;
@@ -81,9 +77,9 @@ era-sh:NoRepeatedSidingIds
 
 
 # tenClassification: # 1.1.1.1.2.1, 1.2.1.0.2.1, 1.2.1.0.6.3, 1.2.2.0.0.3
-era-sh:sidingsShape sh:property era-sh:tenClassificationS .
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:tenClassificationS .
-era-sh:tenClassificationS
+era-sh:SidingsShape sh:property era-sh:TenClassificationS .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TenClassificationS .
+era-sh:TenClassificationS
 	a sh:PropertyShape;
     era:affectedProperty era:tenClassification;
     era:affectedClass era:Siding;
@@ -96,8 +92,8 @@ era-sh:tenClassificationS
 	sh:message "TEN classification (1.1.1.1.2.1, 1.2.1.0.2.1, 1.2.1.0.6.3, 1.2.2.0.0.3): This error may be due to having a Platform with a TEN classification that is not an URI."@en .
 
 # tenClassification: # 1.1.1.1.2.1, 1.2.1.0.2.1, 1.2.1.0.6.3, 1.2.2.0.0.3
- era-sh:sidingsShape sh:sparql era-sh:TenClassificationSKOSS .
- era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:TenClassificationSKOSS .
+ era-sh:SidingsShape sh:sparql era-sh:TenClassificationSKOSS .
+ era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:TenClassificationSKOSS .
  era-sh:TenClassificationSKOSS
  	a sh:SPARQLConstraint ;
     era:affectedProperty era:tenClassification ;
@@ -126,9 +122,9 @@ era-sh:tenClassificationS
 
 
  # verificationINF: # 1.2.2.0.1.1, 1.2.1.0.1.1, 1.2.2.0.1.1
- era-sh:sidingsShape sh:property era-sh:verificationINFS .
- era-sh:commonCharacteristicsSubsetShape sh:property era-sh:verificationINFS .
- era-sh:verificationINFS
+ era-sh:SidingsShape sh:property era-sh:VerificationINFS .
+ era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:VerificationINFS .
+ era-sh:VerificationINFS
  	a sh:PropertyShape;
      era:affectedProperty era:verificationINF ;
      era:affectedClass era:Siding;
@@ -142,9 +138,9 @@ era-sh:tenClassificationS
  	 sh:message "verificationINF (1.2.2.0.1.1, 1.2.1.0.1.1, 1.2.2.0.1.1): Each Siding may have one or more verificationINF. This error is due to the value not being a string or the value not following this pattern: country code/national registration number/year between 1900 and 2100/progressive counter."@en .
 
 # demonstrationINF: #  1.1.1.1.1.2, 1.2.1.0.1.2, 1.2.2.0.1.2
- era-sh:sidingsShape sh:property era-sh:demonstrationINFS .
- era-sh:commonCharacteristicsSubsetShape sh:property era-sh:demonstrationINFS .
- era-sh:demonstrationINFS
+ era-sh:SidingsShape sh:property era-sh:DemonstrationINFS .
+ era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:DemonstrationINFS .
+ era-sh:DemonstrationINFS
  	a sh:PropertyShape;
      era:affectedProperty era:demonstrationINF ;
      era:affectedClass era:Siding;
@@ -159,8 +155,8 @@ era-sh:tenClassificationS
  	sh:message "demonstrationINF (1.1.1.1.1.2, 1.2.1.0.1.2, 1.2.2.0.1.2): Each Siding may have one or more demonstrationINF.  This error is due to the value not being a string or the value not following this pattern: country code/national registration number/year between 1900 and 2100/progressive counter."@en .
 
 # lengthOfSiding: # 1.2.2.0.2.1
-era-sh:sidingsShape sh:property era-sh:lengthS .
-era-sh:lengthS
+era-sh:SidingsShape sh:property era-sh:LengthS .
+era-sh:LengthS
 	a sh:PropertyShape;
     era:affectedProperty era:lengthOfSiding ;
     era:affectedClass era:Siding;
@@ -175,9 +171,9 @@ era-sh:lengthS
 	sh:message "lengthOfSiding (1.2.2.0.2.1): Each Siding may have a length in meters. This error is due to having more than one length value or having a length that is not a double (real) number or not following the pattern [NNNN]."@en .
 
 # gradient: # 1.2.2.0.3.1
-era-sh:sidingsShape sh:property era-sh:gradient .
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gradient .
-era-sh:gradient
+era-sh:SidingsShape sh:property era-sh:Gradient .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:Gradient .
+era-sh:Gradient
 	a sh:PropertyShape;
     era:affectedProperty era:gradient ;
     era:affectedClass era:Siding;
@@ -193,9 +189,9 @@ era-sh:gradient
 
 
 # minimumHorizontalRadius: # 1.2.2.0.3.2, 1.2.2.0.3.2
-era-sh:sidingsShape sh:property era-sh:minimumHorizontalRadius .
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:minimumHorizontalRadius .
-era-sh:minimumHorizontalRadius
+era-sh:SidingsShape sh:property era-sh:MinimumHorizontalRadiusS .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MinimumHorizontalRadiusS .
+era-sh:MinimumHorizontalRadiusS
 	a sh:PropertyShape;
     era:affectedProperty era:minimumHorizontalRadius ;
     era:affectedClass era:Siding;
@@ -209,9 +205,9 @@ era-sh:minimumHorizontalRadius
 	sh:message "minimumHorizontalRadius (1.2.2.0.3.2, 1.2.2.0.3.2): Each Siding may have a minimumHorizontalRadius in meters. This error is due to having more than one minimum horisontal radius  value or having a minimum horizontal radius that is not an integer number."@en. 
 
 # minimumVerticalRadiusCrest: # 1.2.2.0.3.3 
-era-sh:sidingsShape sh:property era-sh:minimumVerticalRadiusCrest .
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:minimumVerticalRadiusCrest .
-era-sh:minimumVerticalRadiusCrest
+era-sh:SidingsShape sh:property era-sh:MinimumVerticalRadiusCrest .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MinimumVerticalRadiusCrest .
+era-sh:MinimumVerticalRadiusCrest
 	a sh:PropertyShape;
     era:affectedProperty era:minimumVerticalRadiusCrest ;
     era:affectedClass era:Siding;
@@ -225,9 +221,9 @@ era-sh:minimumVerticalRadiusCrest
 	sh:message "minimumVerticalRadiusCrest (1.2.2.0.3.3): Each Siding may have a minimumVerticalRadiusCrest in meters. This error is due to having more than one minimum vertical radius crest value or having a minimum vertical radius crest that is not an integer number."@en .
 
 # minimumVerticalRadiusHollow: # 1.2.2.0.3.3
-era-sh:sidingsShape sh:property era-sh:minimumVerticalRadiusHollow .
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:minimumVerticalRadiusHollow .
-era-sh:minimumVerticalRadiusHollow
+era-sh:SidingsShape sh:property era-sh:MinimumVerticalRadiusHollow .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MinimumVerticalRadiusHollow .
+era-sh:MinimumVerticalRadiusHollow
 	a sh:PropertyShape;
     era:affectedProperty era:minimumVerticalRadiusHollow ;
     era:affectedClass era:Siding;
@@ -242,9 +238,9 @@ era-sh:minimumVerticalRadiusHollow
 
 
 # hasToiletDischarge: # 1.2.2.0.4.1
-era-sh:sidingsShape sh:property era-sh:hasToiletDischarge .
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasToiletDischarge .
-era-sh:hasToiletDischarge
+era-sh:SidingsShape sh:property era-sh:HasToiletDischarge .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasToiletDischarge .
+era-sh:HasToiletDischarge
 	a sh:PropertyShape;
     era:affectedProperty era:hasToiletDischarge ;
     era:affectedClass era:Siding;
@@ -258,9 +254,9 @@ era-sh:hasToiletDischarge
 	sh:message "hasToiletDischarge (1.2.2.0.4.1): Each Siding may define the existence of a toilet discharge. This error is due to having more than one has toilet discharge value or having a has has toilet discharge value that is not Y/N (boolean)."@en .
 
 # hasExternalCleaning: # 1.2.2.0.4.2
-era-sh:sidingsShape sh:property era-sh:hasExternalCleaning .
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasExternalCleaning .
-era-sh:hasExternalCleaning
+era-sh:SidingsShape sh:property era-sh:HasExternalCleaning .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasExternalCleaning .
+era-sh:HasExternalCleaning
 	a sh:PropertyShape;
     era:affectedProperty era:hasExternalCleaning ;
     era:affectedClass era:Siding;
@@ -274,9 +270,9 @@ era-sh:hasExternalCleaning
 	sh:message "hasExternalCleaning (1.2.2.0.4.2): Each Siding must define the existence of an external cleaning facility. This error is due to having more than one has external cleaning value or having a has external cleaning value that is not Y/N (boolean)."@en .
 
 # hasWaterRestocking: # 1.2.2.0.4.3
-era-sh:sidingsShape sh:property era-sh:hasWaterRestocking .
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasWaterRestocking .
-era-sh:hasWaterRestocking
+era-sh:SidingsShape sh:property era-sh:HasWaterRestocking .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasWaterRestocking .
+era-sh:HasWaterRestocking
 	a sh:PropertyShape;
     era:affectedProperty era:hasWaterRestocking ;
     era:affectedClass era:Siding;
@@ -290,9 +286,9 @@ era-sh:hasWaterRestocking
 	sh:message "hasWaterRestocking (1.2.2.0.4.3): Each Siding may define the existence of a water restocking facility. This error is due to having more than one has water restocking value or having a has  water restocking value that is not Y/N (boolean)."@en .
 
 # hasRefuelling: # 1.2.2.0.4.4
-era-sh:sidingsShape sh:property era-sh:hasRefuelling .
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasRefuelling .
-era-sh:hasRefuelling
+era-sh:SidingsShape sh:property era-sh:HasRefuelling .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasRefuelling .
+era-sh:HasRefuelling
 	a sh:PropertyShape;
     era:affectedProperty era:hasRefuelling ;
     era:affectedClass era:Siding;
@@ -306,9 +302,9 @@ era-sh:hasRefuelling
 	sh:message "hasRefuelling (1.2.2.0.4.4): Each Siding must define the existence of a refuelling facility. This error is due to having more than one has refuelling value or having a  has refuelling value that is not Y/N (boolean)."@en .
 
 # hasSandRestocking: # 1.2.2.0.4.5
-era-sh:sidingsShape sh:property era-sh:hasSandRestocking .
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasSandRestocking .
-era-sh:hasSandRestocking
+era-sh:SidingsShape sh:property era-sh:HasSandRestocking .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasSandRestocking .
+era-sh:HasSandRestocking
 	a sh:PropertyShape;
      era:affectedProperty era:hasSandRestocking ;
     era:affectedClass era:Siding;
@@ -322,9 +318,9 @@ era-sh:hasSandRestocking
 	sh:message "hasSandRestocking (1.2.2.0.4.5): Each Siding must define the existence of a sand restocking facility. This error is due to having more than one has sand restocking value or having a  has sand restocking value that is not Y/N (boolean)."@en .
 
 # hasElectricShoreSupply: # 1.2.2.0.4.6
-era-sh:sidingsShape sh:property era-sh:hasElectricShoreSupply .
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasElectricShoreSupply .
-era-sh:hasElectricShoreSupply
+era-sh:SidingsShape sh:property era-sh:HasElectricShoreSupply .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasElectricShoreSupply .
+era-sh:HasElectricShoreSupply
 	a sh:PropertyShape;
     era:affectedProperty era:hasElectricShoreSupply ;
     era:affectedClass era:Siding;
@@ -339,9 +335,9 @@ era-sh:hasElectricShoreSupply
 
 
 # maxCurrentStandstillPantograph: # 1.1.1.2.2.3, 1.2.2.0.6.1
-era-sh:sidingsShape sh:property era-sh:maxCurrentStandstillPantographS .
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:maxCurrentStandstillPantographS .
-era-sh:maxCurrentStandstillPantographS
+era-sh:SidingsShape sh:property era-sh:MaxCurrentStandstillPantographS .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MaxCurrentStandstillPantographS .
+era-sh:MaxCurrentStandstillPantographS
 	a sh:PropertyShape;
     era:affectedProperty era:maxCurrentStandstillPantograph ;
     era:affectedClass era:Siding;

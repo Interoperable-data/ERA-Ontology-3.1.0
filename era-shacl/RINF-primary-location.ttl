@@ -10,14 +10,14 @@
 @prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
 
-era-sh:primarylocationsShape
+era-sh:PrimarylocationsShape
 	a sh:NodeShape ;
 	sh:targetClass era:PrimaryLocation.
 
 
 # primaryLocationCode: # 1.2.0.0.0.3 #pending checking pattern  [AANNNNN]
-era-sh:primarylocationsShape sh:property era-sh:primaryLocationCode .
-era-sh:primaryLocationCode
+era-sh:PrimarylocationsShape sh:property era-sh:PrimaryLocationCode .
+era-sh:PrimaryLocationCode
 	a sh:PropertyShape;
     era:affectedClass era:PrimaryLocation;
     era:affectedProperty era:primaryLocationCode ;
@@ -31,8 +31,8 @@ era-sh:primaryLocationCode
 	sh:message "primaryLocationCode (1.2.0.0.0.3): The primary location code must be represented as a String and follow the pattern [AANNNNN]."@en .
 
 # containerHandlingFlag  
-era-sh:primarylocationsShape sh:property era-sh:containerHandlingFlag .
-era-sh:containerHandlingFlag
+era-sh:PrimarylocationsShape sh:property era-sh:ContainerHandlingFlag .
+era-sh:ContainerHandlingFlag
 	a sh:PropertyShape ; 
     era:affectedProperty era:containerHandlingFlag ;
     era:affectedClass  era:PrimaryLocation;
@@ -44,8 +44,8 @@ era-sh:containerHandlingFlag
 	sh:message "containerHandlingFlag : The PrimaryLocation may have a containerHandlingFlag value that is a boolean. This error may be due to the Primary Location having  a value that is not a boolean."@en .
 
 # freightFlag  
-era-sh:primarylocationsShape sh:property era-sh:freightFlag .
-era-sh:freightFlag
+era-sh:PrimarylocationsShape sh:property era-sh:FreightFlag .
+era-sh:FreightFlag
 	a sh:PropertyShape ; 
     era:affectedProperty era:freightFlag ;
     era:affectedClass  era:PrimaryLocation;
@@ -57,8 +57,8 @@ era-sh:freightFlag
 	sh:message "freightFlag : The PrimaryLocation may have a freightFlag value that is a boolean. This error may be due to the Primary Location having  a value that is not a boolean."@en .
 
 # handoverPointFlag  
-era-sh:primarylocationsShape sh:property era-sh:handoverPointFlag .
-era-sh:handoverPointFlag
+era-sh:PrimarylocationsShape sh:property era-sh:HandoverPointFlag .
+era-sh:HandoverPointFlag
 	a sh:PropertyShape ; 
     era:affectedProperty era:handoverPointFlag ;
     era:affectedClass  era:PrimaryLocation;
@@ -70,8 +70,8 @@ era-sh:handoverPointFlag
 	sh:message "handoverPointFlag : The PrimaryLocation may have a handoverPointFlag value that is a boolean. This error may be due to the Primary Location having  a value that is not a boolean."@en .
 
 # hasPosition  
-era-sh:primarylocationsShape sh:property era-sh:hasPosition .
-era-sh:hasPosition
+era-sh:PrimarylocationsShape sh:property era-sh:HasPosition .
+era-sh:HasPosition
 	a sh:PropertyShape ; 
     era:affectedProperty era:hasPosition ;
     era:affectedClass  era:PrimaryLocation;
@@ -83,8 +83,8 @@ era-sh:hasPosition
 	sh:message "hasPosition : The PrimaryLocation may have a position value that is a Position. This error may be due to the Primary Location having  a value that is not an instance of Position."@en .
 
 # primaryLocationName
-era-sh:primarylocationsShape sh:property era-sh:primaryLocationName .
-era-sh:primaryLocationName
+era-sh:PrimarylocationsShape sh:property era-sh:PrimaryLocationName .
+era-sh:PrimaryLocationName
 	a sh:PropertyShape ; 
     era:affectedProperty era:primaryLocationName ;
     era:affectedClass  era:PrimaryLocation;
@@ -95,18 +95,6 @@ era-sh:primaryLocationName
 	sh:severity sh:Violation ;
 	sh:message "primaryLocationName : The PrimaryLocation may have a primaryLocationName value that is a string. This error may be due to the Primary Location having  a value that is not a string."@en .
 
-# linkedToPrimaryLocation
-era-sh:primarylocationsShape sh:property era-sh:linkedToPrimaryLocation .
-era-sh:linkedToPrimaryLocation
-	a sh:PropertyShape ; 
-    era:affectedProperty era:linkedToPrimaryLocation ;
-    era:affectedClass  era:PrimaryLocation;
-    era:scope "local";
-	rdfs:comment "Linked to primary location." ;
-	sh:path era:hasPosition ;
-	sh:class era:PrimaryLocation;
-	sh:severity sh:Violation ;
-	sh:message "hasPosition : The PrimaryLocation may have a linkedToPrimaryLocation value that is a PrimaryLocation. This error may be due to the Primary Location having  a value that is not an instance of PrimaryLocation."@en .
 
 
 

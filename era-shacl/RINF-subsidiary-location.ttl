@@ -5,7 +5,6 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix era: <http://data.europa.eu/949/> .
-@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
@@ -19,8 +18,8 @@ era-sh:SubsidiaryLocationShape
 
 
 # allocationCompany
-era-sh:SubsidiaryLocationShape sh:property era-sh:allocationCompany .
-era-sh:allocationCompany
+era-sh:SubsidiaryLocationShape sh:property era-sh:AllocationCompany .
+era-sh:AllocationCompany
 	a sh:PropertyShape;
     era:affectedClass era:SubsidiaryLocation;
     era:affectedClass era:OrganisationRole;
@@ -34,8 +33,8 @@ era-sh:allocationCompany
 	sh:message "allocationCompany: An instance of subsidiary location may have a value for allocation company. This error may be due to having a value that is not an IRI or that does not point to an instance of OrganisationRole."@en .
 
 # linkedToPrimaryLocation
-era-sh:SubsidiaryLocationShape sh:property era-sh:linkedToPrimaryLocation .
-era-sh:linkedToPrimaryLocation
+era-sh:SubsidiaryLocationShape sh:property era-sh:LinkedToPrimaryLocation .
+era-sh:LinkedToPrimaryLocation
 	a sh:PropertyShape;
     era:affectedClass era:SubsidiaryLocation;
     era:affectedClass era:PrimaryLocation;
@@ -49,8 +48,8 @@ era-sh:linkedToPrimaryLocation
 	sh:message "linkedToPrimaryLocation: An instance of subsidiary location may have a value for linkedToPrimaryLocation. This error may be due to having a value that is not an IRI or that does not point to an instance of PrimaryLocation."@en .
 
 # subsidiaryLocationType
-era-sh:SubsidiaryLocationShape sh:property era-sh:subsidiaryLocationType .
-era-sh:subsidiaryLocationType
+era-sh:SubsidiaryLocationShape sh:property era-sh:SubsidiaryLocationType .
+era-sh:SubsidiaryLocationType
 	a sh:PropertyShape;
     era:affectedClass era:SubsidiaryLocation;
     era:affectedProperty era:subsidiaryLocationType ;
@@ -62,8 +61,8 @@ era-sh:subsidiaryLocationType
 	sh:message "subsidiaryLocationType: An instance of subsidiary location may have a value for subsidiary location type. This error may be due to having a value that is not an IRI."@en .
 
 # subsidiaryLocationType
-era-sh:SubsidiaryLocationShape sh:sparql era-sh:subsidiaryLocationTypeSKOS .
-era-sh:subsidiaryLocationTypeSKOS
+era-sh:SubsidiaryLocationShape sh:sparql era-sh:SubsidiaryLocationTypeSKOS .
+era-sh:SubsidiaryLocationTypeSKOS
 	a sh:SPARQLConstraint ;
     era:affectedClass era:SubsidiaryLocation;
     era:affectedProperty era:subsidiaryLocationType ;
