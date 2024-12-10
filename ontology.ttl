@@ -6045,11 +6045,16 @@ era:compositeBrakeBlockRetrofitted rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/conditionalRegenerativeBrake
-era:conditionalRegenerativeBrake rdf:type owl:DatatypeProperty ;
-                                 rdfs:subPropertyOf era:contactLineSystemDataParameter ;
-                                 rdf:type owl:FunctionalProperty ;
-                                 rdfs:domain era:ContactLineSystem ;
-                                 rdfs:range xsd:boolean ;
+era:conditionalRegenerativeBrake rdf:type owl:ObjectProperty ;
+	                       rdfs:subPropertyOf era:trackObjParameter ,
+	                                          era:trackResistanceToAppliedLoadsObjParameter ;
+	                       rdf:type owl:FunctionalProperty ;
+	                       rdfs:domain [ rdf:type owl:Class ;
+	                                     owl:unionOf ( era:CommonCharacteristicsSubset
+	                                                   era:RunningTrack
+	                                                 )
+	                                   ] ;
+	                       rdfs:range skos:Concept ;
                                  era:XMLName "ECS_RegenerativeBraking" ;
                                  era:applicable "Y/N" ;
                                  era:legalDeadline "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
@@ -6058,7 +6063,8 @@ era:conditionalRegenerativeBrake rdf:type owl:DatatypeProperty ;
                                  era:usedInRCCCalculations "true"^^xsd:boolean ;
                                  dcterms:created "2020-08-24"^^xsd:date ;
                                  dcterms:modified "2023-01-20"^^xsd:date ,
-                                                  "2024-09-25"^^xsd:date ;
+                                                  "2024-09-25"^^xsd:date , 
+						  "2024-12-10"^^xsd:date ;
                                  dcterms:relation era:contactLineSystemType ;
                                  rdfs:comment "Indication whether regenerative braking is permitted, not permitted, or permitted under specific conditions."@en ;
                                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
