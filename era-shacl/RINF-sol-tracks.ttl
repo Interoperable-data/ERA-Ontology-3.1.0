@@ -8,44 +8,6 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
-@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
-@prefix era-ph: <http://data.europa.eu/949/concepts/platform-heights/> .
-@prefix era-tenclass: <http://data.europa.eu/949/concepts/ten-classifications/> .
-@prefix era-gaugings: <http://data.europa.eu/949/concepts/gaugings/> .
-@prefix era-ntg: <http://data.europa.eu/949/concepts/nominal-track-gauges/> .
-@prefix era-tds: <http://data.europa.eu/949/concepts/train-detection/> .
-@prefix era-tdssc: <http://data.europa.eu/949/concepts/train-detection-specific-checks/> .
-@prefix era-tsi: <http://data.europa.eu/949/concepts/tsi-compliances/> .
-@prefix era-malvc: <http://data.europa.eu/949/concepts/min-axle-loads-per-vehicle-category/> .
-@prefix era-mas: <http://data.europa.eu/949/concepts/max-amount-sandings/> .
-@prefix era-lc: <http://data.europa.eu/949/concepts/load-capabilities/> .
-@prefix era-pnsb: <http://data.europa.eu/949/concepts/profile-num-swap-bodies/> .
-@prefix era-pnst: <http://data.europa.eu/949/concepts/profile-num-semi-trailers/> .
-@prefix era-ri: <http://data.europa.eu/949/concepts/rail-inclinations/> .
-@prefix era-mb: <http://data.europa.eu/949/concepts/magnetic-braking/> .
-@prefix era-pth: <http://data.europa.eu/949/concepts/pantograph-heads/> .
-@prefix era-csm: <http://data.europa.eu/949/concepts/contact-strip-materials/> .
-@prefix era-etcsinfill: <http://data.europa.eu/949/concepts/etcs-infills/> .
-@prefix era-esc: <http://data.europa.eu/949/concepts/etcs-system-compatibilities/> .
-@prefix era-etcsmvers: <http://data.europa.eu/949/concepts/etcs-m-versions/> .
-@prefix era-gsmrv: <http://data.europa.eu/949/concepts/gsmr-versions/> .
-@prefix era-gsmrnumactivemob: <http://data.europa.eu/949/concepts/gsmr-number-active-mobiles/> .
-@prefix era-gsmroptfunc: <http://data.europa.eu/949/concepts/gsmr-optional-functions/> .
-@prefix era-gsmr: <http://data.europa.eu/949/concepts/gsmr-networks/> .
-@prefix era-rsc: <http://data.europa.eu/949/concepts/radio-system-compatibilities/> .
-@prefix era-vrsc: <http://data.europa.eu/949/concepts/voice-radio-system-compatibilities/> .
-@prefix era-rscd: <http://data.europa.eu/949/concepts/radio-system-compatibilities-data/> .
-@prefix era-tpls: <http://data.europa.eu/949/concepts/train-protection-legacy-systems/> .
-@prefix era-lrs: <http://data.europa.eu/949/concepts/legacy-radio-systems/> .
-@prefix era-etcssituation: <http://data.europa.eu/949/concepts/etcs-situation/> .
-@prefix era-opcw: <http://data.europa.eu/949/concepts/other-protection-control-warning/> .
-@prefix era-trd: <http://data.europa.eu/949/concepts/track-running-directions/> .
-@prefix era-ec: <http://data.europa.eu/949/concepts/eddy-current-braking/> .
-@prefix era-ha: <http://data.europa.eu/949/concepts/hot-axle/> .
-@prefix era-cls: <http://data.europa.eu/949/concepts/contact-line-systems/> .
-@prefix era-cph: <http://data.europa.eu/949/concepts/compliant-pantograph-heads/> .
-@prefix era-oph: <http://data.europa.eu/949/concepts/other-pantograph-heads/> .
-@prefix era-lclc: <http://data.europa.eu/949/concepts/load-capability-line-categories/> .
 
 ####################################
 # Rules for Sections of Line - tracks
@@ -57,7 +19,7 @@ era-sh:SectionOfLineShape
 
 era-sh:CommonCharacteristicsSubsetShape
 	a sh:NodeShape ;
-	sh:targetClass era:CommonCharacteristicsSubset .  # Applies to all Common Characteritics Subset  with sidings parameters 
+	sh:targetClass era:CommonCharacteristicsSubset .  # Applies to all Common Characteritics Subset  with SOL track parameters
 
 
 
@@ -506,28 +468,12 @@ era-sh:GradientProfile
 	sh:severity sh:Violation ;
 	sh:message "gradientProfile (1.1.1.1.3.6): The track has a gradient profile value that must be a string with a sequence of values in the format [+/-][NN.N]([+/-][NNNN.NNN]). This error may be due to having a sequence of values that are not a string or that do not follow the pattern."@en .
 
-# minimumHorizontalRadius: # 1.1.1.1.3.7
-era-sh:SectionOfLineShape sh:property era-sh:MinimumHorizontalRadius.
-era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MinimumHorizontalRadius.
-era-sh:MinimumHorizontalRadius
-	a sh:PropertyShape ; 
-    era:affectedProperty era:minimumHorizontalRadius;
-    era:affectedClass  era:RunningTrack;
-    era:scope "local";
-    
-	rdfs:comment "Radius of the smallest horizontal curve of the track in meters." ;
-	era:rinfIndex "1.1.1.1.3.7" ;
-	sh:path era:minimumHorizontalRadius ;
-	sh:maxCount 1 ;
-	sh:datatype xsd:integer;
-	sh:pattern "^([0-9]\\d{1,4}|[0-9])$" ;
-	sh:severity sh:Violation ;
-	sh:message "minimumHorizontalRadius (1.1.1.1.3.7): The track must have at most one minimum horizontal radius value that is an integer. This error may be due to the track having more than one minimum horizontal radius value or to having a value that is not an integer."@en .
+
 
 
 
 # cantDeficiency: # 1.1.1.1.4.2 
-era-sh:SectionsOfLineShape sh:property era-sh:CantDeficiency.
+era-sh:SectionOfLineShape sh:property era-sh:CantDeficiency.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:CantDeficiency.
 era-sh:CantDeficiency
 	a sh:PropertyShape ; 
@@ -658,100 +604,7 @@ era-sh:MaximumTrainDeceleration
 	sh:message "maximumTrainDeceleration (1.1.1.1.6.1): The track must have at most one maximum train deceleration value that is a double (real) number . This error may be due to the track having more than one maximum train deceleration value or to having a value that is not a real (double) number."@en .
 
 
-# eddyCurrentBraking: # 1.1.1.1.6.2 # Pass to track-sol-op
-era-sh:SectionOfLineShape sh:property era-sh:EddyCurrentBraking.
-era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:EddyCurrentBraking.
-era-sh:EddyCurrentBraking
-	a sh:PropertyShape ; 
-    era:affectedProperty era:eddyCurrentBraking ;
-    era:affectedClass  era:RunningTrack;
-    era:scope "local";  
-	rdfs:comment "Indication of limitations on the use of eddy current brakes." ;	
-    era:rinfIndex "1.1.1.1.6.2" ;	
-    sh:path (era:hasPart era:eddyCurrentBraking) ;
-	sh:maxCount 1 ;	
-    sh:nodeKind sh:IRI ;
- 	sh:severity sh:Violation ;
- 	sh:message "eddyCurrentBraking (1.1.1.1.6.2): The track must have at most one eddy current braking value that is an IRI. This error may be due to the track having more than one eddy current braking value or having a value that is not an IRI."@en .
 
-# eddyCurrentBraking: # 1.1.1.1.6.2 # Pass to track-sol-op
-era-sh:SectionOfLineShape sh:sparql era-sh:EddyCurrentBrakingSKOS.
-era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:EddyCurrentBrakingSKOS.
-era-sh:EddyCurrentBrakingSKOS
-	a sh:SPARQLConstraint ;
-    era:affectedProperty era:eddyCurrentBraking ;
-    era:affectedClass  era:RunningTrack;
-    era:scope "local";
-    rdfs:comment "Indication of limitations on the use of eddy current brakes." ;
-	era:rinfIndex "1.1.1.1.6.2" ;
-	sh:severity sh:Violation ;
-    sh:message "Indication of the eddyCurrentBraking (1.1.1.1.6.2):): The track {?track} of the section of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/eddy-current-braking/EddyCurrentBraking."@en ;
-    sh:prefixes era:;
-	sh:select """
-    PREFIX era: <http://data.europa.eu/949/>
-    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT $this  ?concept
-    WHERE {
-        $this era:hasPart ?track .
-        ?track era:eddyCurrentBraking ?concept .
-        era:eddyCurrentBraking era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
-	}
-""" .
-
-
-
-
-
-
-
-# magneticBraking: # 1.1.1.1.6.3
-era-sh:SectionOfLineShape sh:property era-sh:MagneticBraking.
-era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MagneticBraking.
-era-sh:MagneticBraking
-	a sh:PropertyShape ; 
-    era:affectedProperty era:magneticBraking ;
-    era:affectedClass  era:RunningTrack;
-    era:scope "local";
-   
-	rdfs:comment "Indication of limitations of the use of magnetic brakes." ;
-	era:rinfIndex "1.1.1.1.6.3" ;
-	sh:path (era:hasPart era:magneticBraking) ;
-    sh:maxCount 1 ;
-	sh:nodeKind sh:IRI ;   
-	sh:severity sh:Violation ;
-	sh:message "magneticBraking (1.1.1.1.6.3): The track must have at most  one magnetic braking value that is an IRI. This error may be due to the track having more than one magnetic braking value."@en .
-
-# magneticBraking: # 1.1.1.1.6.3
-era-sh:SectionOfLineShape sh:sparql era-sh:MagneticBrakingSKOS.
-era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:MagneticBrakingSKOS.
-era-sh:MagneticBrakingSKOS
-	a sh:SPARQLConstraint ;
-    era:affectedProperty era:magneticBraking ;
-    era:affectedClass  era:RunningTrack;
-    era:scope "local";    
-    rdfs:comment "Indication of limitations of the use of magnetic brakes" ;
-	era:rinfIndex "1.1.1.1.6.3" ;
-	sh:severity sh:Violation ;
-    sh:message "Indication of the magneticBraking (1.1.1.1.6.3):): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/magnetic-braking/MagneticBraking."@en ;
-    sh:prefixes era:;
-	sh:select """
-    PREFIX era: <http://data.europa.eu/949/>
-    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT $this  ?concept
-    WHERE {
-	    $this era:hasPart ?track .
-        ?track era:magneticBraking ?concept .
-        era:magneticBraking era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
-	}
-""" .
 
 
 
@@ -1332,8 +1185,7 @@ era-sh:DistSignToPhaseEnd
 	a sh:PropertyShape ; era:affectedProperty era:distSignToPhaseEnd  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Specific for route compatibility check on French network. Distance between the signboard authorizing the driver to 'raise pantograph' or 'close the circuit breaker' after passing the phase separation and the end of the phase separation section." ;
 	era:rinfIndex "1.1.1.2.4.3" ;
-	sh:path (era:hasPart era:distSignToPhaseEnd) ;
-	
+	sh:path (era:hasPart era:distSignToPhaseEnd) ;	
 	sh:maxCount 1 ;
 	sh:datatype xsd:integer ;
 	sh:pattern "^([1-9]\\d{1,2}|[0-9])$" ;
@@ -1342,6 +1194,7 @@ era-sh:DistSignToPhaseEnd
 
 # permittedContactForce: # 1.1.1.2.5.2
 era-sh:SectionOfLineShape sh:property era-sh:PermittedContactForce.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:PermittedContactForce.
 era-sh:PermittedContactForce
 	a sh:PropertyShape ; era:affectedProperty era:permittedContactForce  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication of contact force allowed expressed in newtons." ;
@@ -1354,7 +1207,8 @@ era-sh:PermittedContactForce
 	sh:message "permittedContactForce (1.1.1.2.5.2): The track must have at most one value of the contact force allowed expressed in newtons. This error is due to the track having more than one value or to having a value that is not a character string."@en .
 
 # automaticDroppingDeviceRequired: # 1.1.1.2.5.3
-era-sh:SectionsOfLineShape sh:property era-sh:AutomaticDroppingDeviceRequired.
+era-sh:SectionOfLineShape sh:property era-sh:AutomaticDroppingDeviceRequired.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:AutomaticDroppingDeviceRequired.
 era-sh:AutomaticDroppingDeviceRequired
 	a sh:PropertyShape ; era:affectedProperty era:automaticDroppingDeviceRequired  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication of the requirement of automatic dropping device." ;
@@ -1368,6 +1222,7 @@ era-sh:AutomaticDroppingDeviceRequired
 
 # verificationCCS: # 1.1.1.3.1.1
 era-sh:SectionOfLineShape sh:property era-sh:VerificationCCS.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:VerificationCCS.
 era-sh:VerificationCCS
 	a sh:PropertyShape ; era:affectedProperty era:verificationCCS  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Unique number for EC declarations following format requirements specified in the 'Document about practical arrangements for transmitting interoperability documents'." ;
@@ -1378,21 +1233,11 @@ era-sh:VerificationCCS
 	sh:severity sh:Violation ;
 	sh:message "verificationCCS (1.1.1.3.1.1): The track defines the unique number for EC declarations following format requirements specified in the 'Document about practical arrangements for transmitting interoperability documents; the value must be a string that follows the pattern [CC/RRRRRRRRRRRRRR/YYYY/NNNNNN] where the YYYY characters must be a number between 1900 and 2100, and the NNNNNN characters must be digits. This error is due to having a value that does not follow the pattern."@en .
 
-# etcsInfillLineAccess: # 1.1.1.3.2.3
-era-sh:SectionOfLineShape sh:property era-sh:EtcsInfillLineAccess.
-era-sh:EtcsInfillLineAccess
-	a sh:PropertyShape ; era:affectedProperty era:etcsInfillLineAccess  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication of the access to the ETCS infill line." ;
-	era:rinfIndex "1.1.1.3.2.3" ;
-	sh:path (era:hasPart era:etcsInfillLineAccess) ;
-	
-	sh:maxCount 1 ;
-	sh:datatype xsd:boolean ;
-	sh:severity sh:Violation ;
-	sh:message "etcsInfillLineAccess (1.1.1.3.2.3): The track has at most one value of the access to the ETCS infill line and it must be Y/N (boolean). This error is due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
+
 
 # etcsNationalPacket44: # 1.1.1.3.2.5
 era-sh:SectionOfLineShape sh:property era-sh:EtcsNationalPacket44.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:EtcsNationalPacket44.
 era-sh:EtcsNationalPacket44
 	a sh:PropertyShape ; era:affectedProperty era:etcsNationalPacket44  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication whether data for national application is transmitted between track and train." ;
@@ -1404,34 +1249,10 @@ era-sh:EtcsNationalPacket44
 	sh:severity sh:Violation ;
 	sh:message "etcsNationalPacket44 (1.1.1.3.2.5): The track has at most one value of the indication whether data for national application is transmitted between track and train and it must be truye/false (boolean). This error is due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
 
-# hasETCSRestrictionsConditions: # 1.1.1.3.2.6
-era-sh:SectionOfLineShape sh:property era-sh:HasETCSRestrictionsConditions.
-era-sh:HasETCSRestrictionsConditions
-	a sh:PropertyShape ; era:affectedProperty era:hasETCSRestrictionsConditions  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication whether restrictions or conditions due to partial compilance with the CCS TSI exist." ;
-	era:rinfIndex "1.1.1.3.2.6" ;
-	sh:path (era:hasPart era:hasETCSRestrictionsConditions) ;
-	
-	sh:maxCount 1 ;
-	sh:datatype xsd:boolean ;
-	sh:severity sh:Violation ;
-	sh:message "hasETCSRestrictionsConditions (1.1.1.3.2.6): The track has at most one value of the indication whether restrictions or conditions due to partial compliance with the CCS TSI exist and the value is Y/N (boolean). This error is due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
-
-# trainIntegrityOnBoardRequired: # 1.1.1.3.2.8
-era-sh:SectionOfLineShape sh:property era-sh:TrainIntegrityOnBoardRequired.
-era-sh:TrainIntegrityOnBoardRequired
-	a sh:PropertyShape ; era:affectedProperty era:trainIntegrityOnBoardRequired ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication whether TIMS is required to access the line for safety reasons." ;
-	era:rinfIndex "1.1.1.3.2.8" ;
-	sh:path (era:hasPart era:trainIntegrityOnBoardRequired) ;
-	
-	sh:maxCount 1 ;
-	sh:datatype xsd:boolean ;
-	sh:severity sh:Violation ;
-	sh:message "trainIntegrityOnBoardRequired (1.1.1.3.2.8): The track has at most one value of the indication whether TIMS is required to access the line for safety reasons and the vaalue is Y/N (boolean). This error is due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
 
 # gsmRAdditionalInfo: # 1.1.1.3.3.3.1
 era-sh:SectionOfLineShape sh:property era-sh:GsmRAdditionalInfo.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:GsmRAdditionalInfo.
 era-sh:GsmRAdditionalInfo
 	a sh:PropertyShape ; era:affectedProperty era:gsmRAdditionalInfo  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Additional information on network characteristics." ;
@@ -1443,6 +1264,7 @@ era-sh:GsmRAdditionalInfo
 
 # gprsForETCS: # 1.1.1.3.3.3.2
 era-sh:SectionOfLineShape sh:property era-sh:GprsForETCS.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:GprsForETCS.
 era-sh:GprsForETCS
 	a sh:PropertyShape ; era:affectedProperty era:gprsForETCS  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication if GPRS can be used for ETCS." ;
@@ -1455,6 +1277,7 @@ era-sh:GprsForETCS
 
 # gprsImplementationArea: # 1.1.1.3.3.3.3
 era-sh:SectionOfLineShape sh:property era-sh:GprsImplementationArea.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:GprsImplementationArea.
 era-sh:GprsImplementationArea
 	a sh:PropertyShape ; era:affectedProperty era:gprsImplementationArea  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication of the area in which GPRS can be used for ETCS." ;
@@ -1464,76 +1287,11 @@ era-sh:GprsImplementationArea
 	sh:severity sh:Violation ;
 	sh:message "gprsImplementationArea (1.1.1.3.3.3.3): The track defines the area in which GPRS can be used for ETCS value that must be a string. This error may be due to the track having  a value that is not a string."@en .
 
-# usesGroup555: # 1.1.1.3.3.4
-era-sh:SectionOfLineShape sh:property era-sh:UsesGroup555.
-era-sh:UsesGroup555
-	a sh:PropertyShape ; era:affectedProperty era:usesGroup555  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication if group 555 is needed." ;
-	era:rinfIndex "1.1.1.3.3.4" ;
-	sh:path (era:haPart era:usesGroup555) ;
-	
-	sh:maxCount 1 ;
-	sh:datatype xsd:boolean ;
-	sh:severity sh:Violation ;
-	sh:message "usesGroup555 (1.1.1.3.3.3.4): The track defines at most one use of group 555 value that is Y/N (boolean). This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
-
-
-
-# publicNetworkRoaming: # 1.1.1.3.3.6
-era-sh:SectionOfLineShape sh:property era-sh:PublicNetworkRoaming.
-era-sh:PublicNetworkRoaming
-	a sh:PropertyShape ; era:affectedProperty era:publicNetworkRoaming  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Existence of roaming to a public network (if roaming to a public network is configured, please indicate so)." ;
-	era:rinfIndex "1.1.1.3.3.6" ;
-	sh:path (era:hasPart era:publicNetworkRoaming) ;
-	
-	sh:maxCount 1 ;
-	sh:datatype xsd:boolean ;
-	sh:severity sh:Violation ;
-	sh:message "publicNetworkRoaming (1.1.1.3.3.6): The track has at most one existence of roaming to a public network value and it is Y/N (boolean). This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
-
-# publicNetworkRoamingDetails: # 1.1.1.3.3.7
-era-sh:SectionOfLineShape sh:property era-sh:PublicNetworkRoamingDetails.
-era-sh:PublicNetworkRoamingDetails
-	a sh:PropertyShape ; era:affectedProperty era:publicNetworkRoamingDetails ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "If roaming to public networks is configured, please indicate to which networks, for which users and in which areas." ;
-	era:rinfIndex "1.1.1.3.3.7" ;
-	sh:path (era:hasPart era:publicNetworkRoamingDetails) ;	
-	sh:maxCount 1 ;
-	sh:datatype xsd:string ;
-	sh:severity sh:Violation ;
-	sh:message "publicNetworkRoamingDetails (1.1.1.3.3.7): The track has at most one existence of roaming to a public network value and it is a string. This error may be due to the track having more than one value or to having a value that is not a string."@en .
-
-# gsmRNoCoverage: # 1.1.1.3.3.8
-era-sh:SectionOfLineShape sh:property era-sh:GsmRNoCoverage.
-era-sh:GsmRNoCoverage
-	a sh:PropertyShape ; era:affectedProperty era:gsmRNoCoverage  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication if there is a no GSM-R coverage." ;
-	era:rinfIndex "1.1.1.3.3.8" ;
-	sh:path (era:hasPart era:gsmRNoCoverage) ;
-	
-	sh:maxCount 1 ;
-	sh:datatype xsd:boolean ;
-	sh:severity sh:Violation ;
-	sh:message "gsmRNoCoverage (1.1.1.3.3.8): The track has at most one indication if there is a no GSM-R coverage value and it is Y/N (boolean). This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
-
-
-
-# hasTSITrainDetection: # 1.1.1.3.4.1
-era-sh:SectionOfLineShape sh:property era-sh:HasTSITrainDetection.
-era-sh:HasTSITrainDetection
-	a sh:PropertyShape ; era:affectedProperty era:hasTSITrainDetection  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication if there is any train detection system installed and fully compilant with the CCS TSI requirements." ;
-	era:rinfIndex "1.1.1.3.4.1" ;
-	sh:path (era:hasPart era:hasTSITrainDetection );
-	sh:maxCount 1 ;
-	sh:datatype xsd:boolean ;
-	sh:severity sh:Violation ;
-	sh:message "hasTSITrainDetection (1.1.1.3.4.1): The track has at most one value of the indication if there is any train detection system installed and fully compilant with the CCS TSI requirements and the value must be Y/N (boolean). This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
 
 
 # protectionLegacySystem: # 1.1.1.3.5.3
 era-sh:SectionOfLineShape sh:sparql era-sh:ProtectionLegacySystemSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:ProtectionLegacySystemSKOS.
 era-sh:ProtectionLegacySystemSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:protectionLegacySystem  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
@@ -1558,6 +1316,7 @@ era-sh:ProtectionLegacySystemSKOS
 
 # frenchTrainDetectionSystemLimitationNumber: # 1.1.1.3.7.1.4
 era-sh:SectionOfLineShape sh:sparql era-sh:FrenchTrainDetectionSystemLimitationNumberSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:FrenchTrainDetectionSystemLimitationNumberSKOS.
 era-sh:FrenchTrainDetectionSystemLimitationNumberSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:frenchTrainDetectionSystemLimitationNumber  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
@@ -1583,35 +1342,10 @@ era-sh:FrenchTrainDetectionSystemLimitationNumberSKOS
 
 
 
-# switchProtectControlWarning: # 1.1.1.3.8.1
-era-sh:SectionOfLineShape sh:property era-sh:SwitchProtectControlWarning.
-era-sh:SwitchProtectControlWarning
-	a sh:PropertyShape ; era:affectedProperty era:switchProtectControlWarning  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication whether a switch over between different systems whilst running exist." ;
-	era:rinfIndex "1.1.1.3.8.1" ;
-	sh:path (era:hasPart era:switchProtectControlWarning) ;
-	
-	sh:maxCount 1 ;
-	sh:datatype xsd:boolean ;
-	sh:severity sh:Violation ;
-	sh:message "switchProtectControlWarning (1.1.1.3.8.1): The track must define at most one value of the indication whether a switch over between different systems whilst running exist and the value must be Y/N (boolean). This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
-
-# switchRadioSystem: # 1.1.1.3.8.2
-era-sh:SectionOfLineShape sh:property era-sh:SwitchRadioSystem.
-era-sh:SwitchRadioSystem
-	a sh:PropertyShape ; era:affectedProperty era:switchRadioSystem  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication whether a switch over between different radio systems and no communication system whilst running exist." ;
-	era:rinfIndex "1.1.1.3.8.2" ;
-	sh:path (era:hasPart era:switchRadioSystem);
-	
-	sh:maxCount 1 ;
-	sh:datatype xsd:boolean ;
-	sh:severity sh:Violation ;
-	sh:message "switchRadioSystem (1.1.1.3.8.2): The track must define at most one value of the indication whether a switch over between different radio systems and no communication system whilst running exist, and the value must be Y/N (boolean). This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
-
 
 # etcsDegradedSituation: # 1.1.1.3.10.1
 era-sh:SectionOfLineShape sh:sparql era-sh:EtcsDegradedSituationSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:EtcsDegradedSituationSKOS.
 era-sh:EtcsDegradedSituationSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsDegradedSituation  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
@@ -1636,48 +1370,13 @@ era-sh:EtcsDegradedSituationSKOS
 """ .
 
 
-# otherTrainProtection: # 1.1.1.3.10.2
-era-sh:SectionOfLineShape sh:property era-sh:OtherTrainProtection.
-era-sh:OtherTrainProtection
-	a sh:PropertyShape ; era:affectedProperty era:otherTrainProtection  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication of existence of other systems than ETCS for degraded situation." ;
-	era:rinfIndex "1.1.1.3.10.2" ;
-	sh:path (era:hasPart era:otherTrainProtection) ;
-	
-	sh:maxCount 1 ;
-	sh:nodeKind sh:IRI ;
-	sh:severity sh:Violation ;
-	sh:message "otherTrainProtection (1.1.1.3.10.2): The track must define at most one value of the indication of existence of other systems than ETCS for degraded situation and it is an IRI. This error may be due to the track having more than one value."@en .
 
-# otherTrainProtection: # 1.1.1.3.10.2
-era-sh:SectionOfLineShape sh:sparql era-sh:OtherTrainProtectionSKOS.
-era-sh:OtherTrainProtectionSKOS
-	a sh:SPARQLConstraint ;
-    era:affectedProperty era:otherTrainProtection  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-   rdfs:comment "Indication of existence of other systems than ETCS for degraded situation." ;
-	era:rinfIndex "1.1.1.3.10.2" ;
-	sh:severity sh:Violation ;
-    sh:message "Indication of the otherTrainProtection (1.1.1.3.10.2): The track {?track} of the section} of line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list:  http://data.europa.eu/949/concepts/other-protection-control-warning/OtherProtectionControlWarnings."@en ;
-    sh:prefixes era:;
-	sh:select """
-    PREFIX era: <http://data.europa.eu/949/>
-    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT $this  ?concept
-    WHERE {
-		$this era:hasPart ?track .
-        ?track era:otherTrainProtection ?concept .
-        era:otherTrainProtection era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
-	}
-""" .
 
 
 
 # maximumBrakingDistance: # 1.1.1.3.11.1
 era-sh:SectionOfLineShape sh:property era-sh:MaximumBrakingDistance.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MaximumBrakingDistance.
 era-sh:MaximumBrakingDistance
 	a sh:PropertyShape ; era:affectedProperty era:maximumBrakingDistance  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "The maximum value of the braking distance [in metres] of a train shall be given for the maximum line speed." ;
@@ -1692,6 +1391,7 @@ era-sh:MaximumBrakingDistance
 
 # hasAdditionalBrakingInformation: # 1.1.1.3.11.2
 era-sh:SectionOfLineShape sh:property era-sh:HasAdditionalBrakingInformation.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasAdditionalBrakingInformation.
 era-sh:HasAdditionalBrakingInformation
 	a sh:PropertyShape ; era:affectedProperty era:hasAdditionalBrakingInformation  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Availability by the IM of additional information as defined in 4.2.2.6.2 (2) Regulation XXX-OPE TSI." ;
@@ -1703,7 +1403,8 @@ era-sh:HasAdditionalBrakingInformation
 	sh:message "hasAdditionalBrakingInformation (1.1.1.3.11.2): The track must define at most one value of the availability by the IM of additional information and it is Y/N (boolean). This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
 
 # additionalBrakingInformationDocument: # 1.1.1.3.11.3
-era-sh:SectionsOfLineShape sh:property era-sh:AdditionalBrakingInformationDocument.
+era-sh:SectionOfLineShape sh:property era-sh:AdditionalBrakingInformationDocument.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:AdditionalBrakingInformationDocument.
 era-sh:AdditionalBrakingInformationDocument
 	a sh:PropertyShape ; era:affectedProperty era:additionalBrakingInformationDocument  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Documents available by the IM relating to braking performance." ;
@@ -1716,6 +1417,7 @@ era-sh:AdditionalBrakingInformationDocument
 
 # tiltingSupported: # 1.1.1.3.12.1
 era-sh:SectionOfLineShape sh:property era-sh:TiltingSupported.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TiltingSupported.
 era-sh:TiltingSupported
 	a sh:PropertyShape ; era:affectedProperty era:tiltingSupported  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication whether tilting functions are supported by the track." ;
@@ -1727,34 +1429,11 @@ era-sh:TiltingSupported
 	sh:severity sh:Violation ;
 	sh:message "tiltingSupported (1.1.1.3.12.1): The track must define at most one value of the indication whether tilting functions are supported by the track and it is Y/N (boolean).This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
 
-# localRulesOrRestrictions: # 1.1.1.4.1
-era-sh:SectionOfLineShape sh:property era-sh:LocalRulesOrRestrictions.
-era-sh:LocalRulesOrRestrictions
-	a sh:PropertyShape ; era:affectedProperty era:localRulesOrRestrictions  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Existence of rules and restrictions of a strictly local nature." ;
-	era:rinfIndex "1.1.1.4.1" ;
-	sh:path (era:hasPart era:localRulesOrRestrictions) ;
-	sh:maxCount 1 ;
-	sh:datatype xsd:boolean ;
-	sh:severity sh:Violation ;
-	sh:message "localRulesOrRestrictions (1.1.1.4.1): The track must define t most one value of the existence of rules and restrictions of a strictly local nature and it must be Y/N (boolean). This error may be due to the track having more than one value or to having a value that is not Y/N (boolean)."@en .
 
-# localRulesOrRestrictionsDoc: # 1.1.1.4.2
-era-sh:SectionOfLineShape sh:property era-sh:LocalRulesOrRestrictionsDoc.
-era-sh:LocalRulesOrRestrictionsDoc
-	a sh:PropertyShape ; era:affectedProperty era:localRulesOrRestrictionsDoc  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Documents regarding the rules or restrictions of a strictly local nature available by the IM." ;
-	era:rinfIndex "1.1.1.4.2" ;
-	sh:path (era:hasPart era:localRulesOrRestrictionsDoc) ;
-	#sh:datatype xsd:string ;
-    sh:class era:Document;
-	sh:severity sh:Violation ;
-	sh:message "localRulesOrRestrictionsDoc (1.1.1.4.2): The track defines the value of the documents regarding the rules or restrictions of a strictly local nature available by the IM and this value must be a Document."@en .
-
-# contactLineSystem class ContactLineSystem
 
 # currentLimitationRequired: # 1.1.1.2.5.1
-era-sh:SectionsOfLineShape sh:property era-sh:CurrentLimitationRequired.
+era-sh:SectionOfLineShape sh:property era-sh:CurrentLimitationRequired.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:CurrentLimitationRequired.
 era-sh:CurrentLimitationRequired
 	a sh:PropertyShape ; 
     era:affectedProperty era:currentLimitationRequired;
@@ -1767,24 +1446,9 @@ era-sh:CurrentLimitationRequired
 	sh:severity sh:Violation ;
 	sh:message "currentLimitationRequired (1.1.1.2.5.1): The track may have a current limitation required value that is a boolean. This error may be due to the track having a value that is not a boolean."@en .
 
-# distSignToPhaseEnd: # 1.1.1.2.4.3
-era-sh:SectionsOfLineShape sh:property era-sh:DistSignToPhaseEnd.
-era-sh:DistSignToPhaseEnd
-	a sh:PropertyShape ; 
-    era:affectedProperty era:distSignToPhaseEnd;
-    era:affectedClass  era:RunningTrack;
-    era:scope "local";
-	rdfs:comment "Distance between the signboard authorizing the driver to “raise pantograph” or “close the circuit breaker” after passing the phase separation and the end of the phase separation section." ;
-	era:rinfIndex "1.1.1.2.4.3" ;
-	sh:path (era:hasPart era:distSignToPhaseEnd) ;
-	sh:maxCount 1 ;
-	sh:datatype xsd:integer ;
-	sh:pattern "^([0-9]\\d{1,2}|[0-9])$" ;
-	sh:severity sh:Violation ;
-	sh:message "distSignToPhaseEnd (1.1.1.2.4.3): The track may have a distance between signboard and phase separation ending value that is an integer. This error may be due to the track having more than one value or having a value that is not an integer."@en .
-
 # documentRestrictionPositionContactLineSeparation: # 1.1.1.2.5.5
-era-sh:SectionsOfLineShape sh:property era-sh:DocumentRestrictionPositionContactLineSeparation.
+era-sh:SectionOfLineShape sh:property era-sh:DocumentRestrictionPositionContactLineSeparation.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:DocumentRestrictionPositionContactLineSeparation.
 era-sh:DocumentRestrictionPositionContactLineSeparation
 	a sh:PropertyShape ; 
     era:affectedProperty era:documentRestrictionPositionContactLineSeparation;
@@ -1798,7 +1462,8 @@ era-sh:DocumentRestrictionPositionContactLineSeparation
 	sh:message "documentRestrictionPositionContactLineSeparation (1.1.1.2.5.5): The track may have a Document with restriction related to the position of Multiple Traction unit(s) to comply with contact line separation value that is a Document. This error may be due to the track having a value that is not a Document."@en .
 
 # documentRestrictionPowerConsumption: # 1.1.1.2.5.4
-era-sh:SectionsOfLineShape sh:property era-sh:DocumentRestrictionPowerConsumption.
+era-sh:SectionOfLineShape sh:property era-sh:DocumentRestrictionPowerConsumption.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:DocumentRestrictionPowerConsumption.
 era-sh:DocumentRestrictionPowerConsumption
 	a sh:PropertyShape ; 
     era:affectedProperty era:documentRestrictionPowerConsumption;
@@ -1815,6 +1480,7 @@ era-sh:DocumentRestrictionPowerConsumption
 			 
 # linesideDistanceIndicationPositioning: # 1.1.1.0.0.3
 era-sh:SectionOfLineShape sh:property era-sh:LinesideDistanceIndicationPositioning.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:LinesideDistanceIndicationPositioning.
 era-sh:LinesideDistanceIndicationPositioning
 	a sh:PropertyShape ; era:affectedProperty era:linesideDistanceIndicationPositioning  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication of the side along the track where the lineside indication is positioned (left or right)." ;
@@ -1828,6 +1494,7 @@ era-sh:LinesideDistanceIndicationPositioning
 
 # linesideDistanceIndicationPositioning: # 1.1.1.0.0.3
 era-sh:SectionOfLineShape sh:sparql era-sh:LinesideDistanceIndicationPositioningSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:LinesideDistanceIndicationPositioningSKOS.
 era-sh:LinesideDistanceIndicationPositioningSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:linesideDistanceIndicationPositioning  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
@@ -1853,6 +1520,7 @@ era-sh:LinesideDistanceIndicationPositioningSKOS
 
 # linesideDistanceIndicationAppearance: # 1.1.1.0.0.3
 era-sh:SectionOfLineShape sh:property era-sh:LinesideDistanceIndicationAppearance.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:LinesideDistanceIndicationAppearance.
 era-sh:LinesideDistanceIndicationAppearance
 	a sh:PropertyShape ; era:affectedProperty era:linesideDistanceIndicationAppearance  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Indication of types of appearance of track lineside distance indications." ;
@@ -1866,6 +1534,7 @@ era-sh:LinesideDistanceIndicationAppearance
 
 # linesideDistanceIndicationAppearance: # 1.1.1.0.0.3
 era-sh:SectionOfLineShape sh:sparql era-sh:LinesideDistanceIndicationAppearanceSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:LinesideDistanceIndicationAppearanceSKOS.
 era-sh:LinesideDistanceIndicationAppearanceSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:linesideDistanceIndicationAppearance  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
@@ -1891,6 +1560,7 @@ era-sh:LinesideDistanceIndicationAppearanceSKOS
 
 # linesideDistanceIndicationFrequency: # 1.1.1.0.0.3
 era-sh:SectionOfLineShape sh:property era-sh:LinesideDistanceIndicationFrequency.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:LinesideDistanceIndicationFrequency.
 era-sh:LinesideDistanceIndicationFrequency
 	a sh:PropertyShape ; era:affectedProperty era:linesideDistanceIndicationFrequency  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Frequency of track lineside distance indications.." ;
@@ -1903,7 +1573,8 @@ era-sh:LinesideDistanceIndicationFrequency
 	sh:message "linesideDistanceIndicationFrequency (1.1.1.0.0.3): The track must have at most one value of the lineside distance indication frequency. This error may be due to the track having no value, more than one value or to having a value that is not an integer."@en .
 
 # 1.1.1.2.4.1.2 phaseInfoChangesupplySystem
-era-sh:SectionsOfLineShape sh:property era-sh:PhaseInfoChangesupplySystem.
+era-sh:SectionOfLineShape sh:property era-sh:PhaseInfoChangesupplySystem.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:PhaseInfoChangesupplySystem.
 era-sh:PhaseInfoChangesupplySystem
 	a sh:PropertyShape ; 
     era:affectedProperty era:phaseInfoChangesupplySystem;
@@ -1921,6 +1592,7 @@ era-sh:PhaseInfoChangesupplySystem
 
 # trackRaisedPantographsDistanceAndSpeed: # 1.1.1.2.3.3
 era-sh:SectionOfLineShape sh:property era-sh:TrackRaisedPantographsDistanceAndSpeed.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TrackRaisedPantographsDistanceAndSpeed.
 era-sh:TrackRaisedPantographsDistanceAndSpeed
 	a sh:PropertyShape ; era:affectedProperty era:trackRaisedPantographsDistanceAndSpeed  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Relates the track with the class RaisedPantporaphsDistanceAndSpeed. Indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed." ;
@@ -1932,6 +1604,7 @@ era-sh:TrackRaisedPantographsDistanceAndSpeed
 
 # trackPhaseInfo: # 1.1.1.2.4.1.2
 era-sh:SectionOfLineShape sh:property era-sh:TrackPhaseInfo.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TrackPhaseInfo.
 era-sh:TrackPhaseInfo
 	a sh:PropertyShape ; era:affectedProperty era:trackPhaseInfo  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Relates the Track with PhaseInfo. Indication of required several information on phase separation." ;
@@ -1943,6 +1616,7 @@ era-sh:TrackPhaseInfo
 
 # trackSystemSeparationInfo: # 1.1.1.2.4.2.2
 era-sh:SectionOfLineShape sh:property era-sh:TrackSystemSeparationInfo.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TrackSystemSeparationInfo.
 era-sh:TrackSystemSeparationInfo
 	a sh:PropertyShape ; era:affectedProperty era:trackSystemSeparationInfo  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Relates the Track with the SystemSeparationInfo. Indication of required several information on system separation." ;
@@ -1955,6 +1629,7 @@ era-sh:TrackSystemSeparationInfo
 
 #  1.1.1.1.2.4 trackLoadCapability
 era-sh:SectionOfLineShape sh:property era-sh:TrackLoadCapability.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TrackLoadCapability.
 era-sh:TrackLoadCapability
 	a sh:PropertyShape ; era:affectedProperty era:trackLoadCapability  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
 	rdfs:comment "Relates the track with the class LoadCapability. A combination of the line category and speed at the weakest point of the track." ;
@@ -1967,6 +1642,7 @@ era-sh:TrackLoadCapability
 
 # 1.1.1.1.7.7	hotAxleBoxDetectorGeneration applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:HotAxleBoxDetectorGenerationApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:HotAxleBoxDetectorGenerationApplicability.
 era-sh:HotAxleBoxDetectorGenerationApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hotAxleBoxDetectorGeneration;
@@ -1993,6 +1669,7 @@ era-sh:HotAxleBoxDetectorGenerationApplicability
 
 # 1.1.1.1.7.9	hotAxleBoxDetectorDirection applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:HotAxleBoxDetectorDirectionApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:HotAxleBoxDetectorDirectionApplicability.
 era-sh:HotAxleBoxDetectorDirectionApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hotAxleBoxDetectorDirection;
@@ -2019,6 +1696,7 @@ era-sh:HotAxleBoxDetectorDirectionApplicability
 
 # 1.1.1.1.7.6	hotAxleBoxDetectorIdentification applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:HotAxleBoxDetectorIdentificationApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:HotAxleBoxDetectorIdentificationApplicability.
 era-sh:HotAxleBoxDetectorIdentificationApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hotAxleBoxDetectorIdentification;
@@ -2045,6 +1723,7 @@ era-sh:HotAxleBoxDetectorIdentificationApplicability
 
 # 1.1.1.1.7.8	hotAxleBoxDetectorLocation applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:HotAxleBoxDetectorLocationApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:HotAxleBoxDetectorLocationApplicability.
 era-sh:HotAxleBoxDetectorLocationApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hotAxleBoxDetectorLocation;
@@ -2071,6 +1750,7 @@ era-sh:HotAxleBoxDetectorLocationApplicability
 
 # 1.1.1.1.7.3	accelerationLevelCrossing applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:AccelerationLevelCrossingApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:AccelerationLevelCrossingApplicability.
 era-sh:AccelerationLevelCrossingApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:accelerationLevelCrossing;
@@ -2097,6 +1777,7 @@ era-sh:AccelerationLevelCrossingApplicability
 
 # 1.1.1.2.4.1.2	trackPhaseInfo applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:TrackPhaseInfoApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:TrackPhaseInfoApplicability.
 era-sh:TrackPhaseInfoApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:trackPhaseInfo;
@@ -2123,6 +1804,7 @@ era-sh:TrackPhaseInfoApplicability
 
 # 1.1.1.2.4.2.2	trackSystemSeparationInfo applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:TrackSystemSeparationInfoApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:TrackSystemSeparationInfoApplicability.
 era-sh:TrackSystemSeparationInfoApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:trackSystemSeparationInfo;
@@ -2149,6 +1831,7 @@ era-sh:TrackSystemSeparationInfoApplicability
    
 # 1.1.1.2.3.1	tsiPantographHead applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:TsiPantographHeadApplicability .
+era-sh:CommonCharacteristicsSubsetShape  sh:sparql era-sh:TsiPantographHeadApplicability.
 era-sh:TsiPantographHeadApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:tsiPantographHead;
@@ -2178,6 +1861,7 @@ era-sh:TsiPantographHeadApplicability
 
 # 1.1.1.2.3.3	trackRaisedPantographDistanceAndSpeed applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:TrackRaisedPantographDistanceAndSpeedApplicability .
+era-sh:CommonCharacteristicsSubsetShape  sh:sparql era-sh:TrackRaisedPantographDistanceAndSpeedApplicability.
 era-sh:TrackRaisedPantographDistanceAndSpeedApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:trackRaisedPantographDistanceAndSpeed;
@@ -2206,6 +1890,7 @@ era-sh:TrackRaisedPantographDistanceAndSpeedApplicability
 
 # 1.1.1.2.4.1.1	hasPhaseSeparation applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:HasPhaseSeparationApplicability .
+era-sh:CommonCharacteristicsSubsetShape  sh:sparql era-sh:HasPhaseSeparationApplicability.
 era-sh:HasPhaseSeparationApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hasPhaseSeparation;
@@ -2234,6 +1919,7 @@ era-sh:HasPhaseSeparationApplicability
 
 # 1.1.1.2.3.4	contactStripMaterial applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:ContactStripMaterialApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:ContactStripMaterialApplicability.
 era-sh:ContactStripMaterialApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:contactStripMaterial;
@@ -2262,6 +1948,7 @@ era-sh:ContactStripMaterialApplicability
 
 # 1.1.1.2.3.2	otherPantographHead applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:OtherPantographHeadApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql  era-sh:OtherPantographHeadApplicability.
 era-sh:OtherPantographHeadApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:otherPantographHead;
@@ -2290,6 +1977,7 @@ era-sh:OtherPantographHeadApplicability
 
 # 1.1.1.2.4.2.1	hasSystemSeparation applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:HasSystemSeparationApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:HasSystemSeparationApplicability.
 era-sh:HasSystemSeparationApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hasSystemSeparation;
@@ -2318,6 +2006,7 @@ era-sh:HasSystemSeparationApplicability
 
 # 1.1.1.2.5.2	permittedContactForce applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:PermittedContactForceApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:PermittedContactForceApplicability.
 era-sh:PermittedContactForceApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:permittedContactForce;
@@ -2346,6 +2035,7 @@ era-sh:PermittedContactForceApplicability
 
 # 1.1.1.2.5.3	automaticDroppingDeviceRequired applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:AutomaticDroppingDeviceRequiredApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:AutomaticDroppingDeviceRequiredApplicability.
 era-sh:AutomaticDroppingDeviceRequiredApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:automaticDroppingDeviceRequired;
@@ -2374,6 +2064,7 @@ era-sh:AutomaticDroppingDeviceRequiredApplicability
 
 # 1.1.1.2.5.1	currentLimitationRequired applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:CurrentLimitationRequiredApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:CurrentLimitationRequiredApplicability.
 era-sh:CurrentLimitationRequiredApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:currentLimitationRequired;
@@ -2402,6 +2093,7 @@ era-sh:CurrentLimitationRequiredApplicability
 
 # 1.1.1.1.4.4	hasBallast aaplicability
 era-sh:SectionOfLineShape sh:sparql era-sh:HasBallastApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql  era-sh:HasBallastApplicability.
 era-sh:HasBallastApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hasBallast;
@@ -2429,6 +2121,7 @@ era-sh:HasBallastApplicability
 
 # 1.1.1.1.6.5	magneticBrakingConditionsDocument applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:MagneticBrakingConditionsDocumentApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:MagneticBrakingConditionsDocumentApplicability.
 era-sh:MagneticBrakingConditionsDocumentApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:magneticBrakingConditionsDocument;
@@ -2456,6 +2149,7 @@ era-sh:MagneticBrakingConditionsDocumentApplicability
 
 # 1.1.1.1.2.1.2	tenGISId applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:TenGISIdApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:TenGISIdApplicability.
 era-sh:TenGISIdApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:tenGISId;
@@ -2483,6 +2177,7 @@ era-sh:TenGISIdApplicability
 
 # 1.1.1.3.11.3	additionalBrakingInformationDocument applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:AdditionalBrakingInformationDocumentApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:AdditionalBrakingInformationDocumentApplicability.
 era-sh:AdditionalBrakingInformationDocumentApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:additionalBrakingInformationDocument;
@@ -2509,6 +2204,7 @@ era-sh:AdditionalBrakingInformationDocumentApplicability
 
 # 1.1.1.1.6.4	eddyCurrentBrakingConditionsDocument applicability
 era-sh:SectionOfLineShape sh:sparql era-sh:EddyCurrentBrakingConditionsDocumentApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:EddyCurrentBrakingConditionsDocumentApplicability.
 era-sh:EddyCurrentBrakingConditionsDocumentApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:eddyCurrentBrakingConditionsDocument;
@@ -2536,6 +2232,7 @@ era-sh:EddyCurrentBrakingConditionsDocumentApplicability
 
 #   1.1.1.1.2.4 trackLoadCapability
 era-sh:SectionOfLineShape sh:sparql era-sh:TrackLoadCapabilityProps .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:TrackLoadCapabilityProps.
 era-sh:TrackLoadCapabilityProps
 	a sh:SPARQLConstraint ;;
     era:affectedClass era:RunningTrack;
