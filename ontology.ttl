@@ -1,3 +1,4 @@
+@prefix : <http://data.europa.eu/949/> .
 @prefix cc: <http://creativecommons.org/ns#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix era: <http://data.europa.eu/949/> .
@@ -14,32 +15,32 @@
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-
+@base <http://data.europa.eu/949/> .
 
 <http://data.europa.eu/949/> rdf:type owl:Ontology ;
                               cc:license <https://creativecommons.org/licenses/by/4.0/> ;
-                              dcterms:contributor [ foaf:name "Polymnia Vasilopoulou" ;
-                                                    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
-                                                  ] ,
-                                                  [ foaf:name "Designated RINF Topical Working Groups"@en
-                                                  ] ,
-                                                  [ foaf:name "Edna Ruckhaus"
+                              dcterms:contributor [ foaf:name "Edna Ruckhaus"
                                                   ] ,
                                                   [ foaf:name "Oscar Corcho"
                                                   ] ,
-                                                  [ foaf:name "Designated RINF Topical Working Groups"@en
+                                                  [ foaf:name "Polymnia Vasilopoulou" ;
+                                                    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                                   ] ,
                                                   [ foaf:name "Maarten Duhoux" ;
                                                     org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                                   ] ,
+                                                  [ foaf:name "Designated RINF Topical Working Groups"@en
+                                                  ] ,
+                                                  [ foaf:name "Designated RINF Topical Working Groups"@en
+                                                  ] ,
                                                   [ foaf:name "Marina Aguado" ;
                                                     org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                                   ] ;
-                              dcterms:creator [ foaf:name "Ghislain Atemezing" ;
-                                                dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
+                              dcterms:creator [ foaf:name "Dragos Patru" ;
                                                 org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                               ] ,
-                                              [ foaf:name "Dragos Patru" ;
+                                              [ foaf:name "Ghislain Atemezing" ;
+                                                dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
                                                 org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                               ] ;
                               dcterms:issued "2024-04-18"^^xsd:date ;
@@ -69,7 +70,8 @@
                                                "2024-11-27"^^xsd:date ,
                                                "2024-12-02"^^xsd:date ,
                                                "2024-12-03"^^xsd:date ,
-                                               "2024-12-05"^^xsd:date ;
+                                               "2024-12-05"^^xsd:date ,
+                                               "2024-12-10"^^xsd:date ;
                               dcterms:publisher "European Union Agency for Railways" ;
                               dcterms:title "ERA Ontology"@en ;
                               rdfs:comment """This is the human and machine readable Ontology governed by the European Union Agency for Railways (https://www.era.europa.eu/). It represents the concepts and relationships linked to the sectorial legal framework and the use cases under the AgencyÂ´s remit, as described in the Commission Implementing Regulation (EU) [to be updated after publication] on the common specifications for the register of railway infrastructure [to be updated after publication].
@@ -85,6 +87,12 @@ The Ontology also includes the routebook concepts described in appendix D2 \"Ele
                               owl:versionInfo "v3.1.0" ;
                               owl:versionURI <https://github.com/Interoperable-data/ERA_vocabulary/releases/releases/v3.1.0> ;
                               skos:changeNote """
+Revision 10-12-2024:
+ - Added the axiom era:Applicability subClassOf era:TemporalFeature
+ - Added range of era:ofParameter
+ - Renamed era:bridge property to era:hasBridge 
+ - Added a property era:parameterValue(era:Applicability, rdfs:Resource)
+
 Revision 05-12-2024:
  - Added restricted ranges for the dataproperties era:dNvovtrp, era:dNvpotrp, era:dNvroll, era:tNvcontact, era:tNvovtrp, 
 era:vNvallowovtrp and era:vNvsupovtrp. This partially solves issue #135 for our needs. 
@@ -603,10 +611,6 @@ dcterms:title rdf:type owl:AnnotationProperty .
 rdfs:description rdf:type owl:AnnotationProperty .
 
 
-###  http://www.w3.org/2000/01/rdf-schema#modified
-rdfs:modified rdf:type owl:AnnotationProperty .
-
-
 ###  http://www.w3.org/2002/07/owl#versionURI
 owl:versionURI rdf:type owl:AnnotationProperty .
 
@@ -868,7 +872,8 @@ era:atoCommunicationSystem rdf:type owl:ObjectProperty ;
                            era:tsiOPEAppendixD2Index "3.4.9" ;
                            dcterms:created "2023-03-14"^^xsd:date ;
                            dcterms:description "ATO system communication system to the specification referenced in Appendix A-1, index [C]."@en ;
-                           dcterms:modified "2024-04-18"^^xsd:date , "2024-12-05"^^xsd:date ;
+                           dcterms:modified "2024-04-18"^^xsd:date ,
+                                            "2024-12-05"^^xsd:date ;
                            dcterms:relation era:atoGradeAutomation ,
                                             era:etcsBaseline ;
                            dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -3452,9 +3457,14 @@ era:oclSeparationSectionsObjParameter rdf:type owl:ObjectProperty ;
 
 ###  http://data.europa.eu/949/ofParameter
 era:ofParameter rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf owl:topObjectProperty ;
                 rdfs:domain era:ParameterApplicability ;
+                rdfs:range [ rdf:type owl:Class ;
+                             owl:unionOf ( owl:DatatypeProperty
+                                           owl:ObjectProperty
+                                         )
+                           ] ;
                 dcterms:created "2024-10-28"^^xsd:date ;
+                dcterms:modified "2024-12-10"^^xsd:date ;
                 rdfs:comment "Indicates the parameter (object or datatype property) for which an applicability is being defined."@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "of parameter"@en .
@@ -4166,13 +4176,13 @@ era:reasonsEtcsRadioBlockCenterReject rdf:type owl:ObjectProperty ;
                                                     "1.2.1.1.1.15" ;
                                       era:tsiOPEAppendixD3Index "1.4" ;
                                       dcterms:created "2022-11-07"^^xsd:date ;
+                                      dcterms:description "See: Subset 26, Chapter 5 5.4 Procedure start of mission."@en ;
                                       dcterms:modified "2023-03-14"^^xsd:date ,
                                                        "2024-04-18"^^xsd:date ,
                                                        "2024-09-19"^^xsd:date ;
                                       dcterms:relation era:etcsLevelType ;
                                       dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-                                      rdfs:comment "List of cases subject to system design choices made by the infrastructure manager according to the specification referenced in Appendix A-1, index [C]."@en ; 
-                                      dcterms:description "See: Subset 26, Chapter 5 5.4 Procedure start of mission."@en ;
+                                      rdfs:comment "List of cases subject to system design choices made by the infrastructure manager according to the specification referenced in Appendix A-1, index [C]."@en ;
                                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                       rdfs:label "Reasons for which an ETCS Radio Block Center can reject a train"@en ;
                                       vs:term_status "stable" ;
@@ -4600,10 +4610,10 @@ era:subsidiaryLocation rdf:type owl:ObjectProperty ;
                        rdfs:domain era:BasicElement ;
                        rdfs:range era:SubsidiaryLocation ;
                        dcterms:created "2024-05-24"^^xsd:date ;
+                       dcterms:modified "2024-12-03"^^xsd:date ;
                        rdfs:comment "Relates a basic element with a subsidiary location."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                       rdfs:label "has subsidiary location"@en ;
-                       rdfs:modified "2024-12-03"^^xsd:date .
+                       rdfs:label "has subsidiary location"@en .
 
 
 ###  http://data.europa.eu/949/subsidiaryLocationType
@@ -5721,7 +5731,8 @@ era:altitudeRangeDetail rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/appliesInBothDirections
-era:appliesInBothDirections rdf:type owl:DatatypeProperty ;
+era:appliesInBothDirections rdf:type owl:DatatypeProperty ,
+                                     owl:FunctionalProperty ;
                             rdfs:domain era:LinearElementSection ;
                             rdfs:range xsd:boolean ;
                             dcterms:created "2024-11-29"^^xsd:date ;
@@ -5881,6 +5892,7 @@ era:boardingAids rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/borderPointId
 era:borderPointId rdf:type owl:DatatypeProperty ;
                   rdfs:subPropertyOf dcterms:identifier ;
+                  rdf:type owl:FunctionalProperty ;
                   rdfs:domain era:ReferenceBorderPoint ;
                   rdfs:range xsd:string ;
                   dcterms:created "2024-11-26"@en ;
@@ -5911,16 +5923,6 @@ era:brakeWeightPercentage rdf:type owl:DatatypeProperty ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "Brake weight percentage"@en ;
                           vs:term_status "stable" .
-
-
-###  http://data.europa.eu/949/bridge
-era:bridge rdf:type owl:DatatypeProperty ;
-           rdfs:domain era:RunningTrack ;
-           rdfs:range xsd:boolean ;
-           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-           rdfs:label "Is bridge"@en ;
-           vs:term_status "stable" ;
-           skos:definition "Whether or not a track is associated with a bridge."@en .
 
 
 ###  http://data.europa.eu/949/cantDefficiency
@@ -6248,12 +6250,12 @@ era:dNvovtrp rdf:type owl:DatatypeProperty ;
                          ] ;
              rdfs:range [ rdf:type rdfs:Datatype ;
                           owl:onDatatype xsd:decimal ;
-                          owl:withRestrictions ( [ xsd:minInclusive "0.0"^^xsd:decimal
+                          owl:withRestrictions ( [ xsd:minInclusive 0.0
                                                  ]
-                                                 [ xsd:maxInclusive "327670.0"^^xsd:decimal
+                                                 [ xsd:maxInclusive 327670.0
                                                  ]
-                                                )
-                         ] ;
+                                               )
+                        ] ;
              era:XMLName "CPE_DNVOVTRP" ;
              era:applicable "Y/N/NYA" ;
              era:formatNote "NNNNNNN.N whereby the last digit is only used when Q_SCALE = 10 CM" ;
@@ -6270,17 +6272,17 @@ Depending on the chosen Q_SCALE, the maximal value will be: +327670 M, +32767 M 
 As in TSI CCS Subset 26, chapter 7. 7.5.1.15 D_NVOVTRP."""@en ;
              dcterms:modified "2024-01-08"^^xsd:date ,
                               "2024-04-18"^^xsd:date ,
-                              "2024-12-05"^^xsd:date;
+                              "2024-12-05"^^xsd:date ;
              dcterms:relation era:etcsLevelType ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                             <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-             rdfs:comment """Maximum distance for overriding the train trip in metres, according to the specification referenced in Appendix A-1, index [C]."""@en ;
+             rdfs:comment "Maximum distance for overriding the train trip in metres, according to the specification referenced in Appendix A-1, index [C]."@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "D_NVOVTRP"@en ;
              rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
              vs:term_status "stable" ;
              skos:scopeNote "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)."@en ,
-                            """Precision: [NNNNNN.N] with N a decimal number (0÷9). See TSI CCS Subset 26, chapter 7. 7.5.1.15 D_NVOVTRP."""@en .
+                            "Precision: [NNNNNN.N] with N a decimal number (0÷9). See TSI CCS Subset 26, chapter 7. 7.5.1.15 D_NVOVTRP."@en .
 
 
 ###  http://data.europa.eu/949/dNvpotrp
@@ -6294,12 +6296,12 @@ era:dNvpotrp rdf:type owl:DatatypeProperty ;
                          ] ;
              rdfs:range [ rdf:type rdfs:Datatype ;
                           owl:onDatatype xsd:decimal ;
-                          owl:withRestrictions ( [ xsd:minInclusive "0.0"^^xsd:decimal
+                          owl:withRestrictions ( [ xsd:minInclusive 0.0
                                                  ]
-                                                 [ xsd:maxInclusive "327670.0"^^xsd:decimal
+                                                 [ xsd:maxInclusive 327670.0
                                                  ]
-                                                )
-                         ] ;
+                                               )
+                        ] ;
              era:XMLName "CPE_DNVPOTRP" ;
              era:applicable "Y/N/NYA" ;
              era:formatNote "NNNNNNN.N whereby the last digit is only used when Q_SCALE = 10 CM" ;
@@ -6316,11 +6318,11 @@ Depending on the chosen Q_SCALE, the maximal value will be: +327670 M, +32767 M 
 See: TSI CCS (Subset 26, chapter 7. 7.5.1.16 D_NVPOTRP)"""@en ;
              dcterms:modified "2023-03-14"^^xsd:date ,
                               "2024-04-18"^^xsd:date ,
-                              "2024-12-05"^^xsd:date;
+                              "2024-12-05"^^xsd:date ;
              dcterms:relation era:etcsLevelType ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                             <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
-             rdfs:comment """Maximum distance for reversing in Post Trip mode in metres, according to the specification referenced in Appendix A-1, index [C]."""@en ;
+             rdfs:comment "Maximum distance for reversing in Post Trip mode in metres, according to the specification referenced in Appendix A-1, index [C]."@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "D_NVPOTRP "@en ;
              rdfs:seeAlso "https://www.era.europa.eu/domains/technical-specifications-interoperability/control-command-and-signalling-tsi_en#oe-content-paragraph-1632"^^xsd:anyURI ;
@@ -6340,25 +6342,25 @@ era:dNvroll rdf:type owl:DatatypeProperty ;
                                         era:RunningTrack
                                       )
                         ] ;
-		 rdfs:range [ rdf:type rdfs:Datatype ;
-			  owl:unionOf ( [ rdf:type rdfs:Datatype ;
-					  owl:onDatatype xsd:decimal ;
-					  owl:withRestrictions ( [ xsd:minInclusive "0.0"^^xsd:decimal
-								 ]
-								 [ xsd:maxInclusive "327670.0"^^xsd:decimal
-								 ]
-							       )
-					]
-					[ rdf:type rdfs:Datatype ;
-					  owl:onDatatype xsd:float ;
-					  owl:withRestrictions ( [ xsd:minInclusive "INF"^^xsd:float
-								 ]
-								 [ xsd:maxInclusive "INF"^^xsd:float
-								 ]
-							       )
-					]
-				      )
-		] ;
+            rdfs:range [ rdf:type rdfs:Datatype ;
+                         owl:unionOf ( [ rdf:type rdfs:Datatype ;
+                                         owl:onDatatype xsd:decimal ;
+                                         owl:withRestrictions ( [ xsd:minInclusive 0.0
+                                                                ]
+                                                                [ xsd:maxInclusive 327670.0
+                                                                ]
+                                                              )
+                                       ]
+                                       [ rdf:type rdfs:Datatype ;
+                                         owl:onDatatype xsd:float ;
+                                         owl:withRestrictions ( [ xsd:minInclusive "INF"^^xsd:float
+                                                                ]
+                                                                [ xsd:maxInclusive "INF"^^xsd:float
+                                                                ]
+                                                              )
+                                       ]
+                                     )
+                       ] ;
             era:XMLName "CPE_DNVROLL" ;
             era:applicable "Y/N/NYA" ;
             era:formatNote "NNNNNN.N | INF" ;
@@ -6373,7 +6375,7 @@ era:dNvroll rdf:type owl:DatatypeProperty ;
 See: TSI CCS (Subset 26, chapter 7. 7.5.1.17 D_NVROLL)"""@en ;
             dcterms:modified "2023-03-14"^^xsd:date ,
                              "2024-04-18"^^xsd:date ,
-                             "2024-12-05"^^xsd:date;
+                             "2024-12-05"^^xsd:date ;
             dcterms:relation era:etcsLevelType ;
             dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                            <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -7149,7 +7151,8 @@ era:flangeLubricationFitted rdf:type owl:DatatypeProperty ;
 
 
 ###  http://data.europa.eu/949/freightFlag
-era:freightFlag rdf:type owl:DatatypeProperty ;
+era:freightFlag rdf:type owl:DatatypeProperty ,
+                         owl:FunctionalProperty ;
                 rdfs:domain era:PrimaryLocation ;
                 rdfs:range xsd:boolean ;
                 dcterms:created "2024-06-03"^^xsd:date ;
@@ -7544,6 +7547,18 @@ era:hasBallast rdf:type owl:DatatypeProperty ;
 Requirements regarding ballast pick-up reduction at infrastructure subsystem level only applies to lines intented to be operated at speed greater than 250 km/h and is an open point in INF TSI: 4.2.10.3
 The parameter is about the phenomenon, but not about the ballast itself. 
 As so far any specifications for mitigation of the problem were disclosed, the only information from RINF will be data about the network where the problems may be faced."""@en .
+
+
+###  http://data.europa.eu/949/hasBridge
+era:hasBridge rdf:type owl:DatatypeProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:domain era:RunningTrack ;
+              rdfs:range xsd:boolean ;
+              dcterms:created "2024-12-10"^^xsd:date ;
+              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+              rdfs:label "Has bridge"@en ;
+              vs:term_status "stable" ;
+              skos:definition "Whether or not a track is associated with a bridge."@en .
 
 
 ###  http://data.europa.eu/949/hasCantDefficiencyCompensation
@@ -8363,7 +8378,8 @@ era:idPhoneErtmsRadioBlockCenter rdf:type owl:DatatypeProperty ;
                                  dcterms:created "2023-03-14"^^xsd:date ;
                                  dcterms:isReplacedBy era:rbcID ,
                                                       era:rbcPhone ;
-                                 dcterms:modified "2024-04-18"^^xsd:date , "2024-12-05"^^xsd:date ;
+                                 dcterms:modified "2024-04-18"^^xsd:date ,
+                                                  "2024-12-05"^^xsd:date ;
                                  dcterms:relation era:etcsLevelType ;
                                  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                  rdfs:comment "Unique RBC identification (NID_C+NID_RBC) and calling number (NID_RADIO) as defined in the specification referenced in Appendix A-1, index [C]."@en ;
@@ -9992,15 +10008,15 @@ era:nationalValuesBrakeModel rdf:type owl:DatatypeProperty ;
                                            "1.2.1.1.1.16.13" ;
                              era:tsiOPEAppendixD3Index "1.5.13" ;
                              dcterms:created "2023-03-14"^^xsd:date ;
-                             dcterms:description "Non-harmonisable character string: [Contents of P3/P203]"@en ;
+                             dcterms:description "Non-harmonisable character string: [Contents of P3/P203]"@en ,
+                                                 "(TSI CCS, Annex I, Appendix A, Table A.2 - Subset-026)" ;
                              dcterms:modified "2024-01-08"^^xsd:date ,
-                                              "2024-04-18"^^xsd:date , 
-                                              "2024-12-05"^^xsd:date;
+                                              "2024-04-18"^^xsd:date ,
+                                              "2024-12-05"^^xsd:date ;
                              dcterms:relation era:etcsLevelType ;
                              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                              rdfs:comment """Set of parameters for adapting the braking curves calculated by the ETCS on-board system to match accuracy, performance and safety margins imposed by the infrastructure manager.
 It copies the content of Packet 3 or of Packet 203 as defined in the specification referenced in Appendix A-1, index [C]."""@en ;
-                             dcterms:description "(TSI CCS, Annex I, Appendix A, Table A.2 - Subset-026)" ;
                              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                              rdfs:label "National Values used for the brake model"@en ;
                              vs:term_status "stable" ;
@@ -10147,6 +10163,7 @@ era:opTypeGaugeChangeover rdf:type owl:DatatypeProperty ,
 ###  http://data.europa.eu/949/organisationCode
 era:organisationCode rdf:type owl:DatatypeProperty ;
                      rdfs:subPropertyOf dcterms:identifier ;
+                     rdf:type owl:FunctionalProperty ;
                      rdfs:domain era:OrganisationRole ;
                      rdfs:range xsd:string ;
                      era:XMLName "OPSidingIMCode" ,
@@ -10231,6 +10248,16 @@ era:pantographDataParameter rdf:type owl:DatatypeProperty ;
                             dcterms:created "2024-10-31"^^xsd:date ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                             rdfs:label "Pantograph"@en .
+
+
+###  http://data.europa.eu/949/parameterValue
+era:parameterValue rdf:type owl:DatatypeProperty ;
+                   rdfs:domain era:ParameterApplicability ;
+				   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+				   dcterms:created "2024-12-10"^^xsd:date ;
+				   rdfs:label "Parameter value"@en ;
+				   rdfs:comment "This property is used to link an applicability to the precise value of the parameter"@en ;
+                   rdfs:range rdfs:Literal .
 
 
 ###  http://data.europa.eu/949/parkingBrake
@@ -10537,6 +10564,7 @@ era:preventRegenerativeBrakeUse rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/primaryLocationCode
 era:primaryLocationCode rdf:type owl:DatatypeProperty ;
                         rdfs:subPropertyOf dcterms:identifier ;
+                        rdf:type owl:FunctionalProperty ;
                         rdfs:domain era:PrimaryLocation ;
                         rdfs:range xsd:string ;
                         era:XMLName "OPTafTapCode" ;
@@ -10555,6 +10583,7 @@ era:primaryLocationName rdf:type owl:DatatypeProperty ;
                         rdfs:domain era:PrimaryLocation ;
                         rdfs:range xsd:string ;
                         dcterms:created "2024-06-03"^^xsd:date ;
+                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "primary location name"@en .
 
 
@@ -10726,7 +10755,8 @@ era:radioNetworkId rdf:type owl:DatatypeProperty ;
                    dcterms:created "2023-03-14"^^xsd:date ;
                    dcterms:description "Format: [NNNNNN] with N a decimal number (0÷9)."@en ;
                    dcterms:modified "2024-04-18"^^xsd:date ,
-                                    "2024-09-19"^^xsd:date , "2024-12-05"^^xsd:date ;
+                                    "2024-09-19"^^xsd:date ,
+                                    "2024-12-05"^^xsd:date ;
                    dcterms:relation era:etcsLevelType ,
                                     era:gprsForETCS ;
                    dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -11331,7 +11361,6 @@ era:switchProtectControlWarning rdf:type owl:DatatypeProperty ;
                                 rdfs:comment "Indication whether a switch over between different systems whilst running exists."@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "Existence of switch over between different protection, control and warning systems while running"@en ;
-                                rdfs:modified "2021-09-12"^^xsd:date ;
                                 vs:term_status "stable" ;
                                 skos:scopeNote "Switch over between different systems whilst running. Installation depends on local conditions. "@en .
 
@@ -11492,21 +11521,23 @@ era:tNvcontact rdf:type owl:DatatypeProperty ;
                                          )
                            ] ;
                rdfs:range [ rdf:type rdfs:Datatype ;
-			    owl:unionOf ( [ rdf:type rdfs:Datatype ;
-                                          owl:onDatatype xsd:unsignedInt ;
-                                          owl:withRestrictions ( [ xsd:minInclusive "0"^^xsd:unsignedInt ]
-                                                  		 [ xsd:maxInclusive "254"^^xsd:unsignedInt]
-                                                               )
-                                        ]
-                                        [ rdf:type rdfs:Datatype ;
-                                          owl:onDatatype xsd:float ;
-                                          owl:withRestrictions ( [ xsd:minInclusive "INF"^^xsd:float
-                                                                 ]
-                                                                 [ xsd:maxInclusive "INF"^^xsd:float
-                                                                 ]
-                                                               )
-                                        ]
-                                      )
+                            owl:unionOf ( [ rdf:type rdfs:Datatype ;
+                                            owl:onDatatype xsd:float ;
+                                            owl:withRestrictions ( [ xsd:minInclusive "INF"^^xsd:float
+                                                                   ]
+                                                                   [ xsd:maxInclusive "INF"^^xsd:float
+                                                                   ]
+                                                                 )
+                                          ]
+                                          [ rdf:type rdfs:Datatype ;
+                                            owl:onDatatype xsd:unsignedInt ;
+                                            owl:withRestrictions ( [ xsd:minInclusive "0"^^xsd:unsignedInt
+                                                                   ]
+                                                                   [ xsd:maxInclusive "254"^^xsd:unsignedInt
+                                                                   ]
+                                                                 )
+                                          ]
+                                        )
                           ] ;
                era:XMLName "CPE_TNVCONTACT" ;
                era:applicable "Y/N/NYA" ;
@@ -11522,7 +11553,7 @@ era:tNvcontact rdf:type owl:DatatypeProperty ;
 See: TSI CCS (Subset 26, chapter 7. 7.5.1.148 T_NVCONTACT)"""@en ;
                dcterms:modified "2023-03-14"^^xsd:date ,
                                 "2024-04-18"^^xsd:date ,
-                                "2024-12-05"^^xsd:date;
+                                "2024-12-05"^^xsd:date ;
                dcterms:relation era:etcsLevelType ;
                dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ,
                               <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
@@ -11547,14 +11578,8 @@ era:tNvovtrp rdf:type owl:DatatypeProperty ;
                                          era:RunningTrack
                                        )
                          ] ;
-               rdfs:range [ rdf:type rdfs:Datatype ;
-			    owl:unionOf ( [ rdf:type rdfs:Datatype ;
-                                          owl:onDatatype xsd:unsignedInt ;
-                                          owl:withRestrictions ( [ xsd:minInclusive "0"^^xsd:unsignedInt ]
-                                                  		 [ xsd:maxInclusive "254"^^xsd:unsignedInt]
-                                                               )
-                                        ]
-                                        [ rdf:type rdfs:Datatype ;
+             rdfs:range [ rdf:type rdfs:Datatype ;
+                          owl:unionOf ( [ rdf:type rdfs:Datatype ;
                                           owl:onDatatype xsd:float ;
                                           owl:withRestrictions ( [ xsd:minInclusive "INF"^^xsd:float
                                                                  ]
@@ -11562,8 +11587,16 @@ era:tNvovtrp rdf:type owl:DatatypeProperty ;
                                                                  ]
                                                                )
                                         ]
+                                        [ rdf:type rdfs:Datatype ;
+                                          owl:onDatatype xsd:unsignedInt ;
+                                          owl:withRestrictions ( [ xsd:minInclusive "0"^^xsd:unsignedInt
+                                                                 ]
+                                                                 [ xsd:maxInclusive "254"^^xsd:unsignedInt
+                                                                 ]
+                                                               )
+                                        ]
                                       )
-                          ] ;
+                        ] ;
              era:XMLName "CPE_TNVOVTRP" ;
              era:applicable "Y/N/NYA" ;
              era:formatNote "NNN | INF" ;
@@ -12190,8 +12223,10 @@ era:vNvallowovtrp rdf:type owl:DatatypeProperty ;
                               ] ;
                   rdfs:range [ rdf:type rdfs:Datatype ;
                                owl:onDatatype xsd:unsignedInt ;
-                               owl:withRestrictions ( [ xsd:minInclusive "0"^^xsd:unsignedInt ]
-                                                      [ xsd:maxInclusive "600"^^xsd:unsignedInt]
+                               owl:withRestrictions ( [ xsd:minInclusive "0"^^xsd:unsignedInt
+                                                      ]
+                                                      [ xsd:maxInclusive "600"^^xsd:unsignedInt
+                                                      ]
                                                     )
                              ] ;
                   era:XMLName "CPE_VNVALLOWOVTRP" ;
@@ -12231,10 +12266,12 @@ era:vNvsupovtrp rdf:type owl:DatatypeProperty ;
                                             era:RunningTrack
                                           )
                             ] ;
-        	rdfs:range [ rdf:type rdfs:Datatype ;
+                rdfs:range [ rdf:type rdfs:Datatype ;
                              owl:onDatatype xsd:unsignedInt ;
-                             owl:withRestrictions ( [ xsd:minInclusive "0"^^xsd:unsignedInt ]
-                                                    [ xsd:maxInclusive "600"^^xsd:unsignedInt]
+                             owl:withRestrictions ( [ xsd:minInclusive "0"^^xsd:unsignedInt
+                                                    ]
+                                                    [ xsd:maxInclusive "600"^^xsd:unsignedInt
+                                                    ]
                                                   )
                            ] ;
                 era:XMLName "CPE_VNVSUPOVTRP" ;
@@ -12251,7 +12288,7 @@ era:vNvsupovtrp rdf:type owl:DatatypeProperty ;
 See: TSI CCS (Subset-026, chapter 7. 7.5.1.163 V_NVSUPOVTRP)"""@en ;
                 dcterms:modified "2023-03-14"^^xsd:date ,
                                  "2024-09-19"^^xsd:date ,
-				 "2024-12-05"^^xsd:date ;
+                                 "2024-12-05"^^xsd:date ;
                 dcterms:relation era:etcsLevelType ;
                 dcterms:source <https://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                 rdfs:comment "Override speed limit to be supervised when the \"override\" function is active in km/h, according to the specification referenced in Appendix A-1, index [C]."@en ;
@@ -12332,6 +12369,7 @@ era:vehicleMaxSandingOutput rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/vehicleNumber
 era:vehicleNumber rdf:type owl:DatatypeProperty ;
                   rdfs:subPropertyOf era:vehicleTechnicalDataCharacteristic ;
+                  rdf:type owl:FunctionalProperty ;
                   rdfs:domain era:Vehicle ;
                   rdfs:range xsd:string ;
                   dcterms:created "2020-11-24"^^xsd:date ;
@@ -13093,6 +13131,7 @@ era:Orientation rdf:type owl:Class ;
 
 ###  http://data.europa.eu/949/ParameterApplicability
 era:ParameterApplicability rdf:type owl:Class ;
+                           rdfs:subClassOf era:TemporalFeature ;
                            dcterms:modified "2024-10-28"^^xsd:date ;
                            rdfs:comment "Applicability interval defines the date interval in which a characteristic of an infrastructure element is applicable. This interval can be applied for any of the technical characteristics or general information of infrastructure elements. This helps identifying planned changes applied to technical parameters over time."@en ;
                            rdfs:label "Parameter applicability"@en .
@@ -13190,11 +13229,11 @@ era:RunningTrack rdf:type owl:Class ;
                  dcterms:created "2020-07-29"^^xsd:date ;
                  dcterms:description "There might be more than one track within the Section of Line, so then the whole set of data for track has to be repeated for each track within the SoL."@en ;
                  dcterms:modified "2022-07-07"^^xsd:date ,
-                                  "2024-09-19"^^xsd:date ;
+                                  "2024-09-19"^^xsd:date ,
+                                  "2024-11-20"^^xsd:date ;
                  rdfs:comment "A running track means any track used for train service movements; passing loops and meeting loops on plain line or track connections only required for train operation are not published"@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "Running track"@en ;
-                 rdfs:modified "2024-11-20"^^xsd:date ;
                  vs:term_status "stable" .
 
 
@@ -13239,12 +13278,12 @@ era:Siding rdf:type owl:Class ;
            era:rinfIndex "1.2.2" ;
            dcterms:created "2021-08-10"^^xsd:date ;
            dcterms:modified "2022-10-27"^^xsd:date ,
-                            "2024-09-19"^^xsd:date ;
+                            "2024-09-19"^^xsd:date ,
+                            "2024-11-20" ;
            dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/2020-06-16> ;
            rdfs:comment "Sidings are all those tracks where running trains in service movements ends and which are not used for operational routing of a train."@en ;
            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
            rdfs:label "Siding"@en ;
-           rdfs:modified "2024-11-20" ;
            vs:term_status "stable" ;
            skos:definition "Siding - Any track(s) within an operational point which is not used for operational routing of a train."@en .
 
@@ -13639,6 +13678,14 @@ rdf:List rdf:type owl:Class .
 rdfs:Resource rdf:type owl:Class .
 
 
+###  http://www.w3.org/2002/07/owl#DatatypeProperty
+owl:DatatypeProperty rdf:type owl:Class .
+
+
+###  http://www.w3.org/2002/07/owl#ObjectProperty
+owl:ObjectProperty rdf:type owl:Class .
+
+
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#Point
 wgs:Point rdf:type owl:Class ;
           rdfs:subClassOf wgs:SpatialThing ;
@@ -13785,17 +13832,15 @@ foaf:Person rdf:type owl:Class ;
             vs:term_status "stable" .
 
 
-
-
 #################################################################
 #    Annotations
 #################################################################
 
 era:IdPhoneErtmsRadioBlockCenter era:applicable "Y/N/NYA" ;
-                                  era:legalDeadline "12 months after publication of Article 7 Guide"@en ;
-                                  era:rinfIndex "1.1.1.3.2.17" ;
-                                  rdfs:comment "Unique RBC identification (NID_C+NID_RBC) and calling number (NID_RADIO) as defined in the specification referenced in Appendix A-1, index [C]"@en ;
-                                  rdfs:label "ID and phone number of ERTMS/ETCS Radio Block Center"@en .
+                                 era:legalDeadline "12 months after publication of Article 7 Guide"@en ;
+                                 era:rinfIndex "1.1.1.3.2.17" ;
+                                 rdfs:comment "Unique RBC identification (NID_C+NID_RBC) and calling number (NID_RADIO) as defined in the specification referenced in Appendix A-1, index [C]"@en ;
+                                 rdfs:label "ID and phone number of ERTMS/ETCS Radio Block Center"@en .
 
 
 era:asWKT era:applicable "Y" ,
@@ -13856,4 +13901,4 @@ era:standardCombinedTransporRollerUnits era:applicable "Y/N" ;
                                                                                    "Geographical location of signal"@en .
 
 
-###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
