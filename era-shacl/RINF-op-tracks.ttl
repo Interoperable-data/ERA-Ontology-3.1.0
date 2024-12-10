@@ -9,12 +9,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
-@prefix era-ph: <http://data.europa.eu/949/concepts/platform-heights/> .
-@prefix era-tenclass: <http://data.europa.eu/949/concepts/ten-classifications/> .
-@prefix era-gaugings: <http://data.europa.eu/949/concepts/gaugings/> .
-@prefix era-ntg: <http://data.europa.eu/949/concepts/nominal-track-gauges/> .
-@prefix era-linecat: <http://data.europa.eu/949/concepts/line-category/> .
-@prefix era-frecorr: <http://data.europa.eu/949/concepts/freight-corridor/> .
+
 
 #############################
 # Rules for op-track
@@ -24,12 +19,12 @@
 # op-track
 #
 
-era-sh:operationalPointShape
+era-sh:OperationalPointShape
 	a sh:NodeShape ;
 	sh:targetClass era:OperationalPoint .
 
 # trackId: # 1.2.1.0.0.2 
-era-sh:operationalPointShape sh:sparql era-sh:NoRepeatedTrackIdsOP.
+era-sh:OperationalPointShape sh:sparql era-sh:NoRepeatedTrackIdsOP.
 era-sh:NoRepeatedTrackIdsOP 
     a sh:SPARQLConstraint ; 
     era:affectedProperty era:trackId;

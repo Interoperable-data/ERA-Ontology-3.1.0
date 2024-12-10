@@ -8,54 +8,21 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
-@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
-@prefix era-ph: <http://data.europa.eu/949/concepts/platform-heights/> .
-@prefix era-tenclass: <http://data.europa.eu/949/concepts/ten-classifications/> .
-@prefix era-gaugings: <http://data.europa.eu/949/concepts/gaugings/> .
-@prefix era-ntg: <http://data.europa.eu/949/concepts/nominal-track-gauges/> .
-@prefix era-tds: <http://data.europa.eu/949/concepts/train-detection/> .
-@prefix era-tdssc: <http://data.europa.eu/949/concepts/train-detection-specific-checks/> .
-@prefix era-tsi: <http://data.europa.eu/949/concepts/tsi-compliances/> .
-@prefix era-malvc: <http://data.europa.eu/949/concepts/min-axle-loads-per-vehicle-category/> .
-@prefix era-mas: <http://data.europa.eu/949/concepts/max-amount-sandings/> .
-@prefix era-lc: <http://data.europa.eu/949/concepts/load-capabilities/> .
-@prefix era-pnsb: <http://data.europa.eu/949/concepts/profile-num-swap-bodies/> .
-@prefix era-pnst: <http://data.europa.eu/949/concepts/profile-num-semi-trailers/> .
-@prefix era-ri: <http://data.europa.eu/949/concepts/rail-inclinations/> .
-@prefix era-mb: <http://data.europa.eu/949/concepts/magnetic-braking/> .
-@prefix era-pth: <http://data.europa.eu/949/concepts/pantograph-heads/> .
-@prefix era-csm: <http://data.europa.eu/949/concepts/contact-strip-materials/> .
-@prefix era-etcsinfill: <http://data.europa.eu/949/concepts/etcs-infills/> .
-@prefix era-esc: <http://data.europa.eu/949/concepts/etcs-system-compatibilities/> .
-@prefix era-etcsmvers: <http://data.europa.eu/949/concepts/etcs-m-versions/> .
-@prefix era-gsmrv: <http://data.europa.eu/949/concepts/gsmr-versions/> .
-@prefix era-gsmrnumactivemob: <http://data.europa.eu/949/concepts/gsmr-number-active-mobiles/> .
-@prefix era-gsmroptfunc: <http://data.europa.eu/949/concepts/gsmr-optional-functions/> .
-@prefix era-gsmr: <http://data.europa.eu/949/concepts/gsmr-networks/> .
-@prefix era-rsc: <http://data.europa.eu/949/concepts/radio-system-compatibilities/> .
-@prefix era-tpls: <http://data.europa.eu/949/concepts/train-protection-legacy-systems/> .
-@prefix era-lrs: <http://data.europa.eu/949/concepts/legacy-radio-systems/> .
-@prefix era-etcssituation: <http://data.europa.eu/949/concepts/etcs-situation/> .
-@prefix era-opcw: <http://data.europa.eu/949/concepts/other-protection-control-warning/> .
-@prefix era-trd: <http://data.europa.eu/949/concepts/track-running-directions/> .
+
 
 
 #############################
 # Rules for Sections of Line
 #############################
 
-# Missing constaint checks:
-
-# 1.1	SECTION OF LINE.
-## If ValidityDateStart is greater than the date of the validation, the Section of Line will be considered a FUTURE planning; otherwise, it is considered a CURRENT item.  
 
 era-sh:SectionOfLineShape  
     a sh:NodeShape ;
     sh:targetClass era:SectionOfLine .
 
 #nationalLine: # 1.1.0.0.0.2
-era-sh:SectionOfLineShape sh:property era-sh:nationalLine .
-era-sh:nationalLine
+era-sh:SectionOfLineShape sh:property era-sh:NationalLine .
+era-sh:NationalLine
     a sh:PropertyShape ;
     era:affectedProperty era:nationalLine;
     era:affectedClass era:SectionOfLine;
@@ -71,8 +38,8 @@ era-sh:nationalLine
     sh:message "lineNationalId (1.1.0.0.0.2): Each SoL belongs to exactly one national railway line. This error is due to not referring to a national railway line, or rederring to more than one national railway line"@en .
 
 #opStart: # 1.1.0.0.0.3
-era-sh:SectionOfLineShape sh:property era-sh:opStart .
-era-sh:opStart
+era-sh:SectionOfLineShape sh:property era-sh:OpStart .
+era-sh:OpStart
     a sh:PropertyShape ;
     era:affectedProperty era:opStart;
     era:affectedClass era:SectionOfLine;
@@ -88,8 +55,8 @@ era-sh:opStart
     sh:message "opStart (1.1.0.0.0.3): There must be at most one OP start for this section of line and it must be different from the OP end."@en .
 
 #opStart: # 1.1.0.0.0.3
-era-sh:SectionOfLineShape sh:sparql era-sh:opStartExists .
-era-sh:opStartExists
+era-sh:SectionOfLineShape sh:sparql era-sh:OpStartExists .
+era-sh:OpStartExists
     a sh:SPARQLConstraint ;   
     era:affectedProperty era:opStart;
     era:affectedClass era:SectionOfLine;
@@ -110,8 +77,8 @@ era-sh:opStartExists
 			""" .
 
 #opEnd: # 1.1.0.0.0.4
-era-sh:SectionOfLineShape sh:property era-sh:opEnd .
-era-sh:opEnd
+era-sh:SectionOfLineShape sh:property era-sh:OpEnd .
+era-sh:OpEnd
     a sh:PropertyShape ;
     era:affectedProperty era:opEnd;
     era:affectedClass era:SectionOfLine;
@@ -127,8 +94,8 @@ era-sh:opEnd
     sh:message "opEnd (1.1.0.0.0.4): There must be at most one OP end for this section of line and it must be different from the OP start."@en .
 
 #opEnd: # 1.1.0.0.0.4
-era-sh:SectionOfLineShape sh:sparql era-sh:opEndExists .
-era-sh:opEndExists
+era-sh:SectionOfLineShape sh:sparql era-sh:OpEndExists .
+era-sh:OpEndExists
     a sh:SPARQLConstraint ;  
     era:affectedProperty era:opEnd;
     era:affectedClass era:SectionOfLine;
@@ -151,8 +118,8 @@ era-sh:opEndExists
 
 
 #lengthOfSectionOfLine: # 1.1.0.0.0.5
-era-sh:SectionOfLineShape sh:property era-sh:solLength .
-era-sh:solLength
+era-sh:SectionOfLineShape sh:property era-sh:SolLength .
+era-sh:SolLength
     a sh:PropertyShape ;
     era:affectedProperty era:lengthOfSectionOfLine;
     era:affectedClass era:SectionOfLine;
@@ -168,8 +135,8 @@ era-sh:solLength
     sh:message "lengthOfSectionOfLine (1.1.0.0.0.5): Each SoL has exactly one length. This error is due to that either there is no length for the specified SoL, more than one length has been defined, or the datatype cannot be converted into an xsd:double."@en .
 
 #solNature: # 1.1.0.0.0.6
-era-sh:SectionOfLineShape sh:property era-sh:solNature .
-era-sh:solNature
+era-sh:SectionOfLineShape sh:property era-sh:SolNature .
+era-sh:SolNature
     a sh:PropertyShape ;
     era:affectedProperty era:solNature;
     era:affectedClass era:SectionOfLine;
@@ -185,8 +152,8 @@ era-sh:solNature
 
 
 #solNature: # 1.1.0.0.0.6
-era-sh:SectionOfLineShape sh:sparql era-sh:solNatureSKOS .
-era-sh:solNatureSKOS
+era-sh:SectionOfLineShape sh:sparql era-sh:SolNatureSKOS .
+era-sh:SolNatureSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:solNature;
     era:affectedClass era:SectionOfLine;
@@ -219,8 +186,8 @@ era-sh:solNatureSKOS
 
 
 # solNature: # 1.1.0.0.0.6
-era-sh:SectionOfLineShape sh:sparql era-sh:solNatureApplicability .
-era-sh:solNatureApplicability
+era-sh:SectionOfLineShape sh:sparql era-sh:SolNatureApplicability .
+era-sh:SolNatureApplicability
     a sh:SPARQLConstraint ; 
     era:affectedProperty era:solNature;
     era:affectedClass era:SectionOfLine;
