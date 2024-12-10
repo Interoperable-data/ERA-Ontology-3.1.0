@@ -6046,15 +6046,16 @@ era:compositeBrakeBlockRetrofitted rdf:type owl:DatatypeProperty ;
 
 ###  http://data.europa.eu/949/conditionalRegenerativeBrake
 era:conditionalRegenerativeBrake rdf:type owl:ObjectProperty ;
-	                       rdfs:subPropertyOf era:trackObjParameter ,
-	                                          era:trackResistanceToAppliedLoadsObjParameter ;
-	                       rdf:type owl:FunctionalProperty ;
-	                       rdfs:domain [ rdf:type owl:Class ;
+	                         rdfs:subPropertyOf era:trackObjParameter ,
+	                                            era:trackResistanceToAppliedLoadsObjParameter ;
+	                         rdf:type owl:FunctionalProperty ;
+	                         rdfs:domain [ rdf:type owl:Class ;
 	                                     owl:unionOf ( era:CommonCharacteristicsSubset
 	                                                   era:RunningTrack
 	                                                 )
 	                                   ] ;
-	                       rdfs:range skos:Concept ;
+	                         rdfs:range skos:Concept ;
+				 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/regenerative-braking/RegenerativeBraking> ;
                                  era:XMLName "ECS_RegenerativeBraking" ;
                                  era:applicable "Y/N" ;
                                  era:legalDeadline "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
