@@ -13,7 +13,7 @@
 # Rules for infrastructure elements
 ###################################
 
-era-sh:commonCharacteristicsSubsetShape
+era-sh:CommonCharacteristicsSubsetShape
 	a sh:NodeShape ;
 	sh:targetClass era:CommonCharacteristicsSubset .  
 
@@ -24,8 +24,8 @@ era-sh:InfrastructureElementShape
 
 
 # organisationCode: # 1.2.1.0.6.1, 1.1.0.0.0.1, 1.1.1.1.8.1, 1.2.1.0.0.1, 1.2.1.0.5.1, 1.2.2.0.0.1, 1.2.2.0.5.1 Check that the organisationRole instance points to the skos value for infrastructure manager.
-era-sh:infrastructureElementShape sh:sparql era-sh:infrastructureManagerSKOSValue .
-era-sh:infrastructureManagerSKOSValue
+era-sh:InfrastructureElementShape sh:sparql era-sh:InfrastructureManagerSKOSValue .
+era-sh:InfrastructureManagerSKOSValue
 	a sh:SPARQLConstraint;
     era:affectedProperty era:hasOrganisationRole;
     era:affectedProperty era:infrastructureManager;
@@ -61,8 +61,8 @@ era-sh:infrastructureManagerSKOSValue
 			""" .
 
 # inCountry 
-era-sh:infrastructureElementShape sh:property era-sh:inCountry .
-era-sh:inCountry
+era-sh:InfrastructureElementShape sh:property era-sh:InCountry .
+era-sh:InCountry
 	a sh:PropertyShape;
     era:affectedProperty era:inCountry;
     era:affectedClass era:InfrastructureElement;
@@ -75,8 +75,8 @@ era-sh:inCountry
 	sh:message "inCountry:  Each infrastructure element must have exactly one country. This error may be due to having an infrast without or with more than one country or it value is not a Concept."@en .
 
 # inCountry
-era-sh:infrastructureElementShape sh:sparql era-sh:inCountrySKOS .
-era-sh:inCountrySKOS
+era-sh:InfrastructureElementShape sh:sparql era-sh:InCountrySKOS .
+era-sh:InCountrySKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:inCountry;
     era:affectedClass era:InfrastructureElement;
@@ -98,8 +98,9 @@ era-sh:inCountrySKOS
 """ .
 
 # parameterApplicability
-era-sh:InfrastructureElementShape sh:property era-sh:parameterApplicability .
-era-sh:parameterApplicability
+era-sh:InfrastructureElementShape sh:property era-sh:ParameterApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ParameterApplicability .
+era-sh:ParameterApplicability
 	a sh:PropertyShape;
     era:affectedClass era:InfrastructureElement;
     era:affectedClass era:ParameterApplicability;
@@ -112,8 +113,8 @@ era-sh:parameterApplicability
 	sh:message "parameterApplicability: The infratructure element may have a parameterApplicability reference that must be an instance of ParameterApplicability. This error is due to having having a value that is not an instance of ParameterApplicability."@en .
 
 # subsidiaryLocation
-era-sh:InfrastructureElementShape sh:property era-sh:subsidiaryLocation .
-era-sh:subsidiaryLocation
+era-sh:InfrastructureElementShape sh:property era-sh:SubsidiaryLocation .
+era-sh:SubsidiaryLocation
 	a sh:PropertyShape;
     era:affectedClass era:InfrastructureElement;
     era:affectedClass era:SubsidiaryLocation;
@@ -126,8 +127,8 @@ era-sh:subsidiaryLocation
 	sh:message "subsidiaryLocation: The infratructure element may have a subsidiaryLocation reference that must be an instance of SubsidiaryLocation. This error is due to having having a value that is not an instance of SubsidiaryLocation."@en .
 
 # belongsTo, organisationCode, infrastructureElement
-era-sh:InfrastructureElementShape sh:sparql era-sh:belongsToUniqueIM .
-era-sh:belongsToUniqueIM
+era-sh:InfrastructureElementShape sh:sparql era-sh:BelongsToUniqueIM .
+era-sh:BelongsToUniqueIM
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:belongsTo;
     era:affectedProperty era:organisationCode;
@@ -158,8 +159,8 @@ era-sh:belongsToUniqueIM
 			""" .
 
 # belongsTo
-era-sh:InfrastructureElementShape sh:property era-sh:belongsTo .
-era-sh:belongsTo
+era-sh:InfrastructureElementShape sh:property era-sh:BelongsTo .
+era-sh:BelongsTo
 	a sh:PropertyShape;
     era:affectedClass era:InfrastructureElement;
     era:affectedProperty era:parameterApplicability ;
@@ -172,8 +173,8 @@ era-sh:belongsTo
 	sh:message "belongsTo: The infratructure element must belong to at least one common characteristics subset, a reference that must be an instance of CommonCharacteristicsSubset. This error is due to not having a value of belongsTo, or having a value that is not an instance of CommonCharacteristicsSubset."@en .
 
 # contains - inverse of belongsTo
-era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:contains .
-era-sh:contains
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:Contains .
+era-sh:Contains
 	a sh:PropertyShape;
     era:affectedClass era:CommonCharacteristicsSubset;
     era:affectedClass era:InfrastructureElement;
