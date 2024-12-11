@@ -984,7 +984,6 @@ era:affectedProperty era:contactStripMaterial  ;     era:affectedClass  era:Runn
     SELECT $this  ?concept
     WHERE {
 	    $this era:hasPart ?track .
-        ?track era:hasPart ?track .
         ?track era:contactStripMaterial ?concept .
         era:contactStripMaterial era:inSkosConceptScheme ?conceptScheme .
 		FILTER (NOT EXISTS {?concept skos:inScheme ?conceptScheme} || REGEX(?concept, "/eratv/"))
@@ -2219,7 +2218,7 @@ era-sh:EddyCurrentBrakingConditionsDocumentApplicability
     PREFIX era: <http://data.europa.eu/949/>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    SELECT DISTINCT $this ?clsLabel
+    SELECT DISTINCT $this ?thisLabel ?clsLabel
 			WHERE {
                 $this rdfs:label ?thisLabel .
                 $this era:hasPart ?track .
@@ -2248,7 +2247,7 @@ era-sh:TrackLoadCapabilityProps
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $thisLabel ?trackLabel ?tlc
+    SELECT DISTINCT $this ?thisLabel ?trackLabel ?tlc
 			WHERE {
                 $this era:hasPart ?track .
                 ?track era:trackLoadCapability ?tlc .
@@ -2259,24 +2258,4 @@ era-sh:TrackLoadCapabilityProps
             
   }
 			""" .
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			 
-			 
-
-
-
-
 
