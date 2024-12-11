@@ -22,14 +22,17 @@
 
 era-trd:TrackRunningDirections a skos:ConceptScheme ;
     dct:issued "2020-09-01"^^xsd:date ;
-    dct:modified "2022-09-09"^^xsd:date ;
-    dct:modified "2024-04-18"^^xsd:date ;
-    dct:modified "2024-09-04"^^xsd:date, "2024-09-09"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ,
+				 "2024-04-18"^^xsd:date ,
+				 "2024-09-04"^^xsd:date , 
+				 "2024-09-09"^^xsd:date ,
+				 "2024-12-11"^^xsd:date ;
     cc:license <https://creativecommons.org/licenses/by/4.0/> ;
     rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
     era:rinfIndex "1.1.1.0.0.2"; 
     rdfs:label "Track Running Directions"@en ;
     skos:prefLabel "Track Running Directions"@en ;
+	skos:altLabel "CCSTMS_GradeOfAutomation" ;
     dct:title "Concept scheme grouping track running directions"@en .
 
 #################################################################
@@ -46,6 +49,7 @@ era-trd:10 a skos:Concept;
   skos:topConceptOf era-trd:TrackRunningDirections ;
   skos:notation "N"^^xsd:string ;
   skos:prefLabel "N"@en ; 
+  skos:altLabel "CCSTMS_dirSame_1" ;
   skos:definition "The normal running direction is the same as the direction defined by the start and end of the Section of Line."@en .
 
 era-trd:20 a skos:Concept;
@@ -53,6 +57,7 @@ era-trd:20 a skos:Concept;
   skos:topConceptOf era-trd:TrackRunningDirections ;
   skos:notation "O"^^xsd:string ;
   skos:prefLabel "O"@en ; 
+  skos:altLabel "CCSTMS_dirReverse_2" ;
   skos:definition "The normal running direction is the opposite/reverse as the direction defined by the start and end of the Section of Line."@en .
 
 era-trd:30 a skos:Concept;
@@ -60,4 +65,5 @@ era-trd:30 a skos:Concept;
   skos:topConceptOf era-trd:TrackRunningDirections ;
   skos:notation "B"^^xsd:string ;
   skos:prefLabel "B"@en ; 
+  skos:altLabel "CCSTMS_dirBoth_0" ;
   skos:definition "The normal running direction is both directions defined by the Section of Line."@en .
