@@ -24,7 +24,7 @@ era-sh:SectionOfLineShape
 #
 # tunnels
 #
-era-sh:TunnelsShape
+era-sh:TunnelShape
 	a sh:NodeShape ;
 	sh:targetClass era:Tunnel .
 
@@ -34,7 +34,7 @@ era-sh:CommonCharacteristicsSubsetShape
 	
 
 # tunnelIdentification: # 1.1.1.1.8.2, 1.2.1.0.5.2, 1.2.2.0.5.2
-era-sh:TunnelsShape sh:property era-sh:TunnelIdentification .
+era-sh:TunnelShape sh:property era-sh:TunnelIdentification .
 era-sh:TunnelIdentification
     a sh:PropertyShape ;
     era:affectedProperty era:tunnelIdentification;
@@ -50,7 +50,7 @@ era-sh:TunnelIdentification
     sh:message "tunnelIdentification (1.1.1.1.8.2, 1.2.1.0.5.2, 1.2.2.0.5.2): Each Tunnel can be referred with only one identification. This error may be due to having a Tunnel with no identification or with more than one identification."@en .
 
 # lineReferenceTunnelStart - kilometer: 1.1.1.1.8.3
-era-sh:TunnelsShape sh:property era-sh:LineReferenceTunnelStart .
+era-sh:TunnelShape sh:property era-sh:LineReferenceTunnelStart .
 era-sh:LineReferenceTunnelStart
 	a sh:PropertyShape;
     era:affectedProperty era:kilometer;
@@ -67,7 +67,7 @@ era-sh:LineReferenceTunnelStart
 	sh:message "lineReferenceTunnelStart - kilometer (1.1.1.1.8.3):  The tunnel either does not have a value for kilometer at its beginning, has more than one value, or the value is not a double (real) number."@en .
 
 # lineReferenceTunnelEnd - kilometer: 1.1.1.1.8.4
-era-sh:TunnelsShape sh:property era-sh:LineReferenceTunnelEnd .
+era-sh:TunnelShape sh:property era-sh:LineReferenceTunnelEnd .
 era-sh:LineReferenceTunnelEnd
 	a sh:PropertyShape;
     era:affectedProperty era:kilometer;
@@ -85,7 +85,7 @@ era-sh:LineReferenceTunnelEnd
 
 
 # verificationSRT: # 1.1.1.1.8.5, 1.2.1.0.5.3, 1.2.2.0.5.3
-era-sh:TunnelsShape sh:property era-sh:VerificationSRT .
+era-sh:TunnelShape sh:property era-sh:VerificationSRT .
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:VerificationSRT .
 era-sh:VerificationSRT
 	a sh:PropertyShape ;
@@ -103,7 +103,7 @@ era-sh:VerificationSRT
 
 
 # demonstrationSRT: # 1.1.1.1.8.6, 1.2.1.0.5.4, 1.2.2.0.5.4
-era-sh:TunnelsShape sh:property era-sh:DemonstrationSRT .
+era-sh:TunnelShape sh:property era-sh:DemonstrationSRT .
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:DemonstrationSRT.
 era-sh:DemonstrationSRT
 	a sh:PropertyShape ;
@@ -121,7 +121,7 @@ era-sh:DemonstrationSRT
 
 
 # lengthOfTunnel: # 1.1.1.1.8.7, 1.2.1.0.5.5, 1.2.2.0.5.5
-era-sh:TunnelsShape sh:property era-sh:LengthT .
+era-sh:TunnelShape sh:property era-sh:LengthT .
 era-sh:LengthT
 	a sh:PropertyShape ;
     era:affectedProperty era:lengthOfTunnel;
@@ -136,7 +136,7 @@ era-sh:LengthT
 	sh:message "length (1.1.1.1.8.7, 1.2.1.0.5.5, 1.2.2.0.5.5): A Tunnel must have at most one length declaration. This error may be due to having a tunnel with more than one length or to having a value that is not a double (real) number."@en .
 
 # crossSectionArea: # 1.1.1.1.8.8 
-era-sh:TunnelsShape sh:property era-sh:CrossSectionAreaT .
+era-sh:TunnelShape sh:property era-sh:CrossSectionAreaT .
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:CrossSectionAreaT.
 era-sh:CrossSectionAreaT
 	a sh:PropertyShape ;
@@ -152,7 +152,7 @@ era-sh:CrossSectionAreaT
 	sh:message "crossSectionArea (1.1.1.1.8.8): A Tunnel can have at most one crossSectionArea. This error may be due to having a tunnel with more than one crossSectionArea or having a value  that is not an integer number."@en .
 
 # crossSectionArea: # 1.1.1.1.8.8 
-era-sh:TunnelsShape sh:sparql era-sh:CrossSectionAreaApplicability .
+era-sh:TunnelShape sh:sparql era-sh:CrossSectionAreaApplicability .
 era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:CrossSectionAreaApplicability .
 era-sh:CrossSectionAreaApplicability
 	a sh:SPARQLConstraint ;
@@ -177,7 +177,7 @@ era-sh:CrossSectionAreaApplicability
 			""" .
 
 # complianceInfTsi: # 1.1.1.1.8.8.1 
-era-sh:TunnelsShape sh:property era-sh:ComplianceInfTsiP .
+era-sh:TunnelShape sh:property era-sh:ComplianceInfTsiP .
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ComplianceInfTsiP .
 era-sh:ComplianceInfTsiP
 	a sh:PropertyShape ;
@@ -193,7 +193,7 @@ era-sh:ComplianceInfTsiP
 	sh:message "complianceInfTsi (1.1.1.1.8.8.1): A Tunnel can have at most one complianceInfTsi. This error may be due to having a tunnel with more than one complianceInfTsi or having a value type different than Y/N (boolean)."@en .
 
 # complianceInfTsi: # 1.1.1.1.8.8.1 
-era-sh:TunnelsShape sh:sparql era-sh:ComplianceInfTsiApplicability .
+era-sh:TunnelShape sh:sparql era-sh:ComplianceInfTsiApplicability .
 era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:ComplianceInfTsiApplicability .
 era-sh:ComplianceInfTsiApplicability
 	a sh:SPARQLConstraint ;
@@ -218,7 +218,7 @@ era-sh:ComplianceInfTsiApplicability
 			""" .
 
 # tunnelDocRef: # 1.1.1.1.8.8.2
-era-sh:TunnelsShape sh:property era-sh:TunnelDocRef .
+era-sh:TunnelShape sh:property era-sh:TunnelDocRef .
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TunnelDocRef .
 era-sh:TunnelDocRef
 	a sh:PropertyShape ;
@@ -236,7 +236,7 @@ era-sh:TunnelDocRef
 
 
 # hasEmergencyPlan: # 1.1.1.1.8.9, 1.2.1.0.5.6, 1.2.2.0.5.6
-era-sh:TunnelsShape sh:property era-sh:HasEmergencyPlan .
+era-sh:TunnelShape sh:property era-sh:HasEmergencyPlan .
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasEmergencyPlan .
 era-sh:HasEmergencyPlan
 	a sh:PropertyShape ;
@@ -252,7 +252,7 @@ era-sh:HasEmergencyPlan
 	sh:message "hasEmergencyPlan (1.1.1.1.8.9, 1.2.1.0.5.6, 1.2.2.0.5.6): A Tunnel has an indication about the existence of an emergency plan. This error may be due to having a tunnel with more than one value for hasEmergencyPlan or having a value type different than Y/N (boolean)."@en .
 
 # hasEmergencyPlan: # 1.1.1.1.8.9, 1.2.1.0.5.6, 1.2.2.0.5.6
-era-sh:TunnelsShape sh:sparql era-sh:HasEmergencyPlanApplicability .
+era-sh:TunnelShape sh:sparql era-sh:HasEmergencyPlanApplicability .
 era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:HasEmergencyPlanApplicability .
 era-sh:HasEmergencyPlanApplicability
 	a sh:SPARQLConstraint ;
@@ -277,7 +277,7 @@ era-sh:HasEmergencyPlanApplicability
 			""" .
 
 # hasEvacuationAndRescuePoints: # 1.1.1.1.8.13, 1.2.1.0.5.11, 1.2.2.0.5.10
-era-sh:TunnelsShape sh:property era-sh:HasEvacuationAndRescuePoints .
+era-sh:TunnelShape sh:property era-sh:HasEvacuationAndRescuePoints .
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasEvacuationAndRescuePoints .
 era-sh:HasEvacuationAndRescuePoints
 	a sh:PropertyShape ;
@@ -293,7 +293,7 @@ era-sh:HasEvacuationAndRescuePoints
 	sh:message "hasEvacuationAndRescuePoints (1.1.1.1.8.13, 1.2.1.0.5.11, 1.2.2.0.5.10): A Tunnel has an indication about the existence of an evacuation and rescue points. This error may be due to having a tunnel with more than one value for hasEvacuationAndRescuePoints or having a value type different than Y/N (boolean)."@en .
 
 # rollingStockFireCategory: # 1.1.1.1.8.10, 1.2.1.0.5.7, 1.2.2.0.5.7
-era-sh:TunnelsShape sh:property era-sh:RollingStockFireCategory .
+era-sh:TunnelShape sh:property era-sh:RollingStockFireCategory .
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:RollingStockFireCategory .
 era-sh:RollingStockFireCategory
 	a sh:PropertyShape ;
@@ -309,7 +309,7 @@ era-sh:RollingStockFireCategory
 	sh:message "rollingStockFireCategory (1.1.1.1.8.10, 1.2.1.0.5.7, 1.2.2.0.5.7): A Tunnel may have an indication about the rollingStockFireCategory. This error may be due to having a tunnel without a rollingStockFireCategory declaration or having a literal as value. This error may be due to a tunnel having more than one value."@en .
 
 # rollingStockFireCategory: # 1.1.1.1.8.10, 1.2.1.0.5.7, 1.2.2.0.5.7
-era-sh:TunnelsShape sh:sparql era-sh:RollingStockFireCategorySKOS .
+era-sh:TunnelShape sh:sparql era-sh:RollingStockFireCategorySKOS .
 era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:RollingStockFireCategorySKOS .
 era-sh:RollingStockFireCategorySKOS
 	a sh:SPARQLConstraint ;
@@ -335,7 +335,7 @@ era-sh:RollingStockFireCategorySKOS
 """ .
 
 # rollingStockFireCategory: # 1.1.1.1.8.10, 1.2.1.0.5.7, 1.2.2.0.5.7
-era-sh:TunnelsShape sh:sparql era-sh:RollingStockFireCategoryApplicability .
+era-sh:TunnelShape sh:sparql era-sh:RollingStockFireCategoryApplicability .
 era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:RollingStockFireCategoryApplicability .
 era-sh:RollingStockFireCategoryApplicability
 	a sh:SPARQLConstraint ;
@@ -361,7 +361,7 @@ era-sh:RollingStockFireCategoryApplicability
 
 
 ## nationalRollingStockFireCategory: # 1.1.1.1.8.11, 1.2.1.0.5.8, 1.2.2.0.5.8
-era-sh:TunnelsShape sh:property era-sh:NationalRollingStockFireCategory .
+era-sh:TunnelShape sh:property era-sh:NationalRollingStockFireCategory .
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:NationalRollingStockFireCategory .
 era-sh:NationalRollingStockFireCategory
 	a sh:PropertyShape ;
@@ -378,7 +378,7 @@ era-sh:NationalRollingStockFireCategory
 	sh:message "nationalRollingStockFireCategory (1.1.1.1.8.11, 1.2.1.0.5.8, 1.2.2.0.5.8): A Tunnel may have an indication about the nationalRollingStockFireCategory. This error may be due to having a tunnel with more than one value or having a value type different than string."@en .
 
 # nationalRollingStockFireCategory: # 1.1.1.1.8.11, 1.2.1.0.5.8, 1.2.2.0.5.8
-era-sh:TunnelsShape sh:sparql era-sh:NationalRollingStockFireCategoryApplicability .
+era-sh:TunnelShape sh:sparql era-sh:NationalRollingStockFireCategoryApplicability .
 era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:NationalRollingStockFireCategoryApplicability .
 era-sh:NationalRollingStockFireCategoryApplicability
 	a sh:SPARQLConstraint ;
@@ -402,7 +402,7 @@ era-sh:NationalRollingStockFireCategoryApplicability
 			""" .
 
 # dieselThermalAllowed: # 1.2.1.0.5.9
-era-sh:TunnelsShape sh:property era-sh:DieselThermalAllowed .
+era-sh:TunnelShape sh:property era-sh:DieselThermalAllowed .
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:DieselThermalAllowed .
 era-sh:DieselThermalAllowed
 	a sh:PropertyShape ;
@@ -418,7 +418,7 @@ era-sh:DieselThermalAllowed
 	sh:message "dieselThermalAllowed (1.2.1.0.5.9): A Tunnel may have an indication about the permission of thermal traction. This error may be due to having a tunnel woth more than one dieselThermalAllowed declaration or having a value type different than Y/N (boolean)."@en .
 
 # startLocation: 1.1.1.1.8.3
-era-sh:TunnelsShape sh:property era-sh:StartLocation .
+era-sh:TunnelShape sh:property era-sh:StartLocation .
 era-sh:StartLocation
 	a sh:PropertyShape;
 	era:affectedClass era:Tunnel;
@@ -436,7 +436,7 @@ era-sh:StartLocation
 	sh:message "startLocation (1.1.1.1.8.3): The Tunnel may have a start location (startLocation) reference that is a Geometry object or a Point. This error mey be due to a startLocation relationship from a Tunnel that is not a Geometry nor a Point."@en .
 
 # endLocation: 1.1.1.1.8.4
-era-sh:TunnelsShape sh:property era-sh:EndLocation .
+era-sh:TunnelShape sh:property era-sh:EndLocation .
 era-sh:EndLocation
 	a sh:PropertyShape;
 	era:affectedClass era:Tunnel;
@@ -454,7 +454,7 @@ era-sh:EndLocation
 	sh:message "endLocation (1.1.1.1.8.4): The Tunnel may have an end location (endLocation) reference that is a Geometry object or a Point. This error mey be due to an endLocation relationship from a Tunnel that is not a Geometry nor a Point."@en .
 
 # hasWalkway: # 1.1.1.1.8.12, 1.2.1.0.5.10, 1.2.2.0.5.9
-era-sh:TunnelsShape sh:property era-sh:HasWalkway .
+era-sh:TunnelShape sh:property era-sh:HasWalkway .
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasWalkway .
 era-sh:HasWalkway
 	a sh:PropertyShape ;

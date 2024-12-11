@@ -17,7 +17,7 @@
 #
 # platform
 #
-era-sh:PlatformsShape
+era-sh:PlatformEdgeShape
 	a sh:NodeShape ;
 	sh:targetClass era:PlatformEdge .
 
@@ -32,7 +32,7 @@ era-sh:CommonCharacteristicsSubsetShape
 
 
 # platformId: # 1.2.1.0.6.2
-era-sh:PlatformsShape sh:property era-sh:PlatformId .
+era-sh:PlatformEdgeShape sh:property era-sh:PlatformId .
 era-sh:PlatformId
 	a sh:PropertyShape;
     era:affectedProperty era:platformId;
@@ -78,7 +78,7 @@ era-sh:NoRepeatedPlatformIdsOP
 
 
 # tenClassification: # 1.2.1.0.6.3
-era-sh:PlatformsShape sh:property era-sh:TenClassificationP .
+era-sh:PlatformEdgeShape sh:property era-sh:TenClassificationP .
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TenClassificationP .
 era-sh:TenClassificationP
 	a sh:PropertyShape;
@@ -93,7 +93,7 @@ era-sh:TenClassificationP
 	sh:message "TEN classification (1.2.1.0.6.3): This error may be due to having a Platform with a TEN classification that is not an URI."@en .
 
 #tenClassification: # 1.2.1.0.6.3
-era-sh:PlatformsShape sh:sparql era-sh:TenClassificationSKOSP .
+era-sh:PlatformEdgeShape sh:sparql era-sh:TenClassificationSKOSP .
 era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:TenClassificationSKOSP .
 era-sh:TenClassificationSKOSP
 	a sh:SPARQLConstraint ;
@@ -123,7 +123,7 @@ era-sh:TenClassificationSKOSP
 
 
 # lengthOfPlatform: # 1.2.1.0.6.4
-era-sh:PlatformsShape sh:property era-sh:LengthP .
+era-sh:PlatformEdgeShape sh:property era-sh:LengthP .
 era-sh:LengthP
 	a sh:PropertyShape;
     era:affectedProperty era:lengthOfPlatform;
@@ -140,7 +140,7 @@ era-sh:LengthP
 
 
 # platformHeight: # 1.2.1.0.6.5
-era-sh:PlatformsShape sh:property era-sh:PlatformHeightP .
+era-sh:PlatformEdgeShape sh:property era-sh:PlatformHeightP .
  era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:PlatformHeightP .
 era-sh:PlatformHeightP
 	a sh:PropertyShape;
@@ -156,7 +156,7 @@ era-sh:PlatformHeightP
 	sh:message "platformHeight (1.2.1.0.6.5): Each Platform must have at most  one height. This error may be due to having a platform with more than one height, or having a value that is not an URI."@en .
 
 # platformHeight: # 1.2.1.0.6.5
-era-sh:PlatformsShape sh:sparql era-sh:PlatformHeightSKOS .
+era-sh:PlatformEdgeShape sh:sparql era-sh:PlatformHeightSKOS .
  era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:PlatformHeightSKOS .
 era-sh:PlatformHeightSKOS
 	a sh:SPARQLConstraint ;
@@ -184,7 +184,7 @@ era-sh:PlatformHeightSKOS
 
 
 # assistanceStartingTrain: # 1.2.1.0.6.6
-era-sh:PlatformsShape sh:property era-sh:AssistanceStartingTrain .
+era-sh:PlatformEdgeShape sh:property era-sh:AssistanceStartingTrain .
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:AssistanceStartingTrain  .
 era-sh:AssistanceStartingTrain
 	a sh:PropertyShape;
@@ -200,7 +200,7 @@ era-sh:AssistanceStartingTrain
 	sh:message "assistanceStartingTrain (1.2.1.0.6.6): Each Platform must have at most one assistanceStartingTrain declaration. This error may be caused due to having a platform with having more than one assistanceStartingTrain, or its value is not Y/N (boolean)."@en .
 	
 # areaBoardingAid: # 1.2.1.0.6.7
-era-sh:PlatformsShape sh:property era-sh:AreaBoardingAid .
+era-sh:PlatformEdgeShape sh:property era-sh:AreaBoardingAid .
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:AreaBoardingAid .
 era-sh:AreaBoardingAid
 	a sh:PropertyShape;
@@ -216,7 +216,7 @@ era-sh:AreaBoardingAid
 	sh:message "areaBoardingAid (1.2.1.0.6.7): Each Platform must have at most one areaBoardingAid value. This error may be caused due to having a platform with multiple areaBoardingAid values or having a value that is not an integer."@en .
 
 # hasPlatformCurvature: # 1.2.1.0.6.8 
-era-sh:PlatformsShape sh:property era-sh:HasPlatformCurvature .
+era-sh:PlatformEdgeShape sh:property era-sh:HasPlatformCurvature .
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasPlatformCurvature .
 era-sh:HasPlatformCurvature
 	a sh:PropertyShape;
