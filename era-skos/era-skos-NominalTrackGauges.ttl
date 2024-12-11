@@ -19,8 +19,8 @@
 #
 #################################################################
 
-
-
+	
+	
 era-ntg:NominalTrackGauges a skos:ConceptScheme ; 
     dct:issued "2020-09-01"^^xsd:date ;
     dct:modified "2022-09-09"^^xsd:date , "2024-12-12"^^xsd:date ;
@@ -29,12 +29,16 @@ era-ntg:NominalTrackGauges a skos:ConceptScheme ;
     rdfs:label "Nominal Track Gauges"@en ;
     era:unitOfMeasure <http://qudt.org/vocab/unit/MilliM> ;
     era:rinfIndex "1.1.1.1.4.1"; 
+	skos:altLabel "CCSTMS_TrackGaugeType" ;
     skos:prefLabel "Nominal Track Gauges"@en ;
     skos:changeNote """ 
     Revision 10-12-2024: 
- - removed "other" from the list of SKOS
- - removed eratv concepts and merged with altLabels in RINF concepts
- - added unit of measure annotations
+	- removed "other" from the list of SKOS
+	- removed eratv concepts and merged with altLabels in RINF concepts
+	- added unit of measure annotations
+	Revision 12-12-2024:
+	- add altLabel for CCSTMS 
+	- add value for the unknown Track Gauge type
   """@en ;
     dct:title "Concept scheme grouping nominal track gauges"@en .
 
@@ -54,41 +58,53 @@ era-ntg-rinf:20 a skos:Concept;
   skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; 
   skos:prefLabel "1000"@en  ;
   skos:altLabel "1000mm"@en ;
+  skos:altLabel "CCSTMS_tg1000mm_2" ;
   skos:notation "1000"^^xsd:string .
 
 era-ntg-rinf:30 a skos:Concept;
   skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; 
   skos:prefLabel "1435"@en ;
   skos:notation "1435"^^xsd:string ;
+  skos:altLabel "CCSTMS_tg1435mm_3" ;
   skos:altLabel "1435mm"@en .
 
 era-ntg-rinf:40 a skos:Concept;
   skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges;
   skos:prefLabel "1520"@en ;
   skos:altLabel "1520mm"@en ;
+  skos:altLabel "CCSTMS_tg1520mm_4" ;
   skos:notation  "1520"^^xsd:string.
 
 era-ntg-rinf:50 a skos:Concept;
   skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; 
   skos:prefLabel "1524"@en ;
   skos:altLabel "1524mm"@en ;
+  skos:altLabel "CCSTMS_tg1524mm_5" ;
   skos:notation "1524"^^xsd:string .
 
 era-ntg-rinf:60 a skos:Concept;
   skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; 
   skos:prefLabel "1600"@en ;
   skos:altLabel "1600mm"@en ;
+  skos:altLabel "CCSTMS_tgtg1600mm_6" ;
   skos:notation "1600"^^xsd:string .
 
 era-ntg-rinf:70 a skos:Concept;
   skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges;
   skos:prefLabel "1668"@en ;
   skos:altLabel "1668mm"@en ;
+  skos:altLabel "CCSTMS_tgtg1668mm_6" ;
   skos:notation "1668"^^xsd:string .
 
 era-ntg-rinf:10 a skos:Concept;
   skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; 
   skos:prefLabel "750"@en ;
   skos:altLabel "750"@en ;
+  skos:altLabel "CCSTMS_tg750_1" ;
   skos:notation "750"^^xsd:string .
 
+era-ntg:unknown a skos:Concept;
+  skos:inScheme era-ntg:NominalTrackGauges; skos:topConceptOf era-ntg:NominalTrackGauges; 
+  rdfs:comment "Track gauge type not known" ;
+  skos:altLabel "CCSTMS_tgUnknown_0" ;
+  skos:prefLabel "Unknown"@en .
