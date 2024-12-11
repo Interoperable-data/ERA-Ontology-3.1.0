@@ -17,14 +17,14 @@
 #
 # operational-points
 #
-era-sh:operationalpointsShape
+era-sh:OperationalPointShape
 	a sh:NodeShape ;
 	sh:targetClass era:OperationalPoint.
 
 
 # opName: # 1.2.0.0.0.1
-era-sh:operationalpointsShape sh:property era-sh:opName .
-era-sh:opName
+era-sh:OperationalPointShape sh:property era-sh:OpName .
+era-sh:OpName
 	a sh:PropertyShape;
     era:affectedClass era:OperationalPoint;
     era:affectedProperty era:opName ;
@@ -39,8 +39,8 @@ era-sh:opName
 	sh:message "opName (1.2.0.0.0.1): There has to be exactly one opName, and it must be represented as a String."@en .
 
 # uopid: # 1.2.0.0.0.2 #TODO check pattern of ID for Border points
-era-sh:operationalpointsShape sh:property era-sh:uopidP .
-era-sh:uopidP
+era-sh:OperationalPointShape sh:property era-sh:UopidP .
+era-sh:UopidP
 	a sh:PropertyShape;
     era:affectedClass era:OperationalPoint;
     era:affectedProperty era:uopid ;
@@ -56,8 +56,8 @@ era-sh:uopidP
 	sh:message "uopid (1.2.0.0.0.2): This error is due to having more than one op id, having a value that is not a string, or having a value that does not follow the pattern where the first part ‘AA’ is the country code in two-letter system of ISO and the second part is the alphanumeric OP code within the MS."@en .
 
 # uopid: # 1.2.0.0.0.2 enforce minCount considering all instances that are not border points
- era-sh:operationalpointsShape sh:sparql era-sh:uopidMin .
- era-sh:uopidMin
+ era-sh:OperationalPointShape sh:sparql era-sh:UopidMin .
+ era-sh:UopidMin
  	a sh:SPARQLConstraint;
     era:affectedClass era:OperationalPoint;
     era:affectedProperty era:uopid ;
@@ -79,8 +79,8 @@ era-sh:uopidP
 			""" .
 
 # opType: # 1.2.0.0.0.4
-era-sh:operationalpointsShape sh:property era-sh:opTypeP .
-era-sh:opTypeP
+era-sh:OperationalPointShape sh:property era-sh:OpTypeP .
+era-sh:OpTypeP
 	a sh:PropertyShape;
     era:affectedClass era:OperationalPoint;
     era:affectedProperty era:opType ;
@@ -98,8 +98,8 @@ era-sh:opTypeP
 
 
 # opType: # 1.2.0.0.0.4
-era-sh:operationalpointsShape sh:sparql era-sh:opTypeSKOS .
-era-sh:opTypeSKOS
+era-sh:OperationalPointShape sh:sparql era-sh:OpTypeSKOS .
+era-sh:OpTypeSKOS
 	a sh:SPARQLConstraint ;
     era:affectedClass era:OperationalPoint;
     era:affectedProperty era:opType ;
@@ -127,8 +127,8 @@ era-sh:opTypeSKOS
 
 
 # opTypeGaugeChangeover: # 1.2.0.0.0.4.1 
-era-sh:operationalpointsShape sh:property era-sh:opTypeGaugeChangeover .
-era-sh:opTypeGaugeChangeover
+era-sh:OperationalPointShape sh:property era-sh:OpTypeGaugeChangeover .
+era-sh:OpTypeGaugeChangeover
 	a sh:PropertyShape;
     era:affectedClass era:OperationalPoint;
     era:affectedProperty era:opTypeGaugeChangeover ;
@@ -142,8 +142,8 @@ era-sh:opTypeGaugeChangeover
 	sh:message "opTypeGaugeChangeover (1.2.0.0.0.4.1): The Operational Point must have at most one value of opTypeGaugeChangeover and its type must be a string."@en .
 
 # digitalSchematicOverview: # 1.2.0.0.0.7.2
-era-sh:operationalpointsShape sh:property era-sh:digitalSchematicOverview .
-era-sh:digitalSchematicOverview
+era-sh:OperationalPointShape sh:property era-sh:DigitalSchematicOverview .
+era-sh:DigitalSchematicOverview
 	a sh:PropertyShape;
     era:affectedClass era:OperationalPoint;
     era:affectedProperty era:digitalSchematicOverview ;
@@ -157,8 +157,8 @@ era-sh:digitalSchematicOverview
 
 
 # primaryLocation: #
-era-sh:operationalpointsShape sh:property era-sh:primaryLocation .
-era-sh:primaryLocation
+era-sh:OperationalPointShape sh:property era-sh:PrimaryLocation .
+era-sh:PrimaryLocation
 	a sh:PropertyShape;
     era:affectedClass era:OperationalPoint;
     era:affectedProperty era:primaryLocation ;
@@ -172,8 +172,8 @@ era-sh:primaryLocation
 
 
 # referenceBorderPoint: #
-era-sh:operationalpointsShape sh:property era-sh:referenceBorderPoint .
-era-sh:referenceBorderPoint
+era-sh:OperationalPointShape sh:property era-sh:ReferenceBorderPoint .
+era-sh:ReferenceBorderPoint
 	a sh:PropertyShape;
     era:affectedClass era:OperationalPoint;
     era:affectedProperty era:referenceBorderPoint ;
@@ -187,8 +187,8 @@ era-sh:referenceBorderPoint
 
 
 # hasSchematicOverviewOPDigitalForm: # 1.2.0.0.0.7
-era-sh:operationalpointsShape sh:property era-sh:hasSchematicOverviewOPDigitalForm .
-era-sh:hasSchematicOverviewOPDigitalForm
+era-sh:OperationalPointShape sh:property era-sh:HasSchematicOverviewOPDigitalForm .
+era-sh:HasSchematicOverviewOPDigitalForm
 	a sh:PropertyShape;
     era:affectedClass era:OperationalPoint;
     era:affectedProperty era:hasSchematicOverviewOPDigitalForm ;
@@ -203,8 +203,8 @@ era-sh:hasSchematicOverviewOPDigitalForm
 
 
   # hasPart: Property that may relate an operational point with a siding or a track
- era-sh:operationalpointsShape sh:property era-sh:hasPartOP .
- era-sh:hasPartOP
+ era-sh:OperationalPointShape sh:property era-sh:HasPartOP .
+ era-sh:HasPartOP
  	a sh:PropertyShape;
     era:affectedClass era:OperationalPoint;
     era:affectedProperty era:hasPart ;
@@ -219,24 +219,10 @@ era-sh:hasSchematicOverviewOPDigitalForm
  	sh:severity sh:Violation ;
  	sh:message "hasPart from an operational point : The Operational Point may have a siding (hasPart) reference that is a Siding object or a track (hasPart) reference that is a Track object. This error mey be due to a hasPart relationship from an operational point that is not a Siding nor a Track."@en .
 
-# parameterApplicability
-era-sh:operationalpointsShape sh:property era-sh:parameterApplicability .
-era-sh:parameterApplicability
-	a sh:PropertyShape;
-    era:affectedClass era:OperationalPoint;
-    era:affectedClass era:ParameterApplicability;
-    era:affectedProperty era:primaryLocation ;
-    era:scope "local";
-	rdfs:comment "Relates an infrastructure element or a common characteristics subset with the applicability of a certain parameter." ;
-	sh:path era:parameterApplicability ;
-	sh:class era:ParameterApplicability;
-	sh:severity sh:Violation ;
-	sh:message "parameterApplicability: The operational point may have a parameterApplicability reference that must be an instance of ParameterApplicability. This error is due to having having a value that is not an instance of ParameterApplicability."@en .
-
 # fixed temporarily
 # uopid: # 1.2.0.0.0.2 enforce the border point constraint, if an OP is a border point, it should point to ReferenceBorderPoint and its uopid but be the code in the RefenreceBorderPoint class.
- era-sh:operationalpointsShape sh:sparql era-sh:borderPointValidCode .
- era-sh:borderPointValidCode
+ era-sh:OperationalPointShape sh:sparql era-sh:BorderPointValidCode .
+ era-sh:BorderPointValidCode
  	a sh:SPARQLConstraint;
     era:affectedClass era:OperationalPoint;
     era:affectedClass era:ReferenceBorderPoint;
