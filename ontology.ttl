@@ -12766,6 +12766,7 @@ era:CommonCharacteristicsSubset rdf:type owl:Class ;
                                 dcterms:created "2022-11-04"^^xsd:date ;
                                 dcterms:modified "2023-03-14"^^xsd:date ,
                                                  "2024-10-31"^^xsd:date ;
+                                era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/CommonCharacteristicsSubsetShape>;
                                 rdfs:comment "A set of different infrastructure objects sharing the same common technical characteristics. The parameters may not be restricted to only one railway subsystem, but it can include common characteristics from each one of them (infrastructure, energy, track-side CCS)"@en ;
                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                 rdfs:label "Subset with common characteristics"@en ;
@@ -12777,6 +12778,7 @@ era:ContactLineSystem rdf:type owl:Class ;
                       era:rinfIndex "1.1.1.2.2" ;
                       dcterms:created "2021-08-04"^^xsd:date ;
                       dcterms:modified "2021-08-04"^^xsd:date ;
+                      era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/ContactLineSystemShape> ;
                       rdfs:comment "System that is used to transmit electrical energy to road or rail vehicles."@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                       rdfs:label "Contact Line System"@en ;
@@ -12798,6 +12800,7 @@ era:ETCS rdf:type owl:Class ;
          era:rinfIndex "1.1.1.3.2" ;
          dcterms:created "2021-08-07"^^xsd:date ;
          dcterms:modified "2021-08-07"^^xsd:date ;
+         era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/ETCSShape>;
          rdfs:comment "TSI compliant train protection system ERTMS / ETCS application level and baseline related to the track side equipment."@en ;
          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
          rdfs:label "ETCS"@en ;
@@ -12828,6 +12831,7 @@ era:InfrastructureElement rdf:type owl:Class ;
                           dcterms:created "2022-07-07"^^xsd:date ;
                           dcterms:modified "2022-10-27"^^xsd:date ,
                                            "2024-10-28"^^xsd:date ;
+                          era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/InfrastructureElementShape>;
                           rdfs:comment """This class encompasses all those classes that represent features that are  implemented in the European railway infrastructure. It is a subclass of the ERA Feature that has a spatial representation. It covers tracks, platforms, signals, tunnels, operational points, and sections of line.
 A feature that belongs to the infrastructure can be abstracted (hasAbstraction) as a topological object. It also is related to the infrastructure manager through the property infrastructureMgr."""@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -13000,6 +13004,7 @@ era:MinVehicleImpedance rdf:type owl:Class ;
                         era:rinfIndex "1.1.1.3.4.2.2" ,
                                       "1.2.1.1.3.2.2" ;
                         dcterms:created "2024-05-30"^^xsd:date ;
+                        era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/MinVehicleImpedanceShape> ;
                         dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                         rdfs:comment """Impedance as defined in the TSI CCS (Annex I, Appendix A, Table A.2 -Index 77).
 
@@ -13022,6 +13027,7 @@ era:NationalRailwayLine rdf:type owl:Class ;
                         dcterms:created "2021-01-25"^^xsd:date ;
                         dcterms:modified "2021-08-03"^^xsd:date ,
                                          "2024-11-29"^^xsd:date ;
+                        era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/NationalRailwayLineShape> ;
                         rdfs:comment """Railway line within a member state.
 A line is a sequence of one or mores sections of line, which connects operational points and which may consist of several tracks used for regular railway operation."""@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -13118,6 +13124,8 @@ era:OperationalPoint rdf:type owl:Class ;
                      era:tsiOPEAppendixD2Index "2.1.2" ;
                      dcterms:created "2020-07-29"^^xsd:date ;
                      dcterms:modified "2022-07-07"^^xsd:date ;
+                     era:shaclShapeValidationRule 
+                      <http://data.europa.eu/949/shapes/OperationalPointShape> ;
                      rdfs:comment "An operational point (OP) means any location for train service operations, where train services may begin and end or change route, and where passenger or freight services may be provided; operational point also means any location at boundaries between Member States or infrastructure managers."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                      rdfs:label "Operational Point"@en ;
@@ -13127,6 +13135,7 @@ era:OperationalPoint rdf:type owl:Class ;
 ###  http://data.europa.eu/949/OrganisationRole
 era:OrganisationRole rdf:type owl:Class ;
                      rdfs:comment "Represents an n-ary relationship between a Body and a role"@en ;
+                     era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/OrganisationRoleShape>;
                      rdfs:label "Organisation Role"@en .
 
 
@@ -13140,6 +13149,7 @@ era:Orientation rdf:type owl:Class ;
 era:ParameterApplicability rdf:type owl:Class ;
                            rdfs:subClassOf era:TemporalFeature ;
                            dcterms:modified "2024-10-28"^^xsd:date ;
+                           era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/ParameterApplicabilityShape> ;
                            rdfs:comment "Applicability interval defines the date interval in which a characteristic of an infrastructure element is applicable. This interval can be applied for any of the technical characteristics or general information of infrastructure elements. This helps identifying planned changes applied to technical parameters over time."@en ;
                            rdfs:label "Parameter applicability"@en .
 
@@ -13165,6 +13175,7 @@ era:PlatformEdge rdf:type owl:Class ;
                  era:rinfIndex "1.2.1.0.6" ;
                  dcterms:created "2021-08-02"^^xsd:date ;
                  dcterms:modified "2023-11-10"^^xsd:date ;
+                 era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/PlatformEdgeShape> ;
                  rdfs:comment "Platform for the purpose of RINF is understood as a platform edge. A platform concerns only the part of the structure neighbouring to the track (interfaced with trains)."@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "Platform edge"@en ;
@@ -13180,6 +13191,7 @@ era:PrimaryLocation rdf:type owl:Class ;
                                     ] ;
                     owl:disjointWith era:RadioBlockCenter ;
                     dcterms:modified "2024-10-28"^^xsd:date ;
+                    era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/PrimaryLocationShape>;
                     rdfs:comment """Primary Location is a place used by IM to define a path for a train in TAF/TAP TSI framework/messages. This location is a rail point inside the rail network where train starts, ends, stops, or runs through or change line. This location must be managed by an Infrastructure Manager (IM) identified by company code.
 
 Primary locations are identified by single and unique Primary Location codes. Primary location code is allocated based on processes defined by national entity. Primary location codes are used in any kind of TAF/TAP communication.
@@ -13199,6 +13211,7 @@ era:RadioBlockCenter rdf:type owl:Class ;
                      rdfs:comment """ETCS trackside centralised unit controlling ETCS train movements in level 2.
 
 A centralised safety unit that receives train position information via radio and sends movement authorities via radio to trains."""@en ;
+                     era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/RadioBlockCenterShape> ;
                      rdfs:label "Radio Block Center"@en ;
                      rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index003_-_SUBSET-023_v400.pdf"^^xsd:anyURI .
 
@@ -13238,6 +13251,7 @@ era:RunningTrack rdf:type owl:Class ;
                  dcterms:modified "2022-07-07"^^xsd:date ,
                                   "2024-09-19"^^xsd:date ,
                                   "2024-11-20"^^xsd:date ;
+                 era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/RunningTrackShape> ;
                  rdfs:comment "A running track means any track used for train service movements; passing loops and meeting loops on plain line or track connections only required for train operation are not published"@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                  rdfs:label "Running track"@en ;
@@ -13268,6 +13282,7 @@ era:SectionOfLine rdf:type owl:Class ;
                   dcterms:description "Each network shall be described using as many SoLs as necessary. Each SoL   is generated and identified by OP IDs at start and at end. A SoL only belongs to one Line."@en ;
                   dcterms:modified "2022-07-07"^^xsd:date ,
                                    "2024-09-19"^^xsd:date ;
+                  era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/SectionOfLineShape> ;
                   dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
                   rdfs:comment "A section of line means the part of line between adjacent operational points and may consist of several tracks."@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -13287,6 +13302,7 @@ era:Siding rdf:type owl:Class ;
            dcterms:modified "2022-10-27"^^xsd:date ,
                             "2024-09-19"^^xsd:date ,
                             "2024-11-20" ;
+           era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/SidingShape> ;
            dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/2020-06-16> ;
            rdfs:comment "Sidings are all those tracks where running trains in service movements ends and which are not used for operational routing of a train."@en ;
            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -13305,6 +13321,7 @@ era:Signal rdf:type owl:Class ;
            dcterms:created "2021-04-01"^^xsd:date ;
            dcterms:modified "2022-10-27"^^xsd:date ,
                             "2024-09-19"^^xsd:date ;
+           era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/SignalShape> ;
            dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/2023-09-28> ;
            rdfs:comment "A railway signal is a visual display device (next to the tracks or via a DMI in the cabin) that conveys instructions or provides advance warning of instructions regarding the driver’s authority to proceed."@en ;
            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -13368,6 +13385,7 @@ era:SubsidiaryLocation rdf:type owl:Class ;
                                          owl:onClass era:PrimaryLocation
                                        ] ;
                        dcterms:created "2024-05-24"^^xsd:date ;
+                       era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/SubsidiaryLocationShape> ;
                        rdfs:comment "Subsidiary location must be linked to a Primary Location and specifies in more detailed way part, attributes, or usage of Primary location. It may be also a non-rail point or a rail point that is not managed by an Infrastructure Manager (IM). It may be defined by entity having company code according to their needs. The Subsidiary location is optional and dependent upon business needs."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                        rdfs:label "Subsidiary location"@en ;
@@ -13428,6 +13446,7 @@ era:TrainDetectionSystem rdf:type owl:Class ;
                          era:rinfIndex "1.1.1.3.4" ;
                          dcterms:created "2021-08-07"^^xsd:date ;
                          dcterms:modified "2021-08-07"^^xsd:date ;
+                         era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/TrainDetectionSystemShape> ;
                          rdfs:comment "Safety system used to detect the presence of vehicles on the railway track."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Train Detection System"@en ;
@@ -13441,6 +13460,7 @@ era:Tunnel rdf:type owl:Class ;
            dcterms:created "2020-07-29"^^xsd:date ;
            dcterms:modified "2022-07-07"^^xsd:date ,
                             "2024-09-19"^^xsd:date ;
+           era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/TunnelShape> ;
            dcterms:source <http://data.europa.eu/eli/reg/2014/1303/2024-01-29> ;
            rdfs:comment "A railway tunnel is an excavation or a construction around the track provided to allow the railway to pass for example higher land, buildings or water."@en ;
            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
