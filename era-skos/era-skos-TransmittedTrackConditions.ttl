@@ -20,12 +20,14 @@
 
 era-transmittedtcs:TransmittedTrackConditions a skos:ConceptScheme ; 
     dct:issued "2024-04-18"^^xsd:date ;
-    dct:modified "2024-09-04"^^xsd:date ;
+    dct:modified "2024-09-04"^^xsd:date ,
+				 "2024-12-12"^^xsd:date ;
     cc:license <https://creativecommons.org/licenses/by/4.0/> ;
     rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
     era:rinfIndex "1.1.1.3.2.12.1"; 
     era:rinfIndex "1.2.1.1.1.12.1"; 
     rdfs:label "Track Conditions transmitted to the Onboard (Subset-026, version 4.0 - 5.8.12)"@en ;
+	skos:altLabel "CCSTMS_ConditionType" ;
     dct:title "Concept scheme grouping the transmittable track conditions."@en .
 
 
@@ -44,30 +46,35 @@ era-transmittedtcs:5-8-12-a a skos:Concept;
   skos:topConceptOf era-transmittedtcs:TransmittedTrackConditions ; skos:notation "a)"^^xsd:string ;
   skos:inScheme era-transmittedtcs:TransmittedTrackConditions; skos:note "See Subset-026, version 4.0 - 5.8.12 a)";
   rdfs:comment "Powerless section with pantograph to be lowered" ;
+  skos:altLabel "CCSTMS_powerlessLowPanthograph_0" ;
   skos:prefLabel "a)"@en .
 
 era-transmittedtcs:5-8-12-b a skos:Concept;
   skos:topConceptOf era-transmittedtcs:TransmittedTrackConditions ; skos:notation "b)"^^xsd:string ;
   skos:inScheme era-transmittedtcs:TransmittedTrackConditions; skos:note "See Subset-026, version 4.0 - 5.8.12 b)";
   rdfs:comment "Powerless section with main power switch to be switched off" ;
+  skos:altLabel "CCSTMS_powerlessMainSwitch_1" ;
   skos:prefLabel "b)"@en .
 
 era-transmittedtcs:5-8-12-c a skos:Concept;
   skos:topConceptOf era-transmittedtcs:TransmittedTrackConditions ; skos:notation "c)"^^xsd:string ;
   skos:inScheme era-transmittedtcs:TransmittedTrackConditions; skos:note "See Subset-026, version 4.0 - 5.8.12 c)"@en;
   rdfs:comment "Non-stopping area" ;
+  skos:altLabel "CCSTMS_nonStoppingArea_4" ;
   skos:prefLabel "c)"@en .
 
 era-transmittedtcs:5-8-12-d a skos:Concept;
   skos:topConceptOf era-transmittedtcs:TransmittedTrackConditions ; skos:notation "d)"^^xsd:string ;
   skos:inScheme era-transmittedtcs:TransmittedTrackConditions; skos:note "See Subset-026, version 4.0 - 5.8.12 d)";
   rdfs:comment "Radio hole" ;
+  skos:altLabel "CCSTMS_radioHole_7" ;
   skos:prefLabel "d)"@en .
 
 era-transmittedtcs:5-8-12-e a skos:Concept;
   skos:topConceptOf era-transmittedtcs:TransmittedTrackConditions ; skos:notation "e)"^^xsd:string ;
   skos:inScheme era-transmittedtcs:TransmittedTrackConditions; skos:note "See Subset-026, version 4.0 - 5.8.12 e)";
   rdfs:comment "Air tightness area" ;
+  skos:altLabel "CCSTMS_airTightness_2" ;
   skos:prefLabel "e)"@en .
 
 era-transmittedtcs:5-8-12-f a skos:Concept;
@@ -80,12 +87,14 @@ era-transmittedtcs:5-8-12-g a skos:Concept;
   skos:topConceptOf era-transmittedtcs:TransmittedTrackConditions ; skos:notation "g)"^^xsd:string ;
   skos:inScheme era-transmittedtcs:TransmittedTrackConditions; skos:note "See Subset-026, version 4.0 - 5.8.12 g)";
   rdfs:comment "Tunnel stopping area" ;
+  skos:altLabel "CCSTMS_tunnelStoppingArea_5" ;
   skos:prefLabel "g)"@en .
 
 era-transmittedtcs:5-8-12-h a skos:Concept;
   skos:topConceptOf era-transmittedtcs:TransmittedTrackConditions ; skos:notation "h)"^^xsd:string ;
   skos:inScheme era-transmittedtcs:TransmittedTrackConditions; skos:note "See Subset-026, version 4.0 - 5.8.12 h)";
   rdfs:comment "Sound horn" ;
+  skos:altLabel "CCSTMS_soundHorn_3" ;
   skos:prefLabel "h)"@en .
 
 era-transmittedtcs:5-8-12-i a skos:Concept;
@@ -93,3 +102,41 @@ era-transmittedtcs:5-8-12-i a skos:Concept;
   skos:inScheme era-transmittedtcs:TransmittedTrackConditions; skos:note "See Subset-026, version 4.0 - 5.8.12 i)";
   rdfs:comment "Change of traction system" ;
   skos:prefLabel "i)"@en .
+  
+  
+  
+  
+era-transmittedtcs:bigMetalMasses a skos:Concept;
+  skos:topConceptOf era-transmittedtcs:TransmittedTrackConditions ;
+  skos:inScheme era-transmittedtcs:TransmittedTrackConditions; skos:note "Big metal masses";
+  rdfs:comment "Big metal masses, ignore on-board integrity check alarm of balise transmission" ;
+  skos:altLabel "CCSTMS_bigMetalMasses_6" ;
+  skos:prefLabel "bigMetalMasses"@en .
+  
+era-transmittedtcs:switchOffRegenerativeBrake a skos:Concept;
+  skos:topConceptOf era-transmittedtcs:TransmittedTrackConditions ;
+  skos:inScheme era-transmittedtcs:TransmittedTrackConditions; skos:note "Switch-Off Regenerative Brake";
+  rdfs:comment "defines a switch Off Regenerative Brake sections" ;
+  skos:altLabel "CCSTMS_switchOffRegenerativeBrake_8" ;
+  skos:prefLabel "switchOffRegenerativeBrake"@en .
+
+era-transmittedtcs:switchOffEddyCurrentBrakeForServiceBrake a skos:Concept;
+  skos:topConceptOf era-transmittedtcs:TransmittedTrackConditions ;
+  skos:inScheme era-transmittedtcs:TransmittedTrackConditions; skos:note "Switch-Off Eddy Current Brake for Service Brake";
+  rdfs:comment "defines a switch Off Eddy Current Brake sections" ;
+  skos:altLabel "CCSTMS_switchOffEddyCurrentBrakeForServiceBrake_9" ;
+  skos:prefLabel "switchOffEddyCurrentBrakeForServiceBrake"@en .
+  
+era-transmittedtcs:switchOffEddyCurrentBrakeForEmergencyBrake a skos:Concept;
+  skos:topConceptOf era-transmittedtcs:TransmittedTrackConditions ;
+  skos:inScheme era-transmittedtcs:TransmittedTrackConditions; skos:note "switch-Off Eddy Current Brake for Emergency Brake";
+  rdfs:comment "defines a switch Off Eddy Current Emergency Brake sections" ;
+  skos:altLabel "CCSTMS_switchOffEddyCurrentBrakeForEmergencyBrake_10" ;
+  skos:prefLabel "switchOffEddyCurrentBrakeForEmergencyBrake"@en .
+  
+era-transmittedtcs:switchOffMagneticShoeBrake a skos:Concept;
+  skos:topConceptOf era-transmittedtcs:TransmittedTrackConditions ;
+  skos:inScheme era-transmittedtcs:TransmittedTrackConditions; skos:note "switch-Off Magnetic Shoe Brake";
+  rdfs:comment "defines a switch Off Magnetic Shoe Brake sections" ;
+  skos:altLabel "CCSTMS_switchOffMagneticShoeBrake_11" ;
+  skos:prefLabel "switchOffMagneticShoeBrake"@en .
