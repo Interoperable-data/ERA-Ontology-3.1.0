@@ -20,7 +20,15 @@ era-sh:CommonCharacteristicsSubsetShape
 
 era-sh:InfrastructureElementShape
 	a sh:NodeShape ;
-	sh:targetClass era:InfrastructureElement .  
+	sh:targetClass era:InfrastructureElement .
+
+era-sh:AggregatedElementShape
+	a sh:NodeShape ;
+	sh:targetClass era:AggregatedElement .  
+
+era-sh:BasicElementShape
+	a sh:NodeShape ;
+	sh:targetClass era:BasicElement .  
 
 era-sh:FeatureShape
 	a sh:NodeShape ;
@@ -117,18 +125,18 @@ era-sh:ParameterApplicability
 	sh:message "parameterApplicability: The infratructure element may have a parameterApplicability reference that must be an instance of ParameterApplicability. This error is due to having having a value that is not an instance of ParameterApplicability."@en .
 
 # subsidiaryLocation
-era-sh:InfrastructureElementShape sh:property era-sh:SubsidiaryLocation .
+era-sh:BasicElementShape sh:property era-sh:SubsidiaryLocation .
 era-sh:SubsidiaryLocation
 	a sh:PropertyShape;
-    era:affectedClass era:InfrastructureElement;
+    era:affectedClass era:BasicElement;
     era:affectedClass era:SubsidiaryLocation;
     era:affectedProperty era:subsidiaryLocation ;
     era:scope "local";
-	rdfs:comment "Subsidiary location must be linked to a Primary Location and specifies in more detailed way part, attributes, or usage of Primary location. It may be also a non-rail point or a rail point that is not managed by an Infrastructure Manager (IM). It may be defined by entity having company code according to their needs. The Subsidiary location is optional and dependent upon business needs." ;
+	rdfs:comment "Relates a basic element with a subsidiary location." ;
 	sh:path era:subsidiaryLocation ;
 	sh:class era:SubsidiaryLocation;
 	sh:severity sh:Violation ;
-	sh:message "subsidiaryLocation: The infratructure element may have a subsidiaryLocation reference that must be an instance of SubsidiaryLocation. This error is due to having having a value that is not an instance of SubsidiaryLocation."@en .
+	sh:message "subsidiaryLocation: The basic element may have a subsidiaryLocation reference that must be an instance of SubsidiaryLocation. This error is due to having having a value that is not an instance of SubsidiaryLocation."@en .
 
 # belongsTo, organisationCode, infrastructureElement
 era-sh:InfrastructureElementShape sh:sparql era-sh:BelongsToUniqueIM .
@@ -215,6 +223,25 @@ era-sh:Validity
 	sh:class era:TemporalFeature;
 	sh:severity sh:Violation ;
 	sh:message "validity: The feature has a validity value that points to an instance of TemporalFeature. This error is due to having a value that is not an instance of TemporalFeature."@en .
+
+# primaryLocation: #
+era-sh:AggregatedElementShape sh:property era-sh:PrimaryLocation .
+era-sh:PrimaryLocation
+	a sh:PropertyShape;
+    era:affectedClass era:AggregatedElement;
+    era:affectedProperty era:primaryLocation ;
+    era:scope "local"; 
+	rdfs:comment "Primary location code developed for information exchange in accordance with the TSIs relating to the telematics applications subsystem." ; 
+	sh:path era:primaryLocation ;
+	sh:class era:PrimaryLocation;
+    sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "primaryLocation: The Operational Point has a primaryLocation reference that must be an IRI that refers to an instance of PrimaryLocation."@en .
+
+
+
+
+
 
 
 

@@ -27,6 +27,11 @@ era-sh:NonLinearElementShape
 	a sh:NodeShape ;
 	sh:targetClass era:NonLinearElement . 
 
+era-sh:LinearElementShape
+	a sh:NodeShape ;
+	sh:targetClass era:LinearElement . 
+
+
 era-sh:LinearElementSectionShape
 	a sh:NodeShape ;
 	sh:targetClass era:LinearElementSection . 
@@ -161,7 +166,8 @@ era-sh:EndOffsetFromOrigin
     era:scope "local";
 	rdfs:comment "End offset of the section from the origin." ;
 	sh:path era:endOffsetFromOrigin ;
-	sh:datatype xsd:positiveInteger ;
+	sh:datatype xsd:integer ;
+    sh:minInclusive 0;
 	sh:severity sh:Violation ;
 	sh:message "endOffsetFromOrigin: The linear element section specifies  the end offset of the section from the origin. This error is due having a value that is not a positive integer."@en .
 
@@ -190,6 +196,50 @@ era-sh:IsOnOriginOfElementB
 	sh:datatype xsd:boolean ;
 	sh:severity sh:Violation ;
 	sh:message "isOnOriginOfElementB: The net relation specifies if the position of the topological element B in a relation is the origin of element B. This error is due having a value that is not a boolean."@en .
+
+# lengthOfNetLinearElement
+era-sh:LinearElementShape sh:property era-sh:LengthOfNetLinearElement .
+era-sh:LengthOfNetLinearElement
+	a sh:PropertyShape;
+    era:affectedClass era:LinearElement;
+    era:affectedProperty era:lengthOfNetLinearElement ;
+    era:scope "local";
+	rdfs:comment "Length of a linear element." ;
+	sh:path era:lengthOfNetLinearElement ;
+    sh:minCount 1;
+	sh:datatype xsd:double ;
+	sh:severity sh:Violation ;
+	sh:message "lengthOfNetLinearElement: The linear element has at most one value of length and it is a double number. This error is due to having more than one value or that the value is not a double number."@en .
+
+# offsetFromOrigin: 
+era-sh:TopologicalCoordinateShape sh:property era-sh:OffsetFromOrigin .
+era-sh:OffsetFromOrigin
+	a sh:PropertyShape;
+    era:affectedClass era:TopologicalCoordinate;
+    era:affectedProperty era:offsetFromOrigin ;
+    era:scope "local";
+	rdfs:comment "Offset from the origin in a topological coordinate."@en ;
+	sh:path era:offsetFromOrigin ;
+	sh:datatype xsd:integer ;
+    sh:minInclusive 0;
+	sh:severity sh:Violation ;
+	sh:message "offsetFromOrigin: The offset from the origin in a topological coordinate must be represented as a positive integer."@en .
+
+# startOffsetFromOrigin: 
+era-sh:LinearElementSectionShape sh:property era-sh:StartOffsetFromOrigin .
+era-sh:StartOffsetFromOrigin
+	a sh:PropertyShape;
+    era:affectedClass era:LinearElementSection;
+    era:affectedProperty era:startOffsetFromOrigin ;
+    era:scope "local";
+	rdfs:comment "Start offset of the section from the origin."@en ;
+	sh:path era:startOffsetFromOrigin ;
+	sh:datatype xsd:integer ;
+    sh:minInclusive 0;
+	sh:severity sh:Violation ;
+	sh:message "startOffsetFromOrigin: The start offset of the section from the origin must be represented as a positive integer."@en .
+
+
 
 
 

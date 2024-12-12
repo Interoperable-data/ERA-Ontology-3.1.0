@@ -118,4 +118,18 @@ era-sh:ParameterValueTypeSKOS
 	}
 """ .
 
+# parameterValue
+era-sh:ParameterApplicabilityShape sh:property era-sh:ParameterValue .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ParameterValue.
+era-sh:ParameterValue
+	a sh:PropertyShape;
+    era:affectedClass era:ParameterApplicability;
+    era:affectedProperty era:parameterValue ;
+    era:scope "local";
+	rdfs:comment "This property is used to link an applicability to the precise value of the parameter"@en ;
+	sh:path time:parameterValue ;
+    sh:minCount 1; 
+    sh:maxCount 1 ;
+	sh:severity sh:Violation ;
+	sh:message "parameterValue: An instance of parameter applicability must have exactly one value of the parameter value. This error may be due to not having a value or having more than one value."@en .
 

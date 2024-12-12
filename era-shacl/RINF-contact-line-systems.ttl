@@ -16,13 +16,10 @@ era-sh:ContactLineSystemShape
     a sh:NodeShape ;
     sh:targetClass era:ContactLineSystem .
 
-era-sh:CommonCharacteristicsSubsetShape
-	a sh:NodeShape ;
-	sh:targetClass era:CommonCharacteristicsSubset .  
+
 
 # contactLineSystemType: # 1.1.1.2.2.1.1
 era-sh:ContactLineSystemShape sh:property era-sh:ContactLineSystemType .
-era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ContactLineSystemType .
 era-sh:ContactLineSystemType
 	a sh:PropertyShape ;
     era:affectedProperty era:contactLineSystemType;
@@ -39,7 +36,6 @@ era-sh:ContactLineSystemType
 
 #contactLineSystemType: # 1.1.1.2.2.1.1
 era-sh:ContactLineSystemShape sh:sparql era-sh:ContactLineSystemTypeSKOS .
-era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:ContactLineSystemTypeSKOS .
 era-sh:ContactLineSystemTypeSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:contactLineSystemType;
@@ -65,7 +61,6 @@ era-sh:ContactLineSystemTypeSKOS
 
 #contactLineSystemType: # 1.1.1.2.2.1.1
 era-sh:ContactLineSystemShape sh:sparql era-sh:ContactLineSystemTypeNotElectrifiedApplicability .
-era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:ContactLineSystemTypeNotElectrifiedApplicability .
 era-sh:ContactLineSystemTypeNotElectrifiedApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:contactLineSystemType;
@@ -92,7 +87,6 @@ era-sh:ContactLineSystemTypeNotElectrifiedApplicability
 
 #contactLineSystemType: # 1.1.1.2.2.1.1
 era-sh:ContactLineSystemShape sh:sparql era-sh:ContactLineSystemTypeThirdOrFourthRailApplicability .
-era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:ContactLineSystemTypeThirdOrFourthRailApplicability .
 era-sh:ContactLineSystemTypeThirdOrFourthRailApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:contactLineSystemType;
@@ -121,7 +115,6 @@ era-sh:ContactLineSystemTypeThirdOrFourthRailApplicability
 
 # energySupplySystem: # 1.1.1.2.2.1.2
 era-sh:ContactLineSystemShape sh:property era-sh:EnergySupplySystem .
-era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:EnergySupplySystem .
 era-sh:EnergySupplySystem
 	a sh:PropertyShape ;
     era:affectedProperty era:energySupplySystem;
@@ -137,7 +130,6 @@ era-sh:EnergySupplySystem
 
 # energySupplySystem: # 1.1.1.2.2.1.2
 era-sh:ContactLineSystemShape sh:sparql era-sh:EnergySupplySystemSKOS .
-era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:EnergySupplySystemSKOS .
 era-sh:EnergySupplySystemSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:energySupplySystem;
@@ -161,7 +153,6 @@ era-sh:EnergySupplySystemSKOS
 
 # energySupplySystemTSICompliant: # 1.1.1.2.2.1.2.1
 era-sh:ContactLineSystemShape sh:property era-sh:EnergySupplySystemTSICompliant .
-era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:EnergySupplySystemTSICompliant .
 era-sh:EnergySupplySystemTSICompliant
 	a sh:PropertyShape ;
     era:affectedProperty era:energySupplySystemTSICompliant;
@@ -179,7 +170,6 @@ era-sh:EnergySupplySystemTSICompliant
 
 # umax2: # 1.1.1.2.2.1.3
 era-sh:ContactLineSystemShape sh:property era-sh:Umax2 .
-era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:Umax2 .
 era-sh:Umax2
 	a sh:PropertyShape ;
     era:affectedProperty era:umax2;
@@ -196,7 +186,6 @@ era-sh:Umax2
 
 # maxTrainCurrent: # 1.1.1.2.2.2
 era-sh:ContactLineSystemShape sh:property era-sh:MaximumTrainCurrent .
-era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MaximumTrainCurrent .
 era-sh:MaximumTrainCurrent
 	a sh:PropertyShape ;
     era:affectedProperty era:maxTrainCurrent;
@@ -213,7 +202,6 @@ era-sh:MaximumTrainCurrent
 
 # maxCurrentStandstillPantograph: # 1.1.1.2.2.3, 1.2.2.0.6.1
 era-sh:ContactLineSystemShape sh:property era-sh:MaxCurrentStandstillPantograph .
-era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MaxCurrentStandstillPantograph .
 era-sh:MaxCurrentStandstillPantograph
 	a sh:PropertyShape ;
     era:affectedProperty era:maxCurrentStandstillPantograph;
@@ -230,7 +218,6 @@ era-sh:MaxCurrentStandstillPantograph
 
 # maxCurrentStandstillPantograph: # 1.1.1.2.2.3, 1.2.2.0.6.1
 era-sh:ContactLineSystemShape sh:sparql era-sh:MaxCurrentStandstillPantographApplicability .
-era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:MaxCurrentStandstillPantographApplicability .
 era-sh:MaxCurrentStandstillPantographApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:maxCurrentStandstillPantograph;
@@ -252,65 +239,35 @@ era-sh:MaxCurrentStandstillPantographApplicability
             }
 			""" .
 
-# conditionalRegenerativeBrake: # 1.1.1.2.2.4
-era-sh:ContactLineSystemShape sh:property era-sh:ConditionalRegenerativeBrake .
-era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ConditionalRegenerativeBrake .
-era-sh:ConditionalRegenerativeBrake
-	a sh:PropertyShape ;
-    era:affectedProperty era:conditionalRegenerativeBrake;
-    era:affectedClass era:ContactLineSystem;
-    era:scope "local";
-	rdfs:comment "Indication if the regenerative brake is permitted" ;
-	era:rinfIndex "1.1.1.2.2.4" ;
-	sh:path era:conditionalRegenerativeBrake ;
-	sh:datatype xsd:boolean ;
-    sh:maxCount 1 ;
-	sh:severity sh:Violation ;
-	sh:message "conditionalRegenerativeBrake (1.1.1.2.2.4): The contact line system defines if the regenerative brake is permitted. This error is due to having more than one value for this property or having a value that is not  Y/N (boolean)."@en .
 
-# conditionsAppliedRegenerativeBraking: # 1.1.1.2.2.4.1
-era-sh:ContactLineSystemShape sh:property era-sh:ConditionsAppliedRegenerativeBraking .
-era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ConditionsAppliedRegenerativeBraking .
-era-sh:ConditionsAppliedRegenerativeBraking
-	a sh:PropertyShape;
-    era:affectedClass era:ContactLineSystem;
-    era:affectedProperty era:conditionsAppliedRegenerativeBraking ;
-    era:scope "local";
-	rdfs:comment "Name and/or reference of the document specifying the conditions applying in regards to regenerative braking." ;
-	era:rinfIndex "1.1.1.2.2.4.1" ;
-	sh:path era:conditionsAppliedRegenerativeBraking ;
-	sh:class era:Document;
-    sh:maxCount 1 ;
-	sh:severity sh:Violation ;
-	sh:message "conditionsAppliedRegenerativeBraking (1.1.1.2.2.4.1): The contact line system has a conditionsAppliedRegenerativeBraking reference that must be a Document. This error is due to having more than one value for this property or having a value that is not a Document."@en .
 
-# conditionsAppliedRegenerativeBraking: # 1.1.1.2.2.4.1
-era-sh:ContactLineSystemShape sh:sparql era-sh:ConditionsAppliedRegenerativeBrakingApplicability .
-era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:ConditionsAppliedRegenerativeBrakingApplicability .
-era-sh:ConditionsAppliedRegenerativeBrakingApplicability
-	a sh:SPARQLConstraint ;
-    era:affectedProperty era:conditionsAppliedRegenerativeBraking;
-    era:affectedClass era:ContactLineSystem;
-    era:scope "local";
-	rdfs:comment "This parameter is applicable (“Y”) only if “Overhead contact line (OCL)” is selected for parameter 1.1.1.2.2.1.1." ;
-	era:rinfIndex "1.1.1.2.2.4.1" ;
-	sh:severity sh:Violation ;
-	sh:message "conditionsAppliedRegenerativeBraking (1.1.1.2.2.4.1):The Contact Line System {$this} ({?clsLabel}), has a 'Overhead contact line (OCL)' type which makes the conditionsAppliedRegenerativeBraking parameter applicable. This error is due to {$this} not having a value for such a parameter."@en ;
-    sh:prefixes era:;
-	sh:select """
-    PREFIX era: <http://data.europa.eu/949/>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
-			WHERE {
-                 $this era:contactLineSystemType <http://data.europa.eu/949/concepts/contact-line-systems/10>.
-				OPTIONAL{$this rdfs:label ?clsLabel} .
-                FILTER NOT EXISTS {$this era:conditionsAppliedRegenerativeBraking ?value} . 
-            }
-			""" .
+# check rule for new domain (Track or CommonCharacteristicsSubset)
+# conditionsAppliedRegenerativeBraking: # 1.1.1.2.2.4.1 
+#era-sh:ContactLineSystemShape sh:sparql era-sh:ConditionsAppliedRegenerativeBrakingApplicability .
+#era-sh:CommonCharacteristicsSubsetShape sh:sparql era-#sh:ConditionsAppliedRegenerativeBrakingApplicability .
+#era-sh:ConditionsAppliedRegenerativeBrakingApplicability
+	#a sh:SPARQLConstraint ;
+    #era:affectedProperty era:conditionsAppliedRegenerativeBraking;
+    #era:affectedClass era:ContactLineSystem;
+    #era:scope "local";
+	#rdfs:comment "This parameter is applicable (“Y”) only if “Overhead contact line (OCL)” is #selected for parameter 1.1.1.2.2.1.1." ;
+	#era:rinfIndex "1.1.1.2.2.4.1" ;
+	#sh:severity sh:Violation ;
+	#sh:message "conditionsAppliedRegenerativeBraking (1.1.1.2.2.4.1):The Contact Line System {$this} ({?clsLabel}), has a 'Overhead contact line (OCL)' type which makes the conditionsAppliedRegenerativeBraking parameter applicable. This error is due to {$this} not having a value for such a parameter."@en ;
+    #sh:prefixes era:;
+	#sh:select """
+    #PREFIX era: <http://data.europa.eu/949/>
+    #PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    #SELECT DISTINCT $this ?clsLabel
+			#WHERE {
+                 #$this era:contactLineSystemType <http://data.europa.eu/949/concepts/contact-line-#systems/10>.
+				#OPTIONAL{$this rdfs:label ?clsLabel} .
+                #FILTER NOT EXISTS {$this era:conditionsAppliedRegenerativeBraking ?value} . 
+            #}
+			#""" .
 
 # maximumContactWireHeight: # 1.1.1.2.2.5 #
 era-sh:ContactLineSystemShape sh:property era-sh:MaximumContactWireHeight .
-era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MaximumContactWireHeight .
 era-sh:MaximumContactWireHeight
 	a sh:PropertyShape ;
     era:affectedProperty era:maximumContactWireHeight;
@@ -327,7 +284,6 @@ era-sh:MaximumContactWireHeight
 
 # maximumContactWireHeight: # 1.1.1.2.2.5
 era-sh:ContactLineSystemShape sh:sparql era-sh:MaximumContactWireHeightApplicability .
-era-sh:ContactLineSystemShape sh:sparql era-sh:CommonCharacteristicsSubsetShape .
 era-sh:MaximumContactWireHeightApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:maximumContactWireHeight;
@@ -351,7 +307,6 @@ era-sh:MaximumContactWireHeightApplicability
 
 # minimumContactWireHeight: # 1.1.1.2.2.6 #
 era-sh:ContactLineSystemShape sh:property era-sh:MinimumContactWireHeight .
-era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MinimumContactWireHeight .
 era-sh:MinimumContactWireHeight
 	a sh:PropertyShape ;
     era:affectedProperty era:minimumContactWireHeight;
@@ -368,7 +323,6 @@ era-sh:MinimumContactWireHeight
 
 # minimumContactWireHeight: # 1.1.1.2.2.6
 era-sh:ContactLineSystemShape sh:sparql era-sh:MinimumContactWireHeightApplicability .
-era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:MinimumContactWireHeightApplicability .
 era-sh:MinimumContactWireHeightApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:minimumContactWireHeight;
@@ -407,7 +361,6 @@ era-sh:PermissionChargingElectricEnergyTractionStandstill
 
 # conditionsChargingElectricEnergyStorage # 1.2.1.0.7.2
 era-sh:ContactLineSystemShape sh:property era-sh:ConditionsChargingElectricEnergyStorage .
-era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ConditionsChargingElectricEnergyStorage .
 era-sh:ConditionsChargingElectricEnergyStorage
 	a sh:PropertyShape ;
     era:affectedProperty era:conditionsChargingElectricEnergyStorage;

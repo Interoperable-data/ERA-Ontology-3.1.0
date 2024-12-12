@@ -36,6 +36,11 @@ era-sh:LinearPositioningSystemShape
 	a sh:NodeShape ;
 	sh:targetClass era:LinearPositioningSystem .  
 
+era-sh:LinearPositioningSystemCoordinateShape
+	a sh:NodeShape ;
+	sh:targetClass era:LinearPositioningSystemCoordinate .  
+
+
 
 
 # appliesToDirection
@@ -193,6 +198,46 @@ era-sh:NetLinearReferenceShape sh:property era-sh:StartsAt.
 	sh:severity sh:Violation ;
 	sh:message "hasSequence: The net linear reference specifies a starting coordinate that must be an instance of a TopologicalCoordinate. This error is due to having a value that is not an instance of TopologicalCoordinate."@en .	
 
+# kmPostName: 
+era-sh:LinearPositioningSystemShape sh:property era-sh:KmPostName .
+era-sh:KmPostName
+	a sh:PropertyShape;
+    era:affectedClass era-sh:LinearPositioningSystem;
+    era:affectedProperty era:kmPostName ;
+    era:scope "local";
+	rdfs:comment "Name of the kilometric post (optional)."@en ;
+	sh:path era:kmPostName ;
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation ;
+	sh:message "kmPostName: The kilometer post name must be represented as a string of characters."@en .
+
+# offsetFromKilometricPost: 
+era-sh:LinearPositioningSystemCoordinateShape sh:property era-sh:OffsetFromKilometricPost .
+era-sh:OffsetFromKilometricPost
+	a sh:PropertyShape;
+    era:affectedClass era-sh:LinearPositioningSystemCoordinate;
+    era:affectedProperty era:offsetFromKilometricPost ;
+    era:scope "local";
+	rdfs:comment "Relative distance from a reference kilometric post."@en ;
+	sh:path era:offsetFromKilometricPost ;
+	sh:datatype xsd:double ;
+	sh:severity sh:Violation ;
+	sh:message "offsetFromKilometricPost: The offset from kilometric post must be represented as a double number."@en .
+
+# lineId: 
+era-sh:LinearPositioningSystemShape sh:property era-sh:LineId .
+era-sh:LineId
+	a sh:PropertyShape;
+    era:affectedClass era-sh:LinearPositioningSystem;
+    era:affectedProperty era:lineId ;
+    era:scope "local";
+	rdfs:comment "Unique line identification or unique line number within Member State."@en ;
+    era:rinfIndex "1.1.0.0.0.2";
+    sh:maxCount 1;
+	sh:path era:lineId ;
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation ;
+	sh:message "lineId: The line identification is unique and must be a string. This error is due to having more than one value or having a value that is not a string of characters"@en .
 
 
 

@@ -156,19 +156,7 @@ era-sh:DigitalSchematicOverview
 	sh:message "digitalSchematicOverview (1.2.0.0.0.7.2): The Operational Point has a digitalSchematicOverview reference that must be a Well Known Text literal."@en .
 
 
-# primaryLocation: #
-era-sh:OperationalPointShape sh:property era-sh:PrimaryLocation .
-era-sh:PrimaryLocation
-	a sh:PropertyShape;
-    era:affectedClass era:OperationalPoint;
-    era:affectedProperty era:primaryLocation ;
-    era:scope "local"; 
-	rdfs:comment "primary location" ; # TODO update with full comment when available
-	sh:path era:primaryLocation ;
-	sh:class era:PrimaryLocation;
-    sh:nodeKind sh:IRI ;
-	sh:severity sh:Violation ;
-	sh:message "primaryLocation: The Operational Point has a primaryLocation reference that must be an IRI that refers to an instance of PrimaryLocation."@en .
+
 
 
 # referenceBorderPoint: #
@@ -219,7 +207,7 @@ era-sh:HasSchematicOverviewOPDigitalForm
  	sh:severity sh:Violation ;
  	sh:message "hasPart from an operational point : The Operational Point may have a siding (hasPart) reference that is a Siding object or a track (hasPart) reference that is a Track object. This error mey be due to a hasPart relationship from an operational point that is not a Siding nor a Track."@en .
 
-# fixed temporarily
+
 # uopid: # 1.2.0.0.0.2 enforce the border point constraint, if an OP is a border point, it should point to ReferenceBorderPoint and its uopid but be the code in the RefenreceBorderPoint class.
  era-sh:OperationalPointShape sh:sparql era-sh:BorderPointValidCode .
  era-sh:BorderPointValidCode

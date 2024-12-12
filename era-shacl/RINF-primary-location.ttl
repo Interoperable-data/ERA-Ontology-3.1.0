@@ -52,9 +52,10 @@ era-sh:FreightFlag
     era:scope "local";
 	rdfs:comment "Freight flag." ;
 	sh:path era:freightFlag ;
+    sh:maxCount 1;
 	sh:datatype xsd:boolean;
 	sh:severity sh:Violation ;
-	sh:message "freightFlag : The PrimaryLocation may have a freightFlag value that is a boolean. This error may be due to the Primary Location having  a value that is not a boolean."@en .
+	sh:message "freightFlag : The PrimaryLocation may have a freightFlag value that is a boolean. This error may be due to the Primary Location having more than one value or having  a value that is not a boolean."@en .
 
 # handoverPointFlag  
 era-sh:PrimaryLocationShape sh:property era-sh:HandoverPointFlag .
