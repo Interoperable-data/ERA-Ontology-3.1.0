@@ -49,39 +49,7 @@ era-sh:TunnelIdentification
     sh:severity sh:Violation ;
     sh:message "tunnelIdentification (1.1.1.1.8.2, 1.2.1.0.5.2, 1.2.2.0.5.2): Each Tunnel can be referred with only one identification. This error may be due to having a Tunnel with no identification or with more than one identification."@en .
 
-# lineReferenceTunnelStart - kilometer: 1.1.1.1.8.3
-era-sh:TunnelShape sh:property era-sh:LineReferenceTunnelStart .
-era-sh:LineReferenceTunnelStart
-	a sh:PropertyShape;
-    era:affectedProperty era:kilometer;
-    era:affectedClass era:Tunnel;
-    era:affectedClass era:LinePosition;
-    era:scope "local"; 
-    sh:minCount 1 ;
-    sh:maxCount 1 ;
-    era:rinfIndex "1.1.1.1.8.3";
-    rdfs:comment "Part of the Start of tunnel that indicates the km of the line at the beginning of a tunnel." ;
-	sh:path (era:lineReferenceTunnelStart era:kilometer) ;
-    sh:datatype xsd:double;
-	sh:severity sh:Violation ;
-	sh:message "lineReferenceTunnelStart - kilometer (1.1.1.1.8.3):  The tunnel either does not have a value for kilometer at its beginning, has more than one value, or the value is not a double (real) number."@en .
 
-# lineReferenceTunnelEnd - kilometer: 1.1.1.1.8.4
-era-sh:TunnelShape sh:property era-sh:LineReferenceTunnelEnd .
-era-sh:LineReferenceTunnelEnd
-	a sh:PropertyShape;
-    era:affectedProperty era:kilometer;
-    era:affectedClass era:Tunnel;
-    era:affectedClass era:LineReference;
-    era:scope "local"; 
-    sh:minCount 1 ;
-    sh:maxCount 1 ;
-    era:rinfIndex "1.1.1.1.8.4";
-    rdfs:comment "Part of the End of tunnel that indicates the km of the line at the end of a tunnel." ;
-	sh:path (era:lineReferenceTunnelEnd era:kilometer) ;
-    sh:datatype xsd:double;
-	sh:severity sh:Violation ;
-	sh:message "lineReferenceTunnelEnd - kilometer (1.1.1.1.8.4):  The tunnel either does not have a value for kilometer at its end , has more than one value , or the value is not a double (real) number."@en .
 
 
 # verificationSRT: # 1.1.1.1.8.5, 1.2.1.0.5.3, 1.2.2.0.5.3
