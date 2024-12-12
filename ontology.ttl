@@ -4844,7 +4844,7 @@ era:tenClassification rdf:type owl:ObjectProperty ;
                       dcterms:description "Article 39 2. freight lines of the core network as indicated in Annex I: at least 22,5 t axle load, 100 km/h line speed and the possibility of running trains with a length of 740 m."@en ;
                       dcterms:modified "2024-01-08"^^xsd:date ,
                                        "2024-09-19"^^xsd:date ;
-                      era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/TenClassificationP>, <http://data.europa.eu/949/shapes/TenClassificationT> ;
+                      era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/TenClassificationP>, <http://data.europa.eu/949/shapes/TenClassificationT>, <http://data.europa.eu/949/shapes/TenClassificationS>  ;
                       dcterms:source <http://data.europa.eu/eli/reg/2013/1315/2024-03-18> ;
                       rdfs:comment "Indicates the part of the trans-European network the (track, platform, siding) belongs to."@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -6261,7 +6261,7 @@ era:containerHandlingFlag rdf:type owl:DatatypeProperty ;
                           rdfs:domain era:PrimaryLocation ;
                           rdfs:range xsd:boolean ;
                           dcterms:created "2024-06-03"^^xsd:date ;
-                          era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/ContainerHandlingFlag>, <http://data.europa.eu/949/shapes/FreightFlag> ;
+                          era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/ContainerHandlingFlag> ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "container handling flag"@en .
 
@@ -7265,6 +7265,7 @@ era:freightFlag rdf:type owl:DatatypeProperty ,
                 rdfs:domain era:PrimaryLocation ;
                 rdfs:range xsd:boolean ;
                 dcterms:created "2024-06-03"^^xsd:date ;
+                era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/FreightFlag>;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                 rdfs:label "freight flag"@en .
 
@@ -7592,7 +7593,7 @@ era:gsmrForcedDeregistrationFunctionalNumber rdf:type owl:DatatypeProperty ;
 era:handoverPointFlag rdf:type owl:DatatypeProperty ;
                       rdfs:domain era:PrimaryLocation ;
                       rdfs:range xsd:boolean ;
-                      era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/HandoverPointFlag>, <http://data.europa.eu/949/shapes/PrimaryLocationName> ;
+                      era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/HandoverPointFlag> ;
                       dcterms:created "2024-06-03"^^xsd:date ;
                       rdfs:label "handover point flag"@en .
 
@@ -7798,7 +7799,7 @@ SRT TSI: 4.4.2
 OPE TSI: 4.2.3.7"""@en ;
                      dcterms:modified "2021-08-10"^^xsd:date ,
                                       "2024-09-19"^^xsd:date ;
-                     era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/HasEmergencyPlan>, <http://data.europa.eu/949/shapes/HasEvacuationAndRescuePoints> ;
+                     era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/HasEmergencyPlan> ;
                      dcterms:source <http://data.europa.eu/eli/reg/2014/1303/2024-01-29> ;
                      rdfs:comment "Indication whether emergency plan exists."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -7869,6 +7870,7 @@ era:hasEvacuationAndRescuePoints rdf:type owl:DatatypeProperty ;
                                  dcterms:created "2022-10-27"^^xsd:date ;
                                  dcterms:modified "2023-03-14"^^xsd:date ,
                                                   "2024-09-19"^^xsd:date ;
+                                 era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/HasEvacuationAndRescuePoints>;
                                  dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
                                  rdfs:comment "Indication of existence of evacuation and rescue points"@en ,
                                               "Indication of existence of evacuation and rescue points."@en ;
@@ -8509,7 +8511,6 @@ era:idPhoneErtmsRadioBlockCenter rdf:type owl:DatatypeProperty ;
                                                       era:rbcPhone ;
                                  dcterms:modified "2024-04-18"^^xsd:date ,
                                                   "2024-12-05"^^xsd:date ;
-                                 era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/RbcID>, <http://data.europa.eu/949/shapes/RbcPhone> ;
                                  dcterms:relation era:etcsLevelType ;
                                  dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                                  rdfs:comment "Unique RBC identification (NID_C+NID_RBC) and calling number (NID_RADIO) as defined in the specification referenced in Appendix A-1, index [C]."@en ;
@@ -9931,7 +9932,7 @@ era:minimumHorizontalRadius rdf:type owl:DatatypeProperty ;
 """@en ;
                             dcterms:modified "2021-09-10"^^xsd:date ,
                                              "2024-09-19"^^xsd:date ;
-                            era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/MinimumHorizontalRadius> ;
+                            era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/MinimumHorizontalRadius>, <http://data.europa.eu/949/shapes/MinimumHorizontalRadiusS> ;
                             dcterms:source <http://data.europa.eu/eli/reg/2014/1299/2023-09-28> ;
                             rdfs:comment "Radius of the smallest horizontal curve of the track in metres."@en ,
                                          "Radius of the smallest horizontal curve, expressed in metres."@en ;
@@ -9998,7 +9999,7 @@ era:minimumVerticalRadiusCrest rdf:type owl:DatatypeProperty ,
                                era:unitOfMeasure unit:M ;
                                era:usedInRCCCalculations "true"^^xsd:boolean ;
                                dcterms:created "2023-04-05"^^xsd:date ;
-                               era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/MinimumHorizontalRadiusS>, <http://data.europa.eu/949/shapes/MinimumVerticalRadiusCrest> ;
+                               era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/MinimumVerticalRadiusCrest> ;
                                rdfs:comment "Part of the minimum radius of vertical curve that indicates the crest"@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "Minimum radius of vertical curve crest"@en ;
@@ -10737,6 +10738,7 @@ era:primaryLocationName rdf:type owl:DatatypeProperty ;
                         rdfs:domain era:PrimaryLocation ;
                         rdfs:range xsd:string ;
                         dcterms:created "2024-06-03"^^xsd:date ;
+                        era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/PrimaryLocationName>;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                         rdfs:label "primary location name"@en .
 
@@ -11052,6 +11054,7 @@ era:rbcID rdf:type owl:DatatypeProperty ;
                         "1.2.1.1.1.17" ;
           era:tsiOPEAppendixD2Index "3.4.7" ;
           dcterms:created "2024-04-18"^^xsd:date ;
+          era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/RbcID> ;
           dcterms:relation era:etcsLevelType ;
           dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
           rdfs:comment "Unique RBC identification (NID_C+NID_RBC)  as defined in the specification referenced in Appendix A-1, index [C] (TSI CCS)."@en ;
@@ -11076,6 +11079,7 @@ era:rbcPhone rdf:type owl:DatatypeProperty ;
              era:tsiOPEAppendixD2Index "3.4.7" ;
              dcterms:created "2024-04-18"^^xsd:date ;
              dcterms:modified "2024-12-05"^^xsd:date ;
+             era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/RbcPhone>;
              dcterms:relation era:etcsLevelType ;
              dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
              rdfs:comment "Unique RBC calling number (NID_RADIO) as defined in the specification referenced in Appendix A-1, index [C]."@en ;
