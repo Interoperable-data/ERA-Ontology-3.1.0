@@ -682,9 +682,10 @@ era-sh:AccelerationLevelCrossing
 	era:rinfIndex "1.1.1.1.7.3" ;
 	sh:path (era:hasPart era:accelerationLevelCrossing) ;
 	sh:maxCount 1 ;
-	sh:datatype xsd:string ;
+	sh:nodeKind sh:IRI ;
+    sh:class Document;
 	sh:severity sh:Violation ;
-	sh:message "accelerationLevelCrossing (1.1.1.1.7.3): The track must have at most one acceleration level crossing value that is a character string. This error may be due to having more than one value or having a value that is not a string."@en .
+	sh:message "accelerationLevelCrossing (1.1.1.1.7.3): The track must have at most one acceleration level crossing value that is a Document. This error may be due to having more than one value or having a value that is not an instance of Document."@en .
 
 # hasHotAxleBoxDetector: # 1.1.1.1.7.4
 era-sh:SectionOfLineShape sh:property era-sh:HasHotAxleBoxDetector.

@@ -21,21 +21,21 @@ era-sh:SectionOfLineShape
     sh:targetClass era:SectionOfLine .
 
 #nationalLine: # 1.1.0.0.0.2
-era-sh:SectionOfLineShape sh:property era-sh:NationalLine .
-era-sh:NationalLine
+era-sh:SectionOfLineShape sh:property era-sh:NationalLineSoL .
+era-sh:NationalLineSoL
     a sh:PropertyShape ;
     era:affectedProperty era:nationalLine;
-    era:affectedClass era:SectionOfLine;
+    era:affectedClass era:LinearPositioningSystem;
     era:scope "local";
-    rdfs:comment "Each SoL can belong to only one national line. In case the SoL is the track connecting OPs within a big node (resulting from the division of a big station into several smaller ones) the line can be identified using the name of this track." ;
+    rdfs:comment "Unique line identification or unique line number within Member State." ;
     era:rinfIndex "1.1.0.0.0.2" ;
     sh:path era:nationalLine ;           
     sh:minCount 1 ;
     sh:maxCount 1 ;
-    sh:class era:NationalRailwayLine;
+    sh:class era:LinearPositioningSystem;
     sh:nodeKind sh:IRI ;
     sh:severity sh:Violation ;
-    sh:message "lineNationalId (1.1.0.0.0.2): Each SoL belongs to exactly one national railway line. This error is due to not referring to a national railway line, or rederring to more than one national railway line"@en .
+    sh:message "nationalLine (1.1.0.0.0.2): Each SoL belongs to exactly one linear positioning system. This error is due to not having a value, having more than one value, or having a value that is not an instance of LinearPositioningSystem."@en .
 
 #opStart: # 1.1.0.0.0.3
 era-sh:SectionOfLineShape sh:property era-sh:OpStart .

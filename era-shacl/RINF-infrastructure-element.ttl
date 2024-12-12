@@ -22,6 +22,10 @@ era-sh:InfrastructureElementShape
 	a sh:NodeShape ;
 	sh:targetClass era:InfrastructureElement .  
 
+era-sh:FeatureShape
+	a sh:NodeShape ;
+	sh:targetClass era:Feature .  
+
 
 # organisationCode: # 1.2.1.0.6.1, 1.1.0.0.0.1, 1.1.1.1.8.1, 1.2.1.0.0.1, 1.2.1.0.5.1, 1.2.2.0.0.1, 1.2.2.0.5.1 Check that the organisationRole instance points to the skos value for infrastructure manager.
 era-sh:InfrastructureElementShape sh:sparql era-sh:InfrastructureManagerSKOSValue .
@@ -183,9 +187,36 @@ era-sh:Contains
 	rdfs:comment "Relationship between an a common characteristics subset and an infrastructure element (inverse of belongsTo)." ;
 	sh:path era:contains ;
 	sh:class era:InfrastructureElement;
-    sh:minCount 1;
 	sh:severity sh:Violation ;
-	sh:message "contains: The subset with common characteristics must contain at least one infrastructure element, a reference that must be an instance of InfrastructureElement. This error is due to not having a value of contains, or having a value that is not an instance of InfrastructureElement."@en .
+	sh:message "contains: The subset with common characteristics may contain an infrastructure element, a reference that must be an instance of InfrastructureElement. This error is due having a value that is not an instance of InfrastructureElement."@en .
+
+# netReference
+era-sh:InfrastructureElementShape sh:property era-sh:NetReference .
+era-sh:NetReference
+	a sh:PropertyShape;
+    era:affectedClass era:InfrastructureElement;
+    era:affectedProperty era:netReference ;
+    era:scope "local";
+	rdfs:comment "The reference that a physical insfrastructure element has it on the topology. It may be used to define the positioning or a representation as a point. line or area." ;
+	sh:path era:netReference ;
+	sh:class era:NetBasicReference;
+	sh:severity sh:Violation ;
+	sh:message "netReference: The infratructure element must have a net reference that points to an instance of NetBasicReference. This error is due to having a value that is not an instance of NetBasicReference."@en .
+
+# validity
+era-sh:FeatureShape sh:property era-sh:Validity .
+era-sh:Validity
+	a sh:PropertyShape;
+    era:affectedClass era:Feature;
+    era:affectedProperty era:validity ;
+    era:scope "local";
+	rdfs:comment "Relates a feature with a temporal feature to indicate a validity period." ;
+	sh:path era:validity ;
+	sh:class era:TemporalFeature;
+	sh:severity sh:Violation ;
+	sh:message "validity: The feature has a validity value that points to an instance of TemporalFeature. This error is due to having a value that is not an instance of TemporalFeature."@en .
+
+
 
 
 

@@ -1,0 +1,209 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+
+###################################
+# Rules for basic net references
+###################################
+
+
+
+
+era-sh:BasicNetReferenceShape
+	a sh:NodeShape ;
+	sh:targetClass era:BasicNetReference .  
+
+era-sh:NetPointReferenceShape
+	a sh:NodeShape ;
+	sh:targetClass era:NetPointReference .  
+
+era-sh:NetLinearReferenceShape
+	a sh:NodeShape ;
+	sh:targetClass era:NetLinearReference .  
+
+era-sh:NetAreaReferenceShape
+	a sh:NodeShape ;
+	sh:targetClass era:NetAreaReference .  
+
+era-sh:LinearPositioningSystemShape
+	a sh:NodeShape ;
+	sh:targetClass era:LinearPositioningSystem .  
+
+
+
+# appliesToDirection
+era-sh:NetPointReferenceShape sh:property era-sh:AppliesToDirection.
+era-sh:AppliesToDirection
+	a sh:PropertyShape ;
+    era:affectedProperty era:appliesToDirection;
+    era:affectedClass era:NetPointReference;
+    era:scope "local";
+	rdfs:comment "The direction relative to the origin of the linear element towards the point reference applies." ;
+	sh:path era:appliesToDirection ;
+    sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "appliesToDirection: The net point reference must have an 'applies to direction' value that is an IRI."@en .	
+
+# appliesToDirection
+era-sh:NetPointReferenceShape sh:sparql era-sh:AppliesToDirectionSKOS.
+era-sh:AppliesToDirectionSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:appliesToDirection;
+    era:affectedClass era:NetPointReference;
+    era:scope "local";
+	rdfs:comment "The direction relative to the origin of the linear element towards the point reference applies." ;
+	sh:severity sh:Violation ;
+	sh:message "appliesToDirection: The net point reference {$this} with label {?thisLabel}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/orientations/Directions."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?thisLabel ?concept 
+    WHERE {
+        OPTIONAL {$this rdfs:label ?thisLabel} .
+        $this era:appliesToDirection ?concept .
+        era:appliesToDirection era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme }
+	}
+""" .
+
+# hasLrsCoordinate - hasLrs
+era-sh:NetPointReferenceShape sh:property era-sh:HasLrsCoordinate.
+ era-sh:HasLrsCoordinate
+	a sh:PropertyShape ;
+    era:affectedProperty era:hasLrsCoordinate;
+    era:affectedProperty era:hasLrs;
+    era:affectedClass era:NetPointReference;
+    era:scope "local";
+	rdfs:comment "Specifies the LRS coordinate associated with a topological coordinate." ;
+	sh:path (era:hasLrsCoordinate era:hasLrs) ;
+    sh:class era:LinearPositioningSystem;
+	sh:severity sh:Violation ;
+	sh:message "hasLrsCoordinate: The net point reference specifies an LRS coordinate that must be an instance of a LinearPositioningSystemCoordinate and that in turn references a LinearPositioningSystem. This error is due to having a value that is not a LinearPositioningSystemCoordinate that in turn references a LinearPositioningSystem."@en .	
+
+# hasSequence
+era-sh:NetLinearReferenceShape sh:property era-sh:HasSequence.
+ era-sh:HasSequence
+	a sh:PropertyShape ;
+    era:affectedProperty era:hasSequence;
+    era:affectedClass era:NetLinearReference;
+    era:scope "local";
+	rdfs:comment "The ordered sequence of topological linear elements which create a linear net reference." ;
+	sh:path era:hasSequence ;
+    sh:class rdf:List;
+	sh:severity sh:Violation ;
+	sh:message "hasSequence: The net linear reference specifies an ordered sequence of topological linear elements that must be an instance of an rdf:List. This error is due to having a value that is not an instance of rdf:List."@en .	
+
+# hasTopoCoordinate
+era-sh:NetPointReferenceShape sh:property era-sh:HasTopoCoordinate.
+ era-sh:HasTopoCoordinate
+	a sh:PropertyShape ;
+    era:affectedProperty era:hasTopoCoordinate;
+    era:affectedClass era:NetPointReference;
+    era:scope "local";
+	rdfs:comment "Specifies the topological coordinate of a network point reference." ;
+	sh:path era:hasLrsCoordinate ;
+    sh:class era:TopologicalCoordinate;
+	sh:severity sh:Violation ;
+	sh:message "hasTopoCoordinate: The net point reference specifies a topo coordinate that must be an instance of a TopologicalCoordinate. This error is due to having a value that is not an instance of TopologicalCoordinate."@en .
+
+# includes
+era-sh:NetAreaReferenceShape sh:property era-sh:Includes.
+ era-sh:Includes
+	a sh:PropertyShape ;
+    era:affectedProperty era:includes;
+    era:affectedClass era:NetAreaReference;
+    era:scope "local";
+	rdfs:comment "List of linear references included in an network area reference." ;
+	sh:path era:includes ;
+    sh:class rdf:List;
+	sh:severity sh:Violation ;
+	sh:message "includes: The net area reference specifies a list of linear references that must be an instance of an rdf:List. This error is due to having a value that is not an instance of rdf:List."@en .	
+
+# includes
+era-sh:NetAreaReferenceShape sh:property era-sh:Includes.
+ era-sh:Includes
+	a sh:PropertyShape ;
+    era:affectedProperty era:includes;
+    era:affectedClass era:NetAreaReference;
+    era:scope "local";
+	rdfs:comment "List of linear references included in an network area reference." ;
+	sh:path era:includes ;
+    sh:class rdf:List;
+	sh:severity sh:Violation ;
+	sh:message "includes: The net area reference specifies a list of linear references that must be an instance of an rdf:List. This error is due to having a value that is not an instance of rdf:List."@en .	
+
+# lrsMethod
+era-sh:LinearPositioningSystemShape sh:property era-sh:LrsMethod.
+era-sh:LrsMethod
+	a sh:PropertyShape ;
+    era:affectedProperty era:lrsMethod;
+    era:affectedClass era:LinearPositioningSystem;
+    era:scope "local";
+	rdfs:comment "The preferred line referencing system." ;
+	sh:path era:lrsMethod ;
+    sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "lrsMethod: The linear positioning system must have an 'lrsMethod' value that is an IRI."@en .	
+
+# lrsMethod
+era-sh:LinearPositioningSystemShape sh:sparql era-sh:LrsMethodSKOS.
+era-sh:LrsMethodSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:lrsMethod;
+    era:affectedClass era:LinearPositioningSystem;
+    era:scope "local";
+	rdfs:comment "The preferred line referencing system." ;
+	sh:severity sh:Violation ;
+	sh:message "lrsMethod: The linear positionung system {$this} with label {?thisLabel}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/lines/ReferenceSystems."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?thisLabel ?concept 
+    WHERE {
+        OPTIONAL {$this rdfs:label ?thisLabel} .
+        $this era:lrsMethod ?concept .
+        era:lrsMethod era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme }
+	}
+""" .
+
+# startsAt
+era-sh:NetLinearReferenceShape sh:property era-sh:StartsAt.
+ era-sh:StartsAt
+	a sh:PropertyShape ;
+    era:affectedProperty era:startsAt;
+    era:affectedClass era:NetLinearReference;
+    era:scope "local";
+	rdfs:comment "Specifies the starting coordinate of a linear reference." ;
+	sh:path era:startsAt ;
+    sh:class rdf:TopologicalCoordinate;
+	sh:severity sh:Violation ;
+	sh:message "hasSequence: The net linear reference specifies a starting coordinate that must be an instance of a TopologicalCoordinate. This error is due to having a value that is not an instance of TopologicalCoordinate."@en .	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

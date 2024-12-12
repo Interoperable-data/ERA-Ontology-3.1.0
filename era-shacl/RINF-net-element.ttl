@@ -1,0 +1,208 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+
+###################################
+# Rules for net elements
+###################################
+
+
+
+era-sh:NetElementShape
+	a sh:NodeShape ;
+	sh:targetClass era:NetElement . 
+
+era-sh:NetRelationShape
+	a sh:NodeShape ;
+	sh:targetClass era:NetRelation . 
+
+era-sh:NonLinearElementShape
+	a sh:NodeShape ;
+	sh:targetClass era:NonLinearElement . 
+
+era-sh:LinearElementSectionShape
+	a sh:NodeShape ;
+	sh:targetClass era:LinearElementSection . 
+
+era-sh:TopologicalCoordinateShape
+	a sh:NodeShape ;
+	sh:targetClass era:TopologicalCoordinate . 
+
+
+# aggregates
+era-sh:NonLinearElementShape sh:property era-sh:Aggregates .
+era-sh:Aggregates
+	a sh:PropertyShape;
+    era:affectedClass era:NonLinearElement;
+    era:affectedProperty era:aggregates ;
+    era:scope "local";
+	rdfs:comment "Specifies the linear elements aggregated by a non-linear element." ;
+	sh:path era:contains ;
+	sh:class era:LinearElement;
+	sh:severity sh:Violation ;
+	sh:message "aggregates: The non linear element may aggregate only linear elements. This error is due having a value that is not an instance of LinearElement."@en .
+
+# elementA
+era-sh:NetRelationShape sh:property era-sh:ElementA .
+era-sh:ElementA
+	a sh:PropertyShape;
+    era:affectedClass era:NetRelation;
+    era:affectedProperty era:elementA ;
+    era:scope "local";
+	rdfs:comment "References the first topological element in an oriented relation. For example, it may indicate the object that corresponds to a section of line, an operational point or a track inside an operational point connected at start." ;
+	sh:path era:netRelation ;
+	sh:class era:LinearElement;
+	sh:severity sh:Violation ;
+	sh:message "elementA: The net relation references the first topological object that must be an instance of a linear element. This error is due having a value that is not an instance of LinearElement."@en .
+
+# elementB
+era-sh:NetRelationShape sh:property era-sh:ElementB .
+era-sh:ElementB
+	a sh:PropertyShape;
+    era:affectedClass era:NetRelation;
+    era:affectedProperty era:elementB ;
+    era:scope "local";
+	rdfs:comment "References the second topological linear element in an oriented relation. For example, it may indicate the object that corresponds to a section of line, an operational point or a track inside an operational point connected at end." ;
+	sh:path era:netRelation ;
+	sh:class era:LinearElement;
+	sh:severity sh:Violation ;
+	sh:message "elementB: The net relation references the second topological object that must be an instance of a linear element. This error is due having a value that is not an instance of LinearElement."@en .
+
+# navigability
+era-sh:NetRelationShape sh:property era-sh:Navigability.
+era-sh:Navigability
+	a sh:PropertyShape ;
+    era:affectedProperty era:navigability;
+    era:affectedClass era:NetRelation;
+    era:scope "local";
+	rdfs:comment "Indicates the navigation possibilities between two related topological linear elements." ;
+	sh:path era:navigability ;
+    sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "navigability: The net relation must have a navigability value that is an IRI."@en .	
+
+# navigability
+era-sh:NetRelationShape sh:sparql era-sh:NavigabilitySKOS.
+era-sh:NavigabilitySKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:navigability;
+    era:affectedClass era:NetRelation;
+    era:scope "local";
+	rdfs:comment "Indicates the navigation possibilities between two related topological linear elements." ;
+	sh:severity sh:Violation ;
+	sh:message "era:navigability: The net relation {$this} with label {?thisLabel}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?thisLabel ?concept 
+    WHERE {
+        OPTIONAL {$this rdfs:label ?thisLabel} .
+        $this era:navigability ?concept .
+        era:navigability era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme }
+	}
+""" .
+
+# onElement
+era-sh:LinearElementSectionShape sh:property era-sh:OnElement .
+era-sh:OnElement
+	a sh:PropertyShape;
+    era:affectedClass era:LinearElementSection;
+    era:affectedProperty era:onElement ;
+    era:scope "local";
+	rdfs:comment "Specifies the linear element a section belongs to." ;
+	sh:path era:onElement ;
+	sh:class era:LinearElement;
+	sh:severity sh:Violation ;
+	sh:message "onElement: The linear element section specifies the linear element it belongs to. This error is due having a value that is not an instance of LinearElement."@en .
+
+# onLinearElement
+era-sh:TopologicalCoordinateShape sh:property era-sh:OnLinearElement .
+era-sh:OnLinearElement
+	a sh:PropertyShape;
+    era:affectedClass era:TopologicalCoordinate;
+    era:affectedProperty era:onLinearElement ;
+    era:scope "local";
+	rdfs:comment "Specifies the linear element a coordinate is associated with." ;
+	sh:path era:onLinearElement ;
+	sh:class era:LinearElement;
+	sh:severity sh:Violation ;
+	sh:message "onLinearElement: The topological coordinate specifies the linear element it belongs to. This error is due having a value that is not an instance of LinearElement."@en .
+
+# appliesInBothDirections
+era-sh:LinearElementSectionShape sh:property era-sh:AppliesInBothDirections .
+era-sh:AppliesInBothDirections
+	a sh:PropertyShape;
+    era:affectedClass era:LinearElementSection;
+    era:affectedProperty era:appliesInBothDirections ;
+    era:scope "local";
+	rdfs:comment "Specifies if the section applies in both directions (optional)." ;
+	sh:path era:appliesInBothDirections ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "appliesInBothDirections: The linear element section specifies if the section applies in both directions (optional). This error is due having a value that is not a boolean."@en .
+
+# endOffsetFromOrigin
+era-sh:LinearElementSectionShape sh:property era-sh:EndOffsetFromOrigin .
+era-sh:EndOffsetFromOrigin
+	a sh:PropertyShape;
+    era:affectedClass era:LinearElementSection;
+    era:affectedProperty era:endOffsetFromOrigin ;
+    era:scope "local";
+	rdfs:comment "End offset of the section from the origin." ;
+	sh:path era:endOffsetFromOrigin ;
+	sh:datatype xsd:positiveInteger ;
+	sh:severity sh:Violation ;
+	sh:message "endOffsetFromOrigin: The linear element section specifies  the end offset of the section from the origin. This error is due having a value that is not a positive integer."@en .
+
+# isOnOriginOfElementA
+era-sh:NetRelationShape sh:property era-sh:IsOnOriginOfElementA .
+era-sh:IsOnOriginOfElementA
+	a sh:PropertyShape;
+    era:affectedClass era:NetRelation;
+    era:affectedProperty era:isOnOriginOfElementA ;
+    era:scope "local";
+	rdfs:comment "Determines if the position of the topological element A in a relation is the origin of element A." ;
+	sh:path era:isOnOriginOfElementA ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "isOnOriginOfElementA: The net relation specifies if the position of the topological element A in a relation is the origin of element A. This error is due having a value that is not a boolean."@en .
+
+# isOnOriginOfElementB
+era-sh:NetRelationShape sh:property era-sh:IsOnOriginOfElementB .
+era-sh:IsOnOriginOfElementB
+	a sh:PropertyShape;
+    era:affectedClass era:NetRelation;
+    era:affectedProperty era:isOnOriginOfElementB ;
+    era:scope "local";
+	rdfs:comment "Determines if the position of the topological element B in a relation is the origin of element B." ;
+	sh:path era:isOnOriginOfElementB ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "isOnOriginOfElementB: The net relation specifies if the position of the topological element B in a relation is the origin of element B. This error is due having a value that is not a boolean."@en .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
