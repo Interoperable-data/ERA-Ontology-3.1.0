@@ -87,6 +87,9 @@ The Ontology also includes the routebook concepts described in appendix D2 \"Ele
                               owl:versionInfo "v3.1.0" ;
                               owl:versionURI <https://github.com/Interoperable-data/ERA_vocabulary/releases/releases/v3.1.0> ;
                               skos:changeNote """
+Revision 12-12-2024:
+- deleted deprecated property http://data.europa.eu/949/signallingSystemType following review, there is no instance of it.
+
 Revision 10-12-2024:
  - Added the axiom era:Applicability subClassOf era:TemporalFeature
  - Added range of era:ofParameter
@@ -4426,23 +4429,6 @@ era:signalType rdf:type owl:ObjectProperty ;
                vs:term_status "unstable" ;
                skos:scopeNote "Applicable if signal name 1.1.1.3.14.1 is given."@en ,
                               "Indicates what function the signal (on the track or in OP) executes in relation to the track/switches."@en .
-
-
-###  http://data.europa.eu/949/signallingSystemType
-era:signallingSystemType rdf:type owl:ObjectProperty ;
-                         rdfs:range skos:Concept ;
-                         era:rinfIndex "1.1.0.0.1.3" ;
-                         era:tsiOPEAppendixD2Index "3.2.7" ;
-                         dcterms:created "2023-03-14"^^xsd:date ;
-                         dcterms:modified "2024-09-19"^^xsd:date ;
-                         dcterms:source <http://data.europa.eu/eli/reg_impl/2019/773/oj> ;
-                         rdfs:comment """Indication of the signalling system type of the signalling system. 
-The reason for deprecation is that this property has the same RINF index than \"operational regime\" and this property is part of the definition."""@en ;
-                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                         rdfs:label "Signalling system type"@en ;
-                         owl:deprecated "true"^^xsd:boolean ;
-                         vs:term_status "unstable" .
-
 
 ###  http://data.europa.eu/949/snowIceHailConditions
 era:snowIceHailConditions rdf:type owl:ObjectProperty ;
