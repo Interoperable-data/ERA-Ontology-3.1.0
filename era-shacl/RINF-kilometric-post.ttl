@@ -1,0 +1,72 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+
+era-sh:KilometricPostShape
+	a sh:NodeShape ;
+	sh:targetClass era:KilometricPost.
+
+
+# kilometer: # 1.1.1.1.8.12.1, 1.1.1.1.8.13.1, 1.1.1.3.14.3, 1.1.1.3.14.7, 1.2.0.0.0.6, 1.2.1.0.5.10.1, 1.2.1.0.5.11.1, 1.2.1.0.8.3, 1.2.2.0.5.10.1, 1.2.2.0.5.9.1
+era-sh:KilometricPostShape sh:property era-sh:Kilometer .
+era-sh:Kilometer
+	a sh:PropertyShape;
+    era:affectedClass era-sh:KilometricPost;
+    era:affectedProperty era:kilometer ;
+    era:scope "local";
+	rdfs:comment "Distance measured in kilometers from the origin of a national railway line/route."@en ;
+	era:rinfIndex "1.1.1.1.8.12.1" ,
+       "1.1.1.1.8.13.1", "1.1.1.3.14.3",  "1.1.1.3.14.7 ",  "1.2.0.0.0.6",  "1.2.1.0.5.10.1", "1.2.1.0.5.11.1", "1.2.1.0.8.3", "1.2.2.0.5.10.1", "1.2.2.0.5.9.1";
+	sh:path era:kilometer ;
+	sh:datatype xsd:double ;
+	sh:severity sh:Violation ;
+	sh:message "kilometer (1.1.1.1.8.12.1, 1.1.1.1.8.13.1, 1.1.1.3.14.3, 1.1.1.3.14.7, 1.2.0.0.0.6, 1.2.1.0.5.10.1, 1.2.1.0.5.11.1, 1.2.1.0.8.3, 1.2.2.0.5.10.1, 1.2.2.0.5.9.1): The kilometer must be represented as a double number."@en .
+
+# kilometerNumber: 
+era-sh:KilometricPostShape sh:property era-sh:KilometerNumber .
+era-sh:KilometerNumber
+	a sh:PropertyShape;
+    era:affectedClass era-sh:KilometricPost;
+    era:affectedProperty era:kilometerNumber ;
+    era:scope "local";
+	rdfs:comment "Kilometer number of the kilometric post."@en ;
+	sh:path era:kilometerNumber ;
+	sh:datatype xsd:integer ;
+	sh:severity sh:Violation ;
+	sh:message "kilometerNumber: The kilometer number must be represented as an integer."@en .
+
+# kmPostName: 
+era-sh:KilometricPostShape sh:property era-sh:KmPostName .
+era-sh:KmPostName
+	a sh:PropertyShape;
+    era:affectedClass era-sh:KilometricPost;
+    era:affectedProperty era:kmPostName ;
+    era:scope "local";
+	rdfs:comment "Name of the kilometric post (optional)."@en ;
+	sh:path era:kmPostName ;
+	sh:datatype xsd:string ;
+	sh:severity sh:Violation ;
+	sh:message "kmPostName: The kilometer post name must be represented as a tring of characters."@en .
+
+# measuredDistance: 
+era-sh:KilometricPostShape sh:property era-sh:MeasuredDistance .
+era-sh:MeasuredDistance
+	a sh:PropertyShape;
+    era:affectedClass era-sh:KilometricPost;
+    era:affectedProperty era:measuredDistance ;
+    era:scope "local";
+	rdfs:comment "Measured distance from the origin of the LRS."@en ;
+	sh:path era:measuredDistance ;
+	sh:datatype xsd:double ;
+	sh:severity sh:Violation ;
+	sh:message "measuredDistance: The kilometer post measured distaance must be represented as a double number."@en .
+
+

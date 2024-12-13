@@ -594,6 +594,8 @@ era-sh:DNvovtrp
 	era:rinfIndex "1.1.1.3.2.16.5", "1.2.1.1.1.16.5" ;
 	sh:path era:dNvovtrp ;
     sh:maxCount 1; # Functional property
+    sh:minInclusive 0;
+    sh:maxExclusive 327670;
 	sh:datatype xsd:double ;
 	#sh:pattern "^([1-9]\\d{1,5}|[0-9])(\\.\\d{1})?(\\s.*)?$" ;
 	sh:pattern "^(([1-9]{0,1}[0-9]{0,3}\\.{1}[0-9]{1})|([1-9]\\d{1,4}0)|([1-9]\\d{0,4}))" ;
@@ -637,6 +639,8 @@ era-sh:DNvpotrp
 	era:rinfIndex "1.1.1.3.2.16.7", "1.2.1.1.1.16.7" ;
 	sh:path era:dNvpotrp ;
     sh:maxCount 1; # Functional property
+    sh:minInclusive 0;
+    sh:maxExclusive 327670;
 	sh:datatype xsd:double ;
 	#sh:pattern "^([1-9]\\d{1,5}|[0-9])(\\.\\d{1})?(\\s.*)?$" ;
 	sh:pattern "^(([1-9]{0,1}[0-9]{0,3}\\.{1}[0-9]{1})|([1-9]\\d{1,4}0)|([1-9]\\d{0,4}))" ;
@@ -782,8 +786,9 @@ era-sh:ErrorCorrectionsOnboard
 	era:rinfIndex "1.1.1.3.1.2", "1.2.1.1.1.19" ;
 	sh:path era:errorCorrectionsOnboard ;
     sh:nodeKind sh:IRI ;
+    sh:maxCount 1; 
 	sh:severity sh:Violation ;
-	sh:message "errorCorrectionsOnboard (1.1.1.3.1.2, 1.2.1.1.1.19): The track must have an error correction required for the on-board ETCS, GSM-R and/or ATO function value that is an IRI."@en .
+	sh:message "errorCorrectionsOnboard (1.1.1.3.1.2, 1.2.1.1.1.19): The track may have an error correction required for the on-board ETCS, GSM-R and/or ATO function value that is an IRI. This error is due to having more than one value or having a value that is not an IRI."@en .
 
 # errorCorrectionsOnboard: 1.1.1.3.1.2, 1.2.1.1.1.19
 era-sh:RunningTrackShape sh:sparql era-sh:ErrorCorrectionsOnboardSKOS.
@@ -2154,7 +2159,7 @@ era-sh:RunningTrackShape sh:property era-sh:FreightCorridorShape.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:FreightCorridorShape.
 era-sh:FreightCorridorShape
 	a sh:PropertyShape ;
-    era:affectedProperty era:lineCategory;
+    era:affectedProperty era:freightCorridor;
     era:affectedClass era:freightCorridor;
     era:scope "local";
 	rdfs:comment "Indication whether the line is designated to a Railway Freight Corridor" ;
@@ -2553,10 +2558,10 @@ era-sh:ErrorCorrectionsOnboardExplanation
 	rdfs:comment "Explanation on why a mandatory onboard CR required to be solved in the on-board (ETCS, GSM-R and/or ATO) was accepted by the IM." ;
 	era:rinfIndex "1.1.1.3.1.2" , "1.2.1.1.1.19" ;
 	sh:path era:errorCorrectionsOnboardExplanation ;
-    # sh:maxCount 1 ; # Application guide
+    sh:maxCount 1 ; 
 	sh:datatype xsd:string ;
 	sh:severity sh:Violation ;
-	sh:message "errorCorrectionsOnboardExplanation (1.1.1.3.1.2, 1.2.1.1.1.19): The errorCorrectionsOnboardExplanation must be a string. This error is due to the value not being a string."@en .
+	sh:message "errorCorrectionsOnboardExplanation (1.1.1.3.1.2, 1.2.1.1.1.19): The errorCorrectionsOnboardExplanation must be a string. This error is due to having more than one value ot having a value that is not a string."@en .
 
 # reasonsEtcsRadioBlockCenterReject: 1.1.1.3.2.15, 1.2.1.1.1.15
 era-sh:RunningTrackShape sh:property era-sh:ReasonsEtcsRadioBlockCenterReject.
@@ -2745,9 +2750,9 @@ era-sh:ConditionsSwitchClassBSystems
 	era:rinfIndex "1.1.1.3.8.3" , "1.2.1.1.7.3" ;
 	sh:path era:conditionsSwitchClassBSystems ;
 	sh:class era:Document ;
-    # sh:maxCount 1 ; # Functional property?
+    sh:maxCount 1 ; 
 	sh:severity sh:Violation ;
-	sh:message "conditionsSwitchClassBSystems (1.1.1.3.8.3, 1.2.1.1.7.3): The track has Special technical conditions required to switch over between ERTMS/ETCS and Class B systems value that must be a Document."@en .
+	sh:message "conditionsSwitchClassBSystems (1.1.1.3.8.3, 1.2.1.1.7.3): The track has Special technical conditions required to switch over between ERTMS/ETCS and Class B systems value that must be a Document.  This error is due to having more than one value or having a value that is nit an instance of Document."@en .
 
 # conditionsSwitchClassBSystems: 1.1.1.3.8.3, 1.2.1.1.7.3
 era-sh:RunningTrackShape sh:sparql era-sh:ConditionsSwitchClassBSystemsApplicability .
@@ -2945,6 +2950,7 @@ era-sh:VNvallowovtrp
 	era:rinfIndex "1.1.1.3.2.16.3" , "1.2.1.1.1.16.3" ;
 	sh:path era:vNvallowovtrp ;
     sh:maxCount 1 ; # Functional property
+    sh:minInclusive 0;
 	sh:maxInclusive 600 ;
 	sh:datatype xsd:integer ;
 	sh:pattern "^([1-9]\\d{0,1}[0,5]|[0,5])$" ;
@@ -2988,6 +2994,7 @@ era-sh:VNvsupovtrp
 	era:rinfIndex "1.1.1.3.2.16.4" , "1.2.1.1.1.16.4" ;
 	sh:path era:vNvsupovtrp ;
     sh:maxCount 1 ; # Functional property
+    sh:minInclusive 0;
 	sh:maxInclusive 600 ;
 	sh:datatype xsd:integer ;
 	sh:pattern "^([1-9]\\d{0,1}[0,5]|[0,5])$" ;
@@ -3058,7 +3065,6 @@ era-sh:TNvcontact
 	era:rinfIndex "1.1.1.3.2.16.8" , "1.2.1.1.1.16.8" ;
 	sh:path era:tNvcontact ;
     sh:maxCount 1 ; # Functional property
-	sh:maxInclusive 255 ;
 	sh:datatype xsd:integer ;
 	sh:pattern "^([1-9]\\d{0,2}|0)$" ; 
 	sh:severity sh:Violation ;
@@ -3088,4 +3094,18 @@ era-sh:TNvcontactApplicability
                 FILTER NOT EXISTS {$this era:tNvcontact ?value} . 
             }
 			""" .
+
+# hasBridge: 
+era-sh:RunningTrackShape sh:property era-sh:HasBridge.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasBridge.
+era-sh:HasBridge
+	a sh:PropertyShape ;
+    era:affectedProperty era:hasBridge;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Whether or not a track is associated with a bridge." ;
+	sh:path era:hasBridge ;
+	sh:datatype xsd:boolean ;
+	sh:severity sh:Violation ;
+	sh:message "hasBridge: The track specifies if it is associated with a bridge and the value must be boolean. This error is due to the value not being boolean"@en .
 
