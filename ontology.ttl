@@ -19,28 +19,28 @@
 
 <http://data.europa.eu/949/> rdf:type owl:Ontology ;
                               cc:license <https://creativecommons.org/licenses/by/4.0/> ;
-                              dcterms:contributor [ foaf:name "Marina Aguado" ;
-                                                    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
-                                                  ] ,
-                                                  [ foaf:name "Edna Ruckhaus"
+                              dcterms:contributor [ foaf:name "Edna Ruckhaus"
                                                   ] ,
                                                   [ foaf:name "Oscar Corcho"
-                                                  ] ,
-                                                  [ foaf:name "Designated RINF Topical Working Groups"@en
-                                                  ] ,
-                                                  [ foaf:name "Designated RINF Topical Working Groups"@en
                                                   ] ,
                                                   [ foaf:name "Polymnia Vasilopoulou" ;
                                                     org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                                   ] ,
                                                   [ foaf:name "Maarten Duhoux" ;
                                                     org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
+                                                  ] ,
+                                                  [ foaf:name "Designated RINF Topical Working Groups"@en
+                                                  ] ,
+                                                  [ foaf:name "Designated RINF Topical Working Groups"@en
+                                                  ] ,
+                                                  [ foaf:name "Marina Aguado" ;
+                                                    org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                                   ] ;
-                              dcterms:creator [ foaf:name "Ghislain Atemezing" ;
-                                                dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
+                              dcterms:creator [ foaf:name "Dragos Patru" ;
                                                 org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                               ] ,
-                                              [ foaf:name "Dragos Patru" ;
+                                              [ foaf:name "Ghislain Atemezing" ;
+                                                dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
                                                 org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
                                               ] ;
                               dcterms:issued "2024-04-18"^^xsd:date ;
@@ -1151,35 +1151,6 @@ Or
                                    skos:scopeNote "The document itself has to be upload by the NRE via the \"reference document management\" functionality. The reference of the document is provided for the parameter using the characterstring format."@en .
 
 
-###  http://data.europa.eu/949/conditionalRegenerativeBrake
-era:conditionalRegenerativeBrake rdf:type owl:ObjectProperty ;
-                                 rdfs:subPropertyOf era:trackObjParameter ,
-                                                    era:trackResistanceToAppliedLoadsObjParameter ;
-                                 rdf:type owl:FunctionalProperty ;
-                                 rdfs:domain [ rdf:type owl:Class ;
-                                               owl:unionOf ( era:CommonCharacteristicsSubset
-                                                             era:RunningTrack
-                                                           )
-                                             ] ;
-                                 rdfs:range skos:Concept ;
-                                 era:XMLName "ECS_RegenerativeBraking" ;
-                                 era:applicable "Y/N" ;
-                                 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/regenerative-braking/RegenerativeBraking> ;
-                                 era:legalDeadline "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
-                                 era:rinfIndex "1.1.1.2.2.4" ;
-                                 era:tsiOPEAppendixD2Index "3.3.7" ;
-                                 era:usedInRCCCalculations "true"^^xsd:boolean ;
-                                 dcterms:created "2020-08-24"^^xsd:date ;
-                                 dcterms:modified "2023-01-20"^^xsd:date ,
-                                                  "2024-09-25"^^xsd:date ,
-                                                  "2024-12-10"^^xsd:date ;
-                                 dcterms:relation era:contactLineSystemType ;
-                                 rdfs:comment "Indication whether regenerative braking is permitted, not permitted, or permitted under specific conditions."@en ;
-                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                                 rdfs:label "Permission for regenerative braking"@en ;
-                                 vs:term_status "stable" .
-
-
 ###  http://data.europa.eu/949/conditionsAppliedRegenerativeBraking
 era:conditionsAppliedRegenerativeBraking rdf:type owl:ObjectProperty ,
                                                   owl:FunctionalProperty ;
@@ -1294,10 +1265,11 @@ era:contactLineSystemType rdf:type owl:ObjectProperty ;
                           era:inSkosConceptScheme <http://data.europa.eu/949/concepts/contact-line-systems/ContactLineSystems> ;
                           era:legalDeadline "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
                           era:rinfIndex "1.1.1.2.2.1.1" ;
-                          era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/ContactLineSystemType> ,
-                                                       <http://data.europa.eu/949/shapes/ContactLineSystemTypeNotElectrifiedApplicability> ,
-                                                       <http://data.europa.eu/949/shapes/ContactLineSystemTypeSKOS> ,
-                                                       <http://data.europa.eu/949/shapes/ContactLineSystemTypeThirdOrFourthRailApplicability> ;
+                          era:shaclShapeValidationRule 
+                          <http://data.europa.eu/949/shapes/ContactLineSystemType>, 
+                          <http://data.europa.eu/949/shapes/ContactLineSystemTypeSKOS>, 
+                          <http://data.europa.eu/949/shapes/ContactLineSystemTypeNotElectrifiedApplicability>,
+                          <http://data.europa.eu/949/shapes/ContactLineSystemTypeThirdOrFourthRailApplicability>; 
                           era:usedInRCCCalculations "true"^^xsd:boolean ;
                           dcterms:created "2021-08-06"^^xsd:date ;
                           dcterms:modified "2021-08-06"^^xsd:date ;
@@ -1675,7 +1647,7 @@ era:energySupplySystem rdf:type owl:ObjectProperty ;
                        era:legalDeadline "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
                        era:rinfIndex "1.1.1.2.2.1.2" ;
                        era:tsiOPEAppendixD2Index "3.3.1" ;
-                       era:usedInRCCCalculations "true"^^xsd:boolean ;
+                        era:usedInRCCCalculations "true"^^xsd:boolean ;
                        dcterms:created "2020-08-24"^^xsd:date ;
                        dcterms:description "If the real values exceed range of the EN 50163:2004+A1:2007+A2:2020+A3:2022, then option ‘other’ shall be selected."@en ;
                        dcterms:modified "2024-01-08"^^xsd:date ,
@@ -1863,9 +1835,10 @@ era:etcsInfill rdf:type owl:ObjectProperty ;
                                  "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
                era:rinfIndex "1.1.1.3.2.4" ,
                              "1.2.1.1.1.4" ;
-               era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/EtcsInfill> ,
-                                            <http://data.europa.eu/949/shapes/EtcsInfillApplicability> ,
-                                            <http://data.europa.eu/949/shapes/EtcsInfillSKOS> ;
+               era:shaclShapeValidationRule 
+                <http://data.europa.eu/949/shapes/EtcsInfill> ,
+                <http://data.europa.eu/949/shapes/EtcsInfillSKOS> ,
+                <http://data.europa.eu/949/shapes/EtcsInfillApplicability> ;
                dcterms:created "2021-08-08"^^xsd:date ;
                dcterms:description "TSI CCS (4.2.2 & 4.3.3)" ;
                dcterms:modified "2021-09-12"^^xsd:date ,
@@ -1953,9 +1926,10 @@ era:etcsMVersion rdf:type owl:ObjectProperty ;
                                    "12 months after publication of Article 7 Guide"@en ;
                  era:rinfIndex "1.1.1.3.2.10" ,
                                "1.2.1.1.1.10" ;
-                 era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/EtcsMVersion> ,
-                                              <http://data.europa.eu/949/shapes/EtcsMVersionApplicability> ,
-                                              <http://data.europa.eu/949/shapes/EtcsMVersionSKOS> ;
+                 era:shaclShapeValidationRule 
+                  <http://data.europa.eu/949/shapes/EtcsMVersion> ,
+                  <http://data.europa.eu/949/shapes/EtcsMVersionSKOS> ,
+                  <http://data.europa.eu/949/shapes/EtcsMVersionApplicability> ;
                  era:usedInRCCCalculations "true"^^xsd:boolean ;
                  dcterms:created "2021-08-08"^^xsd:date ;
                  dcterms:modified "2021-09-12"^^xsd:date ,
@@ -2053,9 +2027,10 @@ era:etcsSystemCompatibility rdf:type owl:ObjectProperty ;
                                               "16 January 2020"@en ;
                             era:rinfIndex "1.1.1.3.2.9" ,
                                           "1.2.1.1.1.9" ;
-                            era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/EtcsSystemCompatibility> ,
-                                                         <http://data.europa.eu/949/shapes/EtcsSystemCompatibilityApplicability> ,
-                                                         <http://data.europa.eu/949/shapes/EtcsSystemCompatibilitySKOS> ;
+                            era:shaclShapeValidationRule 
+                                <http://data.europa.eu/949/shapes/EtcsSystemCompatibility> ,
+                                <http://data.europa.eu/949/shapes/EtcsSystemCompatibilitySKOS> ,
+                                <http://data.europa.eu/949/shapes/EtcsSystemCompatibilityApplicability> ;
                             era:usedInRCCCalculations "true"^^xsd:boolean ;
                             dcterms:created "2020-08-31"^^xsd:date ;
                             dcterms:description """The Values \"Not defined\" or \"ESC-EU-0\" should not be combined with other values.
@@ -2204,6 +2179,7 @@ era:frenchTrainDetectionSystemLimitationNumber rdf:type owl:ObjectProperty ;
                                                rdf:type owl:FunctionalProperty ;
                                                rdfs:domain era:FrenchTrainDetectionSystemLimitation ;
                                                rdfs:range skos:Concept ;
+                                               era:XMLName "CTD_TCLimitation" ;
                                                era:inSkosConceptScheme <http://data.europa.eu/949/concepts/train-detection-numbers/FrenchTrainDetectionSystemLimitationNumbers> ;
                                                era:rinfIndex "1.1.1.3.7.1.4" ,
                                                              "1.2.1.1.6.3" ;
@@ -3150,6 +3126,7 @@ era:loadCapabilityLineCategory rdf:type owl:ObjectProperty ;
                                rdf:type owl:FunctionalProperty ;
                                rdfs:domain era:LoadCapability ;
                                rdfs:range skos:Concept ;
+                               era:XMLName "IPP_LoadCap" ;
                                era:inSkosConceptScheme <http://data.europa.eu/949/concepts/load-capability-line-categories/LoadCapabilityLineCategories> ;
                                era:usedInRCCCalculations "true"^^xsd:boolean ;
                                dcterms:created "2023-01-20"^^xsd:date ;
@@ -3384,6 +3361,7 @@ era:minVehicleImpedanceVoltages rdf:type owl:ObjectProperty ;
                                 rdf:type owl:FunctionalProperty ;
                                 rdfs:domain era:MinVehicleImpedance ;
                                 rdfs:range skos:Concept ;
+                                era:XMLName "CCD_TCVehicleImpedance" ;
                                 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/energy-supply-systems/EnergySupplySystems> ;
                                 era:usedInRCCCalculations "true"^^xsd:boolean ;
                                 dcterms:created "2024-05-30"^^xsd:date ;
@@ -4452,7 +4430,6 @@ era:signalType rdf:type owl:ObjectProperty ;
                skos:scopeNote "Applicable if signal name 1.1.1.3.14.1 is given."@en ,
                               "Indicates what function the signal (on the track or in OP) executes in relation to the track/switches."@en .
 
-
 ###  http://data.europa.eu/949/snowIceHailConditions
 era:snowIceHailConditions rdf:type owl:ObjectProperty ;
                           rdfs:subPropertyOf era:vehicleTypeTechnicalObjectCharacteristic ;
@@ -4725,8 +4702,8 @@ It should be provided in 3 directions."""@en ;
                             rdfs:label "Maximum magnetic field"@en ;
                             rdfs:seeAlso "https://www.era.europa.eu/system/files/2023-09/index077_-_ERA_ERTMS_033281_v5.pdf"^^xsd:anyURI ;
                             vs:term_status "stable" ;
-                            skos:scopeNote "Only applicable, when TD system are Axle Counters." ,
-                                           "Relates the Axle Counter TrainDetectionSystem with its MaximumMagneticField in (X,Y,Z). Verification of compliance with TSI includes application of notified national rules (when they exist)."@en .
+                            skos:scopeNote "Relates the Axle Counter TrainDetectionSystem with its MaximumMagneticField in (X,Y,Z). Verification of compliance with TSI includes application of notified national rules (when they exist)."@en ,
+                                           "Only applicable, when TD system are Axle Counters." .
 
 
 ###  http://data.europa.eu/949/tdsMinAxleLoadVehicleCategory
@@ -6070,6 +6047,35 @@ era:compositeBrakeBlockRetrofitted rdf:type owl:DatatypeProperty ;
                                    vs:term_status "stable" .
 
 
+###  http://data.europa.eu/949/conditionalRegenerativeBrake
+era:conditionalRegenerativeBrake rdf:type owl:ObjectProperty ;
+	                         rdfs:subPropertyOf era:trackObjParameter ,
+	                                            era:trackResistanceToAppliedLoadsObjParameter ;
+	                         rdf:type owl:FunctionalProperty ;
+	                         rdfs:domain [ rdf:type owl:Class ;
+	                                     owl:unionOf ( era:CommonCharacteristicsSubset
+	                                                   era:RunningTrack
+	                                                 )
+	                                   ] ;
+	                         rdfs:range skos:Concept ;
+				 era:inSkosConceptScheme <http://data.europa.eu/949/concepts/regenerative-braking/RegenerativeBraking> ;
+                                 era:XMLName "ECS_RegenerativeBraking" ;
+                                 era:applicable "Y/N" ;
+                                 era:legalDeadline "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
+                                 era:rinfIndex "1.1.1.2.2.4" ;
+                                 era:tsiOPEAppendixD2Index "3.3.7" ;
+                                 era:usedInRCCCalculations "true"^^xsd:boolean ;
+                                 dcterms:created "2020-08-24"^^xsd:date ;
+                                 dcterms:modified "2023-01-20"^^xsd:date ,
+                                                  "2024-09-25"^^xsd:date , 
+						  "2024-12-10"^^xsd:date ;
+                                 dcterms:relation era:contactLineSystemType ;
+                                 rdfs:comment "Indication whether regenerative braking is permitted, not permitted, or permitted under specific conditions."@en ;
+                                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                                 rdfs:label "Permission for regenerative braking"@en ;
+                                 vs:term_status "stable" .
+
+
 ###  http://data.europa.eu/949/conditionsChargingElectricEnergyStorage
 era:conditionsChargingElectricEnergyStorage rdf:type owl:DatatypeProperty ;
                                             rdfs:subPropertyOf era:contactLineSystemDataParameter ;
@@ -6079,7 +6085,8 @@ era:conditionsChargingElectricEnergyStorage rdf:type owl:DatatypeProperty ;
                                             era:applicable "Y/N" ;
                                             era:legalDeadline "30 June 2024 at the latest"@en ;
                                             era:rinfIndex "1.2.1.0.7.2" ;
-                                            era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/ConditionsChargingElectricEnergyStorage> ;
+                                            era:shaclShapeValidationRule 
+                                              <http://data.europa.eu/949/shapes/ConditionsChargingElectricEnergyStorage> ;
                                             dcterms:created "2023-03-14"^^xsd:date ;
                                             rdfs:comment "Conditions set by IMs according to a standardised document"@en ,
                                                          "Conditions set by IMs according to a standardised document."@en ;
@@ -6426,8 +6433,8 @@ era:demonstrationENE rdf:type owl:DatatypeProperty ;
                      dcterms:modified "2024-01-08"^^xsd:date ,
                                       "2024-09-19"^^xsd:date ;
                      dcterms:source <http://data.europa.eu/eli/reco/2014/881/oj> ;
-                     rdfs:comment "Unique number for EI declarations following the same format requirements as specified for EC declarations in Annex VII of Commission Implementing Regulation (EU) 2019/250." ,
-                                  "Unique number for EI declarations following the same format requirements as specified for EC declarations in Annex VII of Commission Implementing Regulation (EU) 2019/250."@en ;
+                     rdfs:comment "Unique number for EI declarations following the same format requirements as specified for EC declarations in Annex VII of Commission Implementing Regulation (EU) 2019/250."@en ,
+                                  "Unique number for EI declarations following the same format requirements as specified for EC declarations in Annex VII of Commission Implementing Regulation (EU) 2019/250." ;
                      rdfs:label "EI declaration of demonstration (as defined Recommendation 2014/881/EU) for track relating to compliance with the requirements from TSIs applicable to energy subsystem"@en ;
                      vs:term_status "stable" .
 
@@ -6778,7 +6785,8 @@ era:energySupplySystemTSICompliant rdf:type owl:DatatypeProperty ;
                                    rdfs:range xsd:boolean ;
                                    era:XMLName "ECS_TSIVoltFreq" ;
                                    era:rinfIndex "1.1.1.2.2.1.2.1" ;
-                                   era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/EnergySupplySystemTSICompliant> ;
+                                   era:shaclShapeValidationRule 
+                                    <http://data.europa.eu/949/shapes/EnergySupplySystemTSICompliant> ; 
                                    era:usedInRCCCalculations "true"^^xsd:boolean ;
                                    dcterms:created "2020-08-24"^^xsd:date ;
                                    dcterms:modified "2021-08-06"^^xsd:date ,
@@ -7172,6 +7180,7 @@ era:frenchTrainDetectionSystemLimitationApplicable rdf:type owl:DatatypeProperty
                                                    rdf:type owl:FunctionalProperty ;
                                                    rdfs:domain era:FrenchTrainDetectionSystemLimitation ;
                                                    rdfs:range xsd:boolean ;
+                                                   era:XMLName "CTD_TCLimitation" ;
                                                    era:usedInRCCCalculations "true"^^xsd:boolean ;
                                                    dcterms:created "2023-04-05"^^xsd:date ;
                                                    dcterms:relation era:frenchTrainDetectionSystemLimitation ;
@@ -8831,6 +8840,7 @@ era:loadCapabilitySpeed rdf:type owl:DatatypeProperty ;
                         rdf:type owl:FunctionalProperty ;
                         rdfs:domain era:LoadCapability ;
                         rdfs:range xsd:integer ;
+                        era:XMLName "IPP_LoadCap" ;
                         era:unitOfMeasure unit:KiloM-PER-HR ;
                         era:usedInRCCCalculations "true"^^xsd:boolean ;
                         dcterms:created "2023-01-20"^^xsd:date ;
@@ -9218,8 +9228,9 @@ era:maximumContactWireHeight rdf:type owl:DatatypeProperty ;
                              era:eratvIndex "4.10.5" ;
                              era:legalDeadline "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
                              era:rinfIndex "1.1.1.2.2.5" ;
-                             era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/MaximumContactWireHeight> ,
-                                                          <http://data.europa.eu/949/shapes/MaximumContactWireHeightApplicability> ;
+                             era:shaclShapeValidationRule   
+                              <http://data.europa.eu/949/shapes/MaximumContactWireHeight> ,
+                              <http://data.europa.eu/949/shapes/MaximumContactWireHeightApplicability> ; 
                              era:unitOfMeasure unit:M ;
                              era:usedInRCCCalculations "true"^^xsd:boolean ;
                              dcterms:created "2020-08-25"^^xsd:date ;
@@ -9333,6 +9344,7 @@ era:maximumMagneticFieldDirectionX rdf:type owl:DatatypeProperty ;
                                    rdf:type owl:FunctionalProperty ;
                                    rdfs:domain era:MaximumMagneticField ;
                                    rdfs:range xsd:integer ;
+                                   era:XMLName "CCD_ACMagFieldMax" ;
                                    dcterms:created "2023-03-14"^^xsd:date ;
                                    dcterms:modified "2024-09-19"^^xsd:date ;
                                    dcterms:relation era:trainDetectionSystemType ;
@@ -9351,6 +9363,7 @@ era:maximumMagneticFieldDirectionY rdf:type owl:DatatypeProperty ;
                                    rdf:type owl:FunctionalProperty ;
                                    rdfs:domain era:MaximumMagneticField ;
                                    rdfs:range xsd:integer ;
+                                   era:XMLName "CCD_ACMagFieldMax" ;
                                    dcterms:created "2023-03-14"^^xsd:date ;
                                    dcterms:modified "2024-09-19"^^xsd:date ;
                                    dcterms:relation era:trainDetectionSystemType ;
@@ -9369,6 +9382,7 @@ era:maximumMagneticFieldDirectionZ rdf:type owl:DatatypeProperty ;
                                    rdf:type owl:FunctionalProperty ;
                                    rdfs:domain era:MaximumMagneticField ;
                                    rdfs:range xsd:integer ;
+                                   era:XMLName "CCD_ACMagFieldMax" ;
                                    dcterms:created "2023-03-14"^^xsd:date ;
                                    dcterms:modified "2024-09-19"^^xsd:date ;
                                    dcterms:relation era:trainDetectionSystemType ;
@@ -9648,6 +9662,7 @@ era:minVehicleInputCapacitance rdf:type owl:DatatypeProperty ;
                                rdf:type owl:FunctionalProperty ;
                                rdfs:domain era:MinVehicleImpedance ;
                                rdfs:range xsd:double ;
+                               era:XMLName "CCD_TCVehicleImpedance" ;
                                era:unitOfMeasure <https://qudt.org/vocab/unit/NanoFARAD> ;
                                era:usedInRCCCalculations "true"^^xsd:boolean ;
                                dcterms:created "2024-05-30"^^xsd:date ;
@@ -9668,6 +9683,7 @@ era:minVehicleInputImpedance rdf:type owl:DatatypeProperty ;
                              rdf:type owl:FunctionalProperty ;
                              rdfs:domain era:MinVehicleImpedance ;
                              rdfs:range xsd:double ;
+                             era:XMLName "CCD_TCVehicleImpedance" ;
                              era:unitOfMeasure <https://qudt.org/vocab/unit/MilliH> ;
                              era:usedInRCCCalculations "true"^^xsd:boolean ;
                              dcterms:created "2024-05-30"^^xsd:date ;
@@ -9729,8 +9745,9 @@ era:minimumContactWireHeight rdf:type owl:DatatypeProperty ;
                              era:eratvIndex "4.10.5" ;
                              era:legalDeadline "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
                              era:rinfIndex "1.1.1.2.2.6" ;
-                             era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/MinimumContactWireHeight> ,
-                                                          <http://data.europa.eu/949/shapes/MinimumContactWireHeightApplicability> ;
+                             era:shaclShapeValidationRule
+                              <http://data.europa.eu/949/shapes/MinimumContactWireHeight> ,
+                              <http://data.europa.eu/949/shapes/MinimumContactWireHeightApplicability> ;
                              era:unitOfMeasure unit:M ;
                              era:usedInRCCCalculations "true"^^xsd:boolean ;
                              dcterms:created "2020-08-25"^^xsd:date ;
@@ -10011,8 +10028,8 @@ era:nationalValuesBrakeModel rdf:type owl:DatatypeProperty ;
                                            "1.2.1.1.1.16.13" ;
                              era:tsiOPEAppendixD3Index "1.5.13" ;
                              dcterms:created "2023-03-14"^^xsd:date ;
-                             dcterms:description "(TSI CCS, Annex I, Appendix A, Table A.2 - Subset-026)" ,
-                                                 "Non-harmonisable character string: [Contents of P3/P203]"@en ;
+                             dcterms:description "Non-harmonisable character string: [Contents of P3/P203]"@en ,
+                                                 "(TSI CCS, Annex I, Appendix A, Table A.2 - Subset-026)" ;
                              dcterms:modified "2024-01-08"^^xsd:date ,
                                               "2024-04-18"^^xsd:date ,
                                               "2024-12-05"^^xsd:date ;
@@ -10256,11 +10273,11 @@ era:pantographDataParameter rdf:type owl:DatatypeProperty ;
 ###  http://data.europa.eu/949/parameterValue
 era:parameterValue rdf:type owl:DatatypeProperty ;
                    rdfs:domain era:ParameterApplicability ;
-                   rdfs:range rdfs:Literal ;
-                   dcterms:created "2024-12-10"^^xsd:date ;
-                   rdfs:comment "This property is used to link an applicability to the precise value of the parameter"@en ;
-                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
-                   rdfs:label "Parameter value"@en .
+				   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+				   dcterms:created "2024-12-10"^^xsd:date ;
+				   rdfs:label "Parameter value"@en ;
+				   rdfs:comment "This property is used to link an applicability to the precise value of the parameter"@en ;
+                   rdfs:range rdfs:Literal .
 
 
 ###  http://data.europa.eu/949/parkingBrake
@@ -10352,7 +10369,8 @@ era:permissionChargingElectricEnergyTractionStandstill rdf:type owl:DatatypeProp
                                                        era:applicable "Y/N" ;
                                                        era:legalDeadline "30 June 2024 at the latest"@en ;
                                                        era:rinfIndex "1.2.1.0.7.1" ;
-                                                       era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/PermissionChargingElectricEnergyTractionStandstill> ;
+                                                       era:shaclShapeValidationRule 
+                                                        <http://data.europa.eu/949/shapes/PermissionChargingElectricEnergyTractionStandstill> ;
                                                        dcterms:created "2023-03-14"^^xsd:date ;
                                                        rdfs:comment "Point at which IM authorises charging of electric energy storage for traction purposes at standstill."@en ;
                                                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -10431,6 +10449,7 @@ era:phaseInfoChangeSupplySystem rdf:type owl:DatatypeProperty ;
                                 rdfs:subPropertyOf era:oclSeparationSectionsDataParameter ;
                                 rdfs:domain era:PhaseInfo ;
                                 rdfs:range xsd:boolean ;
+                                era:XMLName "EOS_InfoPhase" ;
                                 dcterms:created "2024-02-05"^^xsd:date ;
                                 rdfs:comment "Part of the phase info of a track that corresponds to the single selection of Y=yes or N=no to show if the energy supply system changes"@en ;
                                 rdfs:label "Phase info change supply system"@en ;
@@ -10444,6 +10463,7 @@ era:phaseInfoDistanceType rdf:type owl:DatatypeProperty ;
                           rdf:type owl:FunctionalProperty ;
                           rdfs:domain era:PhaseInfo ;
                           rdfs:range xsd:string ;
+                          era:XMLName "EOS_InfoPhase" ;
                           dcterms:created "2024-02-05"^^xsd:date ;
                           rdfs:comment "Part of the phase info of a track that corresponds to the single selection of 'MIN=minimum' or 'MAX=maximum' to show whether the length is a minimum distance between the inner contact strips of the pantographs or a maximum distance between the outer contact strips of the pantographs. Multiple strings for this parameter are accepted."@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -10458,6 +10478,7 @@ era:phaseInfoKm rdf:type owl:DatatypeProperty ;
                 rdf:type owl:FunctionalProperty ;
                 rdfs:domain era:PhaseInfo ;
                 rdfs:range xsd:double ;
+                era:XMLName "EOS_InfoPhase" ;
                 dcterms:creator "2023-04-05"^^xsd:date ;
                 rdfs:comment "Part of the phase info of a track that indicates the location from the start of the line where the new value is valid."@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -10472,6 +10493,7 @@ era:phaseInfoLength rdf:type owl:DatatypeProperty ;
                     rdf:type owl:FunctionalProperty ;
                     rdfs:domain era:PhaseInfo ;
                     rdfs:range xsd:integer ;
+                    era:XMLName "EOS_InfoPhase" ;
                     era:unitOfMeasure <https://qudt.org/vocab/unit/M> ;
                     dcterms:created "2023-04-05"^^xsd:date ;
                     rdfs:comment "Part of the phase info of a track that corresponds to the length of the phase separation in metres."@en ;
@@ -10487,6 +10509,7 @@ era:phaseInfoPantographLowered rdf:type owl:DatatypeProperty ;
                                rdf:type owl:FunctionalProperty ;
                                rdfs:domain era:PhaseInfo ;
                                rdfs:range xsd:boolean ;
+                               era:XMLName "EOS_InfoPhase" ;
                                dcterms:created "2023-04-05"^^xsd:date ;
                                rdfs:comment "Part of the phase info of a track that shows whether a pantograph has to be lowered."@en ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -10501,6 +10524,7 @@ era:phaseInfoSwitchOffBreaker rdf:type owl:DatatypeProperty ;
                               rdf:type owl:FunctionalProperty ;
                               rdfs:domain era:PhaseInfo ;
                               rdfs:range xsd:boolean ;
+                              era:XMLName "EOS_InfoPhase" ;
                               dcterms:created "2023-04-05"^^xsd:date ;
                               rdfs:comment "Part of the phase info of a track that shows whether the breaker has to be switched off."@en ;
                               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -10799,6 +10823,7 @@ era:raisedPantographsDistance rdf:type owl:DatatypeProperty ;
                               rdf:type owl:FunctionalProperty ;
                               rdfs:domain era:RaisedPantographsDistanceAndSpeed ;
                               rdfs:range xsd:integer ;
+                              era:XMLName "EPA_NumRaisedSpeed" ;
                               era:tsiOPEAppendixD2Index "3.3.4" ;
                               era:unitOfMeasure unit:M ;
                               era:usedInRCCCalculations "true"^^xsd:boolean ;
@@ -10837,6 +10862,7 @@ era:raisedPantographsNumber rdf:type owl:DatatypeProperty ;
                             rdf:type owl:FunctionalProperty ;
                             rdfs:domain era:RaisedPantographsDistanceAndSpeed ;
                             rdfs:range xsd:integer ;
+                            era:XMLName "EPA_NumRaisedSpeed" ;
                             era:tsiOPEAppendixD2Index "3.3.4" ;
                             era:usedInRCCCalculations "true"^^xsd:boolean ;
                             dcterms:created "2023-04-05"^^xsd:date ;
@@ -10857,6 +10883,7 @@ era:raisedPantographsSpeed rdf:type owl:DatatypeProperty ;
                            rdf:type owl:FunctionalProperty ;
                            rdfs:domain era:RaisedPantographsDistanceAndSpeed ;
                            rdfs:range xsd:integer ;
+                           era:XMLName "EPA_NumRaisedSpeed" ;
                            era:tsiOPEAppendixD2Index "3.3.4" ;
                            era:unitOfMeasure <https://qudt.org/vocab/unit/KiloM-PER-HR> ;
                            era:usedInRCCCalculations "true"^^xsd:boolean ;
@@ -11436,6 +11463,7 @@ era:systemSeparationInfoChangeSupplySystem rdf:type owl:DatatypeProperty ;
                                            rdfs:subPropertyOf era:oclSeparationSectionsDataParameter ;
                                            rdfs:domain era:SystemSeparationInfo ;
                                            rdfs:range xsd:string ;
+                                           era:XMLName "EOS_InfoSystem" ;
                                            dcterms:created "2023-04-05"^^xsd:date ;
                                            rdfs:comment """Part of the system separation info of a track that shows whether the supply system has to be changed.
 The system separation info is the Indication of required several information on system separation."""@en ;
@@ -11450,6 +11478,7 @@ era:systemSeparationInfoKm rdf:type owl:DatatypeProperty ;
                            rdf:type owl:FunctionalProperty ;
                            rdfs:domain era:SystemSeparationInfo ;
                            rdfs:range xsd:double ;
+                           era:XMLName "EOS_InfoSystem" ;
                            dcterms:created "2023-04-05"^^xsd:date ;
                            rdfs:comment """Part of the system separation info of a track.  Indicates the the location from the start of the line where the new value is valid.
 The system separation info is the Indication of required several information on system separation."""@en ;
@@ -11464,6 +11493,7 @@ era:systemSeparationInfoLength rdf:type owl:DatatypeProperty ;
                                rdf:type owl:FunctionalProperty ;
                                rdfs:domain era:SystemSeparationInfo ;
                                rdfs:range xsd:integer ;
+                               era:XMLName "EOS_InfoSystem" ;
                                era:unitOfMeasure <https://qudt.org/vocab/unit/M> ;
                                dcterms:created "2023-04-05"^^xsd:date ;
                                rdfs:comment """Part of the system separation info of a track that shows the length of the system separation in metres.
@@ -11479,6 +11509,7 @@ era:systemSeparationInfoPantographLowered rdf:type owl:DatatypeProperty ;
                                           rdf:type owl:FunctionalProperty ;
                                           rdfs:domain era:SystemSeparationInfo ;
                                           rdfs:range xsd:boolean ;
+                                          era:XMLName "EOS_InfoSystem" ;
                                           dcterms:created "2023-04-05"^^xsd:date ;
                                           rdfs:comment """Part of the system separation info of a track that shows whether the pantograph has to be lowered.
 The system separation info is the Indication of required several information on system separation."""@en ;
@@ -11493,6 +11524,7 @@ era:systemSeparationInfoSwitchOffBreaker rdf:type owl:DatatypeProperty ;
                                          rdf:type owl:FunctionalProperty ;
                                          rdfs:domain era:SystemSeparationInfo ;
                                          rdfs:range xsd:boolean ;
+                                         era:XMLName "EOS_InfoSystem" ;
                                          dcterms:created "2023-04-05"^^xsd:date ;
                                          rdfs:comment """Part of the system separation info of a track that shows whether the breaker has to be switched off.
 The system separation info is the Indication of required several information on system separation."""@en ;
@@ -12135,7 +12167,8 @@ era:umax2 rdf:type owl:DatatypeProperty ;
           era:legalDeadline "16 January 2020"@en ,
                             "2019-05-19"^^xsd:date ;
           era:rinfIndex "1.1.1.2.2.1.3" ;
-          era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/Umax2> ;
+          era:shaclShapeValidationRule 
+            <http://data.europa.eu/949/shapes/Umax2> ;
           era:unitOfMeasure unit:V ;
           era:usedInRCCCalculations "true"^^xsd:boolean ;
           dcterms:created "2020-08-24"^^xsd:date ;
@@ -12759,11 +12792,12 @@ era:CommonCharacteristicsSubset rdf:type owl:Class ;
 ###  http://data.europa.eu/949/ContactLineSystem
 era:ContactLineSystem rdf:type owl:Class ;
                       era:rinfIndex "1.1.1.2.2" ;
-                      era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/ContactLineSystemShape> ;
                       dcterms:created "2021-08-04"^^xsd:date ;
                       dcterms:modified "2021-08-04"^^xsd:date ;
                       rdfs:comment "System that is used to transmit electrical energy to road or rail vehicles."@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
+                      era:shaclShapeValidationRule  
+                        <http://data.europa.eu/949/shapes/ContactLineSystemShape>;
                       rdfs:label "Contact Line System"@en ;
                       vs:term_status "stable" .
 
@@ -13824,106 +13858,73 @@ foaf:Person rdf:type owl:Class ;
             vs:term_status "stable" .
 
 
-[ foaf:name "Marina Aguado" ;
-  org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
-] .
-
-[ foaf:name "Edna Ruckhaus"
- ] .
-
-[ foaf:name "Oscar Corcho"
- ] .
-
-[ foaf:name "Designated RINF Topical Working Groups"@en
- ] .
-
-[ foaf:name "Designated RINF Topical Working Groups"@en
- ] .
-
-[ foaf:name "Polymnia Vasilopoulou" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Maarten Duhoux" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Ghislain Atemezing" ;
-   dcterms:source <https://orcid.org/0000-0003-1562-6922> ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
-[ foaf:name "Dragos Patru" ;
-   org:memberOf <http://publications.europa.eu/resource/authority/corporate-body/ERA>
- ] .
-
 #################################################################
 #    Annotations
 #################################################################
 
-era:IdPhoneErtmsRadioBlockCenter era:rinfIndex "1.1.1.3.2.17" ;
-                                  rdfs:label "ID and phone number of ERTMS/ETCS Radio Block Center"@en ;
-                                  era:applicable "Y/N/NYA" ;
-                                  rdfs:comment "Unique RBC identification (NID_C+NID_RBC) and calling number (NID_RADIO) as defined in the specification referenced in Appendix A-1, index [C]"@en ;
-                                  era:legalDeadline "12 months after publication of Article 7 Guide"@en .
+era:IdPhoneErtmsRadioBlockCenter era:applicable "Y/N/NYA" ;
+                                 era:legalDeadline "12 months after publication of Article 7 Guide"@en ;
+                                 era:rinfIndex "1.1.1.3.2.17" ;
+                                 rdfs:comment "Unique RBC identification (NID_C+NID_RBC) and calling number (NID_RADIO) as defined in the specification referenced in Appendix A-1, index [C]"@en ;
+                                 rdfs:label "ID and phone number of ERTMS/ETCS Radio Block Center"@en .
 
 
-era:asWKT era:tsiOPEAppendixD2Index "3.2.5" ;
+era:asWKT era:applicable "Y" ,
+                         "Y/N/NYA" ;
           era:legalDeadline "12 months after publication of Article 7 Guide"@en ;
-          rdfs:seeAlso "ERA - TWG Route Book" ;
-          rdfs:comment "Well Known Text polygonal shape"@en ,
-                       "Well Known Text line string representing the geographical shape of the track"@en ;
-          era:rinfIndex "1.1.1.0.1.1" ;
-          rdfs:label "Industrial risks  locations where it is dangerous for the driver to step out"@en ;
-          era:applicable "Y" ;
-          rdfs:label "Accurate geographical description"@en ;
-          era:rinfIndex "1.1.0.0.1.1" ;
-          era:applicable "Y/N/NYA" .
+          era:rinfIndex "1.1.0.0.1.1" ,
+                        "1.1.1.0.1.1" ;
+          era:tsiOPEAppendixD2Index "3.2.5" ;
+          rdfs:comment "Well Known Text line string representing the geographical shape of the track"@en ,
+                       "Well Known Text polygonal shape"@en ;
+          rdfs:label "Accurate geographical description"@en ,
+                     "Industrial risks  locations where it is dangerous for the driver to step out"@en ;
+          rdfs:seeAlso "ERA - TWG Route Book" .
 
 
-era:etcsLevel rdfs:comment "ETCS application level related to the track side equipment."@en ;
+era:etcsLevel era:applicable "Y/N/NYA" ;
               era:legalDeadline "12 months after publication of Article 7 Guide"@en ;
-              era:applicable "Y/N/NYA" ;
               era:rinfIndex "1.2.1.1.1.1" ;
+              rdfs:comment "ETCS application level related to the track side equipment."@en ;
               rdfs:label "European Train Control System (ETCS) level"@en .
 
 
-era:nationalLineIdentification era:rinfIndex "1.1.0.0.0.2" ;
-                               era:tsiOPEAppendixD2Index "2.2.1.1" ;
+era:nationalLineIdentification era:applicable "Y" ;
                                era:legalDeadline "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
+                               era:rinfIndex "1.1.0.0.0.2" ;
+                               era:tsiOPEAppendixD2Index "2.2.1.1" ;
                                rdfs:comment "Unique line identification or unique line number within Member State."@en ;
-                               rdfs:label "National line identification"@en ;
-                               era:applicable "Y" .
+                               rdfs:label "National line identification"@en .
 
 
-era:phaseSeparation rdfs:comment "Indication of existence of phase separation and required information."@en ;
+era:phaseSeparation era:applicable "Y/N" ;
                     era:dependencyNote "A value is mandatory only if 1.1.1.2.2.1.1 parameter values is  Overhead contact line (OCL) , otherwise applicability flag is \"N\" (not applicable)"@en ;
-                    era:rinfIndex "1.1.1.2.4.1.1" ;
-                    rdfs:label "Phase separation"@en ;
-                    era:legalDeadline "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
                     era:formatNote "in XML: Y/N" ;
-                    era:applicable "Y/N" .
+                    era:legalDeadline "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
+                    era:rinfIndex "1.1.1.2.4.1.1" ;
+                    rdfs:comment "Indication of existence of phase separation and required information."@en ;
+                    rdfs:label "Phase separation"@en .
 
 
-era:standardCombinedTransporRollerUnits era:legalDeadline "12 months after the adoption of the Article 7 Guide for lines belonging to the TEN (1.1.1.1.2.1)"@en ;
-                                        era:applicable "Y/N" ;
+era:standardCombinedTransporRollerUnits era:applicable "Y/N" ;
+                                        era:legalDeadline "12 months after the adoption of the Article 7 Guide for lines belonging to the TEN (1.1.1.1.2.1)"@en ;
+                                        era:rinfIndex "1.1.1.1.3.9" ;
                                         rdfs:comment "Coding for combined transport for roller units (for all freight and mixed-traffic lines) in accordance with the specification referenced in Appendix A-1, index [B]"@en ;
-                                        rdfs:label "Standard combined transport profile number for roller units"@en ;
-                                        era:rinfIndex "1.1.1.1.3.9" .
+                                        rdfs:label "Standard combined transport profile number for roller units"@en .
 
 
-<http://data.europa.eu/949///www.w3.org/2003/01/geo/wgs84_pos#location> era:applicable "Y/N/NYA" ;
-                                                                        era:legalDeadline "12 months after publication of Article 7 Guide"@en ;
-                                                                        era:rinfIndex "1.2.0.0.0.5" ;
-                                                                        era:applicable "Y/N" ;
-                                                                        rdfs:label "Geographical location of operational point"@en ;
-                                                                        era:rinfIndex "1.1.1.3.14.6" ;
-                                                                        era:legalDeadline "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
-                                                                        rdfs:comment "Geographical coordinates in decimal degrees normally given for the centre of the OP."@en ;
-                                                                        era:rinfIndex "1.2.1.0.8.5" ;
+<http://data.europa.eu/949///www.w3.org/2003/01/geo/wgs84_pos#location> era:applicable "Y/N" ,
+                                                                                       "Y/N/NYA" ;
+                                                                        era:legalDeadline "12 months after publication of Article 7 Guide"@en ,
+                                                                                          "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
+                                                                        era:rinfIndex "1.1.1.3.14.6" ,
+                                                                                      "1.2.0.0.0.5" ,
+                                                                                      "1.2.1.0.8.5" ;
                                                                         era:usedInRCCCalculations "true"^^xsd:boolean ;
-                                                                        rdfs:comment "Geographical coordinates in decimal degrees normally given for the position of the signal"@en ;
-                                                                        rdfs:label "Geographical location of signal"@en .
+                                                                        rdfs:comment "Geographical coordinates in decimal degrees normally given for the centre of the OP."@en ,
+                                                                                     "Geographical coordinates in decimal degrees normally given for the position of the signal"@en ;
+                                                                        rdfs:label "Geographical location of operational point"@en ,
+                                                                                   "Geographical location of signal"@en .
 
 
-###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
