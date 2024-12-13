@@ -5,19 +5,10 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix era: <http://data.europa.eu/949/> .
-@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
-@prefix era-ph: <http://data.europa.eu/949/concepts/platform-heights/> .
-@prefix era-tenclass: <http://data.europa.eu/949/concepts/ten-classifications/> .
-@prefix era-gaugings: <http://data.europa.eu/949/concepts/gaugings/> .
-@prefix era-ntg: <http://data.europa.eu/949/concepts/nominal-track-gauges/> .
-@prefix era-tds: <http://data.europa.eu/949/concepts/train-detection/> .
-@prefix era-tdssc: <http://data.europa.eu/949/concepts/train-detection-specific-checks/> .
-@prefix era-tsi: <http://data.europa.eu/949/concepts/tsi-compliances/> .
-@prefix era-malvc: <http://data.europa.eu/949/concepts/min-axle-loads-per-vehicle-category/> .
-@prefix era-mas: <http://data.europa.eu/949/concepts/max-amount-sandings/> .
+
 
 #############################
 # Rules for train detection system
@@ -69,8 +60,8 @@ era-sh:TrainDetectionSystemTypeSKOS
 """ .
 
 # trainDetectionSystemSpecificCheck. : 1.1.1.3.7.1.2, 1.2.1.1.6.1
-era-sh:TrainDetectionSystemShape sh:property era-sh:trainDetectionSystemSpecificCheck.
-era-sh:trainDetectionSystemSpecificCheck
+era-sh:TrainDetectionSystemShape sh:property era-sh:TrainDetectionSystemSpecificCheck.
+era-sh:TrainDetectionSystemSpecificCheck
 	a sh:PropertyShape ;     
 	era:affectedProperty era:trainDetectionSystemSpecificCheck;     
 	era:affectedClass era:TrainDetectionSystem;     
@@ -84,8 +75,8 @@ era-sh:trainDetectionSystemSpecificCheck
 	sh:message "trainDetectionSystemSpecificCheck (1.1.1.3.7.1.2, 1.2.1.1.6.1): The train detection system has a train detection system specific check that must be a single IRI. This error may be due to having more than one value or having a value that is not an IRI.".
 
 # trainDetectionSystemSpecificCheck. : 1.1.1.3.7.1.2, 1.2.1.1.6.1
-era-sh:TrainDetectionSystemShape sh:sparql era-sh:trainDetectionSystemSpecificCheckSKOS .
-era-sh:trainDetectionSystemSpecificCheckSKOS
+era-sh:TrainDetectionSystemShape sh:sparql era-sh:TrainDetectionSystemSpecificCheckSKOS .
+era-sh:TrainDetectionSystemSpecificCheckSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:trainDetectionSystemSpecificCheck;     
 	era:affectedClass era:TrainDetectionSystem;     
@@ -112,8 +103,8 @@ era-sh:trainDetectionSystemSpecificCheckSKOS
 """ .
 
 # trainDetectionSystemSpecificCheck: 1.1.1.3.7.1.2, 1.2.1.1.6.1
-era-sh:TrainDetectionSystemShape sh:sparql era-sh:trainDetectionSystemSpecificCheckApplicability .
-era-sh:trainDetectionSystemSpecificCheckApplicability
+era-sh:TrainDetectionSystemShape sh:sparql era-sh:TrainDetectionSystemSpecificCheckApplicability .
+era-sh:TrainDetectionSystemSpecificCheckApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:trainDetectionSystemSpecificCheck;
     era:affectedClass era:TrainDetectionSystem;
@@ -150,8 +141,8 @@ era-sh:TrainDetectionSystemSpecificCheckDocument
 	sh:message "trainDetectionSystemSpecificCheckDocument (1.1.1.3.7.1.3, 1.2.1.1.6.2): The track defines the electronic document available in two EU languages value and it must be a Document. This error may be due to having more than one value or having a value that is not a Document."@en .
 
 # trainDetectionSystemSpecificCheckDocument: # 1.1.1.3.7.1.3, 1.2.1.1.6.2
-era-sh:TrainDetectionSystemShape sh:sparql era-sh:trainDetectionSystemSpecificCheckDocumentApplicability .
-era-sh:trainDetectionSystemSpecificCheckDocumentApplicability
+era-sh:TrainDetectionSystemShape sh:sparql era-sh:TrainDetectionSystemSpecificCheckDocumentApplicability .
+era-sh:TrainDetectionSystemSpecificCheckDocumentApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:trainDetectionSystemSpecificCheckDocument;
     era:affectedClass era:TrainDetectionSystem;
@@ -173,8 +164,8 @@ era-sh:trainDetectionSystemSpecificCheckDocumentApplicability
 			""" .
 
 # maximumInterferenceCurrentEvaluation: 1.1.1.3.4.2.1,  1.2.1.1.3.2.1
-era-sh:TrainDetectionSystemShape sh:property era-sh:maximumInterferenceCurrentEvaluation .
-era-sh:maximumInterferenceCurrentEvaluation
+era-sh:TrainDetectionSystemShape sh:property era-sh:MaximumInterferenceCurrentEvaluation .
+era-sh:MaximumInterferenceCurrentEvaluation
 	a sh:PropertyShape ;     
 	era:affectedProperty era:maximumInterferenceCurrentEvaluation;     
 	era:affectedClass era:TrainDetectionSystem;     
@@ -188,8 +179,8 @@ era-sh:maximumInterferenceCurrentEvaluation
 	sh:message "maximumInterferenceCurrentEvaluation (1.1.1.3.4.2.1,  1.2.1.1.3.2.1): Each TrainDetectionSystem may have a single value for maximumInterferenceCurrentEvaluation that is a character string. This error is due to having more than one maximumInterferenceCurrentEvaluation value or having a value that is not a string."@en .
 
 # frequencyBandsForDetection: 1.1.1.3.4.2, 1.2.1.1.3.2
-era-sh:TrainDetectionSystemShape sh:property era-sh:frequencyBandsForDetection .
-era-sh:frequencyBandsForDetection
+era-sh:TrainDetectionSystemShape sh:property era-sh:FrequencyBandsForDetection .
+era-sh:FrequencyBandsForDetection
 	a sh:PropertyShape ;     
 	era:affectedProperty era:frequencyBandsForDetection;     
 	era:affectedClass era:TrainDetectionSystem;     
@@ -203,8 +194,8 @@ era-sh:frequencyBandsForDetection
 	sh:message "frequencyBandsForDetection (1.1.1.3.4.2.1, 1.2.1.1.3.2): The train detection system has a frequency band for detection that must be an IRI. This error may be due to having more than one value or having a value that is not a Document."@en .
 
 # frequencyBandsForDetection: 1.1.1.3.4.2, 1.2.1.1.3.2
-era-sh:TrainDetectionSystemShape sh:sparql era-sh:frequencyBandsForDetectionSKOS .
-era-sh:frequencyBandsForDetectionSKOS
+era-sh:TrainDetectionSystemShape sh:sparql era-sh:FrequencyBandsForDetectionSKOS .
+era-sh:FrequencyBandsForDetectionSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:frequencyBandsForDetection;
     era:affectedClass era:TrainDetectionSystem;
@@ -228,8 +219,8 @@ era-sh:frequencyBandsForDetectionSKOS
 """ .
 
 # maximumInterferenceCurrent: 1.1.1.3.4.2.1, 1.2.1.1.3.2.1
-era-sh:TrainDetectionSystemShape sh:property era-sh:maximumInterferenceCurrent .
-era-sh:maximumInterferenceCurrent
+era-sh:TrainDetectionSystemShape sh:property era-sh:MaximumInterferenceCurrent .
+era-sh:MaximumInterferenceCurrent
 	a sh:PropertyShape ;     
 	era:affectedProperty era:maximumInterferenceCurrent;     
 	era:affectedClass era:TrainDetectionSystem;     
@@ -244,8 +235,8 @@ era-sh:maximumInterferenceCurrent
 	sh:message "maximumInterferenceCurrent (1.1.1.3.4.2.1, 1.2.1.1.3.2.1): Each train detection system must define the maximum interference current in Amperes. This error may be due to having more than one value or having a value that is not a double (real) number."@en .
 
 # tdsMaximumMagneticField: 1.1.1.3.4.2.3, 1.2.1.1.3.2.3
-era-sh:TrainDetectionSystemShape sh:property era-sh:tdsMaximumMagneticField .
-era-sh:tdsMaximumMagneticField
+era-sh:TrainDetectionSystemShape sh:property era-sh:TdsMaximumMagneticField .
+era-sh:TdsMaximumMagneticField
 	a sh:PropertyShape;
     era:affectedClass era:TrainDetectionSystem;
     era:affectedProperty era:tdsMaximumMagneticField ;
@@ -259,8 +250,8 @@ era-sh:tdsMaximumMagneticField
 	sh:message "tdsMaximumMagneticField (1.1.1.3.4.2.3, 1.2.1.1.3.2.3): The train detection system has a train detection system maximum magnetic field reference that must be a maximum magnetic field. This error may be due to having more than one value or having a value that is not an instance of a MaximumMagnaticField."@en .
 
 # tdsMaximumMagneticField: 1.1.1.3.4.2.3, 1.2.1.1.3.2.3
-era-sh:TrainDetectionSystemShape sh:sparql era-sh:tdsMaximumMagneticFieldApplicability .
-era-sh:tdsMaximumMagneticFieldApplicability
+era-sh:TrainDetectionSystemShape sh:sparql era-sh:TdsMaximumMagneticFieldApplicability .
+era-sh:TdsMaximumMagneticFieldApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:tdsMaximumMagneticField;
     era:affectedClass era:TrainDetectionSystem;
@@ -282,8 +273,8 @@ era-sh:tdsMaximumMagneticFieldApplicability
 			""" .
 
 # minVehicleImpedance: 1.1.1.3.4.2.2
-era-sh:TrainDetectionSystemShape sh:property era-sh:minVehicleImpedance .
-era-sh:minVehicleImpedance
+era-sh:TrainDetectionSystemShape sh:property era-sh:MinVehicleImpedance .
+era-sh:MinVehicleImpedance
 	a sh:PropertyShape;
     era:affectedClass era:TrainDetectionSystem;
     era:affectedProperty era:minVehicleImpedance ;
@@ -297,8 +288,8 @@ era-sh:minVehicleImpedance
 	sh:message "minVehicleImpedance (1.1.1.3.4.2.2): The train detection system has a minimum vehicle impedance reference that must be a minimum vehicle impedance. This error may be due to having more than one value or having a value that is not an instance of a MinVehicleImpedance."@en .
 
 # minVehicleImpedance: 1.1.1.3.4.2.2
-era-sh:TrainDetectionSystemShape sh:sparql era-sh:minVehicleImpedanceApplicability .
-era-sh:minVehicleImpedanceApplicability
+era-sh:TrainDetectionSystemShape sh:sparql era-sh:MinVehicleImpedanceApplicability .
+era-sh:MinVehicleImpedanceApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:minVehicleImpedance;
     era:affectedClass era:TrainDetectionSystem;
@@ -320,8 +311,8 @@ era-sh:minVehicleImpedanceApplicability
 			""" .
 
 # tdsFrenchTrainDetectionSystemLimitation: 1.1.1.3.7.1.4, 1.2.1.1.6.3
-era-sh:TrainDetectionSystemShape sh:property era-sh:tdsFrenchTrainDetectionSystemLimitation .
-era-sh:tdsFrenchTrainDetectionSystemLimitation
+era-sh:TrainDetectionSystemShape sh:property era-sh:TdsFrenchTrainDetectionSystemLimitation .
+era-sh:TdsFrenchTrainDetectionSystemLimitation
 	a sh:PropertyShape;
     era:affectedClass era:TrainDetectionSystem;
     era:affectedProperty era:tdsFrenchTrainDetectionSystemLimitation ;
@@ -344,8 +335,8 @@ era-sh:MinVehicleImpedanceShape
 	sh:targetClass era:MinVehicleImpedance .    # Applies to all MinVehicleImpedance instances
 
 # minVehicleImpedanceVoltages: 1.1.1.3.4.2.2, 1.2.1.1.3.2.2
-era-sh:MinVehicleImpedanceShape sh:property era-sh:minVehicleImpedanceVoltages .
-era-sh:minVehicleImpedanceVoltages
+era-sh:MinVehicleImpedanceShape sh:property era-sh:MinVehicleImpedanceVoltages .
+era-sh:MinVehicleImpedanceVoltages
 	a sh:PropertyShape ;     
 	era:affectedProperty era:minVehicleImpedanceVoltages;     
 	era:affectedClass era:MinVehicleImpedance;     
@@ -359,8 +350,8 @@ era-sh:minVehicleImpedanceVoltages
 	sh:message "minVehicleImpedanceVoltages (1.1.1.3.4.2.2, 1.2.1.1.3.2.2): The MinVehicleImpedance has a minVehicleImpedanceVoltage that must be an IRI. This error may be due to having more than one value or having a value that is not an IRI."@en .
 
 # minVehicleImpedanceVoltages: 1.1.1.3.4.2.2, 1.2.1.1.3.2.2
-era-sh:MinVehicleImpedanceShape sh:sparql era-sh:minVehicleImpedanceVoltagesSKOS .
-era-sh:minVehicleImpedanceVoltagesSKOS
+era-sh:MinVehicleImpedanceShape sh:sparql era-sh:MinVehicleImpedanceVoltagesSKOS .
+era-sh:MinVehicleImpedanceVoltagesSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:minVehicleImpedanceVoltages;
     era:affectedClass era:MinVehicleImpedance;
@@ -384,8 +375,8 @@ era-sh:minVehicleImpedanceVoltagesSKOS
 	""" .
 
 # minVehicleImpedanceVoltages: 1.1.1.3.4.2.2, 1.2.1.1.3.2.2
-era-sh:MinVehicleImpedanceShape sh:sparql era-sh:minVehicleImpedanceVoltagesApplicability .
-era-sh:minVehicleImpedanceVoltagesApplicability
+era-sh:MinVehicleImpedanceShape sh:sparql era-sh:MinVehicleImpedanceVoltagesApplicability .
+era-sh:MinVehicleImpedanceVoltagesApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:minVehicleImpedanceVoltages;
     era:affectedClass era:MinVehicleImpedance;
@@ -409,8 +400,8 @@ era-sh:minVehicleImpedanceVoltagesApplicability
 
 
 # minVehicleInputCapacitance: 1.1.1.3.4.2.2, 1.2.1.1.3.2.2
-era-sh:MinVehicleImpedanceShape sh:property era-sh:minVehicleInputCapacitance .
-era-sh:minVehicleInputCapacitance
+era-sh:MinVehicleImpedanceShape sh:property era-sh:MinVehicleInputCapacitance .
+era-sh:MinVehicleInputCapacitance
 	a sh:PropertyShape ;     
 	era:affectedProperty era:minVehicleInputCapacitance;     
 	era:affectedClass era:MinVehicleImpedance;     
@@ -424,8 +415,8 @@ era-sh:minVehicleInputCapacitance
 	sh:message "minVehicleInputCapacitance (1.1.1.3.4.2.2, 1.2.1.1.3.2.2): Each minVehicleInput must define the minVehicleInputCapacitance in NanoFARAD. This error may be due to having more than one value or having a value that is not a double (real) number."@en .
 
 # minVehicleInputCapacitance: 1.1.1.3.4.2.2, 1.2.1.1.3.2.2
-era-sh:MinVehicleImpedanceShape sh:sparql era-sh:minVehicleInputCapacitanceApplicability .
-era-sh:minVehicleInputCapacitanceApplicability
+era-sh:MinVehicleImpedanceShape sh:sparql era-sh:MinVehicleInputCapacitanceApplicability .
+era-sh:MinVehicleInputCapacitanceApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:minVehicleInputCapacitance;
     era:affectedClass era:MinVehicleImpedance;
@@ -447,24 +438,11 @@ era-sh:minVehicleInputCapacitanceApplicability
             }
 			""" .
 
-# minVehicleInputImpedance: 1.1.1.3.4.2.2, 1.2.1.1.3.2.2
-era-sh:MinVehicleImpedanceShape sh:property era-sh:minVehicleInputCapacitance .
-era-sh:minVehicleInputCapacitance
-	a sh:PropertyShape ;     
-	era:affectedProperty era:minVehicleInputCapacitance;     
-	era:affectedClass era:MinVehicleImpedance;     
-	era:scope "local";
-	rdfs:comment "For the selected DC voltage: [ZZZZ], as input impedance [ZZZZ](Zin)." ;
-	era:rinfIndex "1.1.1.3.4.2.2" , "1.2.1.1.3.2.2" ;
-	sh:path era:minVehicleInputCapacitance ;
-	sh:datatype xsd:double ;
-	sh:maxCount 1 ; # Functional property
-	sh:severity sh:Violation ;
-	sh:message "minVehicleInputCapacitance (1.1.1.3.4.2.2, 1.2.1.1.3.2.2): Each minVehicleInput must define the minVehicleInputCapacitance in MilliH. This error may be due to having more than one value or having a value that is not a double (real) number."@en .
+
 
 # minVehicleInputImpedance: 1.1.1.3.4.2.2, 1.2.1.1.3.2.2
-era-sh:MinVehicleImpedanceShape sh:sparql era-sh:minVehicleInputImpedanceApplicability .
-era-sh:minVehicleInputImpedanceApplicability
+era-sh:MinVehicleImpedanceShape sh:sparql era-sh:MinVehicleInputImpedanceApplicability .
+era-sh:MinVehicleInputImpedanceApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:minVehicleInputImpedance;
     era:affectedClass era:MinVehicleImpedance;

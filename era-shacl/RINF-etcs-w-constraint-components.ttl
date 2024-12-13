@@ -17,8 +17,8 @@ era-sh:ETCSShape
     sh:targetClass era:ETCS .
 
 # etcsBaseline: # 1.1.1.3.2.2, 1.2.1.1.1.2
-era-sh:ETCSShape sh:property era-sh:etcsBaseline .
-era-sh:etcsBaseline
+era-sh:ETCSShape sh:property era-sh:EtcsBaseline .
+era-sh:EtcsBaseline
 	a sh:PropertyShape ;
     era:affectedProperty era:etcsBaseline;
     era:affectedClass era:ETCS;
@@ -33,8 +33,8 @@ era-sh:etcsBaseline
 	sh:message "etcsBaseline (1.1.1.3.2.2, 1.2.1.1.1.2): The ETCS may have an ETCS baseline, and its value must be an IRI. This error is due to the ETCS instance having more than one value or having a value that is not an IRI."@en .
 
 # etcsBaseline: # 1.1.1.3.2.2, 1.2.1.1.1.2
-era-sh:ETCSShape sh:sparql era-sh:etcsBaselineSKOS .
-era-sh:etcsBaselineSKOS
+era-sh:ETCSShape sh:sparql era-sh:EtcsBaselineSKOS .
+era-sh:EtcsBaselineSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsBaseline;
     era:affectedClass era:ETCS;
@@ -58,8 +58,8 @@ era-sh:etcsBaselineSKOS
 
 
 # etcsInfill: # 1.1.1.3.2.4, 1.2.1.1.1.4
-era-sh:ETCSShape sh:property era-sh:etcsInfill .
-era-sh:etcsInfill
+era-sh:ETCSShape sh:property era-sh:EtcsInfill .
+era-sh:EtcsInfill
 	a sh:PropertyShape ;
     era:affectedProperty era:etcsInfill;
     era:affectedClass era:ETCS;
@@ -74,8 +74,8 @@ era-sh:etcsInfill
 	sh:message "etcsInfill (1.1.1.3.2.4, 1.2.1.1.1.4): The ETCS may have an ETCS infill, and its value must be an IRI. This error is due to the ETCS instance having more than one value or having a value that is not an IRI."@en .
 
 # etcsInfill: # 1.1.1.3.2.4, 1.2.1.1.1.4
-era-sh:ETCSShape sh:sparql era-sh:etcsInfillSKOS .
-era-sh:etcsInfillSKOS
+era-sh:ETCSShape sh:sparql era-sh:EtcsInfillSKOS .
+era-sh:EtcsInfillSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsInfill;
     era:affectedClass era:ETCS;
@@ -178,11 +178,11 @@ era-sh:EtcsLevelTypeSKOS
 # OnlyApplicableIfConstraintComponent
 era-sh:OnlyApplicableIfConstraintComponent a sh:ConstraintComponent ;
 	sh:parameter [
-		sh:path era-sh:conditionalTypeProperty;
+		sh:path era-sh:ConditionalTypeProperty;
 		sh:nodeKind sh:IRI
 		] ;
 	sh:parameter [
-		sh:path era-sh:conditionalValue ;
+		sh:path era-sh:ConditionalValue ;
 		sh:nodeKind sh:IRI;
 		sh:optional true
 		] ;
@@ -201,8 +201,8 @@ era-sh:OnlyApplicableIfSelectValidator a sh:SPARQLSelectValidator ;
 			""" .
 
 # etcsBaseline: # 1.1.1.3.2.2, 1.2.1.1.1.2
-era-sh:ETCSShape sh:property era-sh:etcsBaselineApplicability .
-era-sh:etcsBaselineApplicability
+era-sh:ETCSShape sh:property era-sh:EtcsBaselineApplicability .
+era-sh:EtcsBaselineApplicability
 	a sh:PropertyShape ;
     era:affectedProperty era:etcsBaseline;
     era:affectedClass era:ETCS;
@@ -211,7 +211,7 @@ era-sh:etcsBaselineApplicability
 	era:rinfIndex "1.1.1.3.2.2" ;
     era:rinfIndex "1.2.1.1.1.2" ;
 	sh:path era:etcsBaseline ;
-	era-sh:conditionalTypeProperty era-sh:etcsLevelType;
+	era-sh:ConditionalTypeProperty era-sh:EtcsLevelType;
 	sh:severity sh:Violation ;
 	sh:message "etcsBaseline (1.1.1.3.2.2, 1.2.1.1.1.2): The ETCS {$this} ({?thisLabel}), has a {$conditionalTypeProperty} which makes the etcsBaseline parameter applicable. This error is due to {$this} not having a value for such a parameter."@en .
 
@@ -227,14 +227,13 @@ era-sh:EtcsMVersionApplicability
 	era:rinfIndex "1.1.1.3.2.10" ;
     era:rinfIndex "1.2.1.1.1.10" ;
 	sh:path era:etcsMVersion ;
-	era-sh:conditionalTypeProperty era-sh:etcsLevelType;
+	era-sh:ConditionalTypeProperty era-sh:EtcsLevelType;
 	sh:severity sh:Violation ;
 	sh:message "etcsMVersion (1.1.1.3.2.10, 1.2.1.1.1.10): The ETCS {$this} ({?thisLabel}), has a {$conditionalTypeProperty} which makes the etcsMVersion parameter applicable. This error is due to {$this} not having a value for such a parameter."@en .
 
 # etcsTransmitsTrackConditions: 1.1.1.3.2.12, 1.2.1.1.1.12
-era-sh:trackShape sh:property era-sh:etcsTransmitsTrackConditions.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:etcsTransmitsTrackConditions.
-era-sh:etcsTransmitsTrackConditions
+era-sh:ETCSShape sh:property era-sh:EtcsTransmitsTrackConditions.
+era-sh:EtcsTransmitsTrackConditions
 	a sh:PropertyShape;
     era:affectedProperty era:etcsTransmitsTrackConditions;
     era:affectedClass era:ETCS;
@@ -248,8 +247,8 @@ era-sh:etcsTransmitsTrackConditions
 	sh:message "etcsTransmitsTrackConditions (1.1.1.3.2.12, 1.2.1.1.1.12): Each Track may define the existence of ETCS trackside engineered to transmit Track Conditions. This error is due to having more than one indication of existence of ETCS trackside engineered to transmit Track Conditions value or having an indication of existence of ETCS trackside engineered to transmit Track Conditions value that is not Y/N (boolean)."@en .
 
 # etcsTransmitsTrackConditions: 1.1.1.3.2.12, 1.2.1.1.1.12
-era-sh:ETCSShape sh:property era-sh:etcsTransmitsTrackConditionsApplicability.
-era-sh:etcsTransmitsTrackConditionsApplicability
+era-sh:ETCSShape sh:property era-sh:EtcsTransmitsTrackConditionsApplicability.
+era-sh:EtcsTransmitsTrackConditionsApplicability
 	a sh:PropertyShape ; 
 	era:affectedProperty era:etcsTransmitsTrackConditions  ;     
 	era:affectedClass  era:ETCS;     
@@ -257,13 +256,13 @@ era-sh:etcsTransmitsTrackConditionsApplicability
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)." ;
 	era:rinfIndex "1.1.1.3.2.12", "1.2.1.1.1.12" ;
 	sh:path era:etcsTransmitsTrackConditions ;
-	era-sh:conditionalTypeProperty era-sh:etcsLevelType;
+	era-sh:ConditionalTypeProperty era-sh:EtcsLevelType;
 	sh:severity sh:Violation ;
 	sh:message "etcsTransmitsTrackConditions (1.1.1.3.2.12.1, 1.2.1.1.1.12.1): The ETCS {$this} ({?thisLabel}), has a {$conditionalTypeProperty} which makes the etcsTransmitsTrackConditions parameter applicable. This error is due to {$this} not having a value for such a parameter."@en .
 
 # etcsTransmittedTrackConditions: # 1.1.1.3.2.12.1, 1.2.1.1.1.12.1
-era-sh:ETCSShape sh:property era-sh:etcsTransmittedTrackConditions.
-era-sh:etcsTransmittedTrackConditions
+era-sh:ETCSShape sh:property era-sh:EtcsTransmittedTrackConditions.
+era-sh:EtcsTransmittedTrackConditions
 	a sh:PropertyShape ; 
 	era:affectedProperty era:etcsTransmittedTrackConditions  ;     
 	era:affectedClass  era:ETCS;     
@@ -277,8 +276,8 @@ era-sh:etcsTransmittedTrackConditions
 	sh:message "etcsTransmittedTrackConditions (1.1.1.3.2.12.1, 1.2.1.1.1.12.1): The ETCS has at most one etcsTransmittedTrackConditions value and it must be an IRI. This error is due to the ETCS having more than one value or having a value that is not an IRI."@en .
 
 # etcsTransmittedTrackConditions: # 1.1.1.3.2.12.1, 1.2.1.1.1.12.1
-era-sh:ETCSShape sh:sparql era-sh:etcsTransmittedTrackConditionsSKOS.
-era-sh:etcsTransmittedTrackConditionsSKOS
+era-sh:ETCSShape sh:sparql era-sh:EtcsTransmittedTrackConditionsSKOS.
+era-sh:EtcsTransmittedTrackConditionsSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsTransmittedTrackConditions  ;     
 	era:affectedClass  era:ETCS;     
@@ -303,8 +302,8 @@ era-sh:etcsTransmittedTrackConditionsSKOS
 """ .
 
 # etcsTransmittedTrackConditions: # 1.1.1.3.2.12.1, 1.2.1.1.1.12.1
-era-sh:ETCSShape sh:property era-sh:etcsTransmittedTrackConditionsApplicability.
-era-sh:etcsTransmittedTrackConditionsApplicability
+era-sh:ETCSShape sh:property era-sh:EtcsTransmittedTrackConditionsApplicability.
+era-sh:EtcsTransmittedTrackConditionsApplicability
 	a sh:PropertyShape ; 
 	era:affectedProperty era:etcsTransmittedTrackConditions  ;     
 	era:affectedClass  era:ETCS;     
@@ -312,13 +311,13 @@ era-sh:etcsTransmittedTrackConditionsApplicability
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)." ;
 	era:rinfIndex "1.1.1.3.2.12.1" , "1.2.1.1.1.12.1" ;
 	sh:path era:etcsTransmittedTrackConditions ;
-	era-sh:conditionalTypeProperty era-sh:etcsLevelType;
+	era-sh:ConditionalTypeProperty era-sh:EtcsLevelType;
 	sh:severity sh:Violation ;
 	sh:message "etcsTransmittedTrackConditions (1.1.1.3.2.12.1, 1.2.1.1.1.12.1): The ETCS {$this} ({?thisLabel}), has a {$conditionalTypeProperty} which makes the etcsTransmittedTrackConditions parameter applicable. This error is due to {$this} not having a value for such a parameter."@en .
 
 # etcsSystemCompatibility: 1.1.1.3.2.9, 1.2.1.1.1.9
-era-sh:ETCSShape sh:property era-sh:etcsSystemCompatibility.
-era-sh:etcsSystemCompatibility
+era-sh:ETCSShape sh:property era-sh:EtcsSystemCompatibility.
+era-sh:EtcsSystemCompatibility
 	a sh:PropertyShape ; 
 	era:affectedProperty era:etcsSystemCompatibility  ;     
 	era:affectedClass  era:ETCS;     
@@ -331,8 +330,8 @@ era-sh:etcsSystemCompatibility
 	sh:message "etcsSystemCompatibility (1.1.1.3.2.9, 1.2.1.1.1.9): The ETCS has a etcsSystemCompatibility value that must be an IRI. This error is due to the ETCS having a value that is not an IRI."@en .
 
 # etcsSystemCompatibility: 1.1.1.3.2.9, 1.2.1.1.1.9
-era-sh:ETCSShape sh:sparql era-sh:etcsSystemCompatibilitySKOS.
-era-sh:etcsSystemCompatibilitySKOS
+era-sh:ETCSShape sh:sparql era-sh:EtcsSystemCompatibilitySKOS.
+era-sh:EtcsSystemCompatibilitySKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsSystemCompatibility  ;     
 	era:affectedClass  era:ETCS;     
@@ -355,8 +354,8 @@ era-sh:etcsSystemCompatibilitySKOS
 """ .
 
 # etcsSystemCompatibility: 1.1.1.3.2.9, 1.2.1.1.1.9
-era-sh:ETCSShape sh:property era-sh:etcsSystemCompatibilityApplicability.
-era-sh:etcsSystemCompatibilityApplicability
+era-sh:ETCSShape sh:property era-sh:EtcsSystemCompatibilityApplicability.
+era-sh:EtcsSystemCompatibilityApplicability
 	a sh:PropertyShape ; 
 	era:affectedProperty era:etcsSystemCompatibility  ;     
 	era:affectedClass  era:ETCS;     
@@ -364,13 +363,13 @@ era-sh:etcsSystemCompatibilityApplicability
 	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)." ;
 	era:rinfIndex "1.1.1.3.2.9" , "1.2.1.1.1.9" ;
 	sh:path era:etcsSystemCompatibility ;
-	era-sh:conditionalTypeProperty era-sh:etcsLevelType;
+	era-sh:ConditionalTypeProperty era-sh:EtcsLevelType;
 	sh:severity sh:Violation ;
 	sh:message "etcsSystemCompatibility (1.1.1.3.2.9, 1.2.1.1.1.9): The ETCS {$this} ({?thisLabel}), has a {$conditionalTypeProperty} which makes the etcsSystemCompatibility parameter applicable. This error is due to {$this} not having a value for such a parameter."@en .
 
 # etcsInfill: # 1.1.1.3.2.4, 1.2.1.1.1.4
-era-sh:ETCSShape sh:property era-sh:etcsInfillApplicability .
-era-sh:etcsInfillApplicability
+era-sh:ETCSShape sh:property era-sh:EtcsInfillApplicability .
+era-sh:EtcsInfillApplicability
 	a sh:PropertyShape ;
     era:affectedProperty era:etcsInfill;
     era:affectedClass era:ETCS;
@@ -379,7 +378,7 @@ era-sh:etcsInfillApplicability
 	era:rinfIndex "1.1.1.3.2.4" ;
     era:rinfIndex "1.2.1.1.1.4" ;
 	sh:path era:etcsInfill ;
-	era-sh:conditionalTypeProperty era-sh:etcsLevelType;
-	era-sh:conditionalValue <http://data.europa.eu/949/concepts/etcs-levels/20> ; # Value "1"	
+	era-sh:ConditionalTypeProperty era-sh:EtcsLevelType;
+	era-sh:ConditionalValue <http://data.europa.eu/949/concepts/etcs-levels/20> ; # Value "1"	
 	sh:severity sh:Violation ;
 	sh:message "etcsInfill (1.1.1.3.2.4, 1.2.1.1.1.4): The ETCS {$this} ({?thisLabel}), has a {$conditionalTypeProperty} value of 1 which makes the etcsInfill parameter applicable. This error is due to {$this} not having a value for such a parameter."@en .

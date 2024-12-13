@@ -17,8 +17,8 @@ era-sh:OrganisationRoleShape
 
 
 # organisationCode "1.2.1.0.6.1, 1.1.0.0.0.1, 1.1.1.1.8.1, 1.2.1.0.0.1, 1.2.1.0.5.1, 1.2.2.0.0.1, 1.2.2.0.5.1"
-era-sh:OrganisationRoleShape sh:property era-sh:organisationCode .
-era-sh:organisationCode
+era-sh:OrganisationRoleShape sh:property era-sh:OrganisationCode .
+era-sh:OrganisationCode
 	a sh:PropertyShape;
     era:affectedClass era:OrganisationRole;
     era:affectedProperty era:organisationCode ;
@@ -41,8 +41,8 @@ era-sh:organisationCode
 	sh:message "organisationCode (1.2.1.0.6.1, 1.1.0.0.0.1, 1.1.1.1.8.1, 1.2.1.0.0.1, 1.2.1.0.5.1, 1.2.2.0.0.1, 1.2.2.0.5.1): An OrganisationRole must have exactly one value of organisationCode. This error may be due to not having a value, having more than one value, having a value that is not a string or having a value that is not a four character code"@en .
 
 # roleOf
-era-sh:OrganisationRoleShape sh:property era-sh:roleOf .
-era-sh:roleOf
+era-sh:OrganisationRoleShape sh:property era-sh:RoleOf .
+era-sh:RoleOf
 	a sh:PropertyShape;
     era:affectedClass era:OrganisationRole;
     era:affectedProperty era:roleOf ;
@@ -56,8 +56,8 @@ era-sh:roleOf
 	sh:message "roleOf: Each instance of Organization Role points thorugh roleOf to exactly one instance of Body. This error mae be due to having no value, or having more than one value."@en .
 
 # hasOrganisationRole
-era-sh:OrganisationRoleShape sh:property era-sh:hasOrganisationRole .
-era-sh:hasOrganisationRole
+era-sh:OrganisationRoleShape sh:property era-sh:HasOrganisationRole .
+era-sh:HasOrganisationRole
 	a sh:PropertyShape;
     era:affectedClass era:OrganisationRole;
     era:affectedProperty era:hasOrganisationRole ;
@@ -72,8 +72,8 @@ era-sh:hasOrganisationRole
 
 
 # hasOrganisationRole
-era-sh:OrganisationRoleShape sh:sparql era-sh:hasOrganisationRoleSKOS.
-era-sh:hasOrganisationRoleSKOS
+era-sh:OrganisationRoleShape sh:sparql era-sh:HasOrganisationRoleSKOS.
+era-sh:HasOrganisationRoleSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hasOrganisationRole;
     era:affectedClass  era:OrganisationRole;

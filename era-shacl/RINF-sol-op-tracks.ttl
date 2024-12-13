@@ -8,55 +8,18 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
-@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
-@prefix era-ph: <http://data.europa.eu/949/concepts/platform-heights/> .
-@prefix era-tenclass: <http://data.europa.eu/949/concepts/ten-classifications/> .
-@prefix era-gaugings: <http://data.europa.eu/949/concepts/gaugings/> .
-@prefix era-ntg: <http://data.europa.eu/949/concepts/nominal-track-gauges/> .
-@prefix era-tds: <http://data.europa.eu/949/concepts/train-detection/> .
-@prefix era-tdssc: <http://data.europa.eu/949/concepts/train-detection-specific-checks/> .
-@prefix era-tsi: <http://data.europa.eu/949/concepts/tsi-compliances/> .
-@prefix era-malvc: <http://data.europa.eu/949/concepts/min-axle-loads-per-vehicle-category/> .
-@prefix era-mas: <http://data.europa.eu/949/concepts/max-amount-sandings/> .
-@prefix era-lc: <http://data.europa.eu/949/concepts/load-capabilities/> .
-@prefix era-pnsb: <http://data.europa.eu/949/concepts/profile-num-swap-bodies/> .
-@prefix era-pnst: <http://data.europa.eu/949/concepts/profile-num-semi-trailers/> .
-@prefix era-ri: <http://data.europa.eu/949/concepts/rail-inclinations/> .
-@prefix era-mb: <http://data.europa.eu/949/concepts/magnetic-braking/> .
-@prefix era-pth: <http://data.europa.eu/949/concepts/pantograph-heads/> .
-@prefix era-csm: <http://data.europa.eu/949/concepts/contact-strip-materials/> .
-@prefix era-etcsinfill: <http://data.europa.eu/949/concepts/etcs-infills/> .
-@prefix era-esc: <http://data.europa.eu/949/concepts/etcs-system-compatibilities/> .
-@prefix era-etcsmvers: <http://data.europa.eu/949/concepts/etcs-m-versions/> .
-@prefix era-gsmrv: <http://data.europa.eu/949/concepts/gsmr-versions/> .
-@prefix era-gsmrnumactivemob: <http://data.europa.eu/949/concepts/gsmr-number-active-mobiles/> .
-@prefix era-gsmroptfunc: <http://data.europa.eu/949/concepts/gsmr-optional-functions/> .
-@prefix era-gsmr: <http://data.europa.eu/949/concepts/gsmr-networks/> .
-@prefix era-rsc: <http://data.europa.eu/949/concepts/radio-system-compatibilities/> .
-@prefix era-vrsc: <http://data.europa.eu/949/concepts/voice-radio-system-compatibilities/> .
-@prefix era-rscd: <http://data.europa.eu/949/concepts/radio-system-compatibilities-data/> .
-@prefix era-tpls: <http://data.europa.eu/949/concepts/train-protection-legacy-systems/> .
-@prefix era-lrs: <http://data.europa.eu/949/concepts/legacy-radio-systems/> .
-@prefix era-etcssituation: <http://data.europa.eu/949/concepts/etcs-situation/> .
-@prefix era-opcw: <http://data.europa.eu/949/concepts/other-protection-control-warning/> .
-@prefix era-trd: <http://data.europa.eu/949/concepts/track-running-directions/> .
-@prefix era-ec: <http://data.europa.eu/949/concepts/eddy-current-braking/> .
-@prefix era-ha: <http://data.europa.eu/949/concepts/hot-axle/> .
-@prefix era-cls: <http://data.europa.eu/949/concepts/contact-line-systems/> .
-@prefix era-cph: <http://data.europa.eu/949/concepts/compliant-pantograph-heads/> .
-@prefix era-oph: <http://data.europa.eu/949/concepts/other-pantograph-heads/> .
 
-era-sh:trackShape  
+era-sh:RunningTrackShape  
     a sh:NodeShape ;
     sh:targetClass era:RunningTrack .
 
-era-sh:commonCharacteristicsSubsetShape
+era-sh:CommonCharacteristicsSubsetShape
 	a sh:NodeShape ;
-	sh:targetClass era:CommonCharacteristicsSubset .  # Applies to all Common Characteritics Subset  with platform parameters 
+	sh:targetClass era:CommonCharacteristicsSubset .  # Applies to all Common Characteritics Subset  with track parameters in SOLs and OPs
 
 # verificationINF: # 1.1.1.1.1.1, 1.2.1.0.1.1
-era-sh:trackShape sh:property era-sh:VerificationINF.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:VerificationINF.
+era-sh:RunningTrackShape sh:property era-sh:VerificationINF.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:VerificationINF.
 era-sh:VerificationINF
 	a sh:PropertyShape ;
     era:affectedProperty era:verificationINF;
@@ -73,8 +36,8 @@ era-sh:VerificationINF
 	sh:message "verificationINF (1.1.1.1.1.1, 1.2.1.0.1.1): The verificationINF must be a string following the format 'XX/XXXXXXXXXXXXXX/YYYY/DDDDDD' where XX is the country code, XXXXXXXXXXXXXX is the unique number for EC declarations, YYYY is the year of the declaration (1900-2100) and DDDDDD is the sequential number of the declaration. This error is due to the value not following the pattern."@en .
 
 # demonstrationINF: # 1.1.1.1.1.2, 1.2.1.0.1.2
-era-sh:trackShape sh:property era-sh:DemonstrationINF.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:DemonstrationINF.
+era-sh:RunningTrackShape sh:property era-sh:DemonstrationINF.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:DemonstrationINF.
 era-sh:DemonstrationINF
 	a sh:PropertyShape ;
     era:affectedProperty era:demonstrationINF;
@@ -90,8 +53,8 @@ era-sh:DemonstrationINF
 	sh:message "demonstrationINF (1.1.1.1.1.2, 1.2.1.0.1.2): The demonstrationINF must be a string following the format 'XX/XXXXXXXXXXXXXX/YYYY/DDDDDD' where XX is the country code, XXXXXXXXXXXXXX is the unique number for EI declarations, YYYY is the year of the declaration (1900-2100) and DDDDDD is the sequential number of the declaration. This error is due to the value not following the pattern."@en .
 
 # tenClassification: # 1.1.1.1.2.1, 1.2.1.0.2.1
-era-sh:trackShape sh:property era-sh:TenClassificationT.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:TenClassificationT.
+era-sh:RunningTrackShape sh:property era-sh:TenClassificationT.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TenClassificationT.
 era-sh:TenClassificationT
 	a sh:PropertyShape ;
     era:affectedProperty era:tenClassification;
@@ -106,8 +69,8 @@ era-sh:TenClassificationT
 	sh:severity sh:Violation ;	sh:message "tenClassification (1.1.1.1.2.1, 1.2.1.0.2.1): The track has a TEN classificaion value (Indication of the part of the trans-European network the line belongs to) that must be an IRI."@en .
 
 #tenClassification: # 1.1.1.1.2.1, 1.2.1.0.2.1
-era-sh:trackShape sh:sparql era-sh:TenClassificationSKOST.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:TenClassificationSKOST.
+era-sh:RunningTrackShape sh:sparql era-sh:TenClassificationSKOST.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:TenClassificationSKOST.
 era-sh:TenClassificationSKOST
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:tenClassification;
@@ -136,8 +99,8 @@ era-sh:TenClassificationSKOST
 """ .
 
 # gaugingProfile: # 1.1.1.1.3.1.1, 1.2.1.0.3.4
-era-sh:trackShape sh:property era-sh:GaugingProfile.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:GaugingProfile.
+era-sh:RunningTrackShape sh:property era-sh:GaugingProfile.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:GaugingProfile.
  era-sh:GaugingProfile
 	a sh:PropertyShape ;
     era:affectedProperty era:gaugingProfile;
@@ -153,8 +116,8 @@ era-sh:commonCharacteristicsSubsetShape sh:property era-sh:GaugingProfile.
 	sh:message "gaugingProfile (1.1.1.1.3.1.1, 1.2.1.0.3.4): The track must define a value that is an IRI. The error is due to having a value that is not an IRI."@en .
 
 # gaugingProfile: # 1.1.1.1.3.1.1, 1.2.1.0.3.4
-era-sh:trackShape sh:sparql era-sh:GaugingProfileSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:GaugingProfileSKOS.
+era-sh:RunningTrackShape sh:sparql era-sh:GaugingProfileSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:GaugingProfileSKOS.
 era-sh:GaugingProfileSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gaugingProfile;
@@ -180,8 +143,8 @@ era-sh:GaugingProfileSKOS
 """ .
 
 # gaugingCheckLocation: # 1.1.1.1.3.1.2, 1.2.1.0.3.5
-era-sh:trackShape sh:property era-sh:GaugingCheckLocation.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:GaugingCheckLocation.
+era-sh:RunningTrackShape sh:property era-sh:GaugingCheckLocation.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:GaugingCheckLocation.
 era-sh:GaugingCheckLocation
 	a sh:PropertyShape ;
     era:affectedProperty era:gaugingCheckLocation;
@@ -198,8 +161,8 @@ era-sh:GaugingCheckLocation
 	sh:message "gaugingCheckLocation (1.1.1.1.3.1.2, 1.2.1.0.3.5): The track has a location of the gauging check that must be a string and follow the format [±NNNN.NNN]. The error is due to the value not following the pattern."@en .
 
 # gaugingTransversalDocument: # 1.1.1.1.3.1.3, 1.2.1.0.3.6
-era-sh:trackShape sh:property era-sh:GaugingTransversalDocument.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:GaugingTransversalDocument.
+era-sh:RunningTrackShape sh:property era-sh:GaugingTransversalDocument.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:GaugingTransversalDocument.
 era-sh:GaugingTransversalDocument
 	a sh:PropertyShape ;
     era:affectedProperty era:gaugingTransversalDocument;
@@ -213,8 +176,8 @@ era-sh:GaugingTransversalDocument
 	sh:message "gaugingTransversalDocument (1.1.1.1.3.1.3, 1.2.1.0.3.6): The track has a transversal document of the gauging check value that must be a Document."@en .
 
 # wheelSetGauge: # 1.1.1.1.4.1, 1.2.1.0.4.1
-era-sh:trackShape sh:property era-sh:WheelSetGauge.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:WheelSetGauge.
+era-sh:RunningTrackShape sh:property era-sh:WheelSetGauge.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:WheelSetGauge.
 era-sh:WheelSetGauge
 	a sh:PropertyShape ;
     era:affectedProperty era:wheelSetGauge;
@@ -230,8 +193,8 @@ era-sh:WheelSetGauge
 	sh:message "wheelSetGauge (1.1.1.1.4.1, 1.2.1.0.4.1): The track must have at most one wheel set gauge value that is an IRI."@en .	
 
 # wheelSetGauge: # 1.1.1.1.4.1, 1.2.1.0.4.1
-era-sh:trackShape sh:sparql era-sh:WheelSetGaugeSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:WheelSetGaugeSKOS.
+era-sh:RunningTrackShape sh:sparql era-sh:WheelSetGaugeSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:WheelSetGaugeSKOS.
 era-sh:WheelSetGaugeSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:wheelSetGauge;
@@ -257,9 +220,9 @@ era-sh:WheelSetGaugeSKOS
 
 
 # gsmRAdditionalInfo: 1.1.1.3.3.3.1, 1.2.1.1.2.3.1
-era-sh:trackShape sh:property era-sh:gsmRAdditionalInfo.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmRAdditionalInfo.
-era-sh:gsmRAdditionalInfo
+era-sh:RunningTrackShape sh:property era-sh:GsmRAdditionalInfo.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:GsmRAdditionalInfo.
+era-sh:GsmRAdditionalInfo
 	a sh:PropertyShape ;
     era:affectedProperty era:gsmRAdditionalInfo;
     era:affectedClass era:RunningTrack;
@@ -272,9 +235,9 @@ era-sh:gsmRAdditionalInfo
 	sh:message "gsmRAdditionalInfo (1.1.1.3.3.3.1 , 1.2.1.1.2.3.1): The track has additional information on network characteristics that must be a Document."@en .
 
 # gsmRAdditionalInfo: 1.1.1.3.3.3.1, 1.2.1.1.2.3.1
-era-sh:trackShape sh:sparql era-sh:gsmRAdditionalInfoApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:gsmRAdditionalInfoApplicability.
-era-sh:gsmRAdditionalInfoApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:GsmRAdditionalInfoApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:GsmRAdditionalInfoApplicability.
+era-sh:GsmRAdditionalInfoApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmRAdditionalInfo;
     era:affectedClass era:RunningTrack;
@@ -296,9 +259,9 @@ era-sh:gsmRAdditionalInfoApplicability
 			""" .
 
 # gprsImplementationArea: 1.1.1.3.3.3.3, 1.2.1.1.2.3.3
-era-sh:trackShape sh:property era-sh:gprsImplementationArea.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gprsImplementationArea.
-era-sh:gprsImplementationArea
+era-sh:RunningTrackShape sh:property era-sh:GprsImplementationArea.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:GprsImplementationArea.
+era-sh:GprsImplementationArea
 	a sh:PropertyShape ;
     era:affectedProperty era:gprsImplementationArea;
     era:affectedClass era:RunningTrack;
@@ -311,9 +274,9 @@ era-sh:gprsImplementationArea
 	sh:message "gprsImplementationArea (1.1.1.3.3.3.3, 1.2.1.1.2.3.3): The gprsImplementationArea must be a string. This error is due to the value not being a string."@en .
 
 # gprsImplementationArea: 1.1.1.3.3.3.3, 1.2.1.1.2.3.3
-era-sh:trackShape sh:sparql era-sh:gprsImplementationAreaApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:gprsImplementationAreaApplicability.
-era-sh:gprsImplementationAreaApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:GprsImplementationAreaApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:GprsImplementationAreaApplicability.
+era-sh:GprsImplementationAreaApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gprsImplementationArea;
     era:affectedClass era:RunningTrack;
@@ -338,9 +301,9 @@ era-sh:gprsImplementationAreaApplicability
 			""" .
 
 # atoCommunicationSystem: 1.1.1.3.13.3, 1.2.1.1.10.3
-era-sh:trackShape sh:property era-sh:atoCommunicationSystem.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:atoCommunicationSystem.
-era-sh:atoCommunicationSystem
+era-sh:RunningTrackShape sh:property era-sh:AtoCommunicationSystem.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:AtoCommunicationSystem.
+era-sh:AtoCommunicationSystem
 	a sh:PropertyShape ;
     era:affectedProperty era:atoCommunicationSystem;
     era:affectedClass era:RunningTrack;
@@ -353,9 +316,9 @@ era-sh:atoCommunicationSystem
 	sh:message "atoCommunicationSystem (1.1.1.3.13.3, 1.2.1.1.10.3): The track must have a ATO communication system value that is an IRI."@en .	
 
 # atoCommunicationSystem: 1.1.1.3.13.3, 1.2.1.1.10.3
-era-sh:trackShape sh:sparql era-sh:atoCommunicationSystemSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:atoCommunicationSystemSKOS.
-era-sh:atoCommunicationSystemSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:AtoCommunicationSystemSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:AtoCommunicationSystemSKOS.
+era-sh:AtoCommunicationSystemSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:atoCommunicationSystem;
     era:affectedClass era:RunningTrack;
@@ -381,9 +344,9 @@ era-sh:atoCommunicationSystemSKOS
 """ .
 
 # atoGradeAutomation: 1.1.1.3.13.1, 1.2.1.1.10.1
-era-sh:trackShape sh:property era-sh:atoGradeAutomation.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:atoGradeAutomation.
-era-sh:atoGradeAutomation
+era-sh:RunningTrackShape sh:property era-sh:AtoGradeAutomation.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:AtoGradeAutomation.
+era-sh:AtoGradeAutomation
 	a sh:PropertyShape ;
     era:affectedProperty era:atoGradeAutomation;
     era:affectedClass era:RunningTrack;
@@ -396,9 +359,9 @@ era-sh:atoGradeAutomation
 	sh:message "atoGradeAutomation (1.1.1.3.13.1, 1.2.1.1.10.1): The track must have a ATO grade of automation installed lineside value that is an IRI."@en .
 
 # atoGradeAutomation: 1.1.1.3.13.1, 1.2.1.1.10.1
-era-sh:trackShape sh:sparql era-sh:atoGradeAutomationSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:atoGradeAutomationSKOS.
-era-sh:atoGradeAutomationSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:AtoGradeAutomationSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:AtoGradeAutomationSKOS.
+era-sh:AtoGradeAutomationSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:atoGradeAutomation;
     era:affectedClass era:RunningTrack;
@@ -424,9 +387,9 @@ era-sh:atoGradeAutomationSKOS
 """ .
 
 # atoSystemVersion: 1.1.1.3.13.2, 1.2.1.1.10.2
-era-sh:trackShape sh:property era-sh:atoSystemVersion.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:atoSystemVersion.
-era-sh:atoSystemVersion
+era-sh:RunningTrackShape sh:property era-sh:AtoSystemVersion.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:AtoSystemVersion.
+era-sh:AtoSystemVersion
 	a sh:PropertyShape ;
     era:affectedProperty era:atoSystemVersion;
     era:affectedClass era:RunningTrack;
@@ -439,9 +402,9 @@ era-sh:atoSystemVersion
 	sh:message "atoSystemVersion (1.1.1.3.13.1, 1.2.1.1.10.1): The track must have a ATO system version value that is an IRI."@en .
 
 # atoSystemVersion: 1.1.1.3.13.2, 1.2.1.1.10.2
-era-sh:trackShape sh:sparql era-sh:atoSystemVersionSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:atoSystemVersionSKOS.
-era-sh:atoSystemVersionSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:AtoSystemVersionSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:AtoSystemVersionSKOS.
+era-sh:AtoSystemVersionSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:atoSystemVersion;
     era:affectedClass era:RunningTrack;
@@ -467,9 +430,9 @@ era-sh:atoSystemVersionSKOS
 """ .
 
 # bigMetalMass: 1.1.1.3.2.18, 1.2.1.1.1.18
-era-sh:trackShape sh:property era-sh:bigMetalMass.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:bigMetalMass.
-era-sh:bigMetalMass
+era-sh:RunningTrackShape sh:property era-sh:BigMetalMass.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:BigMetalMass.
+era-sh:BigMetalMass
 	a sh:PropertyShape;
     era:affectedProperty era:bigMetalMass ;
     era:affectedClass era:RunningTrack;
@@ -483,9 +446,9 @@ era-sh:bigMetalMass
 	sh:message "bigMetalMass (1.1.1.3.2.18, 1.2.1.1.1.18): Each Track may define the existence of a metal mass in the vicinity of the location. This error is due to having more than one indication of existence of big metal mass value or having an indication of big metal mass value that is not Y/N (boolean)."@en .
 
 # bigMetalMass: 1.1.1.3.2.18, 1.2.1.1.1.18
-era-sh:trackShape sh:sparql era-sh:bigMetalMassApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:bigMetalMassApplicability.
-era-sh:bigMetalMassApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:BigMetalMassApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:BigMetalMassApplicability.
+era-sh:BigMetalMassApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:bigMetalMass;
     era:affectedClass era:RunningTrack;
@@ -508,9 +471,9 @@ era-sh:bigMetalMassApplicability
 			""" .
 
 # cantDeficiencyBasicSSP 1.1.1.3.2.14, 1.2.1.1.1.14
-era-sh:trackShape sh:property era-sh:cantDeficiencyBasicSSP.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:cantDeficiencyBasicSSP.
-era-sh:cantDeficiencyBasicSSP
+era-sh:RunningTrackShape sh:property era-sh:CantDeficiencyBasicSSP.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:CantDeficiencyBasicSSP.
+era-sh:CantDeficiencyBasicSSP
 	a sh:PropertyShape ;
     era:affectedProperty era:cantDeficiencyBasicSSP;
     era:affectedClass era:RunningTrack;
@@ -524,9 +487,9 @@ era-sh:cantDeficiencyBasicSSP
 	sh:message "cantDeficiencyBasicSSP (1.1.1.3.2.14, 1.2.1.1.1.14): The track must have a cant deficiency used for the basis SSP value that is an IRI."@en .
 
 # cantDeficiencyBasicSSP 1.1.1.3.2.14, 1.2.1.1.1.14
-era-sh:trackShape sh:sparql era-sh:cantDeficiencyBasicSSPSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:cantDeficiencyBasicSSPSKOS.
-era-sh:cantDeficiencyBasicSSPSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:CantDeficiencyBasicSSPSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:CantDeficiencyBasicSSPSKOS.
+era-sh:CantDeficiencyBasicSSPSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:cantDeficiencyBasicSSP;
     era:affectedClass era:RunningTrack;
@@ -552,9 +515,9 @@ era-sh:cantDeficiencyBasicSSPSKOS
 """ .
 
 # cantDeficiencyBasicSSP 1.1.1.3.2.14, 1.2.1.1.1.14
-era-sh:trackShape sh:sparql era-sh:cantDeficiencyBasicSSPApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:cantDeficiencyBasicSSPApplicability.
-era-sh:cantDeficiencyBasicSSPApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:CantDeficiencyBasicSSPApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:CantDeficiencyBasicSSPApplicability.
+era-sh:CantDeficiencyBasicSSPApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:cantDeficiencyBasicSSP;
     era:affectedClass era:RunningTrack;
@@ -577,9 +540,9 @@ era-sh:cantDeficiencyBasicSSPApplicability
 			""" .
 
 # lineCategory: 1.1.1.1.2.2, 1.2.1.0.2.2
-era-sh:trackShape sh:property era-sh:lineCategory.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:lineCategory.
-era-sh:lineCategory
+era-sh:RunningTrackShape sh:property era-sh:LineCategory.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:LineCategory.
+era-sh:LineCategory
 	a sh:PropertyShape ;
     era:affectedProperty era:lineCategory;
     era:affectedClass era:RunningTrack;
@@ -592,9 +555,9 @@ era-sh:lineCategory
 	sh:message "lineCategory (1.1.1.1.2.2, 1.2.1.0.2.2): The track must have a classification of a line value that is an IRI."@en .
 
 # lineCategory: 1.1.1.1.2.2, 1.2.1.0.2.2
-era-sh:trackShape sh:sparql era-sh:lineCategorySKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:lineCategorySKOS.
-era-sh:lineCategorySKOS
+era-sh:RunningTrackShape sh:sparql era-sh:LineCategorySKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:LineCategorySKOS.
+era-sh:LineCategorySKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:lineCategory;
     era:affectedClass era:RunningTrack;
@@ -620,9 +583,9 @@ era-sh:lineCategorySKOS
 """ .
 
 # dNvovtrp: 1.1.1.3.2.16.5, 1.2.1.1.1.16.5
-era-sh:trackShape sh:property era-sh:dNvovtrp.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:dNvovtrp.
-era-sh:dNvovtrp
+era-sh:RunningTrackShape sh:property era-sh:DNvovtrp.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:DNvovtrp.
+era-sh:DNvovtrp
 	a sh:PropertyShape;
     era:affectedProperty era:dNvovtrp ;
     era:affectedClass era:RunningTrack;
@@ -633,14 +596,14 @@ era-sh:dNvovtrp
     sh:maxCount 1; # Functional property
 	sh:datatype xsd:double ;
 	#sh:pattern "^([1-9]\\d{1,5}|[0-9])(\\.\\d{1})?(\\s.*)?$" ;
-	sh:pattern "^(([1-9]{0,1}[0-9]{0,3}\.{1}[0-9]{1})|([1-9]\d{1,4}0)|([1-9]\d{0,4}))" ;
+	sh:pattern "^(([1-9]{0,1}[0-9]{0,3}\\.{1}[0-9]{1})|([1-9]\\d{1,4}0)|([1-9]\\d{0,4}))" ;
 	sh:severity sh:Violation ;
 	sh:message "dNvovtrp (1.1.1.3.2.16.5, 1.2.1.1.1.16.5): Each Track must define the maximum distance for overriding the train trip expressed in metres. This error is due to having maximum distance for overriding the train trip value that is not a double (real) number."@en .
 
 # dNvovtrp: 1.1.1.3.2.16.5, 1.2.1.1.1.16.5
-era-sh:trackShape sh:sparql era-sh:dNvovtrpApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:dNvovtrpApplicability.
-era-sh:dNvovtrpApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:DNvovtrpApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:DNvovtrpApplicability.
+era-sh:DNvovtrpApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:dNvovtrp;
     era:affectedClass era:RunningTrack;
@@ -663,9 +626,9 @@ era-sh:dNvovtrpApplicability
 			""" .
 
 # dNvpotrp: 1.1.1.3.2.16.7, 1.2.1.1.1.16.7
-era-sh:trackShape sh:property era-sh:dNvpotrp.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:dNvpotrp.
-era-sh:dNvpotrp
+era-sh:RunningTrackShape sh:property era-sh:DNvpotrp.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:DNvpotrp.
+era-sh:DNvpotrp
 	a sh:PropertyShape;
     era:affectedProperty era:dNvpotrp ;
     era:affectedClass era:RunningTrack;
@@ -676,14 +639,14 @@ era-sh:dNvpotrp
     sh:maxCount 1; # Functional property
 	sh:datatype xsd:double ;
 	#sh:pattern "^([1-9]\\d{1,5}|[0-9])(\\.\\d{1})?(\\s.*)?$" ;
-	sh:pattern "^(([1-9]{0,1}[0-9]{0,3}\.{1}[0-9]{1})|([1-9]\d{1,4}0)|([1-9]\d{0,4}))" ;
+	sh:pattern "^(([1-9]{0,1}[0-9]{0,3}\\.{1}[0-9]{1})|([1-9]\\d{1,4}0)|([1-9]\\d{0,4}))" ;
 	sh:severity sh:Violation ;
 	sh:message "dNvpotrp (1.1.1.3.2.16.7, 1.2.1.1.1.16.7): Each Track must define the maximum distance for reversing in Post Trip mode in metres. expressed in metres. This error is due to having maximum distance for reversing in Post Trip mode value that is not a double (real) number."@en .
 
 # dNvpotrp: 1.1.1.3.2.16.7, 1.2.1.1.1.16.7
-era-sh:trackShape sh:sparql era-sh:dNvpotrpApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:dNvpotrpApplicability.
-era-sh:dNvpotrpApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:DNvpotrpApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:DNvpotrpApplicability.
+era-sh:DNvpotrpApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:dNvpotrp;
     era:affectedClass era:RunningTrack;
@@ -706,9 +669,9 @@ era-sh:dNvpotrpApplicability
 			""" .
 
 # dNvroll: 1.1.1.3.2.16.1, 1.2.1.1.1.16.1
-era-sh:trackShape sh:property era-sh:dNvroll.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:dNvroll.
-era-sh:dNvroll
+era-sh:RunningTrackShape sh:property era-sh:DNvroll.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:DNvroll.
+era-sh:DNvroll
 	a sh:PropertyShape;
     era:affectedProperty era:dNvroll ;
     era:affectedClass era:RunningTrack;
@@ -719,14 +682,14 @@ era-sh:dNvroll
     sh:maxCount 1; # Functional property
 	sh:datatype xsd:double ;
 	#sh:pattern "^([1-9]\\d{1,5}|[0-9])(\\.\\d{1})?(\\s.*)?$" ;
-	sh:pattern "^(([1-9]{0,1}[0-9]{0,3}\.{1}[0-9]{1})|([1-9]\d{1,4}0)|([1-9]\d{0,4}))" ;
+	sh:pattern "^(([1-9]{0,1}[0-9]{0,3}\\.{1}[0-9]{1})|([1-9]\\d{1,4}0)|([1-9]\\d{0,4}))" ;
 	sh:severity sh:Violation ;
 	sh:message "dNvroll (1.1.1.3.2.16.1, 1.2.1.1.1.16.1): Each Track must define the parameter used by the ETCS on-board to supervise the distance allowed to be travelled under the roll-away protection and the reverse movement protection expressed in metres. This error is due to having parameter used by the ETCS on-board to supervise the distance allowed to be travelled under the roll-away protection and the reverse movement protection value that is not a double (real) number."@en .
 
 # dNvroll: 1.1.1.3.2.16.1, 1.2.1.1.1.16.1
-era-sh:trackShape sh:sparql era-sh:dNvrollApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:dNvrollApplicability.
-era-sh:dNvrollApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:DNvrollApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:DNvrollApplicability.
+era-sh:DNvrollApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:dNvroll;
     era:affectedClass era:RunningTrack;
@@ -749,9 +712,9 @@ era-sh:dNvrollApplicability
 			""" .
 
 # publicNetworkRoamingDetails: 1.1.1.3.3.7, 1.2.1.1.2.7
-era-sh:trackShape sh:property era-sh:publicNetworkRoamingDetails.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:publicNetworkRoamingDetails.
-era-sh:publicNetworkRoamingDetails
+era-sh:RunningTrackShape sh:property era-sh:PublicNetworkRoamingDetails.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:PublicNetworkRoamingDetails.
+era-sh:PublicNetworkRoamingDetails
 	a sh:PropertyShape ;
     era:affectedProperty era:publicNetworkRoamingDetails ;
     era:affectedClass era:RunningTrack;
@@ -768,9 +731,9 @@ era-sh:publicNetworkRoamingDetails
 	sh:message "publicNetworkRoamingDetails (1.1.1.3.3.7, 1.2.1.1.2.7): Each track may have details on GSM-R roaming to public networks that is a character string. This error is due to having more than one publicNetworkRoamingDetails value or having a value that is not a string."@en.
 
 # publicNetworkRoamingDetails: 1.1.1.3.3.7, 1.2.1.1.2.7
-era-sh:trackShape sh:sparql era-sh:publicNetworkRoamingDetailsApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:publicNetworkRoamingDetailsApplicability.
-era-sh:publicNetworkRoamingDetailsApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:PublicNetworkRoamingDetailsApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:PublicNetworkRoamingDetailsApplicability.
+era-sh:PublicNetworkRoamingDetailsApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:publicNetworkRoamingDetails;
     era:affectedClass era:RunningTrack;
@@ -792,9 +755,9 @@ era-sh:publicNetworkRoamingDetailsApplicability
 			""" .
 
 # localRulesOrRestrictionsDoc: 1.1.1.4.2, 1.2.3.2
-era-sh:trackShape sh:property era-sh:localRulesOrRestrictionsDoc.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:localRulesOrRestrictionsDoc.
-era-sh:localRulesOrRestrictionsDoc
+era-sh:RunningTrackShape sh:property era-sh:LocalRulesOrRestrictionsDoc.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:LocalRulesOrRestrictionsDoc.
+era-sh:LocalRulesOrRestrictionsDoc
 	a sh:PropertyShape ;
     era:affectedProperty era:localRulesOrRestrictionsDoc;
     era:affectedClass era:RunningTrack;
@@ -808,9 +771,9 @@ era-sh:localRulesOrRestrictionsDoc
 	sh:message "localRulesOrRestrictionsDoc (1.1.1.4.2, 1.2.3.2): The track has a document regarding the rules or restrictions of a strictly local nature available by the IM value that must be a Document."@en .
 
 # errorCorrectionsOnboard: 1.1.1.3.1.2, 1.2.1.1.1.19
-era-sh:trackShape sh:property era-sh:errorCorrectionsOnboard.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:errorCorrectionsOnboard.
-era-sh:errorCorrectionsOnboard
+era-sh:RunningTrackShape sh:property era-sh:ErrorCorrectionsOnboard.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ErrorCorrectionsOnboard.
+era-sh:ErrorCorrectionsOnboard
 	a sh:PropertyShape ;
     era:affectedProperty era:errorCorrectionsOnboard;
     era:affectedClass era:RunningTrack;
@@ -823,9 +786,9 @@ era-sh:errorCorrectionsOnboard
 	sh:message "errorCorrectionsOnboard (1.1.1.3.1.2, 1.2.1.1.1.19): The track must have an error correction required for the on-board ETCS, GSM-R and/or ATO function value that is an IRI."@en .
 
 # errorCorrectionsOnboard: 1.1.1.3.1.2, 1.2.1.1.1.19
-era-sh:trackShape sh:sparql era-sh:errorCorrectionsOnboardSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:errorCorrectionsOnboardSKOS.
-era-sh:errorCorrectionsOnboardSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:ErrorCorrectionsOnboardSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:ErrorCorrectionsOnboardSKOS.
+era-sh:ErrorCorrectionsOnboardSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:errorCorrectionsOnboard;
     era:affectedClass era:RunningTrack;
@@ -851,9 +814,9 @@ era-sh:errorCorrectionsOnboardSKOS
 """ .
 
 # etcsInfillLineAccess: 1.1.1.3.2.3, 1.2.1.1.1.3
-era-sh:trackShape sh:property era-sh:etcsInfillLineAccess.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:etcsInfillLineAccess.
-era-sh:etcsInfillLineAccess
+era-sh:RunningTrackShape sh:property era-sh:EtcsInfillLineAccess.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:EtcsInfillLineAccess.
+era-sh:EtcsInfillLineAccess
 	a sh:PropertyShape;
     era:affectedProperty era:etcsInfillLineAccess ;
     era:affectedClass era:RunningTrack;
@@ -867,9 +830,9 @@ era-sh:etcsInfillLineAccess
 	sh:message "etcsInfillLineAccess (1.1.1.3.2.3, 1.2.1.1.1.3): Each Track may define the existence of a ETCS infill necessary for line access. This error is due to having more than one indication of ETCS infill necessary for line access value or having an indication of ETCS infill necessary for line access value that is not Y/N (boolean)."@en .
 
 # etcsInfillLineAccess: 1.1.1.3.2.3, 1.2.1.1.1.3
-era-sh:trackShape sh:sparql era-sh:etcsInfillLineAccessApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:etcsInfillLineAccessApplicability.
-era-sh:etcsInfillLineAccessApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:EtcsInfillLineAccessApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:EtcsInfillLineAccessApplicability.
+era-sh:EtcsInfillLineAccessApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsInfillLineAccess;
     era:affectedClass era:RunningTrack;
@@ -892,9 +855,9 @@ era-sh:etcsInfillLineAccessApplicability
 			""" .
 
 # etcsDegradedSituation: 1.1.1.3.10.1, 1.2.1.1.9.1
-era-sh:trackShape sh:property era-sh:etcsDegradedSituation.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:etcsDegradedSituation.
-era-sh:etcsDegradedSituation
+era-sh:RunningTrackShape sh:property era-sh:EtcsDegradedSituation.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:EtcsDegradedSituation.
+era-sh:EtcsDegradedSituation
 	a sh:PropertyShape ;
     era:affectedProperty era:etcsDegradedSituation;
     era:affectedClass era:RunningTrack;
@@ -907,9 +870,9 @@ era-sh:etcsDegradedSituation
 	sh:message "etcsDegradedSituation (1.1.1.3.10.1, 1.2.1.1.9.1): The track must have an ETCS level for degraded situation value that is an IRI."@en .
 
 # etcsDegradedSituation: 1.1.1.3.10.1, 1.2.1.1.9.1
-era-sh:trackShape sh:sparql era-sh:etcsDegradedSituationSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:etcsDegradedSituationSKOS.
-era-sh:etcsDegradedSituationSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:EtcsDegradedSituationSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:EtcsDegradedSituationSKOS.
+era-sh:EtcsDegradedSituationSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsDegradedSituation;
     era:affectedClass era:RunningTrack;
@@ -935,9 +898,9 @@ era-sh:etcsDegradedSituationSKOS
 """ .
 
 # etcsDegradedSituation: 1.1.1.3.10.1, 1.2.1.1.9.1
-era-sh:trackShape sh:sparql era-sh:etcsDegradedSituationApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:etcsDegradedSituationApplicability.
-era-sh:etcsDegradedSituationApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:EtcsDegradedSituationApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:EtcsDegradedSituationApplicability.
+era-sh:EtcsDegradedSituationApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsDegradedSituation;
     era:affectedClass era:RunningTrack;
@@ -960,9 +923,9 @@ era-sh:etcsDegradedSituationApplicability
 			""" .
 
 # hasEtcsNationalPacket44: 1.1.1.3.2.5, 1.2.1.1.1.5
-era-sh:trackShape sh:property era-sh:hasEtcsNationalPacket44.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasEtcsNationalPacket44.
-era-sh:hasEtcsNationalPacket44
+era-sh:RunningTrackShape sh:property era-sh:HasEtcsNationalPacket44.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasEtcsNationalPacket44.
+era-sh:HasEtcsNationalPacket44
 	a sh:PropertyShape;
     era:affectedProperty era:hasEtcsNationalPacket44 ;
     era:affectedClass era:RunningTrack;
@@ -976,9 +939,9 @@ era-sh:hasEtcsNationalPacket44
 	sh:message "hasEtcsNationalPacket44 (1.1.1.3.2.5, 1.2.1.1.1.5): Each Track may define the existence of an ETCS national packet 44 application. This error is due to having more than one indication of ETCS national packet 44 application value or having an indication of ETCS national packet 44 application value that is not either Y/N (boolean)."@en .
 
 # hasEtcsNationalPacket44: 1.1.1.3.2.5, 1.2.1.1.1.5
-era-sh:trackShape sh:sparql era-sh:hasEtcsNationalPacket44Applicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:hasEtcsNationalPacket44Applicability.
-era-sh:hasEtcsNationalPacket44Applicability
+era-sh:RunningTrackShape sh:sparql era-sh:HasEtcsNationalPacket44Applicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:HasEtcsNationalPacket44Applicability.
+era-sh:HasEtcsNationalPacket44Applicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hasEtcsNationalPacket44;
     era:affectedClass era:RunningTrack;
@@ -1001,9 +964,9 @@ era-sh:hasEtcsNationalPacket44Applicability
 			""" .
 
 # etcsNationalPacket44Function: 1.1.1.3.2.5, 1.2.1.1.1.5
-era-sh:trackShape sh:property era-sh:etcsNationalPacket44Function.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:etcsNationalPacket44Function.
-era-sh:etcsNationalPacket44Function
+era-sh:RunningTrackShape sh:property era-sh:EtcsNationalPacket44Function.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:EtcsNationalPacket44Function.
+era-sh:EtcsNationalPacket44Function
 	a sh:PropertyShape ;
     era:affectedProperty era:etcsNationalPacket44Function;
     era:affectedClass era:RunningTrack;
@@ -1016,9 +979,9 @@ era-sh:etcsNationalPacket44Function
 	sh:message "etcsNationalPacket44Function (1.1.1.3.2.5, 1.2.1.1.1.5): The track must have a ETCS national packet 44 application implemented function value that is an IRI."@en .	
 
 # etcsNationalPacket44Function: 1.1.1.3.2.5, 1.2.1.1.1.5
-era-sh:trackShape sh:sparql era-sh:etcsNationalPacket44FunctionSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:etcsNationalPacket44FunctionSKOS.
-era-sh:etcsNationalPacket44FunctionSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:EtcsNationalPacket44FunctionSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:EtcsNationalPacket44FunctionSKOS.
+era-sh:EtcsNationalPacket44FunctionSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsNationalPacket44Function;
     era:affectedClass era:RunningTrack;
@@ -1044,9 +1007,9 @@ era-sh:etcsNationalPacket44FunctionSKOS
 """  .
 
 # etcsImplementsLevelCrossingProcedure: 1.1.1.3.2.13, 1.2.1.1.1.13
-era-sh:trackShape sh:property era-sh:etcsImplementsLevelCrossingProcedure.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:etcsImplementsLevelCrossingProcedure.
-era-sh:etcsImplementsLevelCrossingProcedure
+era-sh:RunningTrackShape sh:property era-sh:EtcsImplementsLevelCrossingProcedure.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:EtcsImplementsLevelCrossingProcedure.
+era-sh:EtcsImplementsLevelCrossingProcedure
 	a sh:PropertyShape;
     era:affectedProperty era:etcsImplementsLevelCrossingProcedure ;
     era:affectedClass era:RunningTrack;
@@ -1060,9 +1023,9 @@ era-sh:etcsImplementsLevelCrossingProcedure
 	sh:message "etcsImplementsLevelCrossingProcedure (1.1.1.3.2.13, 1.2.1.1.1.13): Each Track may define the existence of level crossing procedure or an equivalent solution for ETCS trackside. This error is due to having more than one indication of existence of level crossing procedure or an equivalent solution for ETCS trackside value or having an indication of level crossing procedure or an equivalent solution for ETCS trackside value that is not Y/N (boolean)."@en .
 
 # etcsImplementsLevelCrossingProcedure: 1.1.1.3.2.13, 1.2.1.1.1.13
-era-sh:trackShape sh:sparql era-sh:etcsImplementsLevelCrossingProcedureApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:etcsImplementsLevelCrossingProcedureApplicability.
-era-sh:etcsImplementsLevelCrossingProcedureApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:EtcsImplementsLevelCrossingProcedureApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:EtcsImplementsLevelCrossingProcedureApplicability.
+era-sh:EtcsImplementsLevelCrossingProcedureApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsImplementsLevelCrossingProcedure;
     era:affectedClass era:RunningTrack;
@@ -1085,9 +1048,9 @@ era-sh:etcsImplementsLevelCrossingProcedureApplicability
 			""" .
 
 # tsiTractionHarmonics: 1.1.1.3.9.2, 1.2.1.1.8.2
-era-sh:trackShape sh:property era-sh:tsiTractionHarmonics.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:tsiTractionHarmonics.
-era-sh:tsiTractionHarmonics
+era-sh:RunningTrackShape sh:property era-sh:TsiTractionHarmonics.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TsiTractionHarmonics.
+era-sh:TsiTractionHarmonics
 	a sh:PropertyShape;
     era:affectedProperty era:tsiTractionHarmonics ;
     era:affectedClass era:RunningTrack;
@@ -1101,9 +1064,9 @@ era-sh:tsiTractionHarmonics
 	sh:message "tsiTractionHarmonics (1.1.1.3.9.2, 1.2.1.1.8.2): Each Track may define the existence and TSI compliance of limits in harmonics in the traction current of vehicles. This error is due to having more than one indication of existence and TSI compliance of limits in harmonics in the traction current of vehicles value or having an indication of existence and TSI compliance of limits in harmonics in the traction current of vehicles value that is not Y/N (boolean)."@en .
 
 # tsiTractionHarmonics: 1.1.1.3.9.2, 1.2.1.1.8.2
-era-sh:trackShape sh:sparql era-sh:tsiTractionHarmonicsApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:tsiTractionHarmonicsApplicability.
-era-sh:tsiTractionHarmonicsApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:TsiTractionHarmonicsApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:TsiTractionHarmonicsApplicability.
+era-sh:TsiTractionHarmonicsApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:tsiTractionHarmonics;
     era:affectedClass era:RunningTrack;
@@ -1127,9 +1090,9 @@ era-sh:tsiTractionHarmonicsApplicability
 			""" .
 
 # tsiMagneticFields:  1.1.1.3.9.1, 1.2.1.1.8.1
-era-sh:trackShape sh:property era-sh:tsiMagneticFields.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:tsiMagneticFields.
-era-sh:tsiMagneticFields
+era-sh:RunningTrackShape sh:property era-sh:TsiMagneticFields.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TsiMagneticFields.
+era-sh:TsiMagneticFields
 	a sh:PropertyShape;
     era:affectedProperty era:tsiMagneticFields ;
     era:affectedClass era:RunningTrack;
@@ -1143,9 +1106,9 @@ era-sh:tsiMagneticFields
 	sh:message "tsiMagneticFields (1.1.1.3.9.1, 1.2.1.1.8.1): Each Track may define the existence and TSI compliance of rules for magnetic fields emitted by a vehicle. This error is due to having more than one indication of existence and TSI compliance of rules for magnetic fields emitted by a vehicle value or having an indication of existence and TSI compliance of rules for magnetic fields emitted by a vehicle value that is not Y/N (boolean)."@en .
 
 # tsiMagneticFields:  1.1.1.3.9.1, 1.2.1.1.8.1
-era-sh:trackShape sh:sparql era-sh:tsiMagneticFieldsApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:tsiMagneticFieldsApplicability.
-era-sh:tsiMagneticFieldsApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:TsiMagneticFieldsApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:TsiMagneticFieldsApplicability.
+era-sh:TsiMagneticFieldsApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:tsiMagneticFields;
     era:affectedClass era:RunningTrack;
@@ -1168,9 +1131,9 @@ era-sh:tsiMagneticFieldsApplicability
 
 
 # publicNetworkRoaming: 1.1.1.3.3.6, 1.2.1.1.2.6
-era-sh:trackShape sh:property era-sh:publicNetworkRoaming.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:publicNetworkRoaming.
-era-sh:publicNetworkRoaming
+era-sh:RunningTrackShape sh:property era-sh:PublicNetworkRoaming.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:PublicNetworkRoaming.
+era-sh:PublicNetworkRoaming
 	a sh:PropertyShape;
     era:affectedProperty era:publicNetworkRoaming ;
     era:affectedClass era:RunningTrack;
@@ -1184,9 +1147,9 @@ era-sh:publicNetworkRoaming
 	sh:message "publicNetworkRoaming (1.1.1.3.3.6, 1.2.1.1.2.6): Each Track may define the existence of GSM-R roaming to public networks. This error is due to having more than one indication of existence of GSM-R roaming to public networks value or having an indication of existence of GSM-R roaming to public networks value that is not Y/N (boolean)."@en .
 
 # publicNetworkRoaming: 1.1.1.3.3.6, 1.2.1.1.2.6
-era-sh:trackShape sh:sparql era-sh:publicNetworkRoamingApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:publicNetworkRoamingApplicability.
-era-sh:publicNetworkRoamingApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:PublicNetworkRoamingApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:PublicNetworkRoamingApplicability.
+era-sh:PublicNetworkRoamingApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:publicNetworkRoaming;
     era:affectedClass era:RunningTrack;
@@ -1208,9 +1171,9 @@ era-sh:publicNetworkRoamingApplicability
 			""" .
 
 # hasETCSRestrictionsConditions: 1.1.1.3.2.6, 1.2.1.1.1.6
-era-sh:trackShape sh:property era-sh:hasETCSRestrictionsConditions.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasETCSRestrictionsConditions.
-era-sh:hasETCSRestrictionsConditions
+era-sh:RunningTrackShape sh:property era-sh:HasETCSRestrictionsConditions.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasETCSRestrictionsConditions.
+era-sh:HasETCSRestrictionsConditions
 	a sh:PropertyShape;
     era:affectedProperty era:hasETCSRestrictionsConditions ;
     era:affectedClass era:RunningTrack;
@@ -1224,9 +1187,9 @@ era-sh:hasETCSRestrictionsConditions
 	sh:message "hasETCSRestrictionsConditions (1.1.1.3.2.6, 1.2.1.1.1.6): Each Track may define the existence of operating restrictions or conditions. This error is due to having more than one indication of existence of operating restrictions or conditions value or having an indication of existence of operating restrictions or conditions value that is not either Y/N (boolean)."@en .
 
 # hasETCSRestrictionsConditions: 1.1.1.3.2.6, 1.2.1.1.1.6
-era-sh:trackShape sh:sparql era-sh:hasETCSRestrictionsConditionsApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:hasETCSRestrictionsConditionsApplicability.
-era-sh:hasETCSRestrictionsConditionsApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:HasETCSRestrictionsConditionsApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:HasETCSRestrictionsConditionsApplicability.
+era-sh:HasETCSRestrictionsConditionsApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:hasETCSRestrictionsConditions;
     era:affectedClass era:RunningTrack;
@@ -1249,9 +1212,9 @@ era-sh:hasETCSRestrictionsConditionsApplicability
 			""" .
 
 # etcsRestrictionsConditionsDoc: 1.1.1.3.2.6, 1.2.1.1.1.6
-era-sh:trackShape sh:property era-sh:etcsRestrictionsConditionsDoc.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:etcsRestrictionsConditionsDoc.
-era-sh:etcsRestrictionsConditionsDoc
+era-sh:RunningTrackShape sh:property era-sh:EtcsRestrictionsConditionsDoc.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:EtcsRestrictionsConditionsDoc.
+era-sh:EtcsRestrictionsConditionsDoc
 	a sh:PropertyShape ;
     era:affectedProperty era:etcsRestrictionsConditionsDoc;
     era:affectedClass era:RunningTrack;
@@ -1265,9 +1228,9 @@ era-sh:etcsRestrictionsConditionsDoc
 	sh:message "etcsRestrictionsConditionsDoc (1.1.1.3.2.6, 1.2.1.1.1.6): The track has a document regarding the rules or restrictions of a strictly local nature available by the IM value that must be a Document."@en .
 
 # etcsRestrictionsConditionsDoc: 1.1.1.3.2.6, 1.2.1.1.1.6
-era-sh:trackShape sh:sparql era-sh:etcsRestrictionsConditionsDocApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:etcsRestrictionsConditionsDocApplicability.
-era-sh:etcsRestrictionsConditionsDocApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:EtcsRestrictionsConditionsDocApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:EtcsRestrictionsConditionsDocApplicability.
+era-sh:EtcsRestrictionsConditionsDocApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsRestrictionsConditionsDoc;
     era:affectedClass era:RunningTrack;
@@ -1290,9 +1253,9 @@ era-sh:etcsRestrictionsConditionsDocApplicability
 
 
 # localRulesOrRestrictions: 1.1.1.4.1, 1.2.3.1
-era-sh:trackShape sh:property era-sh:localRulesOrRestrictions.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:localRulesOrRestrictions.
-era-sh:localRulesOrRestrictions
+era-sh:RunningTrackShape sh:property era-sh:LocalRulesOrRestrictions.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:LocalRulesOrRestrictions.
+era-sh:LocalRulesOrRestrictions
 	a sh:PropertyShape;
     era:affectedProperty era:localRulesOrRestrictions ;
     era:affectedClass era:RunningTrack;
@@ -1306,9 +1269,9 @@ era-sh:localRulesOrRestrictions
 	sh:message "localRulesOrRestrictions (1.1.1.4.1, 1.2.3.1): Each Track may define the existence of rules and restrictions of a strictly local nature. This error is due to having more than one indication of existence of rules and restrictions of a strictly local nature value or having an indication of existence of rules and restrictions of a strictly local nature value that is not Y/N (boolean)."@en .
 
 # switchProtectControlWarning: 1.2.1.1.7.1, 1.1.1.3.8.1
-era-sh:trackShape sh:property era-sh:switchProtectControlWarning.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:switchProtectControlWarning.
-era-sh:switchProtectControlWarning
+era-sh:RunningTrackShape sh:property era-sh:SwitchProtectControlWarning.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:SwitchProtectControlWarning.
+era-sh:SwitchProtectControlWarning
 	a sh:PropertyShape;
     era:affectedProperty era:switchProtectControlWarning ;
     era:affectedClass era:RunningTrack;
@@ -1322,9 +1285,9 @@ era-sh:switchProtectControlWarning
 	sh:message "switchProtectControlWarning (1.2.1.1.7.1, 1.1.1.3.8.1): Each Track may define the existence of switch over between different protection, control and warning systems while running. This error is due to having more than one indication of existence of switch over between different protection, control and warning systems while running value or having an indication of existence of switch over between different protection, control and warning systems while running value that is not Y/N (boolean)."@en .
 
 # switchProtectControlWarning: 1.2.1.1.7.1, 1.1.1.3.8.1
-era-sh:trackShape sh:sparql era-sh:switchProtectControlWarningApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:switchProtectControlWarningApplicability.
-era-sh:switchProtectControlWarningApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:SwitchProtectControlWarningApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:SwitchProtectControlWarningApplicability.
+era-sh:SwitchProtectControlWarningApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:switchProtectControlWarning;
     era:affectedClass era:RunningTrack;
@@ -1353,9 +1316,9 @@ era-sh:switchProtectControlWarningApplicability
 			""" .
 
 # switchRadioSystem: 1.2.1.1.7.2, 1.1.1.3.8.2
-era-sh:trackShape sh:property era-sh:switchRadioSystem.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:switchRadioSystem.
-era-sh:switchRadioSystem
+era-sh:RunningTrackShape sh:property era-sh:SwitchRadioSystem.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:SwitchRadioSystem.
+era-sh:SwitchRadioSystem
 	a sh:PropertyShape;
     era:affectedProperty era:switchRadioSystem ;
     era:affectedClass era:RunningTrack;
@@ -1369,9 +1332,9 @@ era-sh:switchRadioSystem
 	sh:message "switchRadioSystem (1.2.1.1.7.2, 1.1.1.3.8.2): Each Track may define the existence of switch over between different radio systems. This error is due to having more than one indication of existence of switch over between different radio systems value or having an indication of existence of switch over between different radio systems value that is not Y/N (boolean)."@en .
 
 # switchRadioSystem: 1.2.1.1.7.2, 1.1.1.3.8.2
-era-sh:trackShape sh:sparql era-sh:switchRadioSystemApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:switchRadioSystemApplicability.
-era-sh:switchRadioSystemApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:SwitchRadioSystemApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:SwitchRadioSystemApplicability.
+era-sh:SwitchRadioSystemApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:switchRadioSystem;
     era:affectedClass era:RunningTrack;
@@ -1398,9 +1361,9 @@ era-sh:switchRadioSystemApplicability
 			""" .
 
 # hasTSITrainDetection: 1.1.1.3.4.1, 1.2.1.1.3.1
-era-sh:trackShape sh:property era-sh:hasTSITrainDetection.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:hasTSITrainDetection.
-era-sh:hasTSITrainDetection
+era-sh:RunningTrackShape sh:property era-sh:HasTSITrainDetection.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasTSITrainDetection.
+era-sh:HasTSITrainDetection
 	a sh:PropertyShape;
     era:affectedProperty era:hasTSITrainDetection ;
     era:affectedClass era:RunningTrack;
@@ -1415,9 +1378,9 @@ era-sh:hasTSITrainDetection
 	sh:message "hasTSITrainDetection (1.1.1.3.4.1, 1.2.1.1.3.1): Each Track may define the existence of train detection system fully compliant with the TSI. This error is due to having more than one indication of existence of train detection system fully compliant with the TSI value or having an indication of existence of train detection system fully compliant with the TSI value that is not Y/N (boolean)."@en .
 
 # gprsForETCS: 1.1.1.3.3.3.2, 1.2.1.1.2.3.2
-era-sh:trackShape sh:property era-sh:gprsForETCS.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gprsForETCS.
-era-sh:gprsForETCS
+era-sh:RunningTrackShape sh:property era-sh:GprsForETCS.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:GprsForETCS.
+era-sh:GprsForETCS
 	a sh:PropertyShape;
     era:affectedProperty era:gprsForETCS ;
     era:affectedClass era:RunningTrack;
@@ -1431,9 +1394,9 @@ era-sh:gprsForETCS
 	sh:message "gprsForETCS (1.1.1.3.3.3.2, 1.2.1.1.2.3.2): Each Track may define the existence of GPRS for ETCS. This error is due to having more than one indication of existence of GPRS for ETCS value or having an indication of existence of GPRS for ETCS value that is not Y/N (boolean)."@en .
 
 # gprsForETCS: 1.1.1.3.3.3.2, 1.2.1.1.2.3.2
-era-sh:trackShape sh:sparql era-sh:gprsForETCSApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:gprsForETCSApplicability.
-era-sh:gprsForETCSApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:GprsForETCSApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:GprsForETCSApplicability.
+era-sh:GprsForETCSApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gprsForETCS;
     era:affectedClass era:RunningTrack;
@@ -1457,9 +1420,9 @@ era-sh:gprsForETCSApplicability
 			""" .
 
 # gsmrNetworkCoverage: 1.1.1.3.3.5, 1.2.1.1.2.5
-era-sh:trackShape sh:property era-sh:gsmrNetworkCoverage.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmrNetworkCoverage.
-era-sh:gsmrNetworkCoverage
+era-sh:RunningTrackShape sh:property era-sh:GsmrNetworkCoverage.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:GsmrNetworkCoverage.
+era-sh:GsmrNetworkCoverage
 	a sh:PropertyShape ;
     era:affectedProperty era:gsmrNetworkCoverage;
     era:affectedClass era:RunningTrack;
@@ -1472,9 +1435,9 @@ era-sh:gsmrNetworkCoverage
 	sh:message "gsmrNetworkCoverage (1.1.1.3.3.5, 1.2.1.1.2.5): The track must have a GSM-R networks covered by a roaming agreement value that is an IRI."@en .	
 
 # gsmrNetworkCoverage: 1.1.1.3.3.5, 1.2.1.1.2.5
-era-sh:trackShape sh:sparql era-sh:gsmrNetworkCoverageSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:gsmrNetworkCoverageSKOS.
-era-sh:gsmrNetworkCoverageSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:GsmrNetworkCoverageSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:GsmrNetworkCoverageSKOS.
+era-sh:GsmrNetworkCoverageSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmrNetworkCoverage;
     era:affectedClass era:RunningTrack;
@@ -1498,9 +1461,9 @@ era-sh:gsmrNetworkCoverageSKOS
 """ .
 
 # gsmrNetworkCoverage: 1.1.1.3.3.5, 1.2.1.1.2.5
-era-sh:trackShape sh:sparql era-sh:gsmrNetworkCoverageApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:gsmrNetworkCoverageApplicability.
-era-sh:gsmrNetworkCoverageApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:GsmrNetworkCoverageApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:GsmrNetworkCoverageApplicability.
+era-sh:GsmrNetworkCoverageApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmrNetworkCoverage;
     era:affectedClass era:RunningTrack;
@@ -1522,9 +1485,9 @@ era-sh:gsmrNetworkCoverageApplicability
 			""" .
 
 # usesGroup555: 1.1.1.3.3.4, 1.2.1.1.2.4
-era-sh:trackShape sh:property era-sh:usesGroup555.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:usesGroup555.
-era-sh:usesGroup555
+era-sh:RunningTrackShape sh:property era-sh:UsesGroup555.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:UsesGroup555.
+era-sh:UsesGroup555
 	a sh:PropertyShape;
     era:affectedProperty era:usesGroup555 ;
     era:affectedClass era:RunningTrack;
@@ -1538,9 +1501,9 @@ era-sh:usesGroup555
 	sh:message "usesGroup555 (1.1.1.3.3.4, 1.2.1.1.2.4): Each Track may define the existence of GSM-R use of group 555. This error is due to having more than one indication of existence of GSM-R use of group 555 value or having an indication of existence of GSM-R use of group 555 value that is not Y/N (boolean)."@en .
 
 # usesGroup555: 1.1.1.3.3.4, 1.2.1.1.2.4
-era-sh:trackShape sh:sparql era-sh:usesGroup555Applicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:usesGroup555Applicability.
-era-sh:usesGroup555Applicability
+era-sh:RunningTrackShape sh:sparql era-sh:UsesGroup555Applicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:UsesGroup555Applicability.
+era-sh:UsesGroup555Applicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:usesGroup555;
     era:affectedClass era:RunningTrack;
@@ -1564,9 +1527,9 @@ era-sh:usesGroup555Applicability
 			""" .
 
 # gsmRVersion: 1.1.1.3.3.1, 1.2.1.1.2.1
-era-sh:trackShape sh:property era-sh:gsmRVersion.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmRVersion.
-era-sh:gsmRVersion
+era-sh:RunningTrackShape sh:property era-sh:GsmRVersion.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:GsmRVersion.
+era-sh:GsmRVersion
 	a sh:PropertyShape ;
     era:affectedProperty era:gsmRVersion;
     era:affectedClass era:RunningTrack;
@@ -1579,9 +1542,9 @@ era-sh:gsmRVersion
 	sh:message "gsmRVersion (1.1.1.3.3.1, 1.2.1.1.2.1): The track must have a GSM-R version value that is an IRI."@en .	
 
 # gsmRVersion: 1.1.1.3.3.1, 1.2.1.1.2.1
-era-sh:trackShape sh:sparql era-sh:gsmRVersionSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:gsmRVersionSKOS.
-era-sh:gsmRVersionSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:GsmRVersionSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:GsmRVersionSKOS.
+era-sh:GsmRVersionSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmRVersion;
     era:affectedClass era:RunningTrack;
@@ -1605,8 +1568,8 @@ era-sh:gsmRVersionSKOS
 """ .
 
 # trackId: 1.1.1.0.0.1, 1.2.1.0.0.2
-era-sh:trackShape sh:property era-sh:trackId.
-era-sh:trackId
+era-sh:RunningTrackShape sh:property era-sh:TrackId.
+era-sh:TrackId
 	a sh:PropertyShape ;
     era:affectedProperty era:trackId;
     era:affectedClass era:RunningTrack;
@@ -1619,9 +1582,9 @@ era-sh:trackId
 	sh:message "trackId (1.1.1.3.3.3.3, 1.2.1.1.2.3.3): The identification of track must be a string. This error may be due to having a track with no identification or with more than one value as identification or having a value that is not a string."@en .
 
 # gsmrForcedDeregistrationFunctionalNumber: 1.1.1.3.3.11, 1.2.1.1.2.11
-era-sh:trackShape sh:property era-sh:gsmrForcedDeregistrationFunctionalNumber.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmrForcedDeregistrationFunctionalNumber.
-era-sh:gsmrForcedDeregistrationFunctionalNumber
+era-sh:RunningTrackShape sh:property era-sh:GsmrForcedDeregistrationFunctionalNumber.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:GsmrForcedDeregistrationFunctionalNumber.
+era-sh:GsmrForcedDeregistrationFunctionalNumber
 	a sh:PropertyShape;
     era:affectedProperty era:gsmrForcedDeregistrationFunctionalNumber;
     era:affectedClass era:RunningTrack;
@@ -1635,9 +1598,9 @@ era-sh:gsmrForcedDeregistrationFunctionalNumber
 	sh:message "gsmrForcedDeregistrationFunctionalNumber (1.1.1.3.3.11, 1.2.1.1.2.11): Each Track may define the existence of GSM-R network configured to allow forced de-registration of a functional number by another driver. This error is due to having more than one indication of existence of GSM-R network configured to allow forced de-registration of a functional number by another driver value or having an indication of existence of GSM-R network configured to allow forced de-registration of a functional number by another driver value that is not Y/N (boolean)."@en .
 
 # gsmrForcedDeregistrationFunctionalNumber: 1.1.1.3.3.11, 1.2.1.1.2.11
-era-sh:trackShape sh:sparql era-sh:gsmrForcedDeregistrationFunctionalNumberApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:gsmrForcedDeregistrationFunctionalNumberApplicability.
-era-sh:gsmrForcedDeregistrationFunctionalNumberApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:GsmrForcedDeregistrationFunctionalNumberApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:GsmrForcedDeregistrationFunctionalNumberApplicability.
+era-sh:GsmrForcedDeregistrationFunctionalNumberApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmrForcedDeregistrationFunctionalNumber;
     era:affectedClass era:RunningTrack;
@@ -1661,9 +1624,9 @@ era-sh:gsmrForcedDeregistrationFunctionalNumberApplicability
 			""" .
 
 # mNvcontact: 1.1.1.3.2.16.9, 1.2.1.1.1.16.9
-era-sh:trackShape sh:property era-sh:mNvcontact.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:mNvcontact.
-era-sh:mNvcontact
+era-sh:RunningTrackShape sh:property era-sh:MNvcontact.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MNvcontact.
+era-sh:MNvcontact
 	a sh:PropertyShape ;
     era:affectedProperty era:mNvcontact;
     era:affectedClass era:RunningTrack;
@@ -1677,9 +1640,9 @@ era-sh:mNvcontact
 	sh:message "mNvcontact (1.1.1.3.2.16.9, 1.2.1.1.1.16.9): The track must have a M_NVCONTACT value that is an IRI."@en .	
 
 # mNvcontact: 1.1.1.3.2.16.9, 1.2.1.1.1.16.9
-era-sh:trackShape sh:sparql era-sh:mNvcontactSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:mNvcontactSKOS.
-era-sh:mNvcontactSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:MNvcontactSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:MNvcontactSKOS.
+era-sh:MNvcontactSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:mNvcontact;
     era:affectedClass era:RunningTrack;
@@ -1705,9 +1668,9 @@ era-sh:mNvcontactSKOS
 """ .
 
 # mNvcontact: 1.1.1.3.2.16.9, 1.2.1.1.1.16.9
-era-sh:trackShape sh:sparql era-sh:mNvcontactApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:mNvcontactApplicability.
-era-sh:mNvcontactApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:MNvcontactApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:MNvcontactApplicability.
+era-sh:MNvcontactApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:mNvcontact;
     era:affectedClass era:RunningTrack;
@@ -1730,9 +1693,9 @@ era-sh:mNvcontactApplicability
 			""" .
 
 # mNvderun: 1.1.1.3.2.16.10, 1.2.1.1.1.16.10
-era-sh:trackShape sh:property era-sh:mNvderun.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:mNvderun.
-era-sh:mNvderun
+era-sh:RunningTrackShape sh:property era-sh:MNvderun.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MNvderun.
+era-sh:MNvderun
 	a sh:PropertyShape;
     era:affectedProperty era:mNvderun ;
     era:affectedClass era:RunningTrack;
@@ -1746,9 +1709,9 @@ era-sh:mNvderun
 	sh:message "mNvderun (1.1.1.3.2.16.10, 1.2.1.1.1.16.10): Each Track may define the existence of M_NVDERUN. This error is due to having more than one indication of existence of M_NVDERUN value or having an indication of existence of M_NVDERUN value that is not Y/N (boolean)."@en .
 
 # mNvderun: 1.1.1.3.2.16.10, 1.2.1.1.1.16.10
-era-sh:trackShape sh:sparql era-sh:mNvderunApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:mNvderunApplicability.
-era-sh:mNvderunApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:MNvderunApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:MNvderunApplicability.
+era-sh:MNvderunApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:mNvderun;
     era:affectedClass era:RunningTrack;
@@ -1771,9 +1734,9 @@ era-sh:mNvderunApplicability
 			""" .
 
 # minimumHorizontalRadius: 1.1.1.1.3.7, 1.2.2.0.3.2
-era-sh:trackShape sh:property era-sh:minimumHorizontalRadius.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:minimumHorizontalRadius.
-era-sh:minimumHorizontalRadius
+era-sh:RunningTrackShape sh:property era-sh:MinimumHorizontalRadius.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MinimumHorizontalRadius.
+era-sh:MinimumHorizontalRadius
 	a sh:PropertyShape ;
     era:affectedProperty era:minimumHorizontalRadius;
     era:affectedClass era:RunningTrack;
@@ -1789,9 +1752,9 @@ era-sh:minimumHorizontalRadius
 	sh:message "minimumHorizontalRadius (1.1.1.1.3.7, 1.2.2.0.3.2): The track defines a minimum radius of horizontal curve. This error is due to having more than one value, having a value that is not an integer or having an integer that does not follow the pattern [NNNNNN]."@en .
 
 # nationalValuesBrakeModel: 1.1.1.3.2.16.13, 1.2.1.1.1.16.13
-era-sh:trackShape sh:property era-sh:nationalValuesBrakeModel.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:nationalValuesBrakeModel.
-era-sh:nationalValuesBrakeModel
+era-sh:RunningTrackShape sh:property era-sh:NationalValuesBrakeModel.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:NationalValuesBrakeModel.
+era-sh:NationalValuesBrakeModel
 	a sh:PropertyShape ;
     era:affectedProperty era:nationalValuesBrakeModel;
     era:affectedClass era:RunningTrack;
@@ -1805,9 +1768,9 @@ era-sh:nationalValuesBrakeModel
 	sh:message "nationalValuesBrakeModel (1.1.1.3.2.16.13, 1.2.1.1.1.16.13): The track has a National Value used for the brake model that must be a string and follow the format [±NNNN.NNN]. The error is due to having more than one value, or it is due to the value not following the pattern."@en .
 
 # nationalValuesBrakeModel: 1.1.1.3.2.16.13, 1.2.1.1.1.16.13
-era-sh:trackShape sh:sparql era-sh:nationalValuesBrakeModelApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:nationalValuesBrakeModelApplicability.
-era-sh:nationalValuesBrakeModelApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:NationalValuesBrakeModelApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:NationalValuesBrakeModelApplicability.
+era-sh:NationalValuesBrakeModelApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:nationalValuesBrakeModel;
     era:affectedClass era:RunningTrack;
@@ -1830,9 +1793,9 @@ era-sh:nationalValuesBrakeModelApplicability
 			""" .
 
 # gsmRNoCoverage: 1.1.1.3.3.8, 1.2.1.1.2.8
-era-sh:trackShape sh:property era-sh:gsmRNoCoverage.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmRNoCoverage.
-era-sh:gsmRNoCoverage
+era-sh:RunningTrackShape sh:property era-sh:GsmRNoCoverage.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:GsmRNoCoverage.
+era-sh:GsmRNoCoverage
 	a sh:PropertyShape;
     era:affectedProperty era:gsmRNoCoverage ;
     era:affectedClass era:RunningTrack;
@@ -1846,9 +1809,9 @@ era-sh:gsmRNoCoverage
 	sh:message "gsmRNoCoverage (1.1.1.3.3.8, 1.2.1.1.2.8): Each Track may define the indication of existence of GSMR coverage. This error is due to having more than one indication of existence of GSMR coverage value or having an indication of existence of GSMR coverage value that is not Y/N (boolean)."@en .
 
 # gsmRNoCoverage: 1.1.1.3.3.8, 1.2.1.1.2.8
-era-sh:trackShape sh:sparql era-sh:gsmRNoCoverageApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:gsmRNoCoverageApplicability.
-era-sh:gsmRNoCoverageApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:GsmRNoCoverageApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:GsmRNoCoverageApplicability.
+era-sh:GsmRNoCoverageApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmRNoCoverage;
     era:affectedClass era:RunningTrack;
@@ -1870,9 +1833,9 @@ era-sh:gsmRNoCoverageApplicability
 			""" .
 
 # gsmRActiveMobiles: 1.1.1.3.3.2, 1.2.1.1.2.2
-era-sh:trackShape sh:property era-sh:gsmRActiveMobiles.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmRActiveMobiles.
-era-sh:gsmRActiveMobiles
+era-sh:RunningTrackShape sh:property era-sh:GsmRActiveMobiles.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:GsmRActiveMobiles.
+era-sh:GsmRActiveMobiles
 	a sh:PropertyShape ;
     era:affectedProperty era:gsmRActiveMobiles;
     era:affectedClass era:RunningTrack;
@@ -1886,9 +1849,9 @@ era-sh:gsmRActiveMobiles
 	sh:message "gsmRActiveMobiles (1.1.1.3.3.2, 1.2.1.1.2.2): The track must have a number of active GSM-R mobiles (EDOR) or simultaneous communication session on-board for ETCS Level 2 needed to perform radio block centre handovers without having an operational disruption value that is a single IRI."@en .	
 
 # gsmRActiveMobiles: 1.1.1.3.3.2, 1.2.1.1.2.2
-era-sh:trackShape sh:sparql era-sh:gsmRActiveMobilesSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:gsmRActiveMobilesSKOS.
-era-sh:gsmRActiveMobilesSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:GsmRActiveMobilesSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:GsmRActiveMobilesSKOS.
+era-sh:GsmRActiveMobilesSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmRActiveMobiles;
     era:affectedClass era:RunningTrack;
@@ -1914,9 +1877,9 @@ era-sh:gsmRActiveMobilesSKOS
 """ .
 
 # gsmRActiveMobiles: 1.1.1.3.3.2, 1.2.1.1.2.2
-era-sh:trackShape sh:sparql era-sh:gsmRActiveMobilesApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:gsmRActiveMobilesApplicability.
-era-sh:gsmRActiveMobilesApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:GsmRActiveMobilesApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:GsmRActiveMobilesApplicability.
+era-sh:GsmRActiveMobilesApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmRActiveMobiles;
     era:affectedClass era:RunningTrack;
@@ -1940,9 +1903,9 @@ era-sh:gsmRActiveMobilesApplicability
 			""" .
 
 # gsmROptionalFunctions: 1.1.1.3.3.3, 1.2.1.1.2.3
-era-sh:trackShape sh:property era-sh:gsmROptionalFunctions.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:gsmROptionalFunctions.
-era-sh:gsmROptionalFunctions
+era-sh:RunningTrackShape sh:property era-sh:GsmROptionalFunctions.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:GsmROptionalFunctions.
+era-sh:GsmROptionalFunctions
 	a sh:PropertyShape ;
     era:affectedProperty era:gsmROptionalFunctions;
     era:affectedClass era:RunningTrack;
@@ -1955,9 +1918,9 @@ era-sh:gsmROptionalFunctions
 	sh:message "gsmROptionalFunctions (1.1.1.3.3.3, 1.2.1.1.2.3): The track must have optional GSM-R functions value that is an IRI."@en .	
 
 # gsmROptionalFunctions: 1.1.1.3.3.2, 1.2.1.1.2.2
-era-sh:trackShape sh:sparql era-sh:gsmROptionalFunctionsSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:gsmROptionalFunctionsSKOS.
-era-sh:gsmROptionalFunctionsSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:GsmROptionalFunctionsSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:GsmROptionalFunctionsSKOS.
+era-sh:GsmROptionalFunctionsSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmROptionalFunctions;
     era:affectedClass era:RunningTrack;
@@ -1983,9 +1946,9 @@ era-sh:gsmROptionalFunctionsSKOS
 """ .
 
 # gsmROptionalFunctions: 1.1.1.3.3.2, 1.2.1.1.2.2
-era-sh:trackShape sh:sparql era-sh:gsmROptionalFunctionsApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:gsmROptionalFunctionsApplicability.
-era-sh:gsmROptionalFunctionsApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:GsmROptionalFunctionsApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:GsmROptionalFunctionsApplicability.
+era-sh:GsmROptionalFunctionsApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmROptionalFunctions;
     era:affectedClass era:RunningTrack;
@@ -2007,9 +1970,9 @@ era-sh:gsmROptionalFunctionsApplicability
 			""" .
 
 # otherCantDeficiencyBasicSSP: 1.1.1.3.2.14.1, 1.2.1.1.1.14.1
-era-sh:trackShape sh:property era-sh:otherCantDeficiencyBasicSSP.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:otherCantDeficiencyBasicSSP.
-era-sh:otherCantDeficiencyBasicSSP
+era-sh:RunningTrackShape sh:property era-sh:OtherCantDeficiencyBasicSSP.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:OtherCantDeficiencyBasicSSP.
+era-sh:OtherCantDeficiencyBasicSSP
 	a sh:PropertyShape ;
     era:affectedProperty era:otherCantDeficiencyBasicSSP;
     era:affectedClass era:RunningTrack;
@@ -2023,9 +1986,9 @@ era-sh:otherCantDeficiencyBasicSSP
 	sh:message "otherCantDeficiencyBasicSSP (1.1.1.3.2.14.1, 1.2.1.1.1.14.1): The track must have other Cant Deficiency train categories basic SSP value that is an IRI."@en .	
 
 # otherCantDeficiencyBasicSSP: 1.1.1.3.2.14.1, 1.2.1.1.1.14.1
-era-sh:trackShape sh:sparql era-sh:otherCantDeficiencyBasicSSPSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:otherCantDeficiencyBasicSSPSKOS.
-era-sh:otherCantDeficiencyBasicSSPSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:OtherCantDeficiencyBasicSSPSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:OtherCantDeficiencyBasicSSPSKOS.
+era-sh:OtherCantDeficiencyBasicSSPSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:otherCantDeficiencyBasicSSP;
     era:affectedClass era:RunningTrack;
@@ -2051,9 +2014,9 @@ era-sh:otherCantDeficiencyBasicSSPSKOS
 """ .
 
 # otherCantDeficiencyBasicSSP: 1.1.1.3.2.14.1, 1.2.1.1.1.14.1
-era-sh:trackShape sh:sparql era-sh:otherCantDeficiencyBasicSSPApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:otherCantDeficiencyBasicSSPApplicability.
-era-sh:otherCantDeficiencyBasicSSPApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:OtherCantDeficiencyBasicSSPApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:OtherCantDeficiencyBasicSSPApplicability.
+era-sh:OtherCantDeficiencyBasicSSPApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:otherCantDeficiencyBasicSSP;
     era:affectedClass era:RunningTrack;
@@ -2076,9 +2039,9 @@ era-sh:otherCantDeficiencyBasicSSPApplicability
 			""" .
 
 # legacyRadioSystem: 1.1.1.3.6.1, 1.2.1.1.5.1
-era-sh:trackShape sh:property era-sh:legacyRadioSystem.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:legacyRadioSystem.
-era-sh:legacyRadioSystem
+era-sh:RunningTrackShape sh:property era-sh:LegacyRadioSystem.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:LegacyRadioSystem.
+era-sh:LegacyRadioSystem
 	a sh:PropertyShape ;
     era:affectedProperty era:legacyRadioSystem;
     era:affectedClass era:RunningTrack;
@@ -2092,9 +2055,9 @@ era-sh:legacyRadioSystem
 	sh:message "legacyRadioSystem (1.1.1.3.6.1, 1.2.1.1.5.1): The track must have other radio systems installed (Radio Legacy Systems) value that is an IRI."@en .	
 
 # legacyRadioSystem: 1.1.1.3.6.1, 1.2.1.1.5.1
-era-sh:trackShape sh:sparql era-sh:legacyRadioSystemSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:legacyRadioSystemSKOS.
-era-sh:legacyRadioSystemSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:LegacyRadioSystemSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:LegacyRadioSystemSKOS.
+era-sh:LegacyRadioSystemSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:legacyRadioSystem;
     era:affectedClass era:RunningTrack;
@@ -2118,9 +2081,9 @@ era-sh:legacyRadioSystemSKOS
 """ .
 
 # otherTrainProtection: 1.1.1.3.10.2, 1.2.1.1.9.2
-era-sh:trackShape sh:property era-sh:otherTrainProtection.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:otherTrainProtection.
-era-sh:otherTrainProtection
+era-sh:RunningTrackShape sh:property era-sh:OtherTrainProtection.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:OtherTrainProtection.
+era-sh:OtherTrainProtection
 	a sh:PropertyShape ;
     era:affectedProperty era:otherTrainProtection;
     era:affectedClass era:RunningTrack;
@@ -2134,9 +2097,9 @@ era-sh:otherTrainProtection
 	sh:message "otherTrainProtection (1.1.1.3.10.2, 1.2.1.1.9.2): The track must have other train protection, control and warning systems for degraded situation value that is an IRI."@en .	
 
 # otherTrainProtection: 1.1.1.3.10.2, 1.2.1.1.9.2
-era-sh:trackShape sh:sparql era-sh:otherTrainProtectionSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:otherTrainProtectionSKOS.
-era-sh:otherTrainProtectionSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:OtherTrainProtectionSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:OtherTrainProtectionSKOS.
+era-sh:OtherTrainProtectionSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:otherTrainProtection;
     era:affectedClass era:RunningTrack;
@@ -2162,9 +2125,9 @@ era-sh:otherTrainProtectionSKOS
 """ .
 
 # otherTrainProtection: 1.1.1.3.10.2, 1.2.1.1.9.2
-era-sh:trackShape sh:sparql era-sh:otherTrainProtectionApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:otherTrainProtectionApplicability.
-era-sh:otherTrainProtectionApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:OtherTrainProtectionApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:OtherTrainProtectionApplicability.
+era-sh:OtherTrainProtectionApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:otherTrainProtection;
     era:affectedClass era:RunningTrack;
@@ -2187,9 +2150,9 @@ era-sh:otherTrainProtectionApplicability
 			""" .
 
 # freightCorridor: # 1.1.1.1.2.3, 1.2.1.0.2.3 
-era-sh:trackShape sh:property era-sh:freightCorridorShape.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:freightCorridorShape.
-era-sh:freightCorridorShape
+era-sh:RunningTrackShape sh:property era-sh:FreightCorridorShape.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:FreightCorridorShape.
+era-sh:FreightCorridorShape
 	a sh:PropertyShape ;
     era:affectedProperty era:lineCategory;
     era:affectedClass era:freightCorridor;
@@ -2202,9 +2165,9 @@ era-sh:freightCorridorShape
 	sh:message "freightCorridor (1.1.1.1.2.3, 1.2.1.0.2.3): Each track must have an indication whether the line is designated to a Railway Freight Corridor"@en .
 
 # freightCorridor: # 1.1.1.1.2.3, 1.2.1.0.2.3 
-era-sh:trackShape sh:sparql era-sh:freightCorridorSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:freightCorridorSKOS.
-era-sh:freightCorridorSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:FreightCorridorSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:FreightCorridorSKOS.
+era-sh:FreightCorridorSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:lineCategory;
     era:affectedClass era:freightCorridor;
@@ -2228,9 +2191,9 @@ era-sh:freightCorridorSKOS
 """ .
 
 # qNvdriverAdhes: 1.1.1.3.2.16.11, 1.2.1.1.1.16.11
-era-sh:trackShape sh:property era-sh:qNvdriverAdhes.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:qNvdriverAdhes.
-era-sh:qNvdriverAdhes
+era-sh:RunningTrackShape sh:property era-sh:QNvdriverAdhes.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:QNvdriverAdhes.
+era-sh:QNvdriverAdhes
 	a sh:PropertyShape ;
     era:affectedProperty era:qNvdriverAdhes;
     era:affectedClass era:RunningTrack;
@@ -2244,9 +2207,9 @@ era-sh:qNvdriverAdhes
 	sh:message "qNvdriverAdhes (1.1.1.3.2.16.11, 1.2.1.1.1.16.11): The track must have a single Q_NVDRIVER_ADHES value that is an IRI."@en .	
 
 # qNvdriverAdhes: 1.1.1.3.2.16.11, 1.2.1.1.1.16.11
-era-sh:trackShape sh:sparql era-sh:qNvdriverAdhesSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:qNvdriverAdhesSKOS.
-era-sh:qNvdriverAdhesSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:QNvdriverAdhesSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:QNvdriverAdhesSKOS.
+era-sh:QNvdriverAdhesSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:qNvdriverAdhes;
     era:affectedClass era:RunningTrack;
@@ -2272,9 +2235,9 @@ era-sh:qNvdriverAdhesSKOS
 """ .
 
 # qNvdriverAdhes: 1.1.1.3.2.16.11, 1.2.1.1.1.16.11
-era-sh:trackShape sh:sparql era-sh:qNvdriverAdhesApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:qNvdriverAdhesApplicability.
-era-sh:qNvdriverAdhesApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:QNvdriverAdhesApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:QNvdriverAdhesApplicability.
+era-sh:QNvdriverAdhesApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:qNvdriverAdhes;
     era:affectedClass era:RunningTrack;
@@ -2297,9 +2260,9 @@ era-sh:qNvdriverAdhesApplicability
 			""" .
 
 # qNvemrrls: 1.1.1.3.2.16.2, 1.2.1.1.1.16.2
-era-sh:trackShape sh:property era-sh:qNvemrrls.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:qNvemrrls.
-era-sh:qNvemrrls
+era-sh:RunningTrackShape sh:property era-sh:QNvemrrls.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:QNvemrrls.
+era-sh:QNvemrrls
 	a sh:PropertyShape ;
     era:affectedProperty era:qNvemrrls;
     era:affectedClass era:RunningTrack;
@@ -2313,9 +2276,9 @@ era-sh:qNvemrrls
 	sh:message "qNvemrrls (1.1.1.3.2.16.2, 1.2.1.1.1.16.2): The track must have a single Q_NVEMRRLS value that is an IRI."@en .	
 
 # qNvemrrls: 1.1.1.3.2.16.2, 1.2.1.1.1.16.2
-era-sh:trackShape sh:sparql era-sh:qNvemrrlsSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:qNvemrrlsSKOS.
-era-sh:qNvemrrlsSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:QNvemrrlsSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:QNvemrrlsSKOS.
+era-sh:QNvemrrlsSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:qNvemrrls;
     era:affectedClass era:RunningTrack;
@@ -2341,9 +2304,9 @@ era-sh:qNvemrrlsSKOS
 """ .
 
 # qNvemrrls: 1.1.1.3.2.16.2, 1.2.1.1.1.16.2
-era-sh:trackShape sh:sparql era-sh:qNvemrrlsApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:qNvemrrlsApplicability.
-era-sh:qNvemrrlsApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:QNvemrrlsApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:QNvemrrlsApplicability.
+era-sh:QNvemrrlsApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:qNvemrrls;
     era:affectedClass era:RunningTrack;
@@ -2367,9 +2330,9 @@ era-sh:qNvemrrlsApplicability
 
 
 # qNvsbtsmperm: 1.1.1.3.2.16.12, 1.2.1.1.1.16.12
-era-sh:trackShape sh:property era-sh:qNvsbtsmperm.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:qNvsbtsmperm.
-era-sh:qNvsbtsmperm
+era-sh:RunningTrackShape sh:property era-sh:QNvsbtsmperm.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:QNvsbtsmperm.
+era-sh:QNvsbtsmperm
 	a sh:PropertyShape;
     era:affectedProperty era:qNvsbtsmperm ;
     era:affectedClass era:RunningTrack;
@@ -2383,9 +2346,9 @@ era-sh:qNvsbtsmperm
 	sh:message "qNvsbtsmperm (1.1.1.3.2.16.12, 1.2.1.1.1.16.12): Each Track may define the existence of a permission to use service brake in target speed monitoring Q_NVSBTSMPERM. This error is due to having more than one indication of existence of permission to use service brake in target speed monitoring Q_NVSBTSMPERM value or having an indication of permission to use service brake in target speed monitoring Q_NVSBTSMPERM value that is not Y/N (boolean)."@en .
 
 # qNvsbtsmperm: 1.1.1.3.2.16.12, 1.2.1.1.1.16.12
-era-sh:trackShape sh:sparql era-sh:qNvsbtsmpermApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:qNvsbtsmpermApplicability.
-era-sh:qNvsbtsmpermApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:QNvsbtsmpermApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:QNvsbtsmpermApplicability.
+era-sh:QNvsbtsmpermApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:qNvsbtsmperm;
     era:affectedClass era:RunningTrack;
@@ -2408,9 +2371,9 @@ era-sh:qNvsbtsmpermApplicability
 			""" .
 
 # radioNetworkId: 1.1.1.3.3.12, 1.2.1.1.2.13
-era-sh:trackShape sh:property era-sh:radioNetworkId.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:radioNetworkId.
-era-sh:radioNetworkId
+era-sh:RunningTrackShape sh:property era-sh:RadioNetworkId.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:RadioNetworkId.
+era-sh:RadioNetworkId
 	a sh:PropertyShape ;
     era:affectedProperty era:radioNetworkId;
     era:affectedClass era:RunningTrack;
@@ -2424,9 +2387,9 @@ era-sh:radioNetworkId
 	sh:message "radioNetworkId (1.1.1.3.3.12, 1.2.1.1.2.13): The track has a Radio Network ID that must be a string and follow the format [NNNNNN]. The error is due to the value not following the pattern."@en .
 
 # radioNetworkId: 1.1.1.3.3.12, 1.2.1.1.2.13
-era-sh:trackShape sh:sparql era-sh:radioNetworkIdApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:radioNetworkIdApplicability.
-era-sh:radioNetworkIdApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:RadioNetworkIdApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:RadioNetworkIdApplicability.
+era-sh:RadioNetworkIdApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:radioNetworkId;
     era:affectedClass era:RunningTrack;
@@ -2448,9 +2411,9 @@ era-sh:radioNetworkIdApplicability
 			""" .
 
 # dataRadioCompatible: 1.1.1.3.3.10, 1.2.1.1.2.10
-era-sh:trackShape sh:property era-sh:dataRadioCompatible.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:dataRadioCompatible.
-era-sh:dataRadioCompatible
+era-sh:RunningTrackShape sh:property era-sh:DataRadioCompatible.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:DataRadioCompatible.
+era-sh:DataRadioCompatible
 	a sh:PropertyShape ;
     era:affectedProperty era:dataRadioCompatible;
     era:affectedClass era:RunningTrack;
@@ -2463,9 +2426,9 @@ era-sh:dataRadioCompatible
 	sh:message "dataRadioCompatible (1.1.1.3.3.10, 1.2.1.1.2.10): The track must have a radio system compatibility data value that is an IRI."@en .	
 
 # dataRadioCompatible: 1.1.1.3.3.10, 1.2.1.1.2.10
-era-sh:trackShape sh:sparql era-sh:dataRadioCompatibleSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:dataRadioCompatibleSKOS.
-era-sh:dataRadioCompatibleSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:DataRadioCompatibleSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:DataRadioCompatibleSKOS.
+era-sh:DataRadioCompatibleSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:dataRadioCompatible;
     era:affectedClass era:RunningTrack;
@@ -2489,9 +2452,9 @@ era-sh:dataRadioCompatibleSKOS
 """ .
 
 # dataRadioCompatible: 1.1.1.3.3.10, 1.2.1.1.2.10
-era-sh:trackShape sh:sparql era-sh:dataRadioCompatibleApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:dataRadioCompatibleApplicability.
-era-sh:dataRadioCompatibleApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:DataRadioCompatibleApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:DataRadioCompatibleApplicability.
+era-sh:DataRadioCompatibleApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:dataRadioCompatible;
     era:affectedClass era:RunningTrack;
@@ -2515,9 +2478,9 @@ era-sh:dataRadioCompatibleApplicability
 			""" .
 
 # voiceRadioCompatible: 1.1.1.3.3.9, 1.2.1.1.2.9
-era-sh:trackShape sh:property era-sh:voiceRadioCompatible.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:voiceRadioCompatible.
-era-sh:voiceRadioCompatible
+era-sh:RunningTrackShape sh:property era-sh:VoiceRadioCompatible.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:VoiceRadioCompatible.
+era-sh:VoiceRadioCompatible
 	a sh:PropertyShape ;
     era:affectedProperty era:voiceRadioCompatible;
     era:affectedClass era:RunningTrack;
@@ -2530,9 +2493,9 @@ era-sh:voiceRadioCompatible
 	sh:message "voiceRadioCompatible (1.1.1.3.3.9, 1.2.1.1.2.9): The track must have a radio system compatibility voice value that is an IRI."@en .	
 
 # voiceRadioCompatible: 1.1.1.3.3.9, 1.2.1.1.2.9
-era-sh:trackShape sh:sparql era-sh:voiceRadioCompatibleSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:voiceRadioCompatibleSKOS.
-era-sh:voiceRadioCompatibleSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:VoiceRadioCompatibleSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:VoiceRadioCompatibleSKOS.
+era-sh:VoiceRadioCompatibleSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:voiceRadioCompatible;
     era:affectedClass era:RunningTrack;
@@ -2556,9 +2519,9 @@ era-sh:voiceRadioCompatibleSKOS
 """ .
 
 # voiceRadioCompatible: 1.1.1.3.3.9, 1.2.1.1.2.9
-era-sh:trackShape sh:sparql era-sh:voiceRadioCompatibleApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:voiceRadioCompatibleApplicability.
-era-sh:voiceRadioCompatibleApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:VoiceRadioCompatibleApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:VoiceRadioCompatibleApplicability.
+era-sh:VoiceRadioCompatibleApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:voiceRadioCompatible;
     era:affectedClass era:RunningTrack;
@@ -2580,9 +2543,9 @@ era-sh:voiceRadioCompatibleApplicability
 			""" .
 
 # errorCorrectionsOnboardExplanation: 1.1.1.3.1.2, 1.2.1.1.1.19
-era-sh:trackShape sh:property era-sh:errorCorrectionsOnboardExplanation.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:errorCorrectionsOnboardExplanation.
-era-sh:errorCorrectionsOnboardExplanation
+era-sh:RunningTrackShape sh:property era-sh:ErrorCorrectionsOnboardExplanation.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ErrorCorrectionsOnboardExplanation.
+era-sh:ErrorCorrectionsOnboardExplanation
 	a sh:PropertyShape ;
     era:affectedProperty era:errorCorrectionsOnboardExplanation;
     era:affectedClass era:RunningTrack;
@@ -2596,9 +2559,9 @@ era-sh:errorCorrectionsOnboardExplanation
 	sh:message "errorCorrectionsOnboardExplanation (1.1.1.3.1.2, 1.2.1.1.1.19): The errorCorrectionsOnboardExplanation must be a string. This error is due to the value not being a string."@en .
 
 # reasonsEtcsRadioBlockCenterReject: 1.1.1.3.2.15, 1.2.1.1.1.15
-era-sh:trackShape sh:property era-sh:reasonsEtcsRadioBlockCenterReject.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:reasonsEtcsRadioBlockCenterReject.
-era-sh:reasonsEtcsRadioBlockCenterReject
+era-sh:RunningTrackShape sh:property era-sh:ReasonsEtcsRadioBlockCenterReject.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ReasonsEtcsRadioBlockCenterReject.
+era-sh:ReasonsEtcsRadioBlockCenterReject
 	a sh:PropertyShape ;
     era:affectedProperty era:reasonsEtcsRadioBlockCenterReject;
     era:affectedClass era:RunningTrack;
@@ -2612,9 +2575,9 @@ era-sh:reasonsEtcsRadioBlockCenterReject
 	sh:message "reasonsEtcsRadioBlockCenterReject (1.1.1.3.2.15, 1.2.1.1.1.15): The track must have a single reasons for which an ETCS Radio Block Center can reject a train value that is an IRI."@en .	
 
 # reasonsEtcsRadioBlockCenterReject: 1.1.1.3.2.15, 1.2.1.1.1.15
-era-sh:trackShape sh:sparql era-sh:reasonsEtcsRadioBlockCenterRejectSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:reasonsEtcsRadioBlockCenterRejectSKOS.
-era-sh:reasonsEtcsRadioBlockCenterRejectSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:ReasonsEtcsRadioBlockCenterRejectSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:ReasonsEtcsRadioBlockCenterRejectSKOS.
+era-sh:ReasonsEtcsRadioBlockCenterRejectSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:reasonsEtcsRadioBlockCenterReject;
     era:affectedClass era:RunningTrack;
@@ -2640,9 +2603,9 @@ era-sh:reasonsEtcsRadioBlockCenterRejectSKOS
 """ .
 
 # safeConsistLengthInformationNecessary: 1.1.1.3.2.11, 1.2.1.1.1.11
-era-sh:trackShape sh:property era-sh:safeConsistLengthInformationNecessary.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:safeConsistLengthInformationNecessary.
-era-sh:safeConsistLengthInformationNecessary
+era-sh:RunningTrackShape sh:property era-sh:SafeConsistLengthInformationNecessary.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:SafeConsistLengthInformationNecessary.
+era-sh:SafeConsistLengthInformationNecessary
 	a sh:PropertyShape ;
     era:affectedProperty era:safeConsistLengthInformationNecessary;
     era:affectedClass era:RunningTrack;
@@ -2656,9 +2619,9 @@ era-sh:safeConsistLengthInformationNecessary
 	sh:message "safeConsistLengthInformationNecessary (1.1.1.3.2.11, 1.2.1.1.1.11): The track must have a single Safe consist length information from on-board necessary for access the line and SIL value that is an IRI."@en .	
 
 # safeConsistLengthInformationNecessary: 1.1.1.3.2.11, 1.2.1.1.1.11
-era-sh:trackShape sh:sparql era-sh:safeConsistLengthInformationNecessarySKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:safeConsistLengthInformationNecessarySKOS.
-era-sh:safeConsistLengthInformationNecessarySKOS
+era-sh:RunningTrackShape sh:sparql era-sh:SafeConsistLengthInformationNecessarySKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:SafeConsistLengthInformationNecessarySKOS.
+era-sh:SafeConsistLengthInformationNecessarySKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:safeConsistLengthInformationNecessary;
     era:affectedClass era:RunningTrack;
@@ -2684,9 +2647,9 @@ era-sh:safeConsistLengthInformationNecessarySKOS
 """ .
 
 # safeConsistLengthInformationNecessary: 1.1.1.3.2.11, 1.2.1.1.1.11
-era-sh:trackShape sh:sparql era-sh:safeConsistLengthInformationNecessaryApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:safeConsistLengthInformationNecessaryApplicability.
-era-sh:safeConsistLengthInformationNecessaryApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:SafeConsistLengthInformationNecessaryApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:SafeConsistLengthInformationNecessaryApplicability.
+era-sh:SafeConsistLengthInformationNecessaryApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:safeConsistLengthInformationNecessary;
     era:affectedClass era:RunningTrack;
@@ -2709,9 +2672,9 @@ era-sh:safeConsistLengthInformationNecessaryApplicability
 			""" .
 
 # conditionsSwitchTrainProtectionSystems: 1.1.1.3.8.1.1, 1.2.1.1.7.1.1
-era-sh:trackShape sh:property era-sh:conditionsSwitchTrainProtectionSystems.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:conditionsSwitchTrainProtectionSystems.
-era-sh:conditionsSwitchTrainProtectionSystems
+era-sh:RunningTrackShape sh:property era-sh:ConditionsSwitchTrainProtectionSystems.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ConditionsSwitchTrainProtectionSystems.
+era-sh:ConditionsSwitchTrainProtectionSystems
 	a sh:PropertyShape ;
     era:affectedProperty era:conditionsSwitchTrainProtectionSystems;
     era:affectedClass era:RunningTrack;
@@ -2726,9 +2689,9 @@ era-sh:conditionsSwitchTrainProtectionSystems
 	sh:message "conditionsSwitchTrainProtectionSystems (1.1.1.3.8.1.1, 1.2.1.1.7.1.1): The track has a Special conditions to switch over between different class B train protection, control and warning systems value that must be a string and follow the format [NNN]. The error is due to having more than one value, or it is due to the value not following the pattern."@en .
 
 # instructionsSwitchRadioSystems: 1.1.1.3.8.2.1, 1.2.1.1.7.2.1
-era-sh:trackShape sh:property era-sh:instructionsSwitchRadioSystems.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:instructionsSwitchRadioSystems.
-era-sh:instructionsSwitchRadioSystems
+era-sh:RunningTrackShape sh:property era-sh:InstructionsSwitchRadioSystems.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:InstructionsSwitchRadioSystems.
+era-sh:InstructionsSwitchRadioSystems
 	a sh:PropertyShape ;
     era:affectedProperty era:instructionsSwitchRadioSystems;
     era:affectedClass era:RunningTrack;
@@ -2742,9 +2705,9 @@ era-sh:instructionsSwitchRadioSystems
 	sh:message "instructionsSwitchRadioSystems (1.1.1.3.8.2.1, 1.2.1.1.7.2.1): The track has Special instructions to switch over between different radio systems value that must be a Document."@en .
 
 # instructionsSwitchRadioSystems: 1.1.1.3.8.2.1, 1.2.1.1.7.2.1
-era-sh:trackShape sh:sparql era-sh:instructionsSwitchRadioSystemsApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:instructionsSwitchRadioSystemsApplicability.
-era-sh:instructionsSwitchRadioSystemsApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:InstructionsSwitchRadioSystemsApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:InstructionsSwitchRadioSystemsApplicability.
+era-sh:InstructionsSwitchRadioSystemsApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:instructionsSwitchRadioSystems;
     era:affectedClass era:RunningTrack;
@@ -2771,9 +2734,9 @@ era-sh:instructionsSwitchRadioSystemsApplicability
 			""" .
 
 # conditionsSwitchClassBSystems: 1.1.1.3.8.3, 1.2.1.1.7.3
-era-sh:trackShape sh:property era-sh:conditionsSwitchClassBSystems.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:conditionsSwitchClassBSystems.
-era-sh:conditionsSwitchClassBSystems
+era-sh:RunningTrackShape sh:property era-sh:ConditionsSwitchClassBSystems.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ConditionsSwitchClassBSystems.
+era-sh:ConditionsSwitchClassBSystems
 	a sh:PropertyShape ;
     era:affectedProperty era:conditionsSwitchClassBSystems;
     era:affectedClass era:RunningTrack;
@@ -2787,9 +2750,9 @@ era-sh:conditionsSwitchClassBSystems
 	sh:message "conditionsSwitchClassBSystems (1.1.1.3.8.3, 1.2.1.1.7.3): The track has Special technical conditions required to switch over between ERTMS/ETCS and Class B systems value that must be a Document."@en .
 
 # conditionsSwitchClassBSystems: 1.1.1.3.8.3, 1.2.1.1.7.3
-era-sh:trackShape sh:sparql era-sh:conditionsSwitchClassBSystemsApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:conditionsSwitchClassBSystemsApplicability.
-era-sh:conditionsSwitchClassBSystemsApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:ConditionsSwitchClassBSystemsApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:ConditionsSwitchClassBSystemsApplicability.
+era-sh:ConditionsSwitchClassBSystemsApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:conditionsSwitchClassBSystems;
     era:affectedClass era:RunningTrack;
@@ -2817,54 +2780,14 @@ era-sh:conditionsSwitchClassBSystemsApplicability
             }
 			""" .
 
-# mNvcontact: 1.1.1.3.2.16.9, 1.2.1.1.1.16.9
-era-sh:trackShape sh:property era-sh:mNvcontact.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:mNvcontact.
-era-sh:mNvcontact
-	a sh:PropertyShape ;
-    era:affectedProperty era:mNvcontact;
-    era:affectedClass era:RunningTrack;
-    era:scope "local";
-	rdfs:comment "On-Board system reaction when T_NVCONTACT expires." ;
-	era:rinfIndex "1.1.1.3.2.16.9" , "1.2.1.1.1.16.9" ;
-	sh:path era:mNvcontact ;
-    sh:maxCount 1 ; # Functional property
-    sh:nodeKind sh:IRI ;
-	sh:severity sh:Violation ;
-	sh:message "mNvcontact (1.1.1.3.2.16.9, 1.2.1.1.1.16.9): The track must have a single M_NVCONTACT value that is an IRI."@en .	
 
-# mNvcontact: 1.1.1.3.2.16.9, 1.2.1.1.1.16.9
-era-sh:trackShape sh:sparql era-sh:mNvcontactSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:mNvcontactSKOS.
-era-sh:mNvcontactSKOS
-	a sh:SPARQLConstraint ;
-    era:affectedProperty era:mNvcontact;
-    era:affectedClass era:RunningTrack;
-    era:scope "local";
-	rdfs:comment "On-Board system reaction when T_NVCONTACT expires." ;
-	era:rinfIndex "1.1.1.3.2.16.9" , "1.2.1.1.1.16.9" ;
-	sh:severity sh:Violation ;
-	sh:message "mNvcontact (1.1.1.3.2.16.9, 1.2.1.1.1.16.9): The track {$this} (label {?trackLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/etcs-reactions-contact/ETCSReactionsNVContact."@en ;
-    sh:prefixes era:;
-	sh:select """
-    PREFIX era: <http://data.europa.eu/949/>
-    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT $this  ?concept ?trackLabel
-    WHERE {
-        OPTIONAL {$this rdfs:label ?trackLabel} .
-        $this era:mNvcontact ?concept .
-        era:mNvcontact era:inSkosConceptScheme ?conceptScheme .
-		FILTER NOT EXISTS{         
-  			?concept skos:inScheme ?conceptScheme .
-		}
-	}
-""" .
+
+
 
 # tNvovtrp: 1.1.1.3.2.16.6, 1.2.1.1.1.16.6
-era-sh:trackShape sh:property era-sh:tNvovtrp.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:tNvovtrp.
-era-sh:tNvovtrp
+era-sh:RunningTrackShape sh:property era-sh:TNvovtrp.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TNvovtrp.
+era-sh:TNvovtrp
 	a sh:PropertyShape ;
     era:affectedProperty era:tNvovtrp;
     era:affectedClass era:RunningTrack;
@@ -2879,9 +2802,9 @@ era-sh:tNvovtrp
 	sh:message "tNvovtrp (1.1.1.3.2.16.6 , 1.2.1.1.1.16.6): The track defines a T_NVOVTRP. This error is due to having more than one value, having a value that is not an integer or having an integer that does not follow the pattern [NNN]."@en .
 
 # tNvovtrp: 1.1.1.3.2.16.6, 1.2.1.1.1.16.6
-era-sh:trackShape sh:sparql era-sh:tNvovtrpApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:tNvovtrpApplicability.
-era-sh:tNvovtrpApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:TNvovtrpApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:TNvovtrpApplicability.
+era-sh:TNvovtrpApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:tNvovtrp;
     era:affectedClass era:RunningTrack;
@@ -2904,9 +2827,9 @@ era-sh:tNvovtrpApplicability
 			""" .
 
 # trainIntegrityOnBoardRequired: 1.1.1.3.2.8, 1.2.1.1.1.8
-era-sh:trackShape sh:property era-sh:trainIntegrityOnBoardRequired.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:trainIntegrityOnBoardRequired.
-era-sh:trainIntegrityOnBoardRequired
+era-sh:RunningTrackShape sh:property era-sh:TrainIntegrityOnBoardRequired.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TrainIntegrityOnBoardRequired.
+era-sh:TrainIntegrityOnBoardRequired
 	a sh:PropertyShape ;
     era:affectedProperty era:trainIntegrityOnBoardRequired;
     era:affectedClass era:RunningTrack;
@@ -2921,9 +2844,9 @@ era-sh:trainIntegrityOnBoardRequired
 
 
 # eddyCurrentBraking: 1.1.1.1.6.2, 1.2.1.0.4.2
-era-sh:trackShape sh:property era-sh:eddyCurrentBraking.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:eddyCurrentBraking.
-era-sh:eddyCurrentBraking
+era-sh:RunningTrackShape sh:property era-sh:EddyCurrentBraking.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:EddyCurrentBraking.
+era-sh:EddyCurrentBraking
 	a sh:PropertyShape ;
     era:affectedProperty era:eddyCurrentBraking;
     era:affectedClass era:RunningTrack;
@@ -2938,9 +2861,9 @@ era-sh:eddyCurrentBraking
 	sh:message "eddyCurrentBraking (1.1.1.1.6.2, 1.2.1.0.4.2): The track must have a single use of eddy current brakes value that is an IRI."@en .	
 
 # eddyCurrentBraking: 1.1.1.1.6.2, 1.2.1.0.4.2
-era-sh:trackShape sh:sparql era-sh:eddyCurrentBrakingSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:eddyCurrentBrakingSKOS.
-era-sh:eddyCurrentBrakingSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:EddyCurrentBrakingSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:EddyCurrentBrakingSKOS.
+era-sh:EddyCurrentBrakingSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:eddyCurrentBraking;
     era:affectedClass era:RunningTrack;
@@ -2966,9 +2889,9 @@ era-sh:eddyCurrentBrakingSKOS
 """ .
 
 # magneticBraking: 1.1.1.1.6.3, 1.2.1.0.4.3
-era-sh:trackShape sh:property era-sh:magneticBraking.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:magneticBraking.
-era-sh:magneticBraking
+era-sh:RunningTrackShape sh:property era-sh:MagneticBraking.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MagneticBraking.
+era-sh:MagneticBraking
 	a sh:PropertyShape ;
     era:affectedProperty era:magneticBraking;
     era:affectedClass era:RunningTrack;
@@ -2983,9 +2906,9 @@ era-sh:magneticBraking
 	sh:message "magneticBraking (1.1.1.1.6.3, 1.2.1.0.4.3): The track must have a single use of magnetic brakes value that is an IRI."@en .	
 
 # magneticBraking: 1.1.1.1.6.3, 1.2.1.0.4.3
-era-sh:trackShape sh:sparql era-sh:magneticBrakingSKOS.
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:magneticBrakingSKOS.
-era-sh:magneticBrakingSKOS
+era-sh:RunningTrackShape sh:sparql era-sh:MagneticBrakingSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:MagneticBrakingSKOS.
+era-sh:MagneticBrakingSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:magneticBraking;
     era:affectedClass era:RunningTrack;
@@ -3011,9 +2934,9 @@ era-sh:magneticBrakingSKOS
 """ .
 
 # vNvallowovtrp: 1.1.1.3.2.16.3, 1.2.1.1.1.16.3
-era-sh:trackShape sh:property era-sh:vNvallowovtrp.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:vNvallowovtrp.
-era-sh:vNvallowovtrp
+era-sh:RunningTrackShape sh:property era-sh:VNvallowovtrp.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:VNvallowovtrp.
+era-sh:VNvallowovtrp
 	a sh:PropertyShape ;
     era:affectedProperty era:vNvallowovtrp;
     era:affectedClass era:RunningTrack;
@@ -3029,9 +2952,9 @@ era-sh:vNvallowovtrp
 	sh:message "vNvallowovtrp (1.1.1.3.2.16.3, 1.2.1.1.1.16.3): The track defines a speed limit allowing the driver to select the “override” function (V_NVALLOWOVTRP). This error is due to having more than one value, having a value that is not an integer or having an integer that does not follow the pattern [NNF], with N a decimal number (0÷9), F=(0|5), max. `600`."@en .
 
 # vNvallowovtrp: 1.1.1.3.2.16.3, 1.2.1.1.1.16.3
-era-sh:trackShape sh:sparql era-sh:vNvallowovtrpApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:vNvallowovtrpApplicability.
-era-sh:vNvallowovtrpApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:VNvallowovtrpApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:VNvallowovtrpApplicability.
+era-sh:VNvallowovtrpApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:vNvallowovtrp;
     era:affectedClass era:RunningTrack;
@@ -3054,9 +2977,9 @@ era-sh:vNvallowovtrpApplicability
 			""" .
 
 # vNvsupovtrp: 1.1.1.3.2.16.4, 1.2.1.1.1.16.4
-era-sh:trackShape sh:property era-sh:vNvsupovtrp.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:vNvsupovtrp.
-era-sh:vNvsupovtrp
+era-sh:RunningTrackShape sh:property era-sh:VNvsupovtrp.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:VNvsupovtrp.
+era-sh:VNvsupovtrp
 	a sh:PropertyShape ;
     era:affectedProperty era:vNvsupovtrp;
     era:affectedClass era:RunningTrack;
@@ -3072,9 +2995,9 @@ era-sh:vNvsupovtrp
 	sh:message "vNvsupovtrp (1.1.1.3.2.16.4, 1.2.1.1.1.16.4): The track defines a override speed limit to be supervised when the “override” function is active (V_NVSUPOVTRP). This error is due to having more than one value, having a value that is not an integer or having an integer that does not follow the pattern [NNF], with N a decimal number (0÷9), F=(0|5), max. `600`."@en .
 
 # vNvsupovtrp: 1.1.1.3.2.16.4, 1.2.1.1.1.16.4
-era-sh:trackShape sh:sparql era-sh:vNvsupovtrpApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:vNvsupovtrpApplicability.
-era-sh:vNvsupovtrpApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:VNvsupovtrpApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:VNvsupovtrpApplicability.
+era-sh:VNvsupovtrpApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:vNvsupovtrp;
     era:affectedClass era:RunningTrack;
@@ -3097,9 +3020,9 @@ era-sh:vNvsupovtrpApplicability
 			""" .
 
 # gsmrConstraintsOperateOnlyInCircuitSwitch: 1.2.1.1.2.12
-era-sh:trackShape sh:sparql era-sh:gsmrConstraintsOperateOnlyInCircuitSwitchApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:gsmrConstraintsOperateOnlyInCircuitSwitchApplicability.
-era-sh:gsmrConstraintsOperateOnlyInCircuitSwitchApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:GsmrConstraintsOperateOnlyInCircuitSwitchApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:GsmrConstraintsOperateOnlyInCircuitSwitchApplicability.
+era-sh:GsmrConstraintsOperateOnlyInCircuitSwitchApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:gsmrConstraintsOperateOnlyInCircuitSwitch;
     era:affectedClass era:RunningTrack;
@@ -3124,9 +3047,9 @@ era-sh:gsmrConstraintsOperateOnlyInCircuitSwitchApplicability
 
 
 # tNvcontact: 1.1.1.3.2.16.8, 1.2.1.1.1.16.8
-era-sh:trackShape sh:property era-sh:tNvcontact.
-era-sh:commonCharacteristicsSubsetShape sh:property era-sh:tNvcontact.
-era-sh:tNvcontact
+era-sh:RunningTrackShape sh:property era-sh:TNvcontact.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TNvcontact.
+era-sh:TNvcontact
 	a sh:PropertyShape ;
     era:affectedProperty era:tNvcontact;
     era:affectedClass era:RunningTrack;
@@ -3142,9 +3065,9 @@ era-sh:tNvcontact
 	sh:message "tNvcontact (1.1.1.3.2.16.8, 1.2.1.1.1.16.8): The track defines a maximum time without a safe message from Radio Block Center. This error is due to having more than one value, having a value that is not an integer or having an integer that does not follow the pattern [NNN]."@en .
 
 # tNvcontact: 1.1.1.3.2.16.8, 1.2.1.1.1.16.8
-era-sh:trackShape sh:sparql era-sh:tNvcontactApplicability .
-era-sh:commonCharacteristicsSubsetShape sh:sparql era-sh:tNvcontactApplicability.
-era-sh:tNvcontactApplicability
+era-sh:RunningTrackShape sh:sparql era-sh:TNvcontactApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:TNvcontactApplicability.
+era-sh:TNvcontactApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:tNvcontact;
     era:affectedClass era:RunningTrack;
