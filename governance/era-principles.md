@@ -85,7 +85,9 @@ The following are examples of non-valid URIs for SKOS concepts:
 
 ## Principle 4. Management of changes in the ERA ontology
 
-**Ontology maintenance (maintenance of classes, properties, reference data and restrictions) involves identifying and managing ontology changes. These changes can be classified from simple bug fixes to the inclusion of additional ontology requirements.**Additionally, ERA is responsible for managing and governing reference data, which are standardized and reusable datasets used across systems and applications to ensure consistency, accuracy, and interoperability. It is critical for maintaining uniformity across datasets and ensuring seamless integration. ERA organises the reference data catalogue using the Simple Knowledge Organization System (SKOS) standard, a W3C recommendation designed for representation of thesauri, classification schemes, taxonomies, or any other type of structured controlled vocabulary. 
+**Ontology maintenance (maintenance of classes, properties, reference data and restrictions) involves identifying and managing ontology changes. These changes can be classified from simple bug fixes to the inclusion of additional ontology requirements.**
+
+Additionally, ERA is responsible for managing and governing reference data, which are standardized and reusable datasets used across systems and applications to ensure consistency, accuracy, and interoperability. It is critical for maintaining uniformity across datasets and ensuring seamless integration. ERA organises the reference data catalogue using the Simple Knowledge Organization System (SKOS) standard, a W3C recommendation designed for representation of thesauri, classification schemes, taxonomies, or any other type of structured controlled vocabulary. 
 
 Changes in the ontology involve considerations on the types of changes and compatibility of versions, the deprecation of classes, properties and SKOS concept schemes and the corresponding changes in mappings and re-generation of KGs, changes in SPARQL queries, and changes in the applications' UI.The following are several aspects that are considered in this principle. 
 
