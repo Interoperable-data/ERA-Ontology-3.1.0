@@ -83,11 +83,11 @@ The following are examples of non-valid URIs for SKOS concepts:
     http://data.europa.eu/949/kos/train-detection-specific-checks/125_Hz_track_circuit_and_ZP_43_E(manufactured_prior_to_2015). Because it has "(" and ")" as separators.
     http://data.europa.eu/949/kos/min-axle-loads-per-vehicle-category/04.0_50 because it has "." as separator.
 
-## Principle 4. Management of changes in the vocabulary
+## Principle 4. Management of changes in the ERA ontology
 
-**Vocabulary maintenance (maintenance of classes, properties and restrictions) involves identifying and managing vocabulary changes.  These changes can go from simple bug fixes to the inclusion of additional vocabulary requirements. **
+**Ontology maintenance (maintenance of classes, properties, reference data and restrictions) involves identifying and managing ontology changes. These changes can be classified from simple bug fixes to the inclusion of additional ontology requirements.**Additionally, ERA is responsible for managing and governing reference data, which are standardized and reusable datasets used across systems and applications to ensure consistency, accuracy, and interoperability. It is critical for maintaining uniformity across datasets and ensuring seamless integration. ERA organises the reference data catalogue using the Simple Knowledge Organization System (SKOS) standard, a W3C recommendation designed for representation of thesauri, classification schemes, taxonomies, or any other type of structured controlled vocabulary. 
 
-Changes in the vocabulary involve considerations on the types of changes and compatibility of versions, the deprecation of classes and properties and the corresponding changes in mappings and re-generation of KGs, changes in SPARQL queries, and changes in the applications' UI.The following are several aspects that are considered in this principle. 
+Changes in the ontology involve considerations on the types of changes and compatibility of versions, the deprecation of classes, properties and SKOS concept schemes and the corresponding changes in mappings and re-generation of KGs, changes in SPARQL queries, and changes in the applications' UI.The following are several aspects that are considered in this principle. 
 
 ### Compatibility of versions ###
 This aspect is based on the following assumptions:
@@ -95,7 +95,7 @@ This aspect is based on the following assumptions:
 * Users SHOULD have access to previous releases of the vocabulary in the git system where the vocabulary is being maintained, by using the tag of the vocabulary version.
 * In case that the git system is not available for non-authenticated users,the major ontology releases will be also archived in Zenodo, at PID https://zenodo.org/record/7775344
 
-The following vocabulary changes represent some of the vocabulary modifications that have lowest impact on mappings, queries and applications: 
+The following ontology changes represent some of the ontology modifications that have lowest impact on mappings, queries and applications: 
 * add a class or a property
 * add a subclass-superclass relationship
 * add a subproperty-superproperty relationship
@@ -111,6 +111,12 @@ Compatibility is related to the interpretation of the concepts represented in th
 * Incompatible versions. The vocabulary is changed in such a way that the interpretation of the concepts in the new vocabulary is not the same as the interpretation of the concepts in the previous version of the vocabulary, e.g. pulling up/down a class in the hierarchy. 
 
 Incompatible versions most probably lead to changes in the logic of the applications that consume the ontology and the knowledge graphs.
+
+Other minor modifications can result from changes in the reference data, in the ERA ontology as SKOS concept schemes: 
+* add a concept in a concept scheme
+* deprecate a concept in a concept scheme
+
+These changes might have no impact on mappings, queries or application UIs. Some of these changes happen under the direct control of specific stakeholders (e.g. as data providers and/or members of workgroups). 
 
 ### Changes in mappings and re-generation of KG ###
 Each change or set of changes needs to be verified with respect to updating the mappings and executing them to re-generate the knowledge graph. 
