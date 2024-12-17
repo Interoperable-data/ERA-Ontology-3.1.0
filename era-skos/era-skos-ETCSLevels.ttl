@@ -28,15 +28,17 @@
 
 era-etcslevel:ETCSLevels a skos:ConceptScheme ; 
     dct:issued "2020-09-01"^^xsd:date ;
-    dct:modified "2022-09-09"^^xsd:date ;
-    dct:modified "2024-04-18"^^xsd:date ;
-    dct:modified "2024-09-04"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ,
+				 "2024-04-18"^^xsd:date ,
+				 "2024-09-04"^^xsd:date ,
+				 "2024-12-12"^^xsd:date ;
     cc:license <https://creativecommons.org/licenses/by/4.0/> ;
     rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
     era:rinfIndex "1.1.1.3.2.1"; 
     era:rinfIndex "1.2.1.1.1.1";
     rdfs:label "ETCS Levels"@en ;
     skos:prefLabel "ETCS Levels"@en ;
+	skos:hiddenLabel "CCSTMS_EtcsLevel" ;
     skos:title "Concept scheme grouping ETCS levels"@en .
 
 
@@ -53,22 +55,26 @@ era-etcslevel:ETCSLevels a skos:ConceptScheme ;
 era-etcslevel:50 a skos:Concept;
   skos:inScheme era-etcslevel:ETCSLevels; skos:topConceptOf era-etcslevel:ETCSLevels ;
   skos:notation "0"^^xsd:string ;
+  skos:hiddenLabel "CCSTMS_Level0_0" ;
   skos:prefLabel "0"@en .
 
 era-etcslevel:20 a skos:Concept;
   skos:inScheme era-etcslevel:ETCSLevels; skos:topConceptOf era-etcslevel:ETCSLevels ; 
   skos:notation "1"^^xsd:string ;
+  skos:hiddenLabel "CCSTMS_Level1_2" ;
   skos:prefLabel "1"@en .
 
 era-etcslevel:30 a skos:Concept;
   skos:inScheme era-etcslevel:ETCSLevels; skos:topConceptOf era-etcslevel:ETCSLevels ; 
   skos:notation "2"^^xsd:string ;
+  skos:hiddenLabel "CCSTMS_Level2_3" ;
   skos:prefLabel "2"@en .
 
 era-etcslevel:40 a skos:Concept;
   skos:inScheme era-etcslevel:ETCSLevels; skos:topConceptOf era-etcslevel:ETCSLevels ; 
   owl:deprecated "true"^^xsd:boolean ;
   skos:notation "3"^^xsd:string ;
+  skos:hiddenLabel "CCSTMS_Level3_4" ;
   skos:prefLabel "3"@en .
 
 era-etcslevel:10 a skos:Concept;
@@ -80,5 +86,5 @@ era-etcslevel:10 a skos:Concept;
 era-etcslevel:60 a skos:Concept;
   skos:inScheme era-etcslevel:ETCSLevels; skos:topConceptOf era-etcslevel:ETCSLevels ; 
   skos:notation "NTC"^^xsd:string ;
+  skos:hiddenLabel "CCSTMS_LevelNTC_1" ;
   skos:prefLabel "NTC"@en .
-

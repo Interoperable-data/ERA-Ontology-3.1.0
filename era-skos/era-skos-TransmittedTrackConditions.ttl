@@ -32,6 +32,7 @@ era-transmittedtcs:TransmittedTrackConditions a skos:ConceptScheme ;
      - changed the notation values and preflabel to be more human readable
     """@en ; 
     rdfs:label "Track Conditions transmitted to the Onboard (Subset-026, version 4.0 - 5.8.12)"@en ;
+	skos:altLabel "CCSTMS_ConditionType" ;
     dct:title "Concept scheme grouping the transmittable track conditions."@en .
 
 
@@ -51,6 +52,7 @@ era-transmittedtcs:5-8-12-a a skos:Concept;
   skos:notation "5.8.12 a"^^xsd:string ;
   skos:inScheme era-transmittedtcs:TransmittedTrackConditions; 
   skos:note "See Subset-026, version 4.0 - 5.8.12 a)"@en ;
+  skos:hiddenLabel "CCSTMS_powerlessLowPanthograph_0" ;
   skos:definition "Powerless section with pantograph to be lowered"@en ;
   skos:prefLabel "5.8.12 a"@en .
 
@@ -59,6 +61,7 @@ era-transmittedtcs:5-8-12-b a skos:Concept;
   skos:notation "5.8.12 b"^^xsd:string ;
   skos:inScheme era-transmittedtcs:TransmittedTrackConditions; 
   skos:note "See Subset-026, version 4.0 - 5.8.12 b)"@en ;
+  skos:hiddenLabel "CCSTMS_powerlessMainSwitch_1" ;
   skos:definition "Powerless section with main power switch to be switched off"@en ;
   skos:prefLabel "5.8.12 b"@en .
 
@@ -67,6 +70,7 @@ era-transmittedtcs:5-8-12-c a skos:Concept;
   skos:notation "5.8.12 c"^^xsd:string ;
   skos:inScheme era-transmittedtcs:TransmittedTrackConditions; 
   skos:note "See Subset-026, version 4.0 - 5.8.12 c)"@en ;
+  skos:hiddenLabel "CCSTMS_nonStoppingArea_4" ;
   skos:definition "Non-stopping area"@en ;
   skos:prefLabel "5.8.12 c"@en .
 
@@ -75,6 +79,7 @@ era-transmittedtcs:5-8-12-d a skos:Concept;
   skos:notation "5.8.12 d"^^xsd:string ;
   skos:inScheme era-transmittedtcs:TransmittedTrackConditions; 
   skos:note "See Subset-026, version 4.0 - 5.8.12 d)"@en ;
+  skos:hiddenLabel "CCSTMS_radioHole_7" ;
   skos:definition "Radio hole"@en ;
   skos:prefLabel "5.8.12 d"@en .
 
@@ -83,6 +88,7 @@ era-transmittedtcs:5-8-12-e a skos:Concept;
   skos:notation "5.8.12 e "^^xsd:string ;
   skos:inScheme era-transmittedtcs:TransmittedTrackConditions; 
   skos:note "See Subset-026, version 4.0 - 5.8.12 e)";
+  skos:hiddenLabel "CCSTMS_airTightness_2" ;
   skos:definition "Air tightness area"@en ;
   skos:prefLabel "5.8.12 e"@en .
 
@@ -94,11 +100,51 @@ era-transmittedtcs:5-8-12-f a skos:Concept;
   skos:definition "Inhibition of a defined type of brake"@en ;
   skos:prefLabel "5.8.12 f"@en .
 
-era-transmittedtcs:5-8-12-g a skos:Concept;
+era-transmittedtcs:bigMetalMasses a skos:Concept;
+  skos:topConceptOf era-transmittedtcs:TransmittedTrackConditions ;
+  skos:inScheme era-transmittedtcs:TransmittedTrackConditions; skos:note "Big metal masses";
+  skos:notation "Big Metal Masses"^^xsd:string ;
+  skos:definition "Big metal masses, ignore on-board integrity check alarm of balise transmission"@en ;
+  skos:hiddenLabel "CCSTMS_bigMetalMasses_6" ;
+  skos:prefLabel "big Metal Masses"@en .
+  
+era-transmittedtcs:switchOffRegenerativeBrake a skos:Concept;
+  skos:topConceptOf era-transmittedtcs:TransmittedTrackConditions ;
+  skos:inScheme era-transmittedtcs:TransmittedTrackConditions; skos:note "Switch-Off Regenerative Brake";
+  skos:notation "Switch Off Regenerative Brake"^^xsd:string ;
+  skos:definition "defines a switch Off Regenerative Brake sections"@en ;
+  skos:hiddenLabel "CCSTMS_switchOffRegenerativeBrake_8" ;
+  skos:prefLabel "switch Off Regenerative Brake"@en .
+
+era-transmittedtcs:switchOffEddyCurrentBrakeForServiceBrake a skos:Concept;
+  skos:topConceptOf era-transmittedtcs:TransmittedTrackConditions ;
+  skos:inScheme era-transmittedtcs:TransmittedTrackConditions; skos:note "Switch-Off Eddy Current Brake for Service Brake";
+  skos:notation "Switch Off Eddy Current Brake for Service Brake"^^xsd:string ;
+  skos:definition "defines a switch Off Eddy Current Brake sections"@en ;
+  skos:hiddenLabel "CCSTMS_switchOffEddyCurrentBrakeForServiceBrake_9" ;
+  skos:prefLabel "switch Off Eddy Current Brake For Service Brake"@en .
+  
+era-transmittedtcs:switchOffEddyCurrentBrakeForEmergencyBrake a skos:Concept;
+  skos:topConceptOf era-transmittedtcs:TransmittedTrackConditions ;
+  skos:inScheme era-transmittedtcs:TransmittedTrackConditions; skos:note "switch-Off Eddy Current Brake for Emergency Brake";
+  skos:notation "Switch Off Eddy Current Brake for Emergency Brake"^^xsd:string ;
+  skos:definition "defines a switch Off Eddy Current Emergency Brake sections"@en ;
+  skos:hiddenLabel "CCSTMS_switchOffEddyCurrentBrakeForEmergencyBrake_10" ;
+  skos:prefLabel "switch Off Eddy Current Brake For Emergency Brake"@en .
+  
+era-transmittedtcs:switchOffMagneticShoeBrake a skos:Concept;
+  skos:topConceptOf era-transmittedtcs:TransmittedTrackConditions ;
+  skos:inScheme era-transmittedtcs:TransmittedTrackConditions; skos:note "switch-Off Magnetic Shoe Brake";
+  skos:notation "Switch Off Magnetic Shoe Brake"^^xsd:string ;
+  skos:definition "defines a switch Off Magnetic Shoe Brake sections"@en ;
+  skos:hiddenLabel "CCSTMS_switchOffMagneticShoeBrake_11" ;
+  skos:prefLabel "switch Off Magnetic Shoe Brake"@en .
+
   skos:topConceptOf era-transmittedtcs:TransmittedTrackConditions ; 
   skos:notation "5.8.12 g"^^xsd:string ;
   skos:inScheme era-transmittedtcs:TransmittedTrackConditions; 
   skos:note "See Subset-026, version 4.0 - 5.8.12 g)"@en;
+  skos:hiddenLabel "CCSTMS_tunnelStoppingArea_5" ;
   skos:definition "Tunnel stopping area"@en ;
   skos:prefLabel "5.8.12 g"@en .
 
@@ -107,6 +153,7 @@ era-transmittedtcs:5-8-12-h a skos:Concept;
   skos:notation "5.8.12 h"^^xsd:string ;
   skos:inScheme era-transmittedtcs:TransmittedTrackConditions; 
   skos:note "See Subset-026, version 4.0 - 5.8.12 h)"@en ;
+  skos:hiddenLabel "CCSTMS_soundHorn_3" ;
   skos:definition "Sound horn"@en ;
   skos:prefLabel "5.8.12 h "@en .
 

@@ -24,10 +24,12 @@
 
 era-tds:TrainDetectionSystems a skos:ConceptScheme ; #
     dct:issued "2020-09-01"^^xsd:date ;
-    dct:modified "2022-09-09"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ,
+				 "2024-12-12"^^xsd:date ;
     cc:license <https://creativecommons.org/licenses/by/4.0/> ;
     rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
     rdfs:label "Train Detection Systems"@en ;
+	skos:hiddenLabel "CCSTMS_TrainDetectorType" ;
     skos:prefLabel "Train Detection Systems"@en ;
     dct:title "Concept scheme grouping train detection systems"@en .
 
@@ -50,11 +52,13 @@ era-tds-rinf:30 a skos:Concept;
 era-tds-rinf:10 a skos:Concept;
   skos:inScheme era-tds:TrainDetectionSystems; skos:topConceptOf era-tds:TrainDetectionSystems;
   skos:note "Value retrieved from the RINF database";
+  skos:hiddenLabel "CCSTMS_trackCircuitBorder_1" ;
   skos:prefLabel "track circuit" .
 
 era-tds-rinf:20 a skos:Concept;
   skos:inScheme era-tds:TrainDetectionSystems; skos:topConceptOf era-tds:TrainDetectionSystems;
   skos:note "Value retrieved from the RINF database";
+  skos:hiddenLabel "CCSTMS_axleCounter_0" ;
   skos:prefLabel "wheel detector" .
 
 era-tds-eratv:track-circuits a skos:Concept;
@@ -80,9 +84,3 @@ era-tds-eratv:axle-counters a skos:Concept;
   skos:note "Value retrieved from the ERATV database";
   skos:closeMatch era-tds-rinf:20;
   skos:prefLabel "axle counters" .
-
-
-
-
-
-
