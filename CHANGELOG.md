@@ -112,8 +112,11 @@ Other data in ERATV than that above is to be migrated mainly to instances of `er
   - [X] updated `era:atoSystemVersion` to the CCSSubsystem class, as it responds to [INF,ENE,CCS]-data for ERATV parameter 4.13.3.1.
 - [X] added `dcterms:relation` and `dcterms:requires` for dependent parameters, like 4.7.4.X.2 which depend on 4.7.4.X.1
 - For the administrative data of a type (Section 1):
-  - [X] Already in use: `era:alternativeName` (for the name: `rdfs:label`), `era:typeVersionNumber`, `era:category` & `era:subCategory`
-  - [X] For "Date of record": use `dcterms:created`.
+  - Already in use:
+    - [X] `era:alternativeName` (for the name: `rdfs:label`), can be kept.
+    - [ ] `era:typeVersionNumber`, MUST be changed into `dcterms:identifier`.
+    - [X] `era:category` & `era:subCategory`, can be kept
+  - [X] For "Date of record": use `dcterms:issued`, as `dcterms:created` must be used for the creation of the instance in the KG.
   - [ ] For "Registration Method": to be determined. A SKOS CS is needed but it may overlap with the class `era:AuthorisationCase` (see below).
   - [X] For "Registered Vehicle Type": use `era:previousVehicleType`.
   - [X] Added: `era:vehicleTypePlatform`
