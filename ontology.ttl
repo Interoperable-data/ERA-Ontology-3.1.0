@@ -843,6 +843,7 @@ era:aggregates rdf:type owl:ObjectProperty ;
                rdfs:domain era:NonLinearElement ;
                rdfs:range era:LinearElement ;
                dcterms:created "2024-11-29"^^xsd:date ;
+               era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/Aggregates> ;
                rdfs:comment "Specifies the linear elements aggregated by a non-linear element."@en ;
                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                rdfs:label "aggregates"@en .
@@ -864,6 +865,8 @@ era:allocationCompany rdf:type owl:ObjectProperty ;
 era:appliesToDirection rdf:type owl:ObjectProperty ;
                        rdfs:domain era:NetPointReference ;
                        rdfs:range skos:Concept ;
+                       era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/AppliesToDirection> ,
+                                                    <http://data.europa.eu/949/shapes/AppliesToDirectionSKOS> ;
                        era:inSkosConceptScheme <http://data.europa.eu/949/concepts/orientations/Directions> ;
                        dcterms:created "2024-11-29"^^xsd:date ;
                        rdfs:comment "The direction relative to the origin of the linear element towards the point reference applies."@en ;
@@ -1190,7 +1193,8 @@ era:conditionalRegenerativeBrake rdf:type owl:ObjectProperty ;
                                  era:inSkosConceptScheme <http://data.europa.eu/949/concepts/regenerative-braking/RegenerativeBraking> ;
                                  era:legalDeadline "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
                                  era:rinfIndex "1.1.1.2.2.4" ;
-                                 era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/ConditionalRegenerativeBrake> ;
+                                 era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/ConditionalRegenerativeBrake> ,
+                                                              <http://data.europa.eu/949/shapes/ConditionalRegenerativeBrakeSKOS> ;
                                  era:tsiOPEAppendixD2Index "3.3.7" ;
                                  era:usedInRCCCalculations "true"^^xsd:boolean ;
                                  dcterms:created "2020-08-24"^^xsd:date ;
@@ -1358,7 +1362,8 @@ era:contactStripMaterial rdf:type owl:ObjectProperty ;
                          era:inSkosConceptScheme <http://data.europa.eu/949/concepts/contact-strip-materials/ContactStripMaterials> ;
                          era:legalDeadline "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
                          era:rinfIndex "1.1.1.2.3.4" ;
-                         era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/ContactStripMaterialApplicability> ;
+                         era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/ContactStripMaterialApplicability> ,
+                                                      <http://data.europa.eu/949/shapes/ContactStripMaterialSKOS> ;
                          era:usedInRCCCalculations "true"^^xsd:boolean ;
                          dcterms:created "2020-08-25"^^xsd:date ;
                          dcterms:modified "2021-09-12"^^xsd:date ,
@@ -1583,6 +1588,7 @@ era:elementA rdf:type owl:ObjectProperty ;
              rdfs:range era:LinearElement ;
              era:rinfIndex "1.1.1.0.1.2" ,
                            "1.2.4.1" ;
+             era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/ElementA> ;
              dcterms:created "2021-04-01"^^xsd:date ;
              dcterms:modified "2023-03-14"^^xsd:date ,
                               "2024-11-29"^^xsd:date ;
@@ -1600,6 +1606,7 @@ era:elementB rdf:type owl:ObjectProperty ;
              rdfs:range era:LinearElement ;
              era:rinfIndex "1.1.1.0.1.2" ,
                            "1.2.4.1" ;
+             era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/ElementB> ;
              dcterms:created "2021-04-01"^^xsd:date ;
              dcterms:modified "2023-03-14"^^xsd:date ,
                               "2024-11-29"^^xsd:date ;
@@ -2644,6 +2651,7 @@ era:hasLRS rdf:type owl:ObjectProperty ;
 era:hasLrsCoordinate rdf:type owl:ObjectProperty ;
                      rdfs:domain era:NetPointReference ;
                      rdfs:range era:LinearPositioningSystemCoordinate ;
+                     era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/HasLrsCoordinate> ;
                      dcterms:created "2024-11-29"^^xsd:date ;
                      rdfs:comment "Specifies the LRS coordinate associated with a topological coordinate."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -2689,6 +2697,7 @@ era:hasPart rdf:type owl:ObjectProperty ;
 era:hasSequence rdf:type owl:ObjectProperty ;
                 rdfs:domain era:NetLinearReference ;
                 rdfs:range rdf:List ;
+                era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/HasSequence> ;
                 dcterms:created "2024-11-29"^^xsd:date ;
                 rdfs:comment "The ordered sequence of topological linear elements which create a linear net reference."@en ;
                 rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -2699,6 +2708,7 @@ era:hasSequence rdf:type owl:ObjectProperty ;
 era:hasTopoCoordinate rdf:type owl:ObjectProperty ;
                       rdfs:domain era:NetPointReference ;
                       rdfs:range era:TopologicalCoordinate ;
+                      era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/HasTopoCoordinate> ;
                       dcterms:created "2024-11-29"^^xsd:date ;
                       rdfs:comment "Specifies the topological coordinate of a network point reference."@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -2774,6 +2784,7 @@ era:inCountry rdf:type owl:ObjectProperty ;
 era:includes rdf:type owl:ObjectProperty ;
              rdfs:domain era:NetAreaReference ;
              rdfs:range rdf:List ;
+             era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/Includes> ;
              dcterms:created "2024-11-29"^^xsd:date ;
              rdfs:comment "List of linear references included in an network area reference."@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -3202,6 +3213,8 @@ era:lrsMethod rdf:type owl:ObjectProperty ;
               rdfs:domain era:LinearPositioningSystem ;
               rdfs:range skos:Concept ;
               era:inSkosConceptScheme <http://data.europa.eu/949/concepts/lines/ReferenceSystems> ;
+              era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/LrsMethod> ,
+                                           <http://data.europa.eu/949/shapes/LrsMethodSKOS> ;
               dcterms:created "2024-04-18"^^xsd:date ;
               dcterms:modified "2024-11-29"^^xsd:date ;
               rdfs:comment "The preferred line referencing system. TODO: provide example"@en ;
@@ -3449,7 +3462,7 @@ era:nationalLine rdf:type owl:ObjectProperty ;
                  rdfs:range era:LinearPositioningSystem ;
                  era:XMLName "SOLLineIdentification" ;
                  era:rinfIndex "1.1.0.0.0.2" ;
-                 era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/NationalLine> ;
+                 era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/NationalLineSoL> ;
                  dcterms:created "2024-05-24"^^xsd:date ;
                  dcterms:description """Each SoL can belong to only one national line.
 
@@ -3472,6 +3485,8 @@ era:navigability rdf:type owl:ObjectProperty ;
                  era:inSkosConceptScheme <http://data.europa.eu/949/concepts/navigabilities/Navigabilities> ;
                  era:rinfIndex "1.1.1.0.1.2" ,
                                "1.2.4.1" ;
+                 era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/Navigability> ,
+                                              <http://data.europa.eu/949/shapes/NavigabilitySKOS> ;
                  dcterms:created "2021-04-01"^^xsd:date ;
                  dcterms:modified "2021-08-03"^^xsd:date ,
                                   "2024-11-29"^^xsd:date ;
@@ -3506,6 +3521,7 @@ era:netReference rdf:type owl:ObjectProperty ;
                  era:applicable "Y/N" ;
                  era:legalDeadline "12 months after publication of Artcile 7 Guide"@en ;
                  era:rinfIndex "1.2.4.1" ;
+                 era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/NetReference> ;
                  dcterms:created "2024-11-29"^^xsd:date ;
                  rdfs:comment "The reference that a physical insfrastructure element has it on the topology. It may be used to define the positioning or a representation as a point. line or area"@en ;
                  rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -3561,6 +3577,7 @@ era:ofParameter rdf:type owl:ObjectProperty ;
 era:onElement rdf:type owl:ObjectProperty ;
               rdfs:domain era:LinearElementSection ;
               rdfs:range era:LinearElement ;
+              era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/OnElement> ;
               dcterms:created "2024-11-29"^^xsd:date ;
               rdfs:comment "Specifies the linear element a section belongs to."@en ;
               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -3582,6 +3599,7 @@ era:onGrid rdf:type owl:ObjectProperty ;
 era:onLinearElement rdf:type owl:ObjectProperty ;
                     rdfs:domain era:TopologicalCoordinate ;
                     rdfs:range era:LinearElement ;
+                    era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/OnLinearElement> ;
                     dcterms:created "2024-11-29"^^xsd:date ;
                     rdfs:comment "Specifies the linear element a coordinate is associated with."@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -3911,6 +3929,8 @@ era:parameterValueType rdf:type owl:ObjectProperty ;
                        rdfs:domain era:ParameterApplicability ;
                        rdfs:range skos:Concept ;
                        era:inSkosConceptScheme <http://data.europa.eu/949/concepts/parameterApplicability/ValueTypes> ;
+                       era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/ParameterValueType> ,
+                                                    <http://data.europa.eu/949/shapes/ParameterValueTypeSKOS> ;
                        dcterms:created "2024-11-29"^^xsd:date ;
                        rdfs:comment "In the case of a change in the value of a parameter, there needs to be an information on the type of the new value. The “Value type” will have different possible options: “nominal”, “planned temporary restriction”, “permanent restriction”, “planned temporary closure”."@en ;
                        rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -4665,6 +4685,7 @@ The Start of tunnel is the Geographical coordinates in decimal degrees and km of
 era:startsAt rdf:type owl:ObjectProperty ;
              rdfs:domain era:NetLinearReference ;
              rdfs:range era:TopologicalCoordinate ;
+             era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/StartsAt> ;
              dcterms:created "2024-11-29"^^xsd:date ;
              rdfs:comment "Specifies the starting coordinate of a linear reference."@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -5059,7 +5080,7 @@ era:trackRaisedPantographsDistanceAndSpeed rdf:type owl:ObjectProperty ;
                                            era:legalDeadline "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
                                            era:rinfIndex "1.1.1.2.3.3" ;
                                            era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/TrackRaisedPantographsDistanceAndSpeed> ,
-                                                                        <http://data.europa.eu/949/shapes/TrackRaisedPantographsDistanceAndSpeedApplicability> ;
+                                                                        <http://data.europa.eu/949/shapes/TrackRaisedPantographDistanceAndSpeedApplicability> ;
                                            era:usedInRCCCalculations "true"^^xsd:boolean ;
                                            dcterms:created "2023-04-05"^^xsd:date ;
                                            dcterms:modified "2024-09-25"^^xsd:date ;
@@ -5537,6 +5558,7 @@ The allowed values for this property belong to the SKOS Concept Scheme http://da
 era:validity rdf:type owl:ObjectProperty ;
              rdfs:domain era:Feature ;
              rdfs:range era:TemporalFeature ;
+             era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/Validity> ;
              dcterms:modified "2024-11-29"^^xsd:date ;
              rdfs:comment "Relates a feature with a temporal feature to indicate a validity period."@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -5862,6 +5884,7 @@ era:appliesInBothDirections rdf:type owl:DatatypeProperty ,
                                      owl:FunctionalProperty ;
                             rdfs:domain era:LinearElementSection ;
                             rdfs:range xsd:boolean ;
+                            era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/AppliesInBothDirections> ;
                             dcterms:created "2024-11-29"^^xsd:date ;
                             rdfs:comment "Specifies if the section applies in both directions (optional)."@en ;
                             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -6818,6 +6841,7 @@ era:endIntrinsicCoordinate rdf:type owl:DatatypeProperty ;
 era:endOffsetFromOrigin rdf:type owl:DatatypeProperty ;
                         rdfs:domain era:LinearElementSection ;
                         rdfs:range xsd:positiveInteger ;
+                        era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/EndOffsetFromOrigin> ;
                         dcterms:created "2024-11-29"^^xsd:date ;
                         rdfs:comment "End offset of the section from the origin."@en ;
                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -7581,6 +7605,7 @@ era:hasBridge rdf:type owl:DatatypeProperty ,
                        owl:FunctionalProperty ;
               rdfs:domain era:RunningTrack ;
               rdfs:range xsd:boolean ;
+              era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/HasBridge> ;
               dcterms:created "2024-12-10"^^xsd:date ;
               rdfs:isDefinedBy <http://data.europa.eu/949/> ;
               rdfs:label "Has bridge"@en ;
@@ -7733,7 +7758,8 @@ era:hasEtcsNationalPacket44 rdf:type owl:DatatypeProperty ;
                             era:rinfIndex "1.1.1.3.2.5" ,
                                           "1.2.1.1.1.5" ;
                             era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/HasEtcsNationalPacket44> ,
-                                                         <http://data.europa.eu/949/shapes/HasEtcsNationalPacket44Applicability> ;
+                                                         <http://data.europa.eu/949/shapes/HasEtcsNationalPacket44Applicability>  ,
+                                                         <http://data.europa.eu/949/shapes/EtcsNationalPacket44> ;
                             dcterms:created "2024-11-20" ;
                             dcterms:source <http://data.europa.eu/eli/reg_impl/2023/1695/oj> ;
                             rdfs:comment "Indication whether data for national packet 44 applications is transmitted between track and train."@en ;
@@ -8480,6 +8506,7 @@ era:isOnOriginOfElementA rdf:type owl:DatatypeProperty ;
                          rdfs:range xsd:boolean ;
                          era:rinfIndex "1.1.1.0.1.2" ,
                                        "1.2.4.1" ;
+                         era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/IsOnOriginOfElementA> ;
                          dcterms:created "2021-04-03"^^xsd:date ,
                                          "2024-11-29"^^xsd:date ;
                          dcterms:modified "2021-08-03"^^xsd:date ,
@@ -8498,6 +8525,7 @@ era:isOnOriginOfElementB rdf:type owl:DatatypeProperty ;
                          rdfs:range xsd:boolean ;
                          era:rinfIndex "1.1.1.0.1.2" ,
                                        "1.2.4.1" ;
+                         era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/IsOnOriginOfElementB> ;
                          dcterms:created "2021-04-03"^^xsd:date ,
                                          "2024-11-29"^^xsd:date ;
                          dcterms:modified "2021-08-03"^^xsd:date ,
@@ -8546,6 +8574,7 @@ era:kilometer rdf:type owl:DatatypeProperty ;
               era:applicable "Y/N" ;
               era:legalDeadline "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
               era:rinfIndex "1.2.0.0.0.6" ;
+              era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/Kilometer> ;
               era:tsiOPEAppendixD2Index "2.2.2" ;
               dcterms:created "2021-01-29"^^xsd:date ;
               dcterms:modified "2021-01-29"^^xsd:date ,
@@ -8565,6 +8594,7 @@ For signals: Relative position to the line identified under parameter 1.1.0.0.0.
 era:kilometerNumber rdf:type owl:DatatypeProperty ;
                     rdfs:domain era:KilometricPost ;
                     rdfs:range xsd:integer ;
+                    era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/KilometerNumber> ;
                     era:unitOfMeasure unit:KiloM ;
                     dcterms:created "2024-11-29"^^xsd:date ;
                     rdfs:comment "Kilometer number of the kilometric post."@en ;
@@ -8580,6 +8610,7 @@ era:kmPostName rdf:type owl:DatatypeProperty ;
                                          )
                            ] ;
                rdfs:range xsd:string ;
+               era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/KmPostName> ;
                dcterms:created "2024-05-24"^^xsd:date ;
                dcterms:modified "2024-10-24"^^xsd:date ,
                                 "2024-11-29"^^xsd:date ;
@@ -8623,6 +8654,7 @@ era:lengthOfNetLinearElement rdf:type owl:DatatypeProperty ;
                              rdf:type owl:FunctionalProperty ;
                              rdfs:domain era:LinearElement ;
                              rdfs:range xsd:double ;
+                             era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/LengthOfNetLinearElement> ;
                              era:unitOfMeasure unit:M ;
                              dcterms:created "2024-11-29"^^xsd:date ;
                              rdfs:comment "Length of a topological linear element."@en ;
@@ -8763,6 +8795,7 @@ era:lineId rdf:type owl:DatatypeProperty ,
            era:applicable "Y" ;
            era:legalDeadline "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
            era:rinfIndex "1.1.0.0.0.2" ;
+           era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/LineId> ;
            era:tsiOPEAppendixD2Index "2.2.1.1" ;
            dcterms:modified "2024-11-18"^^xsd:date ;
            rdfs:comment "Unique line identification or unique line number within Member State."@en ;
@@ -9493,6 +9526,7 @@ If for the design of the track the braking forces were assumed on basis of the d
 era:measuredDistance rdf:type owl:DatatypeProperty ;
                      rdfs:domain era:KilometricPost ;
                      rdfs:range xsd:double ;
+                     era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/MeasuredDistance> ;
                      era:unitOfMeasure unit:M ;
                      dcterms:created "2024-11-29"^^xsd:date ;
                      rdfs:comment "Measured distance from the origin of the LRS."@en ;
@@ -10024,6 +10058,7 @@ era:oclType rdf:type owl:DatatypeProperty ;
 era:offsetFromKilometricPost rdf:type owl:DatatypeProperty ;
                              rdfs:domain era:LinearPositioningSystemCoordinate ;
                              rdfs:range xsd:double ;
+                             era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/OffsetFromKilometricPost> ;
                              era:unitOfMeasure unit:M ;
                              dcterms:created "2024-11-29"^^xsd:date ;
                              rdfs:comment "Relative distance from a reference kilometric post "@en ;
@@ -10035,6 +10070,7 @@ era:offsetFromKilometricPost rdf:type owl:DatatypeProperty ;
 era:offsetFromOrigin rdf:type owl:DatatypeProperty ;
                      rdfs:domain era:TopologicalCoordinate ;
                      rdfs:range xsd:positiveInteger ;
+                     era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/OffsetFromOrigin> ;
                      dcterms:created "2024-11-29"^^xsd:date ;
                      rdfs:comment "Offset from the origin in a topological coordinate."@en ;
                      rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -10172,6 +10208,7 @@ era:pantographDataParameter rdf:type owl:DatatypeProperty ;
 era:parameterValue rdf:type owl:DatatypeProperty ;
                    rdfs:domain era:ParameterApplicability ;
                    rdfs:range rdfs:Literal ;
+                   era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/ParameterValue> ;
                    dcterms:created "2024-12-10"^^xsd:date ;
                    rdfs:comment "This property is used to link an applicability to the precise value of the parameter"@en ;
                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -11086,6 +11123,7 @@ era:startIntrinsicCoordinate rdf:type owl:DatatypeProperty ;
 era:startOffsetFromOrigin rdf:type owl:DatatypeProperty ;
                           rdfs:domain era:LinearElementSection ;
                           rdfs:range xsd:positiveInteger ;
+                          era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/StartOffsetFromOrigin> ;
                           dcterms:created "2024-11-29"^^xsd:date ;
                           rdfs:comment "Start offset of the section from the origin."@en ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
