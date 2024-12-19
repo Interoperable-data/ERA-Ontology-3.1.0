@@ -31,6 +31,7 @@ era-etcslevel:ETCSLevels a skos:ConceptScheme ;
     dct:modified "2022-09-09"^^xsd:date ,
 				 "2024-04-18"^^xsd:date ,
 				 "2024-09-04"^^xsd:date ,
+                                 "2024-12-19"^^xsd:date , 
 				 "2024-12-12"^^xsd:date ;
     cc:license <https://creativecommons.org/licenses/by/4.0/> ;
     rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
@@ -38,7 +39,11 @@ era-etcslevel:ETCSLevels a skos:ConceptScheme ;
     era:rinfIndex "1.2.1.1.1.1";
     rdfs:label "ETCS Levels"@en ;
     skos:prefLabel "ETCS Levels"@en ;
-	skos:hiddenLabel "CCSTMS_EtcsLevel" ;
+    skos:changeNote """ 
+   Revision 2024-12-19: 
+        - Added etcs under construction concept
+     """@en ;
+    skos:hiddenLabel "CCSTMS_EtcsLevel" ;
     skos:title "Concept scheme grouping ETCS levels"@en .
 
 
@@ -88,3 +93,8 @@ era-etcslevel:60 a skos:Concept;
   skos:notation "NTC"^^xsd:string ;
   skos:hiddenLabel "CCSTMS_LevelNTC_1" ;
   skos:prefLabel "NTC"@en .
+
+era-etcslevel:70 a skos:Concept;
+  skos:inScheme era-etcslevel:ETCSLevels; skos:topConceptOf era-etcslevel:ETCSLevels ; 
+  skos:notation "Under construction"^^xsd:string ;
+  skos:prefLabel "ETCS under construction"@en .
