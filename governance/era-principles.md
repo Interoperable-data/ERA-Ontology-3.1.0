@@ -288,19 +288,19 @@ The named graph for each type of resource and environment is as follows:
 * ERA ontology
     * http://data.europa.eu/949/graph/dev/ontology
     * http://data.europa.eu/949/graph/uat/ontology
-    * http://data.europa.eu/949/graph/prod/ontology
+    * http://data.europa.eu/949/graph/ontology
 * SKOS concept schemes:
     * http://data.europa.eu/949/graph/dev/skos
     * http://data.europa.eu/949/graph/uat/skos
-    * http://data.europa.eu/949/graph/prod/skos
+    * http://data.europa.eu/949/graph/skos
 * Data transformed from RINF XML files:
     * http://data.europa.eu/949/graph/dev/rinf
     * http://data.europa.eu/949/graph/uat/rinf
-    * http://data.europa.eu/949/graph/prod/rinf
+    * http://data.europa.eu/949/graph/rinf
 * SHACL shapes:
     * http://data.europa.eu/949/graph/dev/shacl
     * http://data.europa.eu/949/graph/uat/shacl
-    * http://data.europa.eu/949/graph/prod/shacl
+    * http://data.europa.eu/949/graph/shacl
 * Data transformed from the ERATV database:
     * http://data.europa.eu/949/graph/eratv
 * Data about infrastructure managers:
