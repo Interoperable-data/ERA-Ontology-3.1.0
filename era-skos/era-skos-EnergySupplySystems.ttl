@@ -27,11 +27,13 @@
 
 era-ess:EnergySupplySystems a skos:ConceptScheme ;
     dct:issued "2020-09-01"^^xsd:date ;
-    dct:modified "2022-09-09"^^xsd:date ;
+    dct:modified "2022-09-09"^^xsd:date ,
+				 "2024-12-11"^^xsd:date ;
     cc:license <https://creativecommons.org/licenses/by/4.0/> ;
     rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
     rdfs:label "Energy Supply Systems"@en ;
     skos:prefLabel "Energy Supply Systems"@en ;
+    skos:hiddenLabel "CCSTMS_VoltageType" ;
     dct:title "Concept scheme grouping energy supply systems"@en .
 
 
@@ -52,7 +54,7 @@ era-ess-eratv:others
     skos:altLabel "Others (The User must also specify nominal voltage, frequency, ranges and current type AC or DC)" ;
     skos:altLabel "others";
     skos:prefLabel "Others".
-     
+    
 era-ess-eratv:1-2kv a skos:Concept;
   skos:inScheme era-ess:EnergySupplySystems;
   skos:note "Value retrieved from the ERATV database";
@@ -212,27 +214,32 @@ era-ess-eratv:dc-3kv a skos:Concept;
 era-ess-rinf:DC80 a skos:Concept ; 
     skos:inScheme era-ess:EnergySupplySystems ; skos:topConceptOf era-ess:EnergySupplySystems ;
     skos:note "Value retrieved from the RINF database";
+	skos:hiddenLabel "CCSTMS_vtDC600v_5" ;
     skos:prefLabel "DC 600 V" .
 
 era-ess-rinf:AC20 a skos:Concept;
   skos:inScheme era-ess:EnergySupplySystems; 
   skos:note "Value retrieved from the RINF database";
+  skos:hiddenLabel "CCSTMS_vtAC15kv16_7Hz_2" ;
   skos:prefLabel "AC 15kV-16.7Hz" .
 
 era-ess-rinf:AC10 a skos:Concept;
   skos:inScheme era-ess:EnergySupplySystems; 
   skos:note "Value retrieved from the RINF database";
+  skos:hiddenLabel "CCSTMS_vtAC25kv50Hz_1" ;
   skos:prefLabel "AC 25kV-50Hz" .
 
 era-ess-rinf:DC60 a skos:Concept;
   skos:inScheme era-ess:EnergySupplySystems; 
   skos:note "Value retrieved from the RINF database";
   skos:altLabel "DC750V";
+  skos:hiddenLabel "CCSTMS_vtDC750v_7" ;
   skos:prefLabel "DC 750V" .
 
 era-ess-rinf:DC40 a skos:Concept;
   skos:inScheme era-ess:EnergySupplySystems; 
   skos:note "Value retrieved from the RINF database";
+  skos:hiddenLabel "CCSTMS_vtDC1_5kv_4" ;
   skos:prefLabel "DC 1.5kV" .
 
 #added from value in RINF lookup table
@@ -251,18 +258,22 @@ era-ess-rinf:90 a skos:Concept;
 era-ess-rinf:DC90 a skos:Concept;
   skos:inScheme era-ess:EnergySupplySystems;
   skos:note "Value retrieved from the RINF database";
+  skos:hiddenLabel "CCSTMS_vtDC850v_8" ;
   skos:prefLabel "DC 850V" .
 
 era-ess-rinf:DC30 a skos:Concept;
   skos:inScheme era-ess:EnergySupplySystems;
+  skos:hiddenLabel "CCSTMS_vtDC3kv_3" ;
   skos:prefLabel "DC 3kV" .
 
 era-ess-rinf:DC70 a skos:Concept;
   skos:inScheme era-ess:EnergySupplySystems; 
   skos:note "Value retrieved from the RINF database";
+  skos:hiddenLabel "CCSTMS_vtDC650v_6" ;
   skos:prefLabel "DC 650V" .
-
-
-
-
-
+  
+era-ess:notFitted a skos:Concept ; 
+    skos:inScheme era-ess:EnergySupplySystems ; skos:topConceptOf era-ess:EnergySupplySystems ;
+    skos:definition "Line not fitted (not electrified) with any traction system"@en ;
+    skos:hiddenLabel "CCSTMS_vtNotFitted_0" ;
+    skos:prefLabel "Not Fitted"@en .

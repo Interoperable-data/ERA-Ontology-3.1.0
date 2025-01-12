@@ -1,0 +1,152 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+
+era-sh:SignalShape
+	a sh:NodeShape ;
+	sh:targetClass era:Signal.
+
+
+
+# onGrid
+era-sh:SignalShape sh:property era-sh:OnGrid .
+era-sh:OnGrid
+	a sh:PropertyShape;
+    era:affectedClass era:Signal;
+    era:affectedProperty era:onGrid ;
+    era:scope "local";
+	rdfs:comment "On signal grid."@en ;
+	sh:path era:onGrid ;
+    sh:class era:SignalGrid;
+	sh:severity sh:Violation ;
+	sh:message "onGrid: The Signal may point to a Signal grid.This error may be due to having a Signal that is not pointing to an instance of Signal grid"@en .
+
+# relativeDistanceDangerPoint: # 1.1.1.3.14.4, 1.2.1.0.8.4
+era-sh:Signal sh:property era-sh:RelativeDistanceDangerPoint .
+era-sh:RelativeDistanceDangerPoint
+	a sh:PropertyShape;
+    era:affectedClass era:Signal;
+    era:affectedProperty era:relativeDistanceDangerPoint ;
+    era:scope "local";
+	rdfs:comment "Distance in meters to the danger point."@en ;
+	era:rinfIndex "1.1.1.3.14.4" ;
+    era:rinfIndex "1.2.1.0.8.4" ;
+	sh:path era:relativeDistanceDangerPoint ;
+	sh:datatype xsd:integer ;
+    sh:pattern "^([1-9]\\d{1,2}|[0-9])$";
+	sh:severity sh:Violation ;
+	sh:message "relativeDistanceDangerPoint (1.1.1.3.14.4, 1.2.1.0.8.4): The distance in meters to the danger point must be represented as an integer and follow the pattern [NNN].This error may be due to having a value that is not an integer or that does not follow the pattern."@en .
+
+
+# signalId: # 1.1.1.3.14.1, 1.2.1.0.8.1
+era-sh:Signal sh:property era-sh:SignalId .
+era-sh:SignalId
+	a sh:PropertyShape;
+    era:affectedClass era:Signal;
+    era:affectedProperty era:signalId ;
+    era:scope "local";
+	rdfs:comment "Operational identifier of the signal (on the track or in OP), as in the operational and maintenance provisions."@en ;
+	era:rinfIndex "1.1.1.3.14.1" ;
+    era:rinfIndex "1.2.1.0.8.1" ;
+	sh:path era:signalId ;
+	sh:datatype xsd:string ;
+    sh:maxCount 1;
+	sh:severity sh:Violation ;
+	sh:message "signalId (1.1.1.3.14.1, 1.2.1.0.8.1): A Signal may have at most one signal id and it must be represented as a String. This error may be due to having more than one value or having a value that is not a string"@en .
+
+# signalType: # 1.1.1.3.14.2, 1.2.1.0.8.2
+era-sh:Signal sh:property era-sh:SignalType .
+era-sh:SignalType
+	a sh:PropertyShape;
+    era:affectedClass era:Signal;
+    era:affectedProperty era:signalType ;
+    era:scope "local";
+	rdfs:comment "Signalling information for Route Book compilation."@en ;
+	era:rinfIndex "1.1.1.3.14.2" ;
+    era:rinfIndex "1.2.1.0.8.2" ;
+	sh:path era:signalType ;
+	sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "signalType (1.1.1.3.14.2, 1.2.1.0.8.2): The signal type must be represented as an IRI.This error may be due to having a value that is not an IRI."@en .
+
+
+# signalType: # 1.1.1.3.14.2, 1.2.1.0.8.2
+era-sh:Signal sh:sparql era-sh:SignalTypeSKOS.
+era-sh:SignalTypeSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:signalType;
+    era:affectedClass  era:Signal;
+    era:scope "local";
+    rdfs:comment "Signalling information for Route Book compilation." ;
+	era:rinfIndex "1.1.1.3.14.2" ;
+    era:rinfIndex "1.2.1.0.8.2" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the signalType (1.1.1.3.14.2, 1.2.1.0.8.2): The signal {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/signal-types/."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+        $this era:signalType ?concept .
+        era:signalType era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+# signalOrientation: # 1.1.1.3.14.3, 1.2.1.0.8.3 
+era-sh:Signal sh:property era-sh:SignalOrientation .
+era-sh:SignalOrientation
+	a sh:PropertyShape;
+    era:affectedClass era:Signal;
+    era:affectedProperty era:signalOrientation ;
+    era:scope "local";
+	rdfs:comment "Indication if the signal (on the track or in OP) is applicable for operation on normal, opposite track direction or if it contains bidirectionally valid information (radio-based system only)."@en ;
+	era:rinfIndex "1.1.1.3.14.3" ;
+    era:rinfIndex "1.2.1.0.8.3" ;
+	sh:path era:signalOrientation ;
+	sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "signalOrientation (1.1.1.3.14.3, 1.2.1.0.8.3): A Signal may have an orientation and it must be represented as an IRI. This error may be due to having a value that is not an IRI."@en .
+
+# signalOrientation: # 1.1.1.3.14.3, 1.2.1.0.8.3 
+era-sh:Signal sh:sparql era-sh:SignalOrientationSKOS.
+era-sh:SignalOrientationSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:signalOrientation;
+    era:affectedClass  era:Signal;
+    era:scope "local";
+    rdfs:comment "Indication if the signal (on the track or in OP) is applicable for operation on normal, opposite track direction or if it contains bidirectionally valid information (radio-based system only)." ;
+	era:rinfIndex "1.1.1.3.14.3" ;
+    era:rinfIndex "1.2.1.0.8.3 " ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the signalOrientation (1.1.1.3.14.3, 1.2.1.0.8.3 ):): The signal {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/track-running-directions/TrackRunningDirections."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+        $this era:signalOrientation ?concept .
+        era:signalOrientation era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+
+
+

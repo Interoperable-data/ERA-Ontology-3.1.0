@@ -1,0 +1,61 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+
+
+#############################
+# Rules for op-track
+#############################
+
+#
+# op-track
+#
+
+era-sh:OperationalPointShape
+	a sh:NodeShape ;
+	sh:targetClass era:OperationalPoint .
+
+# trackId: # 1.2.1.0.0.2 
+era-sh:OperationalPointShape sh:sparql era-sh:NoRepeatedTrackIdsOP.
+era-sh:NoRepeatedTrackIdsOP 
+    a sh:SPARQLConstraint ; 
+    era:affectedProperty era:trackId;
+    era:affectedClass era:RunningTrack;
+    era:affectedClass era:OperationalPoint;
+    era:scope "global";
+    rdfs:comment "Each track shall have unique identification or number within the OP. This number cannot be used for naming any other track in the same OP." ;
+    era:rinfIndex "1.2.1.0.0.2" ;
+    sh:severity sh:Violation ;
+    sh:message "trackId (1.2.1.0.0.2):: Each track shall have unique identification or number within the OP. This number cannot be used for naming any other track in the same OP. There is a problem with OP {$this} ({?opLabel}) and tracks {?track1} ({?track1Label}) and {?track2} ({?track2Label}), since they have the same identifier: {?value}."@en ;
+    sh:prefixes era:;
+    sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this ?opLabel ?track1 ?track1Label ?track2 ?track2Label ?value
+			WHERE {
+                $this era:hasPart ?track1 .
+                $this era:hasPart ?track2 .
+                ?track1 era:trackId ?value .
+                ?track2 era:trackId ?value .
+                FILTER(?track1 != ?track2) . 
+				OPTIONAL{$this rdfs:label ?opLabel} .
+				OPTIONAL{?track1 rdfs:label ?track1Label} .
+				OPTIONAL{?track2 rdfs:label ?track2Label} .
+			}
+			""" .
+
+
+
+
+
+
+
+

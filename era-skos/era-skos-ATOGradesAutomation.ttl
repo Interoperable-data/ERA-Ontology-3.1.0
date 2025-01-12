@@ -26,13 +26,20 @@
 
 era-ato-grades:ATOGradeOfAutomation a skos:ConceptScheme ; 
     dct:issued "2024-04-18"^^xsd:date ;
-    dct:modified "2024-09-04"^^xsd:date ;
+    dct:modified "2024-09-04"^^xsd:date ,
+				 "2024-12-12"^^xsd:date ;
     cc:license <https://creativecommons.org/licenses/by/4.0/> ;
     rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
     era:rinfIndex "1.1.1.3.13.1"; 
     era:rinfIndex "1.2.1.1.10.1"; 
     rdfs:label "ATO Grade of Automation"@en ;
     skos:prefLabel "ATO Grade of Automation"@en ;
+	skos:hiddenLabel "CCSTMS_GradeOfAutomation" ;
+	skos:changeNote """ 
+    Revision 12-12-2024: 
+	- add values for GradeOfAutomation (GoA3 and GoA4)
+	- add GoAunknown and CCSTMS altLabel tags
+  """@en ;
     skos:title "Concept scheme for ATO Grade of Automation"@en .
 
 
@@ -56,11 +63,33 @@ era-ato-grades:1 a skos:Concept;
   skos:inScheme era-ato-grades:ATOGradeOfAutomation; skos:note "Value introduced in TWG RINF 2024"@en;
   skos:topConceptOf era-ato-grades:ATOGradeOfAutomation ;
   skos:notation "1"^^xsd:string ;
-  skos:prefLabel "1"@en .
+  skos:prefLabel "1"@en ;
+  skos:hiddenLabel "CCSTMS_GoA1_1" .
 
 era-ato-grades:2 a skos:Concept;
   skos:inScheme era-ato-grades:ATOGradeOfAutomation; skos:note "Value introduced in TWG RINF 2024"@en;
   skos:topConceptOf era-ato-grades:ATOGradeOfAutomation ;
   skos:notation "2"^^xsd:string ;
-  skos:prefLabel "2"@en .
+  skos:prefLabel "2"@en ;
+  skos:hiddenLabel "CCSTMS_GoA2_2" .
+  
+era-ato-grades:3 a skos:Concept; 
+  skos:inScheme era-ato-grades:ATOGradeOfAutomation;
+  skos:topConceptOf era-ato-grades:ATOGradeOfAutomation ;
+  skos:notation "3"^^xsd:string
+  skos:prefLabel "3"@en ;
+  skos:hiddenLabel "CCSTMS_GoA3_3" .
 
+era-ato-grades:4 a skos:Concept; 
+  skos:inScheme era-ato-grades:ATOGradeOfAutomation;
+  skos:topConceptOf era-ato-grades:ATOGradeOfAutomation ;
+  skos:notation "4"^^xsd:string
+  skos:prefLabel "4"@en ;
+  skos:hiddenLabel "CCSTMS_GoA4_4" .
+  
+era-ato-grades:unknown a skos:Concept; 
+  skos:inScheme era-ato-grades:ATOGradeOfAutomation;
+  skos:topConceptOf era-ato-grades:ATOGradeOfAutomation ;
+  skos:notation "Unknown"^^xsd:string
+  skos:prefLabel "Unknown"@en ;
+  skos:hiddenLabel "CCSTMS_GoAUnknown_0" .

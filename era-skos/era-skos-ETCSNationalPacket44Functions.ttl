@@ -7,7 +7,8 @@
 @prefix cc: <http://creativecommons.org/ns#> .
 @prefix era: <http://data.europa.eu/949/> .
 @prefix era-skos: <http://data.europa.eu/949/concepts/> .
-@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
+
+@prefix era-enpf: <http://data.europa.eu/949/concepts/etcs-national-packet-44-functions/ETCSNationalPacket44Functions/> .
 
 
 
@@ -20,16 +21,16 @@
 #################################################################
 
 
-era-sn:SoLNatures a skos:ConceptScheme ; 
-    dct:issued "2020-09-01"^^xsd:date ;
-    dct:modified "2022-09-09"^^xsd:date ;
-    dct:modified "2024-09-04"^^xsd:date ;
+
+
+era-enpf:ETCSNationalPacket44Functions a skos:ConceptScheme ; 
+    dct:issued "2024-11-20"^^xsd:date ;
     cc:license <https://creativecommons.org/licenses/by/4.0/> ;
     rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
-    era:rinfIndex "1.1.0.0.0.6"; 
-    rdfs:label "Section of Line Natures"@en ;
-    skos:prefLabel "Section of Line Natures"@en ;
-    dct:title "Concept scheme grouping section of line natures"@en .
+    rdfs:label "ETCS national packet 44 application function"@en ;
+    skos:prefLabel "ETCS national packet 44 application function"@en ;
+    dct:title "Concept scheme grouping ETCS national packet 44 application implemented functions."@en .
+
 
 
 #################################################################
@@ -39,15 +40,24 @@ era-sn:SoLNatures a skos:ConceptScheme ;
 #################################################################
 
 
-########## Sol Natures ##########
+## To be generated when values are available under the condition the scheme is relevant.
+## Work to do by the CCS 2024 members"
 
-era-sn:20 a skos:Concept;
-  skos:inScheme era-sn:SoLNatures; skos:topConceptOf era-sn:SoLNatures;
-  skos:notation "Link"^^xsd:string ;
-  skos:prefLabel "Link"@en .
 
-era-sn:10 a skos:Concept;
-  skos:inScheme era-sn:SoLNatures; skos:topConceptOf era-sn:SoLNatures; 
-  skos:notation "Regular SoL"^^xsd:string ;
-  skos:prefLabel "Regular SoL"@en .
+########## ETCS national packet 44 application implemented functions ##########
+
+era-enpf:00 a skos:Concept;
+  skos:inScheme era-enpf:ETCSNationalPacket44Functions; skos:topConceptOf era-enpf:ETCSNationalPacket44Functions ; 
+  skos:note "Value collected from TWG RINF CCS 2024 members"@en;
+  skos:notation "Placeholder";
+  skos:prefLabel "Placeholder" ;
+  rdfs:comment "Placeholder" ;
+   .
+
+
+
+
+
+
+
 

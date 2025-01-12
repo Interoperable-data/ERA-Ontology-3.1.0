@@ -21,11 +21,19 @@
 
 era-specialareatypes:SpecialAreaTypes a skos:ConceptScheme ; 
     dct:issued "2024-04-18"^^xsd:date ;
-    dct:modified "2024-09-04"^^xsd:date ;
+    dct:modified "2024-09-04"^^xsd:date, "2024-12-05"^^xsd:date, "2024-12-18"^^xsd:date ;
     cc:license <https://creativecommons.org/licenses/by/4.0/> ;
     rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
     era:rinfIndex "1.1.0.0.1.1"; 
     rdfs:label "Types of Special Areas"@en ;
+	skos:hasTopConcept era-specialareatypes:NonStoppingArea , era-specialareatypes:PantographLowered,  era-specialareatypes:PowerSwitchOff,
+	era-specialareatypes:RadioHole, era-specialareatypes:AirTightnessArea, era-specialareatypes:InhibitionTypeBrake ,
+	era-specialareatypes:TunnelArea, era-specialareatypes:SoundingHorn, era-specialareatypes:ChangingTractionSystem , era-specialareatypes:IndustrialRiskArea ;
+    skos:changeNote """ 
+      Revision 18-12-2024:
+      - Added the industrial risk area concept for route book use case
+      - Revision 05-12-2024: 
+       Added 8 new concepts """@en ;
     dct:title "Concept scheme grouping the types of Special Areas"@en .
 
 
@@ -41,7 +49,93 @@ era-specialareatypes:SpecialAreaTypes a skos:ConceptScheme ;
 
 era-specialareatypes:NonStoppingArea a skos:Concept;
   skos:topConceptOf era-specialareatypes:SpecialAreaTypes ;
-  skos:inScheme era-specialareatypes:SpecialAreaTypes; skos:note "Value added for RINF-parameter 1.1.1.3.14.5"@en;
-  rdfs:comment "Non-stopping Area"@en ;
+  skos:inScheme era-specialareatypes:SpecialAreaTypes; 
+  dct:created "2024-04-18"^^xsd:date ;
+  dct:modified "2024-12-05"^^xsd:date ;
+  skos:note "Value added for RINF-parameter 1.1.0.0.1.1"@en;
+  rdfs:comment "Passing a non stopping Area"@en ;
   skos:notation "NSA"^^xsd:string ;
-  skos:prefLabel "NSA"@en .
+  skos:prefLabel "Non stopping Area"@en .
+
+    era-specialareatypes:PantographLowered a skos:Concept;
+      skos:topConceptOf era-specialareatypes:SpecialAreaTypes ;
+      skos:inScheme era-specialareatypes:SpecialAreaTypes; 
+      skos:note "Value added for RINF-parameter 1.1.0.0.1.1"@en;
+      rdfs:comment "Passing a powerless section with pantograph to be lowered"@en ;
+      skos:notation "PPL"^^xsd:string ;
+      dct:created "2024-12-05"^^xsd:date ;
+      skos:prefLabel "Powerless section with pantograph to be lowered"@en .
+
+ era-specialareatypes:PowerSwitchOff a skos:Concept;
+      skos:topConceptOf era-specialareatypes:SpecialAreaTypes ;
+      skos:inScheme era-specialareatypes:SpecialAreaTypes; 
+      skos:note "Value added for RINF-parameter 1.1.0.0.1.1"@en;
+      rdfs:comment "Passing a powerless section with main power switch to be switched off"@en ;
+      skos:notation "PSSO"^^xsd:string ;
+      dct:created "2024-12-05"^^xsd:date ;
+      skos:prefLabel "Powerless section with main power switch to be switched off"@en .
+
+ era-specialareatypes:RadioHole a skos:Concept;
+      skos:topConceptOf era-specialareatypes:SpecialAreaTypes ;
+      skos:inScheme era-specialareatypes:SpecialAreaTypes; 
+      skos:note "Value added for RINF-parameter 1.1.0.0.1.1"@en;
+      rdfs:comment "Passing a radio hole"@en ;
+      skos:notation "PRH"^^xsd:string ;
+      dct:created "2024-12-05"^^xsd:date ;
+      skos:prefLabel "Radio hole"@en .
+
+ era-specialareatypes:AirTightnessArea a skos:Concept;
+      skos:topConceptOf era-specialareatypes:SpecialAreaTypes ;
+      skos:inScheme era-specialareatypes:SpecialAreaTypes; 
+      skos:note "Value added for RINF-parameter 1.1.0.0.1.1"@en;
+      rdfs:comment "Passing an air tightness area"@en ;
+      skos:notation "PAT"^^xsd:string ;
+      dct:created "2024-12-05"^^xsd:date ;
+      skos:prefLabel "Air tightness area"@en .
+
+ era-specialareatypes:InhibitionTypeBrake a skos:Concept;
+      skos:topConceptOf era-specialareatypes:SpecialAreaTypes ;
+      skos:inScheme era-specialareatypes:SpecialAreaTypes; 
+      skos:note "Value added for RINF-parameter 1.1.0.0.1.1"@en;
+      rdfs:comment "Inhibition of a defined type of brake"@en ;
+      skos:notation "ITB"^^xsd:string ;
+      dct:created "2024-12-05"^^xsd:date ;
+      skos:prefLabel "Inhibition of brake"@en .
+
+ era-specialareatypes:TunnelArea a skos:Concept;
+      skos:topConceptOf era-specialareatypes:SpecialAreaTypes ;
+      skos:inScheme era-specialareatypes:SpecialAreaTypes; 
+      skos:note "Value added for RINF-parameter 1.1.0.0.1.1"@en;
+      rdfs:comment "Advising a tunnel stopping area"@en ;
+      skos:notation "TSA"^^xsd:string ;
+      dct:created "2024-12-05"^^xsd:date ;
+      skos:prefLabel "Tunnel stopping area"@en .
+
+ era-specialareatypes:SoundingHorn a skos:Concept;
+      skos:topConceptOf era-specialareatypes:SpecialAreaTypes ;
+      skos:inScheme era-specialareatypes:SpecialAreaTypes; 
+      skos:note "Value added for RINF-parameter 1.1.0.0.1.1"@en;
+      rdfs:comment "Sounding the horn"@en ;
+      skos:notation "STH"^^xsd:string ;
+      dct:created "2024-12-05"^^xsd:date ;
+      skos:prefLabel "Sounding the horn"@en .
+
+ era-specialareatypes:IndustrialRiskArea a skos:Concept;
+      skos:topConceptOf era-specialareatypes:SpecialAreaTypes ;
+      skos:inScheme era-specialareatypes:SpecialAreaTypes; 
+      skos:note "Value added for RINF-parameter 1.1.0.0.1.1"@en;
+      rdfs:comment "Industrial risk areas"@en ;
+      skos:notation "IRA"^^xsd:string ;
+      dct:created "2024-12-18"^^xsd:date ;
+      skos:prefLabel "Industrial risk areas"@en .
+
+era-specialareatypes:ChangingTractionSystem a skos:Concept;
+      skos:topConceptOf era-specialareatypes:SpecialAreaTypes ;
+      skos:inScheme era-specialareatypes:SpecialAreaTypes; 
+      skos:note "Value added for RINF-parameter 1.1.0.0.1.1"@en;
+      rdfs:comment "Changing the traction system"@en ;
+      skos:notation "CTS"^^xsd:string ;
+      dct:created "2024-12-05"^^xsd:date ;
+      skos:prefLabel "Changing the traction system"@en .
+
+ 

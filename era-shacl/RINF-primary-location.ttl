@@ -1,0 +1,90 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+
+era-sh:PrimaryLocationShape
+	a sh:NodeShape ;
+	sh:targetClass era:PrimaryLocation.
+
+
+# primaryLocationCode: # 1.2.0.0.0.3 #pending checking pattern  [AANNNNN]
+era-sh:PrimaryLocationShape sh:property era-sh:PrimaryLocationCode .
+era-sh:PrimaryLocationCode
+	a sh:PropertyShape;
+    era:affectedClass era:PrimaryLocation;
+    era:affectedProperty era:primaryLocationCode ;
+    era:scope "local";
+	rdfs:comment "Primary location code developed for information exchange in accordance with the TSIs relating to the telematics applications subsystem."@en ;
+	era:rinfIndex "1.2.0.0.0.3" ;
+	sh:path era:primaryLocationCode ;
+	sh:datatype xsd:string ;
+    sh:pattern "^[A-Z]{2}\\/[0-9]{5}$";
+	sh:severity sh:Violation ;
+	sh:message "primaryLocationCode (1.2.0.0.0.3): The primary location code must be represented as a String and follow the pattern [AANNNNN]."@en .
+
+# containerHandlingFlag  
+era-sh:PrimaryLocationShape sh:property era-sh:ContainerHandlingFlag .
+era-sh:ContainerHandlingFlag
+	a sh:PropertyShape ; 
+    era:affectedProperty era:containerHandlingFlag ;
+    era:affectedClass  era:PrimaryLocation;
+    era:scope "local";
+	rdfs:comment "Container handling flag." ;
+	sh:path era:containerHandlingFlag ;
+	sh:datatype xsd:boolean;
+	sh:severity sh:Violation ;
+	sh:message "containerHandlingFlag : The PrimaryLocation may have a containerHandlingFlag value that is a boolean. This error may be due to the Primary Location having  a value that is not a boolean."@en .
+
+# freightFlag  
+era-sh:PrimaryLocationShape sh:property era-sh:FreightFlag .
+era-sh:FreightFlag
+	a sh:PropertyShape ; 
+    era:affectedProperty era:freightFlag ;
+    era:affectedClass  era:PrimaryLocation;
+    era:scope "local";
+	rdfs:comment "Freight flag." ;
+	sh:path era:freightFlag ;
+    sh:maxCount 1;
+	sh:datatype xsd:boolean;
+	sh:severity sh:Violation ;
+	sh:message "freightFlag : The PrimaryLocation may have a freightFlag value that is a boolean. This error may be due to the Primary Location having more than one value or having  a value that is not a boolean."@en .
+
+# handoverPointFlag  
+era-sh:PrimaryLocationShape sh:property era-sh:HandoverPointFlag .
+era-sh:HandoverPointFlag
+	a sh:PropertyShape ; 
+    era:affectedProperty era:handoverPointFlag ;
+    era:affectedClass  era:PrimaryLocation;
+    era:scope "local";
+	rdfs:comment "Handover point flag." ;
+	sh:path era:handoverPointFlag ;
+	sh:datatype xsd:boolean;
+	sh:severity sh:Violation ;
+	sh:message "handoverPointFlag : The PrimaryLocation may have a handoverPointFlag value that is a boolean. This error may be due to the Primary Location having  a value that is not a boolean."@en .
+
+
+# primaryLocationName
+era-sh:PrimaryLocationShape sh:property era-sh:PrimaryLocationName .
+era-sh:PrimaryLocationName
+	a sh:PropertyShape ; 
+    era:affectedProperty era:primaryLocationName ;
+    era:affectedClass  era:PrimaryLocation;
+    era:scope "local";
+	rdfs:comment "Primary location name." ;
+	sh:path era:primaryLocationName ;
+	sh:datatype xsd:string;
+	sh:severity sh:Violation ;
+	sh:message "primaryLocationName : The PrimaryLocation may have a primaryLocationName value that is a string. This error may be due to the Primary Location having  a value that is not a string."@en .
+
+
+
+
+
