@@ -636,6 +636,7 @@ above the local reference ellipsoid).""" ;
 wgs:lat rdf:type owl:AnnotationProperty ;
         rdfs:comment "The WGS84 latitude of a SpatialThing (decimal degrees)." ;
         rdfs:label "latitude" ;
+        era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/Lat> ;
         rdfs:domain wgs:SpatialThing .
 
 
@@ -664,6 +665,7 @@ wgs:location rdf:type owl:AnnotationProperty ;
 wgs:long rdf:type owl:AnnotationProperty ;
          rdfs:comment "The WGS84 longitude of a SpatialThing (decimal degrees)." ;
          rdfs:label "longitude" ;
+         era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/Long> ;
          rdfs:domain wgs:SpatialThing .
 
 
@@ -1287,6 +1289,8 @@ era:conditionsUseReflectivePlates rdf:type owl:ObjectProperty ;
                                   era:rinfIndex "1.1.1.1.7.12.1" ;
                                   dcterms:created "2023-03-14"^^xsd:date ;
                                   dcterms:modified "2024-09-24"^^xsd:date ;
+                                  era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/ConditionsUseReflectivePlates> ,
+                                                            <http://data.europa.eu/949/shapes/ConditionsUseReflectivePlatesSKOS> ;
                                   rdfs:comment "Details of any conditions for using the reflective plates on freight corridors. Specific case for Portugal and Spain until 1.1.2025 and Belgium and France until 1.1.2026."@en ;
                                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                   rdfs:label "Conditions for use of reflective plates"@en ;
@@ -1303,6 +1307,7 @@ era:contactLineSystem rdf:type owl:ObjectProperty ;
                       rdfs:range era:ContactLineSystem ;
                       dcterms:created "2020-08-24"^^xsd:date ;
                       dcterms:modified "2021-09-11"^^xsd:date ;
+                      era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/ContactLineSystem> ;
                       rdfs:comment "Contact line system present in the section of line."@en ;
                       rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                       rdfs:label "contact line system"@en ;
@@ -1678,6 +1683,7 @@ era:endsAt rdf:type owl:ObjectProperty ;
            rdfs:domain era:NetLinearReference ;
            rdfs:range era:TopologicalCoordinate ;
            dcterms:created "2024-11-29"^^xsd:date ;
+           era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/EndsAt> ;
            rdfs:comment "Specifies the ending coordinate of a linear reference."@en ;
            rdfs:isDefinedBy <http://data.europa.eu/949/> ;
            rdfs:label "ends at"@en .
@@ -1778,6 +1784,7 @@ era:etcs rdf:type owl:ObjectProperty ;
          dcterms:modified "2021-09-12"^^xsd:date ,
                           "2024-08-13"^^xsd:date ,
                           "2024-09-19"^^xsd:date ;
+         era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/Etcs> ;
          rdfs:comment "European Train Control System (ETCS) application level supported by the track side equipment."@en ;
          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
          rdfs:label "ETCS"@en ;
@@ -2250,6 +2257,7 @@ era:frenchTrainDetectionSystemLimitationNumber rdf:type owl:ObjectProperty ;
                                                era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/FrenchTrainDetectionSystemLimitationNumberSKOS> ;
                                                dcterms:created "2023-04-05"^^xsd:date ;
                                                dcterms:modified "2024-04-18"^^xsd:date ;
+                                               era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/FrenchTrainDetectionSystemLimitationNumber> ;
                                                dcterms:relation era:frenchTrainDetectionSystemLimitationApplicable ,
                                                                 era:tdsFrenchTrainDetectionSystemLimitation ;
                                                rdfs:comment """Part of the section with train detection limitation that indicates the type of train detection limitation.
@@ -2688,6 +2696,7 @@ era:hasPart rdf:type owl:ObjectProperty ;
             rdfs:range era:BasicElement ;
             era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/HasPartOP> ;
             dcterms:created "2024-05-24"^^xsd:date ;
+            era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/HasPart> ;
             rdfs:comment "Indicates that an aggregated element has a part that is a basic element."@en ;
             rdfs:isDefinedBy <http://data.europa.eu/949/> ;
             rdfs:label "has part"@en .
@@ -2873,6 +2882,7 @@ era:isPartOf rdf:type owl:ObjectProperty ;
              rdfs:domain era:BasicElement ;
              rdfs:range era:AggregatedElement ;
              dcterms:created "2024-05-24"^^xsd:date ;
+             era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/IsPartOf> ;
              rdfs:comment "Indicates that a basic element is part of an aggregated element."@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "is part of"@en .
@@ -3532,6 +3542,7 @@ era:netReference rdf:type owl:ObjectProperty ;
 era:notApplicable rdf:type owl:ObjectProperty ;
                   dcterms:created "2021-09-13"^^xsd:date ;
                   dcterms:modified "2021-09-13"^^xsd:date ;
+                  era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/NotApplicablePropertyShape> ;
                   rdfs:comment "Reference to a property that is not applicable."@en ;
                   rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                   rdfs:label "Not applicable"@en ;
@@ -3542,6 +3553,7 @@ era:notApplicable rdf:type owl:ObjectProperty ;
 era:notYetAvailable rdf:type owl:ObjectProperty ;
                     dcterms:created "2021-09-13"^^xsd:date ;
                     dcterms:modified "2023-10-11"^^xsd:date ;
+                    era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/NotYetAvailablePropertyShape> ;
                     rdfs:comment "Reference to a property that is not provided."@en ;
                     rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                     rdfs:label "Not provided"@en ;
@@ -4358,6 +4370,7 @@ era:role rdf:type owl:ObjectProperty ;
          rdfs:range era:OrganisationRole ;
          dcterms:created "2024-06-03"^^xsd:date ;
          dcterms:modified "2024-10-24"^^xsd:date ;
+         era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/Role> ;
          rdfs:comment "Indicates the relationship of a Body to the organisation roles that it can play."@en ;
          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
          rdfs:label "role"@en .
@@ -4631,6 +4644,8 @@ era:standardCombinedTransportContainers rdf:type owl:ObjectProperty ;
                                         era:legalDeadline "12 months after the adoption of the Article 7 Guide for lines belonging to the TEN (1.1.1.1.2.1)"@en ;
                                         era:rinfIndex "1.1.1.1.3.8" ;
                                         dcterms:created "2023-03-14"^^xsd:date ;
+                                        era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/StandardCombinedTransportContainers> ,
+                                                                  <http://data.europa.eu/949/shapes/StandardCombinedTransportContainersSKOS> ;
                                         rdfs:comment "Coding for combined transport for containers (for all freight and mixed-traffic lines) in accordance with the specification referenced in Appendix A-1, index [B]"@en ;
                                         rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                         rdfs:label "Standard combined transport profile number for containers"@en ;
@@ -4726,6 +4741,7 @@ era:subsetOf rdf:type owl:ObjectProperty ,
              rdfs:domain era:CommonCharacteristicsSubset ;
              rdfs:range era:CommonCharacteristicsSubset ;
              dcterms:created "2024-10-31"^^xsd:date ;
+             era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/SubsetOf> ;
              rdfs:comment "Relates a subset with common chatacteristics with another subset with common characteristics."@en ;
              rdfs:isDefinedBy <http://data.europa.eu/949/> ;
              rdfs:label "subset of"@en .
@@ -4996,8 +5012,7 @@ era:trackLoadCapability rdf:type owl:ObjectProperty ;
                         era:applicable "Y" ;
                         era:legalDeadline "In accordance with Implementing Decision 2014/880/EU and by 16 March 2019 at the latest"@en ;
                         era:rinfIndex "1.1.1.1.2.4" ;
-                        era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/TrackLoadCapability> ,
-                                                     <http://data.europa.eu/949/shapes/TrackLoadCapabilityProps> ;
+                        era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/TrackLoadCapability> ;
                         era:unitOfMeasure unit:KiloM-PER-HR ;
                         era:usedInRCCCalculations "true"^^xsd:boolean ;
                         dcterms:created "2023-01-20"^^xsd:date ;
@@ -5150,6 +5165,7 @@ era:trainDetectionSystem rdf:type owl:ObjectProperty ;
                          rdfs:range era:TrainDetectionSystem ;
                          dcterms:created "2020-07-29"^^xsd:date ;
                          dcterms:modified "2021-09-12"^^xsd:date ;
+                         era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/TrainDetectionSystem> ;
                          rdfs:comment "Train detection systems installed in the section of line."@en ;
                          rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                          rdfs:label "Train detection system"@en ;
@@ -5766,6 +5782,7 @@ geo:hasGeometry rdf:type owl:ObjectProperty ;
                               "1.2.0.0.0.5" ,
                               "1.2.1.0.8.5" ;
                 era:usedInRCCCalculations "true"^^xsd:boolean ;
+                era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/HasGeometry> ;
                 dcterms:contributor "Matthew Perry" ;
                 dcterms:creator "OGC GeoSPARQL 1.0 Standard Working Group" ;
                 dcterms:date "2011-06-16"^^xsd:date ;
@@ -7250,6 +7267,7 @@ era:frenchTrainDetectionSystemLimitationApplicable rdf:type owl:DatatypeProperty
                                                    era:XMLName "CTD_TCLimitation" ;
                                                    era:usedInRCCCalculations "true"^^xsd:boolean ;
                                                    dcterms:created "2023-04-05"^^xsd:date ;
+                                                   era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/FrenchTrainDetectionSystemLimitationApplicable> ;
                                                    dcterms:relation era:frenchTrainDetectionSystemLimitation ;
                                                    rdfs:comment "Part of the section with train detection limitation that indicates if it is applicable. Only for the French network."@en ;
                                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -9355,6 +9373,7 @@ era:maximumMagneticFieldDirectionX rdf:type owl:DatatypeProperty ,
                                    rdfs:range xsd:integer ;
                                    dcterms:created "2023-03-14"^^xsd:date ;
                                    dcterms:modified "2024-09-19"^^xsd:date ;
+                                   era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/MaximumMagneticFieldDirectionX> ;
                                    dcterms:relation era:trainDetectionSystemType ;
                                    rdfs:comment "The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band. Direction X."@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -9370,6 +9389,7 @@ era:maximumMagneticFieldDirectionY rdf:type owl:DatatypeProperty ,
                                    rdfs:range xsd:integer ;
                                    dcterms:created "2023-03-14"^^xsd:date ;
                                    dcterms:modified "2024-09-19"^^xsd:date ;
+                                   era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/MaximumMagneticFieldDirectionY> ;
                                    dcterms:relation era:trainDetectionSystemType ;
                                    rdfs:comment "The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band. Direction Y."@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -9384,6 +9404,7 @@ era:maximumMagneticFieldDirectionZ rdf:type owl:DatatypeProperty ;
                                    rdfs:range xsd:integer ;
                                    dcterms:created "2023-03-14"^^xsd:date ;
                                    dcterms:modified "2024-09-19"^^xsd:date ;
+                                   era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/MaximumMagneticFieldDirectionZ> ;
                                    dcterms:relation era:trainDetectionSystemType ;
                                    rdfs:comment "The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band. Direction Z."@en ;
                                    rdfs:isDefinedBy <http://data.europa.eu/949/> ;
@@ -10389,7 +10410,7 @@ era:phaseInfoChangeSupplySystem rdf:type owl:DatatypeProperty ;
                                 rdfs:subPropertyOf era:oclSeparationSectionsDataParameter ;
                                 rdfs:domain era:PhaseInfo ;
                                 rdfs:range xsd:boolean ;
-                                era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/PhaseInfoChangesupplySystem> ;
+                                era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/PhaseInfoChangeSupplySystem> ;
                                 dcterms:created "2024-02-05"^^xsd:date ;
                                 rdfs:comment "Part of the phase info of a track that corresponds to the single selection of Y=yes or N=no to show if the energy supply system changes"@en ;
                                 rdfs:label "Phase info change supply system"@en ;
@@ -12600,6 +12621,7 @@ geo:asWKT rdf:type owl:DatatypeProperty ;
                                     "2.1.2" ,
                                     "2.2.2" ,
                                     "3.2.5" ;
+          era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/AsWKT> ;
           dcterms:contributor "Matthew Perry" ;
           dcterms:creator "OGC GeoSPARQL 1.0 Standard Working Group" ;
           dcterms:date "2011-06-16"^^xsd:date ;
@@ -12882,6 +12904,7 @@ era:LinearPositioningSystemCoordinate rdf:type owl:Class ;
 ###  http://data.europa.eu/949/LinesideDistanceIndication
 era:LinesideDistanceIndication rdf:type owl:Class ;
                                dcterms:created "2024-12-12"^^xsd:date ;
+                               era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/LinesideDistanceIndication> ;
                                rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                                rdfs:label "Lineside indications of distance"@en .
 
@@ -12976,6 +12999,7 @@ era:MinimumVerticalRadius rdf:type owl:Class ;
                           dcterms:created "2021-12-12"^^xsd:date ;
                           rdfs:isDefinedBy <http://data.europa.eu/949/> ;
                           rdfs:label "Minimum radius of vertical curve"@en ;
+                          era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/MinimumVerticalRadius> ;
                           vs:term_status "stable" ;
                           skos:scopeNote "Presentation of parameter 1.2.2.0.3.3 'Minimum radius of vertical curve'"@en .
 
@@ -12984,7 +13008,6 @@ era:MinimumVerticalRadius rdf:type owl:Class ;
 era:NationalRailwayLine rdf:type owl:Class ;
                         rdfs:subClassOf era:InfrastructureElement ;
                         owl:disjointWith era:PrimaryLocation ;
-                        era:shaclShapeValidationRule <http://data.europa.eu/949/shapes/NationalRailwayLineShape> ;
                         dcterms:created "2021-01-25"^^xsd:date ;
                         dcterms:modified "2021-08-03"^^xsd:date ,
                                          "2024-11-29"^^xsd:date ;
