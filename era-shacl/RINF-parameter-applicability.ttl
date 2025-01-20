@@ -1,0 +1,135 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix era-sn: <http://data.europa.eu/949/concepts/sol-natures/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix time:<http://www.w3.org/2006/time#> .
+@prefix owl:<http://www.w3.org/2002/07/owl#> .
+
+era-sh:ParameterApplicabilityShape
+	a sh:NodeShape ;
+	sh:targetClass era:ParameterApplicability.
+
+era-sh:CommonCharacteristicsSubsetShape
+	a sh:NodeShape ;
+	sh:targetClass era:CommonCharacteristicsSubset .  
+
+
+
+# ofParameter
+era-sh:ParameterApplicabilityShape sh:property era-sh:OfParameter .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:OfParameter.
+era-sh:OfParameter
+	a sh:PropertyShape;
+    era:affectedClass era:ParameterApplicability;
+    era:affectedProperty era:ofParameter ;
+    era:scope "local";
+	rdfs:comment "Applicability interval defines the date interval in which a characteristic of an infrastructure element is applicable. The characteristic to which it applies is the ofParameter property. "@en ;
+	sh:path era:ofParameter ;
+    sh:nodeKind sh:IRI ;
+    sh:or (
+ 		[sh:class owl:ObjectProperty ;]
+		[sh:class owl:DatatypeProperty ;]
+		);
+    sh:minCount 1; 
+    sh:maxCount 1 ;
+	sh:severity sh:Violation ;
+	sh:message "ofParameter: An instance of parameter applicability must have exactly one value of the characteristic (ofParameter) to which it applies to. This error may be due to not having a value, having more than one value, having a value that is not an IRI or is not an object or datatype property in the ontology."@en .
+
+# time:hasBeginning
+era-sh:ParameterApplicabilityShape sh:property era-sh:HasBeginning .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasBeginning.
+era-sh:HasBeginning
+	a sh:PropertyShape;
+    era:affectedClass era:ParameterApplicability;
+    era:affectedProperty era:hasBeginning ;
+    era:scope "local";
+	rdfs:comment "Applicability interval defines the date interval in which a characteristic of an infrastructure element is applicable."@en ;
+	sh:path time:hasBeginning ;
+    sh:nodeKind sh:IRI ;
+    sh:class time:Instant;
+    sh:minCount 1; 
+    sh:maxCount 1 ;
+	sh:severity sh:Violation ;
+	sh:message "hasBeginning: An instance of parameter applicability must have exactly one value of the beginning of the interval in which it is applicable. This error may be due to not having a value, having more than one value, having a value that is not an IRI or is not a time:Instant."@en .
+
+# time:hasEnd
+era-sh:ParameterApplicabilityShape sh:property era-sh:HasEnd .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasEnd.
+era-sh:HasEnd
+	a sh:PropertyShape;
+    era:affectedClass era:ParameterApplicability;
+    era:affectedProperty era:hasEnd ;
+    era:scope "local";
+	rdfs:comment "Applicability interval defines the date interval in which a characteristic of an infrastructure element is applicable."@en ;
+	sh:path time:hasEnd ;
+    sh:nodeKind sh:IRI ;
+    sh:class time:Instant;
+    sh:minCount 1; 
+    sh:maxCount 1 ;
+	sh:severity sh:Violation ;
+	sh:message "hasEnd: An instance of parameter applicability must have exactly one value of the end of the interval in which it is applicable. This error may be due to not having a value, having more than one value, having a value that is not an IRI or is not a time:Instant."@en .
+
+# parameterValueType
+era-sh:ParameterApplicabilityShape sh:property era-sh:ParameterValueType .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ParameterValueType.
+era-sh:ParameterValueType
+	a sh:PropertyShape;
+    era:affectedClass era:ParameterApplicability;
+    era:affectedProperty era:parameterValueType ;
+    era:scope "local";
+	rdfs:comment "In the case of a change in the value of a parameter, there needs to be an information on the type of the new value. The “Value type” will have different possible options: “nominal”, “planned temporary restriction”, “permanent restriction”, “planned temporary closure."@en ;
+	sh:path time:parameterValueType ;
+    sh:nodeKind sh:IRI ;
+    sh:minCount 1; 
+    sh:maxCount 1 ;
+	sh:severity sh:Violation ;
+	sh:message "parameterValueType: An instance of parameter applicability must have exactly one value of the parameter value type. This error may be due to not having a value, having more than one value, having a value that is not an IRI."@en .
+
+# parameterValueType
+era-sh:ParameterApplicabilityShape sh:sparql era-sh:ParameterValueTypeSKOS.
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:ParameterValueTypeSKOS.
+era-sh:ParameterValueTypeSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:parameterValueType;
+    era:affectedClass era:ParameterApplicability;
+    era:scope "local";
+	rdfs:comment "In the case of a change in the value of a parameter, there needs to be an information on the type of the new value. The “Value type” will have different possible options: “nominal”, “planned temporary restriction”, “permanent restriction”, “planned temporary closure." ;
+	sh:severity sh:Violation ;
+	sh:message "parameterValueType: The parameter applicability {$this} with label {?thisLabel}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/parameterApplicability/ValueTypes."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?thisLabel ?concept 
+    WHERE {
+        OPTIONAL {$this rdfs:label ?thisLabel} .
+        $this era:parameterValueType ?concept .
+        era:parameterValueType era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme }
+	}
+""" .
+
+# parameterValue
+era-sh:ParameterApplicabilityShape sh:property era-sh:ParameterValue .
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ParameterValue.
+era-sh:ParameterValue
+	a sh:PropertyShape;
+    era:affectedClass era:ParameterApplicability;
+    era:affectedProperty era:parameterValue ;
+    era:scope "local";
+	rdfs:comment "This property is used to link an applicability to the precise value of the parameter"@en ;
+	sh:path time:parameterValue ;
+    sh:minCount 1; 
+    sh:maxCount 1 ;
+	sh:severity sh:Violation ;
+	sh:message "parameterValue: An instance of parameter applicability must have exactly one value of the parameter value. This error may be due to not having a value or having more than one value."@en .
+
