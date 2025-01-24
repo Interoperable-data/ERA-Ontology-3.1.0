@@ -14,6 +14,11 @@ era-sh:OrganisationRoleShape
 	a sh:NodeShape ;
 	sh:targetClass era:OrganisationRole.
 
+era-sh:BodyRoleShape
+	a sh:NodeShape ;
+	sh:targetClass era:Body.
+
+
 
 
 # organisationCode "1.2.1.0.6.1, 1.1.0.0.0.1, 1.1.1.1.8.1, 1.2.1.0.0.1, 1.2.1.0.5.1, 1.2.2.0.0.1, 1.2.2.0.5.1"
@@ -47,13 +52,28 @@ era-sh:RoleOf
     era:affectedClass era:OrganisationRole;
     era:affectedProperty era:roleOf ;
     era:scope "local";
-	rdfs:comment "Role of."@en ;
+	rdfs:comment "Indicates the corresponding Body that plays a certain organisation role."@en ;
 	sh:path era:roleOf ;
     sh:class era:Body;
     sh:minCount 1;
     sh:maxCount 1;
 	sh:severity sh:Violation ;
-	sh:message "roleOf: Each instance of Organization Role points thorugh roleOf to exactly one instance of Body. This error mae be due to having no value, or having more than one value."@en .
+	sh:message "roleOf: Each instance of Organization Role points thorugh roleOf to exactly one instance of Body. This error mae be due to having no value, having more than one value or having a value that is not an instance of Body."@en .
+
+# role
+era-sh:BodyShape sh:property era-sh:Role .
+era-sh:Role
+	a sh:PropertyShape;
+    era:affectedClass era:Body;
+    era:affectedProperty era:role ;
+    era:scope "local";
+	rdfs:comment "Indicates the relationship of a Body to the organisation roles that it can play."@en ;
+	sh:path era:role ;
+    sh:class era:OrganisationRole;
+    sh:minCount 1;
+	sh:severity sh:Violation ;
+	sh:message "role: Each instance of a Body must have at least one role. This error mae be due to having no value or having a value that is not an instance of OrganisationRole."@en .
+
 
 # hasOrganisationRole
 era-sh:OrganisationRoleShape sh:property era-sh:HasOrganisationRole .

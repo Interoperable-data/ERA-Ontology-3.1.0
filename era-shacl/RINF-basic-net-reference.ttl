@@ -16,9 +16,9 @@
 
 
 
-era-sh:BasicNetReferenceShape
+era-sh:NetBasicReferenceShape
 	a sh:NodeShape ;
-	sh:targetClass era:BasicNetReference .  
+	sh:targetClass era:NetBasicReference .  
 
 era-sh:NetPointReferenceShape
 	a sh:NodeShape ;
@@ -81,16 +81,18 @@ era-sh:AppliesToDirectionSKOS
 	}
 """ .
 
-# hasLrsCoordinate - hasLrs
+
+
+# hasLrsCoordinate - hasLRS
 era-sh:NetPointReferenceShape sh:property era-sh:HasLrsCoordinate.
  era-sh:HasLrsCoordinate
 	a sh:PropertyShape ;
     era:affectedProperty era:hasLrsCoordinate;
-    era:affectedProperty era:hasLrs;
+    era:affectedProperty era:hasLRS;
     era:affectedClass era:NetPointReference;
     era:scope "local";
 	rdfs:comment "Specifies the LRS coordinate associated with a topological coordinate." ;
-	sh:path (era:hasLrsCoordinate era:hasLrs) ;
+	sh:path (era:hasLrsCoordinate era:hasLRS) ;
     sh:class era:LinearPositioningSystem;
 	sh:severity sh:Violation ;
 	sh:message "hasLrsCoordinate: The net point reference specifies an LRS coordinate that must be an instance of a LinearPositioningSystemCoordinate and that in turn references a LinearPositioningSystem. This error is due to having a value that is not a LinearPositioningSystemCoordinate that in turn references a LinearPositioningSystem."@en .	
@@ -116,7 +118,7 @@ era-sh:NetPointReferenceShape sh:property era-sh:HasTopoCoordinate.
     era:affectedClass era:NetPointReference;
     era:scope "local";
 	rdfs:comment "Specifies the topological coordinate of a network point reference." ;
-	sh:path era:hasLrsCoordinate ;
+	sh:path era:hasTopoCoordinate ;
     sh:class era:TopologicalCoordinate;
 	sh:severity sh:Violation ;
 	sh:message "hasTopoCoordinate: The net point reference specifies a topo coordinate that must be an instance of a TopologicalCoordinate. This error is due to having a value that is not an instance of TopologicalCoordinate."@en .
@@ -134,18 +136,6 @@ era-sh:NetAreaReferenceShape sh:property era-sh:Includes.
 	sh:severity sh:Violation ;
 	sh:message "includes: The net area reference specifies a list of linear references that must be an instance of an rdf:List. This error is due to having a value that is not an instance of rdf:List."@en .	
 
-# includes
-era-sh:NetAreaReferenceShape sh:property era-sh:Includes.
- era-sh:Includes
-	a sh:PropertyShape ;
-    era:affectedProperty era:includes;
-    era:affectedClass era:NetAreaReference;
-    era:scope "local";
-	rdfs:comment "List of linear references included in an network area reference." ;
-	sh:path era:includes ;
-    sh:class rdf:List;
-	sh:severity sh:Violation ;
-	sh:message "includes: The net area reference specifies a list of linear references that must be an instance of an rdf:List. This error is due to having a value that is not an instance of rdf:List."@en .	
 
 # lrsMethod
 era-sh:LinearPositioningSystemShape sh:property era-sh:LrsMethod.
@@ -194,15 +184,32 @@ era-sh:NetLinearReferenceShape sh:property era-sh:StartsAt.
     era:scope "local";
 	rdfs:comment "Specifies the starting coordinate of a linear reference." ;
 	sh:path era:startsAt ;
+    sh:minCount 1;
+    sh:maxCount 1;
     sh:class rdf:TopologicalCoordinate;
 	sh:severity sh:Violation ;
-	sh:message "hasSequence: The net linear reference specifies a starting coordinate that must be an instance of a TopologicalCoordinate. This error is due to having a value that is not an instance of TopologicalCoordinate."@en .	
+	sh:message "startsAt: The net linear reference specifies a starting coordinate that must be an instance of a TopologicalCoordinate. This error is due to not having a value, having more than one value or having a value that is not an instance of TopologicalCoordinate."@en .	
+
+# endsAt
+era-sh:NetLinearReferenceShape sh:property era-sh:EndsAt.
+ era-sh:EndsAt
+	a sh:PropertyShape ;
+    era:affectedProperty era:endsAt;
+    era:affectedClass era:NetLinearReference;
+    era:scope "local";
+	rdfs:comment "Specifies the ending coordinate of a linear reference." ;
+	sh:path era:endsAt ;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:class rdf:TopologicalCoordinate;
+	sh:severity sh:Violation ;
+	sh:message "endsAt: The net linear reference specifies an ending coordinate that must be an instance of a TopologicalCoordinate. This error is due to not having a value, having more than one value or having a value that is not an instance of TopologicalCoordinate."@en .	
 
 # kmPostName: 
 era-sh:LinearPositioningSystemShape sh:property era-sh:KmPostName .
 era-sh:KmPostName
 	a sh:PropertyShape;
-    era:affectedClass era-sh:LinearPositioningSystem;
+    era:affectedClass era:LinearPositioningSystem;
     era:affectedProperty era:kmPostName ;
     era:scope "local";
 	rdfs:comment "Name of the kilometric post (optional)."@en ;
@@ -215,7 +222,7 @@ era-sh:KmPostName
 era-sh:LinearPositioningSystemCoordinateShape sh:property era-sh:OffsetFromKilometricPost .
 era-sh:OffsetFromKilometricPost
 	a sh:PropertyShape;
-    era:affectedClass era-sh:LinearPositioningSystemCoordinate;
+    era:affectedClass era:LinearPositioningSystemCoordinate;
     era:affectedProperty era:offsetFromKilometricPost ;
     era:scope "local";
 	rdfs:comment "Relative distance from a reference kilometric post."@en ;
@@ -228,7 +235,7 @@ era-sh:OffsetFromKilometricPost
 era-sh:LinearPositioningSystemShape sh:property era-sh:LineId .
 era-sh:LineId
 	a sh:PropertyShape;
-    era:affectedClass era-sh:LinearPositioningSystem;
+    era:affectedClass era:LinearPositioningSystem;
     era:affectedProperty era:lineId ;
     era:scope "local";
 	rdfs:comment "Unique line identification or unique line number within Member State."@en ;

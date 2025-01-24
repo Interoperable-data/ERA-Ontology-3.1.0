@@ -9,10 +9,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
-@prefix era-ph: <http://data.europa.eu/949/concepts/platform-heights/> .
-@prefix era-tenclass: <http://data.europa.eu/949/concepts/ten-classifications/> .
-@prefix era-gaugings: <http://data.europa.eu/949/concepts/gaugings/> .
-@prefix era-ntg: <http://data.europa.eu/949/concepts/nominal-track-gauges/> .
+
 #############################
 # Rules for tunnels
 #############################
@@ -47,7 +44,7 @@ era-sh:TunnelIdentification
     sh:maxCount 1 ;
     sh:datatype xsd:string ;
     sh:severity sh:Violation ;
-    sh:message "tunnelIdentification (1.1.1.1.8.2, 1.2.1.0.5.2, 1.2.2.0.5.2): Each Tunnel can be referred with only one identification. This error may be due to having a Tunnel with no identification or with more than one identification."@en .
+    sh:message "tunnelIdentification (1.1.1.1.8.2, 1.2.1.0.5.2, 1.2.2.0.5.2): Each Tunnel can be referred with only one identification. This error may be due to having a Tunnel with no identification, with more than one identification or with an identification that is not a character string."@en .
 
 
 
@@ -196,10 +193,9 @@ era-sh:TunnelDocRef
 	rdfs:comment "Electronic document available from the IM stored by the Agency with precise description of the clearance gauge and geometry of the tunnel" ;
 	era:rinfIndex "1.1.1.1.8.8.2" ;
 	sh:path era:tunnelDocRef ;
-	# sh:minCount 0 ;
 	sh:class era:Document;
 	sh:severity sh:Violation ;
-	sh:message "tunnelDocRef (1.1.1.1.8.8.2): A Tunnel has a tunnelDocRef with precise description of the clearance gauge and geometry of the tunnel, and it must be a Document."@en .
+	sh:message "tunnelDocRef (1.1.1.1.8.8.2): A Tunnel has a tunnelDocRef with precise description of the clearance gauge and geometry of the tunnel, and it must be a Document. This error a due to having a value that is not an instance of Document"@en .
 
 
 
@@ -274,7 +270,7 @@ era-sh:RollingStockFireCategory
     sh:maxCount 1 ;
 	sh:nodeKind sh:IRI ;
 	sh:severity sh:Violation ;
-	sh:message "rollingStockFireCategory (1.1.1.1.8.10, 1.2.1.0.5.7, 1.2.2.0.5.7): A Tunnel may have an indication about the rollingStockFireCategory. This error may be due to having a tunnel without a rollingStockFireCategory declaration or having a literal as value. This error may be due to a tunnel having more than one value."@en .
+	sh:message "rollingStockFireCategory (1.1.1.1.8.10, 1.2.1.0.5.7, 1.2.2.0.5.7): A Tunnel may have an indication about the rollingStockFireCategory. This error may be due to having a tunnel without a rollingStockFireCategory declaration or having a literal as value. This error may be due to a tunnel having more than one value or having a value that is not an IRI."@en .
 
 # rollingStockFireCategory: # 1.1.1.1.8.10, 1.2.1.0.5.7, 1.2.2.0.5.7
 era-sh:TunnelShape sh:sparql era-sh:RollingStockFireCategorySKOS .
@@ -383,7 +379,7 @@ era-sh:DieselThermalAllowed
     sh:maxCount 1 ;
 	sh:datatype xsd:boolean ;
 	sh:severity sh:Violation ;
-	sh:message "dieselThermalAllowed (1.2.1.0.5.9): A Tunnel may have an indication about the permission of thermal traction. This error may be due to having a tunnel woth more than one dieselThermalAllowed declaration or having a value type different than Y/N (boolean)."@en .
+	sh:message "dieselThermalAllowed (1.2.1.0.5.9): A Tunnel may have an indication about the permission of thermal traction. This error may be due to having a tunnel with more than one dieselThermalAllowed declaration or having a value type different than Y/N (boolean)."@en .
 
 # startLocation: 1.1.1.1.8.3
 era-sh:TunnelShape sh:property era-sh:StartLocation .

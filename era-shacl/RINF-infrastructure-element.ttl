@@ -8,6 +8,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix owl:<http://www.w3.org/2002/07/owl#> .
 
 ###################################
 # Rules for infrastructure elements
@@ -30,9 +31,15 @@ era-sh:BasicElementShape
 	a sh:NodeShape ;
 	sh:targetClass era:BasicElement .  
 
-era-sh:FeatureShape
+era-sh:ParameterApplicabilityShape
 	a sh:NodeShape ;
-	sh:targetClass era:Feature .  
+	sh:targetClass era:ParameterApplicability.
+
+era-sh:SubsidiaryLocationShape
+	a sh:NodeShape ;
+	sh:targetClass era:SubsidiaryLocation.
+
+
 
 
 # organisationCode: # 1.2.1.0.6.1, 1.1.0.0.0.1, 1.1.1.1.8.1, 1.2.1.0.0.1, 1.2.1.0.5.1, 1.2.2.0.0.1, 1.2.2.0.5.1 Check that the organisationRole instance points to the skos value for infrastructure manager.
@@ -115,12 +122,12 @@ era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ParameterApplicabilit
 era-sh:ParameterApplicability
 	a sh:PropertyShape;
     era:affectedClass era:InfrastructureElement;
-    era:affectedClass era:ParameterApplicability;
     era:affectedProperty era:parameterApplicability ;
     era:scope "local";
 	rdfs:comment "Applicability interval that defines the date interval in which a characteristic of an infrastructure element is applicable. This interval can be applied for any of the technical characteristics or general information of infrastructure elements. This helps identifying planned changes applied to technical parameters over time." ;
 	sh:path era:parameterApplicability ;
 	sh:class era:ParameterApplicability;
+    # sh:node era-sh:ParameterApplicabilityShape; not implemented in the shacl engine
 	sh:severity sh:Violation ;
 	sh:message "parameterApplicability: The infratructure element may have a parameterApplicability reference that must be an instance of ParameterApplicability. This error is due to having having a value that is not an instance of ParameterApplicability."@en .
 
@@ -129,11 +136,11 @@ era-sh:BasicElementShape sh:property era-sh:SubsidiaryLocation .
 era-sh:SubsidiaryLocation
 	a sh:PropertyShape;
     era:affectedClass era:BasicElement;
-    era:affectedClass era:SubsidiaryLocation;
     era:affectedProperty era:subsidiaryLocation ;
     era:scope "local";
 	rdfs:comment "Relates a basic element with a subsidiary location." ;
 	sh:path era:subsidiaryLocation ;
+    # sh:node era-sh:SubsidiaryLocationShape; not implemented in the shacl engine
 	sh:class era:SubsidiaryLocation;
 	sh:severity sh:Violation ;
 	sh:message "subsidiaryLocation: The basic element may have a subsidiaryLocation reference that must be an instance of SubsidiaryLocation. This error is due to having having a value that is not an instance of SubsidiaryLocation."@en .
@@ -144,7 +151,7 @@ era-sh:BelongsToUniqueIM
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:belongsTo;
     era:affectedProperty era:organisationCode;
-    era:affectedProperty era:infrastructureElement;
+    era:affectedProperty era:infrastructureManager;
     era:affectedClass era:InfrastructureElement;
     era:affectedClass era:CommonCharacteristicsSubset;
     era:affectedClass era:OrganisationRole;
@@ -189,10 +196,9 @@ era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:Contains .
 era-sh:Contains
 	a sh:PropertyShape;
     era:affectedClass era:CommonCharacteristicsSubset;
-    era:affectedClass era:InfrastructureElement;
     era:affectedProperty era:contains ;
     era:scope "local";
-	rdfs:comment "Relationship between an a common characteristics subset and an infrastructure element (inverse of belongsTo)." ;
+	rdfs:comment "Relationship between a common characteristics subset and an infrastructure element (inverse of belongsTo)." ;
 	sh:path era:contains ;
 	sh:class era:InfrastructureElement;
 	sh:severity sh:Violation ;
@@ -211,18 +217,7 @@ era-sh:NetReference
 	sh:severity sh:Violation ;
 	sh:message "netReference: The infratructure element must have a net reference that points to an instance of NetBasicReference. This error is due to having a value that is not an instance of NetBasicReference."@en .
 
-# validity
-era-sh:FeatureShape sh:property era-sh:Validity .
-era-sh:Validity
-	a sh:PropertyShape;
-    era:affectedClass era:Feature;
-    era:affectedProperty era:validity ;
-    era:scope "local";
-	rdfs:comment "Relates a feature with a temporal feature to indicate a validity period." ;
-	sh:path era:validity ;
-	sh:class era:TemporalFeature;
-	sh:severity sh:Violation ;
-	sh:message "validity: The feature has a validity value that points to an instance of TemporalFeature. This error is due to having a value that is not an instance of TemporalFeature."@en .
+
 
 # primaryLocation: #
 era-sh:AggregatedElementShape sh:property era-sh:PrimaryLocation .
@@ -234,10 +229,91 @@ era-sh:PrimaryLocation
 	rdfs:comment "Primary location code developed for information exchange in accordance with the TSIs relating to the telematics applications subsystem." ; 
 	sh:path era:primaryLocation ;
 	sh:class era:PrimaryLocation;
+    # sh:node era-sh:PrimaryLocationShape; not implemented in the shacl engine
     sh:nodeKind sh:IRI ;
 	sh:severity sh:Violation ;
-	sh:message "primaryLocation: The Operational Point has a primaryLocation reference that must be an IRI that refers to an instance of PrimaryLocation."@en .
+	sh:message "primaryLocation: The aggregated elementt has a primaryLocation reference that must be an IRI that refers to an instance of PrimaryLocation."@en .
 
+# hasPart: 
+era-sh:AggregatedElementShape sh:property era-sh:HasPart .
+era-sh:HasPart
+	a sh:PropertyShape;
+    era:affectedClass era:AggregatedElement;
+    era:affectedProperty era:hasPart ;
+    era:scope "local"; 
+	rdfs:comment "Indicates that an aggregated element has a part that is a basic element." ; 
+	sh:path era:hasPart ;
+	sh:class era:BasicElement;
+    sh:minCount 1;
+    sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "hasPart: The AggregatedElement must have a hasPart reference that is an IRI that refers to an instance of BasicElement. This error is due to not having a value or having a value that is not an instance of BasicElement."@en .
+
+# isPartOf:
+era-sh:BasicElementShape sh:property era-sh:IsPartOf .
+era-sh:IsPartOf
+	a sh:PropertyShape;
+    era:affectedClass era:BasicElement;
+    era:affectedProperty era:isPartOf ;
+    era:scope "local"; 
+	rdfs:comment "Indicates that a basic element is part of an aggregated element." ; 
+	sh:path era:isPartOf ;
+	sh:class era:AggregatedElement;
+    sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "hasPart: The BasicElement may have a isPartOf reference that is an IRI that refers to an instance of AggregatedElement. This error is due to having a value that is not an instance of AggregatedElement."@en .
+
+#
+# not yet available (notYetAvailable)
+#
+era-sh:era-sh:InfrastructureElementShape sh:property era-sh:NotYetAvailablePropertyShape .
+era-sh:NotYetAvailablePropertyShape
+        a sh:PropertyShape;
+        era:affectedProperty era:notYetAvailable;
+        era:affectedClass era:InfrastructureElement;
+        era:scope "local";
+		sh:path era:notYetAvailable ;  
+        rdfs:comment "Reference to a property that is not provided."@en ;
+		sh:nodeKind sh:IRI ;
+        sh:or (
+ 		[sh:class owl:ObjectProperty ;]
+		[sh:class owl:DatatypeProperty ;]
+		);
+        sh:severity sh:Violation ;
+		sh:message "The value of this property is a reference to an ontology property that is not provided and it must be an IRI. The error may be due to the property not belonging to the ERA ontology or the property not being an IRI."@en .
+
+#
+# not applicable (notApplicable)
+#
+era-sh:era-sh:InfrastructureElementShape sh:property era-sh:NotApplicablePropertyShape .
+era-sh:NotApplicablePropertyShape
+        a sh:PropertyShape;
+        era:affectedProperty era:notApplicable;
+        era:affectedClass era:InfrastructureElement;
+        era:scope "local";
+		sh:path era:notApplicable ;  
+        rdfs:comment "Reference to a property that is not applicable."@en ;
+		sh:nodeKind sh:IRI ;
+        sh:or (
+ 		[sh:class owl:ObjectProperty ;]
+		[sh:class owl:DatatypeProperty ;]
+		);
+        sh:severity sh:Violation ;
+		sh:message "The value of this property is a reference to an ontology property that is not provided and it must be an IRI. The error may be due to the property not belonging to the ERA ontology or the property not being an IRI."@en .
+
+# subsetOf: 
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:SubsetOf .
+era-sh:SubsetOf
+	a sh:PropertyShape;
+    era:affectedClass era:CommonCharacteristicsSubset;
+    era:affectedProperty era:subsetOf ;
+    era:scope "local"; 
+	rdfs:comment "Relates a subset with common chatacteristics with another subset with common characteristics." ; 
+	sh:path era:subsetOf ;
+	sh:class era:CommonCharacteristicsSubset;
+    sh:nodeKind sh:IRI ;
+	sh:severity sh:Violation ;
+	sh:message "subsetOf: The common characteristics subset must have a subsetOf reference that is an IRI that refers to an instance of another common characteristics subset. This error is due to having a value that is not an instance of CommonCharacteristicsSubset."@en .
 
 
 

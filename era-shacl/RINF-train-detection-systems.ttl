@@ -18,6 +18,14 @@ era-sh:TrainDetectionSystemShape
 	a sh:NodeShape ;
 	sh:targetClass era:TrainDetectionSystem .    # Applies to all TrainDetectionSystem instances
 
+era-sh:FrenchTrainDetectionSystemLimitationShape
+	a sh:NodeShape ;
+	sh:targetClass era:FrenchTrainDetectionSystemLimitation .  
+
+era-sh:MaximumMagneticFieldShape
+	a sh:NodeShape ;
+	sh:targetClass era:MaximumMagneticField .  
+
 # trainDetectionSystemType: # 1.1.1.3.7.1.1, 1.2.1.1.3.1.1
 era-sh:TrainDetectionSystemShape sh:property era-sh:TrainDetectionSystemType.
 era-sh:TrainDetectionSystemType
@@ -234,6 +242,9 @@ era-sh:MaximumInterferenceCurrent
 	sh:severity sh:Violation ;
 	sh:message "maximumInterferenceCurrent (1.1.1.3.4.2.1, 1.2.1.1.3.2.1): Each train detection system must define the maximum interference current in Amperes. This error may be due to having more than one value or having a value that is not a double (real) number."@en .
 
+###########################################
+# Rules for MaximumMagneticField
+###########################################
 # tdsMaximumMagneticField: 1.1.1.3.4.2.3, 1.2.1.1.3.2.3
 era-sh:TrainDetectionSystemShape sh:property era-sh:TdsMaximumMagneticField .
 era-sh:TdsMaximumMagneticField
@@ -245,6 +256,7 @@ era-sh:TdsMaximumMagneticField
 	era:rinfIndex "1.1.1.3.4.2.3" , "1.2.1.1.3.2.3" ;
 	sh:path era:tdsMaximumMagneticField ;
 	sh:class era:MaximumMagneticField;
+    # sh:node era-sh:MaximumMagneticFieldShape; not implemented in the shacl engine
 	sh:maxCount 1 ; # As functional
 	sh:severity sh:Violation ;
 	sh:message "tdsMaximumMagneticField (1.1.1.3.4.2.3, 1.2.1.1.3.2.3): The train detection system has a train detection system maximum magnetic field reference that must be a maximum magnetic field. This error may be due to having more than one value or having a value that is not an instance of a MaximumMagnaticField."@en .
@@ -259,7 +271,7 @@ era-sh:TdsMaximumMagneticFieldApplicability
 	rdfs:comment "Y, for parameter 1.1.1.3.7.1.1 “Axle Counters” only." ;
 	era:rinfIndex "1.1.1.3.4.2.3" , "1.2.1.1.3.2.3" ;
 	sh:severity sh:Violation ;
-	sh:message "tdsMaximumMagneticField (1.1.1.3.4.2.3, 1.2.1.1.3.2.3):The Train Detection System {$this} ({?clsLabel}), has a 'axle counters' type that makes the tdsMaximumMagneticField parameter applicable. This error is due to {$this} not having a value for such a parameter."@en ;
+	sh:message "tdsMaximumMagneticField (1.1.1.3.4.2.3, 1.2.1.1.3.2.3):The Train Detection System {$this} ({?clsLabel}), has an 'axle counters' type that makes the tdsMaximumMagneticField parameter applicable. This error is due to {$this} not having a value for such a parameter."@en ;
     sh:prefixes era:;
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
@@ -272,6 +284,134 @@ era-sh:TdsMaximumMagneticFieldApplicability
             }
 			""" .
 
+# maximumMagneticFieldDirectionX: 
+era-sh:MaximumMagneticFieldShape sh:property era-sh:MaximumMagneticFieldDirectionX .
+era-sh:MaximumMagneticFieldDirectionX
+	a sh:PropertyShape ;     
+	era:affectedProperty era:maximumMagneticFieldDirectionX;     
+	era:affectedClass era:MaximumMagneticField;     
+	era:scope "local";
+	rdfs:comment "The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band. Direction X." ;
+	sh:path era:maximumMagneticFieldDirectionX ;
+    sh:minCount 1;
+	sh:maxCount 1 ; # Functional property
+	sh:datatype xsd:integer ;
+	sh:severity sh:Violation ;
+	sh:message "maximumMagneticFieldDirectionX : Each MaximumMagneticField may have a single value for maximum magnetic field direction X that is an integer. This error is due to not having a value, having more than one  value or having a value that is not an integer."@en .
+
+# maximumMagneticFieldDirectionY: 
+era-sh:MaximumMagneticFieldShape sh:property era-sh:MaximumMagneticFieldDirectionY .
+era-sh:MaximumMagneticFieldDirectionY
+	a sh:PropertyShape ;     
+	era:affectedProperty era:maximumMagneticFieldDirectionY;     
+	era:affectedClass era:MaximumMagneticField;     
+	era:scope "local";
+	rdfs:comment "The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band. Direction Y." ;
+	sh:path era:maximumMagneticFieldDirectionY ;
+    sh:minCount 1;
+	sh:maxCount 1 ; # Functional property
+	sh:datatype xsd:integer ;
+	sh:severity sh:Violation ;
+	sh:message "maximumMagneticFieldDirectionY : Each MaximumMagneticField may have a single value for maximum magnetic field direction Y that is an integer. This error is due to not having a value, having more than one  value or having a value that is not an integer."@en .
+
+# maximumMagneticFieldDirectionZ: 
+era-sh:MaximumMagneticFieldShape sh:property era-sh:MaximumMagneticFieldDirectionZ .
+era-sh:MaximumMagneticFieldDirectionZ
+	a sh:PropertyShape ;     
+	era:affectedProperty era:maximumMagneticFieldDirectionZ;     
+	era:affectedClass era:MaximumMagneticField;     
+	era:scope "local";
+	rdfs:comment "The maximum magnetic field limits allowed for axle counters (in dB µA/m) for a defined frequency band. Direction Z." ;
+	sh:path era:maximumMagneticFieldDirectionZ ;
+    sh:minCount 1;
+	sh:maxCount 1 ; # Functional property
+	sh:datatype xsd:integer ;
+	sh:severity sh:Violation ;
+	sh:message "maximumMagneticFieldDirectionZ : Each MaximumMagneticField may have a single value for maximum magnetic field direction Z that is an integer. This error is due to not having a value, having more than one  value or having a value that is not an integer."@en .
+
+
+
+###########################################
+# Rules for FrenchTrainDetectionSystemLimitation
+###########################################
+# tdsFrenchTrainDetectionSystemLimitation: 1.1.1.3.7.1.4, 1.2.1.1.6.3
+era-sh:TrainDetectionSystemShape sh:property era-sh:TdsFrenchTrainDetectionSystemLimitation .
+era-sh:TdsFrenchTrainDetectionSystemLimitation
+	a sh:PropertyShape;
+    era:affectedClass era:TrainDetectionSystem;
+    era:affectedProperty era:tdsFrenchTrainDetectionSystemLimitation ;
+    era:scope "local";
+	rdfs:comment "Relates the class train detection system with the class that represents the section with train detection limitation. Specific for route compatibility check on French network." ;
+	era:rinfIndex "1.1.1.3.7.1.4" , "1.2.1.1.6.3" ;
+	sh:path era:tdsFrenchTrainDetectionSystemLimitation ;
+    # sh:node era-sh:FrenchTrainDetectionSystemLimitationShape; not implemented in the shacl engine
+	sh:class era:FrenchTrainDetectionSystemLimitation;
+	sh:maxCount 1 ; # As functional
+	sh:severity sh:Violation ;
+	sh:message "tdsFrenchTrainDetectionSystemLimitation (1.1.1.3.7.1.4, 1.2.1.1.6.3): The train detection system has a tds french train detection system limitation reference that must be a french train detection system limitation. This error may be due to having more than one value or having a value that is not an instance of a FrenchTrainDetectionSystemLimitation"@en .
+
+# frenchTrainDetectionSystemLimitationNumber: 
+era-sh:FrenchTrainDetectionSystemLimitationShape sh:property era-sh:FrenchTrainDetectionSystemLimitationNumber .
+era-sh:FrenchTrainDetectionSystemLimitationNumber
+	a sh:PropertyShape ;     
+	era:affectedProperty era:frenchTrainDetectionSystemLimitationNumber;     
+	era:affectedClass era:TrainDetectionSystem;     
+	era:scope "local";
+	rdfs:comment "Part of the section with train detection limitation that indicates the type of train detection limitation. Only for the French network" ;
+	sh:path era:frenchTrainDetectionSystemLimitationNumber ;
+	sh:nodeKind sh:IRI ;
+    sh:minCount 1;
+	sh:maxCount 1 ; # Functional property
+	sh:severity sh:Violation ;
+	sh:message "frenchTrainDetectionSystemLimitationNumber : The train detection system has a french train detection limitation number that must be an IRI. This error may be due to not having a value, having more than one value or having a value that is not an IRI."@en .
+
+# frenchTrainDetectionSystemLimitationNumber: 
+era-sh:FrenchTrainDetectionSystemLimitationShape sh:sparql era-sh:FrenchTrainDetectionSystemLimitationNumberSKOS.
+era-sh:FrenchTrainDetectionSystemLimitationNumberSKOS
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:frenchTrainDetectionSystemLimitationNumber  ;     era:affectedClass  era:FrenchTrainDetectionSystemLimitation;     era:scope "local";     
+    rdfs:comment "Part of the section with train detection limitation that indicates the type of train detection limitation. Only for the French network" ;
+	sh:severity sh:Violation ;
+    sh:message "Indication of the frenchTrainDetectionSystemLimitationNumber: The train detection system {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list:   http://data.europa.eu/949/concepts/train-detection-numbers/FrenchTrainDetectionSystemLimitationNumbers."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT $this  ?concept
+    WHERE {
+        $this era:frenchTrainDetectionSystemLimitationNumber ?concept .
+        era:frenchTrainDetectionSystemLimitationNumber era:inSkosConceptScheme ?conceptScheme .
+		FILTER NOT EXISTS{         
+  			?concept skos:inScheme ?conceptScheme .
+		}
+	}
+""" .
+
+# frenchTrainDetectionSystemLimitationApplicable: 
+era-sh:FrenchTrainDetectionSystemLimitationShape sh:property era-sh:FrenchTrainDetectionSystemLimitationApplicable .
+era-sh:FrenchTrainDetectionSystemLimitationApplicable
+	a sh:PropertyShape ;     
+	era:affectedProperty era:frenchTrainDetectionSystemLimitationApplicable;     
+	era:affectedClass era:TrainDetectionSystem;     
+	era:scope "local";
+	rdfs:comment "Part of the section with train detection limitation that indicates if it is applicable. Only for the French network." ;
+	sh:path era:frenchTrainDetectionSystemLimitationApplicable ;
+	sh:datatype xsd:boolean ;
+    sh:minCount 1;
+	sh:maxCount 1 ; # Functional property
+	sh:severity sh:Violation ;
+	sh:message "frenchTrainDetectionSystemLimitationApplicable : The train detection system has a french train detection limitation applicable value that must be a boolean. This error may be due to not having a value, having more than one value or having a value that is not a boolean."@en .
+
+
+#############################
+# Rules for MinVehicleImpedance
+#############################
+
+era-sh:MinVehicleImpedanceShape
+	a sh:NodeShape ;
+	sh:targetClass era:MinVehicleImpedance .    # Applies to all MinVehicleImpedance instances
+
 # minVehicleImpedance: 1.1.1.3.4.2.2
 era-sh:TrainDetectionSystemShape sh:property era-sh:MinVehicleImpedance .
 era-sh:MinVehicleImpedance
@@ -283,58 +423,37 @@ era-sh:MinVehicleImpedance
 	era:rinfIndex "1.1.1.3.4.2.2" ;
 	sh:path era:minVehicleImpedance ;
 	sh:class era:MinVehicleImpedance;
+    # sh:node era-sh:MinVehicleImpedanceShape; not implemented in the shacl engine
 	sh:maxCount 1 ; # As functional
 	sh:severity sh:Violation ;
 	sh:message "minVehicleImpedance (1.1.1.3.4.2.2): The train detection system has a minimum vehicle impedance reference that must be a minimum vehicle impedance. This error may be due to having more than one value or having a value that is not an instance of a MinVehicleImpedance."@en .
 
-# minVehicleImpedance: 1.1.1.3.4.2.2
+# minVehicleImpedance 1.1.1.3.4.2.2: 
 era-sh:TrainDetectionSystemShape sh:sparql era-sh:MinVehicleImpedanceApplicability .
 era-sh:MinVehicleImpedanceApplicability
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:minVehicleImpedance;
-    era:affectedClass era:TrainDetectionSystem;
+    era:affectedClass era:MinVehicleImpedance;
     era:scope "local";
-	rdfs:comment "Y, for Track Circuits only." ;
-	era:rinfIndex "1.1.1.3.4.2.2" ;
+    era:rinfIndex "1.1.1.3.4.2.2" ;
+	rdfs:comment "The parameter minVehicleImpedance is applicable for track circuits." ;
 	sh:severity sh:Violation ;
-	sh:message "minVehicleImpedance (1.1.1.3.4.2.2):The Train Detection System {$this} ({?clsLabel}), has a 'track circuit' type that makes the minVehicleImpedance parameter applicable. This error is due to {$this} not having a value for such a parameter."@en ;
+	sh:message "minVehicleImpedance (1.1.1.3.4.2.2):The Train Detection System {$this} ({?tdsLabel}), has a 'track circuit' type that makes the minVehicleImpedance parameter applicable. This error is due to not having a value for such a parameter."@en ;
     sh:prefixes era:;
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
+    SELECT DISTINCT $this ?tdsLabel
 			WHERE {
-                 $this era:trainDetectionSystemType <http://data.europa.eu/949/concepts/train-detection/rinf/10>.
-				OPTIONAL{$this rdfs:label ?clsLabel} .
+                $this era:trainDetectionSystemType <http://data.europa.eu/949/concepts/train-detection/rinf/10> .
+				OPTIONAL{$this rdfs:label ?tdsLabel} .
                 FILTER NOT EXISTS {$this era:minVehicleImpedance ?value} . 
             }
 			""" .
 
-# tdsFrenchTrainDetectionSystemLimitation: 1.1.1.3.7.1.4, 1.2.1.1.6.3
-era-sh:TrainDetectionSystemShape sh:property era-sh:TdsFrenchTrainDetectionSystemLimitation .
-era-sh:TdsFrenchTrainDetectionSystemLimitation
-	a sh:PropertyShape;
-    era:affectedClass era:TrainDetectionSystem;
-    era:affectedProperty era:tdsFrenchTrainDetectionSystemLimitation ;
-    era:scope "local";
-	rdfs:comment "Relates the class train detection system with the class that represents the section with train detection limitation. Specific for route compatibility check on French network." ;
-	era:rinfIndex "1.1.1.3.7.1.4" , "1.2.1.1.6.3" ;
-	sh:path era:tdsFrenchTrainDetectionSystemLimitation ;
-	sh:class era:FrenchTrainDetectionSystemLimitation;
-	sh:maxCount 1 ; # As functional
-	sh:severity sh:Violation ;
-	sh:message "tdsFrenchTrainDetectionSystemLimitation (1.1.1.3.7.1.4, 1.2.1.1.6.3): The train detection system has a tds french train detection system limitation reference that must be a french train detection system limitation. This error may be due to having more than one value or having a value that is not an instance of a FrenchTrainDetectionSystemLimitation"@en .
 
 
-#############################
-# Rules for MinVehicleImpedance
-#############################
-
-era-sh:MinVehicleImpedanceShape
-	a sh:NodeShape ;
-	sh:targetClass era:MinVehicleImpedance .    # Applies to all MinVehicleImpedance instances
-
-# minVehicleImpedanceVoltages: 1.1.1.3.4.2.2, 1.2.1.1.3.2.2
+# minVehicleImpedanceVoltages: 
 era-sh:MinVehicleImpedanceShape sh:property era-sh:MinVehicleImpedanceVoltages .
 era-sh:MinVehicleImpedanceVoltages
 	a sh:PropertyShape ;     
@@ -342,14 +461,14 @@ era-sh:MinVehicleImpedanceVoltages
 	era:affectedClass era:MinVehicleImpedance;     
 	era:scope "local";
 	rdfs:comment "Indication of the voltage system valid for the minimal impedance value (track circuits)." ;
-	era:rinfIndex "1.1.1.3.4.2.2" , "1.2.1.1.3.2.2" ;
 	sh:path era:minVehicleImpedanceVoltages ;
 	sh:nodeKind sh:IRI ;
 	sh:maxCount 1 ; # Functional property
+    sh:minCount 1;
 	sh:severity sh:Violation ;
-	sh:message "minVehicleImpedanceVoltages (1.1.1.3.4.2.2, 1.2.1.1.3.2.2): The MinVehicleImpedance has a minVehicleImpedanceVoltage that must be an IRI. This error may be due to having more than one value or having a value that is not an IRI."@en .
+	sh:message "minVehicleImpedanceVoltages: The MinVehicleImpedance has a minVehicleImpedanceVoltage that must be an IRI. This error may be due to not having a value, having more than one value or having a value that is not an IRI."@en .
 
-# minVehicleImpedanceVoltages: 1.1.1.3.4.2.2, 1.2.1.1.3.2.2
+# minVehicleImpedanceVoltages: 
 era-sh:MinVehicleImpedanceShape sh:sparql era-sh:MinVehicleImpedanceVoltagesSKOS .
 era-sh:MinVehicleImpedanceVoltagesSKOS
 	a sh:SPARQLConstraint ;
@@ -357,9 +476,8 @@ era-sh:MinVehicleImpedanceVoltagesSKOS
     era:affectedClass era:MinVehicleImpedance;
     era:scope "local";
 	rdfs:comment "Indication of the voltage system valid for the minimal impedance value (track circuits)." ;
-	era:rinfIndex "1.1.1.3.4.2.2" , "1.2.1.1.3.2.2" ;
 	sh:severity sh:Violation ;
-	sh:message "minVehicleImpedanceVoltages (1.1.1.3.4.2.2, 1.2.1.1.3.2.2): The minVehicleImpedance {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/energy-supply-systems/EnergySupplySystems."@en ;
+	sh:message "minVehicleImpedanceVoltages: The minVehicleImpedance {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/energy-supply-systems/EnergySupplySystems."@en ;
     sh:prefixes era:;
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
@@ -374,32 +492,10 @@ era-sh:MinVehicleImpedanceVoltagesSKOS
 	}
 	""" .
 
-# minVehicleImpedanceVoltages: 1.1.1.3.4.2.2, 1.2.1.1.3.2.2
-era-sh:MinVehicleImpedanceShape sh:sparql era-sh:MinVehicleImpedanceVoltagesApplicability .
-era-sh:MinVehicleImpedanceVoltagesApplicability
-	a sh:SPARQLConstraint ;
-    era:affectedProperty era:minVehicleImpedanceVoltages;
-    era:affectedClass era:MinVehicleImpedance;
-    era:scope "local";
-	rdfs:comment "The parameter minVehicleImpedanceVoltages is applicable for track circuits." ;
-	era:rinfIndex "1.1.1.3.4.2.2" , "1.2.1.1.3.2.2" ;
-	sh:severity sh:Violation ;
-	sh:message "minVehicleImpedanceVoltages (1.1.1.3.4.2.2, 1.2.1.1.3.2.2):The Train Detection System {$this} ({?clsLabel}), has a 'track circuit' type that makes the minVehicleImpedanceVoltages parameter applicable. This error is due to {?minVehicleImpedance} not having a value for such a parameter."@en ;
-    sh:prefixes era:;
-	sh:select """
-    PREFIX era: <http://data.europa.eu/949/>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
-			WHERE {
-                 $this era:trainDetectionSystemType <http://data.europa.eu/949/concepts/train-detection/rinf/10>;
-				 	   era:minVehicleImpedance ?minVehicleImpedance.
-				OPTIONAL{$this rdfs:label ?clsLabel} .
-                FILTER NOT EXISTS {?minVehicleImpedance era:minVehicleImpedanceVoltages ?value} . 
-            }
-			""" .
 
 
-# minVehicleInputCapacitance: 1.1.1.3.4.2.2, 1.2.1.1.3.2.2
+
+# minVehicleInputCapacitance: 
 era-sh:MinVehicleImpedanceShape sh:property era-sh:MinVehicleInputCapacitance .
 era-sh:MinVehicleInputCapacitance
 	a sh:PropertyShape ;     
@@ -407,59 +503,29 @@ era-sh:MinVehicleInputCapacitance
 	era:affectedClass era:MinVehicleImpedance;     
 	era:scope "local";
 	rdfs:comment "For the selected DC voltage: [CCCC], as input capacitance [CCCC](Cin)." ;
-	era:rinfIndex "1.1.1.3.4.2.2" , "1.2.1.1.3.2.2" ;
 	sh:path era:minVehicleInputCapacitance ;
 	sh:datatype xsd:double ;
+    sh:minCount 1;
 	sh:maxCount 1 ; # Functional property
 	sh:severity sh:Violation ;
-	sh:message "minVehicleInputCapacitance (1.1.1.3.4.2.2, 1.2.1.1.3.2.2): Each minVehicleInput must define the minVehicleInputCapacitance in NanoFARAD. This error may be due to having more than one value or having a value that is not a double (real) number."@en .
+	sh:message "minVehicleInputCapacitance: Each MinVehicleImpedance must define the minVehicleInputCapacitance. This error may be due to not having a value, having more than one value or having a value that is not a double (real) number."@en .
 
-# minVehicleInputCapacitance: 1.1.1.3.4.2.2, 1.2.1.1.3.2.2
-era-sh:MinVehicleImpedanceShape sh:sparql era-sh:MinVehicleInputCapacitanceApplicability .
-era-sh:MinVehicleInputCapacitanceApplicability
-	a sh:SPARQLConstraint ;
-    era:affectedProperty era:minVehicleInputCapacitance;
-    era:affectedClass era:MinVehicleImpedance;
-    era:scope "local";
-	rdfs:comment "The parameter minVehicleInputCapacitance is applicable for track circuits." ;
-	era:rinfIndex "1.1.1.3.4.2.2" , "1.2.1.1.3.2.2" ;
+# minVehicleInputImpedance: 
+era-sh:MinVehicleImpedanceShape sh:property era-sh:MinVehicleInputImpedance .
+era-sh:MinVehicleInputImpedance
+	a sh:PropertyShape ;     
+	era:affectedProperty era:minVehicleInputImpedance;     
+	era:affectedClass era:MinVehicleImpedance;     
+	era:scope "local";
+	rdfs:comment "For the selected DC voltage: [ZZZZ], as input impedance [ZZZZ](Zin)." ;
+	sh:path era:minVehicleInputImpedance ;
+	sh:datatype xsd:double ;
+    sh:minCount 1;
+	sh:maxCount 1 ; # Functional property
 	sh:severity sh:Violation ;
-	sh:message "minVehicleInputCapacitance (1.1.1.3.4.2.2, 1.2.1.1.3.2.2):The Train Detection System {$this} ({?clsLabel}), has a 'track circuit' type that makes the minVehicleInputCapacitance parameter applicable. This error is due to {?minVehicleImpedance} not having a value for such a parameter."@en ;
-    sh:prefixes era:;
-	sh:select """
-    PREFIX era: <http://data.europa.eu/949/>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
-			WHERE {
-                 $this era:trainDetectionSystemType <http://data.europa.eu/949/concepts/train-detection/rinf/10>;
-				 	   era:minVehicleImpedance ?minVehicleImpedance.
-				OPTIONAL{$this rdfs:label ?clsLabel} .
-                FILTER NOT EXISTS {?minVehicleImpedance era:minVehicleInputCapacitance ?value} . 
-            }
-			""" .
+	sh:message "minVehicleInputImpedance: Each MinVehicleImpedance must define the minVehicleInputImpedance. This error may be due to not having a value, having more than one value or having a value that is not a double (real) number."@en .
 
 
 
-# minVehicleInputImpedance: 1.1.1.3.4.2.2, 1.2.1.1.3.2.2
-era-sh:MinVehicleImpedanceShape sh:sparql era-sh:MinVehicleInputImpedanceApplicability .
-era-sh:MinVehicleInputImpedanceApplicability
-	a sh:SPARQLConstraint ;
-    era:affectedProperty era:minVehicleInputImpedance;
-    era:affectedClass era:MinVehicleImpedance;
-    era:scope "local";
-	rdfs:comment "The parameter minVehicleInputImpedance is applicable for track circuits." ;
-	era:rinfIndex "1.1.1.3.4.2.2" , "1.2.1.1.3.2.2" ;
-	sh:severity sh:Violation ;
-	sh:message "minVehicleInputImpedance (1.1.1.3.4.2.2, 1.2.1.1.3.2.2):The Train Detection System {$this} ({?clsLabel}), has a 'track circuit' type that makes the minVehicleInputImpedance parameter applicable. This error is due to {?minVehicleImpedance} not having a value for such a parameter."@en ;
-    sh:prefixes era:;
-	sh:select """
-    PREFIX era: <http://data.europa.eu/949/>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
-			WHERE {
-                 $this era:trainDetectionSystemType <http://data.europa.eu/949/concepts/train-detection/rinf/10>;
-				 	   era:minVehicleImpedance ?minVehicleImpedance.
-				OPTIONAL{$this rdfs:label ?clsLabel} .
-                FILTER NOT EXISTS {?minVehicleImpedance era:minVehicleInputImpedance ?value} . 
-            }
-			""" .
+
+

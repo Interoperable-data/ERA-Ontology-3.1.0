@@ -44,11 +44,11 @@ era-sh:OpStart
     era:affectedProperty era:opStart;
     era:affectedClass era:SectionOfLine;
     era:scope "global";    
-    rdfs:comment "Each SoL may have only one start OP, and each OP has unique OP ID within the MS. The “uniqueOPID” is defined in parameter 1.2.0.0.0.2. Each SoL has the principal direction of the traffic defined by increasing kilometres running from the start OP to the end OP. That is why the start OP is always located at lowest kilometre of the line within the SoL. Data collected in the UK in miles will be transformed to km for uploading to the RINF application. \n The OP ID must exist in the MS file of RINF. The value of this parameter must be different from 1.1.0.0.0.4. No validation will be performed by RINF application regarding which is the start and which the end OP. This requires national verification." ;
+    rdfs:comment "Each SoL may have only one start OP, and each OP has unique OP ID within the MS. The “uniqueOPID” is defined in parameter 1.2.0.0.0.2. Each SoL has the principal direction of the traffic defined by increasing kilometres running from the start OP to the end OP. That is why the start OP is always located at lowest kilometre of the line within the SoL. Data collected in the UK in miles will be transformed to km for uploading to the RINF application. The OP ID must exist in the MS file of RINF. The value of this parameter must be different from 1.1.0.0.0.4. No validation will be performed by RINF application regarding which is the start and which the end OP. This requires national verification." ;
     era:rinfIndex "1.1.0.0.0.3" ;
     sh:path era:opStart ; 
     sh:disjoint era:opEnd ; # value must be different to opEnd
-    # sh:minCount 1 ; checked in ea-sh:opStartExists
+    # sh:minCount 1 ; checked in era-sh:opStartExists
     sh:maxCount 1 ;
     sh:nodeKind sh:IRI ;
     sh:severity sh:Violation ;
@@ -61,7 +61,7 @@ era-sh:OpStartExists
     era:affectedProperty era:opStart;
     era:affectedClass era:SectionOfLine;
     era:scope "global";    
-    rdfs:comment "Each SoL may have only one start OP, and each OP has unique OP ID within the MS. The “uniqueOPID” is defined in parameter 1.2.0.0.0.2. Each SoL has the principal direction of the traffic defined by increasing kilometres running from the start OP to the end OP. That is why the start OP is always located at lowest kilometre of the line within the SoL. Data collected in the UK in miles will be transformed to km for uploading to the RINF application.\n The OP ID must exist in the MS file of RINF. The value of this parameter must be different from 1.1.0.0.0.4. No validation will be performed by RINF application regarding which is the start and which the end OP. This requires national verification." ;
+    rdfs:comment "Each SoL may have only one start OP, and each OP has unique OP ID within the MS. The “uniqueOPID” is defined in parameter 1.2.0.0.0.2. Each SoL has the principal direction of the traffic defined by increasing kilometres running from the start OP to the end OP. That is why the start OP is always located at lowest kilometre of the line within the SoL. Data collected in the UK in miles will be transformed to km for uploading to the RINF application.  The OP ID must exist in the MS file of RINF. The value of this parameter must be different from 1.1.0.0.0.4. No validation will be performed by RINF application regarding which is the start and which the end OP. This requires national verification." ;
     era:rinfIndex "1.1.0.0.0.3" ;
     sh:severity sh:Violation ;
     sh:message "opStart (1.1.0.0.0.3): There is an error with the SoL {$this} ({?solLabel}) and its OP start which does not exist."@en ;
@@ -83,7 +83,7 @@ era-sh:OpEnd
     era:affectedProperty era:opEnd;
     era:affectedClass era:SectionOfLine;
     era:scope "global";   
-    rdfs:comment "Each SoL may have only one end OP, and each OP has unique OP ID within the MS. The “uniqueOPID” is defined in parameter 1.2.0.0.0.2. Each SoL has the principal direction of the traffic defined by increasing kilometres running from the start OP to the end OP. That is why the start OP is always located at lowest kilometre of the line within the SoL. Data collected in the UK in miles will be transformed to km for uploading to the RINF application. \n The OP ID must exist in the MS file of RINF. The value of this parameter must be different from 1.1.0.0.0.3. No validation will be performed by RINF application regarding which is the start and which the end OP. This requires national verification." ;
+    rdfs:comment "Each SoL may have only one end OP, and each OP has unique OP ID within the MS. The “uniqueOPID” is defined in parameter 1.2.0.0.0.2. Each SoL has the principal direction of the traffic defined by increasing kilometres running from the start OP to the end OP. That is why the start OP is always located at lowest kilometre of the line within the SoL. Data collected in the UK in miles will be transformed to km for uploading to the RINF application. The OP ID must exist in the MS file of RINF. The value of this parameter must be different from 1.1.0.0.0.3. No validation will be performed by RINF application regarding which is the start and which the end OP. This requires national verification." ;
     era:rinfIndex "1.1.0.0.0.4" ;
     sh:path era:opEnd ; 
     sh:disjoint era:opStart ; # value must be different to opStart
@@ -100,7 +100,7 @@ era-sh:OpEndExists
     era:affectedProperty era:opEnd;
     era:affectedClass era:SectionOfLine;
     era:scope "global";   
-    rdfs:comment "Each SoL may have only one start OP, and each OP has unique OP ID within the MS. The “uniqueOPID” is defined in parameter 1.2.0.0.0.2. Each SoL has the principal direction of the traffic defined by increasing kilometres running from the start OP to the end OP. That is why the start OP is always located at lowest kilometre of the line within the SoL. Data collected in the UK in miles will be transformed to km for uploading to the RINF application.\n The OP ID must exist in the MS file of RINF. The value of this parameter must be different from 1.1.0.0.0.3. No validation will be performed by RINF application regarding which is the start and which the end OP. This requires national verification." ;
+    rdfs:comment "Each SoL may have only one start OP, and each OP has unique OP ID within the MS. The “uniqueOPID” is defined in parameter 1.2.0.0.0.2. Each SoL has the principal direction of the traffic defined by increasing kilometres running from the start OP to the end OP. That is why the start OP is always located at lowest kilometre of the line within the SoL. Data collected in the UK in miles will be transformed to km for uploading to the RINF application.  The OP ID must exist in the MS file of RINF. The value of this parameter must be different from 1.1.0.0.0.3. No validation will be performed by RINF application regarding which is the start and which the end OP. This requires national verification." ;
     era:rinfIndex "1.1.0.0.0.4" ;
     sh:severity sh:Violation ;
     sh:message "opEnd (1.1.0.0.0.4): There is an error with the SoL {$this} ({?solLabel}) and its OP end which does not exist."@en ;
@@ -125,7 +125,7 @@ era-sh:SolLength
     era:affectedClass era:SectionOfLine;
     era:scope "local";
     
-    rdfs:comment "General description: The length of SoL is theoretical distance between centre points of Ops which are selected in such a way to represent the average value for all tracks within the SoL. It is advised to include distances applied by IM for commercial purposes. \n Validation: No validation will be performed by RINF application regarding the length of SoL. This requires national verification." ;
+    rdfs:comment "General description: The length of SoL is theoretical distance between centre points of Ops which are selected in such a way to represent the average value for all tracks within the SoL. It is advised to include distances applied by IM for commercial purposes.  Validation: No validation will be performed by RINF application regarding the length of SoL. This requires national verification." ;
     era:rinfIndex "1.1.0.0.0.5" ;
     sh:path era:lengthOfSectionOfLine ; 
     sh:minCount 1 ;
@@ -141,7 +141,7 @@ era-sh:SolNature
     era:affectedProperty era:solNature;
     era:affectedClass era:SectionOfLine;
     era:scope "local";   
-    rdfs:comment "General description: -- \n Validation: If the value of this parameter is \"Link\", then for all tracks belonging to this SoL, all the parameters of the following groups of parameters are not applicable:\n 1.1.1.1 Infrastructure subsystem \n 1.1.1.2 Energy subsystem \n 1.1.1.3 Control-command and signalling subsystem" ;
+    rdfs:comment "General description: Validation: If the value of this parameter is 'Link', then for all tracks belonging to this SoL, all the parameters of the following groups of parameters are not applicable: 1.1.1.1 Infrastructure subsystem, 1.1.1.2 Energy subsystem, 1.1.1.3 Control-command and signalling subsystem." ;
     era:rinfIndex "1.1.0.0.0.6" ;
     sh:path era:solNature ; 
     sh:minCount 1;
@@ -193,7 +193,7 @@ era-sh:SolNatureApplicability
     era:affectedClass era:SectionOfLine;
     era:scope "global";
     
-    rdfs:comment "Kind of section of line expressing size of presented data which depends on fact whether it connects OPs generated by division of a big node into several OPs or not." ;
+    rdfs:comment "If the value of this parameter is “Link”, then for all tracks belonging to this SoL, all the parameters of the following groups of parameters are not applicable: 1.1.1.1 Infrastructure subsystem; 1.1.1.2 Energy subsystem; 1.1.1.3 Control-command and signalling subsystem." ;
     era:rinfIndex "1.1.0.0.0.6" ;
     sh:severity sh:Violation ;
     sh:message "SoL nature (1.1.0.0.0.6): The SoL {$this} ({?solLabel}), with opStart {?opStartID} and opEnd {?opEndID}, has a SOLnature of type Link, and at least one of its tracks has values for at least one of the groups of parameters 1.1.1.1, 1.1.1.2 or 1.1.1.3. This happens at least with the track {?track} ({?trackLabel}), with property {?p} (RINF index {?index})."@en ;

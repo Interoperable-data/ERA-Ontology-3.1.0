@@ -166,8 +166,7 @@ era-sh:EndOffsetFromOrigin
     era:scope "local";
 	rdfs:comment "End offset of the section from the origin." ;
 	sh:path era:endOffsetFromOrigin ;
-	sh:datatype xsd:integer ;
-    sh:minInclusive 0;
+	sh:datatype xsd:positiveInteger ;
 	sh:severity sh:Violation ;
 	sh:message "endOffsetFromOrigin: The linear element section specifies  the end offset of the section from the origin. This error is due having a value that is not a positive integer."@en .
 
@@ -206,7 +205,7 @@ era-sh:LengthOfNetLinearElement
     era:scope "local";
 	rdfs:comment "Length of a linear element." ;
 	sh:path era:lengthOfNetLinearElement ;
-    sh:minCount 1;
+    sh:maxCount 1;
 	sh:datatype xsd:double ;
 	sh:severity sh:Violation ;
 	sh:message "lengthOfNetLinearElement: The linear element has at most one value of length and it is a double number. This error is due to having more than one value or that the value is not a double number."@en .
@@ -220,8 +219,7 @@ era-sh:OffsetFromOrigin
     era:scope "local";
 	rdfs:comment "Offset from the origin in a topological coordinate."@en ;
 	sh:path era:offsetFromOrigin ;
-	sh:datatype xsd:integer ;
-    sh:minInclusive 0;
+	sh:datatype xsd:positiveInteger ;
 	sh:severity sh:Violation ;
 	sh:message "offsetFromOrigin: The offset from the origin in a topological coordinate must be represented as a positive integer."@en .
 
@@ -234,8 +232,7 @@ era-sh:StartOffsetFromOrigin
     era:scope "local";
 	rdfs:comment "Start offset of the section from the origin."@en ;
 	sh:path era:startOffsetFromOrigin ;
-	sh:datatype xsd:integer ;
-    sh:minInclusive 0;
+	sh:datatype xsd:positiveInteger ;
 	sh:severity sh:Violation ;
 	sh:message "startOffsetFromOrigin: The start offset of the section from the origin must be represented as a positive integer."@en .
 

@@ -9,7 +9,7 @@
 @prefix  era-ess: <http://data.europa.eu/949/concepts/energy-supply-systems/> .
 @prefix skos:<http://www.w3.org/2004/02/skos/core#> .
 #############################
-# Rules for contact-line-systems
+# Rules for ETCS
 #############################
 
 era-sh:ETCSShape  
@@ -71,7 +71,7 @@ era-sh:EtcsBaselineApplicability
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
+    SELECT DISTINCT $this ?thisLabel
 			WHERE {
                  $this era:etcsLevelType ?type.
 				OPTIONAL{$this rdfs:label ?thisLabel} .
@@ -135,7 +135,7 @@ era-sh:EtcsInfillApplicability
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
+    SELECT DISTINCT $this ?thisLabel
 			WHERE {
                  $this era:etcsLevelType <http://data.europa.eu/949/concepts/etcs-levels/20>.
 				OPTIONAL{$this rdfs:label ?thisLabel} .
@@ -198,7 +198,7 @@ era-sh:EtcsMVersionApplicability
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
+    SELECT DISTINCT $this ?thisLabel
 			WHERE {
                  $this era:etcsLevelType <http://data.europa.eu/949/concepts/etcs-levels/20>.
 				OPTIONAL{$this rdfs:label ?thisLabel} .
@@ -258,7 +258,7 @@ era-sh:EtcsTransmitsTrackConditions
 	sh:maxCount 1 ; # Functional property
 	sh:datatype xsd:boolean ;
 	sh:severity sh:Violation ;
-	sh:message "etcsTransmitsTrackConditions (1.1.1.3.2.12, 1.2.1.1.1.12): Each Track may define the existence of ETCS trackside engineered to transmit Track Conditions. This error is due to having more than one indication of existence of ETCS trackside engineered to transmit Track Conditions value or having an indication of existence of ETCS trackside engineered to transmit Track Conditions value that is not Y/N (boolean)."@en .
+	sh:message "etcsTransmitsTrackConditions (1.1.1.3.2.12, 1.2.1.1.1.12): Each Track may define the existence of ETCS trackside engineered to transmit Track Conditions. This error is due to having more than one value or having a value that is not Y/N (boolean)."@en .
 
 # etcsTransmitsTrackConditions: 1.1.1.3.2.12, 1.2.1.1.1.12
 era-sh:ETCSShape sh:sparql era-sh:EtcsTransmitsTrackConditionsApplicability.
@@ -275,7 +275,7 @@ era-sh:EtcsTransmitsTrackConditionsApplicability
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
+    SELECT DISTINCT $this ?thisLabel
 			WHERE {
                  $this era:etcsLevelType ?type.
 				OPTIONAL{$this rdfs:label ?thisLabel} .
@@ -339,7 +339,7 @@ era-sh:EtcsTransmittedTrackConditionsApplicability
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
+    SELECT DISTINCT $this ?thisLabel
 			WHERE {
                  $this era:etcsLevelType ?type.
 				OPTIONAL{$this rdfs:label ?thisLabel} .
@@ -400,7 +400,7 @@ era-sh:EtcsSystemCompatibilityApplicability
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
+    SELECT DISTINCT $this ?thisLabel
 			WHERE {
                  $this era:etcsLevelType ?type.
 				OPTIONAL{$this rdfs:label ?thisLabel} .

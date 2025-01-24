@@ -5,8 +5,6 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix era: <http://data.europa.eu/949/> .
-@prefix  era-cls: <http://data.europa.eu/949/concepts/contact-line-systems/> .
-@prefix  era-ess: <http://data.europa.eu/949/concepts/energy-supply-systems/> .
 @prefix skos:<http://www.w3.org/2004/02/skos/core#> .
 #############################
 # Rules for contact-line-systems
@@ -239,32 +237,45 @@ era-sh:MaxCurrentStandstillPantographApplicability
             }
 			""" .
 
+# conditionsAppliedRegenerativeBraking: # 1.1.1.2.2.4.1
+era-sh:SectionOfLineShape sh:property era-sh:ConditionsAppliedRegenerativeBraking .
+era-sh:ConditionsAppliedRegenerativeBraking
+	a sh:PropertyShape;
+    era:affectedClass era:RunningTrack;
+    era:affectedClass era:SectionOfLine;
+    era:affectedProperty era:conditionsAppliedRegenerativeBraking ;
+    era:scope "local";
+	rdfs:comment "Name and/or reference of the document specifying the conditions applying in regards to regenerative braking." ;
+	era:rinfIndex "1.1.1.2.2.4.1" ;
+	sh:path era:conditionsAppliedRegenerativeBraking ;
+	sh:class era:Document;
+    sh:maxCount 1 ;
+	sh:severity sh:Violation ;
+	sh:message "conditionsAppliedRegenerativeBraking (1.1.1.2.2.4.1): The contact line system has a conditionsAppliedRegenerativeBraking reference that must be a Document. This error is due to having more than one value for this property or having a value that is not a Document."@en .
 
 
-# check rule for new domain (Track or CommonCharacteristicsSubset)
 # conditionsAppliedRegenerativeBraking: # 1.1.1.2.2.4.1 
-#era-sh:ContactLineSystemShape sh:sparql era-sh:ConditionsAppliedRegenerativeBrakingApplicability .
-#era-sh:CommonCharacteristicsSubsetShape sh:sparql era-#sh:ConditionsAppliedRegenerativeBrakingApplicability .
-#era-sh:ConditionsAppliedRegenerativeBrakingApplicability
-	#a sh:SPARQLConstraint ;
-    #era:affectedProperty era:conditionsAppliedRegenerativeBraking;
-    #era:affectedClass era:ContactLineSystem;
-    #era:scope "local";
-	#rdfs:comment "This parameter is applicable (“Y”) only if “Overhead contact line (OCL)” is #selected for parameter 1.1.1.2.2.1.1." ;
-	#era:rinfIndex "1.1.1.2.2.4.1" ;
-	#sh:severity sh:Violation ;
-	#sh:message "conditionsAppliedRegenerativeBraking (1.1.1.2.2.4.1):The Contact Line System {$this} ({?clsLabel}), has a 'Overhead contact line (OCL)' type which makes the conditionsAppliedRegenerativeBraking parameter applicable. This error is due to {$this} not having a value for such a parameter."@en ;
-    #sh:prefixes era:;
-	#sh:select """
-    #PREFIX era: <http://data.europa.eu/949/>
-    #PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    #SELECT DISTINCT $this ?clsLabel
-			#WHERE {
-                 #$this era:contactLineSystemType <http://data.europa.eu/949/concepts/contact-line-#systems/10>.
-				#OPTIONAL{$this rdfs:label ?clsLabel} .
-                #FILTER NOT EXISTS {$this era:conditionsAppliedRegenerativeBraking ?value} . 
-            #}
-			#""" .
+era-sh:ContactLineSystemShape sh:sparql era-sh:ConditionsAppliedRegenerativeBrakingApplicability .
+era-sh:ConditionsAppliedRegenerativeBrakingApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:conditionsAppliedRegenerativeBraking;
+    era:affectedClass era:ContactLineSystem;
+    era:scope "local";
+	rdfs:comment "This parameter is applicable (“Y”) only if “Overhead contact line (OCL)” is selected for parameter 1.1.1.2.2.1.1." ;
+	era:rinfIndex "1.1.1.2.2.4.1" ;
+	sh:severity sh:Violation ;
+	sh:message "conditionsAppliedRegenerativeBraking (1.1.1.2.2.4.1):The Contact Line System {$this} ({?clsLabel}), has a 'Overhead contact line (OCL)' type which makes the conditionsAppliedRegenerativeBraking parameter applicable. This error is due to {$this} not having a value for such a parameter."@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT DISTINCT $this ?clsLabel
+			WHERE {
+                $this era:contactLineSystemType <http://data.europa.eu/949/concepts/contact-line-systems/10>.
+				OPTIONAL{$this rdfs:label ?clsLabel} .
+                FILTER NOT EXISTS {$this era:conditionsAppliedRegenerativeBraking ?value} . 
+            }
+			""" .
 
 # maximumContactWireHeight: # 1.1.1.2.2.5 #
 era-sh:ContactLineSystemShape sh:property era-sh:MaximumContactWireHeight .
