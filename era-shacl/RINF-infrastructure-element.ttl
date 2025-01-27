@@ -53,7 +53,7 @@ era-sh:InfrastructureManagerSKOSValue
     era:affectedClass era:CommonCharacteristicsSubset;
     era:affectedClass era:OrganisationRole;
     era:scope "local";   
-	rdfs:comment "Each infrastructure element can only be submitted by one infrastructure manager, represented by a four-digit code." ;
+	rdfs:comment "Each infrastructure element can only be submitted by one infrastructure manager, represented by a four-digit code. "@en ;
 	era:rinfIndex "1.2.1.0.6.1" ;
     era:rinfIndex "1.1.0.0.0.1" ;
     era:rinfIndex "1.1.1.1.8.1" ;
@@ -86,7 +86,7 @@ era-sh:InCountry
     era:affectedProperty era:inCountry;
     era:affectedClass era:InfrastructureElement;
     era:scope "local";
-	rdfs:comment "Indicates the country to which the infrastructure element belongs" ; 
+	rdfs:comment "Indicates the country to which the infrastructure element belongs "@en ; 
 	sh:path era:inCountry ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:IRI;
@@ -100,7 +100,7 @@ era-sh:InCountrySKOS
     era:affectedProperty era:inCountry;
     era:affectedClass era:InfrastructureElement;
     era:scope "local";
-	rdfs:comment "Indicates the country to which the infrastructure element belongs" ; 
+	rdfs:comment "Indicates the country to which the infrastructure element belongs "@en ; 
 	sh:severity sh:Violation ;
 	sh:message "The infrastructure element {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://publications.europa.eu/resource/authority/country."@en ;
     sh:prefixes era:;
@@ -124,7 +124,7 @@ era-sh:ParameterApplicability
     era:affectedClass era:InfrastructureElement;
     era:affectedProperty era:parameterApplicability ;
     era:scope "local";
-	rdfs:comment "Applicability interval that defines the date interval in which a characteristic of an infrastructure element is applicable. This interval can be applied for any of the technical characteristics or general information of infrastructure elements. This helps identifying planned changes applied to technical parameters over time." ;
+	rdfs:comment "Applicability interval that defines the date interval in which a characteristic of an infrastructure element is applicable. This interval can be applied for any of the technical characteristics or general information of infrastructure elements. This helps identifying planned changes applied to technical parameters over time. "@en ;
 	sh:path era:parameterApplicability ;
 	sh:class era:ParameterApplicability;
     # sh:node era-sh:ParameterApplicabilityShape; not implemented in the shacl engine
@@ -138,7 +138,7 @@ era-sh:SubsidiaryLocation
     era:affectedClass era:BasicElement;
     era:affectedProperty era:subsidiaryLocation ;
     era:scope "local";
-	rdfs:comment "Relates a basic element with a subsidiary location." ;
+	rdfs:comment "Relates a basic element with a subsidiary location. "@en ;
 	sh:path era:subsidiaryLocation ;
     # sh:node era-sh:SubsidiaryLocationShape; not implemented in the shacl engine
 	sh:class era:SubsidiaryLocation;
@@ -156,7 +156,7 @@ era-sh:BelongsToUniqueIM
     era:affectedClass era:CommonCharacteristicsSubset;
     era:affectedClass era:OrganisationRole;
     era:scope "local";
-	rdfs:comment "Each infrastructure element may belong to several common characteristics subsets, and each of them must point to the same infrastructure manager (same organisationCode in the class organisationRole)." ;
+	rdfs:comment "Each infrastructure element may belong to several common characteristics subsets, and each of them must point to the same infrastructure manager (same organisationCode in the class organisationRole). "@en ;
 	sh:severity sh:Violation ;
 	sh:message "belongsTo, organisationCode, infrastructureElement: This error is due to {$this} belonging to several common characteristics subsets, {?subset1Label}, {?subset2Label} that do not point to the same infrastructure manager (different organisationCodes), {?orgCode1}, {?orgCode2}."@en ;
     sh:prefixes era:;
@@ -184,7 +184,7 @@ era-sh:BelongsTo
     era:affectedClass era:InfrastructureElement;
     era:affectedProperty era:parameterApplicability ;
     era:scope "local";
-	rdfs:comment "Relationship between an infratructure element and a common characteristics subset." ;
+	rdfs:comment "Relationship between an infratructure element and a common characteristics subset. "@en ;
 	sh:path era:belongsTo ;
 	sh:class era:CommonCharacteristicsSubset;
     sh:minCount 1;
@@ -198,7 +198,7 @@ era-sh:Contains
     era:affectedClass era:CommonCharacteristicsSubset;
     era:affectedProperty era:contains ;
     era:scope "local";
-	rdfs:comment "Relationship between a common characteristics subset and an infrastructure element (inverse of belongsTo)." ;
+	rdfs:comment "Relationship between a common characteristics subset and an infrastructure element (inverse of belongsTo). "@en ;
 	sh:path era:contains ;
 	sh:class era:InfrastructureElement;
 	sh:severity sh:Violation ;
@@ -211,7 +211,7 @@ era-sh:NetReference
     era:affectedClass era:InfrastructureElement;
     era:affectedProperty era:netReference ;
     era:scope "local";
-	rdfs:comment "The reference that a physical insfrastructure element has it on the topology. It may be used to define the positioning or a representation as a point. line or area." ;
+	rdfs:comment "The reference that a physical insfrastructure element has it on the topology. It may be used to define the positioning or a representation as a point. line or area. "@en ;
 	sh:path era:netReference ;
 	sh:class era:NetBasicReference;
 	sh:severity sh:Violation ;
@@ -226,7 +226,7 @@ era-sh:PrimaryLocation
     era:affectedClass era:AggregatedElement;
     era:affectedProperty era:primaryLocation ;
     era:scope "local"; 
-	rdfs:comment "Primary location code developed for information exchange in accordance with the TSIs relating to the telematics applications subsystem." ; 
+	rdfs:comment "Primary location code developed for information exchange in accordance with the TSIs relating to the telematics applications subsystem. "@en ; 
 	sh:path era:primaryLocation ;
 	sh:class era:PrimaryLocation;
     # sh:node era-sh:PrimaryLocationShape; not implemented in the shacl engine
@@ -241,7 +241,7 @@ era-sh:HasPart
     era:affectedClass era:AggregatedElement;
     era:affectedProperty era:hasPart ;
     era:scope "local"; 
-	rdfs:comment "Indicates that an aggregated element has a part that is a basic element." ; 
+	rdfs:comment "Indicates that an aggregated element has a part that is a basic element. "@en ; 
 	sh:path era:hasPart ;
 	sh:class era:BasicElement;
     sh:minCount 1;
@@ -256,7 +256,7 @@ era-sh:IsPartOf
     era:affectedClass era:BasicElement;
     era:affectedProperty era:isPartOf ;
     era:scope "local"; 
-	rdfs:comment "Indicates that a basic element is part of an aggregated element." ; 
+	rdfs:comment "Indicates that a basic element is part of an aggregated element. "@en ; 
 	sh:path era:isPartOf ;
 	sh:class era:AggregatedElement;
     sh:nodeKind sh:IRI ;
@@ -308,7 +308,7 @@ era-sh:SubsetOf
     era:affectedClass era:CommonCharacteristicsSubset;
     era:affectedProperty era:subsetOf ;
     era:scope "local"; 
-	rdfs:comment "Relates a subset with common chatacteristics with another subset with common characteristics." ; 
+	rdfs:comment "Relates a subset with common chatacteristics with another subset with common characteristics. "@en ; 
 	sh:path era:subsetOf ;
 	sh:class era:CommonCharacteristicsSubset;
     sh:nodeKind sh:IRI ;

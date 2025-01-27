@@ -41,7 +41,7 @@ era-sh:SidingId
     era:affectedProperty era:sidingId ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Unique siding identification or unique siding number within OP" ;
+	rdfs:comment "Unique siding identification or unique siding number within OP "@en ;
 	era:rinfIndex "1.2.2.0.0.2" ;
 	sh:path era:sidingId ;
 	sh:minCount 1 ;
@@ -58,7 +58,7 @@ era-sh:NoRepeatedSidingIds
     era:affectedClass era:Siding;
     era:affectedClass era:OperationalPoint;
     era:scope "global";
-    rdfs:comment "Each siding shall have unique identification or number within the OP. This number cannot be used for naming any other siding in the same OP." ;
+    rdfs:comment "Each siding shall have unique identification or number within the OP. This number cannot be used for naming any other siding in the same OP. "@en ;
     era:rinfIndex "1.2.2.0.0.2" ;
     sh:severity sh:Violation ;
     sh:message "sidingId (1.2.2.0.0.2):: Each siding shall have unique identification or number within the OP. This number cannot be used for naming any other siding in the same OP. There is a problem with the OP {$this} ({?opLabel}) and sidings {?siding1} ({?siding1Label}) and {?siding2} ({?siding2Label}), since they have the same identifier: {?value}."@en ;
@@ -88,7 +88,7 @@ era-sh:TenClassificationS
     era:affectedProperty era:tenClassification;
     era:affectedClass era:Siding;
     era:scope "local";   
-    rdfs:comment "Indicates the part of the trans-European network the platform belongs to." ;
+    rdfs:comment "Indicates the part of the trans-European network the platform belongs to. "@en ;
 	era:rinfIndex "1.1.1.1.2.1", "1.2.1.0.2.1", "1.2.1.0.6.3", "1.2.2.0.0.3" ;
 	sh:path era:tenClassification ;
 	sh:nodeKind sh:IRI;
@@ -103,7 +103,7 @@ era-sh:TenClassificationS
     era:affectedProperty era:tenClassification ;
     era:affectedClass era:Siding;
     era:scope "local";
- 	rdfs:comment "Indication of the part of the trans-European network the line belongs to." ;	era:rinfIndex "1.2.2.0.0.3" ;
+ 	rdfs:comment "Indication of the part of the trans-European network the line belongs to. "@en ;	era:rinfIndex "1.2.2.0.0.3" ;
 	era:rinfIndex "1.1.1.1.2.1", "1.2.1.0.2.1", "1.2.1.0.6.3", "1.2.2.0.0.3" ;
  	sh:nodeKind sh:IRI ;
  	sh:severity sh:Violation ;
@@ -133,7 +133,7 @@ era-sh:TenClassificationS
      era:affectedProperty era:verificationINF ;
      era:affectedClass era:Siding;
      era:scope "local";
- 	 rdfs:comment "Indication of the verification of the infrastructure manager" ;
+ 	 rdfs:comment "Indication of the verification of the infrastructure manager "@en ;
  	 era:rinfIndex "1.2.2.0.1.1", "1.2.1.0.1.1", "1.2.2.0.1.1" ;
  	 sh:path era:verificationINF ;
      sh:datatype xsd:string ;
@@ -149,7 +149,7 @@ era-sh:TenClassificationS
      era:affectedProperty era:demonstrationINF ;
      era:affectedClass era:Siding;
      era:scope "local";
- 	rdfs:comment "Unique number for EI declarations following the same format requirements as specified in the 'Documents about practical arrangements for transmitting interoperability documents'" ;
+ 	rdfs:comment "Unique number for EI declarations following the same format requirements as specified in the 'Documents about practical arrangements for transmitting interoperability documents' "@en ;
  	era:rinfIndex "1.1.1.1.1.2" , "1.2.1.0.1.2" , "1.2.2.0.1.2" ;
  	sh:path era:demonstrationINF ;
  	 sh:minCount 0 ; #TODO: Not yet applicable
@@ -165,7 +165,7 @@ era-sh:LengthS
     era:affectedProperty era:lengthOfSiding ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Total length of the siding/stabling track expressed in meters where trains can be parked safely" ;
+	rdfs:comment "Total length of the siding/stabling track expressed in meters where trains can be parked safely "@en ;
 	era:rinfIndex "1.2.2.0.2.1" ;
 	sh:path era:lengthOfSiding ;
 	sh:maxCount 1 ;
@@ -182,7 +182,7 @@ era-sh:Gradient
     era:affectedProperty era:gradient ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Maximum value of the gradient expressed in millimeters per meter" ;
+	rdfs:comment "Maximum value of the gradient expressed in millimeters per meter "@en ;
 	era:rinfIndex "1.2.2.0.3.1" ;
 	sh:path era:gradient ;
 	sh:maxCount 1 ;
@@ -200,7 +200,7 @@ era-sh:MinimumHorizontalRadiusS
     era:affectedProperty era:minimumHorizontalRadius ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Radius of the smallest horizontal curve of the track in metres." ;
+	rdfs:comment "Radius of the smallest horizontal curve of the track in metres. "@en ;
 	era:rinfIndex "1.2.2.0.3.2", "1.2.2.0.3.2" ;
 	sh:path era:minimumHorizontalRadius ;
 	sh:maxCount 1 ;
@@ -213,7 +213,7 @@ era-sh:SidingShape sh:property era-sh:MinimumVerticalRadius.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MinimumVerticalRadius.
 era-sh:MinimumVerticalRadius
 	a sh:PropertyShape ; era:affectedProperty era:minimumVerticalRadius ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication of types of appearance of track lineside distance indications." ;
+	rdfs:comment "Indication of types of appearance of track lineside distance indications. "@en ;
 	sh:path era:minimumVerticalRadius;
     sh:class era:MinimumVerticalRadius;
     # sh:node era-sh:MinimumVerticalRadiusShape; not implemented in the shacl engine
@@ -230,7 +230,7 @@ era-sh:MinimumVerticalRadiusCrest
     era:affectedProperty era:minimumVerticalRadiusCrest ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Radius of the smallest vertical curve expressed in meters, part that indicates the crest" ;
+	rdfs:comment "Radius of the smallest vertical curve expressed in meters, part that indicates the crest "@en ;
 	sh:path era:minimumVerticalRadiusCrest ;
     sh:minCount 1;
 	sh:maxCount 1 ;
@@ -245,7 +245,7 @@ era-sh:MinimumVerticalRadiusHollow
     era:affectedProperty era:minimumVerticalRadiusHollow ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Radius of the smallest vertical curve expressed in meters, part that indicates the hollow" ;
+	rdfs:comment "Radius of the smallest vertical curve expressed in meters, part that indicates the hollow "@en ;
 	sh:path era:minimumVerticalRadiusHollow ;
     sh:minCount 1;
 	sh:maxCount 1 ;
@@ -264,7 +264,7 @@ era-sh:HasToiletDischarge
     era:affectedProperty era:hasToiletDischarge ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Indication whether exists and installation for toilet discharge (fixed installation for servicing trains) as defined in INF TSIs" ; 
+	rdfs:comment "Indication whether exists and installation for toilet discharge (fixed installation for servicing trains) as defined in INF TSIs "@en ; 
 	era:rinfIndex "1.2.2.0.4.1" ;
 	sh:path era:hasToiletDischarge ;
 	sh:maxCount 1 ;
@@ -280,7 +280,7 @@ era-sh:HasExternalCleaning
     era:affectedProperty era:hasExternalCleaning ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Indication whether exists and installation for external cleaning facility (fixed installation for servicing trains) as defined in INF TSIs" ; 
+	rdfs:comment "Indication whether exists and installation for external cleaning facility (fixed installation for servicing trains) as defined in INF TSIs "@en ; 
 	era:rinfIndex "1.2.2.0.4.2" ;
 	sh:path era:hasExternalCleaning ;
 	sh:maxCount 1 ;
@@ -296,7 +296,7 @@ era-sh:HasWaterRestocking
     era:affectedProperty era:hasWaterRestocking ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Indication whether exists and installation for water restocking (fixed installation for servicing trains) as defined in INF TSIs" ; 
+	rdfs:comment "Indication whether exists and installation for water restocking (fixed installation for servicing trains) as defined in INF TSIs "@en ; 
 	era:rinfIndex "1.2.2.0.4.3" ;
 	sh:path era:hasWaterRestocking ;
 	sh:maxCount 1 ;
@@ -312,7 +312,7 @@ era-sh:HasRefuelling
     era:affectedProperty era:hasRefuelling ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Indication whether exists and installation for refuelling (fixed installation for servicing trains) as defined in INF TSIs" ; 
+	rdfs:comment "Indication whether exists and installation for refuelling (fixed installation for servicing trains) as defined in INF TSIs "@en ; 
 	era:rinfIndex "1.2.2.0.4.4" ;
 	sh:path era:hasRefuelling ;
 	sh:maxCount 1 ;
@@ -328,7 +328,7 @@ era-sh:HasSandRestocking
      era:affectedProperty era:hasSandRestocking ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Indication whether an installation for sand restocking exists(fixed installation for servicing trains)" ; 
+	rdfs:comment "Indication whether an installation for sand restocking exists(fixed installation for servicing trains) "@en ; 
 	era:rinfIndex "1.2.2.0.4.5" ;
 	sh:path era:hasSandRestocking ;
 	sh:maxCount 1 ;
@@ -344,7 +344,7 @@ era-sh:HasElectricShoreSupply
     era:affectedProperty era:hasElectricShoreSupply ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Indication whether an installation for electric shore supply exists (fixed installation for servicing trains)" ; 
+	rdfs:comment "Indication whether an installation for electric shore supply exists (fixed installation for servicing trains) "@en ; 
 	era:rinfIndex "1.2.2.0.4.6" ;
 	sh:path era:hasElectricShoreSupply ;
 	sh:maxCount 1 ;
@@ -361,7 +361,7 @@ era-sh:MaxCurrentStandstillPantographS
     era:affectedProperty era:maxCurrentStandstillPantograph ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Indication of the maximum allowable train current at standstill for DC systems expressed in amperes" ;
+	rdfs:comment "Indication of the maximum allowable train current at standstill for DC systems expressed in amperes "@en ;
 	era:rinfIndex "1.1.1.2.2.3" , "1.2.2.0.6.1" ;
 	sh:path era:maxCurrentStandstillPantograph ;
 	sh:datatype xsd:double ;

@@ -58,7 +58,7 @@ era-sh:NoRepeatedTrackIdsSoL
     era:affectedClass  era:SectionOfLine;
     era:affectedClass  era:RunningTrack;
     era:scope "global";
-    rdfs:comment "Each track shall have unique identification or number within the SoL. This number cannot be used for naming any other track in the same SoL." ;
+    rdfs:comment "Each track shall have unique identification or number within the SoL. This number cannot be used for naming any other track in the same SoL."@en ;
     era:rinfIndex "1.1.1.0.0.1" ;
     sh:severity sh:Violation ;
     sh:message "trackId (1.1.1.0.0.1): Each track shall have unique identification or number within the SoL. This number cannot be used for naming any other track in the same SoL. There is a problem with SoL {$this} ({?solLabel}) and tracks {?track1} ({?track1Label}) and {?track2} ({?track2Label}), since they have the same identifier: {?value}."@en ;
@@ -87,7 +87,7 @@ era-sh:NoRepeatedTrackIdsSoL
     era:affectedClass era:RunningTrack;
     era:affectedClass era:SectionOfLine;
     era:scope "local";   
-    rdfs:comment "The normal running direction is: 1) the same as the direction defined by the start and end of the SoL 2) the opposite to the direction defined by the start and end of the SoL 3) both directions defined for SoL." ;
+    rdfs:comment "The normal running direction is: 1) the same as the direction defined by the start and end of the SoL 2) the opposite to the direction defined by the start and end of the SoL 3) both directions defined for SoL."@en ;
     era:rinfIndex "1.1.1.0.0.2" ;
     sh:severity sh:Violation ;
      sh:message "There should be at least one Track Direction. There is a problem with SoL {$this} ({?solLabel}) and its track {?track} ({?trackLabel}). This track has no values for this property"@en ;
@@ -111,7 +111,7 @@ era-sh:SoLTrackDirectionMaxCount
     era:affectedClass era:RunningTrack;
     era:affectedClass era:SectionOfLine;
     era:scope "local";   
-   rdfs:comment "The normal running direction is: 1) the same as the direction defined by the start and end of the SoL 2) the opposite to the direction defined by the start and end of the SoL 3) both directions defined for SoL." ;
+   rdfs:comment "The normal running direction is: 1) the same as the direction defined by the start and end of the SoL 2) the opposite to the direction defined by the start and end of the SoL 3) both directions defined for SoL."@en ;
    era:rinfIndex "1.1.1.0.0.2" ;
      sh:severity sh:Violation ;
      sh:message "There should be at most one Track Direction. There is a problem with SoL {$this} ({?solLabel}) and its track {?track} ({?trackLabel}). This track has at least two different values for this property: {?value1} and {?value2}"@en ;
@@ -138,7 +138,7 @@ era-sh:TrackDirectionSKOS
     era:affectedProperty era:trackDirection;
     era:affectedClass  era:RunningTrack;
     era:scope "local";  
-    rdfs:comment "The normal running direction is: 1) the same as the direction defined by the start and end of the SoL 2) the opposite to the direction defined by the start and end of the SoL 3) both directions defined for SoL." ;
+    rdfs:comment "The normal running direction is: 1) the same as the direction defined by the start and end of the SoL 2) the opposite to the direction defined by the start and end of the SoL 3) both directions defined for SoL."@en ;
 	era:rinfIndex "1.1.1.0.0.2" ;
 	sh:severity sh:Violation ;
     sh:message "Indication of the trackDirection (1.1.1.0.0.2):): The track {?track} in the Section of Line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/track-running-directions/TrackRunningDirections."@en ;
@@ -172,7 +172,7 @@ era-sh:TenGISId
     era:affectedProperty era:tenGISId;
     era:affectedClass  era:RunningTrack;
     era:scope "local"; 
-	rdfs:comment "Indication of the GIS identity (GIS ID) of the section of TEN-T database to which the track belongs." ;
+	rdfs:comment "Indication of the GIS identity (GIS ID) of the section of TEN-T database to which the track belongs."@en ;
 	era:rinfIndex "1.1.1.1.2.1.2" ;
 	sh:path era:tenGISId ;
 	sh:maxCount 1 ;
@@ -185,7 +185,7 @@ era-sh:RunningTrackShapeShape sh:property era-sh:TrackLoadCapability.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TrackLoadCapability.
 era-sh:TrackLoadCapability
 	a sh:PropertyShape ; era:affectedProperty era:trackLoadCapability  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Relates the track with the class LoadCapability. A combination of the line category and speed at the weakest point of the track." ;
+	rdfs:comment "Relates the track with the class LoadCapability. A combination of the line category and speed at the weakest point of the track."@en ;
 	era:rinfIndex "1.1.1.1.2.4" ;
 	sh:path era:trackLoadCapability ;
     sh:class era:LoadCapability;
@@ -217,7 +217,7 @@ era-sh:TrackLoadCapability
     era:affectedProperty era:loadCapabilityLineCategory;
     era:affectedClass  era:LoadCapability;
     era:scope "local";   
-	rdfs:comment "Load capability is a combination of the line category and speed at the weakest point of the track.";
+	rdfs:comment "Load capability is a combination of the line category and speed at the weakest point of the track."@en;
 	era:rinfIndex "1.1.1.1.2.4" ;
 	sh:path era:loadCapabilityLineCategory ;
 	sh:nodeKind sh:IRI ;
@@ -234,7 +234,7 @@ era-sh:LoadCapabilityLineCategorySKOS
     era:affectedProperty era:loadCapabilityLineCategory;
     era:affectedClass  era:LoadCapability;
     era:scope "local";   
-    rdfs:comment "Load capability is a combination of the line category and speed at the weakest point of the track.";
+    rdfs:comment "Load capability is a combination of the line category and speed at the weakest point of the track."@en;
 	era:rinfIndex "1.1.1.1.2.4" ;
 	sh:severity sh:Violation ;
     sh:message "Indication of the load capability line category (1.1.1.1.2.4):): The track or subset with common characteristics  {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/load-capability-line-categories/LoadCapabilityLineCategories."@en ;
@@ -263,9 +263,9 @@ era-sh:NationalLoadCapability
     era:affectedProperty era:nationalLoadCapability;
     era:affectedClass  era:RunningTrack;
     era:scope "local";   
-	rdfs:comment "National classification for load capability." ;
+	rdfs:comment "National classification for load capability"@en ;
 	era:rinfIndex "1.1.1.1.2.4.1" ;
-	sh:path era:nationalLoadCapabilit ;
+	sh:path era:nationalLoadCapability ;
 	sh:datatype xsd:string ;
 	sh:severity sh:Violation ;
 	sh:message "nationalLoadCapability (1.1.1.1.2.4.1): The track or subset with common characteristics has a national load capability value that must be  a string. This error may be due to the track having a value of national load capability that is not a character string."@en .
@@ -280,8 +280,8 @@ era-sh:HighSpeedLoadModelCompliance
     era:affectedProperty era:highSpeedLoadModelCompliance;
     era:affectedClass  era:RunningTrack;
     era:scope "local";    
-	rdfs:comment "National classification for load capability." ;
-	rdfs:comment "For sections of line with a maximum permitted speed of 200km/h or more information regarding the procedure to be used to perform the dynamic compatibility check" ;
+	rdfs:comment "National classification for load capability"@en;
+	rdfs:comment "For sections of line with a maximum permitted speed of 200km/h or more information regarding the procedure to be used to perform the dynamic compatibility check"@en;
 	era:rinfIndex "1.1.1.1.2.4.2" ;
 	sh:path era:highSpeedLoadModelCompliance ;
 	sh:maxCount 1 ;
@@ -297,7 +297,7 @@ era-sh:StructureCheckLocation
     era:affectedProperty era:structureCheckLocation;
     era:affectedClass  era:RunningTrack;
     era:scope "local";  
-	rdfs:comment "Localisation of structures requiring specific checks." ;
+	rdfs:comment "Localisation of structures requiring specific checks."@en ;
 	era:rinfIndex "1.1.1.1.2.4.3" ;
 	sh:path era:structureCheckLocation ;
 	sh:datatype xsd:double ;
@@ -313,7 +313,7 @@ era-sh:CompatibilityProcedureDocument
     era:affectedProperty era:compatibilityProcedureDocument;
     era:affectedClass  era:RunningTrack;
     era:scope "local";  
-	rdfs:comment "Document with the procedure for static and dynamic compatibility checks." ;
+	rdfs:comment "Document with the procedure for static and dynamic compatibility checks."@en ;
 	era:rinfIndex "1.1.1.1.2.4.4" ;
 	sh:path era:compatibilityProcedureDocument ;
     sh:class era:Document ;
@@ -328,7 +328,7 @@ era-sh:MaximumPermittedSpeed
     era:affectedProperty era:maximumPermittedSpeed;
     era:affectedClass  era:RunningTrack;
     era:scope "local";   
-	rdfs:comment "Maximum permitted speed." ;
+	rdfs:comment "Maximum permitted speed."@en ;
 	era:rinfIndex "1.1.1.1.2.5" ;
 	sh:path era:maximumPermittedSpeed ;
 	sh:maxCount 1 ;
@@ -346,7 +346,7 @@ era-sh:TemperatureRange
     era:affectedProperty era:temperatureRange;
     era:affectedClass  era:RunningTrack;
     era:scope "local";   
-	rdfs:comment "Indication of the temperature range of track." ;
+	rdfs:comment "Indication of the temperature range of track."@en ;
 	era:rinfIndex "1.1.1.1.2.6" ;
 	sh:path era:temperatureRange ;
     sh:nodeKind sh:IRI ;
@@ -362,7 +362,7 @@ era-sh:TemperatureRangeSKOS
     era:affectedProperty era:temperatureRange;
     era:affectedClass  era:RunningTrack;
     era:scope "local";    
-    rdfs:comment "Indication of the temperature range of track." ;
+    rdfs:comment "Indication of the temperature range of track."@en ;
 	era:rinfIndex "1.1.1.1.2.6" ;
 	sh:severity sh:Violation ;
     sh:message "Indication of the temperature range (1.1.1.1.2.6):): The track {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/temperature-ranges/TemperatureRanges."@en ;
@@ -389,7 +389,7 @@ era-sh:MaximumAltitude
     era:affectedProperty era:maximumAltitude;
     era:affectedClass  era:RunningTrack;
     era:scope "local";    
-	rdfs:comment "Highest point of the section of line above sea level in reference to Normal Amsterdam's Peil (NAP)." ;
+	rdfs:comment "Highest point of the section of line above sea level in reference to Normal Amsterdam's Peil (NAP)."@en ;
 	era:rinfIndex "1.1.1.1.2.7" ;
 	sh:path era:maximumAltitude ;
 	
@@ -407,7 +407,7 @@ era-sh:HasSevereWeatherConditions
     era:affectedProperty era:hasSevereWeatherConditions;
     era:affectedClass  era:RunningTrack;
     era:scope "local";    
-	rdfs:comment "Climatic conditions on the line are severe according to European standard." ;
+	rdfs:comment "Climatic conditions on the line are severe according to European standard."@en ;
 	era:rinfIndex "1.1.1.1.2.8" ;
 	sh:path era:hasSevereWeatherConditions ;
 	sh:datatype xsd:boolean ;
@@ -424,7 +424,7 @@ era-sh:ProfileNumberSwapBodiesSKOS
     era:affectedProperty era:profileNumberSwapBodies;
     era:affectedClass  era:RunningTrack;
     era:scope "local";
-    rdfs:comment "Coding for combined transport with swap bodies as defined in UIC Code." ;
+    rdfs:comment "Coding for combined transport with swap bodies as defined in UIC Code."@en ;
 	era:rinfIndex "1.1.1.1.3.4" ;
 	sh:severity sh:Violation ;
     sh:message "Indication of the profileNumberSwapBodies(1.1.1.1.3.4):): The track {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/profile-num-swap-bodies/ProfileNumbersSwapBodies."@en ;
@@ -452,7 +452,7 @@ era-sh:ProfileNumberSemiTrailersSKOS
     era:affectedProperty era:profileNumberSemiTrailers;
     era:affectedClass  era:RunningTrack;
     era:scope "local";  
-    rdfs:comment "Coding for combined transport with semi-trailers as defined in UIC Code." ;
+    rdfs:comment "Coding for combined transport with semi-trailers as defined in UIC Code."@en ;
 	era:rinfIndex "1.1.1.1.3.5" ;
 	sh:severity sh:Violation ;
     sh:message "Indication of the profileNumberSemiTrailers(1.1.1.1.3.5):): The track or subset with common characteristics  {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/profile-num-semi-trailers/ProfileNumbersSemiTrailers."@en ;
@@ -482,7 +482,7 @@ era-sh:SpecificInformation
     era:affectedClass  era:RunningTrack;
     era:scope "local";
     
-	rdfs:comment "Any specific information from the IM." ;
+	rdfs:comment "Any specific information from the IM."@en ;
 	era:rinfIndex "1.1.1.1.3.5.1" ;
 	sh:path era:specificInformation; 
 	sh:datatype xsd:string ;
@@ -497,7 +497,7 @@ era-sh:GradientProfile
     era:affectedProperty era:gradientProfile;
     era:affectedClass  era:RunningTrack;
     era:scope "local";    
-	rdfs:comment "Sequence of gradient values and locations of change in gradient." ;
+	rdfs:comment "Sequence of gradient values and locations of change in gradient."@en ;
 	era:rinfIndex "1.1.1.1.3.6" ;
 	sh:path era:gradientProfile ;
 	
@@ -519,7 +519,7 @@ era-sh:CantDeficiency
     era:affectedClass  era:RunningTrack;
     era:scope "local";
     
-	rdfs:comment "Maximum cant deficiency expressed in millimeters defined as difference between the applied cant and a higher equilibrium cant the line has been designed for." ;
+	rdfs:comment "Maximum cant deficiency expressed in millimeters defined as difference between the applied cant and a higher equilibrium cant the line has been designed for."@en ;
 	era:rinfIndex "1.1.1.1.4.2" ;
 	sh:path era:cantDeficiency ;
 	sh:maxCount 1 ;
@@ -538,7 +538,7 @@ era-sh:RailInclination
     era:affectedClass  era:RunningTrack;
     era:scope "local";
     
-	rdfs:comment "An angle defining the inclination of the head of a rail relatie to the running surface." ;
+	rdfs:comment "An angle defining the inclination of the head of a rail relatie to the running surface."@en ;
 	era:rinfIndex "1.1.1.1.4.3" ;
 	sh:path era:railInclination ;
 	sh:maxCount 1 ;
@@ -555,7 +555,7 @@ era-sh:RailInclinationSKOS
     era:affectedClass  era:RunningTrack;
     era:scope "local";
     
-    rdfs:comment "An angle defining the inclination of the head of a rail relatie to the running surface." ;
+    rdfs:comment "An angle defining the inclination of the head of a rail relatie to the running surface."@en ;
 	era:rinfIndex "1.1.1.1.4.3" ;
 	sh:severity sh:Violation ;
     sh:message "Indication of the rail inclination (1.1.1.1.4.3):): The track or subset with common characteristics  {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/rail-inclinations/RailInclinations."@en ;
@@ -581,7 +581,7 @@ era-sh:HasBallast
     era:affectedProperty era:hasBallast ;
     era:affectedClass  era:RunningTrack;
     era:scope "local";    
-	rdfs:comment "Specifies whether the track construction is with sleepers embedded in ballast or not." ;
+	rdfs:comment "Specifies whether the track construction is with sleepers embedded in ballast or not."@en ;
 	era:rinfIndex "1.1.1.1.4.4" ;
 	sh:path era:hasBallast ;
 	sh:maxCount 1 ;
@@ -597,7 +597,7 @@ era-sh:TSISwitchCrossing
     era:affectedProperty era:tsiSwitchCrossing ;
     era:affectedClass  era:RunningTrack;
     era:scope "local";    
-	rdfs:comment "Switches and crossings are maintained to in service limit dimension as specified in TSI." ;
+	rdfs:comment "Switches and crossings are maintained to in service limit dimension as specified in TSI."@en ;
 	era:rinfIndex "1.1.1.1.5.1" ;
 	sh:path era:tsiSwitchCrossing ;
 	sh:maxCount 1 ;
@@ -613,7 +613,7 @@ era-sh:MinimumWheelDiameter
     era:affectedProperty era:minimumWheelDiameter ;
     era:affectedClass  era:RunningTrack;
     era:scope "local";   
-	rdfs:comment "Maximum unguided length of fixed obtuse crossings is based on a minimum wheel diameter in service expressed in millimiters." ;
+	rdfs:comment "Maximum unguided length of fixed obtuse crossings is based on a minimum wheel diameter in service expressed in millimiters."@en ;
 	era:rinfIndex "1.1.1.1.5.2" ;
 	sh:path era:minimumWheelDiameter ;
 	sh:maxCount 1 ;
@@ -631,7 +631,7 @@ era-sh:MaximumTrainDeceleration
     era:affectedProperty era:maximumTrainDeceleration ;
     era:affectedClass  era:RunningTrack;
     era:scope "local";   
-	rdfs:comment "Limit for longitudinal track resistance given as a maximum allowed train deceleration and expressed in m/s2." ;
+	rdfs:comment "Limit for longitudinal track resistance given as a maximum allowed train deceleration and expressed in m/s2."@en ;
 	era:rinfIndex "1.1.1.1.6.1" ;
 	sh:path era:maximumTrainDeceleration ;
 	sh:maxCount 1 ;
@@ -653,7 +653,7 @@ era-sh:EddyCurrentBrakingConditionsDocument
     era:affectedProperty era:eddyCurrentBrakingConditionsDocument ;
     era:affectedClass  era:RunningTrack;
     era:scope "local";   
-	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency with conditions for the use of eddy current brakes identified in 1.1.1.1.6.2." ;
+	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency with conditions for the use of eddy current brakes identified in 1.1.1.1.6.2."@en ;
 	era:rinfIndex "1.1.1.1.6.4" ;
 	sh:path era:eddyCurrentBrakingConditionsDocument ;
     sh:class era:Document;
@@ -668,7 +668,7 @@ era-sh:MagneticBrakingConditionsDocument
     era:affectedProperty era:magneticBrakingConditionsDocument ;
     era:affectedClass  era:RunningTrack;
     era:scope "local";   
-	rdfs:comment "Electronic documents available in two EU languages from the IM stored by the Agency with conditions for the use of magnetic brakes identified in 1.1.1.1.6.3." ;
+	rdfs:comment "Electronic documents available in two EU languages from the IM stored by the Agency with conditions for the use of magnetic brakes identified in 1.1.1.1.6.3."@en ;
 	era:rinfIndex "1.1.1.1.6.5" ;
 	sh:path era:magneticBrakingConditionsDocument ;
     sh:class era:Document;
@@ -683,7 +683,7 @@ era-sh:FlangeLubeForbidden
     era:affectedProperty era:flangeLubeForbidden ;
     era:affectedClass  era:RunningTrack;
     era:scope "local";  
-	rdfs:comment "Indication whether the use of on-board device for flange lubrication is forbidden." ;
+	rdfs:comment "Indication whether the use of on-board device for flange lubrication is forbidden."@en ;
 	era:rinfIndex "1.1.1.1.7.1" ;
 	sh:path era:flangeLubeForbidden ;
 	sh:maxCount 1 ;
@@ -699,7 +699,7 @@ era-sh:HasLevelCrossings
     era:affectedProperty era:hasLevelCrossings ;
     era:affectedClass  era:RunningTrack;
     era:scope "local";  
-	rdfs:comment "Indication whether level crossings (including pedestrian track crossing) exist onf the section line." ;
+	rdfs:comment "Indication whether level crossings (including pedestrian track crossing) exist onf the section line."@en ;
 	era:rinfIndex "1.1.1.1.7.2" ;
 	sh:path era:hasLevelCrossings ;
 	sh:maxCount 1 ;
@@ -715,7 +715,7 @@ era-sh:AccelerationLevelCrossing
     era:affectedProperty era:accelerationLevelCrossing ;
     era:affectedClass  era:RunningTrack;
     era:scope "local";   
-	rdfs:comment "Existence of limit for acceleration of train if stopping or recovering speed close to a level crossing expressed in a specific reference acceleration curve." ;
+	rdfs:comment "Existence of limit for acceleration of train if stopping or recovering speed close to a level crossing expressed in a specific reference acceleration curve."@en ;
 	era:rinfIndex "1.1.1.1.7.3" ;
 	sh:path era:accelerationLevelCrossing ;
 	sh:maxCount 1 ;
@@ -732,7 +732,7 @@ era-sh:HasHotAxleBoxDetector
     era:affectedProperty era:hasHotAxleBoxDetector ;
     era:affectedClass  era:RunningTrack;
     era:scope "local";    
-	rdfs:comment "Existence of trackside hot axle box detector." ;
+	rdfs:comment "Existence of trackside hot axle box detector."@en ;
 	era:rinfIndex "1.1.1.1.7.4" ;
 	sh:path era:hasHotAxleBoxDetector ;
 	sh:maxCount 1 ;
@@ -748,7 +748,7 @@ era-sh:HotAxleBoxDetectorTSICompliant
     era:affectedProperty era:hotAxleBoxDetectorTSICompliant ;
     era:affectedClass  era:RunningTrack;
     era:scope "local";  
-	rdfs:comment "Trackside HABD compilant to TSI means that the HABD is compliant with EN 15437:2009 and specific cases mentioned in TSIs." ;
+	rdfs:comment "Trackside HABD compilant to TSI means that the HABD is compliant with EN 15437:2009 and specific cases mentioned in TSIs."@en ;
 	era:rinfIndex "1.1.1.1.7.5" ;
 	sh:path era:hotAxleBoxDetectorTSICompliant ;
 	sh:maxCount 1 ;
@@ -764,7 +764,7 @@ era-sh:HotAxleBoxDetectorIdentification
     era:affectedProperty era:hotAxleBoxDetectorIdentification ;
     era:affectedClass  era:RunningTrack;
     era:scope "local";    
-	rdfs:comment "Specific for the French, Italian and Swedish networks. Applicable if trackside HABD is not TSI compliant. Identification of the trackside HABD." ;
+	rdfs:comment "Specific for the French, Italian and Swedish networks. Applicable if trackside HABD is not TSI compliant. Identification of the trackside HABD."@en ;
 	era:rinfIndex "1.1.1.1.7.6" ;
 	sh:path era:hotAxleBoxDetectorIdentification ;
 	sh:maxCount 1 ;
@@ -780,7 +780,7 @@ era-sh:HotAxleBoxDetectorGeneration
     era:affectedProperty era:hotAxleBoxDetectorGeneration ;
     era:affectedClass  era:RunningTrack;
     era:scope "local";   
-	rdfs:comment "Applicable if trackside HABD is not TSI compliant. Generation of the trackside HABD." ;
+	rdfs:comment "Applicable if trackside HABD is not TSI compliant. Generation of the trackside HABD."@en ;
 	era:rinfIndex "1.1.1.1.7.7" ;
 	sh:path era:hotAxleBoxDetectorGeneration ;
 	sh:maxCount 1 ;
@@ -796,7 +796,7 @@ era-sh:HotAxleBoxDetectorLocation
     era:affectedProperty era:hotAxleBoxDetectorLocation  ;
     era:affectedClass  era:RunningTrack;
     era:scope "local";   
-	rdfs:comment "Applicable if trackside HABD is not TSI compliant. Location of the trackside HABD." ;
+	rdfs:comment "Applicable if trackside HABD is not TSI compliant. Location of the trackside HABD."@en ;
 	era:rinfIndex "1.1.1.1.7.8" ;
 	sh:path era:hotAxleBoxDetectorLocation ;
 	sh:datatype xsd:double ;
@@ -812,7 +812,7 @@ era-sh:HotAxleBoxDetectorDirection
     era:affectedProperty era:hotAxleBoxDetectorDirection  ;
     era:affectedClass  era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Direction of measurement of the trackside HABD." ;
+	rdfs:comment "Direction of measurement of the trackside HABD."@en ;
 	era:rinfIndex "1.1.1.1.7.9" ;
 	sh:path era:hotAxleBoxDetectorDirection ;
 	sh:maxCount 1 ;
@@ -829,7 +829,7 @@ era-sh:HotAxleBoxDetectorDirectionSKOS
     era:affectedClass  era:RunningTrack;
     era:scope "local";
     
-    rdfs:comment "Direction of measurement of the trackside HABD." ;
+    rdfs:comment "Direction of measurement of the trackside HABD."@en ;
 	era:rinfIndex "1.1.1.1.7.9" ;
 	sh:severity sh:Violation ;
     sh:message "Indication of the hotAxleBoxDetectorDirection (1.1.1.1.7.9):): The track or subset with common characteristics  {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/hot-axle-box-detector-direction/HotAxleBoxDetectorDirections."@en ;
@@ -859,7 +859,7 @@ era-sh:RedLightsRequired
     era:affectedProperty era:redLightsRequired  ;
     era:affectedClass  era:RunningTrack;
     era:scope "local";   
-	rdfs:comment "Sections where two steady red lights are required in accordance with Implementing Regulations (EU) 2019/773." ;
+	rdfs:comment "Sections where two steady red lights are required in accordance with Implementing Regulations (EU) 2019/773."@en ;
 	era:rinfIndex "1.1.1.1.7.10" ;
 	sh:path era:redLightsRequired ;
 	sh:maxCount 1 ;
@@ -872,7 +872,7 @@ era-sh:RunningTrackShape sh:property era-sh:IsQuietRoute.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:IsQuietRoute.
 era-sh:IsQuietRoute
 	a sh:PropertyShape ; era:affectedProperty era:isQuietRoute  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Belonging to a 'quiet route' in accordance with Article 5b of Regulation (EU) 1304/2014." ;
+	rdfs:comment "Belonging to a 'quiet route' in accordance with Article 5b of Regulation (EU) 1304/2014."@en ;
 	era:rinfIndex "1.1.1.1.7.11" ;
 	sh:path era:isQuietRoute ;	
 	sh:maxCount 1 ;
@@ -885,7 +885,7 @@ era-sh:RunningTrackShape sh:property era-sh:VerificationENE.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:VerificationENE.
 era-sh:VerificationENE
 	a sh:PropertyShape ; era:affectedProperty era:verificationENE  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Unique number for EC declarations following format requirements specified in the 'Document about practical arrangents for transmitting interoperability documents' ." ;
+	rdfs:comment "Unique number for EC declarations following format requirements specified in the 'Document about practical arrangents for transmitting interoperability documents' ."@en ;
 	era:rinfIndex "1.1.1.2.1.1" ;
 	sh:path era:verificationENE ;
 	
@@ -899,7 +899,7 @@ era-sh:RunningTrackShape sh:property era-sh:DemonstrationENE.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:DemonstrationENE.
 era-sh:DemonstrationENE
 	a sh:PropertyShape ; era:affectedProperty era:demonstrationENE  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Unique number for EI declarations following the same format requirements as specified in the 'Document about practical arrangents for transmitting interoperability documents'." ;
+	rdfs:comment "Unique number for EI declarations following the same format requirements as specified in the 'Document about practical arrangents for transmitting interoperability documents'."@en ;
 	era:rinfIndex "1.1.1.2.1.2" ;
 	sh:path era:demonstrationENE ;
 	sh:datatype xsd:string ;
@@ -914,7 +914,7 @@ era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:TsiPantographHeadSKOS.
 era-sh:TsiPantographHeadSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:tsiPantographHead  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-    rdfs:comment "Accepted TSI compliant pantograph heads." ;
+    rdfs:comment "Accepted TSI compliant pantograph heads."@en ;
 	era:rinfIndex "1.1.1.2.3.1" ;
 	sh:severity sh:Violation ;
     sh:message "Indication of the tsiPantographHead (1.1.1.2.3.1):): The track or subset with common characteristics  {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/compliant-pantograph-heads/CompliantPantographHeads."@en ;
@@ -939,7 +939,7 @@ era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:OtherPantographHeadSKOS
 era-sh:OtherPantographHeadSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:otherPantographHead  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-    rdfs:comment "Indication of which other pantograph heads are allowed to be used." ;
+    rdfs:comment "Indication of which other pantograph heads are allowed to be used."@en ;
 	era:rinfIndex "1.1.1.2.3.2" ;
 	sh:severity sh:Violation ;
     sh:message "Indication of the otherPantographHead (1.1.1.2.3.2):): The track or subset with common characteristics  {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/other-pantograph-heads/OtherPantographHeads."@en ;
@@ -963,7 +963,7 @@ era-sh:RunningTrackShape sh:property era-sh:TrackRaisedPantographsDistanceAndSpe
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TrackRaisedPantographsDistanceAndSpeed.
 era-sh:TrackRaisedPantographsDistanceAndSpeed
 	a sh:PropertyShape ; era:affectedProperty era:trackRaisedPantographsDistanceAndSpeed  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Relates the track with the class RaisedPantporaphsDistanceAndSpeed. Indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed." ;
+	rdfs:comment "Relates the track with the class RaisedPantporaphsDistanceAndSpeed. Indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed."@en ;
 	era:rinfIndex "1.1.1.2.3.3" ;
 	sh:path era:trackRaisedPantographsDistanceAndSpeed ;
     sh:class era:RaisedPantographsDistanceAndSpeed;
@@ -975,7 +975,7 @@ era-sh:TrackRaisedPantographsDistanceAndSpeed
 era-sh:RaisedPantographsDistanceAndSpeedShape sh:property era-sh:RaisedPantographsDistance.
 era-sh:RaisedPantographsDistance
 	a sh:PropertyShape ; era:affectedProperty era:raisedPantographsDistance  ;     era:affectedClass  era:RaisedPantographsDistanceAndSpeed;     era:scope "local";     
-	rdfs:comment "Indication of maximum number of raised pantographs per train allowed and minumum spacing centre line to centre line of adjacent pantograph heads, expressed in meters, at the given speed." ;
+	rdfs:comment "Indication of maximum number of raised pantographs per train allowed and minumum spacing centre line to centre line of adjacent pantograph heads, expressed in meters, at the given speed."@en ;
 	era:rinfIndex "1.1.1.2.3.3" ;
 	sh:path era:raisedPantographsDistance ;
     sh:minCount 1;
@@ -989,7 +989,7 @@ era-sh:RaisedPantographsDistance
  era-sh:RaisedPantographsSpeed
 	a sh:PropertyShape ; era:affectedProperty era:raisedPantographsSpeed  ;        era:scope "local";     
     era:affectedClass  era:RaisedPantographsDistanceAndSpeed;
-	rdfs:comment "Indication of maximum number of raised pantographs per train allowed and minumum spacing centre line to centre line of adjacent pantograph heads, expressed in meters, at the given speed." ;
+	rdfs:comment "Indication of maximum number of raised pantographs per train allowed and minumum spacing centre line to centre line of adjacent pantograph heads, expressed in meters, at the given speed."@en ;
 	era:rinfIndex "1.1.1.2.3.3" ;
     era:minCount 1;
     sh:maxCount 1;
@@ -1003,7 +1003,7 @@ era-sh:RaisedPantographsDistance
  era-sh:RaisedPantographsNumber
 	a sh:PropertyShape ; era:affectedProperty era:raisedPantographsNumber ;     era:scope "local";   
     era:affectedClass  era:RaisedPantographsDistanceAndSpeed;
-	rdfs:comment "Indication of maximum number of raised pantographs per train allowed and minumum spacing centre line to centre line of adjacent pantograph heads, expressed in meters, at the given speed." ;
+	rdfs:comment "Indication of maximum number of raised pantographs per train allowed and minumum spacing centre line to centre line of adjacent pantograph heads, expressed in meters, at the given speed."@en ;
 	era:rinfIndex "1.1.1.2.3.3" ;
 	sh:path era:raisedPantographsNumber ;
     sh:minCount 1;
@@ -1021,7 +1021,7 @@ era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:ContactStripMaterialSKO
 era-sh:ContactStripMaterialSKOS
 	a sh:SPARQLConstraint ;
 era:affectedProperty era:contactStripMaterial  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-   rdfs:comment "Indication of the material of the contact strip." ;
+   rdfs:comment "Indication of the material of the contact strip."@en ;
 	era:rinfIndex "1.1.1.2.3.4" ;
 	sh:severity sh:Violation ;
     sh:message "Indication of the contactStripMaterial (1.1.1.2.3.4):): The track or subset with common characteristics  {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/contact-strip-materials/ContactStripMaterials."@en ;
@@ -1044,7 +1044,7 @@ era-sh:RunningTrackShape sh:property era-sh:ContactStripMaterialMetallicContent.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ContactStripMaterialMetallicContent.
 era-sh:ContactStripMaterialMetallicContent
 	a sh:PropertyShape ; era:affectedProperty era:contactStripMaterialMetallicContent  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "In case that the value of the property era:contactStripMaterial is impregnated carbon, it is the metallic content, the maximum percentage allowed." ;
+	rdfs:comment "In case that the value of the property era:contactStripMaterial is impregnated carbon, it is the metallic content, the maximum percentage allowed."@en ;
 	era:rinfIndex "1.1.1.2.3.4" ;
 	sh:path era:contactStripMaterialMetallicContent ;
 	sh:datatype xsd:integer ;
@@ -1056,7 +1056,7 @@ era-sh:ContactStripMaterialMetallicContent
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasPhaseSeparation.
  era-sh:HasPhaseSeparation
     a sh:PropertyShape ; era:affectedProperty era:hasPhaseSeparation ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication of existence of phase separation and required information." ;
+	rdfs:comment "Indication of existence of phase separation and required information."@en ;
 	era:rinfIndex "1.1.1.2.4.1.1" ;
 	sh:path era:hasPhaseSeparation ;
     sh:maxCount 1 ;
@@ -1071,7 +1071,7 @@ era-sh:RunningTrackShape sh:property era-sh:TrackPhaseInfo.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TrackPhaseInfo.
 era-sh:TrackPhaseInfo
 	a sh:PropertyShape ; era:affectedProperty era:trackPhaseInfo  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Relates the Track with PhaseInfo. Indication of required several information on phase separation." ;
+	rdfs:comment "Relates the Track with PhaseInfo. Indication of required several information on phase separation."@en ;
 	era:rinfIndex "1.1.1.2.4.1.2" ;
 	sh:path era:trackPhaseInfo ;
     sh:class era:PhaseInfo;
@@ -1086,7 +1086,7 @@ era-sh:TrackPhaseInfo
  era-sh:PhaseInfoChangeSupplySystem
 	a sh:PropertyShape ; era:affectedProperty era:phaseInfoChangeSupplySystem  ;        era:scope "local";     
     era:affectedClass  era:PhaseInfo;
-	rdfs:comment "Indication of existence of phase separation and required information." ;
+	rdfs:comment "Indication of existence of phase separation and required information."@en ;
 	sh:path era:phaseInfoChangeSupplySystem ;
     sh:minCount 1;
     sh:maxCount 1;
@@ -1112,7 +1112,7 @@ era-sh:PhaseInfoShape sh:property era-sh:PhaseInfoKm.
  era-sh:PhaseInfoDistanceType 
     a sh:PropertyShape ; era:affectedProperty era:phaseInfoDistanceType  ;          era:scope "local";     
     era:affectedClass  era:PhaseInfo;
-	rdfs:comment "Indication of existence of phase separation and required information." ;
+	rdfs:comment "Indication of existence of phase separation and required information."@en ;
 	sh:path era:phaseInfoDistanceType ;
     sh:minCount 1;
     sh:maxCount 1;
@@ -1131,7 +1131,7 @@ era-sh:PhaseInfoShape sh:property era-sh:PhaseInfoKm.
  era-sh:PhaseInfoLength
 	a sh:PropertyShape ; era:affectedProperty era:phaseInfoLength  ;          era:scope "local";     
     era:affectedClass  era:PhaseInfo;
-	rdfs:comment "Indication of existence of phase separation and required information." ;
+	rdfs:comment "Indication of existence of phase separation and required information."@en ;
 	sh:path era:phaseInfoLength ;
 	sh:datatype xsd:integer ;
     sh:minCount 1;
@@ -1144,7 +1144,7 @@ era-sh:PhaseInfoShape sh:property era-sh:PhaseInfoKm.
  era-sh:PhaseInfoPantographLowered
 	a sh:PropertyShape ; era:affectedProperty era:phaseInfoPantographLowered  ;         era:scope "local";     
     era:affectedClass  era:PhaseInfo;
-	rdfs:comment "Indication of existence of phase separation and required information." ;
+	rdfs:comment "Indication of existence of phase separation and required information."@en ;
 	sh:path era:phaseInfoPantographLowered ;
 	sh:datatype xsd:boolean ;
     sh:minCount 1;
@@ -1157,7 +1157,7 @@ era-sh:PhaseInfoShape sh:property era-sh:PhaseInfoKm.
  era-sh:PhaseInfoSwitchOffBreaker
 	a sh:PropertyShape ; era:affectedProperty era:phaseInfoSwitchOffBreaker  ;         era:scope "local";     
     era:affectedClass  era:PhaseInfo;
-	rdfs:comment "Indication of existence of phase separation and required information." ;
+	rdfs:comment "Indication of existence of phase separation and required information."@en ;
 	sh:path era:phaseInfoSwitchOffBreaker ;
 	
 	sh:datatype xsd:boolean ;
@@ -1170,7 +1170,7 @@ era-sh:RunningTrackShape sh:property era-sh:HasSystemSeparation.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasSystemSeparation.
 era-sh:HasSystemSeparation
 	a sh:PropertyShape ; era:affectedProperty era:hasSystemSeparation  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication of existence of system separation." ;
+	rdfs:comment "Indication of existence of system separation."@en ;
 	era:rinfIndex "1.1.1.2.4.2.1" ;
 	sh:path era:hasSystemSeparation ;	
 	sh:maxCount 1 ;
@@ -1183,7 +1183,7 @@ era-sh:RunningTrackShape sh:property era-sh:TrackSystemSeparationInfo.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TrackSystemSeparationInfo.
 era-sh:TrackSystemSeparationInfo
 	a sh:PropertyShape ; era:affectedProperty era:trackSystemSeparationInfo  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Relates the Track with the SystemSeparationInfo. Indication of required several information on system separation." ;
+	rdfs:comment "Relates the Track with the SystemSeparationInfo. Indication of required several information on system separation."@en ;
 	era:rinfIndex "1.1.1.2.4.2.2" ;
 	sh:path era:trackSystemSeparationInfo ;
     sh:class era:SystemSeparationInfo;
@@ -1196,7 +1196,7 @@ era-sh:TrackSystemSeparationInfo
  era-sh:SystemSeparationInfoKm
 	a sh:PropertyShape ; era:affectedProperty era:systemSeparationInfoKm  ;          era:scope "local";     
     era:affectedClass  era:SystemSeparationInfo;
-	rdfs:comment "Indication of required several information on system separation." ;
+	rdfs:comment "Indication of required several information on system separation."@en ;
 	sh:path era:systemSeparationInfoKm ;
     sh:minCount 1;
     sh:maxCount 1;
@@ -1209,7 +1209,7 @@ era-sh:TrackSystemSeparationInfo
 era-sh:SystemSeparationInfoLength
 	a sh:PropertyShape ; era:affectedProperty era:systemSeparationInfoLength  ;          era:scope "local";     
     era:affectedClass  era:SystemSeparationInfo;
-	rdfs:comment "Indication of required several information on system separation." ;
+	rdfs:comment "Indication of required several information on system separation."@en ;
 	sh:path era:systemSeparationInfoLength ;
     sh:minCount 1;
     sh:maxCount 1;
@@ -1222,7 +1222,7 @@ era-sh:SystemSeparationInfoLength
  era-sh:SystemSeparationInfoPantographLowered
 	a sh:PropertyShape ; era:affectedProperty era:systemSeparationInfoPantographLowered  ;          era:scope "local";     
     era:affectedClass  era:SystemSeparationInfo;
-	rdfs:comment "Indication of required several information on system separation." ;
+	rdfs:comment "Indication of required several information on system separation."@en ;
 	sh:path era:systemSeparationInfoPantographLowered ;
     sh:minCount 1;
     sh:maxCount 1;
@@ -1234,7 +1234,7 @@ era-sh:SystemSeparationInfoLength
  era-sh:SystemSeparationInfoShape sh:property era-sh:SystemSeparationInfoSwitchOffBreaker.
  era-sh:SystemSeparationInfoSwitchOffBreaker
 	a sh:PropertyShape ; era:affectedProperty era:systemSeparationInfoSwitchOffBreaker  ;        era:scope "local";     
-	rdfs:comment "Indication of required several information on system separation." ;
+	rdfs:comment "Indication of required several information on system separation."@en ;
 	sh:path era:systemSeparationInfoSwitchOffBreaker ;
     sh:minCount 1;
     sh:maxCount 1;
@@ -1248,7 +1248,7 @@ era-sh:SystemSeparationInfoLength
  era-sh:SystemSeparationInfoChangeSupplySystem
 	a sh:PropertyShape ; era:affectedProperty era:systemSeparationInfoChangeSupplySystem  ;        era:scope "local";     
     era:affectedClass  era:SystemSeparationInfo;
-	rdfs:comment "Indication of required several information on system separation." ;
+	rdfs:comment "Indication of required several information on system separation."@en ;
 	sh:path era:systemSeparationInfoChangeSupplySystem ;
     sh:minCount 1;
     sh:maxCount 1;
@@ -1262,7 +1262,7 @@ era-sh:RunningTrackShape sh:property era-sh:DistSignToPhaseEnd.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:DistSignToPhaseEnd.
 era-sh:DistSignToPhaseEnd
 	a sh:PropertyShape ; era:affectedProperty era:distSignToPhaseEnd  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Specific for route compatibility check on French network. Distance between the signboard authorizing the driver to 'raise pantograph' or 'close the circuit breaker' after passing the phase separation and the end of the phase separation section." ;
+	rdfs:comment "Specific for route compatibility check on French network. Distance between the signboard authorizing the driver to 'raise pantograph' or 'close the circuit breaker' after passing the phase separation and the end of the phase separation section."@en ;
 	sh:path era:distSignToPhaseEnd ;	
 	sh:maxCount 1 ;
 	sh:datatype xsd:integer ;
@@ -1278,7 +1278,7 @@ era-sh:RunningTrackShape sh:property era-sh:PermittedContactForce.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:PermittedContactForce.
 era-sh:PermittedContactForce
 	a sh:PropertyShape ; era:affectedProperty era:permittedContactForce  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication of contact force allowed expressed in newtons." ;
+	rdfs:comment "Indication of contact force allowed expressed in newtons."@en ;
 	era:rinfIndex "1.1.1.2.5.2" ;
 	sh:path era:permittedContactForce ;
 	
@@ -1292,7 +1292,7 @@ era-sh:RunningTrackShape sh:property era-sh:AutomaticDroppingDeviceRequired.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:AutomaticDroppingDeviceRequired.
 era-sh:AutomaticDroppingDeviceRequired
 	a sh:PropertyShape ; era:affectedProperty era:automaticDroppingDeviceRequired  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication of the requirement of automatic dropping device." ;
+	rdfs:comment "Indication of the requirement of automatic dropping device."@en ;
 	era:rinfIndex "1.1.1.2.5.3" ;
 	sh:path era:automaticDroppingDeviceRequired ;
 	
@@ -1306,7 +1306,7 @@ era-sh:RunningTrackShape sh:property era-sh:VerificationCCS.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:VerificationCCS.
 era-sh:VerificationCCS
 	a sh:PropertyShape ; era:affectedProperty era:verificationCCS  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Unique number for EC declarations following format requirements specified in the 'Document about practical arrangements for transmitting interoperability documents'." ;
+	rdfs:comment "Unique number for EC declarations following format requirements specified in the 'Document about practical arrangements for transmitting interoperability documents'."@en ;
 	era:rinfIndex "1.1.1.3.1.1" ;
 	sh:path era:verificationCCS ;
 	sh:datatype xsd:string ;
@@ -1321,7 +1321,7 @@ era-sh:RunningTrackShape sh:property era-sh:GsmRAdditionalInfo.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:GsmRAdditionalInfo.
 era-sh:GsmRAdditionalInfo
 	a sh:PropertyShape ; era:affectedProperty era:gsmRAdditionalInfo  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Additional information on network characteristics." ;
+	rdfs:comment "Additional information on network characteristics."@en ;
 	era:rinfIndex "1.1.1.3.3.3.1" ;
 	sh:path era:gsmRAdditionalInfo ;
     sh:class era:Document;
@@ -1333,7 +1333,7 @@ era-sh:RunningTrackShape sh:property era-sh:GprsForETCS.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:GprsForETCS.
 era-sh:GprsForETCS
 	a sh:PropertyShape ; era:affectedProperty era:gprsForETCS  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication if GPRS can be used for ETCS." ;
+	rdfs:comment "Indication if GPRS can be used for ETCS."@en ;
 	era:rinfIndex "1.1.1.3.3.3.2" ;
 	sh:path era:gprsForETCS ;
 	sh:maxCount 1 ;
@@ -1346,7 +1346,7 @@ era-sh:RunningTrackShape sh:property era-sh:GprsImplementationArea.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:GprsImplementationArea.
 era-sh:GprsImplementationArea
 	a sh:PropertyShape ; era:affectedProperty era:gprsImplementationArea  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication of the area in which GPRS can be used for ETCS." ;
+	rdfs:comment "Indication of the area in which GPRS can be used for ETCS."@en ;
 	era:rinfIndex "1.1.1.3.3.3.3" ;
 	sh:path era:gprsImplementationArea ;
 	sh:datatype xsd:string ;
@@ -1361,7 +1361,7 @@ era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:ProtectionLegacySystemS
 era-sh:ProtectionLegacySystemSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:protectionLegacySystem  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-    rdfs:comment "Indication of which class B system is installed." ;
+    rdfs:comment "Indication of which class B system is installed."@en ;
 	era:rinfIndex "1.1.1.3.5.3" ;
 	sh:severity sh:Violation ;
     sh:message "Indication of the protectionLegacySystem (1.1.1.3.5.3): The track or subset with common characteristics  {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list:  http://data.europa.eu/949/concepts/train-protection-legacy-systems/TrainProtectionLegacySystems."@en ;
@@ -1390,7 +1390,7 @@ era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:EtcsDegradedSituationSK
 era-sh:EtcsDegradedSituationSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsDegradedSituation  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-    rdfs:comment "ERTMS/ ETCS application level for degraded situation related to the track side equipment." ;
+    rdfs:comment "ERTMS/ ETCS application level for degraded situation related to the track side equipment."@en ;
 	era:rinfIndex "1.1.1.3.10.1" ;
 	sh:severity sh:Violation ;
     sh:message "Indication of the etcsDegradedSituation (1.1.1.3.10.1): The track or subset with common characteristics  {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list:  http://data.europa.eu/949/concepts/tsi-existence-and-compliances/TSIExistenceAndCompliances."@en ;
@@ -1419,7 +1419,7 @@ era-sh:RunningTrackShape sh:property era-sh:MaximumBrakingDistance.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MaximumBrakingDistance.
 era-sh:MaximumBrakingDistance
 	a sh:PropertyShape ; era:affectedProperty era:maximumBrakingDistance  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "The maximum value of the braking distance [in metres] of a train shall be given for the maximum line speed." ;
+	rdfs:comment "The maximum value of the braking distance [in metres] of a train shall be given for the maximum line speed."@en ;
 	era:rinfIndex "1.1.1.3.11.1" ;
 	sh:path era:maximumBrakingDistance ;
 
@@ -1434,7 +1434,7 @@ era-sh:RunningTrackShape sh:property era-sh:HasAdditionalBrakingInformation.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:HasAdditionalBrakingInformation.
 era-sh:HasAdditionalBrakingInformation
 	a sh:PropertyShape ; era:affectedProperty era:hasAdditionalBrakingInformation  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Availability by the IM of additional information as defined in 4.2.2.6.2 (2) Regulation XXX-OPE TSI." ;
+	rdfs:comment "Availability by the IM of additional information as defined in 4.2.2.6.2 (2) Regulation XXX-OPE TSI."@en ;
 	era:rinfIndex "1.1.1.3.11.2" ;
 	sh:path era:hasAdditionalBrakingInformation ;
 	sh:maxCount 1 ;
@@ -1447,7 +1447,7 @@ era-sh:RunningTrackShape sh:property era-sh:AdditionalBrakingInformationDocument
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:AdditionalBrakingInformationDocument.
 era-sh:AdditionalBrakingInformationDocument
 	a sh:PropertyShape ; era:affectedProperty era:additionalBrakingInformationDocument  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Documents available by the IM relating to braking performance." ;
+	rdfs:comment "Documents available by the IM relating to braking performance."@en ;
 	era:rinfIndex "1.1.1.3.11.3" ;
 	sh:path era:additionalBrakingInformationDocument ;		
     sh:class era:Document;
@@ -1460,7 +1460,7 @@ era-sh:RunningTrackShape sh:property era-sh:TiltingSupported.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TiltingSupported.
 era-sh:TiltingSupported
 	a sh:PropertyShape ; era:affectedProperty era:tiltingSupported  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication whether tilting functions are supported by the track." ;
+	rdfs:comment "Indication whether tilting functions are supported by the track."@en ;
 	era:rinfIndex "1.1.1.3.12.1" ;
 	sh:path era:tiltingSupported ;
 	
@@ -1479,7 +1479,7 @@ era-sh:CurrentLimitationRequired
     era:affectedProperty era:currentLimitationRequired;
     era:affectedClass  era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Indication of whether an on board current or power limitation function on vehicles is required." ;
+	rdfs:comment "Indication of whether an on board current or power limitation function on vehicles is required."@en ;
 	era:rinfIndex "1.1.1.2.5.1" ;
 	sh:path era:currentLimitationRequired ;
 	sh:datatype xsd:boolean ;
@@ -1494,7 +1494,7 @@ era-sh:DocumentRestrictionPositionContactLineSeparation
     era:affectedProperty era:documentRestrictionPositionContactLineSeparation;
     era:affectedClass  era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Document with restriction related to the position of Multiple Traction unit(s) to comply with contact line separation." ;
+	rdfs:comment "Document with restriction related to the position of Multiple Traction unit(s) to comply with contact line separation."@en ;
 	era:rinfIndex "1.1.1.2.5.5" ;
 	sh:path era:documentRestrictionPositionContactLineSeparation ;
 	sh:class era:Document;
@@ -1509,7 +1509,7 @@ era-sh:DocumentRestrictionPowerConsumption
     era:affectedProperty era:documentRestrictionPowerConsumption;
     era:affectedClass  era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Document with restriction related to power consumption of specific electric traction unit(s)." ;
+	rdfs:comment "Document with restriction related to power consumption of specific electric traction unit(s)."@en ;
 	era:rinfIndex "1.1.1.2.5.4" ;
 	sh:path era:documentRestrictionPowerConsumption ;
 	sh:class era:Document;
@@ -1525,7 +1525,7 @@ era-sh:RunningTrackShape sh:property era-sh:LinesideDistanceIndication.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:LinesideDistanceIndication.
 era-sh:LinesideDistanceIndication
 	a sh:PropertyShape ; era:affectedProperty era:linesideDistanceIndication  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication of types of appearance of track lineside distance indications." ;
+	rdfs:comment "Indication of types of appearance of track lineside distance indications."@en ;
 	sh:path era:linesideDistanceIndication;
     sh:class era:LinesideDistanceIndication;
     # sh:node era-sh:LinesideDistanceIndicationShape; not implemented in the shacl engine
@@ -1542,7 +1542,7 @@ era-sh:LinesideDistanceIndication
 era-sh:LinesideDistanceIndicationShape sh:property era-sh:LinesideDistanceIndicationPositioning.
 era-sh:LinesideDistanceIndicationPositioning
 	a sh:PropertyShape ; era:affectedProperty era:linesideDistanceIndicationPositioning  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication of the side along the track where the lineside indication is positioned (left or right)." ;
+	rdfs:comment "Indication of the side along the track where the lineside indication is positioned (left or right)."@en ;
 	sh:path era:linesideDistanceIndicationPositioning ;
     sh:minCount 1 ;
 	sh:maxCount 1 ;
@@ -1556,7 +1556,7 @@ era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:LinesideDistanceIndicat
 era-sh:LinesideDistanceIndicationPositioningSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:linesideDistanceIndicationPositioning  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-   rdfs:comment "Indication of the side along the track where the lineside indication is positioned (left or right)." ;
+   rdfs:comment "Indication of the side along the track where the lineside indication is positioned (left or right)."@en ;
 	sh:severity sh:Violation ;
     sh:message "Indication of the linesideDistanceIndicationPositioning: The track or subset with common characteristics  {$this} has a LinesideDistanceIndication {?linesideDistanceIndication}  with a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list:  http://data.europa.eu/949/concepts/lineside-distance-indication-positioning/LinesideDistanceIndicationPositioning."@en ;
     sh:prefixes era:;
@@ -1579,7 +1579,7 @@ era-sh:LinesideDistanceIndicationPositioningSKOS
 era-sh:LinesideDistanceIndicationShape sh:property era-sh:LinesideDistanceIndicationAppearance.
 era-sh:LinesideDistanceIndicationAppearance
 	a sh:PropertyShape ; era:affectedProperty era:linesideDistanceIndicationAppearance  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Indication of types of appearance of track lineside distance indications." ;
+	rdfs:comment "Indication of types of appearance of track lineside distance indications."@en ;
 	sh:path era:linesideDistanceIndicationAppearance ;
     sh:minCount 1 ;
 	sh:maxCount 1 ;
@@ -1593,7 +1593,7 @@ era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:LinesideDistanceIndicat
 era-sh:LinesideDistanceIndicationAppearanceSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:linesideDistanceIndicationAppearance  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-   rdfs:comment "Indication of types of appearance of track lineside distance indications." ;
+   rdfs:comment "Indication of types of appearance of track lineside distance indications."@en ;
 	sh:severity sh:Violation ;
     sh:message "Indication of the linesideDistanceIndicationAppearance: The track or subset with common characteristics {$this} has a LinesideDistanceIndication {?linesideDistanceIndication} that has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list:  http://data.europa.eu/949/concepts/lineside-distance-indication-appearance/LinesideDistanceIndicationAppearance."@en ;
     sh:prefixes era:;
@@ -1616,7 +1616,7 @@ era-sh:LinesideDistanceIndicationAppearanceSKOS
 era-sh:LinesideDistanceIndicationShape sh:property era-sh:LinesideDistanceIndicationFrequency.
 era-sh:LinesideDistanceIndicationFrequency
 	a sh:PropertyShape ; era:affectedProperty era:linesideDistanceIndicationFrequency  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Frequency of track lineside distance indications.." ;
+	rdfs:comment "Frequency of track lineside distance indications.."@en ;
 	sh:path era:linesideDistanceIndicationFrequency ;
     sh:minCount 1 ;
 	sh:maxCount 1 ;
@@ -1638,7 +1638,7 @@ era-sh:HotAxleBoxDetectorGenerationApplicability
     era:affectedProperty era:hotAxleBoxDetectorGeneration;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Specific for the French Italian and Swedish networks. Generation of trackside hot axle box detector. “Y” if the answer to parameter 1.1.1.1.7.5 is “N”" ;
+	rdfs:comment "Specific for the French Italian and Swedish networks. Generation of trackside hot axle box detector. “Y” if the answer to parameter 1.1.1.1.7.5 is “N”"@en ;
 	era:rinfIndex "1.1.1.1.7.7" ;
 	sh:severity sh:Violation ;
     sh:message "hotAxleBoxDetectorGeneration (1.1.1.1.7.7): This error is due to the track or subset with common characteristics {?trackLabel}, violating the rule: “Y” if the answer to parameter 1.1.1.1.7.5 is “N”"@en ;
@@ -1664,7 +1664,7 @@ era-sh:HotAxleBoxDetectorDirectionApplicability
     era:affectedProperty era:hotAxleBoxDetectorDirection;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Specific for the French Italian and Swedish networks. If the direction of measurement is: - the same as the direction defined by the start and end of the SoL: (N); - the opposite to the direction defined by the start and end of the SoL: (O); - both directions: (B). “Y” if the answer to parameter 1.1.1.1.7.5 is “N”." ;
+	rdfs:comment "Specific for the French Italian and Swedish networks. If the direction of measurement is: - the same as the direction defined by the start and end of the SoL: (N); - the opposite to the direction defined by the start and end of the SoL: (O); - both directions: (B). “Y” if the answer to parameter 1.1.1.1.7.5 is “N”."@en ;
 	era:rinfIndex "1.1.1.1.7.9" ;
 	sh:severity sh:Violation ;
     sh:message "hotAxleBoxDetectorDirection (1.1.1.1.7.9): This error is due to the track or subset with common characteristics {?trackLabel}, violating the rule: “Y” if the answer to parameter 1.1.1.1.7.5 is “N”"@en ;
@@ -1690,7 +1690,7 @@ era-sh:HotAxleBoxDetectorIdentificationApplicability
     era:affectedProperty era:hotAxleBoxDetectorIdentification;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Specific for the French Italian and Swedish networks. Applicable if trackside HABD is not TSI compliant, identification of trackside hot axle box detector.";
+	rdfs:comment "Specific for the French Italian and Swedish networks. Applicable if trackside HABD is not TSI compliant, identification of trackside hot axle box detector.@en";
 	era:rinfIndex "1.1.1.1.7.6" ;
 	sh:severity sh:Violation ;
     sh:message "hotAxleBoxDetectorIdentification (1.1.1.1.7.6): This error is due to the track or subset with common characteristics {?trackLabel}, violating the rule: “Y” if the answer to parameter 1.1.1.1.7.5 is “N”"@en ;
@@ -1716,7 +1716,7 @@ era-sh:HotAxleBoxDetectorLocationApplicability
     era:affectedProperty era:hotAxleBoxDetectorLocation;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Specific for the French Italian and Swedish networks. Applicable if trackside HABD is not TSI compliant, localisation of trackside hot axle box detector.";
+	rdfs:comment "Specific for the French Italian and Swedish networks. Applicable if trackside HABD is not TSI compliant, localisation of trackside hot axle box detector."@en;
 	era:rinfIndex "1.1.1.1.7.8" ;
 	sh:severity sh:Violation ;
     sh:message "hotAxleBoxDetectorLocation (1.1.1.1.7.8): This error is due to the track or subset with common characteristics {?trackLabel}, violating the rule: “Y” if the answer to parameter 1.1.1.1.7.5 is “N”"@en ;
@@ -1742,7 +1742,7 @@ era-sh:AccelerationLevelCrossingApplicability
     era:affectedProperty era:accelerationLevelCrossing;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Existence of limit for acceleration of train if stopping or recovering speed close to a level crossing expressed in a specific reference acceleration curve.";
+	rdfs:comment "Existence of limit for acceleration of train if stopping or recovering speed close to a level crossing expressed in a specific reference acceleration curve."@en;
 	era:rinfIndex "1.1.1.1.7.3" ;
 	sh:severity sh:Violation ;
     sh:message "accelerationLevelCrossing (1.1.1.1.7.3): This error is due to the track or subset with common characteristics {?trackLabel} , violating the rule: Applicable only when selected value of parameter 1.1.1.1.7.2 is ‘Y’"@en ;
@@ -1768,7 +1768,7 @@ era-sh:TrackPhaseInfoApplicability
     era:affectedProperty era:trackPhaseInfo;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Relates the Track with PhaseInfo. Indication of required several information on phase separation.";
+	rdfs:comment "Relates the Track with PhaseInfo. Indication of required several information on phase separation."@en;
 	era:rinfIndex "1.1.1.2.4.1.2" ;
 	sh:severity sh:Violation ;
     sh:message "trackPhaseInfo (1.1.1.2.4.1.2): This error is due to the track or subset with common characteristics {?trackLabel} , violating the rule: Applicable when in parameter 1.1.1.2.4.1.1 selected option is ‘Y’"@en ;
@@ -1796,7 +1796,7 @@ era-sh:TrackSystemSeparationInfoApplicability
     era:affectedProperty era:trackSystemSeparationInfo;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Relates the Track with the SystemSeparationInfo. Indication of required several information on system separation.";
+	rdfs:comment "Relates the Track with the SystemSeparationInfo. Indication of required several information on system separation."@en;
 	era:rinfIndex "1.1.1.2.4.2.2" ;
 	sh:severity sh:Violation ;
     sh:message "trackSystemSeparationInfo (1.1.1.2.4.2.2): This error is due to the track or subset with common characteristics {?trackLabel} , violating the rule: Applicable when in parameter 1.1.1.2.4.2.1 selected option is ‘Y’"@en ;
@@ -1822,7 +1822,7 @@ era-sh:TsiPantographHeadApplicability
     era:affectedProperty era:tsiPantographHead;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Indication of TSI compliant pantograph heads which are allowed to be used.";
+	rdfs:comment "Indication of TSI compliant pantograph heads which are allowed to be used."@en;
 	era:rinfIndex "1.1.1.2.3.1" ;
 	sh:severity sh:Violation ;
     sh:message "tsiPantographHead (1.1.1.2.3.1): This error is due to the track or subset with common characteristics {?trackLabel} , violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
@@ -1851,7 +1851,7 @@ era-sh:TrackRaisedPantographDistanceAndSpeedApplicability
     era:affectedProperty era:trackRaisedPantographsDistanceAndSpeed;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Relates the track with the class RaisedPantographsDistanceAndSpeed. Indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed.";
+	rdfs:comment "Relates the track with the class RaisedPantographsDistanceAndSpeed. Indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed."@en;
 	era:rinfIndex "1.1.1.2.3.3" ;
 	sh:severity sh:Violation ;
     sh:message "trackRaisedPantographsDistanceAndSpeed (1.1.1.2.3.3): This error is due to the track or subset with common characteristics {?trackLabel} , violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
@@ -1879,7 +1879,7 @@ era-sh:HasPhaseSeparationApplicability
     era:affectedProperty era:hasPhaseSeparation;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Indication of existence of phase separation and required information.";
+	rdfs:comment "Indication of existence of phase separation and required information."@en;
 	era:rinfIndex "1.1.1.2.4.1.1" ;
 	sh:severity sh:Violation ;
     sh:message "hasPhaseSeparation (1.1.1.2.4.1.1): This error is due to the track or subset with common characteristics {?trackLabel} , violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
@@ -1907,7 +1907,7 @@ era-sh:ContactStripMaterialApplicability
     era:affectedProperty era:contactStripMaterial;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Indication of which contact strip materials are permitted to be used.";
+	rdfs:comment "Indication of which contact strip materials are permitted to be used."@en;
 	era:rinfIndex "1.1.1.2.3.4" ;
 	sh:severity sh:Violation ;
     sh:message "contactStripMaterial (1.1.1.2.3.4): This error is due to the track or subset with common characteristics {?trackLabel} , violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
@@ -1935,7 +1935,7 @@ era-sh:OtherPantographHeadApplicability
     era:affectedProperty era:otherPantographHead;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Indication of pantograph heads which are allowed to be used.";
+	rdfs:comment "Indication of pantograph heads which are allowed to be used."@en;
 	era:rinfIndex "1.1.1.2.3.2" ;
 	sh:severity sh:Violation ;
     sh:message "otherPantographHead (1.1.1.2.3.2): This error is due to the track or subset with common characteristics {?trackLabel} , violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
@@ -1963,7 +1963,7 @@ era-sh:HasSystemSeparationApplicability
     era:affectedProperty era:hasSystemSeparation;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Indication of existence of system separation.";
+	rdfs:comment "Indication of existence of system separation."@en;
 	era:rinfIndex "1.1.1.2.4.2.1" ;
 	sh:severity sh:Violation ;
     sh:message "hasSystemSeparation (1.1.1.2.4.2.1): This error is due to the track or subset with common characteristics {?trackLabel} , violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
@@ -1991,7 +1991,7 @@ era-sh:PermittedContactForceApplicability
     era:affectedProperty era:permittedContactForce;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Indication of contact force allowed expressed in newton.";
+	rdfs:comment "Indication of contact force allowed expressed in newton."@en;
 	era:rinfIndex "1.1.1.2.5.2" ;
 	sh:severity sh:Violation ;
     sh:message "permittedContactForce (1.1.1.2.5.2): This error is due to the track or subset with common characteristics {?trackLabel} , violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
@@ -2019,7 +2019,7 @@ era-sh:AutomaticDroppingDeviceRequiredApplicability
     era:affectedProperty era:automaticDroppingDeviceRequired;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Indication of whether an automatic dropping device (ADD) required on the vehicle.";
+	rdfs:comment "Indication of whether an automatic dropping device (ADD) required on the vehicle."@en;
 	era:rinfIndex "1.1.1.2.5.3" ;
 	sh:severity sh:Violation ;
     sh:message "automaticDroppingDeviceRequired (1.1.1.2.5.3): This error is due to the track or subset with common characteristics {?trackLabel} , violating the rule: This parameter is applicable ('Y') only if “Overhead contact line (OCL)” is selected for 1.1.1.2.2.1.1."@en ;
@@ -2047,7 +2047,7 @@ era-sh:CurrentLimitationRequiredApplicability
     era:affectedProperty era:currentLimitationRequired;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Indication of whether an on board current or power limitation function on vehicles is required.";
+	rdfs:comment "Indication of whether an on board current or power limitation function on vehicles is required."@en;
 	era:rinfIndex "1.1.1.2.5.1" ;
 	sh:severity sh:Violation ;
     sh:message "currentLimitationRequired (1.1.1.2.5.1): This error is due to the track or subset with common characteristics {?trackLabel} , violating the rule: When 'not electrified' is chosen in parameter 1.1.1.2.2.1.1, then this parameter is not applicable selection ‘N’."@en ;
@@ -2075,7 +2075,7 @@ era-sh:HasBallastApplicability
     era:affectedProperty era:hasBallast;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Specifies whether track construction is with sleepers embedded in ballast or not.";
+	rdfs:comment "Specifies whether track construction is with sleepers embedded in ballast or not."@en;
 	era:rinfIndex "1.1.1.1.4.4" ;
 	sh:severity sh:Violation ;
     sh:message "hasBallast (1.1.1.1.4.4): This error is due to the track or subset with common characteristics {?trackLabel} , violating the rule: Y for tracks with permitted speed (parameter 1.1.1.1.2.5) greater than 250km/h."@en ;
@@ -2102,7 +2102,7 @@ era-sh:MagneticBrakingConditionsDocumentApplicability
     era:affectedProperty era:magneticBrakingConditionsDocument;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency with conditions for the use of magnetic brakes identified in 1.1.1.1.6.3.";
+	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency with conditions for the use of magnetic brakes identified in 1.1.1.1.6.3."@en;
 	era:rinfIndex "1.1.1.1.6.5" ;
 	sh:severity sh:Violation ;
     sh:message "magneticBrakingConditionsDocument (1.1.1.1.6.5): This error is due to the track or subset with common characteristics {?trackLabel} , violating the rule: Y if the answer to 1.1.1.1.6.3 / Use of magnetic brakes is “allowed under conditions” or “allowed under conditions only for emergency brake”."@en ;
@@ -2129,7 +2129,7 @@ era-sh:TenGISIdApplicability
     era:affectedProperty era:tenGISId;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Indication of the GIS identity (GIS ID) of the section of TEN-T database to which the track belongs.";
+	rdfs:comment "Indication of the GIS identity (GIS ID) of the section of TEN-T database to which the track belongs."@en;
 	era:rinfIndex "1.1.1.1.2.1.2" ;
 	sh:severity sh:Violation ;
     sh:message "tenGISId (1.1.1.1.2.1.2): This error is due to the track or subset with common characteristics {?trackLabel} , violating the rule: Y if the answer to parameter 1.1.1.1.2.1 is not off TEN."@en ;
@@ -2156,7 +2156,7 @@ era-sh:AdditionalBrakingInformationDocumentApplicability
     era:affectedProperty era:additionalBrakingInformationDocument;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency providing additional information as defined in point (2) of point 4.2.2.6.2 of TSI OPE.";
+	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency providing additional information as defined in point (2) of point 4.2.2.6.2 of TSI OPE."@en;
 	era:rinfIndex "1.1.1.3.11.3" ;
 	sh:severity sh:Violation ;
     sh:message "additionalBrakingInformationDocument (1.1.1.3.11.3): This error is due to the track or subset with common characteristics {?trackLabel} , violating the rule: Y in case of Y for 1.1.1.3.11.2."@en ;
@@ -2182,7 +2182,7 @@ era-sh:EddyCurrentBrakingConditionsDocumentApplicability
     era:affectedProperty era:eddyCurrentBrakingConditionsDocument;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency with conditions for the use of eddy current brakes identified in 1.1.1.1.6.2.";
+	rdfs:comment "Electronic document available in two EU languages from the IM stored by the Agency with conditions for the use of eddy current brakes identified in 1.1.1.1.6.2."@en;
 	era:rinfIndex "1.1.1.1.6.4" ;
 	sh:severity sh:Violation ;
     sh:message "eddyCurrentBrakingConditionsDocument (1.1.1.1.6.4): This error is due to the track or subset with common characteristics {?trackLabel} , violating the rule: Y in case of Y for 1.1.1.1.6.2 Use of eddy current brakes is “allowed under conditions” or “allowed under conditions only for emergency brake””."@en ;
@@ -2212,7 +2212,7 @@ era-sh:ConditionalRegenerativeBrake
     era:affectedProperty era:conditionalRegenerativeBrake;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Indication whether regenerative braking is permitted, not permitted, or permitted under specific conditions." ;
+	rdfs:comment "Indication whether regenerative braking is permitted, not permitted, or permitted under specific conditions."@en ;
 	era:rinfIndex "1.1.1.2.2.4" ;
 	sh:path era:conditionalRegenerativeBrake ;
 	sh:nodeKind sh:IRI ;
@@ -2228,7 +2228,7 @@ era-sh:ConditionalRegenerativeBrakeSKOS
     era:affectedProperty era:conditionalRegenerativeBrake;
     era:affectedClass  era:RunningTrack;
     era:scope "local";  
-    rdfs:comment "Indication whether regenerative braking is permitted, not permitted, or permitted under specific conditions. " ;
+    rdfs:comment "Indication whether regenerative braking is permitted, not permitted, or permitted under specific conditions. "@en ;
 	era:rinfIndex ".1.1.2.2.4" ;
 	sh:severity sh:Violation ;
     sh:message "conditionalRegenerativeBrake (1.1.1.2.2.4):): The track or subset with common characteristics  {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/regenerative-braking/RegenerativeBraking."@en ;
@@ -2252,7 +2252,7 @@ era-sh:RunningTrackShape sh:property era-sh:ConditionsUseReflectivePlates.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:ConditionsUseReflectivePlates.
 era-sh:ConditionsUseReflectivePlates
 	a sh:PropertyShape ; era:affectedProperty era:conditionsUseReflectivePlates  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Details of any conditions for using the reflective plates on freight corridors. Specific case for Portugal and Spain until 1.1.2025 and Belgium and France until 1.1.2026." ;
+	rdfs:comment "Details of any conditions for using the reflective plates on freight corridors. Specific case for Portugal and Spain until 1.1.2025 and Belgium and France until 1.1.2026."@en ;
 	era:rinfIndex "1.1.1.1.7.12.1" ;
 	sh:path era:conditionsUseReflectivePlates;
 	sh:nodeKind sh:IRI;
@@ -2267,7 +2267,7 @@ era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:ConditionsUseReflective
 era-sh:ConditionsUseReflectivePlatesSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:conditionsUseReflectivePlates  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-   rdfs:comment "Details of any conditions for using the reflective plates on freight corridors. Specific case for Portugal and Spain until 1.1.2025 and Belgium and France until 1.1.2026." ;
+   rdfs:comment "Details of any conditions for using the reflective plates on freight corridors. Specific case for Portugal and Spain until 1.1.2025 and Belgium and France until 1.1.2026."@en ;
 	era:rinfIndex "1.1.1.1.7.12.1" ;
 	sh:severity sh:Violation ;
     sh:message "Indication of the conditionsUseReflectivePlates (1.1.1.1.7.12.1): The track or subset with common characteristics  {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list:  http://data.europa.eu/949/concepts/conditions-use-reflective-plates/ConditionsUseReflectivePlates."@en ;
@@ -2291,7 +2291,7 @@ era-sh:RunningTrackShape sh:property era-sh:Etcs.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:Etcs.
 era-sh:Etcs
 	a sh:PropertyShape ; era:affectedProperty era:etcs  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "European Train Control System (ETCS) application level supported by the track side equipment." ;
+	rdfs:comment "European Train Control System (ETCS) application level supported by the track side equipment."@en ;
 	sh:path era:etcs;
     sh:class era:ETCS;
     sh:maxCount 1;
@@ -2310,7 +2310,7 @@ era-sh:StandardCombinedTransportContainers
     era:affectedProperty era:standardCombinedTransportContainers;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Coding for combined transport for containers (for all freight and mixed-traffic lines) in accordance with the specification referenced in Appendix A-1, index [B]." ;
+	rdfs:comment "Coding for combined transport for containers (for all freight and mixed-traffic lines) in accordance with the specification referenced in Appendix A-1, index [B]."@en ;
 	era:rinfIndex "1.1.1.1.3.8" ;
 	sh:path era:standardCombinedTransportContainers ;
 	sh:nodeKind sh:IRI ;
@@ -2325,7 +2325,7 @@ era-sh:StandardCombinedTransportContainersSKOS
     era:affectedProperty era:standardCombinedTransportContainers;
     era:affectedClass  era:RunningTrack;
     era:scope "local";  
-    rdfs:comment "Coding for combined transport for containers (for all freight and mixed-traffic lines) in accordance with the specification referenced in Appendix A-1, index [B]." ;
+    rdfs:comment "Coding for combined transport for containers (for all freight and mixed-traffic lines) in accordance with the specification referenced in Appendix A-1, index [B]."@en ;
 	era:rinfIndex ".1.1.1.1.3.8" ;
 	sh:severity sh:Violation ;
     sh:message "standardCombinedTransportContainers (1.1.1.1.3.8):): The track or subset with common characteristics  {$this} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/standard-combined-transport-containers/StandardCombinedTransportContainers."@en ;
@@ -2352,7 +2352,7 @@ era-sh:StandardCombinedRollerUnits
     era:affectedProperty era:standardCombinedTransportRollerUnits;
     era:affectedClass era:RunningTrack;
     era:scope "local";
-	rdfs:comment "Coding for combined transport for roller units (for all freight and mixed-traffic lines) in accordance with the specification referenced in Appendix A-1, index [B]." ;
+	rdfs:comment "Coding for combined transport for roller units (for all freight and mixed-traffic lines) in accordance with the specification referenced in Appendix A-1, index [B]."@en ;
 	era:rinfIndex "1.1.1.1.3.9" ;
 	sh:path era:standardCombinedTransportRollerUnits ;
 	sh:nodeKind sh:IRI ;
@@ -2367,7 +2367,7 @@ era-sh:StandardCombinedRollerUnitsSKOS
     era:affectedProperty era:standardCombinedTransportRollerUnits;
     era:affectedClass  era:RunningTrack;
     era:scope "local";  
-    rdfs:comment "Coding for combined transport for roller units (for all freight and mixed-traffic lines) in accordance with the specification referenced in Appendix A-1, index [B]." ;
+    rdfs:comment "Coding for combined transport for roller units (for all freight and mixed-traffic lines) in accordance with the specification referenced in Appendix A-1, index [B]."@en ;
 	era:rinfIndex "1.1.1.1.3.9" ;
 	sh:severity sh:Violation ;
     sh:message "standardCombinedTransportRollerUnits (1.1.1.1.3.9):): The track or subset with common characteristics  {$this} in the Section of Line {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/standard-combined-transport-roller-units/StandardCombinedTransportRollerUnits."@en ;
@@ -2391,7 +2391,7 @@ era-sh:RunningTrackShape sh:property era-sh:TrainDetectionSystem.
 era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:TrainDetectionSystem.
 era-sh:TrainDetectionSystem
 	a sh:PropertyShape ; era:affectedProperty era:trainDetectionSystem  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
-	rdfs:comment "Train detection systems installed in the section of line." ;
+	rdfs:comment "Train detection systems installed in the section of line."@en ;
 	sh:path era:trainDetectionSystem;
     sh:class era:TrainDetectionSystem;
     sh:maxCount 1;
