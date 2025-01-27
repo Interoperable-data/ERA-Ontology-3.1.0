@@ -20,12 +20,17 @@
 era-vehicle-types:Categories a skos:ConceptScheme ;
     dct:issued "2020-09-01"^^xsd:date ;
     dct:modified "2022-09-09"^^xsd:date ;
-    dct:modified "2024-09-06"^^xsd:date ;
+    dct:modified "2024-09-06"^^xsd:date, 
+                  "2025-01-27"^^xsd:date ;
     cc:license <https://creativecommons.org/licenses/by/4.0/> ;
     rdfs:comment "Controlled SKOS-based vocabularies defined by the European Union Agency for Railways to describe concepts related to the European railway infrastructure and the vehicles authorized to operate over it."@en ;
     rdfs:label "Vehicle Categories"@en ;
     era:eratvIndex 1.4 ;
     skos:prefLabel "Vehicle Categories"@en ;
+    skos:changeNote """ Revision 2025-01-27: 
+                        - Changed URI for categories using their code
+                        - Added the code associated to the categories in skos:notation
+                      """ ; 
     dct:title "Concept scheme grouping vehicle categories"@en .
 
 
@@ -40,27 +45,27 @@ era-vehicle-types:Categories a skos:ConceptScheme ;
 
 ########## Vehicle categories ##########
 
-era-vehicle-types-eratv:tractionVehicles a skos:Concept ;
+era-vehicle-types-eratv:11 a skos:Concept ;
     skos:inScheme era-vehicle-types:Categories ; 
     skos:topConceptOf era-vehicle-types:Categories ;
     skos:prefLabel "Traction Vehicles"@en ;
-    skos:notation "Traction Vehicles"^^xsd:string.
+    skos:notation "11"^^xsd:string.
 
-era-vehicle-types-eratv:hauledPassenger a skos:Concept ;
+era-vehicle-types-eratv:31 a skos:Concept ;
     skos:inScheme era-vehicle-types:Categories ; 
     skos:topConceptOf era-vehicle-types:Categories ; 
-    skos:notation "Hauled Passenger Vehicles"^^xsd:string;
+    skos:notation "31"^^xsd:string;
     skos:prefLabel "Hauled Passenger Vehicles"@en .
 
-era-vehicle-types-eratv:freightWagons a skos:Concept ;
+era-vehicle-types-eratv:51 a skos:Concept ;
     skos:inScheme era-vehicle-types:Categories ; 
     skos:topConceptOf era-vehicle-types:Categories ; 
-   skos:notation "Freight Wagons"^^xsd:string;
-    skos:prefLabel "Freight Wagons"@en .
+    skos:notation "51"^^xsd:string;
+    skos:prefLabel "Freight wagons (hauled)"@en .
 
-era-vehicle-types-eratv:specialVehicles a skos:Concept ;
+era-vehicle-types-eratv:71 a skos:Concept ;
     skos:inScheme era-vehicle-types:Categories ; 
     skos:topConceptOf era-vehicle-types:Categories ; 
-     skos:notation "Special Vehicles"^^xsd:string;
+     skos:notation "71"^^xsd:string;
     skos:prefLabel "Special Vehicles"@en .
 
