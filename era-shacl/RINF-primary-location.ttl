@@ -15,7 +15,7 @@ era-sh:PrimaryLocationShape
 	sh:targetClass era:PrimaryLocation.
 
 
-# primaryLocationCode: # 1.2.0.0.0.3 #pending checking pattern  [AANNNNN]
+# primaryLocationCode: # 1.2.0.0.0.3 
 era-sh:PrimaryLocationShape sh:property era-sh:PrimaryLocationCode .
 era-sh:PrimaryLocationCode
 	a sh:PropertyShape;
@@ -26,7 +26,7 @@ era-sh:PrimaryLocationCode
 	era:rinfIndex "1.2.0.0.0.3" ;
 	sh:path era:primaryLocationCode ;
 	sh:datatype xsd:string ;
-    sh:pattern "^[A-Z]{2}\\/[0-9]{5}$";
+    sh:pattern "^[A-Z]{2}[0-9]{5}$";
 	sh:severity sh:Violation ;
 	sh:message "primaryLocationCode (1.2.0.0.0.3): The primary location code must be represented as a String and follow the pattern [AANNNNN]."@en .
 
@@ -37,7 +37,7 @@ era-sh:ContainerHandlingFlag
     era:affectedProperty era:containerHandlingFlag ;
     era:affectedClass  era:PrimaryLocation;
     era:scope "local";
-	rdfs:comment "Container handling flag." ;
+	rdfs:comment "Container handling flag."@en ;
 	sh:path era:containerHandlingFlag ;
 	sh:datatype xsd:boolean;
 	sh:severity sh:Violation ;
@@ -50,7 +50,7 @@ era-sh:FreightFlag
     era:affectedProperty era:freightFlag ;
     era:affectedClass  era:PrimaryLocation;
     era:scope "local";
-	rdfs:comment "Freight flag." ;
+	rdfs:comment "Freight flag."@en ;
 	sh:path era:freightFlag ;
     sh:maxCount 1;
 	sh:datatype xsd:boolean;
@@ -64,7 +64,7 @@ era-sh:HandoverPointFlag
     era:affectedProperty era:handoverPointFlag ;
     era:affectedClass  era:PrimaryLocation;
     era:scope "local";
-	rdfs:comment "Handover point flag." ;
+	rdfs:comment "Handover point flag."@en ;
 	sh:path era:handoverPointFlag ;
 	sh:datatype xsd:boolean;
 	sh:severity sh:Violation ;
@@ -78,7 +78,7 @@ era-sh:PrimaryLocationName
     era:affectedProperty era:primaryLocationName ;
     era:affectedClass  era:PrimaryLocation;
     era:scope "local";
-	rdfs:comment "Primary location name." ;
+	rdfs:comment "Primary location name."@en ;
 	sh:path era:primaryLocationName ;
 	sh:datatype xsd:string;
 	sh:severity sh:Violation ;

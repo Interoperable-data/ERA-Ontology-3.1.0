@@ -10,6 +10,11 @@
 @prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
 
+
+#############################
+# Rules for KilometricPost
+#############################
+
 era-sh:KilometricPostShape
 	a sh:NodeShape ;
 	sh:targetClass era:KilometricPost.
@@ -19,7 +24,7 @@ era-sh:KilometricPostShape
 era-sh:KilometricPostShape sh:property era-sh:Kilometer .
 era-sh:Kilometer
 	a sh:PropertyShape;
-    era:affectedClass era-sh:KilometricPost;
+    era:affectedClass era:KilometricPost;
     era:affectedProperty era:kilometer ;
     era:scope "local";
 	rdfs:comment "Distance measured in kilometers from the origin of a national railway line/route."@en ;
@@ -34,7 +39,7 @@ era-sh:Kilometer
 era-sh:KilometricPostShape sh:property era-sh:KilometerNumber .
 era-sh:KilometerNumber
 	a sh:PropertyShape;
-    era:affectedClass era-sh:KilometricPost;
+    era:affectedClass era:KilometricPost;
     era:affectedProperty era:kilometerNumber ;
     era:scope "local";
 	rdfs:comment "Kilometer number of the kilometric post."@en ;
@@ -47,26 +52,26 @@ era-sh:KilometerNumber
 era-sh:KilometricPostShape sh:property era-sh:KmPostName .
 era-sh:KmPostName
 	a sh:PropertyShape;
-    era:affectedClass era-sh:KilometricPost;
+    era:affectedClass era:KilometricPost;
     era:affectedProperty era:kmPostName ;
     era:scope "local";
 	rdfs:comment "Name of the kilometric post (optional)."@en ;
 	sh:path era:kmPostName ;
 	sh:datatype xsd:string ;
 	sh:severity sh:Violation ;
-	sh:message "kmPostName: The kilometer post name must be represented as a tring of characters."@en .
+	sh:message "kmPostName: The kilometer post name must be represented as a string of characters."@en .
 
 # measuredDistance: 
 era-sh:KilometricPostShape sh:property era-sh:MeasuredDistance .
 era-sh:MeasuredDistance
 	a sh:PropertyShape;
-    era:affectedClass era-sh:KilometricPost;
+    era:affectedClass era:KilometricPost;
     era:affectedProperty era:measuredDistance ;
     era:scope "local";
 	rdfs:comment "Measured distance from the origin of the LRS."@en ;
 	sh:path era:measuredDistance ;
 	sh:datatype xsd:double ;
 	sh:severity sh:Violation ;
-	sh:message "measuredDistance: The kilometer post measured distaance must be represented as a double number."@en .
+	sh:message "measuredDistance: The kilometer post measured distance must be represented as a double number."@en .
 
 

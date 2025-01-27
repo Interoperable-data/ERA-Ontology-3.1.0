@@ -22,7 +22,6 @@ era-sh:SubsidiaryLocationShape sh:property era-sh:AllocationCompany .
 era-sh:AllocationCompany
 	a sh:PropertyShape;
     era:affectedClass era:SubsidiaryLocation;
-    era:affectedClass era:OrganisationRole;
     era:affectedProperty era:allocationCompany ;
     era:scope "local";
 	rdfs:comment "The organisation in charge to allocate the code for the subsidiary location. "@en ;
@@ -37,7 +36,6 @@ era-sh:SubsidiaryLocationShape sh:property era-sh:LinkedToPrimaryLocation .
 era-sh:LinkedToPrimaryLocation
 	a sh:PropertyShape;
     era:affectedClass era:SubsidiaryLocation;
-    era:affectedClass era:PrimaryLocation;
     era:affectedProperty era:linkedToPrimaryLocation ;
     era:scope "local";
 	rdfs:comment "Linked to primary location."@en ;
@@ -67,7 +65,7 @@ era-sh:SubsidiaryLocationTypeSKOS
     era:affectedClass era:SubsidiaryLocation;
     era:affectedProperty era:subsidiaryLocationType ;
     era:scope "local";
-	rdfs:comment "Subsidiary location type." ;
+	rdfs:comment "Subsidiary location type."@en ;
 	sh:severity sh:Violation ;
 	sh:message "subsidiaryLocationType: The Subsidiary Location {$this} (label {?slLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/subsidiary-location-types/SubsidiaryLocationTypes."@en ;
     sh:prefixes era:;

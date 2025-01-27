@@ -9,7 +9,7 @@
 @prefix  era-ess: <http://data.europa.eu/949/concepts/energy-supply-systems/> .
 @prefix skos:<http://www.w3.org/2004/02/skos/core#> .
 #############################
-# Rules for contact-line-systems
+# Rules for ETCS
 #############################
 
 era-sh:ETCSShape  
@@ -23,7 +23,7 @@ era-sh:EtcsBaseline
     era:affectedProperty era:etcsBaseline;
     era:affectedClass era:ETCS;
     era:scope "local";
-	rdfs:comment "ETCS baseline installed lineside" ;
+	rdfs:comment "ETCS baseline installed lineside "@en ;
 	era:rinfIndex "1.1.1.3.2.2" ;
     era:rinfIndex "1.2.1.1.1.2" ;
 	sh:path era:etcsBaseline ;
@@ -39,7 +39,7 @@ era-sh:EtcsBaselineSKOS
     era:affectedProperty era:etcsBaseline;
     era:affectedClass era:ETCS;
     era:scope "local";
-	rdfs:comment "ETCS baseline installed lineside" ;
+	rdfs:comment "ETCS baseline installed lineside "@en ;
 	era:rinfIndex "1.1.1.3.2.2" ;
     era:rinfIndex "1.2.1.1.1.2" ;
 	sh:severity sh:Violation ;
@@ -63,7 +63,7 @@ era-sh:EtcsBaselineApplicability
     era:affectedProperty era:etcsBaseline;
     era:affectedClass era:ETCS;
     era:scope "local";
-	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)." ;
+	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present). "@en ;
 	era:rinfIndex "1.1.1.3.2.2", "1.2.1.1.1.2" ;
 	sh:severity sh:Violation ;
 	sh:message "etcsBaseline (1.1.1.3.2.2, 1.2.1.1.1.2): The ETCS {$this} ({?thisLabel}), has a ETCS level type which makes the etcsBaseline parameter applicable. This error is due to {$this} not having a value for such a parameter."@en ;
@@ -71,7 +71,7 @@ era-sh:EtcsBaselineApplicability
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
+    SELECT DISTINCT $this ?thisLabel
 			WHERE {
                  $this era:etcsLevelType ?type.
 				OPTIONAL{$this rdfs:label ?thisLabel} .
@@ -87,7 +87,7 @@ era-sh:EtcsInfill
     era:affectedProperty era:etcsInfill;
     era:affectedClass era:ETCS;
     era:scope "local";
-	rdfs:comment "Information about installed trackside equipment capable of transmitting infill information by loop or Global System for Mobile communications for Railways (GSM-R) for level 1 installations." ;
+	rdfs:comment "Information about installed trackside equipment capable of transmitting infill information by loop or Global System for Mobile communications for Railways (GSM-R) for level 1 installations. "@en ;
 	era:rinfIndex "1.1.1.3.2.4" ;
     era:rinfIndex "1.2.1.1.1.4" ;
 	sh:path era:etcsInfill ;
@@ -103,7 +103,7 @@ era-sh:EtcsInfillSKOS
     era:affectedProperty era:etcsInfill;
     era:affectedClass era:ETCS;
     era:scope "local";
-	rdfs:comment "Information about installed trackside equipment capable of transmitting infill information by loop or Global System for Mobile communications for Railways (GSM-R) for level 1 installations." ;
+	rdfs:comment "Information about installed trackside equipment capable of transmitting infill information by loop or Global System for Mobile communications for Railways (GSM-R) for level 1 installations. "@en ;
 	era:rinfIndex "1.1.1.3.2.4" ;
     era:rinfIndex "1.2.1.1.1.4" ;
 	sh:severity sh:Violation ;
@@ -127,7 +127,7 @@ era-sh:EtcsInfillApplicability
     era:affectedProperty era:etcsInfill;
     era:affectedClass era:ETCS;
     era:scope "local";
-	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 contains 1. Related to rule for etcsLevelType" ;
+	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 contains 1. Related to rule for etcsLevelType "@en ;
 	era:rinfIndex "1.1.1.3.2.4", "1.2.1.1.1.4" ;
 	sh:severity sh:Violation ;
 	sh:message "etcsInfill (1.1.1.3.2.4, 1.2.1.1.1.4): The ETCS {$this} ({?thisLabel}), has a ETCS level type value of 1 which makes the etcsInfill parameter applicable. This error is due to {$this} not having a value for such a parameter."@en ;
@@ -135,7 +135,7 @@ era-sh:EtcsInfillApplicability
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
+    SELECT DISTINCT $this ?thisLabel
 			WHERE {
                  $this era:etcsLevelType <http://data.europa.eu/949/concepts/etcs-levels/20>.
 				OPTIONAL{$this rdfs:label ?thisLabel} .
@@ -147,7 +147,7 @@ era-sh:EtcsInfillApplicability
 era-sh:ETCSShape sh:property era-sh:EtcsMVersion.
 era-sh:EtcsMVersion
 	a sh:PropertyShape ; era:affectedProperty era:etcsMVersion  ;     era:affectedClass  era:ETCS;     era:scope "local";     
-	rdfs:comment "ETCS_M version according to SRS 7.5.1.9" ;
+	rdfs:comment "ETCS_M version according to SRS 7.5.1.9 "@en ;
 	era:rinfIndex "1.1.1.3.2.10" ;
     era:rinfIndex "1.2.1.1.1.10" ;
 	sh:path era:etcsMVersion ;
@@ -162,7 +162,7 @@ era-sh:ETCSShape sh:sparql era-sh:EtcsMVersionSKOS.
 era-sh:EtcsMVersionSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsMVersion  ;     era:affectedClass  era:ETCS;     era:scope "local";     
-    rdfs:comment "ETCS_M version according to SRS 7.5.1.9" ;
+    rdfs:comment "ETCS_M version according to SRS 7.5.1.9 "@en ;
 	era:rinfIndex "1.1.1.3.2.10" ;
     era:rinfIndex "1.1.1.3.2.10" ;
 	sh:severity sh:Violation ;
@@ -189,7 +189,7 @@ era-sh:EtcsMVersionApplicability
 	era:affectedProperty era:etcsMVersion  ;     
 	era:affectedClass  era:ETCS;     
 	era:scope "local";     
-	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 contains 1. Related to rule for etcsLevelType" ;
+	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 contains 1. Related to rule for etcsLevelType "@en ;
 	era:rinfIndex "1.1.1.3.2.10" ;
     era:rinfIndex "1.2.1.1.1.10" ;
 	sh:severity sh:Violation ;
@@ -198,7 +198,7 @@ era-sh:EtcsMVersionApplicability
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
+    SELECT DISTINCT $this ?thisLabel
 			WHERE {
                  $this era:etcsLevelType <http://data.europa.eu/949/concepts/etcs-levels/20>.
 				OPTIONAL{$this rdfs:label ?thisLabel} .
@@ -211,7 +211,7 @@ era-sh:EtcsMVersionApplicability
 era-sh:ETCSShape sh:property era-sh:EtcsLevelType.
 era-sh:EtcsLevelType
 	a sh:PropertyShape ; era:affectedProperty era:etcsLevelType  ;     era:affectedClass  era:ETCS;     era:scope "local";     
-	rdfs:comment "Indicates the type associated as a SKOS concept from the era:ETCSLevel related to the track side equipment." ;
+	rdfs:comment "Indicates the type associated as a SKOS concept from the era:ETCSLevel related to the track side equipment. "@en ;
 	era:rinfIndex "1.1.1.3.2.1" ;
     era:rinfIndex "1.2.1.1.1.1" ;
 	sh:path era:etcsLevelType ;
@@ -225,7 +225,7 @@ era-sh:ETCSShape sh:sparql era-sh:EtcsLevelTypeSKOS.
 era-sh:EtcsLevelTypeSKOS
 	a sh:SPARQLConstraint ;
     era:affectedProperty era:etcsLevelType  ;     era:affectedClass  era:ETCS;     era:scope "local";     
-    rdfs:comment "Indicates the type associated as a SKOS concept from the era:ETCSLevel related to the track side equipment." ;
+    rdfs:comment "Indicates the type associated as a SKOS concept from the era:ETCSLevel related to the track side equipment. "@en ;
 	era:rinfIndex "1.1.1.3.2.10" ;
     era:rinfIndex "1.2.1.1.1.1" ;
 	sh:severity sh:Violation ;
@@ -252,13 +252,13 @@ era-sh:EtcsTransmitsTrackConditions
     era:affectedProperty era:etcsTransmitsTrackConditions;
     era:affectedClass era:ETCS;
     era:scope "local";
-	rdfs:comment "If the trackside does not provide Track Conditions, the driver will need to be informed about such conditions via alternative methods." ; 
+	rdfs:comment "If the trackside does not provide Track Conditions, the driver will need to be informed about such conditions via alternative methods. "@en ; 
 	era:rinfIndex "1.1.1.3.2.12", "1.2.1.1.1.12" ;
 	sh:path era:etcsTransmitsTrackConditions ;
 	sh:maxCount 1 ; # Functional property
 	sh:datatype xsd:boolean ;
 	sh:severity sh:Violation ;
-	sh:message "etcsTransmitsTrackConditions (1.1.1.3.2.12, 1.2.1.1.1.12): Each Track may define the existence of ETCS trackside engineered to transmit Track Conditions. This error is due to having more than one indication of existence of ETCS trackside engineered to transmit Track Conditions value or having an indication of existence of ETCS trackside engineered to transmit Track Conditions value that is not Y/N (boolean)."@en .
+	sh:message "etcsTransmitsTrackConditions (1.1.1.3.2.12, 1.2.1.1.1.12): Each Track may define the existence of ETCS trackside engineered to transmit Track Conditions. This error is due to having more than one value or having a value that is not Y/N (boolean)."@en .
 
 # etcsTransmitsTrackConditions: 1.1.1.3.2.12, 1.2.1.1.1.12
 era-sh:ETCSShape sh:sparql era-sh:EtcsTransmitsTrackConditionsApplicability.
@@ -267,7 +267,7 @@ era-sh:EtcsTransmitsTrackConditionsApplicability
 	era:affectedProperty era:etcsTransmitsTrackConditions  ;     
 	era:affectedClass  era:ETCS;     
 	era:scope "local";     
-	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)." ;
+	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present). "@en ;
 	era:rinfIndex "1.1.1.3.2.12", "1.2.1.1.1.12" ;
 	sh:severity sh:Violation ;
 	sh:message "etcsTransmitsTrackConditions (1.1.1.3.2.12.1, 1.2.1.1.1.12.1): The ETCS {$this} ({?thisLabel}), has a ETCS level type which makes the etcsTransmitsTrackConditions parameter applicable. This error is due to {$this} not having a value for such a parameter."@en;
@@ -275,7 +275,7 @@ era-sh:EtcsTransmitsTrackConditionsApplicability
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
+    SELECT DISTINCT $this ?thisLabel
 			WHERE {
                  $this era:etcsLevelType ?type.
 				OPTIONAL{$this rdfs:label ?thisLabel} .
@@ -290,7 +290,7 @@ era-sh:EtcsTransmittedTrackConditions
 	era:affectedProperty era:etcsTransmittedTrackConditions  ;     
 	era:affectedClass  era:ETCS;     
 	era:scope "local";     
-	rdfs:comment "Transmittable track conditions by the CCSSubsystem, as per CCS TSI." ;
+	rdfs:comment "Transmittable track conditions by the CCSSubsystem, as per CCS TSI. "@en ;
 	era:rinfIndex "1.1.1.3.2.12.1", "1.2.1.1.1.12.1" ;
 	sh:path era:etcsTransmittedTrackConditions ;
 	sh:maxCount 1 ; # Functional property
@@ -305,7 +305,7 @@ era-sh:EtcsTransmittedTrackConditionsSKOS
     era:affectedProperty era:etcsTransmittedTrackConditions  ;     
 	era:affectedClass  era:ETCS;     
 	era:scope "local";     
-    rdfs:comment "Transmittable track conditions by the CCSSubsystem, as per CCS TSI." ;
+    rdfs:comment "Transmittable track conditions by the CCSSubsystem, as per CCS TSI. "@en ;
 	era:rinfIndex "1.1.1.3.2.12.1", "1.2.1.1.1.12.1" ;
 	sh:severity sh:Violation ;
     sh:message "etcsTransmittedTrackConditions (1.1.1.3.2.12.1, 1.2.1.1.1.12.1): The ETCS {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/etcs-transmitted-tcs/TransmittedTrackConditions."@en ;
@@ -331,7 +331,7 @@ era-sh:EtcsTransmittedTrackConditionsApplicability
 	era:affectedProperty era:etcsTransmittedTrackConditions  ;     
 	era:affectedClass  era:ETCS;     
 	era:scope "local";     
-	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)." ;
+	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present). "@en ;
 	era:rinfIndex "1.1.1.3.2.12.1" , "1.2.1.1.1.12.1" ;
 	sh:severity sh:Violation ;
 	sh:message "etcsTransmittedTrackConditions (1.1.1.3.2.12.1, 1.2.1.1.1.12.1): The ETCS {$this} ({?thisLabel}), has a ETCS level type which makes the etcsTransmittedTrackConditions parameter applicable. This error is due to {$this} not having a value for such a parameter."@en ; 
@@ -339,7 +339,7 @@ era-sh:EtcsTransmittedTrackConditionsApplicability
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
+    SELECT DISTINCT $this ?thisLabel
 			WHERE {
                  $this era:etcsLevelType ?type.
 				OPTIONAL{$this rdfs:label ?thisLabel} .
@@ -354,7 +354,7 @@ era-sh:EtcsSystemCompatibility
 	era:affectedProperty era:etcsSystemCompatibility  ;     
 	era:affectedClass  era:ETCS;     
 	era:scope "local";     
-	rdfs:comment "ETCS requirements used for demonstrating technical compatibility." ;
+	rdfs:comment "ETCS requirements used for demonstrating technical compatibility. "@en ;
 	era:rinfIndex "1.1.1.3.2.9", "1.2.1.1.1.9" ;
 	sh:path era:etcsSystemCompatibility ;
 	sh:nodeKind sh:IRI ;
@@ -368,7 +368,7 @@ era-sh:EtcsSystemCompatibilitySKOS
     era:affectedProperty era:etcsSystemCompatibility  ;     
 	era:affectedClass  era:ETCS;     
 	era:scope "local";     
-    rdfs:comment "ETCS requirements used for demonstrating technical compatibility." ;
+    rdfs:comment "ETCS requirements used for demonstrating technical compatibility. "@en ;
 	era:rinfIndex "1.1.1.3.2.9", "1.2.1.1.1.9" ;
 	sh:severity sh:Violation ;
     sh:message "etcsSystemCompatibility (1.1.1.3.2.9, 1.2.1.1.1.9): The ETCS {$this}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/etcs-system-compatibilities/ETCSSystemCompatibilities."@en ;
@@ -392,7 +392,7 @@ era-sh:EtcsSystemCompatibilityApplicability
 	era:affectedProperty era:etcsSystemCompatibility  ;     
 	era:affectedClass  era:ETCS;     
 	era:scope "local";     
-	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present)." ;
+	rdfs:comment "Only applicable when selected value for 1.1.1.3.2.1 (ETCS present). "@en ;
 	era:rinfIndex "1.1.1.3.2.9" , "1.2.1.1.1.9" ;
 	sh:severity sh:Violation ;
 	sh:message "etcsSystemCompatibility (1.1.1.3.2.9, 1.2.1.1.1.9): The ETCS {$this} ({?thisLabel}), has a ETCS level type which makes the etcsSystemCompatibility parameter applicable. This error is due to {$this} not having a value for such a parameter."@en;
@@ -400,7 +400,7 @@ era-sh:EtcsSystemCompatibilityApplicability
 	sh:select """
     PREFIX era: <http://data.europa.eu/949/>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT DISTINCT $this ?clsLabel
+    SELECT DISTINCT $this ?thisLabel
 			WHERE {
                  $this era:etcsLevelType ?type.
 				OPTIONAL{$this rdfs:label ?thisLabel} .

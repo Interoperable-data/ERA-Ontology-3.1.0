@@ -1,0 +1,103 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+
+###################################
+# Rules for features
+###################################
+
+
+
+
+era-sh:FeatureShape
+	a sh:NodeShape ;
+	sh:targetClass era:Feature .  
+
+
+# validity
+era-sh:FeatureShape sh:property era-sh:Validity .
+era-sh:Validity
+	a sh:PropertyShape;
+    era:affectedClass era:Feature;
+    era:affectedProperty era:validity ;
+    era:scope "local";
+	rdfs:comment "Relates a feature with a temporal feature to indicate a validity period. "@en ;
+	sh:path era:validity ;
+	sh:class era:TemporalFeature;
+	sh:severity sh:Violation ;
+	sh:message "validity: The feature has a validity value that points to an instance of TemporalFeature. This error is due to having a value that is not an instance of TemporalFeature."@en .
+
+# hasGeometry: # 1.2.0.0.0.5, 1.1.0.0.1.1, 1.1.1.0.1.1, 1.1.1.3.14.6, 1.2.1.0.8.5
+era-sh:FeatureShape sh:property era-sh:HasGeometry .
+era-sh:HasGeometry
+	a sh:PropertyShape;
+    era:affectedClass era:Feature;
+    era:affectedProperty geosparql:hasGeometry ;
+    era:scope "local";
+	rdfs:comment "Geographical coordinates in decimal degrees normally given for the centre of the OP. "@en ;
+	era:rinfIndex "1.2.0.0.0.5", "1.1.0.0.1.1", "1.1.1.0.1.1", "1.1.1.3.14.6", "1.2.1.0.8.5" ;
+	sh:path geosparql:hasGeometry ;
+    # sh:node era-sh:GeometryShape; not implemented in the shacl engine
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:class geosparql:Geometry;
+	sh:severity sh:Violation ;
+	sh:message "hasGeometry (1.2.0.0.0.5):  Each feature must have at most one location. This error may be due to having a feature with more than one location or having a value that is not a geosparql:Geometry."@en .
+
+#
+# location TODO precision of decimals
+#
+ era-sh:GeometryShape
+	a sh:NodeShape ;
+ 	sh:targetClass geosparql:Geometry .
+
+# wgs:lat
+ era-sh:GeometryShape sh:property era-sh:Lat .
+ era-sh:Lat
+ 	a sh:PropertyShape;
+     era:affectedClass geosparql:Geometry;
+     era:affectedProperty wgs:lat ;
+     era:scope "local";
+	 sh:path wgs:lat ;
+ 	 sh:maxCount 1 ;
+ 	 sh:minInclusive 34;
+ 	 sh:maxExclusive 73;
+ 	 sh:datatype xsd:double ;
+ 	 sh:severity sh:Violation ;
+ 	 sh:message "wgs:lat property. This error may be due to having a Geometry with more than one lat property or it value is out of the latitude range of Europe." .
+
+#  wgs:long
+era-sh:GeometryShape sh:property era-sh:Long .
+era-sh:Long
+ 	a sh:PropertyShape;
+     era:affectedClass geosparql:Geometry;
+     era:affectedProperty wgs:long ;
+     era:scope "local";
+ 	sh:path wgs:long ;
+ 	sh:maxCount 1 ;
+ 	sh:minInclusive -25;
+ 	sh:maxExclusive 46;
+ 	sh:datatype xsd:double ;
+ 	sh:severity sh:Violation ;
+ 	sh:message "wgs:long property. This error may be due to having a Geometry with more than one long property or it value is out of the longitude range of Europe." .
+
+# geosparql:asWKT
+ era-sh:GeometryShape sh:property era-sh:AsWKT .
+ era-sh:AsWKT
+ 	a sh:PropertyShape;
+    era:affectedClass geosparql:Geometry;
+     era:affectedProperty geosparql:asWKT ;
+     era:scope "local";
+ 	sh:path geosparql:asWKT ;
+ 	sh:minCount 1 ;
+ 	sh:maxCount 1 ;
+ 	sh:datatype geosparql:wktLiteral ;
+ 	sh:severity sh:Violation ;
+ 	sh:message "geosparql:Geometry. This error may be due to having a Geometry without or with more than one asWKT property or it value is not from the wktLiteral type." .

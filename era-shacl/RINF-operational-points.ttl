@@ -29,7 +29,7 @@ era-sh:OpName
     era:affectedClass era:OperationalPoint;
     era:affectedProperty era:opName ;
     era:scope "local";
-	rdfs:comment "Name normally related to the town or village or to traffic control purpose." ;
+	rdfs:comment "Name normally related to the town or village or to traffic control purpose. "@en ;
 	era:rinfIndex "1.2.0.0.0.1" ;
 	sh:path era:opName ;
 	sh:minCount 1 ;
@@ -45,7 +45,7 @@ era-sh:UopidP
     era:affectedClass era:OperationalPoint;
     era:affectedProperty era:uopid ;
     era:scope "local";
-	rdfs:comment "Code composed of country code and alphanumeric OP code." ;
+	rdfs:comment "Code composed of country code and alphanumeric OP code. "@en ;
 	era:rinfIndex "1.2.0.0.0.2" ;
 	sh:path era:uopid ;
     # sh:minCount 1 ; does not enforce minCount because of border points
@@ -62,7 +62,7 @@ era-sh:UopidP
     era:affectedClass era:OperationalPoint;
     era:affectedProperty era:uopid ;
     era:scope "local";
- 	rdfs:comment "Code composed of country code and alphanumeric OP code." ;
+ 	rdfs:comment "Enforce minCount considering all instances that are not border points. "@en ;
  	era:rinfIndex "1.2.0.0.0.2" ;
  	sh:severity sh:Violation ;
  	sh:message "uopid (1.2.0.0.0.2):  The OperationalPoint {$this} with label {?opLabel} does not have a value for uopid."@en ;
@@ -85,7 +85,7 @@ era-sh:OpTypeP
     era:affectedClass era:OperationalPoint;
     era:affectedProperty era:opType ;
     era:scope "local";
-	rdfs:comment "Type of facility in relation to the dominating operational functions.\nEach existing case has to be approximated to the one of the above defined types by including size, importance and dominating functions. It is most important to recognize the most important role of specific OP in the network. That is why only one type for one OP is permitted." ;
+	rdfs:comment "Type of facility in relation to the dominating operational functions.Each existing case has to be approximated to the one of the above defined types by including size, importance and dominating functions. It is most important to recognize the most important role of specific OP in the network. That is why only one type for one OP is permitted. "@en ;
 	era:rinfIndex "1.2.0.0.0.4" ;
 	sh:path era:opType; 
     sh:minCount 1 ;
@@ -104,7 +104,7 @@ era-sh:OpTypeSKOS
     era:affectedClass era:OperationalPoint;
     era:affectedProperty era:opType ;
     era:scope "local";
-	rdfs:comment "Type of facility in relation to the dominating operational functions.\nEach existing case has to be approximated to the one of the above defined types by including size, importance and dominating functions. It is most important to recognize the most important role of specific OP in the network. That is why only one type for one OP is permitted." ;
+	rdfs:comment "Type of facility in relation to the dominating operational functions.\nEach existing case has to be approximated to the one of the above defined types by including size, importance and dominating functions. It is most important to recognize the most important role of specific OP in the network. That is why only one type for one OP is permitted. "@en ;
 	era:rinfIndex "1.2.0.0.0.4" ;
 	sh:severity sh:Violation ;
 	sh:message "Type of operational point   (1.2.0.0.0.4): The OP {$this} (label {?opLabel}) has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/op-types/OperationalPointTypes."@en ;
@@ -133,7 +133,7 @@ era-sh:OpTypeGaugeChangeover
     era:affectedClass era:OperationalPoint;
     era:affectedProperty era:opTypeGaugeChangeover ;
     era:scope "local";
-	rdfs:comment "Type of track gauge changeover facility." ;
+	rdfs:comment "Type of track gauge changeover facility. "@en ;
 	era:rinfIndex "1.2.0.0.0.4.1" ;
 	sh:path era:opTypeGaugeChangeover ;
 	sh:maxCount 1 ;
@@ -148,30 +148,13 @@ era-sh:DigitalSchematicOverview
     era:affectedClass era:OperationalPoint;
     era:affectedProperty era:digitalSchematicOverview ;
     era:scope "local";
-	rdfs:comment "Diagrammatic representation of the operational point in Well Known Text polyline" ;
+	rdfs:comment "Diagrammatic representation of the operational point in Well Known Text polyline "@en ;
 	era:rinfIndex "1.2.0.0.0.7.2" ;
 	sh:path era:digitalSchematicOverview ;
 	sh:severity sh:Violation ;
 	sh:datatype geosparql:wktLiteral ;
 	sh:message "digitalSchematicOverview (1.2.0.0.0.7.2): The Operational Point has a digitalSchematicOverview reference that must be a Well Known Text literal."@en .
 
-
-
-
-
-# referenceBorderPoint: #
-era-sh:OperationalPointShape sh:property era-sh:ReferenceBorderPoint .
-era-sh:ReferenceBorderPoint
-	a sh:PropertyShape;
-    era:affectedClass era:OperationalPoint;
-    era:affectedProperty era:referenceBorderPoint ;
-    era:scope "local";
-	rdfs:comment "reference border point" ; 
-	# era:rinfIndex "" ; # Not available
-	sh:path era:referenceBorderPoint ;
-	sh:class sh:ReferenceBorderPoint;
-	sh:severity sh:Violation ;
-	sh:message "referenceBorderPoint: The Operational Point has a referenceBorderPoint reference that must be an IRI that belongs to the class ReferenceBorderPoint."@en .
 
 
 # hasSchematicOverviewOPDigitalForm: # 1.2.0.0.0.7
@@ -203,9 +186,10 @@ era-sh:HasSchematicOverviewOPDigitalForm
     sh:or (
  		[sh:class era:Siding ;]
 		[sh:class era:RunningTrack ;]
+		[sh:class era:KilometricPost ;]
 		);
  	sh:severity sh:Violation ;
- 	sh:message "hasPart from an operational point : The Operational Point may have a siding (hasPart) reference that is a Siding object or a track (hasPart) reference that is a Track object. This error mey be due to a hasPart relationship from an operational point that is not a Siding nor a Track."@en .
+ 	sh:message "hasPart from an operational point : The Operational Point may have a siding (hasPart) reference that is a Siding object or a track (hasPart) reference that is a Track object. This error may be due to a hasPart relationship from an operational point that is not a Siding nor a Track."@en .
 
 
 # uopid: # 1.2.0.0.0.2 enforce the border point constraint, if an OP is a border point, it should point to ReferenceBorderPoint and its uopid but be the code in the RefenreceBorderPoint class.
@@ -216,7 +200,7 @@ era-sh:HasSchematicOverviewOPDigitalForm
     era:affectedClass era:ReferenceBorderPoint;
     era:affectedProperty era:uopid ;
     era:scope "local";
- 	rdfs:comment "Code composed of country code and alphanumeric OP code." ;
+ 	rdfs:comment "Code composed of country code and alphanumeric OP code. "@en ;
  	era:rinfIndex "1.2.0.0.0.2" ;
  	sh:severity sh:Violation ;
  	sh:message "uopid (1.2.0.0.0.2):  The OperationalPoint {$this} with id {?uopid} and  label {?opLabel} is a border point that either does not point to a ReferenceBorderPoint or does not have a value for uopid that matches the id of its referenced border point."@en ;
@@ -233,6 +217,21 @@ era-sh:HasSchematicOverviewOPDigitalForm
                FILTER (?uopid != era:borderPointId) .
 			}
 			""" .
+
+# referenceBorderPoint: 
+ era-sh:OperationalPointShape sh:property era-sh:ReferenceBorderPoint .
+ era-sh:ReferenceBorderPoint
+ 	a sh:PropertyShape;
+    era:affectedClass era:OperationalPoint;
+    era:affectedProperty era:referenceBorderPoint;
+    era:scope "local";
+ 	rdfs:comment "Relates an operational point that is a border point with an instance of the list of reference border points that are specified in the RINF Application Guide."@en ;
+ 	sh:path era:referenceBorderPoint ;
+ 	sh:nodeKind sh:IRI ;
+    sh:class era:ReferenceBorderPoint;
+    sh:maxCount 1;
+ 	sh:severity sh:Violation ;
+ 	sh:message "referenceBorderPoint : The Operational Point may have a reference border pointthat is a ReferenceBorderPoint object. This error may be due to having more than one value of a reference border point, or having a value that is not a ReferenceBorderPoint instance."@en .
 
 
 

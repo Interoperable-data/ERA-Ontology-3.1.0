@@ -20,7 +20,7 @@
 #
 era-sh:SidingShape
 	a sh:NodeShape ;
-	sh:targetClass era:Siding .   # Applies to all Siding
+	sh:targetClass era:Siding .   # Applies to all Sidings
 
 era-sh:CommonCharacteristicsSubsetShape
 	a sh:NodeShape ;
@@ -30,6 +30,10 @@ era-sh:OperationalPointShape
 	a sh:NodeShape ;
 	sh:targetClass era:OperationalPoint .   # Applies to all Operational points with sidings
 
+era-sh:MinimumVerticalRadiusShape
+	a sh:NodeShape ;
+	sh:targetClass era:MinimumVerticalRadius .   
+
 # sidingId: #1.2.2.0.0.2 
 era-sh:SidingShape sh:property era-sh:SidingId .
 era-sh:SidingId
@@ -37,7 +41,7 @@ era-sh:SidingId
     era:affectedProperty era:sidingId ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Unique siding identification or unique siding number within OP" ;
+	rdfs:comment "Unique siding identification or unique siding number within OP "@en ;
 	era:rinfIndex "1.2.2.0.0.2" ;
 	sh:path era:sidingId ;
 	sh:minCount 1 ;
@@ -54,7 +58,7 @@ era-sh:NoRepeatedSidingIds
     era:affectedClass era:Siding;
     era:affectedClass era:OperationalPoint;
     era:scope "global";
-    rdfs:comment "Each siding shall have unique identification or number within the OP. This number cannot be used for naming any other siding in the same OP." ;
+    rdfs:comment "Each siding shall have unique identification or number within the OP. This number cannot be used for naming any other siding in the same OP. "@en ;
     era:rinfIndex "1.2.2.0.0.2" ;
     sh:severity sh:Violation ;
     sh:message "sidingId (1.2.2.0.0.2):: Each siding shall have unique identification or number within the OP. This number cannot be used for naming any other siding in the same OP. There is a problem with the OP {$this} ({?opLabel}) and sidings {?siding1} ({?siding1Label}) and {?siding2} ({?siding2Label}), since they have the same identifier: {?value}."@en ;
@@ -84,7 +88,7 @@ era-sh:TenClassificationS
     era:affectedProperty era:tenClassification;
     era:affectedClass era:Siding;
     era:scope "local";   
-    rdfs:comment "Indicates the part of the trans-European network the platform belongs to." ;
+    rdfs:comment "Indicates the part of the trans-European network the platform belongs to. "@en ;
 	era:rinfIndex "1.1.1.1.2.1", "1.2.1.0.2.1", "1.2.1.0.6.3", "1.2.2.0.0.3" ;
 	sh:path era:tenClassification ;
 	sh:nodeKind sh:IRI;
@@ -99,11 +103,11 @@ era-sh:TenClassificationS
     era:affectedProperty era:tenClassification ;
     era:affectedClass era:Siding;
     era:scope "local";
- 	rdfs:comment "Indication of the part of the trans-European network the line belongs to." ;	era:rinfIndex "1.2.2.0.0.3" ;
+ 	rdfs:comment "Indication of the part of the trans-European network the line belongs to. "@en ;	era:rinfIndex "1.2.2.0.0.3" ;
 	era:rinfIndex "1.1.1.1.2.1", "1.2.1.0.2.1", "1.2.1.0.6.3", "1.2.2.0.0.3" ;
  	sh:nodeKind sh:IRI ;
  	sh:severity sh:Violation ;
- 	sh:message "TEN classification (1.1.1.1.2.1, 1.2.1.0.2.1, 1.2.1.0.6.3, 1.2.2.0.0.3): The siding {$this} with label {?sidingLabel} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/ten-classifications/TENClassifications."@en ;
+ 	sh:message "TEN classification (1.1.1.1.2.1, 1.2.1.0.2.1, 1.2.1.0.6.3, 1.2.2.0.0.3): The siding or subset with common characteristics {$this} with label {?sidingLabel} has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/ten-classifications/TENClassifications."@en ;
      sh:prefixes era:;
  	sh:select """
      PREFIX era: <http://data.europa.eu/949/>
@@ -129,13 +133,13 @@ era-sh:TenClassificationS
      era:affectedProperty era:verificationINF ;
      era:affectedClass era:Siding;
      era:scope "local";
- 	 rdfs:comment "Indication of the verification of the infrastructure manager" ;
+ 	 rdfs:comment "Indication of the verification of the infrastructure manager "@en ;
  	 era:rinfIndex "1.2.2.0.1.1", "1.2.1.0.1.1", "1.2.2.0.1.1" ;
  	 sh:path era:verificationINF ;
      sh:datatype xsd:string ;
  	 sh:pattern "^[A-Z]{2}\\/.{14}\\/(19[0-9][0-9]|20[0-9][0-9]|2100)\\/[0-9]{6}$";
  	 sh:severity sh:Violation ;
- 	 sh:message "verificationINF (1.2.2.0.1.1, 1.2.1.0.1.1, 1.2.2.0.1.1): Each Siding may have one or more verificationINF. This error is due to the value not being a string or the value not following this pattern: country code/national registration number/year between 1900 and 2100/progressive counter."@en .
+ 	 sh:message "verificationINF (1.2.2.0.1.1, 1.2.1.0.1.1, 1.2.2.0.1.1): Each Siding or subset with common characteristics may have one or more verificationINF. This error is due to the value not being a string or the value not following this pattern: country code/national registration number/year between 1900 and 2100/progressive counter."@en .
 
 # demonstrationINF: #  1.1.1.1.1.2, 1.2.1.0.1.2, 1.2.2.0.1.2
  era-sh:SidingShape sh:property era-sh:DemonstrationINFS .
@@ -145,14 +149,14 @@ era-sh:TenClassificationS
      era:affectedProperty era:demonstrationINF ;
      era:affectedClass era:Siding;
      era:scope "local";
- 	rdfs:comment "Unique number for EI declarations following the same format requirements as specified in the 'Documents about practical arrangements for transmitting interoperability documents'" ;
+ 	rdfs:comment "Unique number for EI declarations following the same format requirements as specified in the 'Documents about practical arrangements for transmitting interoperability documents' "@en ;
  	era:rinfIndex "1.1.1.1.1.2" , "1.2.1.0.1.2" , "1.2.2.0.1.2" ;
  	sh:path era:demonstrationINF ;
  	 sh:minCount 0 ; #TODO: Not yet applicable
  	sh:datatype xsd:string ;
  	sh:pattern "^[A-Z]{2}\\/.{14}\\/(19[0-9][0-9]|20[0-9][0-9]|2100)\\/[0-9]{6}$";
  	sh:severity sh:Violation ;
- 	sh:message "demonstrationINF (1.1.1.1.1.2, 1.2.1.0.1.2, 1.2.2.0.1.2): Each Siding may have one or more demonstrationINF.  This error is due to the value not being a string or the value not following this pattern: country code/national registration number/year between 1900 and 2100/progressive counter."@en .
+ 	sh:message "demonstrationINF (1.1.1.1.1.2, 1.2.1.0.1.2, 1.2.2.0.1.2): Each siding or subset with common characteristics  may have one or more demonstrationINF.  This error is due to the value not being a string or the value not following this pattern: country code/national registration number/year between 1900 and 2100/progressive counter."@en .
 
 # lengthOfSiding: # 1.2.2.0.2.1
 era-sh:SidingShape sh:property era-sh:LengthS .
@@ -161,14 +165,14 @@ era-sh:LengthS
     era:affectedProperty era:lengthOfSiding ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Total length of the siding/stabling track expressed in meters where trains can be parked safely" ;
+	rdfs:comment "Total length of the siding/stabling track expressed in meters where trains can be parked safely "@en ;
 	era:rinfIndex "1.2.2.0.2.1" ;
 	sh:path era:lengthOfSiding ;
 	sh:maxCount 1 ;
 	sh:datatype xsd:double ;
 	sh:pattern "^([1-9]\\d{1,3}|[0-9])$" ;
 	sh:severity sh:Violation ;
-	sh:message "lengthOfSiding (1.2.2.0.2.1): Each Siding may have a length in meters. This error is due to having more than one length value or having a length that is not a double (real) number or not following the pattern [NNNN]."@en .
+	sh:message "lengthOfSiding (1.2.2.0.2.1): Each siding may have a length in meters. This error is due to having more than one length value or having a length that is not a double (real) number or not following the pattern [NNNN]."@en .
 
 # gradient: # 1.2.2.0.3.1
 era-sh:SidingShape sh:property era-sh:Gradient .
@@ -178,14 +182,14 @@ era-sh:Gradient
     era:affectedProperty era:gradient ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Maximum value of the gradient expressed in millimeters per meter" ;
+	rdfs:comment "Maximum value of the gradient expressed in millimeters per meter "@en ;
 	era:rinfIndex "1.2.2.0.3.1" ;
 	sh:path era:gradient ;
 	sh:maxCount 1 ;
 	sh:datatype xsd:double ;
 	sh:pattern "^([1-9]\\d{1}|[0-9])(\\.[0-9])?$";
 	sh:severity sh:Violation ;
-	sh:message "gradient (1.2.2.0.3.1): Each Siding may have a gradient in millimeters per meter. This error is due to having more than one gradient value or having a gradient that is not a double (real) number."@en .
+	sh:message "gradient (1.2.2.0.3.1): Each siding or subset with common characteristics may have a gradient in millimeters per meter. This error is due to having more than one gradient value or having a gradient that is not a double (real) number."@en .
 
 
 # minimumHorizontalRadius: # 1.2.2.0.3.2, 1.2.2.0.3.2
@@ -196,45 +200,60 @@ era-sh:MinimumHorizontalRadiusS
     era:affectedProperty era:minimumHorizontalRadius ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Radius of the smallest horizontal curve of the track in metres." ;
+	rdfs:comment "Radius of the smallest horizontal curve of the track in metres. "@en ;
 	era:rinfIndex "1.2.2.0.3.2", "1.2.2.0.3.2" ;
 	sh:path era:minimumHorizontalRadius ;
 	sh:maxCount 1 ;
 	sh:datatype xsd:integer ;
 	sh:severity sh:Violation ;
-	sh:message "minimumHorizontalRadius (1.2.2.0.3.2, 1.2.2.0.3.2): Each Siding may have a minimumHorizontalRadius in meters. This error is due to having more than one minimum horisontal radius  value or having a minimum horizontal radius that is not an integer number."@en. 
+	sh:message "minimumHorizontalRadius (1.2.2.0.3.2, 1.2.2.0.3.2): Each siding or subset with common characteristics may have a minimumHorizontalRadius in meters. This error is due to having more than one minimum horisontal radius  value or having a minimum horizontal radius that is not an integer number."@en. 
 
-# minimumVerticalRadiusCrest: # 1.2.2.0.3.3 
-era-sh:SidingShape sh:property era-sh:MinimumVerticalRadiusCrest .
-era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MinimumVerticalRadiusCrest .
+# minimumVerticalRadius 1.2.2.0.3.3: 
+era-sh:SidingShape sh:property era-sh:MinimumVerticalRadius.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MinimumVerticalRadius.
+era-sh:MinimumVerticalRadius
+	a sh:PropertyShape ; era:affectedProperty era:minimumVerticalRadius ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "Indication of types of appearance of track lineside distance indications. "@en ;
+	sh:path era:minimumVerticalRadius;
+    sh:class era:MinimumVerticalRadius;
+    # sh:node era-sh:MinimumVerticalRadiusShape; not implemented in the shacl engine
+    sh:maxCount 1;
+    era:rinfIndex "1.2.2.0.3.3";
+	sh:nodeKind sh:IRI;
+	sh:severity sh:Violation ;
+	sh:message "minimumVerticalRadius (1.2.2.0.3.3) : The siding or subset with common characteristics must have at most one value of minimum vertical radius that must be an instace of MinimumVerticalRadius. This error may be due to the track having more than one value or having a value that is not an instance of the class MinimumVerticalRadius."@en .
+
+# minimumVerticalRadiusCrest: 
+era-sh:MinimumVerticalRadiusShape sh:property era-sh:MinimumVerticalRadiusCrest .
 era-sh:MinimumVerticalRadiusCrest
 	a sh:PropertyShape;
     era:affectedProperty era:minimumVerticalRadiusCrest ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Radius of the smallest vertical curve expressed in meters, part that indicates the crest" ;
-	era:rinfIndex "1.2.2.0.3.3" ;
+	rdfs:comment "Radius of the smallest vertical curve expressed in meters, part that indicates the crest "@en ;
 	sh:path era:minimumVerticalRadiusCrest ;
+    sh:minCount 1;
 	sh:maxCount 1 ;
 	sh:datatype xsd:integer ;
 	sh:severity sh:Violation ;
-	sh:message "minimumVerticalRadiusCrest (1.2.2.0.3.3): Each Siding may have a minimumVerticalRadiusCrest in meters. This error is due to having more than one minimum vertical radius crest value or having a minimum vertical radius crest that is not an integer number."@en .
+	sh:message "minimumVerticalRadiusCrest : Each siding may have a minimumVerticalRadiusCrest in meters. This error is due to having no value, having more than one value or having a value that is not an integer number."@en .
 
-# minimumVerticalRadiusHollow: # 1.2.2.0.3.3
-era-sh:SidingShape sh:property era-sh:MinimumVerticalRadiusHollow .
-era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MinimumVerticalRadiusHollow .
+# minimumVerticalRadiusHollow: 
+era-sh:MinimumVerticalRadiusShape sh:property era-sh:MinimumVerticalRadiusHollow .
 era-sh:MinimumVerticalRadiusHollow
 	a sh:PropertyShape;
     era:affectedProperty era:minimumVerticalRadiusHollow ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Radius of the smallest vertical curve expressed in meters, part that indicates the hollow" ;
-	era:rinfIndex "1.2.2.0.3.3" ;
+	rdfs:comment "Radius of the smallest vertical curve expressed in meters, part that indicates the hollow "@en ;
 	sh:path era:minimumVerticalRadiusHollow ;
+    sh:minCount 1;
 	sh:maxCount 1 ;
 	sh:datatype xsd:integer ;
 	sh:severity sh:Violation ;
-	sh:message "minimumVerticalRadiusHollowt (1.2.2.0.3.3): Each Siding may have a minimumVerticalRadiusHollow in meters. This error is due to having more than one minimum vertical radius hollow value or having a minimum vertical radius hollow that is not an integer number."@en .
+	sh:message "minimumVerticalRadiusHollow: Each siding may have a minimumVerticalRadiusHollow in meters. This error is due to having no value, having more than one value or having a a value that is not an integer number."@en .
+
+
 
 
 # hasToiletDischarge: # 1.2.2.0.4.1
@@ -245,13 +264,13 @@ era-sh:HasToiletDischarge
     era:affectedProperty era:hasToiletDischarge ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Indication whether exists and installation for toilet discharge (fixed installation for servicing trains) as defined in INF TSIs" ; 
+	rdfs:comment "Indication whether exists and installation for toilet discharge (fixed installation for servicing trains) as defined in INF TSIs "@en ; 
 	era:rinfIndex "1.2.2.0.4.1" ;
 	sh:path era:hasToiletDischarge ;
 	sh:maxCount 1 ;
 	sh:datatype xsd:boolean ;
 	sh:severity sh:Violation ;
-	sh:message "hasToiletDischarge (1.2.2.0.4.1): Each Siding may define the existence of a toilet discharge. This error is due to having more than one has toilet discharge value or having a has has toilet discharge value that is not Y/N (boolean)."@en .
+	sh:message "hasToiletDischarge (1.2.2.0.4.1): Each siding or subset with common characteristics  may define the existence of a toilet discharge. This error is due to having more than one has toilet discharge value or having a has has toilet discharge value that is not Y/N (boolean)."@en .
 
 # hasExternalCleaning: # 1.2.2.0.4.2
 era-sh:SidingShape sh:property era-sh:HasExternalCleaning .
@@ -261,13 +280,13 @@ era-sh:HasExternalCleaning
     era:affectedProperty era:hasExternalCleaning ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Indication whether exists and installation for external cleaning facility (fixed installation for servicing trains) as defined in INF TSIs" ; 
+	rdfs:comment "Indication whether exists and installation for external cleaning facility (fixed installation for servicing trains) as defined in INF TSIs "@en ; 
 	era:rinfIndex "1.2.2.0.4.2" ;
 	sh:path era:hasExternalCleaning ;
 	sh:maxCount 1 ;
 	sh:datatype xsd:boolean ;
 	sh:severity sh:Violation ;
-	sh:message "hasExternalCleaning (1.2.2.0.4.2): Each Siding must define the existence of an external cleaning facility. This error is due to having more than one has external cleaning value or having a has external cleaning value that is not Y/N (boolean)."@en .
+	sh:message "hasExternalCleaning (1.2.2.0.4.2): Each siding or subset with common characteristics  may define the existence of an external cleaning facility. This error is due to having more than one has external cleaning value or having a has external cleaning value that is not Y/N (boolean)."@en .
 
 # hasWaterRestocking: # 1.2.2.0.4.3
 era-sh:SidingShape sh:property era-sh:HasWaterRestocking .
@@ -277,13 +296,13 @@ era-sh:HasWaterRestocking
     era:affectedProperty era:hasWaterRestocking ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Indication whether exists and installation for water restocking (fixed installation for servicing trains) as defined in INF TSIs" ; 
+	rdfs:comment "Indication whether exists and installation for water restocking (fixed installation for servicing trains) as defined in INF TSIs "@en ; 
 	era:rinfIndex "1.2.2.0.4.3" ;
 	sh:path era:hasWaterRestocking ;
 	sh:maxCount 1 ;
 	sh:datatype xsd:boolean ;
 	sh:severity sh:Violation ;
-	sh:message "hasWaterRestocking (1.2.2.0.4.3): Each Siding may define the existence of a water restocking facility. This error is due to having more than one has water restocking value or having a has  water restocking value that is not Y/N (boolean)."@en .
+	sh:message "hasWaterRestocking (1.2.2.0.4.3): Each siding or subset with common characteristics  may define the existence of a water restocking facility. This error is due to having more than one has water restocking value or having a has  water restocking value that is not Y/N (boolean)."@en .
 
 # hasRefuelling: # 1.2.2.0.4.4
 era-sh:SidingShape sh:property era-sh:HasRefuelling .
@@ -293,13 +312,13 @@ era-sh:HasRefuelling
     era:affectedProperty era:hasRefuelling ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Indication whether exists and installation for refuelling (fixed installation for servicing trains) as defined in INF TSIs" ; 
+	rdfs:comment "Indication whether exists and installation for refuelling (fixed installation for servicing trains) as defined in INF TSIs "@en ; 
 	era:rinfIndex "1.2.2.0.4.4" ;
 	sh:path era:hasRefuelling ;
 	sh:maxCount 1 ;
 	sh:datatype xsd:boolean ;
 	sh:severity sh:Violation ;
-	sh:message "hasRefuelling (1.2.2.0.4.4): Each Siding must define the existence of a refuelling facility. This error is due to having more than one has refuelling value or having a  has refuelling value that is not Y/N (boolean)."@en .
+	sh:message "hasRefuelling (1.2.2.0.4.4): Each siding or subset with common characteristics may define the existence of a refuelling facility. This error is due to having more than one has refuelling value or having a  has refuelling value that is not Y/N (boolean)."@en .
 
 # hasSandRestocking: # 1.2.2.0.4.5
 era-sh:SidingShape sh:property era-sh:HasSandRestocking .
@@ -309,13 +328,13 @@ era-sh:HasSandRestocking
      era:affectedProperty era:hasSandRestocking ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Indication whether an installation for sand restocking exists(fixed installation for servicing trains)" ; 
+	rdfs:comment "Indication whether an installation for sand restocking exists(fixed installation for servicing trains) "@en ; 
 	era:rinfIndex "1.2.2.0.4.5" ;
 	sh:path era:hasSandRestocking ;
 	sh:maxCount 1 ;
 	sh:datatype xsd:boolean ;
 	sh:severity sh:Violation ;
-	sh:message "hasSandRestocking (1.2.2.0.4.5): Each Siding must define the existence of a sand restocking facility. This error is due to having more than one has sand restocking value or having a  has sand restocking value that is not Y/N (boolean)."@en .
+	sh:message "hasSandRestocking (1.2.2.0.4.5): Each siding or subset with common characteristics  may define the existence of a sand restocking facility. This error is due to having more than one has sand restocking value or having a  has sand restocking value that is not Y/N (boolean)."@en .
 
 # hasElectricShoreSupply: # 1.2.2.0.4.6
 era-sh:SidingShape sh:property era-sh:HasElectricShoreSupply .
@@ -325,13 +344,13 @@ era-sh:HasElectricShoreSupply
     era:affectedProperty era:hasElectricShoreSupply ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Indication whether an installation for electric shore supply exists (fixed installation for servicing trains)" ; 
+	rdfs:comment "Indication whether an installation for electric shore supply exists (fixed installation for servicing trains) "@en ; 
 	era:rinfIndex "1.2.2.0.4.6" ;
 	sh:path era:hasElectricShoreSupply ;
 	sh:maxCount 1 ;
 	sh:datatype xsd:boolean ;
 	sh:severity sh:Violation ;
-	sh:message "hasElectricShoreSupply (1.2.2.0.4.6): Each Siding must define the existence of an electric shore supply facility. This error is due to having more than one has electric shore supply value or having a  has electric shore supply value that is not Y/N (boolean)."@en .
+	sh:message "hasElectricShoreSupply (1.2.2.0.4.6): Each siding or subset with common characteristics may define the existence of an electric shore supply facility. This error is due to having more than one has electric shore supply value or having a  has electric shore supply value that is not Y/N (boolean)."@en .
 
 
 # maxCurrentStandstillPantograph: # 1.1.1.2.2.3, 1.2.2.0.6.1
@@ -342,10 +361,10 @@ era-sh:MaxCurrentStandstillPantographS
     era:affectedProperty era:maxCurrentStandstillPantograph ;
     era:affectedClass era:Siding;
     era:scope "local";
-	rdfs:comment "Indication of the maximum allowable train current at standstill for DC systems expressed in amperes" ;
+	rdfs:comment "Indication of the maximum allowable train current at standstill for DC systems expressed in amperes "@en ;
 	era:rinfIndex "1.1.1.2.2.3" , "1.2.2.0.6.1" ;
 	sh:path era:maxCurrentStandstillPantograph ;
 	sh:datatype xsd:double ;
 	sh:pattern "^([1-9]\\d{1,2}|[0-9])$" ;
 	sh:severity sh:Violation ;
-	sh:message "maxCurrentStandstillPantograph (1.1.1.2.2.3, 1.2.2.0.6.1): Each Siding must define the maximum allowable train current at standstill for DC systems expressed in amperes. This error is due to having a max current standstill pantograph value that is not a double (real) number."@en .
+	sh:message "maxCurrentStandstillPantograph (1.1.1.2.2.3, 1.2.2.0.6.1): Each siding may define the maximum allowable train current at standstill for DC systems expressed in amperes. This error is due to having a max current standstill pantograph value that is not a double (real) number."@en .
