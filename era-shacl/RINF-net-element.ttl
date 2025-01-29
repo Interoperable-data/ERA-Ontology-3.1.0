@@ -48,7 +48,7 @@ era-sh:Aggregates
     era:affectedClass era:NonLinearElement;
     era:affectedProperty era:aggregates ;
     era:scope "local";
-	rdfs:comment "Specifies the linear elements aggregated by a non-linear element." ;
+	rdfs:comment "Specifies the linear elements aggregated by a non-linear element. "@en ;
 	sh:path era:contains ;
 	sh:class era:LinearElement;
 	sh:severity sh:Violation ;
@@ -61,7 +61,7 @@ era-sh:ElementA
     era:affectedClass era:NetRelation;
     era:affectedProperty era:elementA ;
     era:scope "local";
-	rdfs:comment "References the first topological element in an oriented relation. For example, it may indicate the object that corresponds to a section of line, an operational point or a track inside an operational point connected at start." ;
+	rdfs:comment "References the first topological element in an oriented relation. For example, it may indicate the object that corresponds to a section of line, an operational point or a track inside an operational point connected at start. "@en ;
 	sh:path era:netRelation ;
 	sh:class era:LinearElement;
 	sh:severity sh:Violation ;
@@ -74,7 +74,7 @@ era-sh:ElementB
     era:affectedClass era:NetRelation;
     era:affectedProperty era:elementB ;
     era:scope "local";
-	rdfs:comment "References the second topological linear element in an oriented relation. For example, it may indicate the object that corresponds to a section of line, an operational point or a track inside an operational point connected at end." ;
+	rdfs:comment "References the second topological linear element in an oriented relation. For example, it may indicate the object that corresponds to a section of line, an operational point or a track inside an operational point connected at end. "@en ;
 	sh:path era:netRelation ;
 	sh:class era:LinearElement;
 	sh:severity sh:Violation ;
@@ -87,7 +87,7 @@ era-sh:Navigability
     era:affectedProperty era:navigability;
     era:affectedClass era:NetRelation;
     era:scope "local";
-	rdfs:comment "Indicates the navigation possibilities between two related topological linear elements." ;
+	rdfs:comment "Indicates the navigation possibilities between two related topological linear elements. "@en ;
 	sh:path era:navigability ;
     sh:nodeKind sh:IRI ;
 	sh:severity sh:Violation ;
@@ -100,7 +100,7 @@ era-sh:NavigabilitySKOS
     era:affectedProperty era:navigability;
     era:affectedClass era:NetRelation;
     era:scope "local";
-	rdfs:comment "Indicates the navigation possibilities between two related topological linear elements." ;
+	rdfs:comment "Indicates the navigation possibilities between two related topological linear elements. "@en ;
 	sh:severity sh:Violation ;
 	sh:message "era:navigability: The net relation {$this} with label {?thisLabel}  has a value {?concept} that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
     sh:prefixes era:;
@@ -125,7 +125,7 @@ era-sh:OnElement
     era:affectedClass era:LinearElementSection;
     era:affectedProperty era:onElement ;
     era:scope "local";
-	rdfs:comment "Specifies the linear element a section belongs to." ;
+	rdfs:comment "Specifies the linear element a section belongs to. "@en ;
 	sh:path era:onElement ;
 	sh:class era:LinearElement;
 	sh:severity sh:Violation ;
@@ -138,7 +138,7 @@ era-sh:OnLinearElement
     era:affectedClass era:TopologicalCoordinate;
     era:affectedProperty era:onLinearElement ;
     era:scope "local";
-	rdfs:comment "Specifies the linear element a coordinate is associated with." ;
+	rdfs:comment "Specifies the linear element a coordinate is associated with. "@en ;
 	sh:path era:onLinearElement ;
 	sh:class era:LinearElement;
 	sh:severity sh:Violation ;
@@ -151,7 +151,7 @@ era-sh:AppliesInBothDirections
     era:affectedClass era:LinearElementSection;
     era:affectedProperty era:appliesInBothDirections ;
     era:scope "local";
-	rdfs:comment "Specifies if the section applies in both directions (optional)." ;
+	rdfs:comment "Specifies if the section applies in both directions (optional). "@en ;
 	sh:path era:appliesInBothDirections ;
 	sh:datatype xsd:boolean ;
 	sh:severity sh:Violation ;
@@ -164,10 +164,9 @@ era-sh:EndOffsetFromOrigin
     era:affectedClass era:LinearElementSection;
     era:affectedProperty era:endOffsetFromOrigin ;
     era:scope "local";
-	rdfs:comment "End offset of the section from the origin." ;
+	rdfs:comment "End offset of the section from the origin. "@en ;
 	sh:path era:endOffsetFromOrigin ;
-	sh:datatype xsd:integer ;
-    sh:minInclusive 0;
+	sh:datatype xsd:positiveInteger ;
 	sh:severity sh:Violation ;
 	sh:message "endOffsetFromOrigin: The linear element section specifies  the end offset of the section from the origin. This error is due having a value that is not a positive integer."@en .
 
@@ -178,7 +177,7 @@ era-sh:IsOnOriginOfElementA
     era:affectedClass era:NetRelation;
     era:affectedProperty era:isOnOriginOfElementA ;
     era:scope "local";
-	rdfs:comment "Determines if the position of the topological element A in a relation is the origin of element A." ;
+	rdfs:comment "Determines if the position of the topological element A in a relation is the origin of element A. "@en ;
 	sh:path era:isOnOriginOfElementA ;
 	sh:datatype xsd:boolean ;
 	sh:severity sh:Violation ;
@@ -191,7 +190,7 @@ era-sh:IsOnOriginOfElementB
     era:affectedClass era:NetRelation;
     era:affectedProperty era:isOnOriginOfElementB ;
     era:scope "local";
-	rdfs:comment "Determines if the position of the topological element B in a relation is the origin of element B." ;
+	rdfs:comment "Determines if the position of the topological element B in a relation is the origin of element B. "@en ;
 	sh:path era:isOnOriginOfElementB ;
 	sh:datatype xsd:boolean ;
 	sh:severity sh:Violation ;
@@ -204,9 +203,9 @@ era-sh:LengthOfNetLinearElement
     era:affectedClass era:LinearElement;
     era:affectedProperty era:lengthOfNetLinearElement ;
     era:scope "local";
-	rdfs:comment "Length of a linear element." ;
+	rdfs:comment "Length of a linear element. "@en ;
 	sh:path era:lengthOfNetLinearElement ;
-    sh:minCount 1;
+    sh:maxCount 1;
 	sh:datatype xsd:double ;
 	sh:severity sh:Violation ;
 	sh:message "lengthOfNetLinearElement: The linear element has at most one value of length and it is a double number. This error is due to having more than one value or that the value is not a double number."@en .
@@ -220,8 +219,7 @@ era-sh:OffsetFromOrigin
     era:scope "local";
 	rdfs:comment "Offset from the origin in a topological coordinate."@en ;
 	sh:path era:offsetFromOrigin ;
-	sh:datatype xsd:integer ;
-    sh:minInclusive 0;
+	sh:datatype xsd:positiveInteger ;
 	sh:severity sh:Violation ;
 	sh:message "offsetFromOrigin: The offset from the origin in a topological coordinate must be represented as a positive integer."@en .
 
@@ -234,8 +232,7 @@ era-sh:StartOffsetFromOrigin
     era:scope "local";
 	rdfs:comment "Start offset of the section from the origin."@en ;
 	sh:path era:startOffsetFromOrigin ;
-	sh:datatype xsd:integer ;
-    sh:minInclusive 0;
+	sh:datatype xsd:positiveInteger ;
 	sh:severity sh:Violation ;
 	sh:message "startOffsetFromOrigin: The start offset of the section from the origin must be represented as a positive integer."@en .
 
