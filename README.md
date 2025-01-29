@@ -1,5 +1,8 @@
 # ERA Ontology version 3.1.0
 
+> [!CAUTION]  
+> **We are in the process of migrating this repository with [era-vocabulary](https://data-interop.era.europa.eu/era-vocabulary/) in a new Gitlab instance**.
+> 
 This is a draft update of the RINF extension of the ERA Ontology.
 It defines the entities and their relationships within the domain of railway infrastructure.
 It includes concepts such as railway lines, operational points, tracks, signals, junctions, and other various components of the railway network.
