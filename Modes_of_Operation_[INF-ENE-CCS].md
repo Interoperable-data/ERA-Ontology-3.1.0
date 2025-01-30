@@ -1,5 +1,8 @@
 # Properties of `era:VehicleType` depending on Operating Mode
 
+> [!CAUTION]
+> This document's proposed solution has been replaced, please consult [this issue](https://github.com/Interoperable-data/ERA-Ontology-3.1.0/issues/180). For the relevant technical parameters, this document remains valid.
+
 ## Problem setting
 
 Many of the parameters in `ERATV` have values which depend on the `operating mode`, expressed as a **combination** of trackside [INF, ENE, CCS]-characteristics or **singular** [ENE]-characteristics which the vehicles belonging to that type are able to support.
