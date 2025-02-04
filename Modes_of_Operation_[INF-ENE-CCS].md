@@ -1,11 +1,11 @@
-# Properties of `era:VehicleType` depending on Operating Mode
+# Configuration dependent properties of `era:VehicleType`
 
 > [!CAUTION]
 > This document's proposed solution has been replaced, please consult [this issue](https://github.com/Interoperable-data/ERA-Ontology-3.1.0/issues/180). For the relevant technical parameters, this document remains valid.
 
 ## Problem setting
 
-Many of the parameters in `ERATV` have values which depend on the `operating mode`, expressed as a **combination** of trackside [INF, ENE, CCS]-characteristics or **singular** [ENE]-characteristics which the vehicles belonging to that type are able to support.
+Many of the parameters in `ERATV` have values which depend on the `configuration`, expressed as a **combination** of trackside [INF, ENE, CCS]-characteristics or **singular** [INF|ENE]-characteristics which the vehicles belonging to that type are able to support.
 
 The following query finds all `VehicleType` properties with range `xsd:integer` which have at least double values and concatenates them in the output for `?val`:
 
@@ -22,9 +22,9 @@ BIND (concat(str(?b1), ", ",str(?b2)) as ?val)
 } group by ?s
 ```
 
-The query illustrates that [NO distinction was made](https://citnet.tech.ec.europa.eu/CITnet/jira/projects/LD4RAIL/issues/LD4RAIL-990?filter=allopenissues) for parameters of a type which are only valid per operating mode. In contrary, the values were just stacked up onto the same property, leading to erroneous conclusions.
+The query illustrates that [NO distinction was made](https://citnet.tech.ec.europa.eu/CITnet/jira/projects/LD4RAIL/issues/LD4RAIL-990?filter=allopenissues) for parameters of a type which are only valid per configuration. In contrary, the values were just stacked up onto the same property, leading to erroneous conclusions.
 
-In the following sections, we analyse the operating mode dependency for Technical and Non-technical Parameters, and go over all the properties to update.
+In the following sections, we analyse the configuration dependency for Technical and Non-technical Parameters, and go over all the properties to update.
 
 ### Technical parameters (Section 4)
 
@@ -55,7 +55,7 @@ Parameter 4.6.4 (Combination of maximum speed and maximum cant deficiency for wh
 
 ### Non-technical parameters
 
-Some Non-technical parameters of a `era:Authorisation` also distinguish between operating modes, and must therefore have an updated domain.
+Some Non-technical parameters of a `era:Authorisation` also distinguish between configurations, and must therefore have an updated domain.
 
 Regarding the Conformity, 2.1 and 2.3 must link to paragraphs in the vp:Requirement Conformity and Specific Cases sections (these 2 SKOS CS belong in /ERALEX):
 
@@ -107,9 +107,9 @@ Parameters that have no dependency whatsoever, keep their domain as `era:Vehicle
 - [X] 4.12.3.1 `era:supportedPlatformHeight`
 - [X] 4.14.1 `era:trainDetectionSystemType`
 
-### Properties dependent on `operating mode`
+### Properties dependent on `configuration`
 
-For parameters that have different values depending on their operating mode [ENE,INF,CCS], the domain is changed from `era:VehicleType` and becomes:
+For parameters that have different values depending on their configuration [ENE,INF,CCS], the domain is changed from `era:VehicleType` and becomes:
 
 - [ ] the `era:SubsetWithCommonCharacteristics` if the parameter is pure Rolling Stock / Wagon and has no relation with ENE, CCS, INF:
   - [X] 4.1.2.1 `era:maximumDesignSpeed` (See e.g. [this VehicleType](https://eratv.era.europa.eu/Eratv/Home/View/13-115-0001-9-001))
